@@ -4,14 +4,20 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <meta name="description"
-            content="ResumeBuilder — Build ATS-friendly resumes with AI-powered suggestions and premium templates." />
+            content="ResumeBuilder — Stand out with professional custom resumes, AI suggestions, and premium templates." />
         <title>ResumeBuilder — Build a Professional Resume</title>
+
+        <!-- Google Fonts: Inter & Outfit -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap"
             rel="stylesheet">
+
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
+        <!-- CANVA STYLE SITE HEADER -->
         <header class="site-header" role="banner">
             <div class="container header-inner">
                 <a class="logo" href="#home" aria-label="ResumeBuilder Home">
@@ -19,227 +25,267 @@
                         aria-hidden="true" focusable="false"
                         xmlns="http://www.w3.org/2000/svg">
                         <defs>
-                            <lineargradient id="grad1" x1="0" x2="1">
-                                <stop offset="0" stop-color="#4285F4" />
-                                <stop offset="1" stop-color="#34A853" />
-                            </lineargradient>
+                            <linearGradient id="grad1" x1="0" x2="1">
+                                <stop offset="0" stop-color="#00c4cc" />
+                                <stop offset="1" stop-color="#7d2ae8" />
+                            </linearGradient>
                         </defs>
                         <rect x="1" y="1" width="22" height="22" rx="6"
                             fill="url(#grad1)" />
                         <path d="M7 13c2-3 6-5 10-5" stroke="#fff"
-                            stroke-width="1.4" stroke-linecap="round"
+                            stroke-width="1.6" stroke-linecap="round"
                             stroke-linejoin="round" />
                     </svg>
-                    <span class="brand">ResumeBuilder</span>
+                    <div class="brand-text">
+                        <span class="brand">ResumeBuilder</span>
+                    </div>
                 </a>
 
                 <nav class="nav" role="navigation" aria-label="Main Navigation">
                     <a href="#home">Home</a>
-                    <a href="#features">Features</a>
                     <a href="#templates">Templates</a>
-                    <a href="#pricing">Pricing</a>
-                    <a href="#about">About</a>
+                    <a href="#choose">Career Paths</a>
+                    <a href="#features">Features</a>
+                    <a href="#how">How It Works</a>
                 </nav>
 
                 <div class="actions">
-                    <button class="btn btn-ghost"><a
-                            style="text-decoration: none; color: inherit;"
-                            href="login.html">Login</a> </button>
-                    <a href="#choose" class="btn btn-primary">Get Started</a>
-                    <button class="mobile-btn" id="menuToggle"
-                        aria-label="Open menu" aria-expanded="false">☰</button>
+                    <a href="login.html" class="btn btn-ghost">Log in</a>
+                    <a href="#choose" class="btn btn-primary">Create a resume</a>
                 </div>
             </div>
         </header>
 
         <main>
-            <!-- HERO -->
-            <section id="home" class="hero">
-                <div class="container hero-grid">
-                    <div class="hero-content">
-                        <p class="kicker">AI-powered · ATS-friendly</p>
-                        <h1 class="title">Build a Professional Resume That Gets
-                            You Hired</h1>
-                        <p class="lead">Create ATS-friendly resumes in minutes
-                            with AI assistance and professionally designed
-                            templates.</p>
-
-                        <div class="trust">
-                            <div class="badges">
-                                <span class="badge">✓ ATS Friendly</span>
-                                <span class="badge">✓ Free to Start</span>
-                                <span class="badge">✓ AI Powered</span>
-                            </div>
-                            <div class="social">Trusted by <strong>1M+</strong>
-                                job seekers</div>
+            <!-- CANVA HERO BANNER -->
+            <section id="home" class="hero-wrapper">
+                <div class="container">
+                    <div class="hero-banner">
+                        <div class="breadcrumb">
+                            <a href="#home">Home</a>
+                            <span>›</span>
+                            <span>Resumes</span>
                         </div>
-                    </div>
 
-                    <aside class="hero-visual" aria-hidden="true" role="img"
-                        aria-label="Decorative resume mockup">
-                        <div class="mockup">
-                            <div class="resume-mock">
-                                <div class="r-header">
-                                    <div class="r-name">Taylor Morgan</div>
-                                    <div class="r-role">Frontend Engineer</div>
-                                </div>
-                                <div class="r-body">
-                                    <h4>Experience</h4>
-                                    <p class="muted">Senior Developer at Acme ·
-                                        2019–Present</p>
+                        <div class="hero-grid">
+                            <div class="hero-content">
+                                <span class="kicker">AI-POWERED · ATS-FRIENDLY</span>
+                                <h1 class="title">Stand out with professional custom resumes</h1>
+                                <p class="lead">Let your qualifications shine with an exceptional CV, designed with ease and made to stand out from the crowd.</p>
+                                <div style="display:flex;gap:14px;align-items:center">
+                                    <a href="fresher.html" class="btn btn-pill-purple">Create a resume</a>
+                                    <a href="#templates" class="btn btn-ghost" style="border-radius:9999px;padding:14px 24px">Browse templates</a>
                                 </div>
                             </div>
 
-                            <div class="floating score">
-                                <div class="score-num">92%</div>
-                                <div class="score-label">ATS Score</div>
-                            </div>
+                            <div class="hero-visual">
+                                <div class="mockup-frame">
+                                    <div class="r-mock-head">
+                                        <div class="r-mock-name">Taylor Morgan</div>
+                                        <div class="r-mock-role">Senior Product Designer</div>
+                                    </div>
+                                    <div class="r-mock-line purple"></div>
+                                    <div class="r-mock-line short"></div>
+                                    <div style="margin-top:20px;font-weight:700;font-size:12px;color:#64748b">EXPERIENCE</div>
+                                    <div class="r-mock-line medium"></div>
+                                    <div class="r-mock-line"></div>
+                                    <div class="r-mock-line short"></div>
 
-                            <div class="floating badge">ATS Optimized</div>
-                            <div class="floating suggestions">
-                                <div class="s-title">AI Suggestions</div>
-                                <div class="s-item">Add quantifiable
-                                    achievements</div>
+                                    <div style="margin-top:20px;font-weight:700;font-size:12px;color:#64748b">SKILLS</div>
+                                    <div style="display:flex;gap:6px;margin-top:8px">
+                                        <span style="background:rgba(125,42,232,0.1);color:#7d2ae8;padding:4px 8px;border-radius:6px;font-size:11px;font-weight:700">UI/UX</span>
+                                        <span style="background:rgba(0,196,204,0.1);color:#008b90;padding:4px 8px;border-radius:6px;font-size:11px;font-weight:700">Figma</span>
+                                        <span style="background:#f1f5f9;color:#475569;padding:4px 8px;border-radius:6px;font-size:11px;font-weight:700">React</span>
+                                    </div>
+                                </div>
+
+                                <div class="floating-badge ats">
+                                    <span>✓</span> 94% ATS Score
+                                </div>
+                                <div class="floating-badge ai">
+                                    ✦ AI Suggestions Ready
+                                </div>
                             </div>
                         </div>
-                    </aside>
-                </div>
-            </section>
-
-            <!-- USER TYPE SELECTION -->
-            <section id="choose" class="choose">
-                <div class="container">
-                    <h2 class="section-title">Choose Your Career Path</h2>
-                    <p class="section-sub">Pick the profile that best fits your
-                        situation — we’ll tailor the resume flow
-                        automatically.</p>
-
-                    <div class="cards">
-                        <article class="card option" data-type="fresher"
-                            tabindex="0">
-                            <div class="card-head">🎓</div>
-                            <h3>Fresher</h3>
-                            <p class="card-desc">Create your first professional
-                                resume as a student or recent graduate.</p>
-                            <ul class="card-features">
-                                <li>Student-friendly templates</li>
-                                <li>Internship resume builder</li>
-                                <li>Academic achievements section</li>
-                                <li>Skills suggestions</li>
-                            </ul>
-                            <button class="btn btn-card"
-                                data-action="start-fresher"> <a class="btn-link"
-                                    href="fresher.html">Start as
-                                    Fresher</a> </button>
-                        </article>
-
-                        <article class="card option" data-type="pro"
-                            tabindex="0">
-                            <div class="card-head">💼</div>
-                            <h3>Employed & Looking for a New Job</h3>
-                            <p class="card-desc">Build a powerful resume to
-                                advance your career and land better
-                                opportunities.</p>
-                            <ul class="card-features">
-                                <li>Experience-focused templates</li>
-                                <li>Career growth optimization</li>
-                                <li>ATS optimization</li>
-                                <li>Professional summary generator</li>
-                            </ul>
-                            <button class="btn btn-card"
-                                data-action="start-pro">Start as
-                                Professional</button>
-                        </article>
                     </div>
                 </div>
             </section>
 
-            <!-- FEATURES -->
-            <section id="features" class="features">
+            <!-- TRUST LOGOS STRIP -->
+            <section class="trust-bar">
                 <div class="container">
-                    <h2 class="section-title center">Powerful Features</h2>
-                    <div class="feature-grid">
-                        <div class="feature">✓ AI Resume Builder</div>
-                        <div class="feature">✓ ATS-Friendly Templates</div>
-                        <div class="feature">✓ One-Click PDF Download</div>
-                        <div class="feature">✓ Resume Score Checker</div>
-                        <div class="feature">✓ Smart Suggestions</div>
-                        <div class="feature">✓ Professional Designs</div>
+                    <div class="trust-title">Trusted by applicants hired at top companies</div>
+                    <div class="trust-logos">
+                        <span class="trust-logo-text">DANONE</span>
+                        <span class="trust-logo-text">PayPal</span>
+                        <span class="trust-logo-text">GUCCI</span>
+                        <span class="trust-logo-text">SONY MUSIC</span>
+                        <span class="trust-logo-text">AMNESTY</span>
                     </div>
                 </div>
             </section>
 
-            <!-- HOW IT WORKS -->
-            <section id="how" class="how">
+            <!-- SEARCH & TEMPLATE SHOWCASE -->
+            <section id="templates" class="template-search-section">
                 <div class="container">
-                    <h2 class="section-title">How It Works</h2>
-                    <div class="steps">
-                        <div class="step">1. Choose Your Profile</div>
-                        <div class="step">2. Fill Your Information</div>
-                        <div class="step">3. Customize Resume</div>
-                        <div class="step">4. Download & Apply</div>
+                    <div class="center" style="margin-bottom:24px">
+                        <h2 style="font-size:32px;font-weight:800;margin:0 0 8px;color:var(--canva-dark)">Explore Resume Templates</h2>
+                        <p style="color:var(--canva-muted);margin:0;font-size:16px">Choose a professionally crafted layout to jumpstart your resume design.</p>
+                    </div>
+
+                    <div class="search-bar-wrap">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" id="templateSearch" class="search-input" placeholder="Search thousands of templates (e.g., Minimalist, Tech, Executive)...">
+                    </div>
+
+                    <div class="filter-pills">
+                        <button class="pill active">All Templates</button>
+                        <button class="pill">Modern</button>
+                        <button class="pill">Minimalist</button>
+                        <button class="pill">Creative</button>
+                        <button class="pill">Executive</button>
+                        <button class="pill">Fresher</button>
+                    </div>
+
+                    <div class="templates-grid">
+                        <a href="fresher.html" class="tmpl-card">
+                            <div class="tmpl-preview-box">
+                                <div class="tmpl-paper-sheet">
+                                    <div class="tmpl-paper-head"></div>
+                                    <div class="r-mock-line medium"></div>
+                                    <div class="r-mock-line short"></div>
+                                    <div class="r-mock-line"></div>
+                                </div>
+                            </div>
+                            <div class="tmpl-info">
+                                <div class="tmpl-title">Modern Minimalist</div>
+                                <div class="tmpl-tag">Clean · ATS Optimized</div>
+                            </div>
+                        </a>
+
+                        <a href="fresher.html" class="tmpl-card">
+                            <div class="tmpl-preview-box">
+                                <div class="tmpl-paper-sheet" style="background:#fafafa">
+                                    <div class="tmpl-paper-head" style="background:linear-gradient(90deg, #10b981, #00c4cc)"></div>
+                                    <div class="r-mock-line short"></div>
+                                    <div class="r-mock-line medium"></div>
+                                    <div class="r-mock-line"></div>
+                                </div>
+                            </div>
+                            <div class="tmpl-info">
+                                <div class="tmpl-title">Executive Professional</div>
+                                <div class="tmpl-tag">Formal · High Impact</div>
+                            </div>
+                        </a>
+
+                        <a href="fresher.html" class="tmpl-card">
+                            <div class="tmpl-preview-box">
+                                <div class="tmpl-paper-sheet">
+                                    <div class="tmpl-paper-head" style="background:linear-gradient(90deg, #7d2ae8, #f43f5e)"></div>
+                                    <div class="r-mock-line medium"></div>
+                                    <div class="r-mock-line short"></div>
+                                    <div class="r-mock-line"></div>
+                                </div>
+                            </div>
+                            <div class="tmpl-info">
+                                <div class="tmpl-title">Creative Designer</div>
+                                <div class="tmpl-tag">Vibrant · Portfolio Ready</div>
+                            </div>
+                        </a>
+
+                        <a href="fresher.html" class="tmpl-card">
+                            <div class="tmpl-preview-box">
+                                <div class="tmpl-paper-sheet">
+                                    <div class="tmpl-paper-head" style="background:linear-gradient(90deg, #0f172a, #334155)"></div>
+                                    <div class="r-mock-line short"></div>
+                                    <div class="r-mock-line medium"></div>
+                                    <div class="r-mock-line"></div>
+                                </div>
+                            </div>
+                            <div class="tmpl-info">
+                                <div class="tmpl-title">Tech Specialist</div>
+                                <div class="tmpl-tag">Structured · Developer Friendly</div>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </section>
 
-            <!-- TESTIMONIALS -->
-            <section id="testimonials" class="testimonials">
+            <!-- CHOOSE CAREER PATH -->
+            <section id="choose" class="choose-path-section">
                 <div class="container">
-                    <h2 class="section-title center">What Our Users Say</h2>
-                    <div class="test-grid">
-                        <blockquote class="testimonial">“I landed my dream job
-                            in 2 weeks — the AI suggestions were spot
-                            on.”<cite>— Priya K.</cite></blockquote>
-                        <blockquote class="testimonial">“Best tool for interns
-                            and freshers — simple and effective.”<cite>— Luke
-                                M.</cite></blockquote>
-                        <blockquote class="testimonial">“Professional templates
-                            and ATS checks saved me hours.”<cite>— Sara
-                                D.</cite></blockquote>
+                    <div class="center" style="margin-bottom:40px">
+                        <h2 style="font-size:32px;font-weight:800;margin:0 0 8px;color:var(--canva-dark)">Choose Your Career Path</h2>
+                        <p style="color:var(--canva-muted);margin:0;font-size:16px">Pick the profile that best fits your experience level — we’ll customize the builder flow.</p>
+                    </div>
+
+                    <div class="path-cards">
+                        <div class="path-card">
+                            <div>
+                                <div class="path-icon">🎓</div>
+                                <h3 class="path-title">Fresher / Graduate</h3>
+                                <p class="path-desc">Build your first professional resume with step-by-step guidance tailored for students and fresh graduates.</p>
+                                <ul class="path-features">
+                                    <li>Student & Intern friendly layouts</li>
+                                    <li>Academic projects & achievements emphasis</li>
+                                    <li>Skill keyword recommendations</li>
+                                    <li>One-click PDF download</li>
+                                </ul>
+                            </div>
+                            <a href="fresher.html" class="btn btn-pill-purple" style="width:100%;text-align:center">Start as Fresher</a>
+                        </div>
+
+                        <div class="path-card">
+                            <div>
+                                <div class="path-icon">💼</div>
+                                <h3 class="path-title">Experienced Professional</h3>
+                                <p class="path-desc">Create a high-impact, ATS-optimized resume designed to advance your career and land top opportunities.</p>
+                                <ul class="path-features">
+                                    <li>Experience & Leadership focused</li>
+                                    <li>Quantifiable achievement metrics</li>
+                                    <li>Executive summary generator</li>
+                                    <li>ATS compliance score check</li>
+                                </ul>
+                            </div>
+                            <a href="fresher.html" class="btn btn-ghost" style="width:100%;text-align:center;border-color:var(--canva-purple);color:var(--canva-purple);font-weight:700">Start as Professional</a>
+                        </div>
                     </div>
                 </div>
             </section>
-
         </main>
 
-        <footer class="site-footer" role="contentinfo">
+        <!-- CANVA STYLE FOOTER -->
+        <footer class="site-footer" role="contentinfo" style="border-top:1px solid var(--canva-border);padding:40px 0">
             <div class="container footer-inner">
                 <div class="footer-brand">
                     <a class="logo" href="#home" aria-label="ResumeAI Home">
-                        <svg width="28" height="28" viewBox="0 0 24 24"
-                            fill="none" aria-hidden="true" focusable="false"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <defs><lineargradient id="grad1-f" x1="0"
-                                    x2="1"><stop offset="0"
-                                        stop-color="#4285F4" /><stop offset="1"
-                                        stop-color="#34A853" /></lineargradient></defs>
-                            <rect x="1" y="1" width="22" height="22" rx="5"
-                                fill="url(#grad1-f)" />
-                            <path d="M7 13c2-3 6-5 10-5" stroke="#fff"
-                                stroke-width="1.2" stroke-linecap="round"
-                                stroke-linejoin="round" />
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="grad1-f" x1="0" x2="1">
+                                    <stop offset="0" stop-color="#00c4cc" />
+                                    <stop offset="1" stop-color="#7d2ae8" />
+                                </linearGradient>
+                            </defs>
+                            <rect x="1" y="1" width="22" height="22" rx="5" fill="url(#grad1-f)" />
+                            <path d="M7 13c2-3 6-5 10-5" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
-                        <span class="brand">Resume Builder</span>
+                        <span class="brand">ResumeBuilder</span>
                     </a>
-                    <p class="muted-small">Build ATS-friendly resumes with AI
-                        suggestions.</p>
+                    <p class="muted-small">Build ATS-friendly resumes with AI suggestions and Canva-inspired designs.</p>
                 </div>
                 <div class="footer-links">
                     <nav aria-label="Footer Navigation" class="foot-nav">
-                        <a href="#features">Features</a>
+                        <a href="#home">Home</a>
                         <a href="#templates">Templates</a>
-                        <a href="#pricing">Pricing</a>
-                        <a href="#about">About</a>
+                        <a href="#choose">Career Paths</a>
+                        <a href="#features">Features</a>
                     </nav>
-                    <div class="legal">© <span id="year"></span> ResumeAI · <a
-                            href="#terms">Terms</a> · <a
-                            href="#privacy">Privacy</a></div>
+                    <div class="legal">© <span id="year"></span> ResumeAI · All rights reserved</div>
                 </div>
             </div>
         </footer>
 
-        <button id="backToTop" class="back-to-top"
-            aria-label="Back to top">↑</button>
+        <button id="backToTop" class="back-to-top" aria-label="Back to top">↑</button>
 
         <script src="script.js"></script>
     </body>
