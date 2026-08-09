@@ -145,9 +145,23 @@ document.querySelectorAll(".fade-up").forEach(function (el) {
       if (!raw) return;
       const s = JSON.parse(raw);
       state = Object.assign(state, s);
+      normalizeSkillsState();
     } catch (e) {
       console.warn("Load state failed", e);
     }
+  }
+
+  function normalizeSkillsState() {
+    if (!state.skills || typeof state.skills !== "object") {
+      state.skills = { technical: [], soft: [], languages: [], certifications: [] };
+    }
+    if (Array.isArray(state.skills)) {
+      state.skills = { technical: state.skills, soft: [], languages: [], certifications: [] };
+    }
+    if (!Array.isArray(state.skills.technical)) state.skills.technical = [];
+    if (!Array.isArray(state.skills.soft)) state.skills.soft = [];
+    if (!Array.isArray(state.skills.languages)) state.skills.languages = [];
+    if (!Array.isArray(state.skills.certifications)) state.skills.certifications = [];
   }
 
   // Save state
@@ -472,107 +486,168 @@ document.querySelectorAll(".fade-up").forEach(function (el) {
   }
 
   // 3. Skills
- function renderSkills() {
-  const wrapper = document.createElement("div");
-  wrapper.className = "form";
-  wrapper.innerHTML = `
-    <div class="field"><label>Technical Skills</label><div id="techWrap" class="list"></div><div style="margin-top:8px"><input class="form-control" id="newTech" placeholder="Add a technical skill and press Enter"/></div></div>
-    <div class="field"><label>Soft Skills</label><div id="softWrap" class="list"></div><div style="margin-top:8px"><input class="form-control" id="newSoft" placeholder="Add a soft skill and press Enter"/></div></div>
-    <div class="field"><label>Languages</label><div id="langWrap" class="list"></div><div style="margin-top:8px"><input class="form-control" id="newLang" placeholder="Add a language and press Enter"/></div></div>
-    <div class="field"><label>Certifications</label><div id="certWrap" class="list"></div><div style="margin-top:8px"><input class="form-control" id="newCert" placeholder="Add a certification and press Enter"/></div></div>
-    <div class="actions"><div style="flex:1"></div><button id="saveSkills" class="btn bg-success text-white">Save</button><button id="toNext3" class="btn primary">Next</button></div>
-  `;
+  function renderSkills() {
+    normalizeSkillsState();
+    const wrapper = document.createElement("div");
+    wrapper.className = "form";
+    wrapper.innerHTML = `
+      <div class="field">
+        <label>Technical Skills</label>
+        <div id="techWrap" class="list"></div>
+        <div style="display:flex;gap:8px;margin-top:8px">
+          <input class="form-control" id="newTech" placeholder="Add technical skill(s), e.g. JavaScript, React"/>
+          <button class="btn neutral" id="addTechBtn" type="button">Add</button>
+        </div>
+      </div>
+      <div class="field">
+        <label>Soft Skills</label>
+        <div id="softWrap" class="list"></div>
+        <div style="display:flex;gap:8px;margin-top:8px">
+          <input class="form-control" id="newSoft" placeholder="Add soft skill(s), e.g. Communication, Leadership"/>
+          <button class="btn neutral" id="addSoftBtn" type="button">Add</button>
+        </div>
+      </div>
+      <div class="field">
+        <label>Languages</label>
+        <div id="langWrap" class="list"></div>
+        <div style="display:flex;gap:8px;margin-top:8px">
+          <input class="form-control" id="newLang" placeholder="Add language(s), e.g. English, Spanish"/>
+          <button class="btn neutral" id="addLangBtn" type="button">Add</button>
+        </div>
+      </div>
+      <div class="field">
+        <label>Certifications</label>
+        <div id="certWrap" class="list"></div>
+        <div style="display:flex;gap:8px;margin-top:8px">
+          <input class="form-control" id="newCert" placeholder="Add certification(s), e.g. AWS Certified, PMP"/>
+          <button class="btn neutral" id="addCertBtn" type="button">Add</button>
+        </div>
+      </div>
+      <div class="actions"><div style="flex:1"></div><button id="saveSkills" class="btn bg-success text-white">Save</button><button id="toNext3" class="btn primary">Next</button></div>
+    `;
 
-  const techWrap = wrapper.querySelector("#techWrap");
-  const softWrap = wrapper.querySelector("#softWrap");
-  const langWrap = wrapper.querySelector("#langWrap");
-  const certWrap = wrapper.querySelector("#certWrap");
+    const techWrap = wrapper.querySelector("#techWrap");
+    const softWrap = wrapper.querySelector("#softWrap");
+    const langWrap = wrapper.querySelector("#langWrap");
+    const certWrap = wrapper.querySelector("#certWrap");
 
-  // Safeguard array structures to prevent undefined mutations
-  if (!state.skills) state.skills = {};
-  if (!Array.isArray(state.skills.technical)) state.skills.technical = [];
-  if (!Array.isArray(state.skills.soft)) state.skills.soft = [];
-  if (!Array.isArray(state.skills.languages)) state.skills.languages = [];
-  if (!Array.isArray(state.skills.certifications)) state.skills.certifications = [];
-
-  // Core array listing rendering engine
-  function renderList(arr, el) {
-    el.innerHTML = "";
-    arr.forEach((v, i) => {
-      const item = document.createElement("div");
-      item.className = "entry mb-1 p-1 d-flex justify-content-between align-items-center";
-      // Safe string escaping boundary management
-      const safeValue = typeof escape === "function" ? escape(v) : v;
-      item.innerHTML = `<span>${safeValue}</span> <div><button class="btn btn-sm btn-outline-danger" data-idx="${i}" data-type="${el.id}" data-act="remove">Remove</button></div>`;
-      el.appendChild(item);
-    });
-    if (arr.length === 0) {
-      el.innerHTML = `<div class="small text-muted">No items added yet</div>`;
-    }
-  }
-
-  // Initial list population routines
-  renderList(state.skills.technical, techWrap);
-  renderList(state.skills.soft, softWrap);
-  renderList(state.skills.languages, langWrap);
-  renderList(state.skills.certifications, certWrap);
-
-  // --- Core Mutation Fix: Real-Time Dynamic Array Input Binding ---
-  function handleAddSkill(inputId, storageArray, elementWrap) {
-    const input = wrapper.querySelector(`#${inputId}`);
-    if (input) {
-      input.addEventListener("keydown", (e) => {
-        if (e.key === "Enter") {
-          e.preventDefault(); // Intercept and block sudden native form postbacks
-          const value = input.value.trim();
-          if (value) {
-            storageArray.push(value); // Mutate targeted state array index directly
-            saveState(); // Commit current layout state snapshots locally
-            renderList(storageArray, elementWrap); // Force clear and repaint local node map
-            input.value = ""; // Empty out standard working buffer stream
-          }
-        }
+    // Core array listing rendering engine
+    function renderList(arr, el) {
+      el.innerHTML = "";
+      arr.forEach((v, i) => {
+        const item = document.createElement("div");
+        item.className = "entry mb-1 p-1 d-flex justify-content-between align-items-center";
+        const safeValue = typeof escape === "function" ? escape(v) : v;
+        item.innerHTML = `<span>${safeValue}</span> <div><button class="btn btn-sm btn-outline-danger" data-idx="${i}" data-type="${el.id}" data-act="remove">Remove</button></div>`;
+        el.appendChild(item);
       });
+      if (arr.length === 0) {
+        el.innerHTML = `<div class="small text-muted">No items added yet</div>`;
+      }
     }
-  }
 
-  // Bind keydown events across all operational skills form input elements
-  handleAddSkill("newTech", state.skills.technical, techWrap);
-  handleAddSkill("newSoft", state.skills.soft, softWrap);
-  handleAddSkill("newLang", state.skills.languages, langWrap);
-  handleAddSkill("newCert", state.skills.certifications, certWrap);
+    // Initial list population routines
+    renderList(state.skills.technical, techWrap);
+    renderList(state.skills.soft, softWrap);
+    renderList(state.skills.languages, langWrap);
+    renderList(state.skills.certifications, certWrap);
 
-  // Delegation pipeline managing deletion handlers dynamically
-  wrapper.addEventListener("click", (e) => {
-    const btn = e.target.closest("button");
-    if (!btn) return;
-    if (btn.dataset.act === "remove") {
-      const idx = Number(btn.dataset.idx);
-      const type = btn.dataset.type;
-      
-      if (type === "techWrap") state.skills.technical.splice(idx, 1);
-      if (type === "softWrap") state.skills.soft.splice(idx, 1);
-      if (type === "langWrap") state.skills.languages.splice(idx, 1);
-      if (type === "certWrap") state.skills.certifications.splice(idx, 1);
-      
+    function handleAddSkill(inputId, btnId, storageArray, elementWrap) {
+      const input = wrapper.querySelector(`#${inputId}`);
+      const btn = wrapper.querySelector(`#${btnId}`);
+
+      function addValues() {
+        if (!input) return;
+        const rawValue = input.value.trim();
+        if (rawValue) {
+          const items = rawValue.split(",").map((s) => s.trim()).filter(Boolean);
+          items.forEach((item) => {
+            if (!storageArray.includes(item)) {
+              storageArray.push(item);
+            }
+          });
+          saveState();
+          renderList(storageArray, elementWrap);
+          input.value = "";
+        }
+      }
+
+      if (input) {
+        input.addEventListener("keydown", (e) => {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            addValues();
+          }
+        });
+        input.addEventListener("blur", () => {
+          addValues();
+        });
+      }
+
+      if (btn) {
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          addValues();
+        });
+      }
+    }
+
+    handleAddSkill("newTech", "addTechBtn", state.skills.technical, techWrap);
+    handleAddSkill("newSoft", "addSoftBtn", state.skills.soft, softWrap);
+    handleAddSkill("newLang", "addLangBtn", state.skills.languages, langWrap);
+    handleAddSkill("newCert", "addCertBtn", state.skills.certifications, certWrap);
+
+    // Delegation pipeline managing deletion handlers dynamically
+    wrapper.addEventListener("click", (e) => {
+      const btn = e.target.closest("button");
+      if (!btn) return;
+      if (btn.dataset.act === "remove") {
+        const idx = Number(btn.dataset.idx);
+        const type = btn.dataset.type;
+
+        if (type === "techWrap") {
+          state.skills.technical.splice(idx, 1);
+          renderList(state.skills.technical, techWrap);
+        }
+        if (type === "softWrap") {
+          state.skills.soft.splice(idx, 1);
+          renderList(state.skills.soft, softWrap);
+        }
+        if (type === "langWrap") {
+          state.skills.languages.splice(idx, 1);
+          renderList(state.skills.languages, langWrap);
+        }
+        if (type === "certWrap") {
+          state.skills.certifications.splice(idx, 1);
+          renderList(state.skills.certifications, certWrap);
+        }
+
+        saveState();
+      }
+    });
+
+    function flushInputs() {
+      wrapper.querySelector("#addTechBtn")?.click();
+      wrapper.querySelector("#addSoftBtn")?.click();
+      wrapper.querySelector("#addLangBtn")?.click();
+      wrapper.querySelector("#addCertBtn")?.click();
+    }
+
+    wrapper.querySelector("#saveSkills").onclick = () => {
+      flushInputs();
       saveState();
-      renderStep(3); // Redraw UI elements instantly to reflect current mutations
-    }
-  });
+      alert("Skills saved successfully!");
+    };
 
-  wrapper.querySelector("#saveSkills").onclick = () => {
-    saveState();
-    alert("Skills saved successfully!");
-  };
+    wrapper.querySelector("#toNext3").onclick = () => {
+      flushInputs();
+      state.current = 4;
+      saveState();
+      if (typeof renderStep === "function") renderStep(4);
+    };
 
-  wrapper.querySelector("#toNext3").onclick = () => {
-    state.current = 4;
-    saveState();
-    if (typeof renderStep === "function") renderStep(4);
-  };
-
-  return wrapper;
-}
+    return wrapper;
+  }
 
   // 4. Projects
   function renderProjects() {
@@ -856,13 +931,28 @@ document.querySelectorAll(".fade-up").forEach(function (el) {
   }
 
   function buildResumeHtml() {
+    const tech = (state.skills?.technical || []).join(", ");
+    const soft = (state.skills?.soft || []).join(", ");
+    const lang = (state.skills?.languages || []).join(", ");
+    const cert = (state.skills?.certifications || []).join(", ");
+
+    const skillsParts = [];
+    if (tech) skillsParts.push(`<div><strong>Technical Skills:</strong> ${escape(tech)}</div>`);
+    if (soft) skillsParts.push(`<div><strong>Soft Skills:</strong> ${escape(soft)}</div>`);
+    if (lang) skillsParts.push(`<div><strong>Languages:</strong> ${escape(lang)}</div>`);
+    if (cert) skillsParts.push(`<div><strong>Certifications:</strong> ${escape(cert)}</div>`);
+
+    const skillsSection = skillsParts.length > 0
+      ? `<h4 style="margin-top:12px">Skills & Certifications</h4><div class="small muted" style="display:flex;flex-direction:column;gap:4px">${skillsParts.join("")}</div>`
+      : "";
+
     // simple formatted HTML for preview/export
     return `<div style="font-family:Inter,system-ui;line-height:1.4;color:var(--muted)">
       <div style="display:flex;gap:12px;align-items:center"><div style="flex:1"><h2 style="margin:0">${escape(state.personal.fullName || "")}</h2><div style="color:var(--muted)">${escape(state.personal.headline || "")}</div></div>${state.personal.photo ? `<img src="${state.personal.photo}" style="width:86px;height:86px;border-radius:10px;object-fit:cover">` : ""}</div>
       <hr style="margin:12px 0;border:none;border-top:1px solid rgba(15,23,42,0.04)">
       <h4 style="margin-bottom:6px">Contact</h4><div class="small muted">${escape(state.personal.email || "")} • ${escape(state.personal.phone || "")} • ${escape(state.personal.address || "")}</div>
       <h4 style="margin-top:12px">Education</h4>${state.education.map((e) => `<div><strong>${escape(e.degree || "")}</strong> — ${escape(e.institution || "")}<div class="small muted">${escape(e.start || "")} - ${escape(e.end || "")}</div><div style="margin-top:6px">${escape(e.description || "")}</div></div>`).join("")}
-      <h4 style="margin-top:12px">Skills</h4><div class="small muted">${(state.skills.technical || []).join(", ")}</div>
+      ${skillsSection}
       <h4 style="margin-top:12px">Projects</h4>${state.projects.map((p) => `<div><strong>${escape(p.name || "")}</strong><div class="small muted">${escape(p.tech || "")}</div><div>${escape(p.description || "")}</div></div>`).join("")}
       <h4 style="margin-top:12px">Experience</h4>${state.experience.map((x) => `<div><strong>${escape(x.title || "")} @ ${escape(x.company || "")}</strong><div class="small muted">${escape(x.start || "")} - ${escape(x.end || "")}</div><div>${escape(x.responsibilities || "")}</div></div>`).join("")}
       <h4 style="margin-top:12px">Achievements</h4>${state.achievements.map((a) => `<div><strong>${escape(a.title || "")}</strong><div class="small muted">${escape(a.org || "")} • ${escape(a.date || "")}</div><div>${escape(a.description || "")}</div></div>`).join("")}
@@ -910,7 +1000,12 @@ document.querySelectorAll(".fade-up").forEach(function (el) {
     if (state.personal.email) done++;
     if (state.personal.phone) done++;
     if (state.education.length > 0) done++;
-    if ((state.skills.technical || []).length > 0) done++;
+    if (
+      (state.skills?.technical && state.skills.technical.length > 0) ||
+      (state.skills?.soft && state.skills.soft.length > 0) ||
+      (state.skills?.languages && state.skills.languages.length > 0) ||
+      (state.skills?.certifications && state.skills.certifications.length > 0)
+    ) done++;
     const pct = Math.round((done / total) * 100);
     progressFill.style.width = `${pct}%`;
     progressPct.textContent = `${pct}%`;
