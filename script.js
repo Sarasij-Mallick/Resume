@@ -145,10 +145,20 @@ document.querySelectorAll(".fade-up").forEach(function (el) {
       if (!raw) return;
       const s = JSON.parse(raw);
       state = Object.assign(state, s);
-      normalizeSkillsState();
+      normalizeState();
     } catch (e) {
       console.warn("Load state failed", e);
     }
+  }
+
+  function normalizeState() {
+    if (!state.personal || typeof state.personal !== "object") state.personal = {};
+    if (!Array.isArray(state.education)) state.education = [];
+    if (!Array.isArray(state.projects)) state.projects = [];
+    if (!Array.isArray(state.experience)) state.experience = [];
+    if (!Array.isArray(state.achievements)) state.achievements = [];
+    if (!state.summary || typeof state.summary !== "object") state.summary = { text: "" };
+    normalizeSkillsState();
   }
 
   function normalizeSkillsState() {
@@ -393,28 +403,40 @@ document.querySelectorAll(".fade-up").forEach(function (el) {
 
   // 2. Education (add/remove entries)
   function renderEducation() {
+    normalizeState();
     const wrapper = document.createElement("div");
     wrapper.className = "form";
     wrapper.innerHTML = `
       <div class="list" id="eduList"></div>
-      <div style="margin-top:10px" class="actions"><button id="addEdu" class="btn neutral">Add Education</button><div style="flex:1"></div></div>
+      <div style="margin-top:10px" class="actions">
+        <button id="addEdu" class="btn neutral">+ Add Education</button>
+        <div style="flex:1"></div>
+        <button id="saveEdu" class="btn bg-success text-white">Save</button>
+        <button id="toNext2" class="btn primary">Next</button>
+      </div>
     `;
     const eduList = wrapper.querySelector("#eduList");
     function refresh() {
+      normalizeState();
       eduList.innerHTML = "";
       state.education.forEach((e, idx) => {
         const el = document.createElement("div");
-        el.className = "entry";
+        el.className = "entry mb-2 p-2";
         el.innerHTML = `
-          <div class="entry-head"><strong>${escape(e.degree || "Degree")}</strong><div><button class="btn neutral" data-idx="${idx}" data-act="edit">Edit</button><button class="btn" data-idx="${idx}" data-act="remove">Remove</button></div></div>
+          <div class="entry-head d-flex justify-content-between align-items-center mb-1">
+            <strong>${escape(e.degree || "Degree")}</strong>
+            <div>
+              <button class="btn btn-sm btn-outline-secondary neutral" data-idx="${idx}" data-act="edit">Edit</button>
+              <button class="btn btn-sm btn-outline-danger" data-idx="${idx}" data-act="remove">Remove</button>
+            </div>
+          </div>
           <div class="small muted">${escape(e.institution || "Institution")} • ${escape(e.start || "")} - ${escape(e.end || "")}</div>
-          <div style="margin-top:8px">${escape(e.description || "")}</div>
+          <div style="margin-top:6px" class="small">${escape(e.description || "")}</div>
         `;
         eduList.appendChild(el);
       });
-      // if none, show hint
       if (state.education.length === 0) {
-        eduList.innerHTML = `<div class="small muted">No education entries yet. Click "Add Education".</div>`;
+        eduList.innerHTML = `<div class="small text-muted">No education entries yet. Click "+ Add Education".</div>`;
       }
     }
     refresh();
@@ -430,11 +452,21 @@ document.querySelectorAll(".fade-up").forEach(function (el) {
         description: "",
       };
       state.education.push(entry);
-      saveState();
-      renderEducationEditor(state.education.length - 1, refresh);
+      const newIdx = state.education.length - 1;
+      renderEducationEditor(newIdx, refresh, true);
     });
 
-    // delegate edit/remove
+    wrapper.querySelector("#saveEdu").onclick = () => {
+      saveState();
+      alert("Education saved successfully!");
+    };
+
+    wrapper.querySelector("#toNext2").onclick = () => {
+      saveState();
+      state.current = 3;
+      renderStep(3);
+    };
+
     eduList.addEventListener("click", (e) => {
       const btn = e.target.closest("button");
       if (!btn) return;
@@ -444,44 +476,56 @@ document.querySelectorAll(".fade-up").forEach(function (el) {
         if (confirm("Remove entry?")) {
           state.education.splice(idx, 1);
           saveState();
-          renderStep(2);
+          refresh();
         }
       }
-      if (act === "edit") renderEducationEditor(idx, refresh);
+      if (act === "edit") renderEducationEditor(idx, refresh, false);
     });
 
     return wrapper;
   }
 
-  function renderEducationEditor(index, onDone) {
-    const data = state.education[index];
+  function renderEducationEditor(index, onDone, isNew = false) {
+    const data = state.education[index] || {};
     const modalHtml = document.createElement("div");
     modalHtml.className = "modal";
     modalHtml.setAttribute("aria-hidden", "false");
-    modalHtml.innerHTML = `<div class="modal-panel"><header><h3>Edit Education</h3></header><div style="padding:12px">
-      <div class="form-row"><div class="field"><label>Degree</label><input class="form-control" id="e_degree" value="${escape(data.degree || "")}"/></div>
-      <div class="field"><label>Institution</label><input class="form-control" id="e_institution" value="${escape(data.institution || "")}"/></div></div>
+    modalHtml.innerHTML = `<div class="modal-panel"><header><h3>${isNew ? "Add Education" : "Edit Education"}</h3></header><div style="padding:12px">
+      <div class="form-row"><div class="field"><label>Degree *</label><input class="form-control" id="e_degree" value="${escape(data.degree || "")}"/></div>
+      <div class="field"><label>Institution *</label><input class="form-control" id="e_institution" value="${escape(data.institution || "")}"/></div></div>
       <div class="form-row"><div class="field"><label>Field of study</label><input class="form-control" id="e_field" value="${escape(data.field || "")}"/></div><div class="field"><label>GPA</label><input class="form-control" id="e_gpa" value="${escape(data.gpa || "")}"/></div></div>
       <div class="form-row"><div class="field"><label>Start</label><input class="form-control" id="e_start" type="month" value="${escape(data.start || "")}"/></div><div class="field"><label>End</label><input class="form-control" id="e_end" type="month" value="${escape(data.end || "")}"/></div></div>
       <div class="field"><label>Description</label><textarea class="form-control" id="e_desc">${escape(data.description || "")}</textarea></div>
-      <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:8px"><button id="e_cancel" class="btn neutral">Cancel</button><button id="e_save" class="btn primary">Save</button></div>
+      <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px"><button id="e_cancel" class="btn neutral">Cancel</button><button id="e_save" class="btn primary">Save</button></div>
       </div></div>`;
     document.body.appendChild(modalHtml);
+
     modalHtml.querySelector("#e_cancel").onclick = () => {
+      if (isNew) {
+        state.education.splice(index, 1);
+        saveState();
+      }
       modalHtml.remove();
+      if (onDone) onDone();
     };
+
     modalHtml.querySelector("#e_save").onclick = () => {
-      data.degree = modalHtml.querySelector("#e_degree").value;
-      data.institution = modalHtml.querySelector("#e_institution").value;
-      data.field = modalHtml.querySelector("#e_field").value;
-      data.gpa = modalHtml.querySelector("#e_gpa").value;
+      const degreeVal = modalHtml.querySelector("#e_degree").value.trim();
+      if (!degreeVal) {
+        alert("Please enter a degree.");
+        return;
+      }
+      data.degree = degreeVal;
+      data.institution = modalHtml.querySelector("#e_institution").value.trim();
+      data.field = modalHtml.querySelector("#e_field").value.trim();
+      data.gpa = modalHtml.querySelector("#e_gpa").value.trim();
       data.start = modalHtml.querySelector("#e_start").value;
       data.end = modalHtml.querySelector("#e_end").value;
-      data.description = modalHtml.querySelector("#e_desc").value;
+      data.description = modalHtml.querySelector("#e_desc").value.trim();
+
       saveState();
       modalHtml.remove();
       if (onDone) onDone();
-      renderStep(2);
     };
   }
 
@@ -651,33 +695,69 @@ document.querySelectorAll(".fade-up").forEach(function (el) {
 
   // 4. Projects
   function renderProjects() {
+    normalizeState();
     const wrapper = document.createElement("div");
     wrapper.className = "form";
-    wrapper.innerHTML = `<div class="list" id="projList"></div><div style="margin-top:12px" class="actions"><button id="addProj" class="btn neutral">Add Project</button><div style="flex:1"></div></div>`;
+    wrapper.innerHTML = `
+      <div class="list" id="projList"></div>
+      <div style="margin-top:12px" class="actions">
+        <button id="addProj" class="btn neutral">+ Add Project</button>
+        <div style="flex:1"></div>
+        <button id="saveProj" class="btn bg-success text-white">Save</button>
+        <button id="toNext4" class="btn primary">Next</button>
+      </div>
+    `;
     const list = wrapper.querySelector("#projList");
+
     function refresh() {
+      normalizeState();
       list.innerHTML = "";
       state.projects.forEach((p, idx) => {
         const el = document.createElement("div");
-        el.className = "entry";
-        el.innerHTML = `<div class="entry-head"><strong>${escape(p.name || "Project")}</strong><div><button class="btn neutral" data-idx="${idx}" data-act="edit">Edit</button><button class="btn" data-idx="${idx}" data-act="remove">Remove</button></div></div><div class="small muted">${escape(p.tech || "")}</div><div style="margin-top:8px">${escape(p.description || "")}</div>`;
+        el.className = "entry mb-2 p-2";
+        el.innerHTML = `
+          <div class="entry-head d-flex justify-content-between align-items-center mb-1">
+            <strong>${escape(p.name || "Untitled Project")}</strong>
+            <div>
+              <button class="btn btn-sm btn-outline-secondary neutral" data-idx="${idx}" data-act="edit">Edit</button>
+              <button class="btn btn-sm btn-outline-danger" data-idx="${idx}" data-act="remove">Remove</button>
+            </div>
+          </div>
+          <div class="small muted">${escape(p.tech || "No technologies listed")}</div>
+          <div style="margin-top:6px" class="small">${escape(p.description || "")}</div>
+        `;
         list.appendChild(el);
       });
-      if (state.projects.length === 0)
-        list.innerHTML = `<div class="small muted">No projects yet.</div>`;
+      if (state.projects.length === 0) {
+        list.innerHTML = `<div class="small text-muted">No projects added yet. Click "+ Add Project" to create one.</div>`;
+      }
     }
     refresh();
+
     wrapper.querySelector("#addProj").onclick = () => {
-      state.projects.push({
+      const newProj = {
         name: "",
         description: "",
         tech: "",
         github: "",
         demo: "",
-      });
-      saveState();
-      renderProjectEditor(state.projects.length - 1, refresh);
+      };
+      state.projects.push(newProj);
+      const newIdx = state.projects.length - 1;
+      renderProjectEditor(newIdx, refresh, true);
     };
+
+    wrapper.querySelector("#saveProj").onclick = () => {
+      saveState();
+      alert("Projects saved successfully!");
+    };
+
+    wrapper.querySelector("#toNext4").onclick = () => {
+      saveState();
+      state.current = 5;
+      renderStep(5);
+    };
+
     list.addEventListener("click", (e) => {
       const btn = e.target.closest("button");
       if (!btn) return;
@@ -686,61 +766,81 @@ document.querySelectorAll(".fade-up").forEach(function (el) {
         if (confirm("Remove project?")) {
           state.projects.splice(idx, 1);
           saveState();
-          renderStep(4);
+          refresh();
         }
       }
-      if (btn.dataset.act === "edit") renderProjectEditor(idx, refresh);
+      if (btn.dataset.act === "edit") {
+        renderProjectEditor(idx, refresh, false);
+      }
     });
+
     return wrapper;
   }
 
-  function renderProjectEditor(idx, onDone) {
-    const data = state.projects[idx];
+  function renderProjectEditor(idx, onDone, isNew = false) {
+    const data = state.projects[idx] || {};
     const modalDiv = document.createElement("div");
     modalDiv.className = "modal";
     modalDiv.setAttribute("aria-hidden", "false");
-    modalDiv.innerHTML = `<div class="modal-panel"><header><h3>Edit Project</h3></header><div style="padding:12px">
-      <div class="field"><label>Project Name</label><input class="form-control" id="p_name" value="${escape(data.name || "")}"/></div>
-      <div class="field"><label>Technologies</label><input class="form-control" id="p_tech" value="${escape(data.tech || "")}"/></div>
-      <div class="field"><label>GitHub Link</label><input class="form-control" id="p_github" value="${escape(data.github || "")}"/></div>
-      <div class="field"><label>Live Demo</label><input class="form-control" id="p_demo" value="${escape(data.demo || "")}"/></div>
-      <div class="field"><label>Description</label><textarea class="form-control" id="p_desc">${escape(data.description || "")}</textarea></div>
-      <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:8px"><button id="p_cancel" class="btn neutral">Cancel</button><button id="p_save" class="btn primary">Save</button></div>
+    modalDiv.innerHTML = `<div class="modal-panel"><header><h3>${isNew ? "Add Project" : "Edit Project"}</h3></header><div style="padding:12px">
+      <div class="field"><label>Project Name *</label><input class="form-control" id="p_name" value="${escape(data.name || "")}"/></div>
+      <div class="field"><label>Technologies Used</label><input class="form-control" id="p_tech" placeholder="e.g. React, Node.js, MongoDB" value="${escape(data.tech || "")}"/></div>
+      <div class="field"><label>GitHub Link</label><input class="form-control" id="p_github" placeholder="https://github.com/..." value="${escape(data.github || "")}"/></div>
+      <div class="field"><label>Live Demo</label><input class="form-control" id="p_demo" placeholder="https://..." value="${escape(data.demo || "")}"/></div>
+      <div class="field"><label>Description</label><textarea class="form-control" id="p_desc" rows="3" placeholder="Briefly describe what the project does...">${escape(data.description || "")}</textarea></div>
+      <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px"><button id="p_cancel" class="btn neutral">Cancel</button><button id="p_save" class="btn primary">Save Project</button></div>
       </div></div>`;
     document.body.appendChild(modalDiv);
-    modalDiv.querySelector("#p_cancel").onclick = () => modalDiv.remove();
+
+    modalDiv.querySelector("#p_cancel").onclick = () => {
+      if (isNew) {
+        state.projects.splice(idx, 1);
+        saveState();
+      }
+      modalDiv.remove();
+      if (onDone) onDone();
+    };
+
     modalDiv.querySelector("#p_save").onclick = () => {
-      data.name = modalDiv.querySelector("#p_name").value;
-      data.tech = modalDiv.querySelector("#p_tech").value;
-      data.github = modalDiv.querySelector("#p_github").value;
-      data.demo = modalDiv.querySelector("#p_demo").value;
-      data.description = modalDiv.querySelector("#p_desc").value;
+      const nameVal = modalDiv.querySelector("#p_name").value.trim();
+      if (!nameVal) {
+        alert("Please enter a project name.");
+        return;
+      }
+      data.name = nameVal;
+      data.tech = modalDiv.querySelector("#p_tech").value.trim();
+      data.github = modalDiv.querySelector("#p_github").value.trim();
+      data.demo = modalDiv.querySelector("#p_demo").value.trim();
+      data.description = modalDiv.querySelector("#p_desc").value.trim();
+
       saveState();
       modalDiv.remove();
       if (onDone) onDone();
-      renderStep(4);
     };
   }
 
   // 5. Experience
   function renderExperience() {
+    normalizeState();
     const wrapper = document.createElement("div");
     wrapper.className = "form";
-    wrapper.innerHTML = `<div class="list" id="expList"></div><div style="margin-top:12px" class="actions"><button id="addExp" class="btn neutral">Add Experience</button><div style="flex:1"></div></div>`;
+    wrapper.innerHTML = `<div class="list" id="expList"></div><div style="margin-top:12px" class="actions"><button id="addExp" class="btn neutral">+ Add Experience</button><div style="flex:1"></div><button id="saveExp" class="btn bg-success text-white">Save</button><button id="toNext5" class="btn primary">Next</button></div>`;
     const list = wrapper.querySelector("#expList");
     function refresh() {
+      normalizeState();
       list.innerHTML = "";
       state.experience.forEach((e, idx) => {
         const el = document.createElement("div");
-        el.className = "entry";
-        el.innerHTML = `<div class="entry-head"><strong>${escape(e.title || "Title")} @ ${escape(e.company || "Company")}</strong><div><button class="btn neutral" data-idx="${idx}" data-act="edit">Edit</button><button class="btn" data-idx="${idx}" data-act="remove">Remove</button></div></div>
-          <div class="small muted">${escape(e.start || "")} - ${escape(e.end || "")}</div><div style="margin-top:8px">${escape(e.responsibilities?.slice(0, 120) || "")}</div>`;
+        el.className = "entry mb-2 p-2";
+        el.innerHTML = `<div class="entry-head d-flex justify-content-between align-items-center mb-1"><strong>${escape(e.title || "Title")} @ ${escape(e.company || "Company")}</strong><div><button class="btn btn-sm btn-outline-secondary neutral" data-idx="${idx}" data-act="edit">Edit</button><button class="btn btn-sm btn-outline-danger" data-idx="${idx}" data-act="remove">Remove</button></div></div>
+          <div class="small muted">${escape(e.start || "")} - ${escape(e.end || "")}</div><div style="margin-top:6px" class="small">${escape(e.responsibilities?.slice(0, 120) || "")}</div>`;
         list.appendChild(el);
       });
       if (state.experience.length === 0)
-        list.innerHTML = `<div class="small muted">No experience entries yet.</div>`;
+        list.innerHTML = `<div class="small text-muted">No experience entries yet. Click "+ Add Experience".</div>`;
     }
     refresh();
+
     wrapper.querySelector("#addExp").onclick = () => {
       state.experience.push({
         company: "",
@@ -750,71 +850,101 @@ document.querySelectorAll(".fade-up").forEach(function (el) {
         end: "",
         responsibilities: "",
       });
-      saveState();
-      renderExperienceEditor(state.experience.length - 1, refresh);
+      const newIdx = state.experience.length - 1;
+      renderExperienceEditor(newIdx, refresh, true);
     };
+
+    wrapper.querySelector("#saveExp").onclick = () => {
+      saveState();
+      alert("Experience saved successfully!");
+    };
+
+    wrapper.querySelector("#toNext5").onclick = () => {
+      saveState();
+      state.current = 6;
+      renderStep(6);
+    };
+
     list.addEventListener("click", (e) => {
       const btn = e.target.closest("button");
       if (!btn) return;
       const idx = Number(btn.dataset.idx);
       if (btn.dataset.act === "remove") {
-        if (confirm("Remove?")) {
+        if (confirm("Remove experience?")) {
           state.experience.splice(idx, 1);
           saveState();
-          renderStep(5);
+          refresh();
         }
       }
-      if (btn.dataset.act === "edit") renderExperienceEditor(idx, refresh);
+      if (btn.dataset.act === "edit") renderExperienceEditor(idx, refresh, false);
     });
     return wrapper;
   }
 
-  function renderExperienceEditor(idx, onDone) {
-    const data = state.experience[idx];
+  function renderExperienceEditor(idx, onDone, isNew = false) {
+    const data = state.experience[idx] || {};
     const modalDiv = document.createElement("div");
     modalDiv.className = "modal";
     modalDiv.setAttribute("aria-hidden", "false");
-    modalDiv.innerHTML = `<div class="modal-panel"><header><h3>Edit Experience</h3></header><div style="padding:12px">
-      <div class="field"><label>Company</label><input class="form-control" id="ex_company" value="${escape(data.company || "")}"/></div>
-      <div class="field"><label>Job Title</label><input class="form-control" id="ex_title" value="${escape(data.title || "")}"/></div>
-      <div class="form-row"><div class="field"><label>Type</label><input class="form-control" id="ex_type" value="${escape(data.type || "")}"/></div><div class="field"><label>Start</label><input class="form-control" id="ex_start" type="month" value="${escape(data.start || "")}"/></div></div>
-      <div class="form-row"><div class="field"><label>End</label><input class="form-control" id="ex_end" type="month" value="${escape(data.end || "")}"/></div><div class="field"><label>Responsibilities (comma separated)</label><input class="form-control" id="ex_resp" value="${escape(data.responsibilities || "")}"/></div></div>
-      <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:8px"><button id="ex_cancel" class="btn neutral">Cancel</button><button id="ex_save" class="btn primary">Save</button></div>
+    modalDiv.innerHTML = `<div class="modal-panel"><header><h3>${isNew ? "Add Experience" : "Edit Experience"}</h3></header><div style="padding:12px">
+      <div class="field"><label>Company *</label><input class="form-control" id="ex_company" value="${escape(data.company || "")}"/></div>
+      <div class="field"><label>Job Title *</label><input class="form-control" id="ex_title" value="${escape(data.title || "")}"/></div>
+      <div class="form-row"><div class="field"><label>Type</label><input class="form-control" id="ex_type" placeholder="e.g. Internship, Full-Time" value="${escape(data.type || "")}"/></div><div class="field"><label>Start</label><input class="form-control" id="ex_start" type="month" value="${escape(data.start || "")}"/></div></div>
+      <div class="form-row"><div class="field"><label>End</label><input class="form-control" id="ex_end" type="month" value="${escape(data.end || "")}"/></div><div class="field"><label>Responsibilities</label><input class="form-control" id="ex_resp" placeholder="Key achievements or duties" value="${escape(data.responsibilities || "")}"/></div></div>
+      <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px"><button id="ex_cancel" class="btn neutral">Cancel</button><button id="ex_save" class="btn primary">Save</button></div>
     </div></div>`;
     document.body.appendChild(modalDiv);
-    modalDiv.querySelector("#ex_cancel").onclick = () => modalDiv.remove();
+
+    modalDiv.querySelector("#ex_cancel").onclick = () => {
+      if (isNew) {
+        state.experience.splice(idx, 1);
+        saveState();
+      }
+      modalDiv.remove();
+      if (onDone) onDone();
+    };
+
     modalDiv.querySelector("#ex_save").onclick = () => {
-      data.company = modalDiv.querySelector("#ex_company").value;
-      data.title = modalDiv.querySelector("#ex_title").value;
-      data.type = modalDiv.querySelector("#ex_type").value;
+      const companyVal = modalDiv.querySelector("#ex_company").value.trim();
+      const titleVal = modalDiv.querySelector("#ex_title").value.trim();
+      if (!companyVal || !titleVal) {
+        alert("Please enter both Company and Job Title.");
+        return;
+      }
+      data.company = companyVal;
+      data.title = titleVal;
+      data.type = modalDiv.querySelector("#ex_type").value.trim();
       data.start = modalDiv.querySelector("#ex_start").value;
       data.end = modalDiv.querySelector("#ex_end").value;
-      data.responsibilities = modalDiv.querySelector("#ex_resp").value;
+      data.responsibilities = modalDiv.querySelector("#ex_resp").value.trim();
+
       saveState();
       modalDiv.remove();
       if (onDone) onDone();
-      renderStep(5);
     };
   }
 
   // 6. Achievements
   function renderAchievements() {
+    normalizeState();
     const wrapper = document.createElement("div");
     wrapper.className = "form";
-    wrapper.innerHTML = `<div class="list" id="achList"></div><div style="margin-top:12px" class="actions"><button id="addAch" class="btn neutral">Add Achievement</button><div style="flex:1"></div></div>`;
+    wrapper.innerHTML = `<div class="list" id="achList"></div><div style="margin-top:12px" class="actions"><button id="addAch" class="btn neutral">+ Add Achievement</button><div style="flex:1"></div><button id="saveAch" class="btn bg-success text-white">Save</button><button id="toNext6" class="btn primary">Next</button></div>`;
     const list = wrapper.querySelector("#achList");
     function refresh() {
+      normalizeState();
       list.innerHTML = "";
       state.achievements.forEach((a, idx) => {
         const el = document.createElement("div");
-        el.className = "entry";
-        el.innerHTML = `<div class="entry-head"><strong>${escape(a.title || "Achievement")}</strong><div><button class="btn neutral" data-idx="${idx}" data-act="edit">Edit</button><button class="btn" data-idx="${idx}" data-act="remove">Remove</button></div></div><div class="small muted">${escape(a.org || "")} • ${escape(a.date || "")}</div><div style="margin-top:8px">${escape(a.description || "")}</div>`;
+        el.className = "entry mb-2 p-2";
+        el.innerHTML = `<div class="entry-head d-flex justify-content-between align-items-center mb-1"><strong>${escape(a.title || "Achievement")}</strong><div><button class="btn btn-sm btn-outline-secondary neutral" data-idx="${idx}" data-act="edit">Edit</button><button class="btn btn-sm btn-outline-danger" data-idx="${idx}" data-act="remove">Remove</button></div></div><div class="small muted">${escape(a.org || "")} • ${escape(a.date || "")}</div><div style="margin-top:6px" class="small">${escape(a.description || "")}</div>`;
         list.appendChild(el);
       });
       if (state.achievements.length === 0)
-        list.innerHTML = `<div class="small muted">No achievements yet.</div>`;
+        list.innerHTML = `<div class="small text-muted">No achievements yet. Click "+ Add Achievement".</div>`;
     }
     refresh();
+
     wrapper.querySelector("#addAch").onclick = () => {
       state.achievements.push({
         title: "",
@@ -822,48 +952,74 @@ document.querySelectorAll(".fade-up").forEach(function (el) {
         date: "",
         description: "",
       });
-      saveState();
-      renderAchievementEditor(state.achievements.length - 1, refresh);
+      const newIdx = state.achievements.length - 1;
+      renderAchievementEditor(newIdx, refresh, true);
     };
+
+    wrapper.querySelector("#saveAch").onclick = () => {
+      saveState();
+      alert("Achievements saved successfully!");
+    };
+
+    wrapper.querySelector("#toNext6").onclick = () => {
+      saveState();
+      state.current = 7;
+      renderStep(7);
+    };
+
     list.addEventListener("click", (e) => {
       const btn = e.target.closest("button");
       if (!btn) return;
       const idx = Number(btn.dataset.idx);
       if (btn.dataset.act === "remove") {
-        if (confirm("Remove?")) {
+        if (confirm("Remove achievement?")) {
           state.achievements.splice(idx, 1);
           saveState();
-          renderStep(6);
+          refresh();
         }
       }
-      if (btn.dataset.act === "edit") renderAchievementEditor(idx, refresh);
+      if (btn.dataset.act === "edit") renderAchievementEditor(idx, refresh, false);
     });
     return wrapper;
   }
 
-  function renderAchievementEditor(idx, onDone) {
-    const data = state.achievements[idx];
+  function renderAchievementEditor(idx, onDone, isNew = false) {
+    const data = state.achievements[idx] || {};
     const modalDiv = document.createElement("div");
     modalDiv.className = "modal";
     modalDiv.setAttribute("aria-hidden", "false");
-    modalDiv.innerHTML = `<div class="modal-panel"><header><h3>Edit Achievement</h3></header><div style="padding:12px">
-      <div class="field"><label>Title</label><input class="form-control" id="a_title" value="${escape(data.title || "")}"/></div>
+    modalDiv.innerHTML = `<div class="modal-panel"><header><h3>${isNew ? "Add Achievement" : "Edit Achievement"}</h3></header><div style="padding:12px">
+      <div class="field"><label>Title *</label><input class="form-control" id="a_title" value="${escape(data.title || "")}"/></div>
       <div class="field"><label>Organization</label><input class="form-control" id="a_org" value="${escape(data.org || "")}"/></div>
       <div class="field"><label>Date</label><input class="form-control" id="a_date" type="month" value="${escape(data.date || "")}"/></div>
       <div class="field"><label>Description</label><textarea class="form-control" id="a_desc">${escape(data.description || "")}</textarea></div>
-      <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:8px"><button id="a_cancel" class="btn neutral">Cancel</button><button id="a_save" class="btn primary">Save</button></div>
+      <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px"><button id="a_cancel" class="btn neutral">Cancel</button><button id="a_save" class="btn primary">Save</button></div>
     </div></div>`;
     document.body.appendChild(modalDiv);
-    modalDiv.querySelector("#a_cancel").onclick = () => modalDiv.remove();
+
+    modalDiv.querySelector("#a_cancel").onclick = () => {
+      if (isNew) {
+        state.achievements.splice(idx, 1);
+        saveState();
+      }
+      modalDiv.remove();
+      if (onDone) onDone();
+    };
+
     modalDiv.querySelector("#a_save").onclick = () => {
-      data.title = modalDiv.querySelector("#a_title").value;
-      data.org = modalDiv.querySelector("#a_org").value;
+      const titleVal = modalDiv.querySelector("#a_title").value.trim();
+      if (!titleVal) {
+        alert("Please enter a title.");
+        return;
+      }
+      data.title = titleVal;
+      data.org = modalDiv.querySelector("#a_org").value.trim();
       data.date = modalDiv.querySelector("#a_date").value;
-      data.description = modalDiv.querySelector("#a_desc").value;
+      data.description = modalDiv.querySelector("#a_desc").value.trim();
+
       saveState();
       modalDiv.remove();
       if (onDone) onDone();
-      renderStep(6);
     };
   }
 
