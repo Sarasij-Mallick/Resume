@@ -128,23 +128,23 @@
             </div>
         </footer>
 
-        <!-- Hidden modal element compatibility -->
+        <!-- Hidden Modal Element -->
         <div id="modal" class="modal" aria-hidden="true">
             <div class="modal-panel">
-                <header><h3 id="modalTitle">Preview</h3><button id="closeModal" class="icon-btn">✕</button></header>
+                <header style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px"><h3 id="modalTitle" style="margin:0">Resume Preview</h3><button id="closeModal" class="btn neutral" style="border-radius:50%;width:32px;height:32px;padding:0">✕</button></header>
                 <div id="modalBody" class="modal-body"></div>
-                <footer><button id="modalClose" class="btn neutral">Close</button></footer>
+                <footer style="margin-top:16px;display:flex;justify-content:flex-end"><button id="modalClose" class="btn neutral">Close</button></footer>
             </div>
         </div>
 
         <!-- Confirm Clear Modal -->
         <div id="confirmClearModal" class="modal" aria-hidden="true" role="dialog">
             <div class="modal-panel">
-                <header style="display:flex;justify-content:space-between;align-items:center"><h3>Clear All Resume Data</h3><button id="closeConfirm" class="icon-btn">✕</button></header>
+                <header style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px"><h3 style="margin:0">Clear All Resume Data</h3><button id="closeConfirm" class="btn neutral" style="border-radius:50%;width:32px;height:32px;padding:0">✕</button></header>
                 <div class="modal-body">
-                    <p>Are you sure you want to clear all resume data? This action cannot be undone.</p>
+                    <p style="margin:0">Are you sure you want to clear all resume data? This action cannot be undone.</p>
                 </div>
-                <footer style="display:flex;justify-content:flex-end;gap:8px">
+                <footer style="margin-top:20px;display:flex;justify-content:flex-end;gap:8px">
                     <button id="cancelClear" class="btn neutral">Cancel</button>
                     <button id="confirmClear" class="btn danger">Clear Everything</button>
                 </footer>

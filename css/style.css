@@ -57,6 +57,11 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
   padding: 0 24px;
 }
 
+/* Hide duplicate header inside drawer */
+.card-head {
+  display: none !important;
+}
+
 /* ==========================================================================
    1. LANDING PAGE NAVBAR & HEADER (Canva Style)
    ========================================================================== */
@@ -600,6 +605,8 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
    ========================================================================== */
 .studio-body {
   height: 100vh;
+  margin: 0;
+  padding: 0;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -614,8 +621,9 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 16px;
+  padding: 0 20px;
   z-index: 200;
+  flex-shrink: 0;
 }
 
 .studio-header-left {
@@ -650,10 +658,16 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 .studio-btn {
   font-size: 13px;
   font-weight: 600;
-  padding: 7px 14px;
+  padding: 7px 16px;
   border-radius: var(--canva-pill-radius);
   border: none;
   cursor: pointer;
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.studio-btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
 }
 
 .studio-btn.save { background: #10b981; color: #fff; }
@@ -665,7 +679,7 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 .studio-main {
   flex: 1;
   display: flex;
-  height: calc(100vh - 56px);
+  height: calc(100vh - 56px - 40px);
   overflow: hidden;
 }
 
@@ -676,14 +690,16 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 12px 0;
-  gap: 8px;
+  padding: 10px 0;
+  gap: 6px;
   z-index: 100;
+  overflow-y: auto;
+  flex-shrink: 0;
 }
 
 .dock-item {
-  width: 56px;
-  height: 54px;
+  width: 54px;
+  height: 52px;
   border-radius: 12px;
   background: transparent;
   border: none;
@@ -692,16 +708,16 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 4px;
-  font-size: 11px;
+  gap: 3px;
+  font-size: 10.5px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.15s ease;
 }
 
 .dock-item svg {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   fill: currentColor;
 }
 
@@ -726,17 +742,21 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
   height: 100%;
   overflow-y: auto;
   z-index: 90;
+  flex-shrink: 0;
 }
 
 .drawer-head {
-  padding: 18px 20px;
+  padding: 16px 20px;
   border-bottom: 1px solid var(--canva-border);
+  background: #ffffff;
+  sticky: top;
 }
 
 .drawer-head h3 {
   margin: 0;
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 700;
+  color: var(--canva-dark);
 }
 
 .drawer-body {
@@ -752,9 +772,10 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 32px 24px;
+  padding: 24px;
   overflow-y: auto;
   position: relative;
+  height: 100%;
 }
 
 /* Paper Sheet Canvas (A4 Aspect Ratio Document) */
@@ -817,6 +838,56 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
   box-shadow: 0 0 0 3px rgba(125, 42, 232, 0.12);
 }
 
+/* Modal Overlay Rules */
+.modal {
+  display: none !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 2500 !important;
+  background: rgba(14, 19, 31, 0.6) !important;
+  backdrop-filter: blur(4px) !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.modal[aria-hidden="false"] {
+  display: flex !important;
+}
+
+.modal-panel {
+  width: 90% !important;
+  max-width: 720px !important;
+  max-height: 85vh !important;
+  background: #ffffff !important;
+  border-radius: 20px !important;
+  padding: 24px !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25) !important;
+  border: 1px solid var(--canva-border) !important;
+  overflow-y: auto !important;
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  right: 20px;
+  bottom: 50px;
+  background: #0e131f;
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  font-size: 13.5px;
+  font-weight: 600;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.2s ease;
+  z-index: 3000;
+}
+.toast.visible { opacity: 1; transform: translateY(0); }
+
 /* Responsive Studio */
 @media (max-width: 1024px) {
   .studio-drawer {
@@ -833,13 +904,13 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
   }
   .studio-dock {
     width: 100%;
-    height: 56px;
+    height: 54px;
     flex-direction: row;
     justify-content: space-around;
   }
   .studio-drawer {
     width: 100%;
-    height: 40%;
+    height: 45%;
   }
   .studio-footer-bar {
     left: 0;
