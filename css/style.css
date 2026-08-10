@@ -518,7 +518,7 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
   overflow: hidden;
   background: linear-gradient(135deg, #7d2ae8 0%, #00c4cc 100%);
   border: none;
-  box-shadow: 0 4px 16px rgba(125, 42, 232, 0.3);
+  box-shadow: 0 2px 8px rgba(60, 64, 67, 0.15);
 }
 
 .header-cta-btn::after {
@@ -581,7 +581,7 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
   background: var(--canva-purple);
   color: #ffffff;
   border: 1.5px solid transparent !important;
-  box-shadow: 0 4px 14px rgba(125, 42, 232, 0.28);
+  box-shadow: 0 2px 8px rgba(60, 64, 67, 0.15);
 }
 
 .btn-primary:hover, .btn.primary:hover {
@@ -596,7 +596,7 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
   padding: 14px 28px;
   border-radius: var(--canva-pill-radius);
   border: 1.5px solid transparent !important;
-  box-shadow: 0 6px 20px rgba(125, 42, 232, 0.3);
+  box-shadow: 0 4px 12px rgba(60, 64, 67, 0.15);
   transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
