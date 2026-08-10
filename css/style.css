@@ -485,7 +485,7 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
   padding: 4px;
 }
 
-/* Buttons & Universal Neon Light Glow */
+/* Base Buttons */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -508,26 +508,11 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
   border-color: rgba(14, 19, 31, 0.12);
 }
 
-.btn-ghost:hover {
-  background: rgba(125, 42, 232, 0.08);
-  color: var(--canva-purple);
-  border-color: #00c4cc;
-  box-shadow: 0 0 16px rgba(125, 42, 232, 0.45), 0 0 28px rgba(0, 196, 204, 0.35);
-  transform: translateY(-2px);
-}
-
 .btn-primary, .btn.primary {
   background: var(--canva-purple);
   color: #ffffff;
   border-color: #7d2ae8;
   box-shadow: 0 4px 14px rgba(125, 42, 232, 0.28);
-}
-
-.btn-primary:hover, .btn.primary:hover {
-  background: var(--canva-purple-hover);
-  border-color: #00c4cc;
-  transform: translateY(-2px);
-  box-shadow: 0 0 22px rgba(125, 42, 232, 0.75), 0 0 40px rgba(0, 196, 204, 0.55);
 }
 
 .btn-pill-purple {
@@ -541,11 +526,82 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
   box-shadow: 0 6px 20px rgba(125, 42, 232, 0.3);
 }
 
-.btn-pill-purple:hover {
-  background: var(--canva-purple-hover);
-  border-color: #00c4cc;
+/* Universal Traveling Linear Neon Border Light Beam on Hover for All Tabs & Buttons */
+.pill,
+.nav .nav-link,
+.btn,
+.studio-btn,
+.submit-btn,
+.social-btn,
+.tab-btn,
+.header-cta-btn,
+.back-to-top,
+.theme-toggle-btn,
+.tmpl-card,
+.path-card,
+.dock-item.step {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.pill::before,
+.nav .nav-link::before,
+.btn::before,
+.studio-btn::before,
+.submit-btn::before,
+.social-btn::before,
+.tab-btn::before,
+.header-cta-btn::before,
+.back-to-top::before,
+.theme-toggle-btn::before,
+.tmpl-card::before,
+.path-card::before,
+.dock-item.step::before {
+  content: "";
+  position: absolute;
+  top: -60%;
+  left: -60%;
+  width: 220%;
+  height: 220%;
+  background: conic-gradient(from var(--neonAngle), transparent 0deg, #00e5ff 90deg, #7d2ae8 180deg, #ff007f 270deg, transparent 360deg);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.pill:hover::before,
+.nav .nav-link:hover::before,
+.btn:hover::before,
+.studio-btn:hover::before,
+.submit-btn:hover::before,
+.social-btn:hover::before,
+.tab-btn:hover::before,
+.header-cta-btn:hover::before,
+.back-to-top:hover::before,
+.theme-toggle-btn:hover::before,
+.tmpl-card:hover::before,
+.path-card:hover::before,
+.dock-item.step:hover::before {
+  opacity: 1;
+  animation: neonLinearBeam 2.5s linear infinite;
+}
+
+.pill:hover,
+.nav .nav-link:hover,
+.btn:hover,
+.studio-btn:hover,
+.submit-btn:hover,
+.social-btn:hover,
+.tab-btn:hover,
+.header-cta-btn:hover,
+.back-to-top:hover,
+.theme-toggle-btn:hover,
+.dock-item.step:hover {
+  border-color: #00e5ff !important;
+  box-shadow: 0 0 16px rgba(0, 229, 255, 0.7), 0 0 32px rgba(125, 42, 232, 0.5) !important;
   transform: translateY(-2px);
-  box-shadow: 0 0 26px rgba(125, 42, 232, 0.85), 0 0 44px rgba(0, 196, 204, 0.6);
 }
 
 /* ==========================================================================
