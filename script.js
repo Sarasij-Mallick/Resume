@@ -1470,39 +1470,63 @@ function showToast(msg, timeout = 3000) {
     const templateSearch = document.getElementById("templateSearch");
     const filterPills = document.querySelectorAll(".filter-pills .pill");
     const templateCards = document.querySelectorAll(".templates-grid .tmpl-card");
+    const templatesGrid = document.querySelector(".templates-grid");
+
+    let activeCategory = "all";
+    let searchQuery = "";
+
+    function applyTemplateFilters() {
+      let visibleCount = 0;
+      templateCards.forEach((card) => {
+        const cardCat = (card.getAttribute("data-category") || "").toLowerCase();
+        const title = (card.querySelector(".tmpl-title")?.textContent || "").toLowerCase();
+        const tag = (card.querySelector(".tmpl-tag")?.textContent || "").toLowerCase();
+
+        const matchesCat = activeCategory === "all" || cardCat.includes(activeCategory);
+        const matchesSearch = !searchQuery || title.includes(searchQuery) || tag.includes(searchQuery) || cardCat.includes(searchQuery);
+
+        if (matchesCat && matchesSearch) {
+          card.style.display = "flex";
+          visibleCount++;
+        } else {
+          card.style.display = "none";
+        }
+      });
+
+      let noResultEl = document.getElementById("noTemplatesFound");
+      if (visibleCount === 0) {
+        if (!noResultEl && templatesGrid) {
+          noResultEl = document.createElement("div");
+          noResultEl.id = "noTemplatesFound";
+          noResultEl.className = "no-templates-found";
+          noResultEl.innerHTML = `
+            <h4>No templates found</h4>
+            <p>Try searching for a different keyword or choose another category pill above.</p>
+          `;
+          templatesGrid.appendChild(noResultEl);
+        }
+      } else if (noResultEl) {
+        noResultEl.remove();
+      }
+    }
 
     if (filterPills.length > 0 && templateCards.length > 0) {
       filterPills.forEach((pill) => {
         pill.addEventListener("click", () => {
           filterPills.forEach((p) => p.classList.remove("active"));
           pill.classList.add("active");
-          const category = pill.textContent.trim().toLowerCase();
-          
-          templateCards.forEach((card) => {
-            const title = (card.querySelector(".tmpl-title")?.textContent || "").toLowerCase();
-            const tag = (card.querySelector(".tmpl-tag")?.textContent || "").toLowerCase();
-            if (category === "all templates" || title.includes(category) || tag.includes(category)) {
-              card.style.display = "flex";
-            } else {
-              card.style.display = "none";
-            }
-          });
+          const attr = pill.getAttribute("data-category");
+          activeCategory = attr ? attr.toLowerCase() : pill.textContent.trim().toLowerCase();
+          if (activeCategory === "all templates") activeCategory = "all";
+          applyTemplateFilters();
         });
       });
     }
 
     if (templateSearch && templateCards.length > 0) {
       templateSearch.addEventListener("input", () => {
-        const q = templateSearch.value.trim().toLowerCase();
-        templateCards.forEach((card) => {
-          const title = (card.querySelector(".tmpl-title")?.textContent || "").toLowerCase();
-          const tag = (card.querySelector(".tmpl-tag")?.textContent || "").toLowerCase();
-          if (!q || title.includes(q) || tag.includes(q)) {
-            card.style.display = "flex";
-          } else {
-            card.style.display = "none";
-          }
-        });
+        searchQuery = templateSearch.value.trim().toLowerCase();
+        applyTemplateFilters();
       });
     }
   }

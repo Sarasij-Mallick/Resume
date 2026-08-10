@@ -402,12 +402,14 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
   max-width: 680px;
   margin: 0 auto 32px;
   position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .search-input {
   width: 100%;
   height: 56px;
-  padding: 0 20px 0 54px;
+  padding: 0 20px 0 56px;
   font-size: 16px;
   border-radius: var(--canva-pill-radius);
   border: 2px solid #e2e8f0;
@@ -429,6 +431,45 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
   transform: translateY(-50%);
   color: var(--canva-muted);
   pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  z-index: 2;
+}
+
+.tmpl-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(4px);
+  color: var(--canva-dark);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 9999px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.no-templates-found {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 48px 24px;
+  background: #ffffff;
+  border-radius: var(--canva-card-radius);
+  border: 1px dashed var(--canva-border);
+  color: var(--canva-muted);
+  margin: 12px 0;
+}
+
+.no-templates-found h4 {
+  margin: 0 0 8px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--canva-dark);
 }
 
 /* Category Filter Chips */

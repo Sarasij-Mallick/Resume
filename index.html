@@ -137,28 +137,35 @@
                     </div>
 
                     <div class="search-bar-wrap">
-                        <span class="search-icon">🔍</span>
-                        <input type="text" id="templateSearch" class="search-input" placeholder="Search thousands of templates (e.g., Minimalist, Tech, Executive)...">
+                        <span class="search-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                        </span>
+                        <input type="text" id="templateSearch" class="search-input" placeholder="Search thousands of templates (e.g., Minimalist, Creative, Fresher, Executive)...">
                     </div>
 
                     <div class="filter-pills">
-                        <button class="pill active">All Templates</button>
-                        <button class="pill">Modern</button>
-                        <button class="pill">Minimalist</button>
-                        <button class="pill">Creative</button>
-                        <button class="pill">Executive</button>
-                        <button class="pill">Fresher</button>
+                        <button class="pill active" data-category="all">All Templates</button>
+                        <button class="pill" data-category="modern">Modern</button>
+                        <button class="pill" data-category="minimalist">Minimalist</button>
+                        <button class="pill" data-category="creative">Creative</button>
+                        <button class="pill" data-category="executive">Executive</button>
+                        <button class="pill" data-category="fresher">Fresher</button>
                     </div>
 
                     <div class="templates-grid">
-                        <a href="fresher.html" class="tmpl-card">
+                        <!-- Modern Templates -->
+                        <a href="fresher.html?template=modern-minimalist" class="tmpl-card" data-category="modern minimalist">
                             <div class="tmpl-preview-box">
                                 <div class="tmpl-paper-sheet">
-                                    <div class="tmpl-paper-head"></div>
+                                    <div class="tmpl-paper-head" style="background:linear-gradient(90deg, #7d2ae8, #00c4cc)"></div>
                                     <div class="r-mock-line medium"></div>
                                     <div class="r-mock-line short"></div>
                                     <div class="r-mock-line"></div>
                                 </div>
+                                <span class="tmpl-badge">Modern</span>
                             </div>
                             <div class="tmpl-info">
                                 <div class="tmpl-title">Modern Minimalist</div>
@@ -166,22 +173,89 @@
                             </div>
                         </a>
 
-                        <a href="fresher.html" class="tmpl-card">
+                        <a href="fresher.html?template=modern-tech" class="tmpl-card" data-category="modern">
                             <div class="tmpl-preview-box">
-                                <div class="tmpl-paper-sheet" style="background:#fafafa">
-                                    <div class="tmpl-paper-head" style="background:linear-gradient(90deg, #10b981, #00c4cc)"></div>
+                                <div class="tmpl-paper-sheet">
+                                    <div class="tmpl-paper-head" style="background:linear-gradient(90deg, #0f172a, #3b82f6)"></div>
                                     <div class="r-mock-line short"></div>
                                     <div class="r-mock-line medium"></div>
                                     <div class="r-mock-line"></div>
                                 </div>
+                                <span class="tmpl-badge">Modern</span>
                             </div>
                             <div class="tmpl-info">
-                                <div class="tmpl-title">Executive Professional</div>
-                                <div class="tmpl-tag">Formal · High Impact</div>
+                                <div class="tmpl-title">Modern Tech Specialist</div>
+                                <div class="tmpl-tag">Structured · Developer Friendly</div>
                             </div>
                         </a>
 
-                        <a href="fresher.html" class="tmpl-card">
+                        <a href="fresher.html?template=modern-pro" class="tmpl-card" data-category="modern">
+                            <div class="tmpl-preview-box">
+                                <div class="tmpl-paper-sheet">
+                                    <div class="tmpl-paper-head" style="background:linear-gradient(90deg, #6366f1, #a855f7)"></div>
+                                    <div class="r-mock-line medium"></div>
+                                    <div class="r-mock-line medium"></div>
+                                    <div class="r-mock-line short"></div>
+                                </div>
+                                <span class="tmpl-badge">Modern</span>
+                            </div>
+                            <div class="tmpl-info">
+                                <div class="tmpl-title">Modern Professional</div>
+                                <div class="tmpl-tag">Dynamic · Sleek Design</div>
+                            </div>
+                        </a>
+
+                        <!-- Minimalist Templates -->
+                        <a href="fresher.html?template=minimalist-essential" class="tmpl-card" data-category="minimalist">
+                            <div class="tmpl-preview-box">
+                                <div class="tmpl-paper-sheet">
+                                    <div class="tmpl-paper-head" style="background:linear-gradient(90deg, #334155, #475569)"></div>
+                                    <div class="r-mock-line short"></div>
+                                    <div class="r-mock-line short"></div>
+                                    <div class="r-mock-line medium"></div>
+                                </div>
+                                <span class="tmpl-badge">Minimalist</span>
+                            </div>
+                            <div class="tmpl-info">
+                                <div class="tmpl-title">Minimalist Essential</div>
+                                <div class="tmpl-tag">Pure · Minimalist Lines</div>
+                            </div>
+                        </a>
+
+                        <a href="fresher.html?template=minimalist-clean-slate" class="tmpl-card" data-category="minimalist">
+                            <div class="tmpl-preview-box">
+                                <div class="tmpl-paper-sheet" style="background:#fafafa">
+                                    <div class="tmpl-paper-head" style="background:linear-gradient(90deg, #1e293b, #0f172a)"></div>
+                                    <div class="r-mock-line medium"></div>
+                                    <div class="r-mock-line short"></div>
+                                    <div class="r-mock-line"></div>
+                                </div>
+                                <span class="tmpl-badge">Minimalist</span>
+                            </div>
+                            <div class="tmpl-info">
+                                <div class="tmpl-title">Clean Slate</div>
+                                <div class="tmpl-tag">Simple · Ultra Readable</div>
+                            </div>
+                        </a>
+
+                        <a href="fresher.html?template=minimalist-monochrome" class="tmpl-card" data-category="minimalist">
+                            <div class="tmpl-preview-box">
+                                <div class="tmpl-paper-sheet">
+                                    <div class="tmpl-paper-head" style="background:linear-gradient(90deg, #525252, #262626)"></div>
+                                    <div class="r-mock-line short"></div>
+                                    <div class="r-mock-line medium"></div>
+                                    <div class="r-mock-line short"></div>
+                                </div>
+                                <span class="tmpl-badge">Minimalist</span>
+                            </div>
+                            <div class="tmpl-info">
+                                <div class="tmpl-title">Monochrome Classic</div>
+                                <div class="tmpl-tag">Timeless · Compact Grid</div>
+                            </div>
+                        </a>
+
+                        <!-- Creative Templates -->
+                        <a href="fresher.html?template=creative-designer" class="tmpl-card" data-category="creative">
                             <div class="tmpl-preview-box">
                                 <div class="tmpl-paper-sheet">
                                     <div class="tmpl-paper-head" style="background:linear-gradient(90deg, #7d2ae8, #f43f5e)"></div>
@@ -189,6 +263,7 @@
                                     <div class="r-mock-line short"></div>
                                     <div class="r-mock-line"></div>
                                 </div>
+                                <span class="tmpl-badge">Creative</span>
                             </div>
                             <div class="tmpl-info">
                                 <div class="tmpl-title">Creative Designer</div>
@@ -196,18 +271,133 @@
                             </div>
                         </a>
 
-                        <a href="fresher.html" class="tmpl-card">
+                        <a href="fresher.html?template=creative-artistic" class="tmpl-card" data-category="creative">
                             <div class="tmpl-preview-box">
-                                <div class="tmpl-paper-sheet">
-                                    <div class="tmpl-paper-head" style="background:linear-gradient(90deg, #0f172a, #334155)"></div>
+                                <div class="tmpl-paper-sheet" style="background:#fffaf0">
+                                    <div class="tmpl-paper-head" style="background:linear-gradient(90deg, #ec4899, #f97316)"></div>
                                     <div class="r-mock-line short"></div>
                                     <div class="r-mock-line medium"></div>
                                     <div class="r-mock-line"></div>
                                 </div>
+                                <span class="tmpl-badge">Creative</span>
                             </div>
                             <div class="tmpl-info">
-                                <div class="tmpl-title">Tech Specialist</div>
-                                <div class="tmpl-tag">Structured · Developer Friendly</div>
+                                <div class="tmpl-title">Artistic Showcase</div>
+                                <div class="tmpl-tag">Bold · Media & Design</div>
+                            </div>
+                        </a>
+
+                        <a href="fresher.html?template=creative-innovator" class="tmpl-card" data-category="creative">
+                            <div class="tmpl-preview-box">
+                                <div class="tmpl-paper-sheet">
+                                    <div class="tmpl-paper-head" style="background:linear-gradient(90deg, #8b5cf6, #d946ef)"></div>
+                                    <div class="r-mock-line medium"></div>
+                                    <div class="r-mock-line short"></div>
+                                    <div class="r-mock-line short"></div>
+                                </div>
+                                <span class="tmpl-badge">Creative</span>
+                            </div>
+                            <div class="tmpl-info">
+                                <div class="tmpl-title">Studio Innovator</div>
+                                <div class="tmpl-tag">Expressive · Studio Ready</div>
+                            </div>
+                        </a>
+
+                        <!-- Executive Templates -->
+                        <a href="fresher.html?template=executive-pro" class="tmpl-card" data-category="executive">
+                            <div class="tmpl-preview-box">
+                                <div class="tmpl-paper-sheet" style="background:#fafafa">
+                                    <div class="tmpl-paper-head" style="background:linear-gradient(90deg, #10b981, #00c4cc)"></div>
+                                    <div class="r-mock-line short"></div>
+                                    <div class="r-mock-line medium"></div>
+                                    <div class="r-mock-line"></div>
+                                </div>
+                                <span class="tmpl-badge">Executive</span>
+                            </div>
+                            <div class="tmpl-info">
+                                <div class="tmpl-title">Executive Professional</div>
+                                <div class="tmpl-tag">Formal · High Impact</div>
+                            </div>
+                        </a>
+
+                        <a href="fresher.html?template=executive-director" class="tmpl-card" data-category="executive">
+                            <div class="tmpl-preview-box">
+                                <div class="tmpl-paper-sheet">
+                                    <div class="tmpl-paper-head" style="background:linear-gradient(90deg, #0f172a, #1e3a8a)"></div>
+                                    <div class="r-mock-line medium"></div>
+                                    <div class="r-mock-line medium"></div>
+                                    <div class="r-mock-line short"></div>
+                                </div>
+                                <span class="tmpl-badge">Executive</span>
+                            </div>
+                            <div class="tmpl-info">
+                                <div class="tmpl-title">Corporate Director</div>
+                                <div class="tmpl-tag">Authoritative · Leadership Focus</div>
+                            </div>
+                        </a>
+
+                        <a href="fresher.html?template=executive-manager" class="tmpl-card" data-category="executive">
+                            <div class="tmpl-preview-box">
+                                <div class="tmpl-paper-sheet">
+                                    <div class="tmpl-paper-head" style="background:linear-gradient(90deg, #1e1b4b, #312e81)"></div>
+                                    <div class="r-mock-line short"></div>
+                                    <div class="r-mock-line medium"></div>
+                                    <div class="r-mock-line"></div>
+                                </div>
+                                <span class="tmpl-badge">Executive</span>
+                            </div>
+                            <div class="tmpl-info">
+                                <div class="tmpl-title">Senior Manager</div>
+                                <div class="tmpl-tag">Structured · Executive Suite</div>
+                            </div>
+                        </a>
+
+                        <!-- Fresher Templates -->
+                        <a href="fresher.html?template=fresher-academic" class="tmpl-card" data-category="fresher">
+                            <div class="tmpl-preview-box">
+                                <div class="tmpl-paper-sheet">
+                                    <div class="tmpl-paper-head" style="background:linear-gradient(90deg, #f59e0b, #ef4444)"></div>
+                                    <div class="r-mock-line medium"></div>
+                                    <div class="r-mock-line short"></div>
+                                    <div class="r-mock-line medium"></div>
+                                </div>
+                                <span class="tmpl-badge">Fresher</span>
+                            </div>
+                            <div class="tmpl-info">
+                                <div class="tmpl-title">Fresher Academic</div>
+                                <div class="tmpl-tag">Student Friendly · First Job</div>
+                            </div>
+                        </a>
+
+                        <a href="fresher.html?template=fresher-starter" class="tmpl-card" data-category="fresher">
+                            <div class="tmpl-preview-box">
+                                <div class="tmpl-paper-sheet" style="background:#f0fdfa">
+                                    <div class="tmpl-paper-head" style="background:linear-gradient(90deg, #14b8a6, #06b6d4)"></div>
+                                    <div class="r-mock-line short"></div>
+                                    <div class="r-mock-line short"></div>
+                                    <div class="r-mock-line"></div>
+                                </div>
+                                <span class="tmpl-badge">Fresher</span>
+                            </div>
+                            <div class="tmpl-info">
+                                <div class="tmpl-title">Entry Level Starter</div>
+                                <div class="tmpl-tag">Skills First · Internship Ready</div>
+                            </div>
+                        </a>
+
+                        <a href="fresher.html?template=fresher-scholar" class="tmpl-card" data-category="fresher">
+                            <div class="tmpl-preview-box">
+                                <div class="tmpl-paper-sheet">
+                                    <div class="tmpl-paper-head" style="background:linear-gradient(90deg, #a855f7, #ec4899)"></div>
+                                    <div class="r-mock-line medium"></div>
+                                    <div class="r-mock-line medium"></div>
+                                    <div class="r-mock-line short"></div>
+                                </div>
+                                <span class="tmpl-badge">Fresher</span>
+                            </div>
+                            <div class="tmpl-info">
+                                <div class="tmpl-title">Graduate Scholar</div>
+                                <div class="tmpl-tag">Academic Focus · Scholar Layout</div>
                             </div>
                         </a>
                     </div>
