@@ -127,23 +127,34 @@
   background: #1e293b;
   color: #cbd5e1;
   border-color: #334155;
+  transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 [data-theme="dark"] .pill:hover {
-  background: #334155;
+  background: #1e293b;
   color: #ffffff;
-  border-color: var(--canva-purple);
+  border-color: #00c4cc;
+  box-shadow: 0 0 18px rgba(125, 42, 232, 0.7), 0 0 32px rgba(0, 196, 204, 0.5);
+  transform: translateY(-2px);
 }
 
 [data-theme="dark"] .pill.active {
   background: var(--canva-purple);
   color: #ffffff;
-  border-color: var(--canva-purple);
+  border-color: #00c4cc;
+  box-shadow: 0 0 24px rgba(125, 42, 232, 0.8), 0 0 40px rgba(0, 196, 204, 0.6);
 }
 
 [data-theme="dark"] .tmpl-card {
   background: #1e293b;
   border-color: rgba(255, 255, 255, 0.08);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="dark"] .tmpl-card:hover {
+  transform: translateY(-8px);
+  border-color: #00c4cc;
+  box-shadow: 0 16px 44px rgba(125, 42, 232, 0.5), 0 0 30px rgba(0, 196, 204, 0.45);
 }
 
 [data-theme="dark"] .tmpl-title {
@@ -910,13 +921,16 @@ input.search-input:focus {
 .pill:hover {
   background: rgba(125, 42, 232, 0.08);
   color: var(--canva-purple);
-  border-color: rgba(125, 42, 232, 0.2);
+  border-color: #00c4cc;
+  box-shadow: 0 0 16px rgba(125, 42, 232, 0.45), 0 0 28px rgba(0, 196, 204, 0.3);
+  transform: translateY(-2px);
 }
 
 .pill.active {
   background: var(--canva-purple);
   color: #ffffff;
-  box-shadow: 0 4px 12px rgba(125, 42, 232, 0.25);
+  border-color: #00c4cc;
+  box-shadow: 0 0 20px rgba(125, 42, 232, 0.6), 0 0 35px rgba(0, 196, 204, 0.4);
 }
 
 /* Templates Grid */
@@ -941,9 +955,9 @@ input.search-input:focus {
 }
 
 .tmpl-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--canva-shadow-hover);
-  border-color: rgba(125, 42, 232, 0.3);
+  transform: translateY(-8px);
+  border-color: #00c4cc;
+  box-shadow: 0 14px 40px rgba(125, 42, 232, 0.35), 0 0 25px rgba(0, 196, 204, 0.4);
 }
 
 .tmpl-preview-box {
