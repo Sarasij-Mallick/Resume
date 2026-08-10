@@ -361,9 +361,10 @@ document.querySelectorAll(".fade-up").forEach(function (el) {
       p.onclick = () => {
         pills.forEach((el) => el.classList.remove("active"));
         p.classList.add("active");
-        const cat = p.dataset.cat;
+        const cat = (p.dataset.cat || "").toLowerCase();
         cards.forEach((c) => {
-          if (cat === "all" || c.dataset.category === cat) {
+          const cardCat = (c.dataset.category || "").toLowerCase();
+          if (cat === "all" || cardCat.includes(cat)) {
             c.style.display = "flex";
           } else {
             c.style.display = "none";
@@ -1896,6 +1897,11 @@ function showToast(msg, timeout = 3000) {
           const attr = pill.getAttribute("data-category");
           activeCategory = attr ? attr.toLowerCase() : pill.textContent.trim().toLowerCase();
           if (activeCategory === "all templates") activeCategory = "all";
+
+          // Reset search query when switching category pills so user immediately sees all category templates!
+          searchQuery = "";
+          if (templateSearch) templateSearch.value = "";
+
           applyTemplateFilters();
         });
       });
