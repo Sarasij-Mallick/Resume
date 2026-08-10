@@ -1741,37 +1741,68 @@ input.search-input:focus {
   font-weight: 600;
   padding: 7px 16px;
   border-radius: var(--canva-pill-radius);
-  border: 1.5px solid transparent;
+  border: 1.5px solid transparent !important;
   cursor: pointer;
   transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.studio-btn.save { background: #10b981; color: #fff; border-color: #10b981; }
+.studio-btn.save { background: #198754; color: #fff; border: 1.5px solid transparent !important; }
 .studio-btn.save:hover {
-  transform: translateY(-2px);
-  border-color: #00c4cc;
-  box-shadow: 0 0 18px rgba(16, 185, 129, 0.8), 0 0 32px rgba(0, 196, 204, 0.5);
+  transform: translateY(-1px);
+  background: #157347;
+  border: 1.5px solid transparent !important;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.15);
 }
 
-.studio-btn.preview { background: var(--canva-purple); color: #fff; border-color: var(--canva-purple); }
+.studio-btn.preview { background: var(--canva-purple); color: #fff; border: 1.5px solid transparent !important; }
 .studio-btn.preview:hover {
-  transform: translateY(-2px);
-  border-color: #00c4cc;
-  box-shadow: 0 0 18px rgba(125, 42, 232, 0.8), 0 0 32px rgba(0, 196, 204, 0.5);
+  transform: translateY(-1px);
+  background: var(--canva-purple-hover);
+  border: 1.5px solid transparent !important;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.15);
 }
 
-.studio-btn.export { background: var(--canva-cyan); color: var(--canva-dark); font-weight: 700; border-color: var(--canva-cyan); }
+.studio-btn.export { background: var(--canva-cyan); color: #212529; font-weight: 700; border: 1.5px solid transparent !important; }
 .studio-btn.export:hover {
-  transform: translateY(-2px);
-  border-color: #7d2ae8;
-  box-shadow: 0 0 18px rgba(0, 196, 204, 0.8), 0 0 32px rgba(125, 42, 232, 0.5);
+  transform: translateY(-1px);
+  background: #31d2f2;
+  border: 1.5px solid transparent !important;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.15);
 }
 
-.studio-btn.danger { background: #ef4444; color: #fff; border-color: #ef4444; }
+.studio-btn.danger { background: #dc3545; color: #fff; border: 1.5px solid transparent !important; }
 .studio-btn.danger:hover {
-  transform: translateY(-2px);
-  border-color: #f59e0b;
-  box-shadow: 0 0 18px rgba(239, 68, 68, 0.8), 0 0 32px rgba(245, 158, 11, 0.5);
+  transform: translateY(-1px);
+  background: #bb2d3b;
+  border: 1.5px solid transparent !important;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.15);
+}
+
+/* Disable hover border for all studio-header buttons & links */
+.studio-header .studio-btn,
+.studio-header .theme-toggle-btn,
+.studio-header .studio-home-link,
+.studio-header button,
+.studio-header a {
+  border: 1.5px solid transparent !important;
+}
+
+.studio-header .studio-btn:hover,
+.studio-header .theme-toggle-btn:hover,
+.studio-header .studio-home-link:hover,
+.studio-header button:hover,
+.studio-header a:hover {
+  border: 1.5px solid transparent !important;
+  border-color: transparent !important;
+}
+
+.studio-header .studio-btn::after,
+.studio-header .theme-toggle-btn::after,
+.studio-header .studio-home-link::after,
+.studio-header button::after,
+.studio-header a::after {
+  display: none !important;
+  content: none !important;
 }
 
 /* Studio Layout Main */
