@@ -526,7 +526,7 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
   box-shadow: 0 6px 20px rgba(125, 42, 232, 0.3);
 }
 
-/* Universal Traveling Linear Neon Border Light Beam on Hover for All Tabs & Buttons */
+/* Strict Border-Only Traveling Linear Neon Light Beam on Hover for All Tabs & Buttons */
 .pill,
 .nav .nav-link,
 .btn,
@@ -537,53 +537,47 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 .header-cta-btn,
 .back-to-top,
 .theme-toggle-btn,
-.tmpl-card,
-.path-card,
 .dock-item.step {
   position: relative;
-  overflow: hidden;
-  z-index: 1;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
 }
 
-.pill::before,
-.nav .nav-link::before,
-.btn::before,
-.studio-btn::before,
-.submit-btn::before,
-.social-btn::before,
-.tab-btn::before,
-.header-cta-btn::before,
-.back-to-top::before,
-.theme-toggle-btn::before,
-.tmpl-card::before,
-.path-card::before,
-.dock-item.step::before {
+.pill::after,
+.nav .nav-link::after,
+.btn::after,
+.studio-btn::after,
+.submit-btn::after,
+.social-btn::after,
+.tab-btn::after,
+.header-cta-btn::after,
+.back-to-top::after,
+.theme-toggle-btn::after,
+.dock-item.step::after {
   content: "";
   position: absolute;
-  top: -60%;
-  left: -60%;
-  width: 220%;
-  height: 220%;
-  background: conic-gradient(from var(--neonAngle), transparent 0deg, #00e5ff 90deg, #7d2ae8 180deg, #ff007f 270deg, transparent 360deg);
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: conic-gradient(from var(--neonAngle), #00e5ff 0deg, #7d2ae8 90deg, #ff007f 180deg, #ffaa00 270deg, #00e5ff 360deg);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
   opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: -1;
   pointer-events: none;
+  transition: opacity 0.25s ease;
 }
 
-.pill:hover::before,
-.nav .nav-link:hover::before,
-.btn:hover::before,
-.studio-btn:hover::before,
-.submit-btn:hover::before,
-.social-btn:hover::before,
-.tab-btn:hover::before,
-.header-cta-btn:hover::before,
-.back-to-top:hover::before,
-.theme-toggle-btn:hover::before,
-.tmpl-card:hover::before,
-.path-card:hover::before,
-.dock-item.step:hover::before {
+.pill:hover::after,
+.nav .nav-link:hover::after,
+.btn:hover::after,
+.studio-btn:hover::after,
+.submit-btn:hover::after,
+.social-btn:hover::after,
+.tab-btn:hover::after,
+.header-cta-btn:hover::after,
+.back-to-top:hover::after,
+.theme-toggle-btn:hover::after,
+.dock-item.step:hover::after {
   opacity: 1;
   animation: neonLinearBeam 2.5s linear infinite;
 }
@@ -599,9 +593,8 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 .back-to-top:hover,
 .theme-toggle-btn:hover,
 .dock-item.step:hover {
-  border-color: #00e5ff !important;
-  box-shadow: 0 0 16px rgba(0, 229, 255, 0.7), 0 0 32px rgba(125, 42, 232, 0.5) !important;
   transform: translateY(-2px);
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.4), 0 0 18px rgba(125, 42, 232, 0.3) !important;
 }
 
 /* ==========================================================================
