@@ -2223,8 +2223,8 @@ function showToast(msg, timeout = 3000) {
     rings.push({
       x: e.clientX,
       y: e.clientY,
-      r: 4,
-      maxR: 50,
+      r: 2,
+      maxR: 24,
       alpha: 1,
       color: color
     });
@@ -2270,11 +2270,11 @@ function showToast(msg, timeout = 3000) {
   function render() {
     ctx.clearRect(0, 0, width, height);
 
-    // Render Shockwave Rings
+    // Render Thin & Sleek Shockwave Rings
     for (let i = rings.length - 1; i >= 0; i--) {
       const ring = rings[i];
-      ring.r += (ring.maxR - ring.r) * 0.08;
-      ring.alpha -= 0.012;
+      ring.r += (ring.maxR - ring.r) * 0.12;
+      ring.alpha -= 0.02;
 
       if (ring.alpha <= 0) {
         rings.splice(i, 1);
@@ -2283,9 +2283,9 @@ function showToast(msg, timeout = 3000) {
 
       ctx.save();
       ctx.strokeStyle = `rgba(${ring.color.r}, ${ring.color.g}, ${ring.color.b}, ${ring.alpha})`;
-      ctx.lineWidth = 2.5;
-      ctx.shadowColor = `rgba(${ring.color.r}, ${ring.color.g}, ${ring.color.b}, ${ring.alpha * 0.8})`;
-      ctx.shadowBlur = 14;
+      ctx.lineWidth = 1.0;
+      ctx.shadowColor = `rgba(${ring.color.r}, ${ring.color.g}, ${ring.color.b}, ${ring.alpha * 0.6})`;
+      ctx.shadowBlur = 6;
       ctx.beginPath();
       ctx.arc(ring.x, ring.y, ring.r, 0, Math.PI * 2);
       ctx.stroke();
