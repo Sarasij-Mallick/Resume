@@ -1208,8 +1208,25 @@ input.search-input:focus {
 .pill.active {
   background: var(--canva-purple);
   color: #ffffff;
-  border-color: #00c4cc;
+  border: none;
   box-shadow: 0 0 20px rgba(125, 42, 232, 0.6), 0 0 35px rgba(0, 196, 204, 0.4);
+}
+
+/* Light Theme: Selected/Active buttons border none */
+:root:not([data-theme="dark"]) button.active,
+:root:not([data-theme="dark"]) button.selected,
+:root:not([data-theme="dark"]) button:active,
+:root:not([data-theme="dark"]) .btn.active,
+:root:not([data-theme="dark"]) .btn.selected,
+:root:not([data-theme="dark"]) .pill.active,
+:root:not([data-theme="dark"]) .pill.selected,
+:root:not([data-theme="dark"]) .tab-btn.active,
+:root:not([data-theme="dark"]) .tab-btn.selected,
+:root:not([data-theme="dark"]) .dock-item.active,
+:root:not([data-theme="dark"]) .step.active,
+:root:not([data-theme="dark"]) .nav .nav-link.active {
+  border: none !important;
+  outline: none;
 }
 
 /* Templates Grid */
