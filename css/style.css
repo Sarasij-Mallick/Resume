@@ -507,6 +507,12 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
   letter-spacing: -0.02em;
 }
 
+[data-theme="dark"] .brand {
+  background: linear-gradient(135deg, #ffffff 0%, #a855f7 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
 .brand-sub {
   font-size: 9.5px;
   font-weight: 800;
@@ -2413,6 +2419,38 @@ button:active,
 
 /* Extra Small Mobile Devices (< 576px) */
 @media (max-width: 576px) {
+  .top-announcement-bar {
+    padding: 6px 32px 6px 10px;
+  }
+
+  .announcement-inner {
+    font-size: 11.5px;
+    gap: 6px;
+    justify-content: flex-start;
+  }
+
+  .announcement-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .announcement-badge {
+    padding: 1px 6px;
+    font-size: 10px;
+    flex-shrink: 0;
+  }
+
+  .announcement-link {
+    font-size: 11.5px;
+    flex-shrink: 0;
+  }
+
+  .announcement-close {
+    right: 6px;
+    padding: 2px 4px;
+  }
+
   .templates-grid {
     grid-template-columns: 1fr;
     gap: 16px;
