@@ -2223,16 +2223,18 @@ button:active,
     display: none !important;
   }
 
-  /* Canva Tablet Hero behavior: Graphic on TOP, Text BELOW */
+  /* Hide Hero Visual White Card on Mobile & Tablet */
+  .hero-visual {
+    display: none !important;
+  }
+
   .hero-banner {
-    padding: 36px 28px;
+    padding: 28px 20px;
   }
 
   .hero-grid {
-    display: flex;
-    flex-direction: column-reverse;
-    gap: 32px;
-    align-items: center;
+    display: block;
+    text-align: center;
   }
 
   .hero-content {
