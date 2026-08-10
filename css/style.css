@@ -2411,6 +2411,89 @@ button:active,
   }
 }
 
+/* Extra Small Mobile Devices (< 576px) */
+@media (max-width: 576px) {
+  .templates-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .site-header {
+    height: 58px;
+    padding: 0 12px;
+  }
+
+  .header-actions {
+    gap: 8px;
+  }
+
+  .header-cta-btn {
+    padding: 6px 12px;
+    font-size: 12.5px;
+  }
+
+  .hero-banner {
+    padding: 20px 14px;
+    border-radius: 16px;
+  }
+
+  .hero-content .kicker {
+    font-size: 11px;
+    padding: 4px 10px;
+  }
+
+  .hero-content .title {
+    font-size: 24px;
+    letter-spacing: -0.01em;
+  }
+
+  .hero-content .lead {
+    font-size: 13.5px;
+    line-height: 1.5;
+  }
+
+  .back-to-top {
+    right: 16px !important;
+    bottom: 74px !important;
+    width: 38px !important;
+    height: 38px !important;
+    font-size: 16px !important;
+  }
+
+  .lottie-wrap {
+    width: 130px;
+    height: 130px;
+  }
+
+  .preloader-title {
+    font-size: 19px;
+  }
+}
+
+/* Ultra Small Mobile Screens (< 400px) */
+@media (max-width: 400px) {
+  .header-cta-btn {
+    display: none;
+  }
+
+  .hero-content .title {
+    font-size: 21px;
+  }
+
+  .pill {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .tmpl-footer {
+    padding: 10px 12px;
+  }
+
+  .tmpl-title {
+    font-size: 13px;
+  }
+}
+
 /* ==========================================================================
    CANVA PAGE PRELOADER
    ========================================================================== */
