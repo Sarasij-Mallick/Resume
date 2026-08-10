@@ -1841,13 +1841,13 @@ button:active,
 
 /* Vertical Icon Dock (Leftmost Sidebar) */
 .studio-dock {
-  width: 68px;
+  width: 72px;
   background: #182232;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 10px 0;
-  gap: 6px;
+  padding: 16px 0;
+  gap: 12px;
   z-index: 100;
   overflow-y: auto;
   flex-shrink: 0;
@@ -2297,7 +2297,7 @@ button:active,
     padding: 0 12px;
     overflow-x: auto;
     overflow-y: hidden;
-    gap: 6px;
+    gap: 10px;
     border-bottom: 1px solid var(--canva-border);
   }
 
