@@ -1,6 +1,6 @@
 /* 
    Canva Design System for ResumeAI / ResumeBuilder
-   Vibrant Purple/Teal gradient accents, sleek pill buttons, paper sheet canvas, smooth animations.
+   100% Responsive for All Devices (Mobile, Tablet, Laptop, Desktop, 4K)
 */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap');
 
@@ -37,8 +37,12 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 html, body {
-  height: 100%;
+  min-height: 100%;
   margin: 0;
   padding: 0;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -125,6 +129,16 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
   gap: 12px;
 }
 
+.mobile-btn {
+  display: none;
+  background: transparent;
+  border: 0;
+  font-size: 24px;
+  color: var(--canva-dark);
+  cursor: pointer;
+  padding: 4px;
+}
+
 /* Buttons */
 .btn {
   display: inline-flex;
@@ -178,14 +192,6 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
   background: var(--canva-purple-hover);
   transform: translateY(-2px);
   box-shadow: 0 10px 28px rgba(125, 42, 232, 0.4);
-}
-
-.btn-pill-cyan {
-  background: var(--canva-cyan);
-  color: var(--canva-dark);
-  font-weight: 700;
-  padding: 12px 24px;
-  border-radius: var(--canva-pill-radius);
 }
 
 /* ==========================================================================
@@ -244,7 +250,7 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 }
 
 .hero-content .title {
-  font-size: clamp(34px, 5vw, 56px);
+  font-size: clamp(32px, 5vw, 56px);
   font-weight: 800;
   line-height: 1.1;
   color: var(--canva-dark);
@@ -260,11 +266,23 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
   max-width: 520px;
 }
 
+.hero-actions {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.btn-browse {
+  border-radius: 9999px;
+  padding: 14px 24px;
+}
+
 /* Hero Visual Mockup */
 .hero-visual {
   position: relative;
   display: flex;
   justify-content: center;
+  width: 100%;
 }
 
 .mockup-frame {
@@ -601,6 +619,139 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 }
 
 /* ==========================================================================
+   CANVA FOOTER & BACK TO TOP BUTTON
+   ========================================================================== */
+.site-footer {
+  position: relative;
+  background: var(--canva-dark);
+  color: #f8fafc;
+  padding: 56px 0 36px;
+  border-top: 4px solid transparent;
+  border-image: linear-gradient(90deg, #00c4cc, #7d2ae8, #f43f5e) 1;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 36px;
+}
+
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 400px;
+}
+
+.footer-brand .logo {
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.footer-brand .brand {
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.muted-small {
+  color: #94a3b8;
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 12px 0 0 0;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 20px;
+}
+
+.foot-nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.foot-nav a {
+  color: #cbd5e1;
+  text-decoration: none;
+  font-size: 14.5px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.foot-nav a:hover {
+  color: #00c4cc;
+  transform: translateY(-1px);
+}
+
+.legal {
+  font-size: 13.5px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+/* Floating Back-to-Top Button */
+.back-to-top {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--canva-purple);
+  color: #ffffff;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(125, 42, 232, 0.4);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(16px) scale(0.88);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 999;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.back-to-top:hover {
+  background: var(--canva-purple-hover);
+  transform: translateY(-4px) scale(1.08);
+  box-shadow: 0 14px 32px rgba(125, 42, 232, 0.55);
+}
+
+.back-to-top:active {
+  transform: translateY(-1px) scale(0.96);
+}
+
+.back-to-top svg {
+  width: 22px;
+  height: 22px;
+  stroke: currentColor;
+  transition: transform 0.2s ease;
+}
+
+.back-to-top:hover svg {
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
    5. CANVA STUDIO RESUME BUILDER APP (fresher.html)
    ========================================================================== */
 .studio-body {
@@ -749,7 +900,6 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
   padding: 16px 20px;
   border-bottom: 1px solid var(--canva-border);
   background: #ffffff;
-  sticky: top;
 }
 
 .drawer-head h3 {
@@ -888,31 +1038,265 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 }
 .toast.visible { opacity: 1; transform: translateY(0); }
 
-/* Responsive Studio */
-@media (max-width: 1024px) {
-  .studio-drawer {
-    width: 320px;
-  }
-  .studio-footer-bar {
-    left: 388px;
+/* ==========================================================================
+   6. CANVA EXACT RESPONSIVE BREAKPOINTS (Desktop, Tablet, Mobile)
+   ========================================================================== */
+
+/* Laptop & Medium Screens (1025px to 1240px) */
+@media (max-width: 1240px) {
+  .templates-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
+/* Tablet & Small Screens (769px to 1024px) */
+@media (max-width: 1024px) {
+  .mobile-btn {
+    display: inline-block;
+  }
+
+  .nav {
+    display: none;
+    position: absolute;
+    top: 72px;
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    flex-direction: column;
+    padding: 20px 24px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+    border-bottom: 1px solid var(--canva-border);
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .nav.active {
+    display: flex;
+  }
+
+  .actions .hide-mobile {
+    display: none !important;
+  }
+
+  /* Canva Tablet Hero behavior: Graphic on TOP, Text BELOW */
+  .hero-banner {
+    padding: 36px 28px;
+  }
+
+  .hero-grid {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 32px;
+    align-items: center;
+  }
+
+  .hero-content {
+    text-align: center;
+  }
+
+  .hero-content .lead {
+    margin: 0 auto 28px;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .breadcrumb {
+    justify-content: center;
+  }
+
+  .templates-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .studio-drawer {
+    width: 320px;
+  }
+
+  .studio-footer-bar {
+    left: 388px; /* 68px + 320px */
+  }
+
+  .paper-canvas {
+    padding: 32px;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 28px;
+  }
+
+  .footer-brand {
+    align-items: center;
+    max-width: 100%;
+  }
+
+  .footer-links {
+    align-items: center;
+    width: 100%;
+  }
+
+  .foot-nav {
+    justify-content: center;
+    gap: 20px;
+  }
+}
+
+/* Mobile Devices (320px to 768px) */
 @media (max-width: 768px) {
+  .header-inner {
+    height: 64px;
+  }
+
+  .nav {
+    top: 64px;
+  }
+
+  .hero-banner {
+    padding: 24px 16px;
+    border-radius: 20px;
+  }
+
+  .hero-content .title {
+    font-size: 28px;
+  }
+
+  .hero-content .lead {
+    font-size: 15px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn-pill-purple {
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 14.5px;
+  }
+
+  .btn-browse {
+    width: 100%;
+  }
+
+  .floating-badge {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+
+  .floating-badge.ats {
+    right: 0px;
+    top: 10px;
+  }
+
+  .floating-badge.ai {
+    left: 0px;
+    bottom: 10px;
+  }
+
+  .templates-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  .filter-pills {
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .pill {
+    flex-shrink: 0;
+  }
+
+  .path-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .path-card {
+    padding: 24px;
+  }
+
+  /* Canva Studio Mobile behavior */
+  .studio-body {
+    height: auto;
+    overflow: auto;
+  }
+
   .studio-main {
     flex-direction: column;
+    height: auto;
+    overflow: visible;
   }
+
+  .studio-header {
+    padding: 0 12px;
+  }
+
+  .studio-doc-title {
+    display: none;
+  }
+
+  .studio-btn {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+
   .studio-dock {
     width: 100%;
-    height: 54px;
+    height: 56px;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: flex-start;
+    padding: 0 12px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    gap: 6px;
+    border-bottom: 1px solid var(--canva-border);
   }
+
+  .dock-item {
+    min-width: 60px;
+    height: 48px;
+    font-size: 10px;
+  }
+
   .studio-drawer {
     width: 100%;
-    height: 45%;
+    height: auto;
+    max-height: 420px;
+    border-right: none;
+    border-bottom: 1px solid var(--canva-border);
   }
+
+  .studio-workspace {
+    width: 100%;
+    height: auto;
+    padding: 16px 8px 60px;
+  }
+
+  .paper-canvas {
+    padding: 20px 16px;
+    min-height: auto;
+    margin-bottom: 30px;
+  }
+
   .studio-footer-bar {
     left: 0;
+    padding: 0 12px;
+    font-size: 11.5px;
+  }
+
+  .trust-logos {
+    gap: 20px;
+  }
+
+  .trust-logo-text {
+    font-size: 15px;
   }
 }

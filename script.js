@@ -45,8 +45,14 @@ document.querySelectorAll(".fade-up").forEach(function (el) {
   var backBtn = document.getElementById("backToTop");
   if (!backBtn) return;
 
+  var studioWorkspace = document.querySelector(".studio-workspace");
+
+  function getScrollTop() {
+    return window.scrollY || document.documentElement.scrollTop || (studioWorkspace ? studioWorkspace.scrollTop : 0);
+  }
+
   function toggleBack() {
-    if (window.scrollY > 300) {
+    if (getScrollTop() > 250) {
       backBtn.classList.add("visible");
     } else {
       backBtn.classList.remove("visible");
@@ -55,18 +61,30 @@ document.querySelectorAll(".fade-up").forEach(function (el) {
 
   // show/hide on scroll
   window.addEventListener("scroll", toggleBack, { passive: true });
+  if (studioWorkspace) {
+    studioWorkspace.addEventListener("scroll", toggleBack, { passive: true });
+  }
+
   // init state
   toggleBack();
 
   backBtn.addEventListener("click", function (e) {
     e.preventDefault();
     window.scrollTo({ top: 0, behavior: "smooth" });
+    if (studioWorkspace) {
+      studioWorkspace.scrollTo({ top: 0, behavior: "smooth" });
+    }
     backBtn.blur();
   });
 
-  // keyboard accessibility: Enter/Space on button already works; also support Home key
+  // keyboard accessibility
   window.addEventListener("keydown", function (e) {
-    if (e.key === "Home") window.scrollTo({ top: 0, behavior: "smooth" });
+    if (e.key === "Home") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      if (studioWorkspace) {
+        studioWorkspace.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    }
   });
 })();
 
@@ -1438,6 +1456,55 @@ function showToast(msg, timeout = 3000) {
         }
       }
     });
+
+    // Mobile navbar toggle handler for landing page
+    const menuToggle = document.getElementById("menuToggle");
+    const navMenu = document.querySelector(".nav");
+    if (menuToggle && navMenu) {
+      menuToggle.addEventListener("click", () => {
+        navMenu.classList.toggle("active");
+      });
+    }
+
+    // Template Search & Category Filter handler for landing page
+    const templateSearch = document.getElementById("templateSearch");
+    const filterPills = document.querySelectorAll(".filter-pills .pill");
+    const templateCards = document.querySelectorAll(".templates-grid .tmpl-card");
+
+    if (filterPills.length > 0 && templateCards.length > 0) {
+      filterPills.forEach((pill) => {
+        pill.addEventListener("click", () => {
+          filterPills.forEach((p) => p.classList.remove("active"));
+          pill.classList.add("active");
+          const category = pill.textContent.trim().toLowerCase();
+          
+          templateCards.forEach((card) => {
+            const title = (card.querySelector(".tmpl-title")?.textContent || "").toLowerCase();
+            const tag = (card.querySelector(".tmpl-tag")?.textContent || "").toLowerCase();
+            if (category === "all templates" || title.includes(category) || tag.includes(category)) {
+              card.style.display = "flex";
+            } else {
+              card.style.display = "none";
+            }
+          });
+        });
+      });
+    }
+
+    if (templateSearch && templateCards.length > 0) {
+      templateSearch.addEventListener("input", () => {
+        const q = templateSearch.value.trim().toLowerCase();
+        templateCards.forEach((card) => {
+          const title = (card.querySelector(".tmpl-title")?.textContent || "").toLowerCase();
+          const tag = (card.querySelector(".tmpl-tag")?.textContent || "").toLowerCase();
+          if (!q || title.includes(q) || tag.includes(q)) {
+            card.style.display = "flex";
+          } else {
+            card.style.display = "none";
+          }
+        });
+      });
+    }
   }
 
   // Start
