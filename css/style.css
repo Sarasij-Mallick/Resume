@@ -589,6 +589,29 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
   box-shadow: 0 6px 20px rgba(125, 42, 232, 0.3);
 }
 
+.btn-outline-purple {
+  background: transparent;
+  color: var(--canva-purple);
+  border: 1.5px solid var(--canva-purple);
+}
+
+.btn-outline-purple:hover {
+  background: var(--canva-purple);
+  color: #ffffff !important;
+  border-color: var(--canva-purple);
+}
+
+[data-theme="dark"] .btn-outline-purple {
+  border-color: #a855f7;
+  color: #c084fc;
+}
+
+[data-theme="dark"] .btn-outline-purple:hover {
+  background: var(--canva-purple);
+  color: #ffffff !important;
+  border-color: #a855f7;
+}
+
 /* Strict Border-Only Traveling Linear Neon Light Beam on Hover for Dark Mode ONLY */
 [data-theme="dark"] .pill,
 [data-theme="dark"] .nav .nav-link,
