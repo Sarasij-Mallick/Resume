@@ -214,22 +214,32 @@
     .tab-btn {
       flex: 1;
       padding: 10px 0;
-      border: none;
+      border: 1.5px solid transparent !important;
       background: transparent;
       border-radius: 9999px;
       font-family: 'Inter', sans-serif;
       font-size: 14px;
       font-weight: 700;
-      color: #64748b;
+      color: #5f6368;
       cursor: pointer;
       transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .tab-btn:hover {
+      color: var(--canva-purple);
+      border: 1.5px solid var(--canva-purple) !important;
+      box-shadow: 0 2px 8px rgba(60, 64, 67, 0.12);
     }
 
     .tab-btn.active {
       background: #ffffff;
       color: var(--canva-purple);
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
-      border: none !important;
+      box-shadow: 0 2px 8px rgba(60, 64, 67, 0.15);
+      border: 1.5px solid transparent !important;
+    }
+
+    .tab-btn.active:hover {
+      border: 1.5px solid var(--canva-purple) !important;
     }
 
     .form-header {

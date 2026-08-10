@@ -577,6 +577,20 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
   border: 1.5px solid var(--canva-purple) !important;
 }
 
+.tab-btn {
+  border: 1.5px solid transparent !important;
+  transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tab-btn:hover {
+  border: 1.5px solid var(--canva-purple) !important;
+  box-shadow: 0 2px 8px rgba(60, 64, 67, 0.12);
+}
+
+.tab-btn.active {
+  box-shadow: 0 2px 8px rgba(60, 64, 67, 0.15);
+}
+
 .btn-primary, .btn.primary {
   background: var(--canva-purple);
   color: #ffffff;
