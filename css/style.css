@@ -199,10 +199,73 @@
   background: #334155;
 }
 
+[data-theme="dark"] .studio-body {
+  background: #090d16 !important;
+}
+
+[data-theme="dark"] .studio-header {
+  background: #090d16 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .studio-home-link {
+  color: #f8fafc !important;
+}
+
+[data-theme="dark"] .studio-doc-title {
+  color: #94a3b8 !important;
+  border-left-color: rgba(255, 255, 255, 0.15);
+}
+
+[data-theme="dark"] .studio-dock {
+  background: #0f172a !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
 [data-theme="dark"] .studio-drawer {
-  background: #1e293b;
-  border-color: rgba(255, 255, 255, 0.08);
-  color: #f8fafc;
+  background: #1e293b !important;
+  border-right-color: rgba(255, 255, 255, 0.08) !important;
+  color: #f8fafc !important;
+}
+
+[data-theme="dark"] .drawer-head {
+  background: #1e293b !important;
+  border-bottom-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+[data-theme="dark"] .drawer-head h3,
+[data-theme="dark"] #stepDrawerTitle {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .studio-workspace {
+  background: #090d16 !important;
+}
+
+[data-theme="dark"] .studio-workspace > div:first-child {
+  background: #1e293b !important;
+  color: #cbd5e1 !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3) !important;
+}
+
+[data-theme="dark"] .studio-footer-bar {
+  background: #1e293b !important;
+  border-top-color: rgba(255, 255, 255, 0.08) !important;
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .form-label,
+[data-theme="dark"] label {
+  color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] .tmpl-select-card {
+  background: #0f172a !important;
+  border-color: #334155 !important;
+}
+
+[data-theme="dark"] .tmpl-select-name {
+  color: #f8fafc !important;
 }
 
 [data-theme="dark"] .form-control,
@@ -212,9 +275,9 @@
 [data-theme="dark"] input[type="url"],
 [data-theme="dark"] textarea,
 [data-theme="dark"] select {
-  background: #0f172a;
-  border-color: #334155;
-  color: #f8fafc;
+  background: #0f172a !important;
+  border-color: #334155 !important;
+  color: #f8fafc !important;
 }
 
 [data-theme="dark"] .modal-panel {
