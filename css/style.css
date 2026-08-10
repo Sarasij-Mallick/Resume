@@ -1691,9 +1691,9 @@ button:active,
 /* Floating Back-to-Top Button */
 .back-to-top {
   position: fixed;
-  bottom: 24px;
-  left: 24px;
-  right: auto;
+  bottom: 90px;
+  right: 32px;
+  left: auto;
   width: 46px;
   height: 46px;
   border-radius: 50%;
