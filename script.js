@@ -1832,6 +1832,40 @@ function showToast(msg, timeout = 3000) {
       }
     });
 
+    // Theme Toggle Engine
+    function initTheme() {
+      const savedTheme = localStorage.getItem("resume_builder_theme") || "light";
+      setTheme(savedTheme);
+    }
+
+    function setTheme(theme) {
+      if (theme === "dark") {
+        document.documentElement.setAttribute("data-theme", "dark");
+      } else {
+        document.documentElement.removeAttribute("data-theme");
+      }
+      localStorage.setItem("resume_builder_theme", theme);
+      updateThemeToggleIcons(theme);
+    }
+
+    function updateThemeToggleIcons(theme) {
+      const toggleBtns = document.querySelectorAll("#themeToggle, .theme-toggle-btn");
+      toggleBtns.forEach((btn) => {
+        btn.textContent = theme === "dark" ? "☀️" : "🌙";
+      });
+    }
+
+    const themeBtns = document.querySelectorAll("#themeToggle, .theme-toggle-btn");
+    themeBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const currentTheme = document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
+        const nextTheme = currentTheme === "dark" ? "light" : "dark";
+        setTheme(nextTheme);
+      });
+    });
+
+    initTheme();
+
     // Header Announcement Bar Close Handler
     const closeAnnouncement = document.getElementById("closeAnnouncement");
     const announcementBar = document.getElementById("announcementBar");
