@@ -391,10 +391,6 @@ document.querySelectorAll(".fade-up").forEach(function (el) {
 
     return wrapper;
   }
-    mainCard.appendChild(header);
-    mainCard.appendChild(content);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }
 
   function createHeader(title) {
     const h = document.createElement("div");
