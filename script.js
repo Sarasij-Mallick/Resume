@@ -2148,11 +2148,11 @@ function showToast(msg, timeout = 3000) {
 })();
 
 /* ==========================================================================
-   INTERACTIVE MAGIC SMOKE & SPARKLE TRAIL EFFECT
+   INTERACTIVE MAGIC STAR SPARKLE TRAIL EFFECT
    ========================================================================== */
-(function initMouseSmokeTrail() {
+(function initMouseStarTrail() {
   const canvas = document.createElement("canvas");
-  canvas.id = "mouseSmokeCanvas";
+  canvas.id = "mouseStarCanvas";
   canvas.style.position = "fixed";
   canvas.style.top = "0";
   canvas.style.left = "0";
@@ -2185,43 +2185,23 @@ function showToast(msg, timeout = 3000) {
   let lastX = 0;
   let lastY = 0;
 
-  function spawnSmokeAndSparks(x, y, speed = 1) {
-    const smokeCount = Math.min(Math.floor(speed * 1.5) + 2, 5);
-    const sparkCount = Math.min(Math.floor(speed) + 2, 4);
+  function spawnSparks(x, y, speed = 1) {
+    const sparkCount = Math.min(Math.floor(speed * 1.8) + 2, 6);
 
-    // 1. Soft Nebula Smoke
-    for (let i = 0; i < smokeCount; i++) {
-      const color = colors[Math.floor(Math.random() * colors.length)];
-      particles.push({
-        type: 'smoke',
-        x: x + (Math.random() - 0.5) * 12,
-        y: y + (Math.random() - 0.5) * 12,
-        size: Math.random() * 12 + 12,
-        maxSize: Math.random() * 45 + 35,
-        vx: (Math.random() - 0.5) * 1.6,
-        vy: (Math.random() - 0.5) * 1.6 - 0.4,
-        alpha: Math.random() * 0.45 + 0.35,
-        decay: Math.random() * 0.012 + 0.008,
-        color: color
-      });
-    }
-
-    // 2. Sparkling Magic Dust
     for (let i = 0; i < sparkCount; i++) {
       const color = colors[Math.floor(Math.random() * colors.length)];
       const angle = Math.random() * Math.PI * 2;
-      const vel = Math.random() * 3 + 1;
+      const vel = Math.random() * 3.5 + 1.2;
       particles.push({
-        type: 'spark',
-        x: x,
-        y: y,
-        size: Math.random() * 4 + 2,
+        x: x + (Math.random() - 0.5) * 8,
+        y: y + (Math.random() - 0.5) * 8,
+        size: Math.random() * 5 + 2.5,
         vx: Math.cos(angle) * vel,
-        vy: Math.sin(angle) * vel - 0.8,
+        vy: Math.sin(angle) * vel - 0.6,
         alpha: 1,
         decay: Math.random() * 0.025 + 0.015,
         rotation: Math.random() * Math.PI,
-        spin: (Math.random() - 0.5) * 0.2,
+        spin: (Math.random() - 0.5) * 0.25,
         color: color
       });
     }
@@ -2231,7 +2211,7 @@ function showToast(msg, timeout = 3000) {
   window.addEventListener("pointermove", (e) => {
     const dist = Math.hypot(e.clientX - lastX, e.clientY - lastY);
     if (dist > 3) {
-      spawnSmokeAndSparks(e.clientX, e.clientY, dist / 4);
+      spawnSparks(e.clientX, e.clientY, dist / 4);
       lastX = e.clientX;
       lastY = e.clientY;
     }
@@ -2249,22 +2229,21 @@ function showToast(msg, timeout = 3000) {
       color: color
     });
 
-    // Burst of 22 sparkles
-    for (let i = 0; i < 22; i++) {
+    // Burst of 24 glowing stars
+    for (let i = 0; i < 24; i++) {
       const c = colors[Math.floor(Math.random() * colors.length)];
-      const angle = (Math.PI * 2 / 22) * i + Math.random() * 0.2;
-      const vel = Math.random() * 5 + 3;
+      const angle = (Math.PI * 2 / 24) * i + Math.random() * 0.2;
+      const vel = Math.random() * 5.5 + 3;
       particles.push({
-        type: 'spark',
         x: e.clientX,
         y: e.clientY,
-        size: Math.random() * 5 + 3,
+        size: Math.random() * 6 + 3,
         vx: Math.cos(angle) * vel,
         vy: Math.sin(angle) * vel,
         alpha: 1,
         decay: Math.random() * 0.02 + 0.01,
         rotation: Math.random() * Math.PI,
-        spin: (Math.random() - 0.5) * 0.3,
+        spin: (Math.random() - 0.5) * 0.35,
         color: c
       });
     }
@@ -2276,7 +2255,7 @@ function showToast(msg, timeout = 3000) {
     ctx.rotate(rotation);
     ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
     ctx.shadowColor = `rgba(${color.r}, ${color.g}, ${color.b}, ${alpha})`;
-    ctx.shadowBlur = 12;
+    ctx.shadowBlur = 14;
 
     ctx.beginPath();
     for (let i = 0; i < 4; i++) {
@@ -2313,41 +2292,20 @@ function showToast(msg, timeout = 3000) {
       ctx.restore();
     }
 
-    // Render Particles
+    // Render Star Particles
     for (let i = particles.length - 1; i >= 0; i--) {
       const p = particles[i];
       p.x += p.vx;
       p.y += p.vy;
+      p.rotation += p.spin;
+      p.alpha -= p.decay;
 
-      if (p.type === 'smoke') {
-        p.size += (p.maxSize - p.size) * 0.05;
-        p.alpha -= p.decay;
-
-        if (p.alpha <= 0 || p.size <= 0) {
-          particles.splice(i, 1);
-          continue;
-        }
-
-        const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size);
-        grad.addColorStop(0, `rgba(${p.color.r}, ${p.color.g}, ${p.color.b}, ${p.alpha})`);
-        grad.addColorStop(0.4, `rgba(${p.color.r}, ${p.color.g}, ${p.color.b}, ${p.alpha * 0.45})`);
-        grad.addColorStop(1, `rgba(${p.color.r}, ${p.color.g}, ${p.color.b}, 0)`);
-
-        ctx.fillStyle = grad;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fill();
-      } else if (p.type === 'spark') {
-        p.rotation += p.spin;
-        p.alpha -= p.decay;
-
-        if (p.alpha <= 0) {
-          particles.splice(i, 1);
-          continue;
-        }
-
-        drawStar(p.x, p.y, p.size, p.rotation, p.alpha, p.color);
+      if (p.alpha <= 0) {
+        particles.splice(i, 1);
+        continue;
       }
+
+      drawStar(p.x, p.y, p.size, p.rotation, p.alpha, p.color);
     }
 
     requestAnimationFrame(render);
