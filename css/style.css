@@ -65,6 +65,36 @@
   box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.5);
 }
 
+/* Disable hover border for all header buttons in dark theme */
+[data-theme="dark"] .site-header .nav-link,
+[data-theme="dark"] .site-header .btn,
+[data-theme="dark"] .site-header .theme-toggle-btn,
+[data-theme="dark"] .site-header .header-cta-btn,
+[data-theme="dark"] .site-header button,
+[data-theme="dark"] .site-header a {
+  border: none !important;
+}
+
+[data-theme="dark"] .site-header .nav-link:hover,
+[data-theme="dark"] .site-header .btn:hover,
+[data-theme="dark"] .site-header .theme-toggle-btn:hover,
+[data-theme="dark"] .site-header .header-cta-btn:hover,
+[data-theme="dark"] .site-header button:hover,
+[data-theme="dark"] .site-header a:hover {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+[data-theme="dark"] .site-header .nav-link::after,
+[data-theme="dark"] .site-header .btn::after,
+[data-theme="dark"] .site-header .theme-toggle-btn::after,
+[data-theme="dark"] .site-header .header-cta-btn::after,
+[data-theme="dark"] .site-header button::after,
+[data-theme="dark"] .site-header a::after {
+  display: none !important;
+  content: none !important;
+}
+
 [data-theme="dark"] .hero-wrapper {
   background: #212529;
 }
@@ -674,30 +704,22 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 
 /* Strict Border-Only Traveling Linear Neon Light Beam on Hover for Dark Mode ONLY */
 [data-theme="dark"] .pill,
-[data-theme="dark"] .nav .nav-link,
-[data-theme="dark"] .btn,
 [data-theme="dark"] .studio-btn,
 [data-theme="dark"] .submit-btn,
 [data-theme="dark"] .social-btn,
 [data-theme="dark"] .tab-btn,
-[data-theme="dark"] .header-cta-btn,
 [data-theme="dark"] .back-to-top,
-[data-theme="dark"] .theme-toggle-btn,
 [data-theme="dark"] .dock-item.step {
   position: relative;
   transition: transform 0.22s ease, box-shadow 0.22s ease;
 }
 
 [data-theme="dark"] .pill::after,
-[data-theme="dark"] .nav .nav-link::after,
-[data-theme="dark"] .btn::after,
 [data-theme="dark"] .studio-btn::after,
 [data-theme="dark"] .submit-btn::after,
 [data-theme="dark"] .social-btn::after,
 [data-theme="dark"] .tab-btn::after,
-[data-theme="dark"] .header-cta-btn::after,
 [data-theme="dark"] .back-to-top::after,
-[data-theme="dark"] .theme-toggle-btn::after,
 [data-theme="dark"] .dock-item.step::after {
   content: "";
   position: absolute;
@@ -714,30 +736,22 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 }
 
 [data-theme="dark"] .pill:hover::after,
-[data-theme="dark"] .nav .nav-link:hover::after,
-[data-theme="dark"] .btn:hover::after,
 [data-theme="dark"] .studio-btn:hover::after,
 [data-theme="dark"] .submit-btn:hover::after,
 [data-theme="dark"] .social-btn:hover::after,
 [data-theme="dark"] .tab-btn:hover::after,
-[data-theme="dark"] .header-cta-btn:hover::after,
 [data-theme="dark"] .back-to-top:hover::after,
-[data-theme="dark"] .theme-toggle-btn:hover::after,
 [data-theme="dark"] .dock-item.step:hover::after {
   opacity: 1;
   animation: neonLinearBeam 2.5s linear infinite;
 }
 
 [data-theme="dark"] .pill:hover,
-[data-theme="dark"] .nav .nav-link:hover,
-[data-theme="dark"] .btn:hover,
 [data-theme="dark"] .studio-btn:hover,
 [data-theme="dark"] .submit-btn:hover,
 [data-theme="dark"] .social-btn:hover,
 [data-theme="dark"] .tab-btn:hover,
-[data-theme="dark"] .header-cta-btn:hover,
 [data-theme="dark"] .back-to-top:hover,
-[data-theme="dark"] .theme-toggle-btn:hover,
 [data-theme="dark"] .dock-item.step:hover {
   transform: translateY(-2px);
   box-shadow: 0 0 10px rgba(0, 229, 255, 0.4), 0 0 18px rgba(125, 42, 232, 0.3) !important;
