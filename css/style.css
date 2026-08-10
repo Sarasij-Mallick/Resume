@@ -590,24 +590,25 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 }
 
 .btn-outline-purple {
-  background: transparent;
+  background: transparent !important;
   color: var(--canva-purple);
   border: 1.5px solid var(--canva-purple);
 }
 
 .btn-outline-purple:hover {
-  background: var(--canva-purple);
+  background: transparent !important;
   color: #ffffff !important;
   border-color: var(--canva-purple);
 }
 
 [data-theme="dark"] .btn-outline-purple {
+  background: transparent !important;
   border-color: #a855f7;
   color: #c084fc;
 }
 
 [data-theme="dark"] .btn-outline-purple:hover {
-  background: var(--canva-purple);
+  background: transparent !important;
   color: #ffffff !important;
   border-color: #a855f7;
 }
