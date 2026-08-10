@@ -1581,11 +1581,17 @@ button:active,
    ========================================================================== */
 .site-footer {
   position: relative;
-  background: var(--canva-dark);
-  color: #f8fafc;
-  padding: 24px 0 20px;
-  border-top: 2px solid transparent;
-  border-image: linear-gradient(90deg, #00c4cc, #7d2ae8, #f43f5e) 1;
+  background: #ffffff;
+  color: #212529;
+  padding: 32px 0 28px;
+  border-top: 1px solid #dee2e6;
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+[data-theme="dark"] .site-footer {
+  background: #1a1d20 !important;
+  color: #f8f9fa !important;
+  border-top-color: #495057 !important;
 }
 
 .footer-inner {
@@ -1593,7 +1599,7 @@ button:active,
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 20px;
 }
 
 .footer-brand {
@@ -1604,26 +1610,39 @@ button:active,
 }
 
 .footer-brand .logo {
-  color: #ffffff;
+  color: #212529;
   display: inline-flex;
   align-items: center;
   gap: 8px;
   text-decoration: none;
 }
 
-.footer-brand .brand {
+[data-theme="dark"] .footer-brand .logo {
   color: #ffffff;
-  font-size: 17px;
+}
+
+.footer-brand .brand {
+  color: #212529;
+  font-size: 18px;
   font-weight: 800;
   letter-spacing: -0.02em;
 }
 
+[data-theme="dark"] .footer-brand .brand {
+  color: #ffffff;
+}
+
 .muted-small {
-  color: #94a3b8;
-  font-size: 13px;
+  color: #6c757d;
+  font-size: 13.5px;
   margin: 0;
-  border-left: 1px solid rgba(255, 255, 255, 0.15);
+  border-left: 1px solid #dee2e6;
   padding-left: 16px;
+}
+
+[data-theme="dark"] .muted-small {
+  color: #a7acb1;
+  border-left-color: #495057;
 }
 
 .footer-links {
@@ -1640,30 +1659,43 @@ button:active,
 }
 
 .foot-nav a {
-  color: #cbd5e1;
+  color: #495057;
   text-decoration: none;
-  font-size: 13.5px;
-  font-weight: 600;
-  transition: all 0.2s ease;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.15s ease;
 }
 
 .foot-nav a:hover {
-  color: #00c4cc;
+  color: #0d6efd;
+}
+
+[data-theme="dark"] .foot-nav a {
+  color: #dee2e6;
+}
+
+[data-theme="dark"] .foot-nav a:hover {
+  color: #6ea8fe;
 }
 
 .legal {
-  font-size: 12.5px;
-  color: #64748b;
+  font-size: 13px;
+  color: #6c757d;
   font-weight: 500;
+}
+
+[data-theme="dark"] .legal {
+  color: #a7acb1;
 }
 
 /* Floating Back-to-Top Button */
 .back-to-top {
   position: fixed;
-  bottom: 84px;
-  right: 32px;
-  width: 48px;
-  height: 48px;
+  bottom: 24px;
+  left: 24px;
+  right: auto;
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
   background: var(--canva-purple);
   color: #ffffff;
@@ -1673,7 +1705,7 @@ button:active,
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 8px 24px rgba(125, 42, 232, 0.4);
+  box-shadow: 0 4px 16px rgba(13, 110, 253, 0.4);
   opacity: 0;
   visibility: hidden;
   transform: translateY(16px) scale(0.88);
@@ -1689,9 +1721,8 @@ button:active,
 
 .back-to-top:hover {
   background: var(--canva-purple-hover);
-  border-color: #00c4cc;
-  transform: translateY(-4px) scale(1.08);
-  box-shadow: 0 0 25px rgba(125, 42, 232, 0.85), 0 0 45px rgba(0, 196, 204, 0.65);
+  transform: translateY(-3px) scale(1.06);
+  box-shadow: 0 6px 20px rgba(13, 110, 253, 0.5);
 }
 
 .back-to-top:active {
@@ -1699,8 +1730,8 @@ button:active,
 }
 
 .back-to-top svg {
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   stroke: currentColor;
   transition: transform 0.2s ease;
 }
