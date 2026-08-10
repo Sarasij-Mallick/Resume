@@ -717,24 +717,22 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 }
 
 /* Strict Border-Only Traveling Linear Neon Light Beam on Hover for Dark Mode ONLY */
-[data-theme="dark"] .pill,
+[data-theme="dark"] .pill:not(.active),
 [data-theme="dark"] .studio-btn,
 [data-theme="dark"] .submit-btn,
 [data-theme="dark"] .social-btn,
-[data-theme="dark"] .tab-btn,
-[data-theme="dark"] .back-to-top,
-[data-theme="dark"] .dock-item.step {
+[data-theme="dark"] .tab-btn:not(.active),
+[data-theme="dark"] .back-to-top {
   position: relative;
   transition: transform 0.22s ease, box-shadow 0.22s ease;
 }
 
-[data-theme="dark"] .pill::after,
+[data-theme="dark"] .pill:not(.active)::after,
 [data-theme="dark"] .studio-btn::after,
 [data-theme="dark"] .submit-btn::after,
 [data-theme="dark"] .social-btn::after,
-[data-theme="dark"] .tab-btn::after,
-[data-theme="dark"] .back-to-top::after,
-[data-theme="dark"] .dock-item.step::after {
+[data-theme="dark"] .tab-btn:not(.active)::after,
+[data-theme="dark"] .back-to-top::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -749,24 +747,22 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
   transition: opacity 0.25s ease;
 }
 
-[data-theme="dark"] .pill:hover::after,
+[data-theme="dark"] .pill:not(.active):hover::after,
 [data-theme="dark"] .studio-btn:hover::after,
 [data-theme="dark"] .submit-btn:hover::after,
 [data-theme="dark"] .social-btn:hover::after,
-[data-theme="dark"] .tab-btn:hover::after,
-[data-theme="dark"] .back-to-top:hover::after,
-[data-theme="dark"] .dock-item.step:hover::after {
+[data-theme="dark"] .tab-btn:not(.active):hover::after,
+[data-theme="dark"] .back-to-top:hover::after {
   opacity: 1;
   animation: neonLinearBeam 2.5s linear infinite;
 }
 
-[data-theme="dark"] .pill:hover,
+[data-theme="dark"] .pill:not(.active):hover,
 [data-theme="dark"] .studio-btn:hover,
 [data-theme="dark"] .submit-btn:hover,
 [data-theme="dark"] .social-btn:hover,
-[data-theme="dark"] .tab-btn:hover,
-[data-theme="dark"] .back-to-top:hover,
-[data-theme="dark"] .dock-item.step:hover {
+[data-theme="dark"] .tab-btn:not(.active):hover,
+[data-theme="dark"] .back-to-top:hover {
   transform: translateY(-2px);
   box-shadow: 0 0 10px rgba(0, 229, 255, 0.4), 0 0 18px rgba(125, 42, 232, 0.3) !important;
 }
@@ -1337,20 +1333,36 @@ input.search-input:focus {
 }
 
 /* Light Theme: Selected/Active buttons border none */
-:root:not([data-theme="dark"]) button.active,
-:root:not([data-theme="dark"]) button.selected,
-:root:not([data-theme="dark"]) button:active,
-:root:not([data-theme="dark"]) .btn.active,
-:root:not([data-theme="dark"]) .btn.selected,
-:root:not([data-theme="dark"]) .pill.active,
-:root:not([data-theme="dark"]) .pill.selected,
-:root:not([data-theme="dark"]) .tab-btn.active,
-:root:not([data-theme="dark"]) .tab-btn.selected,
-:root:not([data-theme="dark"]) .dock-item.active,
-:root:not([data-theme="dark"]) .step.active,
-:root:not([data-theme="dark"]) .nav .nav-link.active {
+/* Active/Selected buttons: no border across all themes */
+button.active,
+button.selected,
+button:active,
+.btn.active,
+.btn.selected,
+.pill.active,
+.pill.selected,
+.tab-btn.active,
+.tab-btn.selected,
+.dock-item.active,
+.dock-item.selected,
+.step.active,
+.nav .nav-link.active {
   border: none !important;
-  outline: none;
+  border-color: transparent !important;
+  outline: none !important;
+}
+
+[data-theme="dark"] .active::after,
+[data-theme="dark"] .selected::after,
+[data-theme="dark"] .dock-item.active::after,
+[data-theme="dark"] .pill.active::after,
+[data-theme="dark"] .tab-btn.active::after,
+[data-theme="dark"] .nav-link.active::after,
+[data-theme="dark"] .btn.active::after,
+[data-theme="dark"] .btn.selected::after {
+  display: none !important;
+  content: none !important;
+  opacity: 0 !important;
 }
 
 /* Templates Grid */
@@ -1873,7 +1885,8 @@ input.search-input:focus {
 .dock-item.active {
   color: #ffffff;
   background: var(--canva-purple);
-  box-shadow: 0 4px 12px rgba(125, 42, 232, 0.3);
+  border: none !important;
+  box-shadow: 0 4px 12px rgba(13, 110, 253, 0.4);
 }
 
 /* Collapsible Control Drawer Panel */
