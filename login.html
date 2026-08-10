@@ -64,11 +64,15 @@
       width: 100%;
       min-height: 600px;
       transform-style: preserve-3d;
-      transition: transform 0.8s cubic-bezier(0.34, 1.25, 0.64, 1);
+      transition: transform 0.85s cubic-bezier(0.34, 1.25, 0.64, 1);
     }
 
-    .auth-wrapper.flipped {
+    .auth-wrapper.flip-y {
       transform: rotateY(180deg);
+    }
+
+    .auth-wrapper.flip-x {
+      transform: rotateX(180deg);
     }
 
     .auth-face {
@@ -86,6 +90,18 @@
       overflow: hidden;
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
+    }
+
+    .auth-face.auth-front {
+      transform: rotateY(0deg);
+    }
+
+    .auth-face.auth-back {
+      transform: rotateY(180deg);
+    }
+
+    .auth-wrapper.flip-x .auth-face.auth-back {
+      transform: rotateX(180deg);
     }
 
     .auth-face.auth-front {
@@ -490,8 +506,8 @@
         <div class="auth-box">
           <button class="close-btn" onclick="goHome()" aria-label="Close">×</button>
           <div class="tab-switcher">
-            <button class="tab-btn active" onclick="switchMode('login')">Sign In</button>
-            <button class="tab-btn" onclick="switchMode('register')">Register</button>
+            <button class="tab-btn active" onclick="switchMode('login', 'vertical')">Sign In</button>
+            <button class="tab-btn" onclick="switchMode('register', 'vertical')">Register</button>
           </div>
           <div id="loginFormSection">
             <div class="form-header">
@@ -519,7 +535,7 @@
               </div>
               <button type="submit" class="submit-btn">Sign In to Account</button>
             </form>
-            <div class="form-toggle-text">Don't have an account? <a href="#" onclick="switchMode('register')">Register for free</a></div>
+            <div class="form-toggle-text">Don't have an account? <a href="#" onclick="switchMode('register', 'horizontal')">Register for free</a></div>
           </div>
         </div>
       </div>
@@ -549,8 +565,8 @@
         <div class="auth-box">
           <button class="close-btn" onclick="goHome()" aria-label="Close">×</button>
           <div class="tab-switcher">
-            <button class="tab-btn" onclick="switchMode('login')">Sign In</button>
-            <button class="tab-btn active" onclick="switchMode('register')">Register</button>
+            <button class="tab-btn" onclick="switchMode('login', 'vertical')">Sign In</button>
+            <button class="tab-btn active" onclick="switchMode('register', 'vertical')">Register</button>
           </div>
           <div id="registerFormSection">
             <div class="form-header">
@@ -580,7 +596,7 @@
               <label class="remember-me" style="margin-bottom:14px"><input type="checkbox" required> I agree to Terms & Privacy Policy</label>
               <button type="submit" class="submit-btn">Create Free Account</button>
             </form>
-            <div class="form-toggle-text">Already have an account? <a href="#" onclick="switchMode('login')">Sign In</a></div>
+            <div class="form-toggle-text">Already have an account? <a href="#" onclick="switchMode('login', 'horizontal')">Sign In</a></div>
           </div>
         </div>
       </div>
@@ -592,12 +608,22 @@
     document.getElementById('year').textContent = currentYr;
     document.getElementById('year2').textContent = currentYr;
 
-    function switchMode(mode) {
+    function switchMode(mode, direction = 'horizontal') {
       const wrapper = document.getElementById('authWrapper');
-      if (mode === 'register') {
-        wrapper.classList.add('flipped');
+      if (direction === 'vertical') {
+        wrapper.classList.remove('flip-y');
+        if (mode === 'register') {
+          wrapper.classList.add('flip-x');
+        } else {
+          wrapper.classList.remove('flip-x');
+        }
       } else {
-        wrapper.classList.remove('flipped');
+        wrapper.classList.remove('flip-x');
+        if (mode === 'register') {
+          wrapper.classList.add('flip-y');
+        } else {
+          wrapper.classList.remove('flip-y');
+        }
       }
     }
 
