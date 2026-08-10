@@ -5,28 +5,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap');
 
 :root {
-  --canva-purple: #7d2ae8;
-  --canva-purple-hover: #6a1ed4;
-  --canva-cyan: #00c4cc;
-  --canva-gradient: linear-gradient(135deg, #00c4cc 0%, #7d2ae8 100%);
-  --canva-bg: #f2f4f8;
+  --canva-purple: #1a73e8;
+  --canva-purple-hover: #1557b0;
+  --canva-cyan: #00897b;
+  --canva-gradient: linear-gradient(135deg, #1a73e8 0%, #7d2ae8 100%);
+  --canva-bg: #f8f9fa;
   --canva-card: #ffffff;
-  --canva-dark: #0e131f;
-  --canva-slate: #1e293b;
-  --canva-muted: #64748b;
-  --canva-light-muted: #94a3b8;
-  --canva-border: rgba(14, 19, 31, 0.08);
-  --canva-shadow: 0 10px 30px rgba(14, 19, 31, 0.06);
-  --canva-shadow-hover: 0 20px 40px rgba(125, 42, 232, 0.12);
+  --canva-dark: #202124;
+  --canva-slate: #3c4043;
+  --canva-muted: #5f6368;
+  --canva-light-muted: #80868b;
+  --canva-border: #dadce0;
+  --canva-shadow: 0 1px 3px rgba(60, 64, 67, 0.12), 0 1px 2px rgba(60, 64, 67, 0.24);
+  --canva-shadow-hover: 0 4px 12px rgba(60, 64, 67, 0.15), 0 1px 3px rgba(60, 64, 67, 0.1);
   --canva-pill-radius: 9999px;
-  --canva-card-radius: 18px;
+  --canva-card-radius: 16px;
   --max-w: 1240px;
 
   /* Legacy variable compatibility */
   --primary: var(--canva-purple);
-  --red: #ef4444;
-  --green: #10b981;
-  --yellow: #f59e0b;
+  --red: #ea4335;
+  --green: #34a853;
+  --yellow: #fbbc05;
   --bg: var(--canva-bg);
   --card: var(--canva-card);
   --muted: var(--canva-muted);
@@ -713,7 +713,9 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 }
 
 .hero-banner {
-  background: linear-gradient(180deg, #f1f5f9 0%, #e2e8f0 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #e8f0fe 100%);
+  border: 1px solid var(--canva-border);
+  box-shadow: 0 1px 3px rgba(60, 64, 67, 0.12), 0 4px 16px rgba(60, 64, 67, 0.06);
   border-radius: 32px;
   padding: 48px 56px;
   position: relative;
