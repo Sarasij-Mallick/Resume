@@ -587,12 +587,13 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
   border-radius: var(--canva-pill-radius);
   border: 1.5px solid #7d2ae8;
   box-shadow: 0 6px 20px rgba(125, 42, 232, 0.3);
+  transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .btn-pill-purple:hover {
-  background: #6a1ed4 !important;
+  background: transparent !important;
   color: #ffffff !important;
-  border-color: #6a1ed4;
+  border-color: #7d2ae8;
 }
 
 [data-theme="dark"] .btn-pill-purple {
@@ -602,19 +603,20 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 }
 
 [data-theme="dark"] .btn-pill-purple:hover {
-  background: #6a1ed4 !important;
+  background: transparent !important;
   color: #ffffff !important;
-  border-color: #6a1ed4;
+  border-color: #a855f7;
 }
 
 .btn-outline-purple {
   background: transparent;
   color: var(--canva-purple);
   border: 1.5px solid var(--canva-purple);
+  transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .btn-outline-purple:hover {
-  background: var(--canva-purple) !important;
+  background: transparent !important;
   color: #ffffff !important;
   border-color: var(--canva-purple);
 }
@@ -626,7 +628,7 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 }
 
 [data-theme="dark"] .btn-outline-purple:hover {
-  background: var(--canva-purple) !important;
+  background: transparent !important;
   color: #ffffff !important;
   border-color: #a855f7;
 }
