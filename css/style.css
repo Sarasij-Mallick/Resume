@@ -1203,7 +1203,7 @@ input.search-input:focus {
 /* Floating Back-to-Top Button */
 .back-to-top {
   position: fixed;
-  bottom: 32px;
+  bottom: 84px;
   right: 32px;
   width: 48px;
   height: 48px;
