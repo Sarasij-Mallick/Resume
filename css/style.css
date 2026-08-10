@@ -592,8 +592,8 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 
 .btn-pill-purple:hover {
   background: transparent !important;
-  color: #ffffff !important;
-  border-color: #7d2ae8;
+  color: var(--canva-purple) !important;
+  border-color: var(--canva-purple);
 }
 
 [data-theme="dark"] .btn-pill-purple {
@@ -617,7 +617,7 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 
 .btn-outline-purple:hover {
   background: transparent !important;
-  color: #ffffff !important;
+  color: var(--canva-purple) !important;
   border-color: var(--canva-purple);
 }
 
