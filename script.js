@@ -1733,7 +1733,7 @@ function showToast(msg, timeout = 3000) {
     const nextBtnEl = document.getElementById("nextBtn");
     if (nextBtnEl) {
       nextBtnEl.onclick = () => {
-        if (state.current < stepsMeta.length) {
+        if (state.current < stepsMeta.length - 1) {
           state.current++;
           renderStep(state.current);
           saveState();
@@ -1744,7 +1744,7 @@ function showToast(msg, timeout = 3000) {
     const prevBtnEl = document.getElementById("prevBtn");
     if (prevBtnEl) {
       prevBtnEl.onclick = () => {
-        if (state.current > 1) {
+        if (state.current > 0) {
           state.current--;
           renderStep(state.current);
           saveState();
@@ -1817,14 +1817,14 @@ function showToast(msg, timeout = 3000) {
     // keyboard nav: arrows
     window.addEventListener("keydown", (e) => {
       if (e.key === "ArrowRight") {
-        if (state.current < stepsMeta.length) {
+        if (state.current < stepsMeta.length - 1) {
           state.current++;
           renderStep(state.current);
           saveState();
         }
       }
       if (e.key === "ArrowLeft") {
-        if (state.current > 1) {
+        if (state.current > 0) {
           state.current--;
           renderStep(state.current);
           saveState();
