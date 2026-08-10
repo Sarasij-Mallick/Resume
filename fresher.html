@@ -13,24 +13,22 @@
             rel="stylesheet">
         
         <link rel="stylesheet" href="css/style.css">
+        <!-- Lottie Web Player -->
+        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     </head>
     <body class="studio-body">
         <!-- PAGE PRELOADER -->
         <div id="pagePreloader" class="page-preloader" aria-hidden="true">
             <div class="preloader-content">
-                <div class="spinner-ring">
-                    <div class="spinner-core">
-                        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <defs>
-                                <linearGradient id="loader-grad-f" x1="0" x2="1">
-                                    <stop offset="0" stop-color="#00c4cc" />
-                                    <stop offset="1" stop-color="#7d2ae8" />
-                                </linearGradient>
-                            </defs>
-                            <rect x="1" y="1" width="22" height="22" rx="6" fill="url(#loader-grad-f)" />
-                            <path d="M7 13c2-3 6-5 10-5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" />
-                        </svg>
-                    </div>
+                <div class="lottie-wrap">
+                    <lottie-player
+                        src="https://assets2.lottiefiles.com/packages/lf20_a2chwsbd.json"
+                        background="transparent"
+                        speed="1.2"
+                        style="width: 170px; height: 170px;"
+                        loop
+                        autoplay>
+                    </lottie-player>
                 </div>
                 <h3 class="preloader-title">ResumeBuilder</h3>
                 <div class="preloader-bar">
