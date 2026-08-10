@@ -1857,15 +1857,16 @@ function showToast(msg, timeout = 3000) {
     function applyTemplateFilters() {
       let visibleCount = 0;
       templateCards.forEach((card) => {
-        const cardCat = (card.getAttribute("data-category") || "").toLowerCase();
+        const cardCat = (card.getAttribute("data-category") || "").toLowerCase().trim();
         const title = (card.querySelector(".tmpl-title")?.textContent || "").toLowerCase();
         const tag = (card.querySelector(".tmpl-tag")?.textContent || "").toLowerCase();
 
-        const matchesCat = activeCategory === "all" || cardCat.includes(activeCategory);
+        const matchesCat = activeCategory === "all" || cardCat === activeCategory || cardCat.includes(activeCategory);
         const matchesSearch = !searchQuery || title.includes(searchQuery) || tag.includes(searchQuery) || cardCat.includes(searchQuery);
 
         if (matchesCat && matchesSearch) {
           card.style.display = "flex";
+          card.style.opacity = "1";
           visibleCount++;
         } else {
           card.style.display = "none";
@@ -1891,11 +1892,14 @@ function showToast(msg, timeout = 3000) {
 
     if (filterPills.length > 0 && templateCards.length > 0) {
       filterPills.forEach((pill) => {
-        pill.addEventListener("click", () => {
+        pill.addEventListener("click", (e) => {
+          e.preventDefault();
           filterPills.forEach((p) => p.classList.remove("active"));
           pill.classList.add("active");
+
           const attr = pill.getAttribute("data-category");
-          activeCategory = attr ? attr.toLowerCase() : pill.textContent.trim().toLowerCase();
+          const text = pill.textContent.trim().toLowerCase();
+          activeCategory = attr ? attr.toLowerCase() : text;
           if (activeCategory === "all templates") activeCategory = "all";
 
           // Reset search query when switching category pills so user immediately sees all category templates!
