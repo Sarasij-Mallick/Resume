@@ -579,8 +579,8 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 }
 
 .btn-pill-purple {
-  background: var(--canva-purple);
-  color: #ffffff;
+  background: var(--canva-purple) !important;
+  color: #ffffff !important;
   font-weight: 700;
   font-size: 16px;
   padding: 14px 28px;
@@ -589,26 +589,44 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
   box-shadow: 0 6px 20px rgba(125, 42, 232, 0.3);
 }
 
+.btn-pill-purple:hover {
+  background: #6a1ed4 !important;
+  color: #ffffff !important;
+  border-color: #6a1ed4;
+}
+
+[data-theme="dark"] .btn-pill-purple {
+  background: var(--canva-purple) !important;
+  color: #ffffff !important;
+  border-color: #7d2ae8;
+}
+
+[data-theme="dark"] .btn-pill-purple:hover {
+  background: #6a1ed4 !important;
+  color: #ffffff !important;
+  border-color: #6a1ed4;
+}
+
 .btn-outline-purple {
-  background: transparent !important;
+  background: transparent;
   color: var(--canva-purple);
   border: 1.5px solid var(--canva-purple);
 }
 
 .btn-outline-purple:hover {
-  background: transparent !important;
+  background: var(--canva-purple) !important;
   color: #ffffff !important;
   border-color: var(--canva-purple);
 }
 
 [data-theme="dark"] .btn-outline-purple {
-  background: transparent !important;
+  background: transparent;
   border-color: #a855f7;
   color: #c084fc;
 }
 
 [data-theme="dark"] .btn-outline-purple:hover {
-  background: transparent !important;
+  background: var(--canva-purple) !important;
   color: #ffffff !important;
   border-color: #a855f7;
 }
