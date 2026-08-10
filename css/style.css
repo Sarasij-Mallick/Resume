@@ -564,6 +564,13 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 .header-login-btn {
   font-weight: 600;
   color: #334155;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+[data-theme="dark"] .header-login-btn {
+  color: #f8f9fa !important;
 }
 
 .header-cta-btn {
