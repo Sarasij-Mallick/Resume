@@ -99,7 +99,31 @@ document.querySelectorAll(".fade-up").forEach(function (el) {
 
 (() => {
   const STORAGE_KEY = "resumeai_fresher_v1";
+
+  const TEMPLATES_THEMES = {
+    "modern-minimalist": { key: "modern-minimalist", name: "Modern Minimalist", category: "Modern", tag: "Clean · ATS Optimized", gradient: "linear-gradient(135deg, #7d2ae8 0%, #00c4cc 100%)", primary: "#7d2ae8", accent: "#00c4cc", layout: "modern" },
+    "modern-tech": { key: "modern-tech", name: "Modern Tech Specialist", category: "Modern", tag: "Structured · Developer Friendly", gradient: "linear-gradient(135deg, #0f172a 0%, #3b82f6 100%)", primary: "#3b82f6", accent: "#0f172a", layout: "modern" },
+    "modern-pro": { key: "modern-pro", name: "Modern Professional", category: "Modern", tag: "Dynamic · Sleek Design", gradient: "linear-gradient(135deg, #6366f1 0%, #a855f7 100%)", primary: "#6366f1", accent: "#a855f7", layout: "modern" },
+
+    "minimalist-essential": { key: "minimalist-essential", name: "Minimalist Essential", category: "Minimalist", tag: "Pure · Minimalist Lines", gradient: "linear-gradient(135deg, #334155 0%, #475569 100%)", primary: "#334155", accent: "#64748b", layout: "minimalist" },
+    "minimalist-clean-slate": { key: "minimalist-clean-slate", name: "Clean Slate", category: "Minimalist", tag: "Simple · Ultra Readable", gradient: "linear-gradient(135deg, #1e293b 0%, #0f172a 100%)", primary: "#1e293b", accent: "#334155", layout: "minimalist" },
+    "minimalist-monochrome": { key: "minimalist-monochrome", name: "Monochrome Classic", category: "Minimalist", tag: "Timeless · Compact Grid", gradient: "linear-gradient(135deg, #525252 0%, #262626 100%)", primary: "#262626", accent: "#525252", layout: "minimalist" },
+
+    "creative-designer": { key: "creative-designer", name: "Creative Designer", category: "Creative", tag: "Vibrant · Portfolio Ready", gradient: "linear-gradient(135deg, #7d2ae8 0%, #f43f5e 100%)", primary: "#f43f5e", accent: "#7d2ae8", layout: "creative" },
+    "creative-artistic": { key: "creative-artistic", name: "Artistic Showcase", category: "Creative", tag: "Bold · Media & Design", gradient: "linear-gradient(135deg, #ec4899 0%, #f97316 100%)", primary: "#ec4899", accent: "#f97316", layout: "creative" },
+    "creative-innovator": { key: "creative-innovator", name: "Studio Innovator", category: "Creative", tag: "Expressive · Studio Ready", gradient: "linear-gradient(135deg, #8b5cf6 0%, #d946ef 100%)", primary: "#8b5cf6", accent: "#d946ef", layout: "creative" },
+
+    "executive-pro": { key: "executive-pro", name: "Executive Professional", category: "Executive", tag: "Formal · High Impact", gradient: "linear-gradient(135deg, #10b981 0%, #00c4cc 100%)", primary: "#10b981", accent: "#00c4cc", layout: "executive" },
+    "executive-director": { key: "executive-director", name: "Corporate Director", category: "Executive", tag: "Authoritative · Leadership Focus", gradient: "linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%)", primary: "#1e3a8a", accent: "#0f172a", layout: "executive" },
+    "executive-manager": { key: "executive-manager", name: "Senior Manager", category: "Executive", tag: "Structured · Executive Suite", gradient: "linear-gradient(135deg, #1e1b4b 0%, #312e81 100%)", primary: "#312e81", accent: "#1e1b4b", layout: "executive" },
+
+    "fresher-academic": { key: "fresher-academic", name: "Fresher Academic", category: "Fresher", tag: "Student Friendly · First Job", gradient: "linear-gradient(135deg, #f59e0b 0%, #ef4444 100%)", primary: "#f59e0b", accent: "#ef4444", layout: "fresher" },
+    "fresher-starter": { key: "fresher-starter", name: "Entry Level Starter", category: "Fresher", tag: "Skills First · Internship Ready", gradient: "linear-gradient(135deg, #14b8a6 0%, #06b6d4 100%)", primary: "#14b8a6", accent: "#06b6d4", layout: "fresher" },
+    "fresher-scholar": { key: "fresher-scholar", name: "Graduate Scholar", category: "Fresher", tag: "Academic Focus · Scholar Layout", gradient: "linear-gradient(135deg, #a855f7 0%, #ec4899 100%)", primary: "#a855f7", accent: "#ec4899", layout: "fresher" }
+  };
+
   const stepsMeta = [
+    { id: 0, key: "templates", title: "Choose Resume Template" },
     { id: 1, key: "personal", title: "Personal Information" },
     { id: 2, key: "education", title: "Education" },
     { id: 3, key: "skills", title: "Skills" },
@@ -113,6 +137,7 @@ document.querySelectorAll(".fade-up").forEach(function (el) {
   // Application state
   let state = {
     current: 1,
+    selectedTemplate: "modern-minimalist",
     personal: {
       fullName: "",
       headline: "",
@@ -206,6 +231,14 @@ document.querySelectorAll(".fade-up").forEach(function (el) {
 
   // Initialize
   function init() {
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      const templateParam = urlParams.get("template");
+      if (templateParam && TEMPLATES_THEMES[templateParam]) {
+        state.selectedTemplate = templateParam;
+      }
+    } catch (e) {}
+
     loadState();
     renderSidebar();
     renderStep(state.current);
@@ -240,11 +273,14 @@ document.querySelectorAll(".fade-up").forEach(function (el) {
     renderSidebar();
     mainCard.innerHTML = ""; // clear
     const meta = stepsMeta.find((s) => s.id === step);
-    const header = createHeader(meta.title);
+    const header = createHeader(meta ? meta.title : "Step Details");
     const content = document.createElement("div");
     content.className = "card-body";
     // inject step-specific form
     switch (step) {
+      case 0:
+        content.appendChild(renderTemplatesSelector());
+        break;
       case 1:
         content.appendChild(renderPersonal());
         break;
@@ -273,6 +309,86 @@ document.querySelectorAll(".fade-up").forEach(function (el) {
         content.textContent = "Not implemented";
         break;
     }
+    mainCard.appendChild(header);
+    mainCard.appendChild(content);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  /* ---------- Step Renderers ---------- */
+
+  // 0. Templates Selector
+  function renderTemplatesSelector() {
+    const wrapper = document.createElement("div");
+    wrapper.className = "form";
+    const selectedKey = state.selectedTemplate || "modern-minimalist";
+
+    wrapper.innerHTML = `
+      <p style="margin:0 0 12px;font-size:13.5px;color:var(--canva-muted)">Select a template design for your resume:</p>
+      
+      <div class="filter-pills" style="margin-bottom:12px;justify-content:flex-start">
+        <button class="pill active" data-cat="all" style="padding:5px 12px;font-size:12px">All</button>
+        <button class="pill" data-cat="Modern" style="padding:5px 12px;font-size:12px">Modern</button>
+        <button class="pill" data-cat="Minimalist" style="padding:5px 12px;font-size:12px">Minimalist</button>
+        <button class="pill" data-cat="Creative" style="padding:5px 12px;font-size:12px">Creative</button>
+        <button class="pill" data-cat="Executive" style="padding:5px 12px;font-size:12px">Executive</button>
+        <button class="pill" data-cat="Fresher" style="padding:5px 12px;font-size:12px">Fresher</button>
+      </div>
+
+      <div class="template-select-grid" id="tmplDrawerGrid">
+        ${Object.values(TEMPLATES_THEMES).map((t) => `
+          <div class="tmpl-select-card ${t.key === selectedKey ? 'selected' : ''}" data-key="${t.key}" data-category="${t.category}">
+            <div class="tmpl-select-swatch" style="background:${t.gradient}"></div>
+            <div class="tmpl-select-info">
+              <div class="tmpl-select-name">${escape(t.name)}</div>
+              <div class="tmpl-select-tag">${escape(t.category)} · ${escape(t.tag)}</div>
+            </div>
+            ${t.key === selectedKey ? `<span style="color:var(--canva-purple);font-weight:800;font-size:16px">✓</span>` : ''}
+          </div>
+        `).join("")}
+      </div>
+
+      <div class="actions" style="margin-top:20px">
+        <div style="flex:1"></div>
+        <button id="toNextFromTmpl" class="btn primary">Next: Personal Info ›</button>
+      </div>
+    `;
+
+    const pills = wrapper.querySelectorAll(".filter-pills .pill");
+    const cards = wrapper.querySelectorAll(".tmpl-select-card");
+
+    pills.forEach((p) => {
+      p.onclick = () => {
+        pills.forEach((el) => el.classList.remove("active"));
+        p.classList.add("active");
+        const cat = p.dataset.cat;
+        cards.forEach((c) => {
+          if (cat === "all" || c.dataset.category === cat) {
+            c.style.display = "flex";
+          } else {
+            c.style.display = "none";
+          }
+        });
+      };
+    });
+
+    cards.forEach((c) => {
+      c.onclick = () => {
+        const key = c.dataset.key;
+        state.selectedTemplate = key;
+        saveState();
+        renderLivePreview();
+        renderStep(0);
+      };
+    });
+
+    wrapper.querySelector("#toNextFromTmpl").onclick = () => {
+      state.current = 1;
+      renderStep(1);
+      saveState();
+    };
+
+    return wrapper;
+  }
     mainCard.appendChild(header);
     mainCard.appendChild(content);
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -1117,21 +1233,24 @@ document.querySelectorAll(".fade-up").forEach(function (el) {
 
   function buildResumeHtml() {
     const p = state.personal || {};
+    const key = state.selectedTemplate || "modern-minimalist";
+    const theme = TEMPLATES_THEMES[key] || TEMPLATES_THEMES["modern-minimalist"];
+
     const tech = (state.skills?.technical || []).join(", ");
     const soft = (state.skills?.soft || []).join(", ");
     const lang = (state.skills?.languages || []).join(", ");
     const cert = (state.skills?.certifications || []).join(", ");
 
-    const nameText = p.fullName || "Alex Morgan";
-    const headlineText = p.headline || "Computer Science Graduate & Software Developer";
-    const emailText = p.email || "alex.morgan@email.com";
+    const nameText = p.fullName || "Taylor Morgan";
+    const headlineText = p.headline || "Senior Software Engineer & Tech Specialist";
+    const emailText = p.email || "taylor.morgan@email.com";
     const phoneText = p.phone || "+1 (555) 019-2834";
     const addressText = p.address || "San Francisco, CA";
 
-    const summaryText = state.summary?.text || "Motivated Computer Science graduate with hands-on experience in full-stack web application development, algorithms, and responsive UI design. Eager to contribute to innovative software engineering projects.";
+    const summaryText = state.summary?.text || "Motivated tech specialist with extensive experience in full-stack web application engineering, software architecture, and user experience design. Focused on creating scalable, high-performance applications.";
 
     const expList = (state.experience && state.experience.length > 0) ? state.experience : [
-      { title: "Software Engineer Intern", company: "TechCorp Labs", start: "2023-06", end: "2023-09", responsibilities: "Developed responsive web features using JavaScript and REST APIs. Improved web performance and component reusability." }
+      { title: "Software Engineer", company: "TechCorp Global", start: "2023-06", end: "Present", responsibilities: "Architected high-scale web platforms, integrated REST APIs, optimized application performance and improved UI modularity." }
     ];
 
     const projList = (state.projects && state.projects.length > 0) ? state.projects : [
@@ -1143,14 +1262,260 @@ document.querySelectorAll(".fade-up").forEach(function (el) {
     ];
 
     const skillsParts = [];
-    skillsParts.push(`<div style="margin-bottom:6px"><strong>Technical:</strong> ${escape(tech || "JavaScript, React, HTML5, CSS3, Git, SQL")}</div>`);
+    skillsParts.push(`<div style="margin-bottom:6px"><strong>Technical:</strong> ${escape(tech || "JavaScript, React, Node.js, HTML5, CSS3, Git, SQL")}</div>`);
     if (soft) skillsParts.push(`<div style="margin-bottom:6px"><strong>Soft Skills:</strong> ${escape(soft)}</div>`);
     if (lang) skillsParts.push(`<div style="margin-bottom:6px"><strong>Languages:</strong> ${escape(lang)}</div>`);
     if (cert) skillsParts.push(`<div style="margin-bottom:6px"><strong>Certifications:</strong> ${escape(cert)}</div>`);
 
+    // Minimalist Layout
+    if (theme.layout === "minimalist") {
+      return `<div style="font-family:'Inter', sans-serif; color:#0f172a; line-height:1.5;">
+        <div style="border-bottom:3px solid ${theme.primary}; padding-bottom:16px; margin-bottom:20px; display:flex; justify-content:space-between; align-items:flex-end">
+          <div>
+            <h1 style="margin:0; font-size:28px; font-weight:800; color:${theme.primary}">${escape(nameText)}</h1>
+            <div style="font-size:14px; color:#475569; font-weight:600; margin-top:2px">${escape(headlineText)}</div>
+          </div>
+          ${p.photo ? `<img src="${p.photo}" style="width:64px;height:64px;border-radius:8px;object-fit:cover">` : ""}
+        </div>
+        <div style="display:flex; flex-wrap:wrap; gap:16px; font-size:12px; color:#64748b; margin-bottom:20px; border-bottom:1px solid #e2e8f0; padding-bottom:12px">
+          <span>📧 ${escape(emailText)}</span>
+          <span>📞 ${escape(phoneText)}</span>
+          <span>📍 ${escape(addressText)}</span>
+          ${p.linkedin ? `<span>🔗 <a href="${escape(p.linkedin)}" target="_blank" style="color:${theme.primary}">LinkedIn</a></span>` : ""}
+          ${p.portfolio ? `<span>🌐 <a href="${escape(p.portfolio)}" target="_blank" style="color:${theme.primary}">Portfolio</a></span>` : ""}
+        </div>
+        <div style="margin-bottom:20px">
+          <h3 style="font-size:14px; font-weight:800; text-transform:uppercase; color:${theme.primary}; letter-spacing:0.05em; border-bottom:1px solid #e2e8f0; padding-bottom:4px; margin:0 0 8px">Summary</h3>
+          <p style="font-size:13px; color:#334155; margin:0">${escape(summaryText)}</p>
+        </div>
+        <div style="display:grid; grid-template-columns: 2fr 1fr; gap:24px">
+          <div>
+            <div style="margin-bottom:20px">
+              <h3 style="font-size:14px; font-weight:800; text-transform:uppercase; color:${theme.primary}; letter-spacing:0.05em; border-bottom:1px solid #e2e8f0; padding-bottom:4px; margin:0 0 10px">Experience</h3>
+              ${expList.map((x) => `
+                <div style="margin-bottom:12px">
+                  <div style="display:flex; justify-content:space-between">
+                    <strong style="font-size:13.5px; color:#0f172a">${escape(x.title || "")} @ ${escape(x.company || "")}</strong>
+                    <span style="font-size:11.5px; color:#64748b">${escape(x.start || "")} - ${escape(x.end || "Present")}</span>
+                  </div>
+                  <div style="font-size:12.5px; color:#475569; margin-top:2px">${escape(x.responsibilities || "")}</div>
+                </div>
+              `).join("")}
+            </div>
+            <div>
+              <h3 style="font-size:14px; font-weight:800; text-transform:uppercase; color:${theme.primary}; letter-spacing:0.05em; border-bottom:1px solid #e2e8f0; padding-bottom:4px; margin:0 0 10px">Projects</h3>
+              ${projList.map((proj) => `
+                <div style="margin-bottom:12px">
+                  <div style="display:flex; justify-content:space-between">
+                    <strong style="font-size:13.5px; color:#0f172a">${escape(proj.name || "")}</strong>
+                    <span style="font-size:11.5px; color:${theme.primary}">${escape(proj.tech || "")}</span>
+                  </div>
+                  <div style="font-size:12.5px; color:#475569; margin-top:2px">${escape(proj.description || "")}</div>
+                </div>
+              `).join("")}
+            </div>
+          </div>
+          <div>
+            <div style="margin-bottom:20px">
+              <h3 style="font-size:14px; font-weight:800; text-transform:uppercase; color:${theme.primary}; letter-spacing:0.05em; border-bottom:1px solid #e2e8f0; padding-bottom:4px; margin:0 0 8px">Skills</h3>
+              <div style="font-size:12.5px; color:#334155">${skillsParts.join("")}</div>
+            </div>
+            <div style="margin-bottom:20px">
+              <h3 style="font-size:14px; font-weight:800; text-transform:uppercase; color:${theme.primary}; letter-spacing:0.05em; border-bottom:1px solid #e2e8f0; padding-bottom:4px; margin:0 0 8px">Education</h3>
+              ${eduList.map((edu) => `
+                <div style="margin-bottom:10px">
+                  <strong style="font-size:13px; color:#0f172a; display:block">${escape(edu.degree || "")}</strong>
+                  <div style="font-size:12px; color:#64748b">${escape(edu.institution || "")}</div>
+                  <div style="font-size:11.5px; color:#94a3b8">${escape(edu.start || "")} - ${escape(edu.end || "")}</div>
+                </div>
+              `).join("")}
+            </div>
+          </div>
+        </div>
+      </div>`;
+    }
+
+    // Fresher Layout
+    if (theme.layout === "fresher") {
+      return `<div style="font-family:'Inter', sans-serif; color:#0e131f; line-height:1.5;">
+        <div style="background:${theme.gradient}; padding:24px; border-radius:12px; color:#ffffff; margin-bottom:20px; display:flex; justify-content:space-between; align-items:center">
+          <div>
+            <h1 style="font-family:'Outfit', sans-serif; margin:0 0 4px; font-size:28px; font-weight:800">${escape(nameText)}</h1>
+            <div style="font-size:14px; opacity:0.95; font-weight:600">${escape(headlineText)}</div>
+          </div>
+          ${p.photo ? `<img src="${p.photo}" style="width:70px;height:70px;border-radius:50%;object-fit:cover;border:3px solid #fff">` : ""}
+        </div>
+        <div style="display:flex; flex-wrap:wrap; gap:16px; font-size:12.5px; color:#475569; padding-bottom:14px; border-bottom:2px solid #f1f5f9; margin-bottom:20px">
+          <span>📧 ${escape(emailText)}</span>
+          <span>📞 ${escape(phoneText)}</span>
+          <span>📍 ${escape(addressText)}</span>
+          ${p.linkedin ? `<span>🔗 <a href="${escape(p.linkedin)}" target="_blank" style="color:${theme.primary}">LinkedIn</a></span>` : ""}
+        </div>
+        <div style="margin-bottom:20px">
+          <h3 style="font-family:'Outfit', sans-serif; font-size:15px; font-weight:800; color:${theme.primary}; text-transform:uppercase; border-bottom:2px solid ${theme.primary}33; padding-bottom:4px; margin:0 0 8px">Academic Objective & Summary</h3>
+          <p style="font-size:13px; color:#334155; margin:0; line-height:1.6">${escape(summaryText)}</p>
+        </div>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:24px">
+          <div>
+            <div style="margin-bottom:20px">
+              <h3 style="font-family:'Outfit', sans-serif; font-size:15px; font-weight:800; color:${theme.primary}; text-transform:uppercase; border-bottom:2px solid ${theme.primary}33; padding-bottom:4px; margin:0 0 10px">Education & Qualifications</h3>
+              ${eduList.map((edu) => `
+                <div style="margin-bottom:12px; background:#fffbf5; padding:10px; border-radius:8px; border-left:3px solid ${theme.primary}">
+                  <strong style="font-size:14px; color:#0e131f; display:block">${escape(edu.degree || "")}</strong>
+                  <div style="font-size:12.5px; color:#64748b">${escape(edu.institution || "")}</div>
+                  <div style="font-size:11.5px; color:#94a3b8">${escape(edu.start || "")} - ${escape(edu.end || "")}</div>
+                </div>
+              `).join("")}
+            </div>
+            <div>
+              <h3 style="font-family:'Outfit', sans-serif; font-size:15px; font-weight:800; color:${theme.primary}; text-transform:uppercase; border-bottom:2px solid ${theme.primary}33; padding-bottom:4px; margin:0 0 10px">Key Projects</h3>
+              ${projList.map((proj) => `
+                <div style="margin-bottom:12px">
+                  <strong style="font-size:13.5px; color:#0e131f">${escape(proj.name || "")}</strong>
+                  <div style="font-size:11.5px; color:${theme.primary}; font-weight:600">${escape(proj.tech || "")}</div>
+                  <div style="font-size:12.5px; color:#475569; margin-top:2px">${escape(proj.description || "")}</div>
+                </div>
+              `).join("")}
+            </div>
+          </div>
+          <div>
+            <div style="margin-bottom:20px">
+              <h3 style="font-family:'Outfit', sans-serif; font-size:15px; font-weight:800; color:${theme.primary}; text-transform:uppercase; border-bottom:2px solid ${theme.primary}33; padding-bottom:4px; margin:0 0 10px">Skills & Competencies</h3>
+              <div style="font-size:12.5px; color:#334155">${skillsParts.join("")}</div>
+            </div>
+            <div>
+              <h3 style="font-family:'Outfit', sans-serif; font-size:15px; font-weight:800; color:${theme.primary}; text-transform:uppercase; border-bottom:2px solid ${theme.primary}33; padding-bottom:4px; margin:0 0 10px">Experience / Internships</h3>
+              ${expList.map((x) => `
+                <div style="margin-bottom:12px">
+                  <strong style="font-size:13.5px; color:#0e131f">${escape(x.title || "")} @ ${escape(x.company || "")}</strong>
+                  <div style="font-size:11.5px; color:#64748b">${escape(x.start || "")} - ${escape(x.end || "Present")}</div>
+                  <div style="font-size:12.5px; color:#475569; margin-top:2px">${escape(x.responsibilities || "")}</div>
+                </div>
+              `).join("")}
+            </div>
+          </div>
+        </div>
+      </div>`;
+    }
+
+    // Creative Layout
+    if (theme.layout === "creative") {
+      return `<div style="font-family:'Outfit', 'Inter', sans-serif; color:#0e131f; line-height:1.5;">
+        <div style="background:${theme.gradient}; padding:28px; border-radius:16px; color:#ffffff; margin-bottom:24px; display:flex; justify-content:space-between; align-items:center; box-shadow:0 8px 24px rgba(125,42,232,0.15)">
+          <div>
+            <h1 style="margin:0 0 4px; font-size:32px; font-weight:800">${escape(nameText)}</h1>
+            <div style="font-size:16px; opacity:0.95; font-weight:600">${escape(headlineText)}</div>
+          </div>
+          ${p.photo ? `<img src="${p.photo}" style="width:80px;height:80px;border-radius:20px;object-fit:cover;border:3px solid #fff">` : ""}
+        </div>
+        <div style="display:flex; flex-wrap:wrap; gap:16px; font-size:13px; color:#475569; padding-bottom:16px; border-bottom:2px dashed #e2e8f0; margin-bottom:24px">
+          <span>📧 ${escape(emailText)}</span>
+          <span>📞 ${escape(phoneText)}</span>
+          <span>📍 ${escape(addressText)}</span>
+          ${p.portfolio ? `<span>🌐 <a href="${escape(p.portfolio)}" target="_blank" style="color:${theme.primary};font-weight:700">Portfolio</a></span>` : ""}
+        </div>
+        <div style="margin-bottom:24px">
+          <h3 style="font-size:16px; font-weight:800; color:${theme.primary}; text-transform:uppercase; letter-spacing:0.04em; margin:0 0 8px">Creative Profile</h3>
+          <p style="font-size:13.5px; color:#334155; margin:0; line-height:1.6">${escape(summaryText)}</p>
+        </div>
+        <div style="display:grid; grid-template-columns: 2fr 1fr; gap:28px">
+          <div>
+            <div style="margin-bottom:24px">
+              <h3 style="font-size:16px; font-weight:800; color:${theme.primary}; text-transform:uppercase; margin:0 0 12px">Featured Work & Projects</h3>
+              ${projList.map((proj) => `
+                <div style="margin-bottom:14px; background:#faf5ff; padding:12px; border-radius:10px; border-left:4px solid ${theme.primary}">
+                  <div style="display:flex; justify-content:space-between">
+                    <strong style="font-size:14.5px; color:#0e131f">${escape(proj.name || "")}</strong>
+                    <span style="font-size:12px; color:${theme.primary}; font-weight:700">${escape(proj.tech || "")}</span>
+                  </div>
+                  <div style="font-size:13px; color:#475569; margin-top:4px">${escape(proj.description || "")}</div>
+                </div>
+              `).join("")}
+            </div>
+            <div>
+              <h3 style="font-size:16px; font-weight:800; color:${theme.primary}; text-transform:uppercase; margin:0 0 12px">Experience</h3>
+              ${expList.map((x) => `
+                <div style="margin-bottom:14px">
+                  <div style="display:flex; justify-content:space-between">
+                    <strong style="font-size:14.5px; color:#0e131f">${escape(x.title || "")} @ ${escape(x.company || "")}</strong>
+                    <span style="font-size:12px; color:#64748b">${escape(x.start || "")} - ${escape(x.end || "Present")}</span>
+                  </div>
+                  <div style="font-size:13px; color:#475569; margin-top:4px">${escape(x.responsibilities || "")}</div>
+                </div>
+              `).join("")}
+            </div>
+          </div>
+          <div>
+            <div style="margin-bottom:24px">
+              <h3 style="font-size:16px; font-weight:800; color:${theme.primary}; text-transform:uppercase; margin:0 0 10px">Skills & Stack</h3>
+              <div style="font-size:13px; color:#334155">${skillsParts.join("")}</div>
+            </div>
+            <div>
+              <h3 style="font-size:16px; font-weight:800; color:${theme.primary}; text-transform:uppercase; margin:0 0 10px">Education</h3>
+              ${eduList.map((edu) => `
+                <div style="margin-bottom:12px">
+                  <strong style="font-size:13.5px; color:#0e131f; display:block">${escape(edu.degree || "")}</strong>
+                  <div style="font-size:12.5px; color:#64748b">${escape(edu.institution || "")}</div>
+                </div>
+              `).join("")}
+            </div>
+          </div>
+        </div>
+      </div>`;
+    }
+
+    // Executive Layout
+    if (theme.layout === "executive") {
+      return `<div style="font-family:'Outfit', 'Inter', sans-serif; color:#0f172a; line-height:1.5;">
+        <div style="border-bottom:4px double ${theme.primary}; padding-bottom:18px; margin-bottom:20px; display:flex; justify-content:space-between; align-items:center">
+          <div>
+            <h1 style="margin:0 0 4px; font-size:30px; font-weight:800; color:${theme.primary}; letter-spacing:-0.02em">${escape(nameText)}</h1>
+            <div style="font-size:15px; color:#334155; font-weight:700">${escape(headlineText)}</div>
+          </div>
+          ${p.photo ? `<img src="${p.photo}" style="width:72px;height:72px;border-radius:10px;object-fit:cover;border:2px solid ${theme.primary}">` : ""}
+        </div>
+        <div style="display:flex; flex-wrap:wrap; gap:20px; font-size:12.5px; color:#475569; padding-bottom:14px; border-bottom:1px solid #cbd5e1; margin-bottom:22px; font-weight:600">
+          <span>EMAIL: ${escape(emailText)}</span>
+          <span>PHONE: ${escape(phoneText)}</span>
+          <span>LOCATION: ${escape(addressText)}</span>
+        </div>
+        <div style="margin-bottom:22px">
+          <h3 style="font-size:15px; font-weight:800; color:${theme.primary}; text-transform:uppercase; letter-spacing:0.06em; border-bottom:1px solid #cbd5e1; padding-bottom:4px; margin:0 0 8px">Executive Profile</h3>
+          <p style="font-size:13.5px; color:#334155; margin:0; line-height:1.6">${escape(summaryText)}</p>
+        </div>
+        <div style="margin-bottom:22px">
+          <h3 style="font-size:15px; font-weight:800; color:${theme.primary}; text-transform:uppercase; letter-spacing:0.06em; border-bottom:1px solid #cbd5e1; padding-bottom:4px; margin:0 0 12px">Leadership & Professional Experience</h3>
+          ${expList.map((x) => `
+            <div style="margin-bottom:16px">
+              <div style="display:flex; justify-content:space-between; align-items:baseline">
+                <strong style="font-size:15px; color:#0f172a">${escape(x.title || "")} — ${escape(x.company || "")}</strong>
+                <span style="font-size:12px; color:#64748b; font-weight:600">${escape(x.start || "")} – ${escape(x.end || "Present")}</span>
+              </div>
+              <div style="font-size:13px; color:#475569; margin-top:4px">${escape(x.responsibilities || "")}</div>
+            </div>
+          `).join("")}
+        </div>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:24px">
+          <div>
+            <h3 style="font-size:15px; font-weight:800; color:${theme.primary}; text-transform:uppercase; letter-spacing:0.06em; border-bottom:1px solid #cbd5e1; padding-bottom:4px; margin:0 0 10px">Strategic Core Competencies</h3>
+            <div style="font-size:13px; color:#334155">${skillsParts.join("")}</div>
+          </div>
+          <div>
+            <h3 style="font-size:15px; font-weight:800; color:${theme.primary}; text-transform:uppercase; letter-spacing:0.06em; border-bottom:1px solid #cbd5e1; padding-bottom:4px; margin:0 0 10px">Education & Credentials</h3>
+            ${eduList.map((edu) => `
+              <div style="margin-bottom:10px">
+                <strong style="font-size:13.5px; color:#0f172a; display:block">${escape(edu.degree || "")}</strong>
+                <div style="font-size:12.5px; color:#64748b">${escape(edu.institution || "")}</div>
+              </div>
+            `).join("")}
+          </div>
+        </div>
+      </div>`;
+    }
+
+    // Default Modern Layout
     return `<div style="font-family:'Inter', sans-serif; color:#0e131f; line-height:1.5;">
-      <!-- Header Banner -->
-      <div style="background: linear-gradient(135deg, #00c4cc 0%, #7d2ae8 100%); padding: 28px; border-radius: 12px; color: #ffffff; display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px;">
+      <div style="background: ${theme.gradient}; padding: 28px; border-radius: 12px; color: #ffffff; display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px;">
         <div>
           <h1 style="font-family:'Outfit', sans-serif; margin: 0 0 4px; font-size: 30px; font-weight: 800; letter-spacing: -0.02em;">${escape(nameText)}</h1>
           <div style="font-size: 15px; font-weight: 600; opacity: 0.95;">${escape(headlineText)}</div>
@@ -1158,26 +1523,23 @@ document.querySelectorAll(".fade-up").forEach(function (el) {
         ${p.photo ? `<img src="${p.photo}" style="width: 76px; height: 76px; border-radius: 50%; object-fit: cover; border: 3px solid #ffffff; box-shadow: 0 4px 12px rgba(0,0,0,0.15)">` : ""}
       </div>
 
-      <!-- Contact Bar -->
       <div style="display: flex; flex-wrap: wrap; gap: 16px; font-size: 13px; color: #475569; padding-bottom: 16px; border-bottom: 2px solid #f1f5f9; margin-bottom: 24px;">
         <span>📧 ${escape(emailText)}</span>
         <span>📞 ${escape(phoneText)}</span>
         <span>📍 ${escape(addressText)}</span>
-        ${p.linkedin ? `<span>🔗 <a href="${escape(p.linkedin)}" target="_blank" style="color:#7d2ae8;text-decoration:none">LinkedIn</a></span>` : ""}
-        ${p.portfolio ? `<span>🌐 <a href="${escape(p.portfolio)}" target="_blank" style="color:#7d2ae8;text-decoration:none">Portfolio</a></span>` : ""}
+        ${p.linkedin ? `<span>🔗 <a href="${escape(p.linkedin)}" target="_blank" style="color:${theme.primary};text-decoration:none">LinkedIn</a></span>` : ""}
+        ${p.portfolio ? `<span>🌐 <a href="${escape(p.portfolio)}" target="_blank" style="color:${theme.primary};text-decoration:none">Portfolio</a></span>` : ""}
       </div>
 
-      <!-- Main Layout Body -->
       <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 32px;">
-        <!-- Left Main Column -->
         <div>
           <div style="margin-bottom: 24px;">
-            <h3 style="font-family:'Outfit', sans-serif; font-size: 16px; font-weight: 800; color: #7d2ae8; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid rgba(125,42,232,0.15); padding-bottom: 4px; margin-bottom: 10px;">Professional Summary</h3>
+            <h3 style="font-family:'Outfit', sans-serif; font-size: 16px; font-weight: 800; color: ${theme.primary}; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid ${theme.primary}22; padding-bottom: 4px; margin-bottom: 10px;">Professional Summary</h3>
             <p style="font-size: 13.5px; color: #334155; margin: 0; line-height: 1.6;">${escape(summaryText)}</p>
           </div>
 
           <div style="margin-bottom: 24px;">
-            <h3 style="font-family:'Outfit', sans-serif; font-size: 16px; font-weight: 800; color: #7d2ae8; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid rgba(125,42,232,0.15); padding-bottom: 4px; margin-bottom: 12px;">Experience</h3>
+            <h3 style="font-family:'Outfit', sans-serif; font-size: 16px; font-weight: 800; color: ${theme.primary}; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid ${theme.primary}22; padding-bottom: 4px; margin-bottom: 12px;">Experience</h3>
             ${expList.map((x) => `
               <div style="margin-bottom: 14px;">
                 <div style="display: flex; justify-content: space-between; align-items: baseline;">
@@ -1190,12 +1552,12 @@ document.querySelectorAll(".fade-up").forEach(function (el) {
           </div>
 
           <div style="margin-bottom: 24px;">
-            <h3 style="font-family:'Outfit', sans-serif; font-size: 16px; font-weight: 800; color: #7d2ae8; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid rgba(125,42,232,0.15); padding-bottom: 4px; margin-bottom: 12px;">Key Projects</h3>
+            <h3 style="font-family:'Outfit', sans-serif; font-size: 16px; font-weight: 800; color: ${theme.primary}; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid ${theme.primary}22; padding-bottom: 4px; margin-bottom: 12px;">Key Projects</h3>
             ${projList.map((proj) => `
               <div style="margin-bottom: 14px;">
                 <div style="display: flex; justify-content: space-between; align-items: baseline;">
                   <strong style="font-size: 14.5px; color: #0e131f;">${escape(proj.name || "")}</strong>
-                  <span style="font-size: 12px; color: #7d2ae8; font-weight: 600;">${escape(proj.tech || "")}</span>
+                  <span style="font-size: 12px; color: ${theme.primary}; font-weight: 600;">${escape(proj.tech || "")}</span>
                 </div>
                 <div style="font-size: 13px; color: #475569; margin-top: 4px;">${escape(proj.description || "")}</div>
               </div>
@@ -1203,17 +1565,16 @@ document.querySelectorAll(".fade-up").forEach(function (el) {
           </div>
         </div>
 
-        <!-- Right Side Column -->
         <div>
           <div style="margin-bottom: 24px;">
-            <h3 style="font-family:'Outfit', sans-serif; font-size: 16px; font-weight: 800; color: #7d2ae8; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid rgba(125,42,232,0.15); padding-bottom: 4px; margin-bottom: 12px;">Skills</h3>
+            <h3 style="font-family:'Outfit', sans-serif; font-size: 16px; font-weight: 800; color: ${theme.primary}; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid ${theme.primary}22; padding-bottom: 4px; margin-bottom: 12px;">Skills</h3>
             <div style="font-size: 13px; color: #334155;">
               ${skillsParts.join("")}
             </div>
           </div>
 
           <div style="margin-bottom: 24px;">
-            <h3 style="font-family:'Outfit', sans-serif; font-size: 16px; font-weight: 800; color: #7d2ae8; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid rgba(125,42,232,0.15); padding-bottom: 4px; margin-bottom: 12px;">Education</h3>
+            <h3 style="font-family:'Outfit', sans-serif; font-size: 16px; font-weight: 800; color: ${theme.primary}; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid ${theme.primary}22; padding-bottom: 4px; margin-bottom: 12px;">Education</h3>
             ${eduList.map((edu) => `
               <div style="margin-bottom: 12px;">
                 <strong style="font-size: 14px; color: #0e131f; display: block;">${escape(edu.degree || "")}</strong>
@@ -1225,7 +1586,7 @@ document.querySelectorAll(".fade-up").forEach(function (el) {
 
           ${state.achievements?.length ? `
             <div style="margin-bottom: 24px;">
-              <h3 style="font-family:'Outfit', sans-serif; font-size: 16px; font-weight: 800; color: #7d2ae8; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid rgba(125,42,232,0.15); padding-bottom: 4px; margin-bottom: 12px;">Achievements</h3>
+              <h3 style="font-family:'Outfit', sans-serif; font-size: 16px; font-weight: 800; color: ${theme.primary}; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid ${theme.primary}22; padding-bottom: 4px; margin-bottom: 12px;">Achievements</h3>
               ${state.achievements.map((ach) => `
                 <div style="margin-bottom: 10px;">
                   <strong style="font-size: 13.5px; color: #0e131f; display: block;">${escape(ach.title || "")}</strong>

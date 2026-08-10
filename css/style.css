@@ -643,6 +643,60 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
   margin: 0 0 28px;
 }
 
+/* Template Selector Drawer Styles */
+.template-select-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.tmpl-select-card {
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 12px;
+  background: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  position: relative;
+}
+
+.tmpl-select-card:hover {
+  border-color: var(--canva-purple);
+  box-shadow: 0 4px 14px rgba(125, 42, 232, 0.12);
+}
+
+.tmpl-select-card.selected {
+  border-color: var(--canva-purple);
+  background: rgba(125, 42, 232, 0.04);
+  box-shadow: 0 4px 16px rgba(125, 42, 232, 0.16);
+}
+
+.tmpl-select-swatch {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.tmpl-select-info {
+  flex: 1;
+}
+
+.tmpl-select-name {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--canva-dark);
+}
+
+.tmpl-select-tag {
+  font-size: 12px;
+  color: var(--canva-muted);
+}
+
 .path-features li {
   padding: 6px 0;
   color: #475569;
