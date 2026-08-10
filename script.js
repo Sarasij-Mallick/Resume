@@ -9,6 +9,21 @@ window.addEventListener("load", function () {
   }
 });
 
+// Mobile Templates Expand/Collapse Toggle
+var toggleTemplatesBtn = document.getElementById("toggleTemplatesBtn");
+var templatesGrid = document.querySelector(".templates-grid");
+if (toggleTemplatesBtn && templatesGrid) {
+  toggleTemplatesBtn.addEventListener("click", function () {
+    if (templatesGrid.classList.contains("show-all")) {
+      templatesGrid.classList.remove("show-all");
+      toggleTemplatesBtn.textContent = "Explore All 15+ Templates ↓";
+    } else {
+      templatesGrid.classList.add("show-all");
+      toggleTemplatesBtn.textContent = "Show Fewer Templates ↑";
+    }
+  });
+}
+
 var year = document.getElementById("year");
 if (year) year.textContent = new Date().getFullYear();
 

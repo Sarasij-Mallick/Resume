@@ -2487,6 +2487,14 @@ button:active,
     gap: 16px;
   }
 
+  .templates-grid .tmpl-card:nth-child(n+5) {
+    display: none !important;
+  }
+
+  .templates-grid.show-all .tmpl-card {
+    display: flex !important;
+  }
+
   .site-header {
     height: 56px;
     padding: 0 8px;
