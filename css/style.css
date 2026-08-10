@@ -2541,41 +2541,110 @@ button:active,
     font-size: 12px;
   }
 
+  /* Minimal Mobile Hero Section */
+  .hero-wrapper {
+    padding: 6px 0;
+  }
+
   .hero-banner {
-    padding: 20px 14px;
-    border-radius: 16px;
+    padding: 16px 12px;
+    border-radius: 14px;
+    box-shadow: none;
+  }
+
+  .breadcrumb {
+    display: none !important;
+  }
+
+  .floating-badge {
+    display: none !important;
+  }
+
+  .hero-content {
+    text-align: center;
   }
 
   .hero-content .kicker {
-    font-size: 11px;
-    padding: 4px 10px;
+    font-size: 10px;
+    padding: 3px 8px;
+    margin-bottom: 8px;
   }
 
   .hero-content .title {
-    font-size: 24px;
-    letter-spacing: -0.01em;
+    font-size: 20px;
+    line-height: 1.25;
+    margin-bottom: 8px;
   }
 
   .hero-content .lead {
+    font-size: 13px;
+    line-height: 1.4;
+    margin-bottom: 14px;
+  }
+
+  .hero-actions {
+    gap: 8px;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn-pill-purple, .btn-browse {
+    width: 100%;
+    padding: 9px 16px;
     font-size: 13.5px;
-    line-height: 1.5;
+  }
+
+  /* Minimal Mobile Footer Section */
+  .site-footer {
+    padding: 12px 0 10px;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .footer-brand p, .footer-brand-desc {
+    display: none !important;
+  }
+
+  .footer-brand .brand {
+    font-size: 17px;
+  }
+
+  .foot-nav {
+    gap: 12px;
+    font-size: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .footer-legal, .legal {
+    font-size: 11px;
+    opacity: 0.75;
+  }
+
+  .trust-logos {
+    display: none !important;
   }
 
   .back-to-top {
-    right: 16px !important;
-    bottom: 74px !important;
-    width: 38px !important;
-    height: 38px !important;
-    font-size: 16px !important;
+    right: 14px !important;
+    bottom: 68px !important;
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 15px !important;
   }
 
   .lottie-wrap {
-    width: 130px;
-    height: 130px;
+    width: 120px;
+    height: 120px;
   }
 
   .preloader-title {
-    font-size: 19px;
+    font-size: 18px;
   }
 }
 
