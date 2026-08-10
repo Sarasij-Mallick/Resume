@@ -2466,17 +2466,63 @@ button:active,
   }
 
   .site-header {
-    height: 58px;
-    padding: 0 12px;
+    height: 56px;
+    padding: 0 8px;
+  }
+
+  .header-inner {
+    height: 56px;
+    padding: 0;
+  }
+
+  .header-inner > div {
+    gap: 6px !important;
+  }
+
+  .logo {
+    gap: 6px;
+  }
+
+  .logo-icon-wrap svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .brand {
+    font-size: 16px;
+  }
+
+  .brand-sub {
+    font-size: 8px;
+  }
+
+  .actions {
+    gap: 4px;
+  }
+
+  .header-login-btn {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+
+  .header-login-btn svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  .theme-toggle-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
   }
 
   .header-actions {
-    gap: 8px;
+    gap: 6px;
   }
 
   .header-cta-btn {
-    padding: 6px 12px;
-    font-size: 12.5px;
+    padding: 6px 10px;
+    font-size: 12px;
   }
 
   .hero-banner {
