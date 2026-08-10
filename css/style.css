@@ -723,8 +723,7 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 [data-theme="dark"] .studio-btn,
 [data-theme="dark"] .submit-btn,
 [data-theme="dark"] .social-btn,
-[data-theme="dark"] .tab-btn:not(.active),
-[data-theme="dark"] .back-to-top {
+[data-theme="dark"] .tab-btn:not(.active) {
   position: relative;
   transition: transform 0.22s ease, box-shadow 0.22s ease;
 }
@@ -733,8 +732,7 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 [data-theme="dark"] .studio-btn::after,
 [data-theme="dark"] .submit-btn::after,
 [data-theme="dark"] .social-btn::after,
-[data-theme="dark"] .tab-btn:not(.active)::after,
-[data-theme="dark"] .back-to-top::after {
+[data-theme="dark"] .tab-btn:not(.active)::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -753,8 +751,7 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 [data-theme="dark"] .studio-btn:hover::after,
 [data-theme="dark"] .submit-btn:hover::after,
 [data-theme="dark"] .social-btn:hover::after,
-[data-theme="dark"] .tab-btn:not(.active):hover::after,
-[data-theme="dark"] .back-to-top:hover::after {
+[data-theme="dark"] .tab-btn:not(.active):hover::after {
   opacity: 1;
   animation: neonLinearBeam 2.5s linear infinite;
 }
@@ -763,10 +760,16 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 [data-theme="dark"] .studio-btn:hover,
 [data-theme="dark"] .submit-btn:hover,
 [data-theme="dark"] .social-btn:hover,
-[data-theme="dark"] .tab-btn:not(.active):hover,
-[data-theme="dark"] .back-to-top:hover {
+[data-theme="dark"] .tab-btn:not(.active):hover {
   transform: translateY(-2px);
   box-shadow: 0 0 10px rgba(0, 229, 255, 0.4), 0 0 18px rgba(125, 42, 232, 0.3) !important;
+}
+
+[data-theme="dark"] .back-to-top {
+  position: fixed !important;
+  right: 32px !important;
+  left: auto !important;
+  bottom: 90px !important;
 }
 
 /* ==========================================================================
