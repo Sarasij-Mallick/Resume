@@ -767,9 +767,10 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 
 [data-theme="dark"] .back-to-top {
   position: fixed !important;
-  right: 32px !important;
+  right: 28px !important;
   left: auto !important;
-  bottom: 90px !important;
+  bottom: 84px !important;
+  z-index: 9999 !important;
 }
 
 /* ==========================================================================
@@ -2121,7 +2122,11 @@ button:active,
 }
 
 .studio-body .back-to-top {
-  bottom: 52px;
+  position: fixed !important;
+  right: 28px !important;
+  left: auto !important;
+  bottom: 84px !important;
+  z-index: 9999 !important;
 }
 
 /* Toast */
