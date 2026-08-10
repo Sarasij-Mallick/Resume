@@ -271,6 +271,7 @@ document.querySelectorAll(".fade-up").forEach(function (el) {
   function renderStep(step) {
     state.current = step;
     renderSidebar();
+    if (!mainCard) return;
     mainCard.innerHTML = ""; // clear
     const meta = stepsMeta.find((s) => s.id === step);
     const header = createHeader(meta ? meta.title : "Step Details");
@@ -1632,6 +1633,7 @@ document.querySelectorAll(".fade-up").forEach(function (el) {
 
   // Update progress/completion estimation
   function updateProgress() {
+    if (!progressFill || !progressPct) return;
     // compute simple completion: count non-empty top-level required fields
     const total = 6; // fullName,headline,email,phone, at least one education, at least one skill
     let done = 0;
@@ -1679,14 +1681,16 @@ function resetFormState() {
 }
 
 function resetSidebarProgress() {
-  const buttons = Array.from(stepsNav.querySelectorAll(".step"));
-  buttons.forEach((btn) => {
-    btn.classList.remove("completed", "active");
-  });
+  if (stepsNav) {
+    const buttons = Array.from(stepsNav.querySelectorAll(".step"));
+    buttons.forEach((btn) => {
+      btn.classList.remove("completed", "active");
+    });
+  }
   state.current = 1;
   renderSidebar();
-  progressFill.style.width = "0%";
-  progressPct.textContent = "0%";
+  if (progressFill) progressFill.style.width = "0%";
+  if (progressPct) progressPct.textContent = "0%";
 }
 
 function clearAllData() {
@@ -1729,49 +1733,62 @@ function showToast(msg, timeout = 3000) {
 /* ---------- Global Handlers ---------- */
   function attachGlobalHandlers() {
     // next/prev buttons
-    document.getElementById("nextBtn").onclick = () => {
-      if (state.current < stepsMeta.length) {
-        state.current++;
-        renderStep(state.current);
-        saveState();
-      }
-    };
-    document.getElementById("prevBtn").onclick = () => {
-      if (state.current > 1) {
-        state.current--;
-        renderStep(state.current);
-        saveState();
-      }
-    };
+    const nextBtnEl = document.getElementById("nextBtn");
+    if (nextBtnEl) {
+      nextBtnEl.onclick = () => {
+        if (state.current < stepsMeta.length) {
+          state.current++;
+          renderStep(state.current);
+          saveState();
+        }
+      };
+    }
+
+    const prevBtnEl = document.getElementById("prevBtn");
+    if (prevBtnEl) {
+      prevBtnEl.onclick = () => {
+        if (state.current > 1) {
+          state.current--;
+          renderStep(state.current);
+          saveState();
+        }
+      };
+    }
 
     // preview modal
-    previewBtn.onclick = () => {
-      modal.setAttribute("aria-hidden", "false");
-      modalBody.innerHTML = buildResumeHtml();
-    };
+    if (previewBtn && modal && modalBody) {
+      previewBtn.onclick = () => {
+        modal.setAttribute("aria-hidden", "false");
+        modalBody.innerHTML = buildResumeHtml();
+      };
+    }
     document
       .getElementById("closeModal")
-      ?.addEventListener("click", () =>
-        modal.setAttribute("aria-hidden", "true"),
-      );
+      ?.addEventListener("click", () => {
+        if (modal) modal.setAttribute("aria-hidden", "true");
+      });
     document
       .getElementById("modalClose")
-      ?.addEventListener("click", () =>
-        modal.setAttribute("aria-hidden", "true"),
-      );
+      ?.addEventListener("click", () => {
+        if (modal) modal.setAttribute("aria-hidden", "true");
+      });
 
     // save draft
-    saveDraftBtn.onclick = () => {
-      saveState();
-      alert("Draft saved locally");
-    };
+    if (saveDraftBtn) {
+      saveDraftBtn.onclick = () => {
+        saveState();
+        alert("Draft saved locally");
+      };
+    }
 
     // export and save from preview panel
-    exportPdfBtn.onclick = exportPDF;
-    saveResumeBtn.onclick = () => {
-      saveState();
-      alert("Resume saved");
-    };
+    if (exportPdfBtn) exportPdfBtn.onclick = exportPDF;
+    if (saveResumeBtn) {
+      saveResumeBtn.onclick = () => {
+        saveState();
+        alert("Resume saved");
+      };
+    }
 
     // Clear All Data wiring
     const clearBtn = document.getElementById("clearAllBtn");
