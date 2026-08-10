@@ -2148,7 +2148,7 @@ function showToast(msg, timeout = 3000) {
 })();
 
 /* ==========================================================================
-   INTERACTIVE MOUSE SMOKE TRAIL EFFECT
+   INTERACTIVE MAGIC SMOKE & SPARKLE TRAIL EFFECT
    ========================================================================== */
 (function initMouseSmokeTrail() {
   const canvas = document.createElement("canvas");
@@ -2164,6 +2164,7 @@ function showToast(msg, timeout = 3000) {
 
   const ctx = canvas.getContext("2d");
   let particles = [];
+  let rings = [];
   let width = (canvas.width = window.innerWidth);
   let height = (canvas.height = window.innerHeight);
 
@@ -2177,63 +2178,176 @@ function showToast(msg, timeout = 3000) {
     { r: 0, g: 196, b: 204 },    // Vibrant Cyan
     { r: 244, g: 63, b: 94 },    // Glowing Pink/Red
     { r: 59, g: 130, b: 246 },   // Electric Blue
-    { r: 168, g: 85, b: 247 }    // Neon Purple
+    { r: 245, g: 158, b: 11 },   // Neon Gold
+    { r: 168, g: 85, b: 247 }    // Bright Violet
   ];
 
   let lastX = 0;
   let lastY = 0;
 
-  function spawnSmoke(x, y) {
-    const count = 3;
-    for (let i = 0; i < count; i++) {
+  function spawnSmokeAndSparks(x, y, speed = 1) {
+    const smokeCount = Math.min(Math.floor(speed * 1.5) + 2, 5);
+    const sparkCount = Math.min(Math.floor(speed) + 2, 4);
+
+    // 1. Soft Nebula Smoke
+    for (let i = 0; i < smokeCount; i++) {
       const color = colors[Math.floor(Math.random() * colors.length)];
       particles.push({
-        x: x + (Math.random() - 0.5) * 10,
-        y: y + (Math.random() - 0.5) * 10,
-        size: Math.random() * 12 + 10,
-        maxSize: Math.random() * 35 + 30,
-        vx: (Math.random() - 0.5) * 1.8,
-        vy: (Math.random() - 0.5) * 1.8 - 0.5,
+        type: 'smoke',
+        x: x + (Math.random() - 0.5) * 12,
+        y: y + (Math.random() - 0.5) * 12,
+        size: Math.random() * 12 + 12,
+        maxSize: Math.random() * 45 + 35,
+        vx: (Math.random() - 0.5) * 1.6,
+        vy: (Math.random() - 0.5) * 1.6 - 0.4,
         alpha: Math.random() * 0.45 + 0.35,
-        decay: Math.random() * 0.012 + 0.01,
+        decay: Math.random() * 0.012 + 0.008,
+        color: color
+      });
+    }
+
+    // 2. Sparkling Magic Dust
+    for (let i = 0; i < sparkCount; i++) {
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      const angle = Math.random() * Math.PI * 2;
+      const vel = Math.random() * 3 + 1;
+      particles.push({
+        type: 'spark',
+        x: x,
+        y: y,
+        size: Math.random() * 4 + 2,
+        vx: Math.cos(angle) * vel,
+        vy: Math.sin(angle) * vel - 0.8,
+        alpha: 1,
+        decay: Math.random() * 0.025 + 0.015,
+        rotation: Math.random() * Math.PI,
+        spin: (Math.random() - 0.5) * 0.2,
         color: color
       });
     }
   }
 
+  // Mouse Move Event Listener
   window.addEventListener("pointermove", (e) => {
     const dist = Math.hypot(e.clientX - lastX, e.clientY - lastY);
-    if (dist > 4) {
-      spawnSmoke(e.clientX, e.clientY);
+    if (dist > 3) {
+      spawnSmokeAndSparks(e.clientX, e.clientY, dist / 4);
       lastX = e.clientX;
       lastY = e.clientY;
     }
   });
 
+  // Mouse Click Shockwave Burst
+  window.addEventListener("pointerdown", (e) => {
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    rings.push({
+      x: e.clientX,
+      y: e.clientY,
+      r: 4,
+      maxR: 50,
+      alpha: 1,
+      color: color
+    });
+
+    // Burst of 22 sparkles
+    for (let i = 0; i < 22; i++) {
+      const c = colors[Math.floor(Math.random() * colors.length)];
+      const angle = (Math.PI * 2 / 22) * i + Math.random() * 0.2;
+      const vel = Math.random() * 5 + 3;
+      particles.push({
+        type: 'spark',
+        x: e.clientX,
+        y: e.clientY,
+        size: Math.random() * 5 + 3,
+        vx: Math.cos(angle) * vel,
+        vy: Math.sin(angle) * vel,
+        alpha: 1,
+        decay: Math.random() * 0.02 + 0.01,
+        rotation: Math.random() * Math.PI,
+        spin: (Math.random() - 0.5) * 0.3,
+        color: c
+      });
+    }
+  });
+
+  function drawStar(x, y, size, rotation, alpha, color) {
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate(rotation);
+    ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+    ctx.shadowColor = `rgba(${color.r}, ${color.g}, ${color.b}, ${alpha})`;
+    ctx.shadowBlur = 12;
+
+    ctx.beginPath();
+    for (let i = 0; i < 4; i++) {
+      ctx.lineTo(Math.cos((i * Math.PI) / 2) * size, Math.sin((i * Math.PI) / 2) * size);
+      ctx.lineTo(Math.cos(((i + 0.5) * Math.PI) / 2) * (size * 0.35), Math.sin(((i + 0.5) * Math.PI) / 2) * (size * 0.35));
+    }
+    ctx.closePath();
+    ctx.fill();
+    ctx.restore();
+  }
+
   function render() {
     ctx.clearRect(0, 0, width, height);
 
+    // Render Shockwave Rings
+    for (let i = rings.length - 1; i >= 0; i--) {
+      const ring = rings[i];
+      ring.r += (ring.maxR - ring.r) * 0.18;
+      ring.alpha -= 0.03;
+
+      if (ring.alpha <= 0) {
+        rings.splice(i, 1);
+        continue;
+      }
+
+      ctx.save();
+      ctx.strokeStyle = `rgba(${ring.color.r}, ${ring.color.g}, ${ring.color.b}, ${ring.alpha})`;
+      ctx.lineWidth = 2.5;
+      ctx.shadowColor = `rgba(${ring.color.r}, ${ring.color.g}, ${ring.color.b}, ${ring.alpha * 0.8})`;
+      ctx.shadowBlur = 14;
+      ctx.beginPath();
+      ctx.arc(ring.x, ring.y, ring.r, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    // Render Particles
     for (let i = particles.length - 1; i >= 0; i--) {
       const p = particles[i];
       p.x += p.vx;
       p.y += p.vy;
-      p.size += (p.maxSize - p.size) * 0.05;
-      p.alpha -= p.decay;
 
-      if (p.alpha <= 0 || p.size <= 0) {
-        particles.splice(i, 1);
-        continue;
+      if (p.type === 'smoke') {
+        p.size += (p.maxSize - p.size) * 0.05;
+        p.alpha -= p.decay;
+
+        if (p.alpha <= 0 || p.size <= 0) {
+          particles.splice(i, 1);
+          continue;
+        }
+
+        const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size);
+        grad.addColorStop(0, `rgba(${p.color.r}, ${p.color.g}, ${p.color.b}, ${p.alpha})`);
+        grad.addColorStop(0.4, `rgba(${p.color.r}, ${p.color.g}, ${p.color.b}, ${p.alpha * 0.45})`);
+        grad.addColorStop(1, `rgba(${p.color.r}, ${p.color.g}, ${p.color.b}, 0)`);
+
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+      } else if (p.type === 'spark') {
+        p.rotation += p.spin;
+        p.alpha -= p.decay;
+
+        if (p.alpha <= 0) {
+          particles.splice(i, 1);
+          continue;
+        }
+
+        drawStar(p.x, p.y, p.size, p.rotation, p.alpha, p.color);
       }
-
-      const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size);
-      grad.addColorStop(0, `rgba(${p.color.r}, ${p.color.g}, ${p.color.b}, ${p.alpha})`);
-      grad.addColorStop(0.4, `rgba(${p.color.r}, ${p.color.g}, ${p.color.b}, ${p.alpha * 0.4})`);
-      grad.addColorStop(1, `rgba(${p.color.r}, ${p.color.g}, ${p.color.b}, 0)`);
-
-      ctx.fillStyle = grad;
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-      ctx.fill();
     }
 
     requestAnimationFrame(render);
