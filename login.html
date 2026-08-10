@@ -473,6 +473,30 @@
   </style>
 </head>
 <body>
+  <!-- PAGE PRELOADER -->
+  <div id="pagePreloader" class="page-preloader" aria-hidden="true">
+    <div class="preloader-content">
+      <div class="spinner-ring">
+        <div class="spinner-core">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="loader-grad-l" x1="0" x2="1">
+                <stop offset="0" stop-color="#00c4cc" />
+                <stop offset="1" stop-color="#7d2ae8" />
+              </linearGradient>
+            </defs>
+            <rect x="1" y="1" width="22" height="22" rx="6" fill="url(#loader-grad-l)" />
+            <path d="M7 13c2-3 6-5 10-5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" />
+          </svg>
+        </div>
+      </div>
+      <h3 class="preloader-title">ResumeBuilder</h3>
+      <div class="preloader-bar">
+        <div class="preloader-progress"></div>
+      </div>
+      <p class="preloader-text">Loading Account Portal...</p>
+    </div>
+  </div>
 
   <div class="auth-container">
     <div class="auth-wrapper" id="authWrapper">
@@ -600,6 +624,15 @@
   </div>
 
   <script>
+    window.addEventListener("load", function () {
+      const preloader = document.getElementById("pagePreloader");
+      if (preloader) {
+        setTimeout(function () {
+          preloader.classList.add("loaded");
+        }, 200);
+      }
+    });
+
     const currentYr = new Date().getFullYear();
     document.getElementById('year').textContent = currentYr;
     document.getElementById('year2').textContent = currentYr;

@@ -1,4 +1,14 @@
 
+// Page Preloader Dismissal
+window.addEventListener("load", function () {
+  var preloader = document.getElementById("pagePreloader");
+  if (preloader) {
+    setTimeout(function () {
+      preloader.classList.add("loaded");
+    }, 200);
+  }
+});
+
 var year = document.getElementById("year");
 if (year) year.textContent = new Date().getFullYear();
 
