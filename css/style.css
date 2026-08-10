@@ -5,28 +5,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap');
 
 :root {
-  --canva-purple: #1a73e8;
-  --canva-purple-hover: #1557b0;
-  --canva-cyan: #00897b;
-  --canva-gradient: linear-gradient(135deg, #1a73e8 0%, #7d2ae8 100%);
+  --canva-purple: #0d6efd;
+  --canva-purple-hover: #0b5ed7;
+  --canva-cyan: #0dcaf0;
+  --canva-gradient: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%);
   --canva-bg: #f8f9fa;
   --canva-card: #ffffff;
-  --canva-dark: #202124;
-  --canva-slate: #3c4043;
-  --canva-muted: #5f6368;
-  --canva-light-muted: #80868b;
-  --canva-border: #dadce0;
-  --canva-shadow: 0 1px 3px rgba(60, 64, 67, 0.12), 0 1px 2px rgba(60, 64, 67, 0.24);
-  --canva-shadow-hover: 0 4px 12px rgba(60, 64, 67, 0.15), 0 1px 3px rgba(60, 64, 67, 0.1);
-  --canva-pill-radius: 9999px;
-  --canva-card-radius: 16px;
+  --canva-dark: #212529;
+  --canva-slate: #495057;
+  --canva-muted: #6c757d;
+  --canva-light-muted: #adb5bd;
+  --canva-border: #dee2e6;
+  --canva-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  --canva-shadow-hover: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.12);
+  --canva-pill-radius: 50rem;
+  --canva-card-radius: 0.75rem;
   --max-w: 1240px;
 
   /* Legacy variable compatibility */
   --primary: var(--canva-purple);
-  --red: #ea4335;
-  --green: #34a853;
-  --yellow: #fbbc05;
+  --red: #dc3545;
+  --green: #198754;
+  --yellow: #ffc107;
   --bg: var(--canva-bg);
   --card: var(--canva-card);
   --muted: var(--canva-muted);
@@ -474,32 +474,32 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
   display: flex;
   align-items: center;
   gap: 4px;
-  background: rgba(14, 19, 31, 0.03);
+  background: #e9ecef;
   padding: 4px;
-  border-radius: 9999px;
-  border: 1px solid rgba(14, 19, 31, 0.04);
+  border-radius: 50rem;
+  border: 1px solid #dee2e6;
 }
 
 .nav .nav-link {
-  color: #475569;
+  color: #495057;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 14px;
   padding: 8px 18px;
-  border-radius: 9999px;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 50rem;
+  transition: all 0.15s ease-in-out;
 }
 
 .nav .nav-link:hover {
-  color: var(--canva-purple);
-  background: rgba(125, 42, 232, 0.06);
+  color: #0d6efd;
+  background: rgba(13, 110, 253, 0.08);
 }
 
 .nav .nav-link.active {
-  color: var(--canva-purple);
-  background: #ffffff;
-  font-weight: 700;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  color: #ffffff;
+  background: #0d6efd;
+  font-weight: 600;
+  box-shadow: 0 0.125rem 0.25rem rgba(13, 110, 253, 0.3);
 }
 
 .actions {
@@ -774,12 +774,12 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 
 .hero-content .kicker {
   display: inline-block;
-  background: rgba(125, 42, 232, 0.1);
-  color: var(--canva-purple);
-  font-weight: 700;
-  font-size: 13px;
+  background: #e7f1ff;
+  color: #0d6efd;
+  font-weight: 600;
+  font-size: 12.5px;
   padding: 6px 14px;
-  border-radius: var(--canva-pill-radius);
+  border-radius: 50rem;
   margin-bottom: 16px;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -1268,30 +1268,29 @@ input.search-input:focus {
 }
 
 .pill {
-  background: #f1f5f9;
-  color: #475569;
-  font-weight: 600;
+  background: #e9ecef;
+  color: #495057;
+  font-weight: 500;
   font-size: 14px;
   padding: 8px 18px;
-  border-radius: var(--canva-pill-radius);
-  border: 1px solid transparent;
+  border-radius: 50rem;
+  border: 1px solid #dee2e6;
   cursor: pointer;
-  transition: all 0.18s ease;
+  transition: all 0.15s ease-in-out;
 }
 
 .pill:hover {
-  background: rgba(125, 42, 232, 0.08);
-  color: var(--canva-purple);
-  border-color: #00c4cc;
-  box-shadow: 0 0 16px rgba(125, 42, 232, 0.45), 0 0 28px rgba(0, 196, 204, 0.3);
-  transform: translateY(-2px);
+  background: #e7f1ff;
+  color: #0d6efd;
+  border-color: #86b7fe;
+  transform: translateY(-1px);
 }
 
 .pill.active {
-  background: var(--canva-purple);
+  background: #0d6efd;
   color: #ffffff;
-  border: none;
-  box-shadow: 0 0 20px rgba(125, 42, 232, 0.6), 0 0 35px rgba(0, 196, 204, 0.4);
+  border: none !important;
+  box-shadow: 0 0.125rem 0.25rem rgba(13, 110, 253, 0.3);
 }
 
 /* Light Theme: Selected/Active buttons border none */
