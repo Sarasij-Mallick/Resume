@@ -1914,7 +1914,23 @@ function showToast(msg, timeout = 3000) {
     if (templateSearch && templateCards.length > 0) {
       templateSearch.addEventListener("input", () => {
         searchQuery = templateSearch.value.trim().toLowerCase();
+        if (searchQuery.length > 0) {
+          activeCategory = "all";
+          filterPills.forEach((p) => {
+            const attr = (p.getAttribute("data-category") || p.textContent).toLowerCase().trim();
+            p.classList.toggle("active", attr === "all" || attr === "all templates");
+          });
+        }
         applyTemplateFilters();
+      });
+
+      templateSearch.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          if (templatesGrid) {
+            templatesGrid.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        }
       });
     }
   }
