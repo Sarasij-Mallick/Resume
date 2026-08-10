@@ -623,6 +623,8 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 }
 
 .tab-btn {
+  padding: 10px 20px;
+  border-radius: var(--canva-pill-radius);
   border: 1.5px solid transparent !important;
   transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -1841,21 +1843,22 @@ button:active,
 
 /* Vertical Icon Dock (Leftmost Sidebar) */
 .studio-dock {
-  width: 72px;
+  width: 82px;
   background: #182232;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 16px 0;
-  gap: 12px;
+  gap: 10px;
   z-index: 100;
   overflow-y: auto;
   flex-shrink: 0;
 }
 
 .dock-item {
-  width: 54px;
-  height: 52px;
+  width: 70px;
+  min-height: 56px;
+  padding: 8px 6px;
   border-radius: 12px;
   background: transparent;
   border: none;
@@ -1864,11 +1867,21 @@ button:active,
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 3px;
-  font-size: 10.5px;
+  gap: 4px;
+  font-size: 10px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.15s ease;
+  box-sizing: border-box;
+}
+
+.dock-item span {
+  font-size: 10px;
+  line-height: 1.1;
+  text-align: center;
+  max-width: 100%;
+  padding: 0 2px;
+  word-break: break-word;
 }
 
 .dock-item svg {
