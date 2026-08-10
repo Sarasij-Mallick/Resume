@@ -1832,6 +1832,44 @@ function showToast(msg, timeout = 3000) {
       }
     });
 
+    // Header Announcement Bar Close Handler
+    const closeAnnouncement = document.getElementById("closeAnnouncement");
+    const announcementBar = document.getElementById("announcementBar");
+    if (closeAnnouncement && announcementBar) {
+      closeAnnouncement.addEventListener("click", () => {
+        announcementBar.style.display = "none";
+      });
+    }
+
+    // Header Scroll Shadow & Active Link Highlight
+    const siteHeader = document.getElementById("siteHeader");
+    const navLinks = document.querySelectorAll(".nav .nav-link");
+    if (siteHeader) {
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 20) {
+          siteHeader.classList.add("scrolled");
+        } else {
+          siteHeader.classList.remove("scrolled");
+        }
+
+        // Active link scrollspy
+        let currentSec = "";
+        const sections = document.querySelectorAll("section[id]");
+        sections.forEach((sec) => {
+          const secTop = sec.offsetTop - 100;
+          if (window.scrollY >= secTop) {
+            currentSec = sec.getAttribute("id");
+          }
+        });
+        if (currentSec && navLinks.length > 0) {
+          navLinks.forEach((link) => {
+            const href = link.getAttribute("href") || "";
+            link.classList.toggle("active", href === `#${currentSec}`);
+          });
+        }
+      });
+    }
+
     // Mobile navbar toggle handler for landing page
     const menuToggle = document.getElementById("menuToggle");
     const navMenu = document.querySelector(".nav");
