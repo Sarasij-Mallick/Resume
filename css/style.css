@@ -815,16 +815,17 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
   color: #1e293b !important;
   border-radius: 20px;
   padding: 32px 28px;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.18);
-  border: 1px solid rgba(14, 19, 31, 0.08);
+  box-shadow: var(--canva-shadow);
+  border: 1px solid var(--canva-border);
   transform: rotate(-1.5deg);
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   font-family: 'Inter', sans-serif;
   text-align: left;
 }
 
 .mockup-frame:hover {
   transform: rotate(0deg) scale(1.02);
+  box-shadow: var(--canva-shadow-hover);
 }
 
 .r-mock-head {
@@ -949,8 +950,8 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
   background: #ffffff;
   padding: 10px 16px;
   border-radius: 14px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: var(--canva-shadow);
+  border: 1px solid var(--canva-border);
   font-size: 13px;
   font-weight: 700;
 }
@@ -1388,9 +1389,9 @@ input.search-input:focus {
 }
 
 .path-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 44px rgba(14, 19, 31, 0.08);
-  border-color: rgba(125, 42, 232, 0.2);
+  transform: translateY(-4px);
+  box-shadow: var(--canva-shadow-hover);
+  border-color: var(--canva-purple);
 }
 
 .path-icon {
@@ -1433,7 +1434,8 @@ input.search-input:focus {
 }
 
 .tmpl-select-card {
-  border: 2px solid #e2e8f0;
+  border: 1px solid var(--canva-border);
+  box-shadow: var(--canva-shadow);
   border-radius: 12px;
   padding: 12px;
   background: #ffffff;
@@ -1447,7 +1449,7 @@ input.search-input:focus {
 
 .tmpl-select-card:hover {
   border-color: var(--canva-purple);
-  box-shadow: 0 4px 14px rgba(125, 42, 232, 0.12);
+  box-shadow: var(--canva-shadow-hover);
 }
 
 .tmpl-select-card.selected {
