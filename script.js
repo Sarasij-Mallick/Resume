@@ -2224,7 +2224,7 @@ function showToast(msg, timeout = 3000) {
       x: e.clientX,
       y: e.clientY,
       r: 2,
-      maxR: 24,
+      maxR: 34,
       alpha: 1,
       color: color
     });
