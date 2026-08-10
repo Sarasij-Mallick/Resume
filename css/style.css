@@ -568,14 +568,24 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 .btn-ghost {
   background: transparent;
   color: var(--canva-dark);
-  border-color: rgba(14, 19, 31, 0.12);
+  border: 1.5px solid transparent !important;
+}
+
+.btn-ghost:hover {
+  background: rgba(26, 115, 232, 0.08);
+  color: var(--canva-purple) !important;
+  border: 1.5px solid var(--canva-purple) !important;
 }
 
 .btn-primary, .btn.primary {
   background: var(--canva-purple);
   color: #ffffff;
-  border-color: #7d2ae8;
+  border: 1.5px solid transparent !important;
   box-shadow: 0 4px 14px rgba(125, 42, 232, 0.28);
+}
+
+.btn-primary:hover, .btn.primary:hover {
+  border: 1.5px solid var(--canva-purple) !important;
 }
 
 .btn-pill-purple {
@@ -585,7 +595,7 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
   font-size: 16px;
   padding: 14px 28px;
   border-radius: var(--canva-pill-radius);
-  border: 1.5px solid #7d2ae8;
+  border: 1.5px solid transparent !important;
   box-shadow: 0 6px 20px rgba(125, 42, 232, 0.3);
   transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -593,44 +603,44 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 .btn-pill-purple:hover {
   background: transparent !important;
   color: var(--canva-purple) !important;
-  border-color: var(--canva-purple);
+  border: 1.5px solid var(--canva-purple) !important;
 }
 
 [data-theme="dark"] .btn-pill-purple {
   background: var(--canva-purple) !important;
   color: #ffffff !important;
-  border-color: #7d2ae8;
+  border: 1.5px solid transparent !important;
 }
 
 [data-theme="dark"] .btn-pill-purple:hover {
   background: transparent !important;
   color: #ffffff !important;
-  border-color: #a855f7;
+  border: 1.5px solid #a855f7 !important;
 }
 
 .btn-outline-purple {
   background: transparent;
   color: var(--canva-purple);
-  border: 1.5px solid var(--canva-purple);
+  border: 1.5px solid transparent !important;
   transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .btn-outline-purple:hover {
   background: transparent !important;
   color: var(--canva-purple) !important;
-  border-color: var(--canva-purple);
+  border: 1.5px solid var(--canva-purple) !important;
 }
 
 [data-theme="dark"] .btn-outline-purple {
   background: transparent;
-  border-color: #a855f7;
+  border: 1.5px solid transparent !important;
   color: #c084fc;
 }
 
 [data-theme="dark"] .btn-outline-purple:hover {
   background: transparent !important;
   color: #ffffff !important;
-  border-color: #a855f7;
+  border: 1.5px solid #a855f7 !important;
 }
 
 /* Strict Border-Only Traveling Linear Neon Light Beam on Hover for Dark Mode ONLY */
