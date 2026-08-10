@@ -2186,22 +2186,22 @@ function showToast(msg, timeout = 3000) {
   let lastY = 0;
 
   function spawnSparks(x, y, speed = 1) {
-    const sparkCount = Math.min(Math.floor(speed * 1.8) + 2, 6);
+    const sparkCount = Math.min(Math.floor(speed * 1.2) + 2, 5);
 
     for (let i = 0; i < sparkCount; i++) {
       const color = colors[Math.floor(Math.random() * colors.length)];
       const angle = Math.random() * Math.PI * 2;
-      const vel = Math.random() * 3.5 + 1.2;
+      const vel = Math.random() * 1.2 + 0.4;
       particles.push({
-        x: x + (Math.random() - 0.5) * 8,
-        y: y + (Math.random() - 0.5) * 8,
+        x: x + (Math.random() - 0.5) * 6,
+        y: y + (Math.random() - 0.5) * 6,
         size: Math.random() * 5 + 2.5,
         vx: Math.cos(angle) * vel,
-        vy: Math.sin(angle) * vel - 0.6,
+        vy: Math.sin(angle) * vel - 0.2,
         alpha: 1,
-        decay: Math.random() * 0.025 + 0.015,
+        decay: Math.random() * 0.008 + 0.005,
         rotation: Math.random() * Math.PI,
-        spin: (Math.random() - 0.5) * 0.25,
+        spin: (Math.random() - 0.5) * 0.08,
         color: color
       });
     }
@@ -2210,8 +2210,8 @@ function showToast(msg, timeout = 3000) {
   // Mouse Move Event Listener
   window.addEventListener("pointermove", (e) => {
     const dist = Math.hypot(e.clientX - lastX, e.clientY - lastY);
-    if (dist > 3) {
-      spawnSparks(e.clientX, e.clientY, dist / 4);
+    if (dist > 4) {
+      spawnSparks(e.clientX, e.clientY, dist / 6);
       lastX = e.clientX;
       lastY = e.clientY;
     }
@@ -2229,11 +2229,11 @@ function showToast(msg, timeout = 3000) {
       color: color
     });
 
-    // Burst of 24 glowing stars
-    for (let i = 0; i < 24; i++) {
+    // Slow elegant burst of 20 glowing stars
+    for (let i = 0; i < 20; i++) {
       const c = colors[Math.floor(Math.random() * colors.length)];
-      const angle = (Math.PI * 2 / 24) * i + Math.random() * 0.2;
-      const vel = Math.random() * 5.5 + 3;
+      const angle = (Math.PI * 2 / 20) * i + Math.random() * 0.2;
+      const vel = Math.random() * 2.2 + 1.0;
       particles.push({
         x: e.clientX,
         y: e.clientY,
@@ -2241,9 +2241,9 @@ function showToast(msg, timeout = 3000) {
         vx: Math.cos(angle) * vel,
         vy: Math.sin(angle) * vel,
         alpha: 1,
-        decay: Math.random() * 0.02 + 0.01,
+        decay: Math.random() * 0.008 + 0.004,
         rotation: Math.random() * Math.PI,
-        spin: (Math.random() - 0.5) * 0.35,
+        spin: (Math.random() - 0.5) * 0.1,
         color: c
       });
     }
@@ -2273,8 +2273,8 @@ function showToast(msg, timeout = 3000) {
     // Render Shockwave Rings
     for (let i = rings.length - 1; i >= 0; i--) {
       const ring = rings[i];
-      ring.r += (ring.maxR - ring.r) * 0.18;
-      ring.alpha -= 0.03;
+      ring.r += (ring.maxR - ring.r) * 0.08;
+      ring.alpha -= 0.012;
 
       if (ring.alpha <= 0) {
         rings.splice(i, 1);
