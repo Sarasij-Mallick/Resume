@@ -767,17 +767,62 @@ input.search-input {
   padding: 0 20px 0 56px !important;
   font-size: 16px;
   border-radius: var(--canva-pill-radius);
-  border: 2px solid #e2e8f0;
+  border: 2px solid #00c4cc;
   background: #ffffff;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
   outline: none;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
+  animation: searchNeonRainbow 6s linear infinite;
+}
+
+@keyframes searchNeonRainbow {
+  0% {
+    border-color: #00c4cc;
+    box-shadow: 0 0 16px rgba(0, 196, 204, 0.7), 0 0 32px rgba(125, 42, 232, 0.45);
+  }
+  25% {
+    border-color: #ff007f;
+    box-shadow: 0 0 18px rgba(255, 0, 127, 0.75), 0 0 36px rgba(255, 0, 255, 0.5);
+  }
+  50% {
+    border-color: #ffaa00;
+    box-shadow: 0 0 18px rgba(255, 170, 0, 0.75), 0 0 36px rgba(0, 255, 170, 0.5);
+  }
+  75% {
+    border-color: #00f0ff;
+    box-shadow: 0 0 18px rgba(0, 240, 255, 0.75), 0 0 36px rgba(79, 70, 229, 0.5);
+  }
+  100% {
+    border-color: #00c4cc;
+    box-shadow: 0 0 16px rgba(0, 196, 204, 0.7), 0 0 32px rgba(125, 42, 232, 0.45);
+  }
 }
 
 .search-bar-wrap .search-input:focus,
 input.search-input:focus {
-  border-color: var(--canva-purple);
-  box-shadow: 0 6px 24px rgba(125, 42, 232, 0.15);
+  animation: searchNeonRainbowFocus 3s linear infinite;
+}
+
+@keyframes searchNeonRainbowFocus {
+  0% {
+    border-color: #00c4cc;
+    box-shadow: 0 0 24px rgba(0, 196, 204, 0.9), 0 0 46px rgba(125, 42, 232, 0.7), inset 0 0 10px rgba(0, 196, 204, 0.2);
+  }
+  25% {
+    border-color: #ff007f;
+    box-shadow: 0 0 26px rgba(255, 0, 127, 0.95), 0 0 48px rgba(255, 0, 255, 0.75), inset 0 0 10px rgba(255, 0, 127, 0.2);
+  }
+  50% {
+    border-color: #ffaa00;
+    box-shadow: 0 0 26px rgba(255, 170, 0, 0.95), 0 0 48px rgba(0, 255, 170, 0.75), inset 0 0 10px rgba(255, 170, 0, 0.2);
+  }
+  75% {
+    border-color: #00f0ff;
+    box-shadow: 0 0 26px rgba(0, 240, 255, 0.95), 0 0 48px rgba(79, 70, 229, 0.75), inset 0 0 10px rgba(0, 240, 255, 0.2);
+  }
+  100% {
+    border-color: #00c4cc;
+    box-shadow: 0 0 24px rgba(0, 196, 204, 0.9), 0 0 46px rgba(125, 42, 232, 0.7), inset 0 0 10px rgba(0, 196, 204, 0.2);
+  }
 }
 
 .search-icon {
