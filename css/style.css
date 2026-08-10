@@ -557,7 +557,7 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  padding: 2px;
+  padding: 1px;
   background: conic-gradient(from var(--neonAngle), #00e5ff 0deg, #7d2ae8 90deg, #ff007f 180deg, #ffaa00 270deg, #00e5ff 360deg);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
@@ -814,7 +814,7 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
   display: flex;
   align-items: center;
   border-radius: var(--canva-pill-radius);
-  padding: 2.5px;
+  padding: 1.5px;
   background: conic-gradient(from var(--neonAngle), #00e5ff 0deg, #7d2ae8 90deg, #ff007f 180deg, #ffaa00 270deg, #00e5ff 360deg);
   animation: neonLinearBeam 4s linear infinite;
   box-shadow: 0 0 14px rgba(0, 229, 255, 0.45), 0 0 28px rgba(125, 42, 232, 0.35);
