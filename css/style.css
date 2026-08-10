@@ -776,24 +776,24 @@ input.search-input {
 
 @keyframes searchNeonRainbow {
   0% {
-    border-color: #00c4cc;
-    box-shadow: 0 0 6px rgba(0, 196, 204, 0.45), 0 0 12px rgba(125, 42, 232, 0.25);
+    border-color: #00e5ff;
+    box-shadow: 0 0 10px #00e5ff, 0 0 20px rgba(125, 42, 232, 0.6);
   }
   25% {
     border-color: #ff007f;
-    box-shadow: 0 0 6px rgba(255, 0, 127, 0.45), 0 0 12px rgba(255, 0, 255, 0.25);
+    box-shadow: 0 0 10px #ff007f, 0 0 20px rgba(255, 0, 255, 0.6);
   }
   50% {
     border-color: #ffaa00;
-    box-shadow: 0 0 6px rgba(255, 170, 0, 0.45), 0 0 12px rgba(0, 255, 170, 0.25);
+    box-shadow: 0 0 10px #ffaa00, 0 0 20px rgba(0, 255, 170, 0.6);
   }
   75% {
     border-color: #00f0ff;
-    box-shadow: 0 0 6px rgba(0, 240, 255, 0.45), 0 0 12px rgba(79, 70, 229, 0.25);
+    box-shadow: 0 0 10px #00f0ff, 0 0 20px rgba(79, 70, 229, 0.6);
   }
   100% {
-    border-color: #00c4cc;
-    box-shadow: 0 0 6px rgba(0, 196, 204, 0.45), 0 0 12px rgba(125, 42, 232, 0.25);
+    border-color: #00e5ff;
+    box-shadow: 0 0 10px #00e5ff, 0 0 20px rgba(125, 42, 232, 0.6);
   }
 }
 
@@ -804,24 +804,24 @@ input.search-input:focus {
 
 @keyframes searchNeonRainbowFocus {
   0% {
-    border-color: #00c4cc;
-    box-shadow: 0 0 10px rgba(0, 196, 204, 0.65), 0 0 18px rgba(125, 42, 232, 0.4);
+    border-color: #00e5ff;
+    box-shadow: 0 0 14px #00e5ff, 0 0 26px rgba(125, 42, 232, 0.75);
   }
   25% {
     border-color: #ff007f;
-    box-shadow: 0 0 10px rgba(255, 0, 127, 0.65), 0 0 18px rgba(255, 0, 255, 0.4);
+    box-shadow: 0 0 14px #ff007f, 0 0 26px rgba(255, 0, 255, 0.75);
   }
   50% {
     border-color: #ffaa00;
-    box-shadow: 0 0 10px rgba(255, 170, 0, 0.65), 0 0 18px rgba(0, 255, 170, 0.4);
+    box-shadow: 0 0 14px #ffaa00, 0 0 26px rgba(0, 255, 170, 0.75);
   }
   75% {
     border-color: #00f0ff;
-    box-shadow: 0 0 10px rgba(0, 240, 255, 0.65), 0 0 18px rgba(79, 70, 229, 0.4);
+    box-shadow: 0 0 14px #00f0ff, 0 0 26px rgba(79, 70, 229, 0.75);
   }
   100% {
-    border-color: #00c4cc;
-    box-shadow: 0 0 10px rgba(0, 196, 204, 0.65), 0 0 18px rgba(125, 42, 232, 0.4);
+    border-color: #00e5ff;
+    box-shadow: 0 0 14px #00e5ff, 0 0 26px rgba(125, 42, 232, 0.75);
   }
 }
 
