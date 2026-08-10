@@ -24,21 +24,21 @@
     .bg-orb {
       position: absolute;
       border-radius: 50%;
-      filter: blur(100px);
+      filter: blur(6.25rem);
       opacity: 0.5;
       z-index: 0;
       animation: pulseOrb 8s infinite alternate ease-in-out;
     }
     .orb-1 {
-      width: 450px;
-      height: 450px;
+      width: 28.125rem;
+      height: 28.125rem;
       background: var(--canva-purple);
       top: -100px;
       left: -100px;
     }
     .orb-2 {
-      width: 400px;
-      height: 400px;
+      width: 25rem;
+      height: 25rem;
       background: var(--canva-cyan);
       bottom: -100px;
       right: -100px;
@@ -47,22 +47,22 @@
 
     @keyframes pulseOrb {
       0% { transform: scale(1) translate(0, 0); opacity: 0.4; }
-      100% { transform: scale(1.15) translate(30px, -20px); opacity: 0.6; }
+      100% { transform: scale(1.15) translate(1.875rem, -20px); opacity: 0.6; }
     }
 
     .auth-container {
       position: relative;
       z-index: 10;
       width: 100%;
-      max-width: 1040px;
-      margin: 24px;
-      perspective: 1400px;
+      max-width: 65rem;
+      margin: 1.5rem;
+      perspective: 87.5rem;
     }
 
     .auth-wrapper {
       position: relative;
       width: 100%;
-      min-height: 600px;
+      min-height: 37.5rem;
       transform-style: preserve-3d;
       transition: transform 0.85s cubic-bezier(0.34, 1.25, 0.64, 1);
     }
@@ -83,10 +83,10 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(20px);
-      border-radius: 28px;
-      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(1.25rem);
+      border-radius: 1.75rem;
+      box-shadow: 0 1.875rem 5rem rgba(0, 0, 0, 0.35);
+      border: 0.0625rem solid rgba(255, 255, 255, 0.2);
       overflow: hidden;
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
@@ -109,14 +109,14 @@
     }
 
     @keyframes zoomInAuth {
-      from { opacity: 0; transform: scale(0.96) translateY(12px); }
+      from { opacity: 0; transform: scale(0.96) translateY(0.75rem); }
       to { opacity: 1; transform: scale(1) translateY(0); }
     }
 
     /* Left Side Branding Showcase */
     .auth-banner {
       background: linear-gradient(135deg, #1e1b4b 0%, #312e81 40%, #7d2ae8 100%);
-      padding: 44px;
+      padding: 2.75rem;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -136,50 +136,50 @@
     .banner-brand {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 0.75rem;
       text-decoration: none;
       color: #fff;
     }
 
     .banner-brand .brand-name {
       font-family: 'Outfit', sans-serif;
-      font-size: 22px;
+      font-size: 1.375rem;
       font-weight: 800;
       letter-spacing: -0.02em;
     }
 
     .banner-hero-content {
-      margin: 32px 0;
+      margin: 2rem 0;
       position: relative;
       z-index: 2;
     }
 
     .banner-hero-content h1 {
       font-family: 'Outfit', sans-serif;
-      font-size: 32px;
+      font-size: 2rem;
       font-weight: 800;
       line-height: 1.25;
-      margin: 0 0 14px;
+      margin: 0 0 0.875rem;
       letter-spacing: -0.02em;
     }
 
     .banner-hero-content p {
-      font-size: 14.5px;
+      font-size: 0.9062rem;
       color: rgba(255, 255, 255, 0.85);
       line-height: 1.55;
-      margin: 0 0 24px;
+      margin: 0 0 1.5rem;
     }
 
     .stat-badge {
       display: inline-flex;
       align-items: center;
-      gap: 12px;
+      gap: 0.75rem;
       background: rgba(255, 255, 255, 0.12);
-      backdrop-filter: blur(10px);
-      padding: 10px 18px;
-      border-radius: 9999px;
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      font-size: 13px;
+      backdrop-filter: blur(0.625rem);
+      padding: 0.625rem 1.125rem;
+      border-radius: 624.9375rem;
+      border: 0.0625rem solid rgba(255, 255, 255, 0.18);
+      font-size: 0.8125rem;
       font-weight: 600;
     }
 
@@ -188,16 +188,16 @@
       align-items: center;
     }
     .avatar-stack span {
-      width: 24px;
-      height: 24px;
+      width: 1.5rem;
+      height: 1.5rem;
       border-radius: 50%;
       background: #7d2ae8;
-      border: 2px solid #312e81;
+      border: 0.125rem solid #312e81;
       margin-left: -8px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-size: 10px;
+      font-size: 0.625rem;
       font-weight: 800;
     }
     .avatar-stack span:first-child { margin-left: 0; background: #00c4cc; }
@@ -205,7 +205,7 @@
     .avatar-stack span:nth-child(3) { background: #10b981; }
 
     .banner-footer {
-      font-size: 13px;
+      font-size: 0.8125rem;
       color: rgba(255, 255, 255, 0.65);
       position: relative;
       z-index: 2;
@@ -213,7 +213,7 @@
 
     /* Right Side Auth Form */
     .auth-box {
-      padding: 36px 40px;
+      padding: 2.25rem 2.5rem;
       position: relative;
       display: flex;
       flex-direction: column;
@@ -223,14 +223,14 @@
 
     .close-btn {
       position: absolute;
-      top: 20px;
-      right: 20px;
-      width: 36px;
-      height: 36px;
+      top: 1.25rem;
+      right: 1.25rem;
+      width: 2.25rem;
+      height: 2.25rem;
       border-radius: 50%;
       background: #f1f5f9;
       border: none;
-      font-size: 20px;
+      font-size: 1.25rem;
       color: #64748b;
       cursor: pointer;
       display: flex;
@@ -248,19 +248,19 @@
     .tab-switcher {
       display: flex;
       background: #f1f5f9;
-      padding: 4px;
-      border-radius: 9999px;
-      margin-bottom: 24px;
+      padding: 0.25rem;
+      border-radius: 624.9375rem;
+      margin-bottom: 1.5rem;
     }
 
     .tab-btn {
       flex: 1;
-      padding: 10px 0;
-      border: 1.5px solid transparent !important;
+      padding: 0.625rem 0;
+      border: 0.0938rem solid transparent !important;
       background: transparent;
-      border-radius: 9999px;
+      border-radius: 624.9375rem;
       font-family: 'Inter', sans-serif;
-      font-size: 14px;
+      font-size: 0.875rem;
       font-weight: 700;
       color: #5f6368;
       cursor: pointer;
@@ -269,31 +269,31 @@
 
     .tab-btn:hover {
       color: #7d2ae8;
-      border: 1.5px solid #7d2ae8 !important;
+      border: 0.0938rem solid #7d2ae8 !important;
     }
 
     .tab-btn.active {
       background: #ffffff;
       color: #7d2ae8;
-      box-shadow: 0 2px 8px rgba(60, 64, 67, 0.15);
-      border: 1.5px solid transparent !important;
+      box-shadow: 0 0.125rem 0.5rem rgba(60, 64, 67, 0.15);
+      border: 0.0938rem solid transparent !important;
     }
 
     .form-header {
-      margin-bottom: 20px;
+      margin-bottom: 1.25rem;
     }
 
     .form-header h2 {
       font-family: 'Outfit', sans-serif;
-      font-size: 24px;
+      font-size: 1.5rem;
       font-weight: 800;
-      margin: 0 0 6px;
+      margin: 0 0 0.375rem;
       color: #0f172a;
       letter-spacing: -0.01em;
     }
 
     .form-header p {
-      font-size: 14px;
+      font-size: 0.875rem;
       color: #64748b;
       margin: 0;
     }
@@ -302,21 +302,21 @@
     .social-btn-group {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-bottom: 20px;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
     }
 
     .social-btn {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      padding: 10px 16px;
-      border-radius: 12px;
-      border: 1.5px solid #e2e8f0;
+      gap: 0.625rem;
+      padding: 0.625rem 1rem;
+      border-radius: 0.75rem;
+      border: 0.0938rem solid #e2e8f0;
       background: #ffffff;
       font-family: 'Inter', sans-serif;
-      font-size: 14px;
+      font-size: 0.875rem;
       font-weight: 600;
       color: #334155;
       cursor: pointer;
@@ -333,32 +333,32 @@
       display: flex;
       align-items: center;
       text-align: center;
-      font-size: 12.5px;
+      font-size: 0.7812rem;
       color: #94a3b8;
-      margin: 16px 0;
+      margin: 1rem 0;
       font-weight: 500;
     }
     .divider::before, .divider::after {
       content: '';
       flex: 1;
-      border-bottom: 1px solid #e2e8f0;
+      border-bottom: 0.0625rem solid #e2e8f0;
     }
-    .divider::before { margin-right: 12px; }
-    .divider::after { margin-left: 12px; }
+    .divider::before { margin-right: 0.75rem; }
+    .divider::after { margin-left: 0.75rem; }
 
     /* Inputs */
     .input-field {
       position: relative;
-      margin-bottom: 14px;
+      margin-bottom: 0.875rem;
     }
     .input-field input {
       width: 100%;
-      height: 44px;
-      padding: 0 44px 0 42px;
-      border-radius: 12px;
-      border: 1.5px solid #cbd5e1;
+      height: 2.75rem;
+      padding: 0 2.75rem 0 2.625rem;
+      border-radius: 0.75rem;
+      border: 0.0938rem solid #cbd5e1;
       font-family: inherit;
-      font-size: 14px;
+      font-size: 0.875rem;
       color: #1e293b;
       background: #ffffff;
       transition: all 0.2s ease;
@@ -367,27 +367,27 @@
     .input-field input:focus {
       outline: none;
       border-color: #7d2ae8;
-      box-shadow: 0 0 0 4px rgba(125, 42, 232, 0.12);
+      box-shadow: 0 0 0 0.25rem rgba(125, 42, 232, 0.12);
     }
     .input-icon {
       position: absolute;
-      left: 14px;
+      left: 0.875rem;
       top: 50%;
       transform: translateY(-50%);
-      font-size: 16px;
+      font-size: 1rem;
       color: #94a3b8;
       pointer-events: none;
     }
     .toggle-pass {
       position: absolute;
-      right: 12px;
+      right: 0.75rem;
       top: 50%;
       transform: translateY(-50%);
       background: none;
       border: none;
-      font-size: 16px;
+      font-size: 1rem;
       cursor: pointer;
-      padding: 4px;
+      padding: 0.25rem;
       opacity: 0.6;
       transition: opacity 0.2s ease;
     }
@@ -398,13 +398,13 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      font-size: 13px;
-      margin-bottom: 18px;
+      font-size: 0.8125rem;
+      margin-bottom: 1.125rem;
     }
     .remember-me {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 0.5rem;
       color: #475569;
       cursor: pointer;
       user-select: none;
@@ -420,13 +420,13 @@
     /* Submit Button */
     .submit-btn {
       width: 100%;
-      height: 44px;
-      border-radius: 9999px;
+      height: 2.75rem;
+      border-radius: 624.9375rem;
       background: #7d2ae8;
       color: #ffffff;
       border: none;
       font-family: inherit;
-      font-size: 15px;
+      font-size: 0.9375rem;
       font-weight: 700;
       cursor: pointer;
       transition: all 0.2s ease;
@@ -438,9 +438,9 @@
 
     .form-toggle-text {
       text-align: center;
-      font-size: 13.5px;
+      font-size: 0.8438rem;
       color: #64748b;
-      margin-top: 16px;
+      margin-top: 1rem;
       font-weight: 500;
     }
     .form-toggle-text a {
@@ -452,10 +452,10 @@
 
     /* Password Strength Indicator */
     .pass-strength {
-      height: 4px;
+      height: 0.25rem;
       background: #e2e8f0;
-      border-radius: 2px;
-      margin: -6px 0 14px;
+      border-radius: 0.125rem;
+      margin: -6px 0 0.875rem;
       overflow: hidden;
     }
     .pass-strength-bar {
@@ -465,10 +465,10 @@
     }
 
     /* Responsive Design */
-    @media (max-width: 860px) {
+    @media (max-width: 53.75rem) {
       .auth-face { grid-template-columns: 1fr; }
       .auth-banner { display: none; }
-      .auth-box { padding: 32px 24px; }
+      .auth-box { padding: 2rem 1.5rem; }
     }
   </style>
 </head>
@@ -589,7 +589,7 @@
                 <button type="button" class="toggle-pass" onclick="togglePassVisibility('regPass', this)">👁️</button>
               </div>
               <div class="pass-strength"><div id="passStrengthBar" class="pass-strength-bar"></div></div>
-              <label class="remember-me" style="margin-bottom:14px"><input type="checkbox" required> I agree to Terms & Privacy Policy</label>
+              <label class="remember-me" style="margin-bottom:0.875rem"><input type="checkbox" required> I agree to Terms & Privacy Policy</label>
               <button type="submit" class="submit-btn">Create Free Account</button>
             </form>
             <div class="form-toggle-text">Already have an account? <a href="#" onclick="switchMode('login', 'horizontal')">Sign In</a></div>
