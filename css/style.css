@@ -129,9 +129,16 @@
   border-color: #334155;
 }
 
+[data-theme="dark"] .pill:hover {
+  background: #334155;
+  color: #ffffff;
+  border-color: var(--canva-purple);
+}
+
 [data-theme="dark"] .pill.active {
   background: var(--canva-purple);
   color: #ffffff;
+  border-color: var(--canva-purple);
 }
 
 [data-theme="dark"] .tmpl-card {
@@ -901,8 +908,9 @@ input.search-input:focus {
 }
 
 .pill:hover {
-  background: #e2e8f0;
-  color: var(--canva-dark);
+  background: rgba(125, 42, 232, 0.08);
+  color: var(--canva-purple);
+  border-color: rgba(125, 42, 232, 0.2);
 }
 
 .pill.active {
