@@ -2480,20 +2480,16 @@ button:active,
   }
 
   .logo {
-    gap: 6px;
+    gap: 0;
   }
 
   .logo-icon-wrap svg {
-    width: 28px;
-    height: 28px;
+    width: 32px;
+    height: 32px;
   }
 
-  .brand {
-    font-size: 16px;
-  }
-
-  .brand-sub {
-    font-size: 8px;
+  .brand-text {
+    display: none !important;
   }
 
   .actions {
