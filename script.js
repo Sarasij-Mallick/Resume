@@ -1907,6 +1907,112 @@ function showToast(msg, timeout = 3000) {
       });
     }
 
+    const searchSuggestions = document.getElementById("searchSuggestions");
+    let focusedSuggIndex = -1;
+
+    const SUGGESTION_TAGS = [
+      "Modern Minimalist", "Tech Specialist", "Software Engineer", "Minimalist Essential",
+      "Clean Slate", "Creative Designer", "Artistic Showcase", "Executive Professional",
+      "Corporate Director", "Senior Manager", "Fresher Academic", "Graduate Scholar",
+      "ATS Optimized", "UI/UX Designer", "Internship Ready"
+    ];
+
+    function highlightMatch(text, query) {
+      if (!query) return escape(text);
+      const idx = text.toLowerCase().indexOf(query.toLowerCase());
+      if (idx === -1) return escape(text);
+      const before = text.substring(0, idx);
+      const match = text.substring(idx, idx + query.length);
+      const after = text.substring(idx + query.length);
+      return `${escape(before)}<strong style="color:var(--canva-purple);font-weight:800">${escape(match)}</strong>${escape(after)}`;
+    }
+
+    function renderSearchSuggestions(query) {
+      if (!searchSuggestions) return;
+      if (!query || query.trim().length === 0) {
+        searchSuggestions.setAttribute("aria-expanded", "false");
+        searchSuggestions.innerHTML = "";
+        focusedSuggIndex = -1;
+        return;
+      }
+
+      const q = query.toLowerCase().trim();
+      const matchingTags = SUGGESTION_TAGS.filter(t => t.toLowerCase().includes(q)).slice(0, 3);
+
+      const matchingCards = Array.from(templateCards).filter(card => {
+        const title = (card.querySelector(".tmpl-title")?.textContent || "").toLowerCase();
+        const tag = (card.querySelector(".tmpl-tag")?.textContent || "").toLowerCase();
+        const cat = (card.getAttribute("data-category") || "").toLowerCase();
+        return title.includes(q) || tag.includes(q) || cat.includes(q);
+      }).slice(0, 4);
+
+      if (matchingTags.length === 0 && matchingCards.length === 0) {
+        searchSuggestions.innerHTML = `
+          <div class="sugg-section-title">No direct suggestions</div>
+          <div style="padding:10px 12px;font-size:13px;color:var(--canva-muted)">Press Enter to search for "${escape(query)}"</div>
+        `;
+        searchSuggestions.setAttribute("aria-expanded", "true");
+        return;
+      }
+
+      let html = "";
+      if (matchingTags.length > 0) {
+        html += `<div class="sugg-section-title">Suggested Keywords</div>`;
+        matchingTags.forEach(tag => {
+          html += `
+            <div class="sugg-item" data-type="keyword" data-value="${escape(tag)}">
+              <span class="sugg-icon">🔍</span>
+              <span class="sugg-text">${highlightMatch(tag, q)}</span>
+              <span class="sugg-category">Search</span>
+            </div>
+          `;
+        });
+      }
+
+      if (matchingCards.length > 0) {
+        html += `<div class="sugg-section-title" style="margin-top:6px">Matching Templates</div>`;
+        matchingCards.forEach(card => {
+          const title = card.querySelector(".tmpl-title")?.textContent || "";
+          const tag = card.querySelector(".tmpl-tag")?.textContent || "";
+          const cat = card.getAttribute("data-category") || "Template";
+
+          html += `
+            <div class="sugg-item" data-type="template" data-value="${escape(title)}">
+              <span class="sugg-icon" style="background:rgba(0,196,204,0.12);color:var(--canva-cyan)">📄</span>
+              <span class="sugg-text">${highlightMatch(title, q)} <span style="font-size:12px;font-weight:400;color:var(--canva-muted)">(${escape(tag.split('·')[0].trim())})</span></span>
+              <span class="sugg-category">${escape(cat.toUpperCase())}</span>
+            </div>
+          `;
+        });
+      }
+
+      searchSuggestions.innerHTML = html;
+      searchSuggestions.setAttribute("aria-expanded", "true");
+      focusedSuggIndex = -1;
+
+      searchSuggestions.querySelectorAll(".sugg-item").forEach(item => {
+        item.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          const val = item.getAttribute("data-value");
+          if (val && templateSearch) {
+            templateSearch.value = val;
+            searchQuery = val.toLowerCase().trim();
+            activeCategory = "all";
+            filterPills.forEach((p) => {
+              const attr = (p.getAttribute("data-category") || p.textContent).toLowerCase().trim();
+              p.classList.toggle("active", attr === "all" || attr === "all templates");
+            });
+            applyTemplateFilters();
+            searchSuggestions.setAttribute("aria-expanded", "false");
+            if (templatesGrid) {
+              templatesGrid.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+          }
+        });
+      });
+    }
+
     if (templateSearch && templateCards.length > 0) {
       templateSearch.addEventListener("input", () => {
         searchQuery = templateSearch.value.trim().toLowerCase();
@@ -1918,14 +2024,48 @@ function showToast(msg, timeout = 3000) {
           });
         }
         applyTemplateFilters();
+        renderSearchSuggestions(searchQuery);
+      });
+
+      templateSearch.addEventListener("focus", () => {
+        if (templateSearch.value.trim().length > 0) {
+          renderSearchSuggestions(templateSearch.value);
+        }
+      });
+
+      document.addEventListener("click", (e) => {
+        if (searchSuggestions && !e.target.closest(".search-bar-wrap")) {
+          searchSuggestions.setAttribute("aria-expanded", "false");
+        }
       });
 
       templateSearch.addEventListener("keydown", (e) => {
-        if (e.key === "Enter") {
+        const items = searchSuggestions ? searchSuggestions.querySelectorAll(".sugg-item") : [];
+
+        if (e.key === "ArrowDown") {
           e.preventDefault();
-          if (templatesGrid) {
-            templatesGrid.scrollIntoView({ behavior: "smooth", block: "start" });
+          if (items.length > 0) {
+            focusedSuggIndex = (focusedSuggIndex + 1) % items.length;
+            items.forEach((item, idx) => item.classList.toggle("focused", idx === focusedSuggIndex));
           }
+        } else if (e.key === "ArrowUp") {
+          e.preventDefault();
+          if (items.length > 0) {
+            focusedSuggIndex = (focusedSuggIndex - 1 + items.length) % items.length;
+            items.forEach((item, idx) => item.classList.toggle("focused", idx === focusedSuggIndex));
+          }
+        } else if (e.key === "Enter") {
+          if (focusedSuggIndex >= 0 && items[focusedSuggIndex]) {
+            e.preventDefault();
+            items[focusedSuggIndex].click();
+          } else {
+            if (searchSuggestions) searchSuggestions.setAttribute("aria-expanded", "false");
+            if (templatesGrid) {
+              templatesGrid.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+          }
+        } else if (e.key === "Escape") {
+          if (searchSuggestions) searchSuggestions.setAttribute("aria-expanded", "false");
         }
       });
     }
