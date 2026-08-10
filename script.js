@@ -2146,3 +2146,98 @@ function showToast(msg, timeout = 3000) {
   // Start
   init();
 })();
+
+/* ==========================================================================
+   INTERACTIVE MOUSE SMOKE TRAIL EFFECT
+   ========================================================================== */
+(function initMouseSmokeTrail() {
+  const canvas = document.createElement("canvas");
+  canvas.id = "mouseSmokeCanvas";
+  canvas.style.position = "fixed";
+  canvas.style.top = "0";
+  canvas.style.left = "0";
+  canvas.style.width = "100vw";
+  canvas.style.height = "100vh";
+  canvas.style.pointerEvents = "none";
+  canvas.style.zIndex = "999999";
+  document.body.appendChild(canvas);
+
+  const ctx = canvas.getContext("2d");
+  let particles = [];
+  let width = (canvas.width = window.innerWidth);
+  let height = (canvas.height = window.innerHeight);
+
+  window.addEventListener("resize", () => {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+  });
+
+  const colors = [
+    { r: 125, g: 42, b: 232 },  // Canva Purple
+    { r: 0, g: 196, b: 204 },    // Vibrant Cyan
+    { r: 244, g: 63, b: 94 },    // Glowing Pink/Red
+    { r: 59, g: 130, b: 246 },   // Electric Blue
+    { r: 168, g: 85, b: 247 }    // Neon Purple
+  ];
+
+  let lastX = 0;
+  let lastY = 0;
+
+  function spawnSmoke(x, y) {
+    const count = 3;
+    for (let i = 0; i < count; i++) {
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      particles.push({
+        x: x + (Math.random() - 0.5) * 10,
+        y: y + (Math.random() - 0.5) * 10,
+        size: Math.random() * 12 + 10,
+        maxSize: Math.random() * 35 + 30,
+        vx: (Math.random() - 0.5) * 1.8,
+        vy: (Math.random() - 0.5) * 1.8 - 0.5,
+        alpha: Math.random() * 0.45 + 0.35,
+        decay: Math.random() * 0.012 + 0.01,
+        color: color
+      });
+    }
+  }
+
+  window.addEventListener("pointermove", (e) => {
+    const dist = Math.hypot(e.clientX - lastX, e.clientY - lastY);
+    if (dist > 4) {
+      spawnSmoke(e.clientX, e.clientY);
+      lastX = e.clientX;
+      lastY = e.clientY;
+    }
+  });
+
+  function render() {
+    ctx.clearRect(0, 0, width, height);
+
+    for (let i = particles.length - 1; i >= 0; i--) {
+      const p = particles[i];
+      p.x += p.vx;
+      p.y += p.vy;
+      p.size += (p.maxSize - p.size) * 0.05;
+      p.alpha -= p.decay;
+
+      if (p.alpha <= 0 || p.size <= 0) {
+        particles.splice(i, 1);
+        continue;
+      }
+
+      const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size);
+      grad.addColorStop(0, `rgba(${p.color.r}, ${p.color.g}, ${p.color.b}, ${p.alpha})`);
+      grad.addColorStop(0.4, `rgba(${p.color.r}, ${p.color.g}, ${p.color.b}, ${p.alpha * 0.4})`);
+      grad.addColorStop(1, `rgba(${p.color.r}, ${p.color.g}, ${p.color.b}, 0)`);
+
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    requestAnimationFrame(render);
+  }
+
+  requestAnimationFrame(render);
+})();
