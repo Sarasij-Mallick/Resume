@@ -691,14 +691,16 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 .mockup-frame {
   position: relative;
   width: 100%;
-  max-width: 420px;
-  aspect-ratio: 1 / 1.35;
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 24px;
-  box-shadow: 0 24px 50px rgba(14, 19, 31, 0.12), 0 4px 12px rgba(0, 0, 0, 0.04);
+  background: #ffffff !important;
+  color: #1e293b !important;
+  border-radius: 20px;
+  padding: 32px 28px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.18);
+  border: 1px solid rgba(14, 19, 31, 0.08);
   transform: rotate(-1.5deg);
   transition: transform 0.3s ease;
+  font-family: 'Inter', sans-serif;
+  text-align: left;
 }
 
 .mockup-frame:hover {
@@ -706,34 +708,121 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 }
 
 .r-mock-head {
-  border-bottom: 2px solid #f1f5f9;
-  padding-bottom: 16px;
-  margin-bottom: 16px;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 12px;
+  margin-bottom: 14px;
 }
 
 .r-mock-name {
   font-size: 22px;
   font-weight: 800;
-  color: var(--canva-dark);
+  color: #0e131f !important;
+  letter-spacing: -0.02em;
 }
 
 .r-mock-role {
-  font-size: 14px;
-  color: var(--canva-purple);
-  font-weight: 600;
+  font-size: 13.5px;
+  color: #7d2ae8 !important;
+  font-weight: 700;
+  margin-top: 2px;
+}
+
+.r-mock-contact {
+  font-size: 11px;
+  color: #64748b !important;
   margin-top: 4px;
+  font-weight: 500;
 }
 
-.r-mock-line {
-  height: 8px;
+.r-mock-sec {
+  border-bottom: 1px dashed #e2e8f0;
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+}
+
+.r-mock-sec-title {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: #475569 !important;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.r-mock-text {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #334155 !important;
+  margin: 0;
+}
+
+.r-mock-job-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12.5px;
+}
+
+.r-mock-company {
+  font-weight: 700;
+  color: #0e131f !important;
+}
+
+.r-mock-date {
+  font-size: 11px;
+  color: #64748b !important;
+  font-weight: 500;
+}
+
+.r-mock-pos {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #7d2ae8 !important;
+  margin-top: 1px;
+}
+
+.r-mock-list {
+  margin: 4px 0 0 0;
+  padding-left: 16px;
+  font-size: 11.5px;
+  color: #334155 !important;
+  line-height: 1.45;
+}
+
+.r-mock-list li {
+  margin-bottom: 2px;
+}
+
+.r-mock-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.r-tag {
   background: #f1f5f9;
-  border-radius: 4px;
-  margin-bottom: 10px;
+  color: #334155 !important;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
 }
 
-.r-mock-line.short { width: 60%; }
-.r-mock-line.medium { width: 80%; }
-.r-mock-line.purple { background: rgba(125, 42, 232, 0.15); width: 45%; }
+.r-tag.purple {
+  background: rgba(125, 42, 232, 0.1);
+  color: #7d2ae8 !important;
+}
+
+.r-tag.cyan {
+  background: rgba(0, 196, 204, 0.1);
+  color: #008b90 !important;
+}
+
+.r-mock-award {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #10b981 !important;
+}
 
 .floating-badge {
   position: absolute;
