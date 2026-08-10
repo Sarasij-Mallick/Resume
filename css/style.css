@@ -1019,6 +1019,41 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
   overflow-y: auto !important;
 }
 
+/* Modal Overlay Rules */
+.modal {
+  display: none !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 2500 !important;
+  background: rgba(14, 19, 31, 0.6) !important;
+  backdrop-filter: blur(4px) !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.modal[aria-hidden="false"] {
+  display: flex !important;
+}
+
+.modal-panel {
+  width: 90% !important;
+  max-width: 720px !important;
+  max-height: 85vh !important;
+  background: #ffffff !important;
+  border-radius: 20px !important;
+  padding: 24px !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25) !important;
+  border: 1px solid var(--canva-border) !important;
+  overflow-y: auto !important;
+}
+
+.studio-body .back-to-top {
+  bottom: 52px;
+}
+
 /* Toast */
 .toast {
   position: fixed;
