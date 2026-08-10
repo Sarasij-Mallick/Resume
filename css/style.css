@@ -65,6 +65,35 @@
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.4);
 }
 
+[data-theme="dark"] .hero-wrapper {
+  background: #090d16;
+}
+
+[data-theme="dark"] .hero-banner {
+  background: linear-gradient(180deg, #1e1b4b 0%, #0f172a 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] .title,
+[data-theme="dark"] .hero-content .title {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .lead,
+[data-theme="dark"] .hero-content .lead {
+  color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] .btn-ghost.btn-browse {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+[data-theme="dark"] .btn-ghost.btn-browse:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
 [data-theme="dark"] .nav {
   background: rgba(255, 255, 255, 0.05);
   border-color: rgba(255, 255, 255, 0.08);
@@ -114,9 +143,27 @@
   color: #f8fafc;
 }
 
+[data-theme="dark"] .choose-path-section {
+  background: #090d16;
+}
+
 [data-theme="dark"] .path-card {
   background: #1e293b;
-  border-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #f8fafc;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .path-title {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .path-desc {
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .path-features li {
+  color: #cbd5e1;
 }
 
 [data-theme="dark"] .search-suggestions-dropdown {
@@ -473,7 +520,7 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
    2. HERO SECTION (Canva Resumes Banner Style)
    ========================================================================== */
 .hero-wrapper {
-  background: #f8fafc;
+  background: var(--canva-bg);
   padding: 24px 0 64px;
 }
 
@@ -944,7 +991,7 @@ input.search-input:focus {
    ========================================================================== */
 .choose-path-section {
   padding: 64px 0;
-  background: #f8fafc;
+  background: var(--canva-bg);
 }
 
 .path-cards {
