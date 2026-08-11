@@ -181,25 +181,28 @@
 }
 
 [data-theme="dark"] .pill {
+  box-sizing: border-box;
   background: #1e1e1e;
   color: #a0a0a0;
-  border-color: #333333;
-  transition: all 0.15s ease-in-out;
+  border: 1.5px solid #333333;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  transform: none !important;
 }
 
 [data-theme="dark"] .pill:hover {
   background: rgba(230, 0, 35, 0.08) !important;
   color: #e60023 !important;
-  border-color: #ff5a5f !important;
+  border: 1.5px solid #ff5a5f !important;
   box-shadow: 0 4px 14px rgba(230, 0, 35, 0.25) !important;
-  transform: translateY(-1px);
+  transform: none !important;
 }
 
 [data-theme="dark"] .pill.active {
   background: #e60023 !important;
   color: #ffffff !important;
-  border: none !important;
+  border: 1.5px solid #e60023 !important;
   box-shadow: 0 4px 14px rgba(230, 0, 35, 0.35) !important;
+  transform: none !important;
 }
 
 [data-theme="dark"] .tmpl-card {
