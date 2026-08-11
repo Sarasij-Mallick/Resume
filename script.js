@@ -1098,7 +1098,7 @@ options.forEach(function (card) {
     normalizeState();
     const wrapper = document.createElement("div");
     wrapper.className = "form";
-    wrapper.innerHTML = `<div class="list" id="expList"></div><div style="margin-top:12px" class="actions"><button id="addExp" class="btn neutral">+ Add Experience</button><div style="flex:1"></div><button id="saveExp" class="btn bg-success text-white">Save</button><button id="toNext5" class="btn primary">Next</button></div>`;
+    wrapper.innerHTML = `<div class="list" id="expList"></div><div style="margin-top:12px" class="actions"><button id="addExp" class="btn neutral">+ Add Experience</button><button id="saveExp" class="btn bg-success text-white">Save</button><button id="toNext5" class="btn primary">Next</button></div>`;
     const list = wrapper.querySelector("#expList");
     function refresh() {
       normalizeState();
@@ -1203,7 +1203,7 @@ options.forEach(function (card) {
     normalizeState();
     const wrapper = document.createElement("div");
     wrapper.className = "form";
-    wrapper.innerHTML = `<div class="list" id="achList"></div><div style="margin-top:12px" class="actions"><button id="addAch" class="btn neutral">+ Add Achievement</button><div style="flex:1"></div><button id="saveAch" class="btn bg-success text-white">Save</button><button id="toNext6" class="btn primary">Next</button></div>`;
+    wrapper.innerHTML = `<div class="list" id="achList"></div><div style="margin-top:12px" class="actions"><button id="addAch" class="btn neutral">+ Add Achievement</button><button id="saveAch" class="btn bg-success text-white">Save</button><button id="toNext6" class="btn primary">Next</button></div>`;
     const list = wrapper.querySelector("#achList");
     function refresh() {
       normalizeState();

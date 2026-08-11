@@ -960,19 +960,49 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 
 /* Base Buttons */
 .btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  font-size: 14px;
-  padding: 10px 20px;
-  border-radius: var(--canva-pill-radius);
-  border: 1.5px solid transparent;
-  cursor: pointer;
-  text-decoration: none;
-  transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  padding: 8px 18px !important;
+  border-radius: 9999px !important;
+  border: 1.5px solid transparent !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+  word-break: keep-all !important;
+  text-align: center !important;
+  box-sizing: border-box !important;
+  flex-shrink: 0 !important;
+  transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.form .actions,
+.card-body .actions,
+.drawer-body .actions {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  gap: 10px !important;
+  flex-wrap: wrap !important;
+  margin-top: 16px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.form .actions > div[style*="flex:1"],
+.card-body .actions > div[style*="flex:1"],
+.drawer-body .actions > div[style*="flex:1"] {
+  display: none !important;
+}
+
+.form .actions > button:first-child,
+.card-body .actions > button:first-child,
+.drawer-body .actions > button:first-child {
+  margin-right: auto !important;
 }
 
 /* ── Filter Pills ── */
