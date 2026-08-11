@@ -144,13 +144,15 @@
 
 [data-theme="dark"] .nav .nav-link {
   color: #a0a0a0;
+  background: transparent !important;
 }
 
-[data-theme="dark"] .nav .nav-link:hover {
+[data-theme="dark"] .nav .nav-link:hover,
+[data-theme="dark"] .nav .nav-link:active {
   color: #ffffff !important;
-  background: #e60023 !important;
+  background: transparent !important;
   font-weight: 700 !important;
-  box-shadow: 0 4px 14px rgba(230, 0, 35, 0.4) !important;
+  box-shadow: none !important;
 }
 
 [data-theme="dark"] .nav .nav-link.active {
@@ -584,18 +586,23 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 .nav .nav-link {
   color: #495057;
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 14px;
   padding: 8px 18px;
   border-radius: 50rem;
-  transition: all 0.15s ease-in-out;
+  transition: all 0.22s ease-in-out;
+  position: relative;
+  overflow: hidden !important;
+  background: transparent !important;
+  border: none !important;
 }
 
-.nav .nav-link:hover {
-  color: #ffffff !important;
-  background: #e60023 !important;
+.nav .nav-link:hover,
+.nav .nav-link:active {
+  color: #e60023 !important;
+  background: transparent !important;
   font-weight: 700 !important;
-  box-shadow: 0 4px 14px rgba(230, 0, 35, 0.4) !important;
+  box-shadow: none !important;
 }
 
 .nav .nav-link.active {
@@ -683,6 +690,7 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 .pill,
 .header-cta-btn,
 .header-login-btn,
+.nav-link,
 .btn-ghost,
 .btn-pill-purple,
 .btn-outline-purple,
@@ -699,6 +707,7 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 .pill::before,
 .header-cta-btn::before,
 .header-login-btn::before,
+.nav-link::before,
 .btn-ghost::before,
 .btn-pill-purple::before,
 .btn-outline-purple::before,
@@ -710,7 +719,7 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
   left: -160%;
   width: 220%;
   height: 220%;
-  background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.15) 38%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0.15) 62%, transparent 80%);
+  background: linear-gradient(115deg, transparent 20%, rgba(230, 0, 35, 0.12) 38%, rgba(230, 0, 35, 0.5) 50%, rgba(230, 0, 35, 0.12) 62%, transparent 80%);
   transform: rotate(28deg);
   transition: transform 1.15s cubic-bezier(0.25, 1, 0.35, 1), left 1.15s cubic-bezier(0.25, 1, 0.35, 1), opacity 0.8s ease;
   opacity: 0;
@@ -733,6 +742,8 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 .header-cta-btn:active::before,
 .header-login-btn:hover::before,
 .header-login-btn:active::before,
+.nav-link:hover::before,
+.nav-link:active::before,
 .btn-ghost:hover::before,
 .btn-ghost:active::before,
 .btn-pill-purple:hover::before,
