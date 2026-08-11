@@ -1890,11 +1890,10 @@ button.selected,
   background: var(--canva-card);
   border: 1px solid var(--canva-border);
   border-radius: var(--canva-card-radius);
-  padding: 28px 24px;
+  overflow: hidden;
   box-shadow: var(--canva-shadow);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   transition: all 0.25s ease;
 }
 
@@ -1904,12 +1903,38 @@ button.selected,
   box-shadow: 0 14px 35px rgba(230, 0, 35, 0.18);
 }
 
+.blog-img-wrap {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #f1f5f9;
+}
+
+.blog-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.blog-card:hover .blog-img-wrap img {
+  transform: scale(1.06);
+}
+
+.blog-card-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
+
 .blog-tag {
   font-size: 11px;
   font-weight: 800;
   color: #e60023;
   letter-spacing: 0.08em;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .blog-title {
