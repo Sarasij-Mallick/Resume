@@ -3873,22 +3873,37 @@ button.dock-item.active span,
 
   .studio-dock {
     width: 100%;
-    height: 52px;
+    height: 58px;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    padding: 0 8px;
-    overflow-x: auto;
-    overflow-y: hidden;
-    gap: 6px;
+    padding: 0 10px 4px;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    gap: 8px;
     border-bottom: 1px solid var(--canva-border);
     -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(230, 0, 35, 0.6) rgba(255, 255, 255, 0.08);
   }
 
   .studio-dock::-webkit-scrollbar {
-    display: none;
+    display: block !important;
+    height: 5px !important;
+  }
+
+  .studio-dock::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 4px;
+  }
+
+  .studio-dock::-webkit-scrollbar-thumb {
+    background: rgba(230, 0, 35, 0.7);
+    border-radius: 4px;
+  }
+
+  .studio-dock::-webkit-scrollbar-thumb:hover {
+    background: #e60023;
   }
 
   .dock-item,
