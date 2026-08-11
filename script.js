@@ -2042,12 +2042,20 @@ function showToast(msg, timeout = 3000) {
     let searchQuery = "";
     let showAllTemplates = false;
 
+    function getInitialRowLimit() {
+      const width = window.innerWidth;
+      if (width <= 1024) return 2;
+      if (width <= 1240) return 3;
+      return 4;
+    }
+
     function applyTemplateFilters() {
       let visibleCount = 0;
       let staggeredIndex = 0;
       let matchIndex = 0;
 
       const isDefaultAllView = (activeCategory === "all" || activeCategory === "all templates") && !searchQuery;
+      const initialLimit = getInitialRowLimit();
 
       templateCards.forEach((card) => {
         const cardCat = (card.getAttribute("data-category") || "").toLowerCase().trim();
@@ -2058,7 +2066,7 @@ function showToast(msg, timeout = 3000) {
         const matchesSearch = !searchQuery || title.includes(searchQuery) || tag.includes(searchQuery) || cardCat.includes(searchQuery);
 
         if (matchesCat && matchesSearch) {
-          if (isDefaultAllView && !showAllTemplates && matchIndex >= 4) {
+          if (isDefaultAllView && !showAllTemplates && matchIndex >= initialLimit) {
             card.style.display = "none";
             card.style.animation = "none";
           } else {
@@ -2079,7 +2087,7 @@ function showToast(msg, timeout = 3000) {
 
       // Update Explore All / Show Fewer button visibility & text
       if (toggleWrap && toggleTemplatesBtn) {
-        if (isDefaultAllView && matchIndex > 4) {
+        if (isDefaultAllView && matchIndex > initialLimit) {
           toggleWrap.style.display = "block";
           if (showAllTemplates) {
             toggleTemplatesBtn.textContent = "Show Fewer Templates ↑";
@@ -2118,6 +2126,12 @@ function showToast(msg, timeout = 3000) {
         }
       });
     }
+
+    window.addEventListener("resize", () => {
+      if (!showAllTemplates) {
+        applyTemplateFilters();
+      }
+    });
 
     if (filterPills.length > 0 && templateCards.length > 0) {
       filterPills.forEach((pill) => {
