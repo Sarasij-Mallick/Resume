@@ -2805,16 +2805,29 @@ function showToast(msg, timeout = 3000) {
     idleTimer = setTimeout(showScreensaver, IDLE_TIMEOUT_MS);
   }
 
-  // Event listeners to detect activity and hide screensaver
+  let lastMouseX = -1;
+  let lastMouseY = -1;
+
+  function handleUserActivity(e) {
+    if (e && e.type === "mousemove") {
+      if (lastMouseX !== -1 && Math.abs(e.clientX - lastMouseX) < 5 && Math.abs(e.clientY - lastMouseY) < 5) {
+        return; // Ignore micro mouse jitter
+      }
+      lastMouseX = e.clientX;
+      lastMouseY = e.clientY;
+    }
+
+    if (overlay && overlay.getAttribute("aria-hidden") === "false") {
+      hideScreensaver();
+    } else {
+      resetIdleTimer();
+    }
+  }
+
+  // Event listeners to detect intentional activity and hide screensaver
   const activityEvents = ["mousemove", "mousedown", "keydown", "touchstart", "pointerdown", "scroll"];
   activityEvents.forEach((evtName) => {
-    window.addEventListener(evtName, () => {
-      if (overlay && overlay.getAttribute("aria-hidden") === "false") {
-        hideScreensaver();
-      } else {
-        resetIdleTimer();
-      }
-    }, { passive: true });
+    window.addEventListener(evtName, handleUserActivity, { passive: true });
   });
 
   // Start initial timer
