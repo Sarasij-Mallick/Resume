@@ -831,7 +831,7 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
   background: var(--canva-purple-hover) !important;
   color: #ffffff !important;
   border: none !important;
-  box-shadow: 0 6px 20px rgba(230, 0, 35, 0.5), 0 2px 8px rgba(255, 90, 95, 0.3) !important;
+  box-shadow: 0 6px 20px rgba(230, 0, 35, 0.45), 0 2px 8px rgba(230, 0, 35, 0.3) !important;
 }
 
 .btn-outline-purple {
@@ -855,20 +855,18 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 }
 
 [data-theme="dark"] .btn-outline-purple:hover {
-  background: rgba(230, 0, 35, 0.2) !important;
+  background: rgba(230, 0, 35, 0.15) !important;
   color: #ffffff !important;
   border: none !important;
-  box-shadow: 0 4px 16px rgba(255, 90, 95, 0.35) !important;
+  box-shadow: 0 4px 16px rgba(230, 0, 35, 0.3) !important;
 }
 
 [data-theme="dark"] .pill:not(.active):hover,
-[data-theme="dark"] .studio-btn:hover,
 [data-theme="dark"] .submit-btn:hover,
-[data-theme="dark"] .social-btn:hover,
-[data-theme="dark"] .tab-btn:not(.active):hover {
+[data-theme="dark"] .social-btn:hover {
   border: none !important;
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(230, 0, 35, 0.45), 0 0 20px rgba(255, 90, 95, 0.3) !important;
+  box-shadow: 0 6px 20px rgba(230, 0, 35, 0.4), 0 2px 8px rgba(230, 0, 35, 0.25) !important;
 }
 
 [data-theme="dark"] .tab-btn {
@@ -877,17 +875,17 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 }
 
 [data-theme="dark"] .tab-btn:hover {
-  color: #ffffff !important;
-  background: rgba(230, 0, 35, 0.2) !important;
+  color: #e60023 !important;
+  background: rgba(230, 0, 35, 0.08) !important;
   border: none !important;
-  box-shadow: 0 4px 14px rgba(230, 0, 35, 0.35), 0 0 16px rgba(255, 90, 95, 0.25) !important;
+  box-shadow: 0 4px 14px rgba(230, 0, 35, 0.25) !important;
 }
 
 [data-theme="dark"] .tab-btn.active {
   background: #e60023 !important;
   color: #ffffff !important;
   border: none !important;
-  box-shadow: 0 4px 14px rgba(230, 0, 35, 0.45), 0 0 18px rgba(255, 90, 95, 0.3) !important;
+  box-shadow: 0 4px 14px rgba(230, 0, 35, 0.35) !important;
 }
 
 [data-theme="dark"] .back-to-top {
