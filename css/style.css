@@ -157,8 +157,10 @@
 
 [data-theme="dark"] .nav .nav-link.active {
   color: #ffffff !important;
-  background: #e60023 !important;
-  box-shadow: 0 4px 14px rgba(230, 0, 35, 0.35) !important;
+  background: transparent !important;
+  font-weight: 700 !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 [data-theme="dark"] .btn-ghost {
@@ -606,10 +608,11 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 }
 
 .nav .nav-link.active {
-  color: #ffffff;
-  background: #e60023;
-  font-weight: 600;
-  box-shadow: 0 0.125rem 0.25rem rgba(230, 0, 35, 0.35);
+  color: #e60023 !important;
+  background: transparent !important;
+  font-weight: 700 !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 .actions {
@@ -1554,8 +1557,7 @@ button.selected,
 .pill.selected,
 .tab-btn.active,
 .tab-btn.selected,
-.step.active,
-.nav .nav-link.active {
+.step.active {
   background: #e60023 !important;
   color: #ffffff !important;
   font-weight: 700 !important;
