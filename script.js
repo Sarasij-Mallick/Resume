@@ -9,20 +9,7 @@ window.addEventListener("load", function () {
   }
 });
 
-// Mobile Templates Expand/Collapse Toggle
-var toggleTemplatesBtn = document.getElementById("toggleTemplatesBtn");
-var templatesGrid = document.querySelector(".templates-grid");
-if (toggleTemplatesBtn && templatesGrid) {
-  toggleTemplatesBtn.addEventListener("click", function () {
-    if (templatesGrid.classList.contains("show-all")) {
-      templatesGrid.classList.remove("show-all");
-      toggleTemplatesBtn.textContent = "Explore All 15+ Templates ↓";
-    } else {
-      templatesGrid.classList.add("show-all");
-      toggleTemplatesBtn.textContent = "Show Fewer Templates ↑";
-    }
-  });
-}
+
 
 var year = document.getElementById("year");
 if (year) year.textContent = new Date().getFullYear();
@@ -2048,35 +2035,61 @@ function showToast(msg, timeout = 3000) {
     const filterPills = document.querySelectorAll(".filter-pills .pill");
     const templateCards = document.querySelectorAll(".templates-grid .tmpl-card");
     const templatesGrid = document.querySelector(".templates-grid");
+    const toggleTemplatesBtn = document.getElementById("toggleTemplatesBtn");
+    const toggleWrap = document.querySelector(".show-more-templates-wrap");
 
     let activeCategory = "all";
     let searchQuery = "";
+    let showAllTemplates = false;
 
     function applyTemplateFilters() {
       let visibleCount = 0;
       let staggeredIndex = 0;
+      let matchIndex = 0;
+
+      const isDefaultAllView = (activeCategory === "all" || activeCategory === "all templates") && !searchQuery;
 
       templateCards.forEach((card) => {
         const cardCat = (card.getAttribute("data-category") || "").toLowerCase().trim();
         const title = (card.querySelector(".tmpl-title")?.textContent || "").toLowerCase();
         const tag = (card.querySelector(".tmpl-tag")?.textContent || "").toLowerCase();
 
-        const matchesCat = activeCategory === "all" || cardCat === activeCategory || cardCat.includes(activeCategory);
+        const matchesCat = activeCategory === "all" || activeCategory === "all templates" || cardCat === activeCategory || cardCat.includes(activeCategory);
         const matchesSearch = !searchQuery || title.includes(searchQuery) || tag.includes(searchQuery) || cardCat.includes(searchQuery);
 
         if (matchesCat && matchesSearch) {
-          card.style.display = "flex";
-          card.style.animation = "none";
-          // Trigger reflow to restart CSS animation smoothly
-          void card.offsetWidth;
-          card.style.animation = `tmplCardPopIn 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) ${staggeredIndex * 0.05}s forwards`;
-          staggeredIndex++;
-          visibleCount++;
+          if (isDefaultAllView && !showAllTemplates && matchIndex >= 4) {
+            card.style.display = "none";
+            card.style.animation = "none";
+          } else {
+            card.style.display = "flex";
+            card.style.animation = "none";
+            // Trigger reflow to restart CSS animation smoothly
+            void card.offsetWidth;
+            card.style.animation = `tmplCardPopIn 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) ${staggeredIndex * 0.05}s forwards`;
+            staggeredIndex++;
+            visibleCount++;
+          }
+          matchIndex++;
         } else {
           card.style.display = "none";
           card.style.animation = "none";
         }
       });
+
+      // Update Explore All / Show Fewer button visibility & text
+      if (toggleWrap && toggleTemplatesBtn) {
+        if (isDefaultAllView && matchIndex > 4) {
+          toggleWrap.style.display = "block";
+          if (showAllTemplates) {
+            toggleTemplatesBtn.textContent = "Show Fewer Templates ↑";
+          } else {
+            toggleTemplatesBtn.textContent = "Explore All 15+ Templates ↓";
+          }
+        } else {
+          toggleWrap.style.display = "none";
+        }
+      }
 
       let noResultEl = document.getElementById("noTemplatesFound");
       if (visibleCount === 0) {
@@ -2095,6 +2108,17 @@ function showToast(msg, timeout = 3000) {
       }
     }
 
+    if (toggleTemplatesBtn) {
+      toggleTemplatesBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        showAllTemplates = !showAllTemplates;
+        applyTemplateFilters();
+        if (!showAllTemplates && templatesGrid) {
+          templatesGrid.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+    }
+
     if (filterPills.length > 0 && templateCards.length > 0) {
       filterPills.forEach((pill) => {
         pill.addEventListener("click", (e) => {
@@ -2107,13 +2131,16 @@ function showToast(msg, timeout = 3000) {
           activeCategory = attr ? attr.toLowerCase() : text;
           if (activeCategory === "all templates") activeCategory = "all";
 
-          // Reset search query when switching category pills so user immediately sees all category templates!
+          showAllTemplates = false;
           searchQuery = "";
           if (templateSearch) templateSearch.value = "";
 
           applyTemplateFilters();
         });
       });
+
+      // Initialize filter on load
+      applyTemplateFilters();
     }
 
     const searchSuggestions = document.getElementById("searchSuggestions");
