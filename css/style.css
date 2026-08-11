@@ -871,6 +871,25 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
   box-shadow: 0 6px 20px rgba(230, 0, 35, 0.45), 0 0 20px rgba(255, 90, 95, 0.3) !important;
 }
 
+[data-theme="dark"] .tab-btn {
+  color: #a0a0a0;
+  border: none !important;
+}
+
+[data-theme="dark"] .tab-btn:hover {
+  color: #ffffff !important;
+  background: rgba(230, 0, 35, 0.2) !important;
+  border: none !important;
+  box-shadow: 0 4px 14px rgba(230, 0, 35, 0.35), 0 0 16px rgba(255, 90, 95, 0.25) !important;
+}
+
+[data-theme="dark"] .tab-btn.active {
+  background: #e60023 !important;
+  color: #ffffff !important;
+  border: none !important;
+  box-shadow: 0 4px 14px rgba(230, 0, 35, 0.45), 0 0 18px rgba(255, 90, 95, 0.3) !important;
+}
+
 [data-theme="dark"] .back-to-top {
   position: fixed !important;
   right: 28px !important;
