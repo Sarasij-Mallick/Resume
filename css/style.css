@@ -1839,8 +1839,8 @@ button.selected,
 
 .about-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
   margin-top: 40px;
 }
 
@@ -1866,16 +1866,120 @@ button.selected,
 }
 
 .about-card h3 {
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 800;
   margin: 0 0 10px;
   color: var(--canva-dark);
 }
 
 .about-card p {
-  font-size: 14px;
+  font-size: 13.5px;
   line-height: 1.6;
   color: var(--canva-muted);
+  margin: 0;
+}
+
+/* Stats Strip */
+.about-stats-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  background: linear-gradient(135deg, rgba(230, 0, 35, 0.06) 0%, rgba(17, 17, 17, 0.04) 100%);
+  border: 1px solid var(--canva-border);
+  border-radius: var(--canva-card-radius);
+  padding: 32px 24px;
+  margin: 48px 0;
+  text-align: center;
+}
+
+.stat-num {
+  font-family: 'Outfit', sans-serif;
+  font-size: 32px;
+  font-weight: 800;
+  color: #e60023;
+  letter-spacing: -0.02em;
+}
+
+.stat-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--canva-muted);
+  margin-top: 4px;
+}
+
+/* Story Row */
+.about-story-row {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 40px;
+  align-items: center;
+  margin-top: 36px;
+}
+
+.story-title {
+  font-size: 24px;
+  font-weight: 800;
+  margin: 10px 0 14px;
+  color: var(--canva-dark);
+}
+
+.story-desc {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--canva-muted);
+  margin: 0 0 20px;
+}
+
+.story-bullets {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--canva-dark);
+}
+
+.story-bullets li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.story-cta-card {
+  background: var(--canva-card);
+  border: 1.5px solid var(--canva-border);
+  border-radius: var(--canva-card-radius);
+  padding: 36px 28px;
+  box-shadow: var(--canva-shadow-hover);
+  position: relative;
+}
+
+.cta-card-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #e60023;
+  background: rgba(230, 0, 35, 0.1);
+  padding: 3px 9px;
+  border-radius: 9999px;
+  margin-bottom: 12px;
+}
+
+.story-cta-card h3 {
+  font-size: 20px;
+  font-weight: 800;
+  margin: 0 0 10px;
+  color: var(--canva-dark);
+}
+
+.story-cta-card p {
+  font-size: 14px;
+  color: var(--canva-muted);
+  line-height: 1.55;
   margin: 0;
 }
 
@@ -2042,13 +2146,33 @@ button.selected,
 }
 
 @media (max-width: 992px) {
-  .about-grid, .blog-grid {
+  .about-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .about-stats-strip {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px 12px;
+  }
+  .about-story-row {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .blog-grid {
     grid-template-columns: 1fr;
   }
   .contact-card-wrap {
     grid-template-columns: 1fr;
     padding: 28px 20px;
     gap: 32px;
+  }
+}
+
+@media (max-width: 576px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+  .about-stats-strip {
+    grid-template-columns: 1fr;
   }
 }
 
