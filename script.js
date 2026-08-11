@@ -1751,7 +1751,7 @@ options.forEach(function (card) {
     </div>`;
   }
 
-  // Export PDF with loading state & direct download via html2pdf
+  // Export PDF with 3.5s loading spinner state & direct download via html2pdf
   function exportPDF(evt) {
     const btn = (evt && evt.target) ? evt.target.closest("button") : (evt || document.getElementById("exportPdf") || document.getElementById("fullExportPdf"));
     let originalContent = "";
@@ -1760,63 +1760,63 @@ options.forEach(function (card) {
       btn.disabled = true;
       btn.style.pointerEvents = "none";
       btn.style.opacity = "0.85";
-      btn.innerHTML = `<span class="pdf-spinner"></span> Generating...`;
+      btn.innerHTML = `<span class="pdf-spinner"></span> Generating PDF...`;
     }
 
     showToast("⏳ Generating high-quality PDF document, please wait...");
 
-    const tempDiv = document.createElement("div");
-    tempDiv.style.position = "absolute";
-    tempDiv.style.left = "-9999px";
-    tempDiv.style.top = "-9999px";
-    tempDiv.style.width = "794px";
-    tempDiv.style.background = "#ffffff";
-    tempDiv.style.padding = "24px";
-    tempDiv.style.boxSizing = "border-box";
-    tempDiv.innerHTML = buildResumeHtml();
-    document.body.appendChild(tempDiv);
+    setTimeout(() => {
+      const tempDiv = document.createElement("div");
+      tempDiv.style.position = "absolute";
+      tempDiv.style.left = "-9999px";
+      tempDiv.style.top = "-9999px";
+      tempDiv.style.width = "794px";
+      tempDiv.style.background = "#ffffff";
+      tempDiv.style.padding = "24px";
+      tempDiv.style.boxSizing = "border-box";
+      tempDiv.innerHTML = buildResumeHtml();
+      document.body.appendChild(tempDiv);
 
-    const rawName = state.personal?.fullName ? state.personal.fullName.trim().replace(/\s+/g, "_") : "My";
-    const fileName = `${rawName}_Resume.pdf`;
+      const rawName = state.personal?.fullName ? state.personal.fullName.trim().replace(/\s+/g, "_") : "My";
+      const fileName = `${rawName}_Resume.pdf`;
 
-    const cleanup = () => {
-      if (tempDiv.parentNode) tempDiv.parentNode.removeChild(tempDiv);
-      if (btn) {
-        btn.disabled = false;
-        btn.style.pointerEvents = "auto";
-        btn.style.opacity = "1";
-        btn.innerHTML = originalContent;
-      }
-    };
-
-    if (typeof html2pdf !== "undefined") {
-      const opt = {
-        margin: [6, 6, 6, 6],
-        filename: fileName,
-        image: { type: "jpeg", quality: 0.98 },
-        html2canvas: { scale: 2, useCORS: true, logging: false },
-        jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
+      const cleanup = () => {
+        if (tempDiv.parentNode) tempDiv.parentNode.removeChild(tempDiv);
+        if (btn) {
+          btn.disabled = false;
+          btn.style.pointerEvents = "auto";
+          btn.style.opacity = "1";
+          btn.innerHTML = originalContent;
+        }
       };
 
-      html2pdf()
-        .set(opt)
-        .from(tempDiv)
-        .save()
-        .then(() => {
-          cleanup();
-          showToast("✅ PDF downloaded successfully!");
-        })
-        .catch((err) => {
-          console.warn("html2pdf error, falling back to window print:", err);
-          cleanup();
-          fallbackPrint();
-        });
-    } else {
-      setTimeout(() => {
+      if (typeof html2pdf !== "undefined") {
+        const opt = {
+          margin: [6, 6, 6, 6],
+          filename: fileName,
+          image: { type: "jpeg", quality: 0.98 },
+          html2canvas: { scale: 2, useCORS: true, logging: false },
+          jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
+        };
+
+        html2pdf()
+          .set(opt)
+          .from(tempDiv)
+          .save()
+          .then(() => {
+            cleanup();
+            showToast("✅ PDF downloaded successfully!");
+          })
+          .catch((err) => {
+            console.warn("html2pdf error, falling back to window print:", err);
+            cleanup();
+            fallbackPrint();
+          });
+      } else {
         cleanup();
         fallbackPrint();
-      }, 800);
-    }
+      }
+    }, 3500);
   }
 
   function fallbackPrint() {
