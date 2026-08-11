@@ -915,7 +915,7 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
   font-size: 16px;
   padding: 13px 28px;
   border-radius: var(--canva-pill-radius);
-  border: 2px solid var(--canva-purple) !important;
+  border: 1px solid var(--canva-purple) !important;
   box-shadow: none;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -923,7 +923,7 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 .btn-pill-purple:hover {
   background: var(--canva-purple) !important;
   color: #ffffff !important;
-  border: 2px solid var(--canva-purple) !important;
+  border: 1px solid var(--canva-purple) !important;
   box-shadow: 0 6px 24px rgba(230, 0, 35, 0.45), 0 2px 8px rgba(230, 0, 35, 0.3) !important;
   transform: translateY(-1px);
 }
@@ -931,14 +931,14 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 [data-theme="dark"] .btn-pill-purple {
   background: transparent !important;
   color: #ff4d6d !important;
-  border: 2px solid #ff4d6d !important;
+  border: 1px solid #ff4d6d !important;
   box-shadow: none;
 }
 
 [data-theme="dark"] .btn-pill-purple:hover {
   background: #e60023 !important;
   color: #ffffff !important;
-  border: 2px solid #e60023 !important;
+  border: 1px solid #e60023 !important;
   box-shadow: 0 6px 20px rgba(230, 0, 35, 0.45), 0 2px 8px rgba(230, 0, 35, 0.3) !important;
   transform: translateY(-1px);
 }
