@@ -49,75 +49,105 @@ options.forEach(function (card) {
   });
 });
 
-// ── SCROLL REVEAL SYSTEM ──────────────────────────────────
+// ── PREMIUM SCROLL REVEAL SYSTEM ──────────────────────────
 (function () {
-  // 1. Auto-add reveal classes to all major content elements
-  var revealSelectors = [
-    // Section headings
-    { sel: '.section-head',         cls: 'reveal' },
-    { sel: '.hero-content',         cls: 'reveal-left' },
-    { sel: '.hero-visual',          cls: 'reveal-right' },
-    { sel: '.trust-bar .trust-title', cls: 'reveal' },
-    { sel: '.trust-logos',          cls: 'reveal' },
-    // Cards (stagger handled by wrapper)
-    { sel: '.about-grid',           cls: 'reveal-stagger' },
-    { sel: '.path-cards',           cls: 'reveal-stagger' },
-    { sel: '.templates-grid',       cls: 'reveal-stagger' },
-    // Individual elements
-    { sel: '.tmpl-card',            cls: 'reveal-scale' },
-    { sel: '.about-card',           cls: 'reveal' },
-    { sel: '.path-card',            cls: 'reveal' },
-    { sel: '.stat-block',           cls: 'reveal-scale' },
-    { sel: '.testimonial-card',     cls: 'reveal' },
-    { sel: '.blog-card',            cls: 'reveal-scale' },
+
+  // Hero elements animate via CSS @keyframes on page load — skip them
+  var heroSkip = ['.hero-content', '.hero-visual', '.hero-content .kicker',
+                  '.hero-content .title', '.hero-content .lead',
+                  '.hero-content .hero-actions', '.floating-badge'];
+
+  function isHeroEl(el) {
+    return heroSkip.some(function(s) {
+      return el.closest && el.closest(s);
+    });
+  }
+
+  // 1. Selectors → animation class mapping
+  var revealMap = [
+    { sel: '.section-head',                cls: 'reveal' },
+    { sel: '.trust-bar .trust-title',      cls: 'reveal' },
+    { sel: '.trust-logos',                 cls: 'reveal-stagger' },
+    { sel: '.about-grid',                  cls: 'reveal-stagger' },
+    { sel: '.path-cards',                  cls: 'reveal-stagger' },
+    { sel: '.templates-grid',              cls: 'reveal-stagger' },
+    { sel: '.about-card',                  cls: 'reveal-scale' },
+    { sel: '.path-card',                   cls: 'reveal-scale' },
+    { sel: '.tmpl-card',                   cls: 'reveal-scale' },
+    { sel: '.stat-block, .stat-item',      cls: 'reveal-scale' },
+    { sel: '.testimonial-card',            cls: 'reveal' },
+    { sel: '.blog-card',                   cls: 'reveal-scale' },
     { sel: '.choose-path-section .center', cls: 'reveal' },
-    { sel: '.about-section .section-head', cls: 'reveal' },
-    { sel: '.contact-form-wrap',    cls: 'reveal-right' },
-    { sel: '.contact-info',         cls: 'reveal-left' },
-    { sel: '.footer-brand',         cls: 'reveal-left' },
-    { sel: '.footer-links-col',     cls: 'reveal' },
+    { sel: '.contact-form-wrap',           cls: 'reveal-right' },
+    { sel: '.contact-info',                cls: 'reveal-left' },
+    { sel: '.footer-brand',                cls: 'reveal-left' },
+    { sel: '.footer-links-col',            cls: 'reveal' },
+    { sel: '.kicker',                      cls: 'reveal' },
+    { sel: '.about-section .title',        cls: 'reveal' },
+    { sel: '.about-section .subtitle',     cls: 'reveal' },
   ];
 
-  revealSelectors.forEach(function (item) {
-    document.querySelectorAll(item.sel).forEach(function (el) {
-      // Don't add twice
-      if (!el.classList.contains('reveal') &&
-          !el.classList.contains('reveal-left') &&
-          !el.classList.contains('reveal-right') &&
-          !el.classList.contains('reveal-scale') &&
-          !el.classList.contains('reveal-stagger')) {
+  var revealClasses = ['reveal','reveal-left','reveal-right','reveal-scale','reveal-stagger'];
+
+  function hasReveal(el) {
+    return revealClasses.some(function(c) { return el.classList.contains(c); });
+  }
+
+  revealMap.forEach(function(item) {
+    document.querySelectorAll(item.sel).forEach(function(el) {
+      if (!hasReveal(el) && !isHeroEl(el)) {
         el.classList.add(item.cls);
       }
     });
   });
 
-  // 2. IntersectionObserver — triggers .visible class
+  // 2. Trust logos — individual stagger via inline transitionDelay
+  document.querySelectorAll('.trust-logo-text, .trust-logo').forEach(function(el, i) {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(18px)';
+    el.style.transition = 'opacity 0.55s cubic-bezier(0.22,1,0.36,1) ' + (i * 0.1) + 's, transform 0.55s cubic-bezier(0.22,1,0.36,1) ' + (i * 0.1) + 's';
+    el.dataset.logoReveal = '1';
+  });
+
+  // 3. Observer with staggered logo activation
   var revealObserver = new IntersectionObserver(
-    function (entries) {
-      entries.forEach(function (entry) {
+    function(entries) {
+      entries.forEach(function(entry) {
         if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          revealObserver.unobserve(entry.target); // fire only once
+          var el = entry.target;
+          el.classList.add('visible');
+
+          // Activate trust-logo children if this is the logos container
+          if (el.classList.contains('trust-logos') || el.classList.contains('trust-bar')) {
+            el.querySelectorAll('[data-logo-reveal]').forEach(function(logo) {
+              logo.style.opacity = '1';
+              logo.style.transform = 'none';
+            });
+          }
+
+          revealObserver.unobserve(el);
         }
       });
     },
-    { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+    { threshold: 0.07, rootMargin: '0px 0px -30px 0px' }
   );
 
-  // 3. Observe all reveal elements
-  document.querySelectorAll(
-    '.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-stagger, .fade-up'
-  ).forEach(function (el) {
+  // 4. Also watch trust-bar for logo stagger
+  var trustBar = document.querySelector('.trust-bar');
+  if (trustBar) revealObserver.observe(trustBar);
+
+  // 5. Observe all reveal elements
+  document.querySelectorAll(revealClasses.map(function(c){ return '.'+c; }).join(',')).forEach(function(el) {
     revealObserver.observe(el);
   });
 
   // Legacy .fade-up support
-  document.querySelectorAll('.fade-up').forEach(function (el) {
-    el.classList.add('reveal');
+  document.querySelectorAll('.fade-up').forEach(function(el) {
+    if (!hasReveal(el)) el.classList.add('reveal');
     revealObserver.observe(el);
   });
-})();
 
+})();
 
 
 // Back-to-top button behavior with Radial Progress Ring & Rocket Launch animation
