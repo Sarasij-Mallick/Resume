@@ -391,15 +391,15 @@
   box-sizing: border-box;
 }
 
-/* Custom Cute Mini Paper / Diary Cursor */
+/* Custom Cute Mini Paper / Diary Cursor (Ultra Small 15x15) */
 *, html, body {
-  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='0 0 24 24' fill='none' stroke='%23111111' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'><path fill='%23ffffff' d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z'/><polyline points='14 2 14 8 20 8' fill='%23fff0f2' stroke='%23e60023' stroke-width='1.5'/><line x1='8' y1='12' x2='16' y2='12' stroke='%23e60023' stroke-width='1.5'/><line x1='8' y1='16' x2='14' y2='16' stroke='%2364748b' stroke-width='1.5'/></svg>") 2 2, auto;
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='15' height='15' viewBox='0 0 24 24' fill='none' stroke='%23111111' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path fill='%23ffffff' d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z'/><polyline points='14 2 14 8 20 8' fill='%23fff0f2' stroke='%23e60023' stroke-width='2'/><line x1='8' y1='12' x2='16' y2='12' stroke='%23e60023' stroke-width='2'/><line x1='8' y1='16' x2='14' y2='16' stroke='%2364748b' stroke-width='2'/></svg>") 0 0, auto;
 }
 
 /* Custom Pointer Cursor for Clickable Elements (Buttons, Links, Inputs, Pills) */
 a, button, input, select, textarea, label, [role="button"],
 .btn, .tab-btn, .submit-btn, .social-btn, .pill, .nav-link, .tmpl-card, .path-card, .studio-btn, .theme-toggle-btn {
-  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23e60023' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path fill='%23ffffff' d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z'/><polyline points='14 2 14 8 20 8' fill='%23e60023' stroke='%23e60023'/><line x1='8' y1='12' x2='16' y2='12' stroke='%23e60023' stroke-width='2'/><line x1='8' y1='16' x2='14' y2='16' stroke='%23e60023' stroke-width='2'/></svg>") 2 2, pointer !important;
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='15' height='15' viewBox='0 0 24 24' fill='none' stroke='%23e60023' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><path fill='%23ffffff' d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z'/><polyline points='14 2 14 8 20 8' fill='%23e60023' stroke='%23e60023'/><line x1='8' y1='12' x2='16' y2='12' stroke='%23e60023' stroke-width='2.2'/><line x1='8' y1='16' x2='14' y2='16' stroke='%23e60023' stroke-width='2.2'/></svg>") 0 0, pointer !important;
 }
 
 html {
