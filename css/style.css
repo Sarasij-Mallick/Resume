@@ -3070,14 +3070,6 @@ button.selected,
     gap: 16px;
   }
 
-  .templates-grid .tmpl-card:nth-child(n+5) {
-    display: none !important;
-  }
-
-  .templates-grid.show-all .tmpl-card {
-    display: flex !important;
-  }
-
   .site-header {
     height: 56px;
     padding: 0 8px;
@@ -3187,37 +3179,46 @@ button.selected,
     font-size: 13.5px;
   }
 
-  /* Minimal Mobile Footer Section */
+  /* Mobile Footer Section */
   .site-footer {
-    padding: 8px 0 6px;
+    padding: 36px 0 24px;
   }
 
-  .footer-inner {
-    flex-direction: column;
+  .footer-top-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    margin-bottom: 28px;
+  }
+
+  .footer-col-brand {
     align-items: center;
     text-align: center;
-    gap: 6px;
   }
 
-  .footer-brand p, .footer-brand-desc {
-    display: none !important;
+  .footer-desc {
+    max-width: 100%;
   }
 
-  .footer-brand .brand {
-    font-size: 15px;
-  }
-
-  .foot-nav {
-    gap: 10px;
-    font-size: 11px;
-    flex-wrap: wrap;
+  .footer-trust-pills {
     justify-content: center;
   }
 
-  .footer-legal, .legal {
-    font-size: 10.5px;
-    margin-top: 2px;
-    opacity: 0.75;
+  .social-links {
+    justify-content: center;
+  }
+
+  .footer-col {
+    text-align: center;
+  }
+
+  .footer-links-list {
+    align-items: center;
+  }
+
+  .footer-bottom-bar {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
   }
 
   .trust-logos {
