@@ -3305,8 +3305,8 @@ button.selected,
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 14px 0;
-  gap: 8px;
+  padding: 8px 0;
+  gap: 3px;
   z-index: 100;
   overflow-x: hidden !important;
   overflow-y: auto;
@@ -3331,9 +3331,9 @@ button.selected,
 
 .dock-item,
 button.dock-item {
-  width: 72px;
-  min-height: 52px;
-  padding: 6px 4px;
+  width: 74px;
+  min-height: 44px;
+  padding: 4px 2px;
   border-radius: 8px !important;
   background: transparent !important;
   background-color: transparent !important;
@@ -3344,8 +3344,8 @@ button.dock-item {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 3px;
-  font-size: 11px;
+  gap: 2px;
+  font-size: 10px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -3354,7 +3354,7 @@ button.dock-item {
 }
 
 .dock-item span {
-  font-size: 11px;
+  font-size: 10px;
   line-height: 1.1;
   text-align: center;
   max-width: 100%;
@@ -3364,8 +3364,8 @@ button.dock-item {
 }
 
 .dock-item svg {
-  width: 18px;
-  height: 18px;
+  width: 17px;
+  height: 17px;
   fill: currentColor;
   color: inherit;
   transition: fill 0.2s ease, color 0.2s ease;
@@ -3873,14 +3873,14 @@ button.dock-item.active span,
 
   .studio-dock {
     width: 100%;
-    height: 56px;
+    height: 52px;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    padding: 0 12px;
+    padding: 0 8px;
     overflow-x: auto;
     overflow-y: hidden;
-    gap: 8px;
+    gap: 6px;
     border-bottom: 1px solid var(--canva-border);
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
@@ -3895,14 +3895,14 @@ button.dock-item.active span,
   button.dock-item {
     width: auto;
     min-width: max-content;
-    height: 46px;
-    padding: 4px 10px;
-    font-size: 11px;
+    height: 42px;
+    padding: 4px 8px;
+    font-size: 10.5px;
     flex-shrink: 0;
   }
 
   .dock-item span {
-    font-size: 11px;
+    font-size: 10.5px;
     white-space: nowrap;
   }
 
