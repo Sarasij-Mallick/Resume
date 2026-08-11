@@ -159,7 +159,7 @@
 
 [data-theme="dark"] .search-bar-wrap .search-input {
   background: #2b3035 !important;
-  border-color: #495057 !important;
+  border: none !important;
   color: #f8f9fa !important;
 }
 
@@ -1109,13 +1109,61 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
   align-items: center;
   border-radius: var(--canva-pill-radius);
   transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(0, 196, 204, 0.25), 0 0 20px rgba(125, 42, 232, 0.2);
+  animation: neonLinearBeamLight 4s linear infinite;
+}
+
+.search-bar-wrap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(from var(--neonAngle), #00e5ff 0deg, #7d2ae8 90deg, #ff007f 180deg, #ffaa00 270deg, #00e5ff 360deg);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.search-bar-wrap:focus-within {
+  animation: neonLinearBeamFocusLight 2s linear infinite;
+}
+
+@keyframes neonLinearBeamLight {
+  0% {
+    --neonAngle: 0deg;
+    box-shadow: 0 0 10px rgba(0, 196, 204, 0.25), 0 0 20px rgba(125, 42, 232, 0.2);
+  }
+  50% {
+    --neonAngle: 180deg;
+    box-shadow: 0 0 14px rgba(255, 0, 127, 0.35), 0 0 24px rgba(255, 170, 0, 0.25);
+  }
+  100% {
+    --neonAngle: 360deg;
+    box-shadow: 0 0 10px rgba(0, 196, 204, 0.25), 0 0 20px rgba(125, 42, 232, 0.2);
+  }
+}
+
+@keyframes neonLinearBeamFocusLight {
+  0% {
+    --neonAngle: 0deg;
+    box-shadow: 0 0 16px rgba(0, 196, 204, 0.45), 0 0 30px rgba(125, 42, 232, 0.35);
+  }
+  50% {
+    --neonAngle: 180deg;
+    box-shadow: 0 0 20px rgba(255, 0, 127, 0.55), 0 0 34px rgba(255, 170, 0, 0.4);
+  }
+  100% {
+    --neonAngle: 360deg;
+    box-shadow: 0 0 16px rgba(0, 196, 204, 0.45), 0 0 30px rgba(125, 42, 232, 0.35);
+  }
 }
 
 [data-theme="dark"] .search-bar-wrap {
-  padding: 1.5px;
-  background: conic-gradient(from var(--neonAngle), #00e5ff 0deg, #7d2ae8 90deg, #ff007f 180deg, #ffaa00 270deg, #00e5ff 360deg);
-  animation: neonLinearBeam 4s linear infinite;
   box-shadow: 0 0 14px rgba(0, 229, 255, 0.45), 0 0 28px rgba(125, 42, 232, 0.35);
+  animation: neonLinearBeam 4s linear infinite;
 }
 
 @keyframes neonLinearBeam {
@@ -1155,11 +1203,11 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 .search-bar-wrap .search-input,
 input.search-input {
   width: 100%;
-  height: 56px;
+  height: 52px;
   padding: 0 20px 0 56px !important;
   font-size: 16px;
   border-radius: var(--canva-pill-radius);
-  border: 2px solid #e2e8f0;
+  border: none !important;
   background: #ffffff;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
   outline: none;
@@ -1169,13 +1217,15 @@ input.search-input {
 
 .search-bar-wrap .search-input:focus,
 input.search-input:focus {
-  border-color: var(--canva-purple);
-  box-shadow: 0 6px 24px rgba(125, 42, 232, 0.15);
+  border: none !important;
+  outline: none;
 }
 
 [data-theme="dark"] .search-bar-wrap .search-input {
   border: none !important;
   height: 52px;
+  background: #2b3035 !important;
+  color: #f8f9fa !important;
 }
 
 .search-icon {
