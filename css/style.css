@@ -139,58 +139,62 @@
 
 [data-theme="dark"] .nav {
   background: #1a1d20;
-  border-color: #495057;
+  border-color: #333333;
 }
 
 [data-theme="dark"] .nav .nav-link {
-  color: #a7acb1;
+  color: #a0a0a0;
 }
 
 [data-theme="dark"] .nav .nav-link:hover {
-  color: #6ea8fe;
-  background: rgba(13, 110, 253, 0.15);
+  color: #e60023 !important;
+  background: rgba(230, 0, 35, 0.08) !important;
+  box-shadow: 0 4px 14px rgba(230, 0, 35, 0.25) !important;
 }
 
 [data-theme="dark"] .nav .nav-link.active {
-  color: #ffffff;
-  background: #0d6efd;
+  color: #ffffff !important;
+  background: #e60023 !important;
+  box-shadow: 0 4px 14px rgba(230, 0, 35, 0.35) !important;
 }
 
 [data-theme="dark"] .btn-ghost {
   color: #f8f9fa;
-  border-color: #495057;
+  border: none !important;
 }
 
 [data-theme="dark"] .btn-ghost:hover {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(230, 0, 35, 0.08) !important;
+  color: #e60023 !important;
+  box-shadow: 0 4px 14px rgba(230, 0, 35, 0.25) !important;
 }
 
 [data-theme="dark"] .search-bar-wrap .search-input {
-  background: #2b3035 !important;
+  background: #1e1e1e !important;
   border: none !important;
   color: #f8f9fa !important;
 }
 
 [data-theme="dark"] .pill {
-  background: #343a40;
-  color: #dee2e6;
-  border-color: #495057;
+  background: #1e1e1e;
+  color: #a0a0a0;
+  border-color: #333333;
   transition: all 0.15s ease-in-out;
 }
 
 [data-theme="dark"] .pill:hover {
-  background: rgba(13, 110, 253, 0.15);
-  color: #ffffff;
-  border-color: #0d6efd;
-  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.3);
+  background: rgba(230, 0, 35, 0.08) !important;
+  color: #e60023 !important;
+  border-color: #ff5a5f !important;
+  box-shadow: 0 4px 14px rgba(230, 0, 35, 0.25) !important;
   transform: translateY(-1px);
 }
 
 [data-theme="dark"] .pill.active {
-  background: #0d6efd;
-  color: #ffffff;
-  border-color: #0d6efd;
-  box-shadow: 0 0.125rem 0.25rem rgba(13, 110, 253, 0.4);
+  background: #e60023 !important;
+  color: #ffffff !important;
+  border: none !important;
+  box-shadow: 0 4px 14px rgba(230, 0, 35, 0.35) !important;
 }
 
 [data-theme="dark"] .tmpl-card {
