@@ -1550,7 +1550,6 @@ options.forEach(function (card) {
         </div>
       </div>`;
     }
-    }
 
     // Creative Layout
     if (theme.layout === "creative") {
