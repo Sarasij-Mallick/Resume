@@ -706,31 +706,44 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 .theme-toggle-btn::before {
   content: "";
   position: absolute;
-  top: -50%;
-  left: -150%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(60deg, transparent 30%, rgba(255, 255, 255, 0.45) 50%, transparent 70%);
-  transform: rotate(30deg);
-  transition: all 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+  top: -60%;
+  left: -160%;
+  width: 220%;
+  height: 220%;
+  background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.15) 38%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0.15) 62%, transparent 80%);
+  transform: rotate(28deg);
+  transition: transform 1.15s cubic-bezier(0.25, 1, 0.35, 1), left 1.15s cubic-bezier(0.25, 1, 0.35, 1), opacity 0.8s ease;
   opacity: 0;
   pointer-events: none;
   z-index: 5;
+  filter: blur(0.5px);
 }
 
 .btn:hover::before,
+.btn:active::before,
 .tab-btn:hover::before,
+.tab-btn:active::before,
 .submit-btn:hover::before,
+.submit-btn:active::before,
 .social-btn:hover::before,
+.social-btn:active::before,
 .pill:hover::before,
+.pill:active::before,
 .header-cta-btn:hover::before,
+.header-cta-btn:active::before,
 .header-login-btn:hover::before,
+.header-login-btn:active::before,
 .btn-ghost:hover::before,
+.btn-ghost:active::before,
 .btn-pill-purple:hover::before,
+.btn-pill-purple:active::before,
 .btn-outline-purple:hover::before,
+.btn-outline-purple:active::before,
 .studio-btn:hover::before,
-.theme-toggle-btn:hover::before {
-  left: 120%;
+.studio-btn:active::before,
+.theme-toggle-btn:hover::before,
+.theme-toggle-btn:active::before {
+  left: 130%;
   opacity: 1;
 }
 
