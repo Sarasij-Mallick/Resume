@@ -3,17 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login & Register - ResumeBuilder</title>
+  <title>Login & Register - ResumeBuilder (Pinterest Theme)</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <style>
-    /* Premium Login & Register Page Aesthetics */
+    /* Pinterest Design System & Aesthetics */
+    :root {
+      --p-red: #e60023;
+      --p-red-hover: #ad081b;
+      --p-dark: #111111;
+      --p-gray: #767676;
+      --p-border: #e1e1e1;
+      --p-bg: #eef1f5;
+    }
+
     html, body {
       min-height: 100vh;
       margin: 0;
       padding: 0;
-      font-family: 'Inter', sans-serif;
-      background: #0f172a;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--p-bg);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -33,29 +42,29 @@
     .bg-orb {
       position: absolute;
       border-radius: 50%;
-      filter: blur(100px);
-      opacity: 0.5;
+      filter: blur(120px);
+      opacity: 0.4;
       animation: pulseOrb 8s infinite alternate ease-in-out;
     }
     .orb-1 {
-      width: 450px;
-      height: 450px;
-      background: var(--canva-purple);
-      top: -100px;
-      left: -100px;
+      width: 500px;
+      height: 500px;
+      background: #e60023;
+      top: -120px;
+      left: -120px;
     }
     .orb-2 {
-      width: 400px;
-      height: 400px;
-      background: var(--canva-cyan);
-      bottom: -100px;
-      right: -100px;
+      width: 450px;
+      height: 450px;
+      background: #ff5a5f;
+      bottom: -120px;
+      right: -120px;
       animation-delay: -4s;
     }
 
     @keyframes pulseOrb {
-      0% { transform: scale(1) translate(0, 0); opacity: 0.4; }
-      100% { transform: scale(1.15) translate(30px, -20px); opacity: 0.6; }
+      0% { transform: scale(1) translate(0, 0); opacity: 0.3; }
+      100% { transform: scale(1.15) translate(30px, -20px); opacity: 0.5; }
     }
 
     /* Custom Sleek Scrollbar */
@@ -63,21 +72,21 @@
       width: 8px;
     }
     ::-webkit-scrollbar-track {
-      background: #0f172a;
+      background: #eef1f5;
     }
     ::-webkit-scrollbar-thumb {
-      background: rgba(255, 255, 255, 0.2);
+      background: #cdcdcd;
       border-radius: 9999px;
     }
     ::-webkit-scrollbar-thumb:hover {
-      background: rgba(255, 255, 255, 0.4);
+      background: #a8a8a8;
     }
 
     .auth-container {
       position: relative;
       z-index: 10;
       width: 100%;
-      max-width: 1040px;
+      max-width: 1020px;
       margin: 24px;
     }
 
@@ -85,17 +94,17 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       background: #ffffff;
-      border-radius: 28px;
-      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
-      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 32px;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.12);
+      border: 1px solid rgba(0, 0, 0, 0.05);
       overflow: hidden;
       min-height: 600px;
       transition: all 0.3s ease;
     }
 
-    /* Left Side Branding Showcase */
+    /* Left Side Pinterest Showcase Banner */
     .auth-banner {
-      background: linear-gradient(135deg, #1e1b4b 0%, #312e81 40%, #7d2ae8 100%);
+      background: linear-gradient(145deg, #e60023 0%, #c4001a 45%, #111111 100%);
       padding: 44px;
       display: flex;
       flex-direction: column;
@@ -110,8 +119,8 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-      opacity: 0.3;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.35;
     }
 
     .banner-brand {
@@ -122,9 +131,24 @@
       color: #fff;
     }
 
-    .banner-brand .brand-name {
+    .banner-brand .brand-badge {
+      width: 42px;
+      height: 42px;
+      background: #ffffff;
+      color: #e60023;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-family: 'Outfit', sans-serif;
       font-size: 22px;
+      font-weight: 900;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .banner-brand .brand-name {
+      font-family: 'Outfit', sans-serif;
+      font-size: 24px;
       font-weight: 800;
       letter-spacing: -0.02em;
     }
@@ -137,33 +161,31 @@
 
     .banner-hero-content h1 {
       font-family: 'Outfit', sans-serif;
-      font-size: 32px;
+      font-size: 34px;
       font-weight: 800;
-      line-height: 1.25;
-      margin: 0 0 14px;
+      line-height: 1.2;
+      margin: 0 0 16px;
       letter-spacing: -0.02em;
-      transition: opacity 0.3s ease;
     }
 
     .banner-hero-content p {
-      font-size: 14.5px;
-      color: rgba(255, 255, 255, 0.85);
-      line-height: 1.55;
-      margin: 0 0 24px;
-      transition: opacity 0.3s ease;
+      font-size: 15px;
+      color: rgba(255, 255, 255, 0.9);
+      line-height: 1.6;
+      margin: 0 0 28px;
     }
 
     .stat-badge {
       display: inline-flex;
       align-items: center;
       gap: 12px;
-      background: rgba(255, 255, 255, 0.12);
-      backdrop-filter: blur(10px);
-      padding: 10px 18px;
+      background: rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(12px);
+      padding: 10px 20px;
       border-radius: 9999px;
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      font-size: 13px;
-      font-weight: 600;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      font-size: 13.5px;
+      font-weight: 700;
     }
 
     .avatar-stack {
@@ -174,29 +196,30 @@
       width: 24px;
       height: 24px;
       border-radius: 50%;
-      background: #7d2ae8;
-      border: 2px solid #312e81;
+      background: #e60023;
+      border: 2px solid #ffffff;
       margin-left: -8px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       font-size: 10px;
       font-weight: 800;
+      color: #fff;
     }
-    .avatar-stack span:first-child { margin-left: 0; background: #00c4cc; }
-    .avatar-stack span:nth-child(2) { background: #f43f5e; }
-    .avatar-stack span:nth-child(3) { background: #10b981; }
+    .avatar-stack span:first-child { margin-left: 0; background: #111111; }
+    .avatar-stack span:nth-child(2) { background: #ff5a5f; }
+    .avatar-stack span:nth-child(3) { background: #0084ff; }
 
     .banner-footer {
       font-size: 13px;
-      color: rgba(255, 255, 255, 0.65);
+      color: rgba(255, 255, 255, 0.7);
       position: relative;
       z-index: 2;
     }
 
-    /* Right Side Auth Form */
+    /* Pinterest Style Right Auth Form */
     .auth-box {
-      padding: 36px 40px;
+      padding: 40px 44px;
       position: relative;
       display: flex;
       flex-direction: column;
@@ -204,17 +227,37 @@
       background: #ffffff;
     }
 
+    .pinterest-top-logo {
+      text-align: center;
+      margin-bottom: 14px;
+    }
+
+    .pinterest-top-logo .logo-circle {
+      width: 48px;
+      height: 48px;
+      background: #e60023;
+      color: #ffffff;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Outfit', sans-serif;
+      font-size: 26px;
+      font-weight: 900;
+      box-shadow: 0 6px 18px rgba(230, 0, 35, 0.28);
+    }
+
     .close-btn {
       position: absolute;
       top: 20px;
       right: 20px;
-      width: 32px;
-      height: 32px;
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
-      background: #f1f5f9;
+      background: #efefef;
       border: none;
-      font-size: 18px;
-      color: #64748b;
+      font-size: 20px;
+      color: #111111;
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -223,41 +266,41 @@
       z-index: 5;
     }
     .close-btn:hover {
-      background: #e2e8f0;
-      color: #0f172a;
+      background: #e2e2e2;
+      transform: scale(1.05);
     }
 
     /* Tab Switcher Pills */
     .tab-switcher {
       display: flex;
-      background: #f1f5f9;
+      background: #efefef;
       padding: 4px;
       border-radius: 9999px;
-      margin-bottom: 20px;
+      margin-bottom: 22px;
     }
 
     .tab-btn {
       flex: 1;
-      padding: 9px 0;
+      padding: 10px 0;
       border: none !important;
       background: transparent;
       border-radius: 9999px;
       font-family: 'Inter', sans-serif;
-      font-size: 14px;
+      font-size: 14.5px;
       font-weight: 700;
-      color: #5f6368;
+      color: #5f5f5f;
       cursor: pointer;
-      transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.22s ease;
     }
 
     .tab-btn:hover {
-      color: #7d2ae8;
+      color: #111111;
     }
 
     .tab-btn.active {
-      background: #ffffff;
-      color: #7d2ae8;
-      box-shadow: 0 2px 8px rgba(60, 64, 67, 0.15);
+      background: #e60023;
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(230, 0, 35, 0.3);
     }
 
     .form-section {
@@ -270,51 +313,52 @@
     }
 
     .form-header {
-      margin-bottom: 16px;
+      text-align: center;
+      margin-bottom: 20px;
     }
 
     .form-header h2 {
       font-family: 'Outfit', sans-serif;
-      font-size: 24px;
+      font-size: 26px;
       font-weight: 800;
-      margin: 0 0 4px;
-      color: #0f172a;
-      letter-spacing: -0.01em;
+      margin: 0 0 6px;
+      color: #111111;
+      letter-spacing: -0.02em;
     }
 
     .form-header p {
-      font-size: 13.5px;
-      color: #64748b;
+      font-size: 14px;
+      color: #767676;
       margin: 0;
     }
 
-    /* Social Auth Buttons */
+    /* Social Auth Buttons - Pinterest Style Pills */
     .social-btn-group {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-bottom: 14px;
+      gap: 12px;
+      margin-bottom: 16px;
     }
 
     .social-btn {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      padding: 9px 14px;
-      border-radius: 10px;
-      border: 1.5px solid #e2e8f0;
+      gap: 10px;
+      padding: 11px 16px;
+      border-radius: 24px;
+      border: 2px solid #e1e1e1;
       background: #ffffff;
       font-family: 'Inter', sans-serif;
-      font-size: 13.5px;
-      font-weight: 600;
-      color: #334155;
+      font-size: 14px;
+      font-weight: 700;
+      color: #111111;
       cursor: pointer;
       transition: all 0.2s ease;
     }
     .social-btn:hover {
-      background: #f8fafc;
-      border-color: #cbd5e1;
+      background: #f7f7f7;
+      border-color: #cdcdcd;
       transform: translateY(-1px);
     }
 
@@ -323,59 +367,60 @@
       display: flex;
       align-items: center;
       text-align: center;
-      font-size: 12px;
-      color: #94a3b8;
-      margin: 14px 0;
-      font-weight: 500;
+      font-size: 12.5px;
+      color: #767676;
+      margin: 16px 0;
+      font-weight: 600;
     }
     .divider::before, .divider::after {
       content: '';
       flex: 1;
-      border-bottom: 1px solid #e2e8f0;
+      border-bottom: 1px solid #e1e1e1;
     }
-    .divider::before { margin-right: 10px; }
-    .divider::after { margin-left: 10px; }
+    .divider::before { margin-right: 12px; }
+    .divider::after { margin-left: 12px; }
 
-    /* Inputs */
+    /* Pinterest Pill Inputs */
     .input-field {
       position: relative;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
     .input-field input {
       width: 100%;
-      height: 42px;
-      padding: 0 40px 0 40px;
-      border-radius: 10px;
-      border: 1.5px solid #cbd5e1;
+      height: 48px;
+      padding: 0 44px 0 44px;
+      border-radius: 16px;
+      border: 2px solid #cdcdcd;
       font-family: inherit;
-      font-size: 13.5px;
-      color: #1e293b;
+      font-size: 14.5px;
+      font-weight: 500;
+      color: #111111;
       background: #ffffff;
       transition: all 0.2s ease;
       box-sizing: border-box;
     }
     .input-field input:focus {
       outline: none;
-      border-color: #7d2ae8;
-      box-shadow: 0 0 0 4px rgba(125, 42, 232, 0.12);
+      border-color: #0084ff;
+      box-shadow: 0 0 0 4px rgba(0, 132, 255, 0.15);
     }
     .input-icon {
       position: absolute;
-      left: 12px;
+      left: 14px;
       top: 50%;
       transform: translateY(-50%);
-      font-size: 15px;
-      color: #94a3b8;
+      font-size: 16px;
+      color: #767676;
       pointer-events: none;
     }
     .toggle-pass {
       position: absolute;
-      right: 10px;
+      right: 12px;
       top: 50%;
       transform: translateY(-50%);
       background: none;
       border: none;
-      font-size: 15px;
+      font-size: 16px;
       cursor: pointer;
       padding: 4px;
       opacity: 0.6;
@@ -388,65 +433,66 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      font-size: 12.5px;
-      margin-bottom: 16px;
+      font-size: 13px;
+      margin-bottom: 18px;
     }
     .remember-me {
       display: flex;
       align-items: center;
       gap: 6px;
-      color: #475569;
+      color: #333333;
       cursor: pointer;
       user-select: none;
-      font-weight: 500;
-    }
-    .forgot-link {
-      color: #7d2ae8;
-      text-decoration: none;
       font-weight: 600;
     }
-    .forgot-link:hover { text-decoration: underline; }
+    .forgot-link {
+      color: #111111;
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .forgot-link:hover { text-decoration: underline; color: #e60023; }
 
-    /* Submit Button */
+    /* Pinterest Red Action Button */
     .submit-btn {
       width: 100%;
-      height: 44px;
-      border-radius: 9999px;
-      background: #7d2ae8;
+      height: 48px;
+      border-radius: 24px;
+      background: #e60023;
       color: #ffffff;
       border: none;
       font-family: inherit;
-      font-size: 14.5px;
-      font-weight: 700;
+      font-size: 15.5px;
+      font-weight: 800;
       cursor: pointer;
       transition: all 0.2s ease;
+      box-shadow: 0 4px 16px rgba(230, 0, 35, 0.35);
     }
     .submit-btn:hover {
-      background: #6d28d9;
+      background: #ad081b;
       transform: translateY(-1px);
-      box-shadow: 0 4px 14px rgba(125, 42, 232, 0.35);
+      box-shadow: 0 6px 20px rgba(230, 0, 35, 0.45);
     }
 
     .form-toggle-text {
       text-align: center;
       font-size: 13px;
-      color: #64748b;
-      margin-top: 14px;
-      font-weight: 500;
+      color: #767676;
+      margin-top: 16px;
+      font-weight: 600;
     }
     .form-toggle-text a {
-      color: #7d2ae8;
+      color: #111111;
       text-decoration: none;
-      font-weight: 700;
+      font-weight: 800;
     }
-    .form-toggle-text a:hover { text-decoration: underline; }
+    .form-toggle-text a:hover { text-decoration: underline; color: #e60023; }
 
     /* Password Strength Indicator */
     .pass-strength {
       height: 4px;
-      background: #e2e8f0;
+      background: #e1e1e1;
       border-radius: 2px;
-      margin: -4px 0 12px;
+      margin: -4px 0 14px;
       overflow: hidden;
     }
     .pass-strength-bar {
@@ -459,30 +505,30 @@
     @media (max-width: 860px) {
       .auth-card { grid-template-columns: 1fr; }
       .auth-banner { display: none; }
-      .auth-box { padding: 32px 24px; }
+      .auth-box { padding: 36px 24px; }
       .auth-container { max-width: 480px; margin: 16px; }
     }
 
     @media (max-width: 480px) {
       .auth-container { margin: 8px; width: calc(100% - 16px); }
-      .auth-box { padding: 24px 16px; }
-      .form-header h2 { font-size: 20px; }
-      .form-header p { font-size: 12.5px; }
-      .tab-switcher { margin-bottom: 14px; }
-      .tab-btn { font-size: 13px; padding: 8px 0; }
-      .social-btn { padding: 8px 10px; font-size: 12.5px; gap: 6px; }
-      .input-field input { height: 40px; font-size: 13px; padding: 0 36px 0 36px; }
-      .input-icon { left: 10px; font-size: 14px; }
-      .toggle-pass { right: 8px; font-size: 14px; }
-      .submit-btn { height: 40px; font-size: 14px; }
-      .close-btn { top: 14px; right: 14px; width: 28px; height: 28px; font-size: 16px; }
+      .auth-box { padding: 28px 18px; }
+      .form-header h2 { font-size: 22px; }
+      .form-header p { font-size: 13px; }
+      .tab-switcher { margin-bottom: 16px; }
+      .tab-btn { font-size: 13.5px; padding: 9px 0; }
+      .social-btn { padding: 9px 12px; font-size: 13px; gap: 8px; }
+      .input-field input { height: 44px; font-size: 13.5px; padding: 0 40px 0 40px; }
+      .input-icon { left: 12px; font-size: 15px; }
+      .toggle-pass { right: 10px; font-size: 15px; }
+      .submit-btn { height: 44px; font-size: 14.5px; }
+      .close-btn { top: 14px; right: 14px; width: 32px; height: 32px; font-size: 18px; }
     }
   </style>
   <!-- Lottie Web Player -->
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 <body>
-  <!-- Ambient Background Orbs Container (Contained within viewport) -->
+  <!-- Ambient Background Orbs Container -->
   <div class="orb-wrapper">
     <div class="bg-orb orb-1"></div>
     <div class="bg-orb orb-2"></div>
@@ -501,9 +547,9 @@
           autoplay>
         </lottie-player>
       </div>
-      <h3 class="preloader-title">ResumeBuilder</h3>
+      <h3 class="preloader-title" style="background: linear-gradient(135deg, #e60023 0%, #111111 100%); -webkit-background-clip: text; background-clip: text;">ResumeBuilder</h3>
       <div class="preloader-bar">
-        <div class="preloader-progress"></div>
+        <div class="preloader-progress" style="background: linear-gradient(90deg, #e60023, #ff5a5f);"></div>
       </div>
       <p class="preloader-text">Loading Account Portal...</p>
     </div>
@@ -512,31 +558,31 @@
   <div class="auth-container">
     <div class="auth-card">
 
-      <!-- LEFT SIDE: DYNAMIC BANNER -->
+      <!-- LEFT SIDE: PINTEREST SHOWCASE BANNER -->
       <div class="auth-banner" id="authBanner">
         <a href="index.html" class="banner-brand">
-          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <defs><linearGradient id="grad-b" x1="0" x2="1"><stop offset="0" stop-color="#00c4cc" /><stop offset="1" stop-color="#ffffff" /></linearGradient></defs>
-            <rect x="1" y="1" width="22" height="22" rx="6" fill="url(#grad-b)" />
-            <path d="M7 13c2-3 6-5 10-5" stroke="#312e81" stroke-width="1.8" stroke-linecap="round" />
-          </svg>
+          <div class="brand-badge">R</div>
           <span class="brand-name">ResumeBuilder</span>
         </a>
         <div class="banner-hero-content">
-          <h1 id="bannerTitle">Design ATS-Friendly Resumes in Minutes</h1>
-          <p id="bannerDesc">Unlock 15+ Canva-inspired templates, AI keyword suggestions, and instant PDF downloads.</p>
+          <h1 id="bannerTitle">Welcome to ResumeBuilder</h1>
+          <p id="bannerDesc">Discover 15+ Pinterest-inspired resume layouts, ATS optimization, and instant exports.</p>
           <div class="stat-badge">
-            <div class="avatar-stack"><span>A</span><span>S</span><span>M</span></div>
-            <span id="bannerStat">Joined by 50,000+ Job Seekers</span>
+            <div class="avatar-stack"><span>R</span><span>B</span><span>★</span></div>
+            <span id="bannerStat">Joined by 50,000+ Creators</span>
           </div>
         </div>
-        <div class="banner-footer">© <span id="year"></span> ResumeBuilder · Craft your career success.</div>
+        <div class="banner-footer">© <span id="year"></span> ResumeBuilder · Find new career ideas.</div>
       </div>
 
-      <!-- RIGHT SIDE: AUTH BOX -->
+      <!-- RIGHT SIDE: PINTEREST AUTH BOX -->
       <div class="auth-box">
         <button class="close-btn" onclick="goHome()" aria-label="Close">×</button>
         
+        <div class="pinterest-top-logo">
+          <div class="logo-circle">P</div>
+        </div>
+
         <div class="tab-switcher">
           <button id="loginTabBtn" class="tab-btn active" onclick="switchMode('login')">Sign In</button>
           <button id="regTabBtn" class="tab-btn" onclick="switchMode('register')">Register</button>
@@ -546,7 +592,7 @@
         <div id="loginFormSection" class="form-section">
           <div class="form-header">
             <h2>Welcome back 👋</h2>
-            <p>Please enter your credentials to access your saved resumes.</p>
+            <p>Please enter your details to access your resumes.</p>
           </div>
           <div class="social-btn-group">
             <button class="social-btn" onclick="mockSocialAuth('Google')" type="button">
@@ -565,7 +611,7 @@
               <span>GitHub</span>
             </button>
           </div>
-          <div class="divider">or sign in with email</div>
+          <div class="divider">or continue with email</div>
           <form onsubmit="handleAuthSubmit(event, 'Login')">
             <div class="input-field">
               <span class="input-icon">👤</span>
@@ -580,9 +626,9 @@
               <label class="remember-me"><input type="checkbox" checked> Keep me signed in</label>
               <a href="#" class="forgot-link">Forgot password?</a>
             </div>
-            <button type="submit" class="submit-btn">Sign In to Account</button>
+            <button type="submit" class="submit-btn">Continue</button>
           </form>
-          <div class="form-toggle-text">Don't have an account? <a href="#" onclick="switchMode('register')">Register for free</a></div>
+          <div class="form-toggle-text">Not on ResumeBuilder yet? <a href="#" onclick="switchMode('register')">Sign up</a></div>
         </div>
 
         <!-- REGISTER FORM SECTION -->
@@ -625,9 +671,9 @@
             </div>
             <div class="pass-strength"><div id="passStrengthBar" class="pass-strength-bar"></div></div>
             <label class="remember-me" style="margin-bottom:14px"><input type="checkbox" required> I agree to Terms & Privacy Policy</label>
-            <button type="submit" class="submit-btn">Create Free Account</button>
+            <button type="submit" class="submit-btn">Continue</button>
           </form>
-          <div class="form-toggle-text">Already have an account? <a href="#" onclick="switchMode('login')">Sign In</a></div>
+          <div class="form-toggle-text">Already a member? <a href="#" onclick="switchMode('login')">Sign in</a></div>
         </div>
 
       </div>
@@ -664,8 +710,8 @@
         if (regTab) regTab.classList.add('active');
         if (loginSec) loginSec.style.display = 'none';
         if (regSec) regSec.style.display = 'block';
-        if (banner) banner.style.background = 'linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0d6efd 100%)';
-        if (title) title.textContent = 'Start Your Career Journey Today 🚀';
+        if (banner) banner.style.background = 'linear-gradient(145deg, #111111 0%, #333333 45%, #e60023 100%)';
+        if (title) title.textContent = 'Join the ResumeBuilder Community 🚀';
         if (desc) desc.textContent = 'Create a free account to build, edit, and export unlimited ATS-optimized resumes.';
         if (stat) stat.textContent = '100% Free Forever Registration';
       } else {
@@ -673,10 +719,10 @@
         if (loginTab) loginTab.classList.add('active');
         if (regSec) regSec.style.display = 'none';
         if (loginSec) loginSec.style.display = 'block';
-        if (banner) banner.style.background = 'linear-gradient(135deg, #1e1b4b 0%, #312e81 40%, #7d2ae8 100%)';
-        if (title) title.textContent = 'Design ATS-Friendly Resumes in Minutes';
-        if (desc) desc.textContent = 'Unlock 15+ Canva-inspired templates, AI keyword suggestions, and instant PDF downloads.';
-        if (stat) stat.textContent = 'Joined by 50,000+ Job Seekers';
+        if (banner) banner.style.background = 'linear-gradient(145deg, #e60023 0%, #c4001a 45%, #111111 100%)';
+        if (title) title.textContent = 'Welcome to ResumeBuilder';
+        if (desc) desc.textContent = 'Discover 15+ Pinterest-inspired resume layouts, ATS optimization, and instant exports.';
+        if (stat) stat.textContent = 'Joined by 50,000+ Creators';
       }
     }
 
