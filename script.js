@@ -11,6 +11,18 @@ window.addEventListener("load", function () {
 
 
 
+// Header Scroll Elevation Toggle
+var siteHeader = document.getElementById("siteHeader");
+if (siteHeader) {
+  window.addEventListener("scroll", function () {
+    if (window.scrollY > 20) {
+      siteHeader.classList.add("scrolled");
+    } else {
+      siteHeader.classList.remove("scrolled");
+    }
+  }, { passive: true });
+}
+
 var year = document.getElementById("year");
 if (year) year.textContent = new Date().getFullYear();
 
