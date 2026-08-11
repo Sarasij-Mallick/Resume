@@ -1912,6 +1912,7 @@ function showToast(msg, timeout = 3000) {
     }
 
     // Attach Show Your Document click handlers
+    document.getElementById("showDocDrawerBtn")?.addEventListener("click", openFullscreenDocument);
     document.getElementById("showDocBtn")?.addEventListener("click", openFullscreenDocument);
     document.getElementById("showDocFooterBtn")?.addEventListener("click", openFullscreenDocument);
     document.getElementById("closeDocFullscreen")?.addEventListener("click", closeFullscreenDocument);

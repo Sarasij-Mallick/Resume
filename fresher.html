@@ -122,8 +122,13 @@
             <aside class="studio-drawer">
                 <div class="drawer-head">
                     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-                        <h3 id="stepDrawerTitle">Step Details</h3>
-                        <span id="progressPct" style="font-weight:700;color:var(--canva-purple)">0%</span>
+                        <h3 id="stepDrawerTitle" style="margin:0">Step Details</h3>
+                        <div style="display:flex;align-items:center;gap:10px">
+                            <button id="showDocDrawerBtn" class="studio-btn save" style="padding:5px 12px;font-size:12px;display:inline-flex;align-items:center;gap:6px">
+                                <span>👁️</span> Show Document
+                            </button>
+                            <span id="progressPct" style="font-weight:700;color:var(--canva-purple)">0%</span>
+                        </div>
                     </div>
                     <div style="height:6px;background:#e2e8f0;border-radius:9999px;overflow:hidden">
                         <div id="progressFill" style="height:100%;width:0%;background:var(--canva-gradient)"></div>
@@ -140,13 +145,10 @@
             <!-- Canva Studio Workspace Canvas Center -->
             <section class="studio-workspace">
                 <!-- Floating Canvas Top Actions Bar -->
-                <div style="display:flex;justify-content:space-between;align-items:center;width:100%;max-width:794px;margin-bottom:16px;background:#ffffff;padding:8px 16px;border-radius:9999px;box-shadow:0 4px 16px rgba(0,0,0,0.06);box-sizing:border-box">
+                <div style="display:flex;gap:12px;margin-bottom:16px;background:#ffffff;padding:8px 16px;border-radius:9999px;box-shadow:0 4px 16px rgba(0,0,0,0.06)">
                     <span style="font-size:13px;font-weight:600;color:var(--canva-dark);display:flex;align-items:center;gap:6px">
                         <span>📄</span> Document Canvas (A4 Standard)
                     </span>
-                    <button id="showDocBtn" class="studio-btn save" style="padding:6px 14px;font-size:12.5px;display:inline-flex;align-items:center;gap:6px">
-                        <span>👁️</span> Show Your Document
-                    </button>
                 </div>
 
                 <!-- Paper Sheet Canvas Rendering Live Resume -->
