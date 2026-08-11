@@ -3961,6 +3961,76 @@ button.dock-item.active span,
   visibility: visible !important;
 }
 
+/* Roaming Anime Character Screensaver */
+.anime-character-wrap {
+  position: absolute;
+  z-index: 10;
+  width: 140px;
+  height: 140px;
+  pointer-events: none;
+  transition: top 3.5s cubic-bezier(0.25, 1, 0.5, 1), left 3.5s cubic-bezier(0.25, 1, 0.5, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.45));
+}
+
+.anime-character-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 20px;
+  animation: animeFloatBob 3s ease-in-out infinite alternate;
+}
+
+@keyframes animeFloatBob {
+  0% {
+    transform: translateY(0) rotate(-3deg);
+  }
+  100% {
+    transform: translateY(-14px) rotate(3deg);
+  }
+}
+
+.anime-speech-bubble {
+  position: absolute;
+  top: -46px;
+  background: rgba(255, 255, 255, 0.95);
+  color: #0f172a;
+  padding: 6px 14px;
+  border-radius: 14px;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  border: 1.5px solid rgba(230, 0, 35, 0.4);
+  animation: bubblePop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.anime-speech-bubble::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px 6px 0;
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 0.95) transparent;
+  display: block;
+  width: 0;
+}
+
+@keyframes bubblePop {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
 .screensaver-bg-particles {
   position: absolute;
   top: 0;

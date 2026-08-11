@@ -2718,6 +2718,21 @@ function showToast(msg, timeout = 3000) {
   const clockEl = document.getElementById("screensaverClock");
   const dateEl = document.getElementById("screensaverDate");
   const quoteEl = document.getElementById("screensaverQuoteText");
+  const animeWrap = document.getElementById("animeCharacterWrap");
+  const animeText = document.getElementById("animeSpeechText");
+
+  let animeMoveInterval = null;
+  let speechInterval = null;
+
+  const animeQuotes = [
+    "Taking a quick break? ☕",
+    "Your resume is looking super awesome! 🌟",
+    "I'm guarding your resume work! 🛡️",
+    "Don't forget to export your PDF! 📄",
+    "Move your mouse whenever you're ready! ✨",
+    "Great work today! Keep it up! 💪",
+    "Ready to land your dream job? 🚀"
+  ];
 
   const quotes = [
     '"The secret of getting ahead is getting started." — Mark Twain',
@@ -2728,14 +2743,18 @@ function showToast(msg, timeout = 3000) {
     '"Success is not final, failure is not fatal: It is the courage to continue that counts." — Winston Churchill'
   ];
 
-  function updateClock() {
-    const now = new Date();
-    if (clockEl) {
-      clockEl.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-    }
-    if (dateEl) {
-      dateEl.textContent = now.toLocaleDateString([], { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
-    }
+  function moveAnimeCharacter() {
+    if (!animeWrap) return;
+    const randomTop = Math.floor(Math.random() * 65) + 10; // 10% to 75%
+    const randomLeft = Math.floor(Math.random() * 75) + 5; // 5% to 80%
+    animeWrap.style.top = randomTop + "%";
+    animeWrap.style.left = randomLeft + "%";
+  }
+
+  function cycleSpeechBubble() {
+    if (!animeText) return;
+    const randomMsg = animeQuotes[Math.floor(Math.random() * animeQuotes.length)];
+    animeText.textContent = randomMsg;
   }
 
   function showScreensaver() {
@@ -2746,8 +2765,18 @@ function showToast(msg, timeout = 3000) {
       quoteEl.textContent = randomQuote;
     }
     overlay.setAttribute("aria-hidden", "false");
+    
+    // Start clock and anime character roaming
     if (!clockInterval) {
       clockInterval = setInterval(updateClock, 1000);
+    }
+    moveAnimeCharacter();
+    cycleSpeechBubble();
+    if (!animeMoveInterval) {
+      animeMoveInterval = setInterval(moveAnimeCharacter, 3800);
+    }
+    if (!speechInterval) {
+      speechInterval = setInterval(cycleSpeechBubble, 4500);
     }
   }
 
@@ -2759,6 +2788,14 @@ function showToast(msg, timeout = 3000) {
     if (clockInterval) {
       clearInterval(clockInterval);
       clockInterval = null;
+    }
+    if (animeMoveInterval) {
+      clearInterval(animeMoveInterval);
+      animeMoveInterval = null;
+    }
+    if (speechInterval) {
+      clearInterval(speechInterval);
+      speechInterval = null;
     }
     resetIdleTimer();
   }
