@@ -1751,15 +1751,99 @@ options.forEach(function (card) {
     </div>`;
   }
 
-  // Export PDF by opening new window and calling print
-  function exportPDF() {
+  // Export PDF with loading state & direct download via html2pdf
+  function exportPDF(evt) {
+    const completion = checkFormCompletion();
+    if (!completion.isComplete) {
+      alert(
+        "⚠️ Please complete filling out all required form sections first!\n\n" +
+        "Remaining incomplete form sections:\n• " + completion.missingFields.join("\n• ")
+      );
+      if (!state.personal?.fullName) { state.current = 1; }
+      else if (!state.education?.length) { state.current = 2; }
+      else if (!((state.skills?.technical?.length || 0) + (state.skills?.soft?.length || 0))) { state.current = 3; }
+      else if (!state.projects?.length) { state.current = 4; }
+      else if (!state.summary?.text) { state.current = 7; }
+      renderStep(state.current);
+      return;
+    }
+
+    const btn = (evt && evt.target) ? evt.target.closest("button") : (evt || document.getElementById("exportPdf") || document.getElementById("fullExportPdf"));
+    let originalContent = "";
+    if (btn) {
+      originalContent = btn.innerHTML;
+      btn.disabled = true;
+      btn.style.pointerEvents = "none";
+      btn.style.opacity = "0.85";
+      btn.innerHTML = `<span class="pdf-spinner"></span> Generating...`;
+    }
+
+    showToast("⏳ Generating high-quality PDF document, please wait...");
+
+    const tempDiv = document.createElement("div");
+    tempDiv.style.position = "absolute";
+    tempDiv.style.left = "-9999px";
+    tempDiv.style.top = "-9999px";
+    tempDiv.style.width = "794px";
+    tempDiv.style.background = "#ffffff";
+    tempDiv.style.padding = "24px";
+    tempDiv.style.boxSizing = "border-box";
+    tempDiv.innerHTML = buildResumeHtml();
+    document.body.appendChild(tempDiv);
+
+    const rawName = state.personal?.fullName ? state.personal.fullName.trim().replace(/\s+/g, "_") : "My";
+    const fileName = `${rawName}_Resume.pdf`;
+
+    const cleanup = () => {
+      if (tempDiv.parentNode) tempDiv.parentNode.removeChild(tempDiv);
+      if (btn) {
+        btn.disabled = false;
+        btn.style.pointerEvents = "auto";
+        btn.style.opacity = "1";
+        btn.innerHTML = originalContent;
+      }
+    };
+
+    if (typeof html2pdf !== "undefined") {
+      const opt = {
+        margin: [6, 6, 6, 6],
+        filename: fileName,
+        image: { type: "jpeg", quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true, logging: false },
+        jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
+      };
+
+      html2pdf()
+        .set(opt)
+        .from(tempDiv)
+        .save()
+        .then(() => {
+          cleanup();
+          showToast("✅ PDF downloaded successfully!");
+        })
+        .catch((err) => {
+          console.warn("html2pdf error, falling back to window print:", err);
+          cleanup();
+          fallbackPrint();
+        });
+    } else {
+      setTimeout(() => {
+        cleanup();
+        fallbackPrint();
+      }, 800);
+    }
+  }
+
+  function fallbackPrint() {
     const html = `<!doctype html><html><head><meta charset="utf-8"/><title>Resume</title><style>body{font-family:Inter,Arial;margin:28px;color:#111827}.small{color:#6b7280}</style></head><body>${buildResumeHtml()}</body></html>`;
     const w = window.open("", "_blank");
-    w.document.write(html);
-    w.document.close();
-    setTimeout(() => {
-      w.print();
-    }, 600);
+    if (w) {
+      w.document.write(html);
+      w.document.close();
+      setTimeout(() => {
+        w.print();
+      }, 600);
+    }
   }
 
   function exportPDF_blob() {
@@ -1976,8 +2060,8 @@ function showToast(msg, timeout = 3000) {
     document.getElementById("showDocBtn")?.addEventListener("click", openFullscreenDocument);
     document.getElementById("showDocFooterBtn")?.addEventListener("click", openFullscreenDocument);
     document.getElementById("closeDocFullscreen")?.addEventListener("click", closeFullscreenDocument);
-    document.getElementById("fullExportPdf")?.addEventListener("click", () => {
-      exportPDF();
+    document.getElementById("fullExportPdf")?.addEventListener("click", (evt) => {
+      exportPDF(evt);
     });
 
     document.addEventListener("keydown", (e) => {

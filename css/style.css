@@ -3731,6 +3731,25 @@ button.dock-item.active span,
   background: linear-gradient(135deg, #f87171 0%, #ef4444 100%);
 }
 
+/* Spinner for PDF loading state */
+.pdf-spinner {
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  border-top-color: #ffffff;
+  animation: pdfSpin 0.7s linear infinite;
+  vertical-align: middle;
+  margin-right: 4px;
+}
+
+@keyframes pdfSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 /* Full Screen Document Preview Modal System */
 .fullscreen-doc-modal {
   display: none !important;
