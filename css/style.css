@@ -717,6 +717,7 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
   overflow: hidden !important;
 }
 
+/* ── Glossy Shine Sweep (::before) ── */
 .btn::before,
 .tab-btn::before,
 .submit-btn::before,
@@ -732,19 +733,58 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 .theme-toggle-btn::before {
   content: "";
   position: absolute;
-  top: -60%;
-  left: -160%;
-  width: 220%;
-  height: 220%;
-  background: linear-gradient(115deg, transparent 20%, rgba(230, 0, 35, 0.12) 38%, rgba(230, 0, 35, 0.5) 50%, rgba(230, 0, 35, 0.12) 62%, transparent 80%);
-  transform: rotate(28deg);
-  transition: transform 1.15s cubic-bezier(0.25, 1, 0.35, 1), left 1.15s cubic-bezier(0.25, 1, 0.35, 1), opacity 0.8s ease;
+  top: -50%;
+  left: -130%;
+  width: 60%;
+  height: 200%;
+  background: linear-gradient(
+    115deg,
+    transparent 10%,
+    rgba(255, 255, 255, 0.08) 30%,
+    rgba(255, 255, 255, 0.55) 50%,
+    rgba(255, 255, 255, 0.08) 70%,
+    transparent 90%
+  );
+  transform: skewX(-20deg);
+  transition: left 0.65s cubic-bezier(0.25, 1, 0.35, 1), opacity 0.4s ease;
   opacity: 0;
   pointer-events: none;
   z-index: 5;
-  filter: blur(0.5px);
+  filter: blur(1px);
 }
 
+/* ── Gloss Top-Half Overlay (::after) ── */
+.btn::after,
+.tab-btn::after,
+.submit-btn::after,
+.social-btn::after,
+.pill::after,
+.header-cta-btn::after,
+.header-login-btn::after,
+.btn-ghost::after,
+.btn-pill-purple::after,
+.btn-outline-purple::after,
+.studio-btn::after,
+.theme-toggle-btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.22) 0%,
+    rgba(255, 255, 255, 0.04) 100%
+  );
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 4;
+}
+
+/* ── Shine sweep triggers on hover ── */
 .btn:hover::before,
 .btn:active::before,
 .tab-btn:hover::before,
@@ -771,7 +811,23 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 .studio-btn:active::before,
 .theme-toggle-btn:hover::before,
 .theme-toggle-btn:active::before {
-  left: 130%;
+  left: 160%;
+  opacity: 1;
+}
+
+/* ── Gloss overlay visible on hover ── */
+.btn:hover::after,
+.tab-btn:hover::after,
+.submit-btn:hover::after,
+.social-btn:hover::after,
+.pill:hover::after,
+.header-cta-btn:hover::after,
+.header-login-btn:hover::after,
+.btn-ghost:hover::after,
+.btn-pill-purple:hover::after,
+.btn-outline-purple:hover::after,
+.studio-btn:hover::after,
+.theme-toggle-btn:hover::after {
   opacity: 1;
 }
 
