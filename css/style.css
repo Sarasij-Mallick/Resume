@@ -1962,36 +1962,57 @@ button:active,
   transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.studio-btn.save { background: #198754; color: #fff; border: 1.5px solid transparent !important; }
+.studio-btn.save {
+  background: #10b981;
+  color: #ffffff;
+  font-weight: 700;
+  border: none !important;
+}
 .studio-btn.save:hover {
   transform: translateY(-1px);
-  background: #157347;
-  border: 1.5px solid transparent !important;
-  box-shadow: 0 4px 16px rgba(25, 135, 84, 0.45), 0 0 20px rgba(25, 135, 84, 0.3) !important;
+  background: #059669;
+  border: none !important;
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.45) !important;
 }
 
-.studio-btn.preview { background: var(--canva-purple); color: #fff; border: 1.5px solid transparent !important; }
+.studio-btn.preview {
+  background: #334155;
+  color: #ffffff;
+  font-weight: 700;
+  border: none !important;
+}
 .studio-btn.preview:hover {
   transform: translateY(-1px);
-  background: var(--canva-purple-hover);
-  border: 1.5px solid transparent !important;
-  box-shadow: 0 4px 16px rgba(13, 110, 253, 0.45), 0 0 20px rgba(13, 110, 253, 0.3) !important;
+  background: #1e293b;
+  border: none !important;
+  box-shadow: 0 4px 16px rgba(51, 65, 85, 0.45) !important;
 }
 
-.studio-btn.export { background: var(--canva-cyan); color: #212529; font-weight: 700; border: 1.5px solid transparent !important; }
+.studio-btn.export {
+  background: #e60023;
+  color: #ffffff;
+  font-weight: 800;
+  border: none !important;
+}
 .studio-btn.export:hover {
   transform: translateY(-1px);
-  background: #31d2f2;
-  border: 1.5px solid transparent !important;
-  box-shadow: 0 4px 16px rgba(13, 202, 240, 0.5), 0 0 20px rgba(13, 202, 240, 0.35) !important;
+  background: #ad081b;
+  border: none !important;
+  box-shadow: 0 4px 16px rgba(230, 0, 35, 0.45) !important;
 }
 
-.studio-btn.danger { background: #dc3545; color: #fff; border: 1.5px solid transparent !important; }
+.studio-btn.danger {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+  font-weight: 700;
+  border: none !important;
+}
 .studio-btn.danger:hover {
   transform: translateY(-1px);
-  background: #bb2d3b;
-  border: 1.5px solid transparent !important;
-  box-shadow: 0 4px 16px rgba(220, 53, 69, 0.45), 0 0 20px rgba(220, 53, 69, 0.3) !important;
+  background: #ef4444;
+  color: #ffffff;
+  border: none !important;
+  box-shadow: 0 4px 16px rgba(239, 68, 68, 0.45) !important;
 }
 
 /* Disable hover border for all studio-header buttons & links */
