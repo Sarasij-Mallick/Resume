@@ -22,13 +22,19 @@
       max-width: 100%;
     }
 
-    /* Ambient Glowing Orbs Background */
+    /* Ambient Glowing Orbs Background Container */
+    .orb-wrapper {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
     .bg-orb {
       position: absolute;
       border-radius: 50%;
       filter: blur(100px);
       opacity: 0.5;
-      z-index: 0;
       animation: pulseOrb 8s infinite alternate ease-in-out;
     }
     .orb-1 {
@@ -50,6 +56,21 @@
     @keyframes pulseOrb {
       0% { transform: scale(1) translate(0, 0); opacity: 0.4; }
       100% { transform: scale(1.15) translate(30px, -20px); opacity: 0.6; }
+    }
+
+    /* Custom Sleek Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0f172a;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.4);
     }
 
     .auth-container {
@@ -461,9 +482,11 @@
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 <body>
-  <!-- Ambient Background Orbs -->
-  <div class="bg-orb orb-1"></div>
-  <div class="bg-orb orb-2"></div>
+  <!-- Ambient Background Orbs Container (Contained within viewport) -->
+  <div class="orb-wrapper">
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+  </div>
 
   <!-- PAGE PRELOADER -->
   <div id="pagePreloader" class="page-preloader" aria-hidden="true">
