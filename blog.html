@@ -56,6 +56,53 @@
             border-color: #e60023;
             box-shadow: 0 0 0 4px rgba(230, 0, 35, 0.15);
         }
+        .blog-search-suggestions {
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: var(--canva-card);
+            border: 1.5px solid var(--canva-border);
+            border-radius: 16px;
+            box-shadow: 0 16px 40px rgba(0,0,0,0.18);
+            overflow: hidden;
+            display: none;
+            flex-direction: column;
+            text-align: left;
+        }
+        .blog-search-suggestions.active {
+            display: flex;
+        }
+        .blog-sugg-item {
+            padding: 12px 18px;
+            font-size: 13.5px;
+            font-weight: 600;
+            color: var(--canva-dark);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            cursor: pointer;
+            transition: background 0.15s ease, color 0.15s ease;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .blog-sugg-item:last-child {
+            border-bottom: none;
+        }
+        .blog-sugg-item:hover, .blog-sugg-item.focused {
+            background: rgba(230, 0, 35, 0.08);
+            color: #e60023;
+        }
+        .blog-sugg-item .sugg-tag {
+            font-size: 9.5px;
+            font-weight: 800;
+            color: #e60023;
+            background: rgba(230, 0, 35, 0.1);
+            padding: 2px 7px;
+            border-radius: 9999px;
+            flex-shrink: 0;
+        }
         .blog-main-wrap {
             padding: 50px 0 80px;
         }
@@ -257,7 +304,8 @@
                 <p class="lead">Master ATS algorithms, high-impact action verbiage, and modern resume design tactics to land more interviews.</p>
                 
                 <div class="blog-search-bar">
-                    <input type="text" id="blogSearchInput" class="blog-search-input" placeholder="Search guides by keyword (e.g. ATS, Cover Letter, Fresher)..." />
+                    <input type="text" id="blogSearchInput" class="blog-search-input" placeholder="Search guides by keyword (e.g. ATS, Cover Letter, Fresher)..." autocomplete="off" />
+                    <div id="blogSearchSuggestions" class="blog-search-suggestions"></div>
                 </div>
 
                 <div class="filter-pills" style="margin-top: 24px; justify-content: center;">
@@ -636,10 +684,67 @@
             });
         });
 
-        // Search Filter
+        // Search Filter & Auto-Complete Suggestions
         const searchInput = document.getElementById('blogSearchInput');
-        searchInput?.addEventListener('input', (e) => {
-            const query = e.target.value.toLowerCase().trim();
+        const searchSuggestions = document.getElementById('blogSearchSuggestions');
+        let focusedSuggIndex = -1;
+
+        const BLOG_SUGGESTIONS = [
+            { text: "10 ATS Resume Secrets to Pass Automated Scanners in 2026", tag: "ATS GUIDE", slug: "ats-secrets" },
+            { text: "How Students Can Build a Strong Resume with Zero Experience", tag: "FRESHER TIPS", slug: "fresher-guide" },
+            { text: "Mastering Action Verbs & High-Impact Metrics for Senior Roles", tag: "EXECUTIVE", slug: "executive-metrics" },
+            { text: "How to Write a Cover Letter That Recruiters Actually Read", tag: "COVER LETTER", slug: "cover-letter-mastery" },
+            { text: "Aligning Your Resume with LinkedIn: Dual Profile Strategy", tag: "CAREER STRATEGY", slug: "linkedin-optimization" },
+            { text: "Software Engineer Resume Blueprint: System Design & Projects", tag: "TECH & DEV", slug: "tech-resume-guide" },
+            { text: "Keyword Optimization & Section Headings for ATS", tag: "ATS GUIDE", slug: "ats-secrets" },
+            { text: "Academic Projects & Internship Experience Formatting", tag: "FRESHER TIPS", slug: "fresher-guide" }
+        ];
+
+        function renderBlogSuggestions(query) {
+            if (!query) {
+                searchSuggestions.innerHTML = '';
+                searchSuggestions.classList.remove('active');
+                focusedSuggIndex = -1;
+                return;
+            }
+
+            const matches = BLOG_SUGGESTIONS.filter(item => 
+                item.text.toLowerCase().includes(query) || item.tag.toLowerCase().includes(query)
+            );
+
+            if (matches.length === 0) {
+                searchSuggestions.innerHTML = `<div class="blog-sugg-item" style="color:var(--canva-muted);cursor:default;">No matching guides found</div>`;
+                searchSuggestions.classList.add('active');
+                return;
+            }
+
+            searchSuggestions.innerHTML = matches.slice(0, 5).map((m, idx) => `
+                <div class="blog-sugg-item ${idx === focusedSuggIndex ? 'focused' : ''}" data-slug="${m.slug}" data-title="${m.text}">
+                    <span>🔍 ${m.text}</span>
+                    <span class="sugg-tag">${m.tag}</span>
+                </div>
+            `).join('');
+
+            searchSuggestions.classList.add('active');
+
+            // Click listener for suggestion items
+            document.querySelectorAll('.blog-sugg-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    const slug = item.getAttribute('data-slug');
+                    const title = item.getAttribute('data-title');
+                    if (title) {
+                        searchInput.value = title;
+                        applyBlogSearch(title.toLowerCase().trim());
+                    }
+                    if (slug) {
+                        openArticleModal(slug);
+                    }
+                    searchSuggestions.classList.remove('active');
+                });
+            });
+        }
+
+        function applyBlogSearch(query) {
             blogCards.forEach(card => {
                 const title = card.querySelector('.blog-title').textContent.toLowerCase();
                 const excerpt = card.querySelector('.blog-excerpt').textContent.toLowerCase();
@@ -649,6 +754,38 @@
                     card.style.display = 'none';
                 }
             });
+        }
+
+        searchInput?.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            focusedSuggIndex = -1;
+            applyBlogSearch(query);
+            renderBlogSuggestions(query);
+        });
+
+        searchInput?.addEventListener('keydown', (e) => {
+            const items = searchSuggestions.querySelectorAll('.blog-sugg-item[data-slug]');
+            if (!items.length) return;
+
+            if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                focusedSuggIndex = (focusedSuggIndex + 1) % items.length;
+                renderBlogSuggestions(searchInput.value.toLowerCase().trim());
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                focusedSuggIndex = (focusedSuggIndex - 1 + items.length) % items.length;
+                renderBlogSuggestions(searchInput.value.toLowerCase().trim());
+            } else if (e.key === 'Enter' && focusedSuggIndex >= 0) {
+                e.preventDefault();
+                items[focusedSuggIndex]?.click();
+            }
+        });
+
+        // Hide suggestions when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!searchInput.contains(e.target) && !searchSuggestions.contains(e.target)) {
+                searchSuggestions.classList.remove('active');
+            }
         });
     </script>
 </body>
