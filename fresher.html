@@ -140,10 +140,13 @@
             <!-- Canva Studio Workspace Canvas Center -->
             <section class="studio-workspace">
                 <!-- Floating Canvas Top Actions Bar -->
-                <div style="display:flex;gap:12px;margin-bottom:16px;background:#ffffff;padding:8px 16px;border-radius:9999px;box-shadow:0 4px 16px rgba(0,0,0,0.06)">
+                <div style="display:flex;justify-content:space-between;align-items:center;width:100%;max-width:794px;margin-bottom:16px;background:#ffffff;padding:8px 16px;border-radius:9999px;box-shadow:0 4px 16px rgba(0,0,0,0.06);box-sizing:border-box">
                     <span style="font-size:13px;font-weight:600;color:var(--canva-dark);display:flex;align-items:center;gap:6px">
                         <span>📄</span> Document Canvas (A4 Standard)
                     </span>
+                    <button id="showDocBtn" class="studio-btn save" style="padding:6px 14px;font-size:12.5px;display:inline-flex;align-items:center;gap:6px">
+                        <span>👁️</span> Show Your Document
+                    </button>
                 </div>
 
                 <!-- Paper Sheet Canvas Rendering Live Resume -->
@@ -159,9 +162,10 @@
                 <span id="prevBtn" style="cursor:pointer;margin-right:12px;font-weight:600">‹ Previous Step</span>
                 <span id="nextBtn" style="cursor:pointer;font-weight:700;color:var(--canva-purple)">Next Step ›</span>
             </div>
-            <div style="display:flex;gap:16px;align-items:center">
+            <div style="display:flex;gap:12px;align-items:center">
                 <span>Page 1 of 1</span>
                 <span>Zoom 100%</span>
+                <button id="showDocFooterBtn" class="studio-btn save" style="padding:4px 12px;font-size:12px;display:inline-flex;align-items:center;gap:6px">📄 Show Your Document</button>
                 <button id="saveResume" class="btn primary" style="padding:4px 12px;font-size:12px">Save Resume</button>
             </div>
         </footer>
@@ -186,6 +190,29 @@
                     <button id="cancelClear" class="btn neutral">Cancel</button>
                     <button id="confirmClear" class="btn danger">Clear Everything</button>
                 </footer>
+            </div>
+        </div>
+
+        <!-- FULL SCREEN DOCUMENT PREVIEW MODAL -->
+        <div id="docFullscreenModal" class="fullscreen-doc-modal" aria-hidden="true" role="dialog" aria-label="Full Screen Document Viewer">
+            <div class="fullscreen-doc-header">
+                <div class="fullscreen-doc-title">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                    <span>Document Canvas — Full Screen Preview</span>
+                </div>
+                <div class="fullscreen-doc-actions">
+                    <button id="fullExportPdf" class="studio-btn export" style="display:inline-flex;align-items:center;gap:6px">
+                        📥 Export PDF
+                    </button>
+                    <button id="closeDocFullscreen" class="studio-btn preview" style="display:inline-flex;align-items:center;gap:6px">
+                        ✕ Close Fullscreen
+                    </button>
+                </div>
+            </div>
+            <div class="fullscreen-doc-body">
+                <div id="fullscreenPaperCanvas" class="fullscreen-paper-canvas paper-canvas">
+                    <!-- Rendered Live Resume -->
+                </div>
             </div>
         </div>
 

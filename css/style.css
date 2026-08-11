@@ -3548,35 +3548,71 @@ button.dock-item.active span,
   overflow-y: auto !important;
 }
 
-/* Modal Overlay Rules */
-.modal {
+/* Full Screen Document Preview Modal System */
+.fullscreen-doc-modal {
   display: none !important;
   position: fixed !important;
   top: 0 !important;
   left: 0 !important;
   width: 100vw !important;
   height: 100vh !important;
-  z-index: 2500 !important;
-  background: rgba(14, 19, 31, 0.6) !important;
-  backdrop-filter: blur(4px) !important;
-  align-items: center !important;
-  justify-content: center !important;
+  z-index: 99999 !important;
+  background: #0f172a !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+  box-sizing: border-box !important;
+  animation: modalFadeIn 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.modal[aria-hidden="false"] {
+.fullscreen-doc-modal[aria-hidden="false"] {
   display: flex !important;
 }
 
-.modal-panel {
-  width: 90% !important;
-  max-width: 720px !important;
-  max-height: 85vh !important;
-  background: #ffffff !important;
-  border-radius: 20px !important;
-  padding: 24px !important;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25) !important;
-  border: 1px solid var(--canva-border) !important;
-  overflow-y: auto !important;
+.fullscreen-doc-header {
+  height: 60px;
+  background: #1e293b;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  color: #ffffff;
+  flex-shrink: 0;
+}
+
+.fullscreen-doc-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.fullscreen-doc-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.fullscreen-doc-body {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: auto;
+  padding: 32px 16px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: #0f172a;
+}
+
+.fullscreen-paper-canvas {
+  width: 100%;
+  max-width: 840px;
+  min-height: 1188px;
+  background: #ffffff;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  margin-bottom: 40px;
 }
 
 .studio-body .back-to-top {

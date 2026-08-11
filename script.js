@@ -1321,8 +1321,21 @@ options.forEach(function (card) {
     const wrapper = document.createElement("div");
     wrapper.className = "form";
     const resumeHtml = buildResumeHtml();
-    wrapper.innerHTML = `<div style="margin-bottom:12px"><strong>Preview</strong></div><div style="border:1px solid rgba(15,23,42,0.04);padding:12px;border-radius:12px;background:linear-gradient(180deg,var(--card),transparent)">${resumeHtml}</div>
-      <div class="actions"><button id="editResume" class="btn neutral">Edit</button><button id="downloadPdf" class="btn neutral">Download PDF</button><button id="saveFinal" class="btn primary">Save Resume</button></div>`;
+    wrapper.innerHTML = `
+      <div style="margin-bottom:14px;text-align:center;padding:18px;background:rgba(16,185,129,0.08);border-radius:14px;border:1.5px solid rgba(16,185,129,0.25)">
+        <h4 style="margin:0 0 6px;color:#059669;font-size:16px">🎉 Forms Complete! Document Ready</h4>
+        <p style="margin:0 0 14px;font-size:13px;color:#475569">Click below to view your document in full screen mode.</p>
+        <button id="showDocFinalBtn" class="studio-btn save" style="padding:10px 24px;font-size:14px;font-weight:700;display:inline-flex;align-items:center;gap:8px;box-shadow:0 4px 16px rgba(16,185,129,0.3)">
+          <span>📄</span> Show Your Document
+        </button>
+      </div>
+      <div style="margin-bottom:10px;font-weight:700;color:var(--canva-dark)">Resume Document Preview</div>
+      <div style="border:1px solid rgba(15,23,42,0.08);padding:14px;border-radius:12px;background:linear-gradient(180deg,var(--card),transparent);max-height:360px;overflow-y:auto">${resumeHtml}</div>
+      <div class="actions" style="margin-top:16px"><button id="editResume" class="btn neutral">Edit</button><button id="downloadPdf" class="btn neutral">Download PDF</button><button id="saveFinal" class="btn primary">Save Resume</button></div>`;
+    
+    wrapper.querySelector("#showDocFinalBtn").onclick = () => {
+      openFullscreenDocument();
+    };
     wrapper.querySelector("#editResume").onclick = () => {
       state.current = 1;
       renderStep(1);
@@ -1881,11 +1894,41 @@ function showToast(msg, timeout = 3000) {
       };
     }
 
+    // Fullscreen document helper functions
+    function openFullscreenDocument() {
+      const docModal = document.getElementById("docFullscreenModal");
+      const fullCanvas = document.getElementById("fullscreenPaperCanvas");
+      if (docModal && fullCanvas) {
+        fullCanvas.innerHTML = buildResumeHtml();
+        docModal.setAttribute("aria-hidden", "false");
+      }
+    }
+
+    function closeFullscreenDocument() {
+      const docModal = document.getElementById("docFullscreenModal");
+      if (docModal) {
+        docModal.setAttribute("aria-hidden", "true");
+      }
+    }
+
+    // Attach Show Your Document click handlers
+    document.getElementById("showDocBtn")?.addEventListener("click", openFullscreenDocument);
+    document.getElementById("showDocFooterBtn")?.addEventListener("click", openFullscreenDocument);
+    document.getElementById("closeDocFullscreen")?.addEventListener("click", closeFullscreenDocument);
+    document.getElementById("fullExportPdf")?.addEventListener("click", () => {
+      exportPDF();
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        closeFullscreenDocument();
+      }
+    });
+
     // preview modal
-    if (previewBtn && modal && modalBody) {
+    if (previewBtn) {
       previewBtn.onclick = () => {
-        modal.setAttribute("aria-hidden", "false");
-        modalBody.innerHTML = buildResumeHtml();
+        openFullscreenDocument();
       };
     }
     document
