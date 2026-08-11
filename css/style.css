@@ -749,10 +749,10 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 }
 
 .btn-ghost:hover {
-  background: rgba(26, 115, 232, 0.12);
+  background: rgba(230, 0, 35, 0.08);
   color: var(--canva-purple) !important;
   border: none !important;
-  box-shadow: 0 4px 16px rgba(13, 110, 253, 0.25);
+  box-shadow: 0 4px 16px rgba(230, 0, 35, 0.2);
 }
 
 .tab-btn {
@@ -764,38 +764,38 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 
 .tab-btn:hover {
   border: none !important;
-  box-shadow: 0 4px 14px rgba(125, 42, 232, 0.25);
+  box-shadow: 0 4px 14px rgba(230, 0, 35, 0.25);
 }
 
 .tab-btn.active {
   border: none !important;
-  box-shadow: 0 2px 8px rgba(60, 64, 67, 0.15);
+  box-shadow: 0 4px 14px rgba(230, 0, 35, 0.35);
 }
 
 .btn-primary, .btn.primary {
   background: var(--canva-purple);
   color: #ffffff;
   border: none !important;
-  box-shadow: 0 2px 8px rgba(60, 64, 67, 0.15);
+  box-shadow: 0 4px 14px rgba(230, 0, 35, 0.35);
 }
 
 .btn-primary:hover, .btn.primary:hover {
   border: none !important;
-  box-shadow: 0 6px 20px rgba(13, 110, 253, 0.45), 0 0 25px rgba(13, 110, 253, 0.3) !important;
+  box-shadow: 0 6px 20px rgba(230, 0, 35, 0.4), 0 2px 8px rgba(230, 0, 35, 0.25) !important;
 }
 
 .btn.danger:hover, .btn-danger:hover {
   background: #bb2d3b;
   color: #ffffff;
   border: none !important;
-  box-shadow: 0 6px 20px rgba(220, 53, 69, 0.45), 0 0 25px rgba(220, 53, 69, 0.3) !important;
+  box-shadow: 0 6px 20px rgba(220, 53, 69, 0.4), 0 2px 8px rgba(220, 53, 69, 0.25) !important;
 }
 
 .btn.neutral:hover, .btn-secondary:hover {
   background: #5c636a;
   color: #ffffff;
   border: none !important;
-  box-shadow: 0 6px 18px rgba(108, 117, 125, 0.4), 0 0 20px rgba(108, 117, 125, 0.25) !important;
+  box-shadow: 0 6px 18px rgba(108, 117, 125, 0.4), 0 2px 8px rgba(108, 117, 125, 0.25) !important;
 }
 
 .btn-pill-purple {
@@ -806,7 +806,7 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
   padding: 14px 28px;
   border-radius: var(--canva-pill-radius);
   border: none !important;
-  box-shadow: 0 4px 12px rgba(60, 64, 67, 0.15);
+  box-shadow: 0 4px 14px rgba(230, 0, 35, 0.35);
   transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -814,7 +814,7 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
   background: var(--canva-purple-hover) !important;
   color: #ffffff !important;
   border: none !important;
-  box-shadow: 0 6px 20px rgba(13, 110, 253, 0.45), 0 0 25px rgba(13, 110, 253, 0.3) !important;
+  box-shadow: 0 6px 20px rgba(230, 0, 35, 0.45), 0 2px 8px rgba(230, 0, 35, 0.3) !important;
 }
 
 [data-theme="dark"] .btn-pill-purple {
@@ -827,7 +827,7 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
   background: var(--canva-purple-hover) !important;
   color: #ffffff !important;
   border: none !important;
-  box-shadow: 0 6px 20px rgba(13, 110, 253, 0.5) !important;
+  box-shadow: 0 6px 20px rgba(230, 0, 35, 0.5), 0 2px 8px rgba(255, 90, 95, 0.3) !important;
 }
 
 .btn-outline-purple {
@@ -838,23 +838,23 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 }
 
 .btn-outline-purple:hover {
-  background: rgba(125, 42, 232, 0.12) !important;
+  background: rgba(230, 0, 35, 0.1) !important;
   color: var(--canva-purple) !important;
   border: none !important;
-  box-shadow: 0 4px 16px rgba(125, 42, 232, 0.25) !important;
+  box-shadow: 0 4px 16px rgba(230, 0, 35, 0.25) !important;
 }
 
 [data-theme="dark"] .btn-outline-purple {
   background: transparent;
   border: none !important;
-  color: #6ea8fe;
+  color: #ff5a5f;
 }
 
 [data-theme="dark"] .btn-outline-purple:hover {
-  background: rgba(13, 110, 253, 0.2) !important;
+  background: rgba(230, 0, 35, 0.2) !important;
   color: #ffffff !important;
   border: none !important;
-  box-shadow: 0 4px 16px rgba(13, 110, 253, 0.35) !important;
+  box-shadow: 0 4px 16px rgba(255, 90, 95, 0.35) !important;
 }
 
 [data-theme="dark"] .pill:not(.active):hover,
@@ -864,7 +864,7 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 [data-theme="dark"] .tab-btn:not(.active):hover {
   border: none !important;
   transform: translateY(-2px);
-  box-shadow: 0 0 16px rgba(0, 229, 255, 0.45), 0 0 25px rgba(125, 42, 232, 0.35) !important;
+  box-shadow: 0 6px 20px rgba(230, 0, 35, 0.45), 0 0 20px rgba(255, 90, 95, 0.3) !important;
 }
 
 [data-theme="dark"] .back-to-top {
