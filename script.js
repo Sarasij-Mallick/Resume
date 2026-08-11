@@ -1949,6 +1949,8 @@ function showToast(msg, timeout = 3000) {
 
     function applyTemplateFilters() {
       let visibleCount = 0;
+      let staggeredIndex = 0;
+
       templateCards.forEach((card) => {
         const cardCat = (card.getAttribute("data-category") || "").toLowerCase().trim();
         const title = (card.querySelector(".tmpl-title")?.textContent || "").toLowerCase();
@@ -1959,10 +1961,15 @@ function showToast(msg, timeout = 3000) {
 
         if (matchesCat && matchesSearch) {
           card.style.display = "flex";
-          card.style.opacity = "1";
+          card.style.animation = "none";
+          // Trigger reflow to restart CSS animation smoothly
+          void card.offsetWidth;
+          card.style.animation = `tmplCardPopIn 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) ${staggeredIndex * 0.05}s forwards`;
+          staggeredIndex++;
           visibleCount++;
         } else {
           card.style.display = "none";
+          card.style.animation = "none";
         }
       });
 

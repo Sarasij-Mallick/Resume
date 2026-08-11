@@ -1598,6 +1598,24 @@ button.selected,
   opacity: 0 !important;
 }
 
+@keyframes tmplCardPopIn {
+  0% {
+    opacity: 0;
+    transform: translateY(24px) scale(0.94);
+    filter: blur(3px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-3px) scale(1.015);
+    filter: blur(0px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0px);
+  }
+}
+
 /* Templates Grid */
 .templates-grid {
   display: grid;
