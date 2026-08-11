@@ -3573,29 +3573,38 @@ button.selected,
     text-align: center;
   }
 
-  /* ── Contact Section Mobile Centering ── */
-  .contact-info,
+  /* ── Contact Section Mobile — clean left-aligned layout ── */
+  .contact-info {
+    text-align: left !important;
+  }
+
   .contact-info .kicker,
-  .contact-info .title,
+  .contact-info .title {
+    text-align: left !important;
+  }
+
   .contact-info p {
-    text-align: center !important;
+    text-align: left !important;
+    line-height: 1.6;
   }
 
   .contact-details {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 10px;
+    align-items: flex-start;
+    gap: 12px;
     margin-top: 16px;
   }
 
   .contact-item {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    text-align: center;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 8px;
+    text-align: left;
     width: 100%;
+    line-height: 1.5;
+    word-break: break-word;
   }
 }
 
