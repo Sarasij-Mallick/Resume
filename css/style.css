@@ -3520,6 +3520,55 @@ button.selected,
   .trust-logo-text {
     font-size: 15px;
   }
+
+  /* ── Mobile Center Alignment ── */
+  h1, h2, h3, h4,
+  .title,
+  .subtitle,
+  .lead,
+  .kicker,
+  .section-head,
+  .section-head *,
+  .trust-title,
+  .trust-bar,
+  .about-icon,
+  .path-icon,
+  .about-card,
+  .about-card h3,
+  .about-card p,
+  .path-card,
+  .path-title,
+  .path-desc,
+  .path-features,
+  .stat-block,
+  .stat-block *,
+  .hero-content,
+  .hero-content .kicker,
+  .hero-content .title,
+  .hero-content .lead,
+  .choose-path-section .center,
+  .choose-path-section h2,
+  .choose-path-section p,
+  .center {
+    text-align: center !important;
+  }
+
+  /* Keep list items left-aligned for readability */
+  .path-features li {
+    text-align: left !important;
+  }
+
+  /* Center about-grid icon */
+  .about-icon {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Center path icon */
+  .path-icon {
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 /* Extra Small Mobile Devices (< 576px) */
