@@ -1328,7 +1328,7 @@ options.forEach(function (card) {
         <h4 style="margin:0 0 6px;color:#059669;font-size:16px">🎉 Forms Complete! Document Ready</h4>
         <p style="margin:0 0 14px;font-size:13px;color:#475569">Click below to view your document in full screen mode.</p>
         <button id="showDocFinalBtn" class="show-doc-btn" style="max-width:260px;margin:0 auto">
-          Show Your Document
+          Show My Resume
         </button>
       </div>
       <div style="margin-bottom:10px;font-weight:700;color:var(--canva-dark)">Resume Document Preview</div>
