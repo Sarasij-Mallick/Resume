@@ -399,6 +399,8 @@ options.forEach(function (card) {
   // Main render for a step
   function renderStep(step) {
     state.current = step;
+    document.body.classList.toggle("in-form-steps", step < 8);
+    document.body.classList.toggle("step-finalized", step === 8);
     renderSidebar();
     if (!mainCard) return;
     mainCard.innerHTML = ""; // clear

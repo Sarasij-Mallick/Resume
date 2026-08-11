@@ -3950,10 +3950,15 @@ button.dock-item.active span,
 
   .studio-drawer {
     width: 100%;
+    flex: 1;
     height: auto;
-    max-height: 420px;
+    max-height: none;
     border-right: none;
     border-bottom: 1px solid var(--canva-border);
+  }
+
+  body.in-form-steps .studio-workspace {
+    display: none !important;
   }
 
   .studio-workspace {
