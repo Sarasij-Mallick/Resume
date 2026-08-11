@@ -2176,6 +2176,14 @@ function showToast(msg, timeout = 3000) {
    INTERACTIVE MAGIC STAR SPARKLE TRAIL EFFECT
    ========================================================================== */
 (function initMouseStarTrail() {
+  // Disable stars and click circles on mobile, tablet & touch devices
+  const isMobileOrTablet = () => window.innerWidth <= 1024 ||
+                             ('ontouchstart' in window) ||
+                             (navigator.maxTouchPoints > 0) ||
+                             window.matchMedia("(pointer: coarse)").matches;
+
+  if (isMobileOrTablet()) return;
+
   const canvas = document.createElement("canvas");
   canvas.id = "mouseStarCanvas";
   canvas.style.position = "fixed";
@@ -2196,6 +2204,13 @@ function showToast(msg, timeout = 3000) {
   window.addEventListener("resize", () => {
     width = canvas.width = window.innerWidth;
     height = canvas.height = window.innerHeight;
+    if (isMobileOrTablet()) {
+      canvas.style.display = "none";
+      particles = [];
+      rings = [];
+    } else {
+      canvas.style.display = "block";
+    }
   });
 
   const colors = [
@@ -2228,8 +2243,9 @@ function showToast(msg, timeout = 3000) {
     });
   }
 
-  // Mouse Move Event Listener (spawns 1 subtle star every 28px movement)
+  // Mouse Move Event Listener (desktop only)
   window.addEventListener("pointermove", (e) => {
+    if (e.pointerType === "touch" || isMobileOrTablet()) return;
     const dist = Math.hypot(e.clientX - lastX, e.clientY - lastY);
     if (dist > 28) {
       spawnSparks(e.clientX, e.clientY);
@@ -2238,8 +2254,9 @@ function showToast(msg, timeout = 3000) {
     }
   });
 
-  // Mouse Click Shockwave Burst
+  // Mouse Click Shockwave Burst (desktop only)
   window.addEventListener("pointerdown", (e) => {
+    if (e.pointerType === "touch" || isMobileOrTablet()) return;
     const color = colors[Math.floor(Math.random() * colors.length)];
     rings.push({
       x: e.clientX,
