@@ -526,8 +526,42 @@ body {
 }
 
 [data-theme="dark"] .studio-dock {
-  background: #1a1d20 !important;
-  border-right: 1px solid #495057;
+  background: #182232 !important;
+  border-right: 1px solid #334155 !important;
+}
+
+[data-theme="dark"] .dock-item,
+[data-theme="dark"] button.dock-item {
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .dock-item svg {
+  fill: #94a3b8 !important;
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .dock-item:hover,
+[data-theme="dark"] button.dock-item:hover {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+
+[data-theme="dark"] .dock-item:hover svg {
+  fill: #ffffff !important;
+}
+
+[data-theme="dark"] .dock-item.active,
+[data-theme="dark"] .dock-item.step.active,
+[data-theme="dark"] button.dock-item.active,
+[data-theme="dark"] .studio-dock .dock-item.active {
+  color: #e60023 !important;
+  background: rgba(230, 0, 35, 0.15) !important;
+}
+
+[data-theme="dark"] .dock-item.active svg,
+[data-theme="dark"] .studio-dock .dock-item.active svg {
+  fill: #e60023 !important;
+  color: #e60023 !important;
 }
 
 [data-theme="dark"] .studio-drawer {
@@ -3301,7 +3335,8 @@ button.selected,
 /* Vertical Icon Dock (Leftmost Sidebar) */
 .studio-dock {
   width: 82px;
-  background: #182232;
+  background: #ffffff !important;
+  border-right: 1px solid #e2e8f0 !important;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -3311,7 +3346,7 @@ button.selected,
   overflow-x: hidden !important;
   overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+  scrollbar-color: rgba(0, 0, 0, 0.15) transparent;
   flex-shrink: 0;
 }
 
@@ -3325,7 +3360,7 @@ button.selected,
 }
 
 .studio-dock::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.15);
   border-radius: 4px;
 }
 
@@ -3339,7 +3374,7 @@ button.dock-item {
   background-color: transparent !important;
   border: none !important;
   box-shadow: none !important;
-  color: #94a3b8 !important;
+  color: #475569 !important;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -3366,20 +3401,20 @@ button.dock-item {
 .dock-item svg {
   width: 17px;
   height: 17px;
-  fill: currentColor;
-  color: inherit;
+  fill: #475569;
+  color: #475569;
   transition: fill 0.2s ease, color 0.2s ease;
 }
 
 .dock-item:hover,
 button.dock-item:hover {
-  color: #ffffff !important;
-  background: rgba(255, 255, 255, 0.08) !important;
+  color: #0f172a !important;
+  background: #f1f5f9 !important;
   box-shadow: none !important;
 }
 
 .dock-item:hover svg {
-  fill: #ffffff !important;
+  fill: #0f172a !important;
 }
 
 .dock-item.active,
@@ -3388,8 +3423,8 @@ button.dock-item.active,
 button.dock-item.step.active,
 .studio-dock .dock-item.active {
   color: #e60023 !important;
-  background: transparent !important;
-  background-color: transparent !important;
+  background: rgba(230, 0, 35, 0.08) !important;
+  background-color: rgba(230, 0, 35, 0.08) !important;
   border: none !important;
   box-shadow: none !important;
   border-radius: 8px !important;
