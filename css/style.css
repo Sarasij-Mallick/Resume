@@ -897,7 +897,6 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
   box-shadow: 0 4px 16px rgba(230, 0, 35, 0.3) !important;
 }
 
-[data-theme="dark"] .pill:not(.active):hover,
 [data-theme="dark"] .submit-btn:hover,
 [data-theme="dark"] .social-btn:hover {
   border: none !important;
@@ -1523,29 +1522,33 @@ input.search-input:focus {
 }
 
 .pill {
+  box-sizing: border-box;
   background: #f1f3f5;
   color: #333333;
   font-weight: 600;
   font-size: 14px;
   padding: 8px 18px;
   border-radius: 50rem;
-  border: 1px solid #e1e1e1;
+  border: 1.5px solid #e1e1e1;
   cursor: pointer;
-  transition: all 0.15s ease-in-out;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  transform: none !important;
 }
 
 .pill:hover {
   background: #fff0f2;
   color: #e60023;
   border-color: #ff5a5f;
-  transform: translateY(-1px);
+  transform: none !important;
+  box-shadow: 0 4px 14px rgba(230, 0, 35, 0.2);
 }
 
 .pill.active {
-  background: #e60023;
-  color: #ffffff;
-  border: none !important;
-  box-shadow: 0 4px 14px rgba(230, 0, 35, 0.35);
+  background: #e60023 !important;
+  color: #ffffff !important;
+  border: 1.5px solid #e60023 !important;
+  box-shadow: 0 4px 14px rgba(230, 0, 35, 0.35) !important;
+  transform: none !important;
 }
 
 /* Active/Selected buttons: Unified Pinterest Red Active Pill Style across all themes */
