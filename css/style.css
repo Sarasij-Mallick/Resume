@@ -41,6 +41,126 @@
   --text: var(--canva-dark);
 }
 
+/* ════════════════════════════════════════════════════
+   ✦ GLOBAL SMOOTHNESS LAYER
+   Smooth scroll · Universal transitions · Hover polish
+   ════════════════════════════════════════════════════ */
+
+/* 1. Smooth scrolling for the whole page */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* 2. Box-sizing & base smoothness */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* 3. Universal transition for interactive elements */
+a,
+button,
+input,
+textarea,
+select,
+label,
+.btn,
+.card,
+.nav-link,
+.tab-btn,
+.pill,
+.about-card,
+.path-card,
+.template-card,
+.blog-card,
+.feature-card,
+.stat-card,
+.testimonial-card,
+.social-btn,
+.theme-toggle-btn,
+.header-cta-btn,
+.header-login-btn,
+.studio-btn,
+.submit-btn,
+.back-to-top,
+img,
+svg,
+.logo,
+.brand,
+.section-head,
+.mockup-frame {
+  transition:
+    color 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 4. Card hover lift — smooth upward float */
+.about-card:hover,
+.path-card:hover,
+.template-card:hover,
+.blog-card:hover,
+.feature-card:hover,
+.stat-card:hover,
+.testimonial-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.13);
+}
+
+/* 5. Image rendering smoothness */
+img {
+  image-rendering: auto;
+  max-width: 100%;
+  display: block;
+}
+
+/* 6. Smooth focus outline (accessibility + aesthetics) */
+:focus-visible {
+  outline: 2px solid var(--canva-purple);
+  outline-offset: 3px;
+  border-radius: 4px;
+  transition: outline-offset 0.15s ease;
+}
+
+/* 7. Selection color */
+::selection {
+  background: rgba(230, 0, 35, 0.18);
+  color: var(--canva-dark);
+}
+
+/* 8. will-change for GPU-accelerated elements */
+.btn,
+.btn-pill-purple,
+.header-cta-btn,
+.path-card,
+.about-card,
+.template-card,
+.blog-card {
+  will-change: transform, box-shadow;
+}
+
+/* 9. Smooth page-level color/background transitions (dark mode toggle) */
+body {
+  transition:
+    background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 10. Respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 [data-theme="dark"] {
   --canva-bg: #111111;
   --canva-card: #1e1e1e;
