@@ -3896,6 +3896,14 @@ button.dock-item.active span,
   }
 }
 
+/* Hide mobile-only document viewer buttons and drawer preview on desktop (screens > 1024px) */
+@media (min-width: 1025px) {
+  #showDocDrawerBtn,
+  .mobile-only-doc-box {
+    display: none !important;
+  }
+}
+
 /* Full-Page PDF Generation Loader Overlay */
 .pdf-gen-overlay {
   display: none !important;

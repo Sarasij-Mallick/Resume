@@ -1330,15 +1330,15 @@ options.forEach(function (card) {
     wrapper.className = "form";
     const resumeHtml = buildResumeHtml();
     wrapper.innerHTML = `
-      <div style="margin-bottom:14px;text-align:center;padding:18px;background:rgba(16,185,129,0.08);border-radius:14px;border:1.5px solid rgba(16,185,129,0.25)">
+      <div class="mobile-only-doc-box" style="margin-bottom:14px;text-align:center;padding:18px;background:rgba(16,185,129,0.08);border-radius:14px;border:1.5px solid rgba(16,185,129,0.25)">
         <h4 style="margin:0 0 6px;color:#059669;font-size:16px">🎉 Forms Complete! Document Ready</h4>
         <p style="margin:0 0 14px;font-size:13px;color:#475569">Click below to view your document in full screen mode.</p>
         <button id="showDocFinalBtn" class="show-doc-btn" style="max-width:260px;margin:0 auto">
           Show My Resume
         </button>
       </div>
-      <div style="margin-bottom:10px;font-weight:700;color:var(--canva-dark)">Resume Document Preview</div>
-      <div style="border:1px solid rgba(15,23,42,0.08);padding:14px;border-radius:12px;background:linear-gradient(180deg,var(--card),transparent);max-height:360px;overflow-y:auto">${resumeHtml}</div>
+      <div class="mobile-only-doc-box" style="margin-bottom:10px;font-weight:700;color:var(--canva-dark)">Resume Document Preview</div>
+      <div class="mobile-only-doc-box" style="border:1px solid rgba(15,23,42,0.08);padding:14px;border-radius:12px;background:linear-gradient(180deg,var(--card),transparent);max-height:360px;overflow-y:auto">${resumeHtml}</div>
       <div class="actions" style="margin-top:16px"><button id="editResume" class="btn neutral">Edit</button><button id="downloadPdf" class="btn neutral">Download PDF</button><button id="saveFinal" class="btn primary">Save Resume</button></div>`;
     
     wrapper.querySelector("#showDocFinalBtn").onclick = () => {
