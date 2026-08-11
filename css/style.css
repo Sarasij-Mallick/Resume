@@ -3329,51 +3329,87 @@ button.selected,
   border-radius: 4px;
 }
 
-.dock-item {
-  width: 68px;
+.dock-item,
+button.dock-item {
+  width: 72px;
   min-height: 52px;
   padding: 6px 4px;
-  border-radius: 12px;
-  background: transparent;
-  border: none;
-  color: #94a3b8;
+  border-radius: 8px !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: #94a3b8 !important;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 3px;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all 0.2s ease;
   box-sizing: border-box;
+  flex-shrink: 0;
 }
 
 .dock-item span {
-  font-size: 10px;
+  font-size: 11px;
   line-height: 1.1;
   text-align: center;
   max-width: 100%;
   padding: 0 2px;
-  word-break: break-word;
+  white-space: nowrap;
+  color: inherit;
 }
 
 .dock-item svg {
   width: 18px;
   height: 18px;
   fill: currentColor;
+  color: inherit;
+  transition: fill 0.2s ease, color 0.2s ease;
 }
 
-.dock-item:hover {
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.08);
+.dock-item:hover,
+button.dock-item:hover {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  box-shadow: none !important;
 }
 
-.dock-item.active {
-  color: #ffffff;
-  background: var(--canva-purple);
+.dock-item:hover svg {
+  fill: #ffffff !important;
+}
+
+.dock-item.active,
+.dock-item.step.active,
+button.dock-item.active,
+button.dock-item.step.active,
+.studio-dock .dock-item.active {
+  color: #e60023 !important;
+  background: transparent !important;
+  background-color: transparent !important;
   border: none !important;
-  box-shadow: 0 4px 12px rgba(13, 110, 253, 0.4);
+  box-shadow: none !important;
+  border-radius: 8px !important;
+  font-weight: 700 !important;
+}
+
+.dock-item.active svg,
+.dock-item.step.active svg,
+button.dock-item.active svg,
+.studio-dock .dock-item.active svg {
+  fill: #e60023 !important;
+  color: #e60023 !important;
+}
+
+.dock-item.active span,
+.dock-item.step.active span,
+button.dock-item.active span,
+.studio-dock .dock-item.active span {
+  color: #e60023 !important;
+  font-weight: 700 !important;
 }
 
 /* Collapsible Control Drawer Panel */
@@ -3840,17 +3876,34 @@ button.selected,
     height: 56px;
     flex-direction: row;
     justify-content: flex-start;
+    align-items: center;
     padding: 0 12px;
     overflow-x: auto;
     overflow-y: hidden;
-    gap: 10px;
+    gap: 8px;
     border-bottom: 1px solid var(--canva-border);
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
 
-  .dock-item {
-    min-width: 60px;
-    height: 48px;
-    font-size: 10px;
+  .studio-dock::-webkit-scrollbar {
+    display: none;
+  }
+
+  .dock-item,
+  button.dock-item {
+    width: auto;
+    min-width: max-content;
+    height: 46px;
+    padding: 4px 10px;
+    font-size: 11px;
+    flex-shrink: 0;
+  }
+
+  .dock-item span {
+    font-size: 11px;
+    white-space: nowrap;
   }
 
   .studio-drawer {
