@@ -3926,11 +3926,40 @@ button.dock-item.active span,
   }
 }
 
-/* Hide mobile-only document viewer buttons and drawer preview on desktop (screens > 1024px) */
+/* Hide mobile-only document viewer buttons and drawer preview on desktop (screens > 1024px) & enhance screensaver */
 @media (min-width: 1025px) {
   #showDocDrawerBtn,
   .mobile-only-doc-box {
     display: none !important;
+  }
+
+  .anime-character-wrap {
+    width: 180px !important;
+    height: 180px !important;
+  }
+
+  .anime-speech-bubble {
+    top: -50px !important;
+    font-size: 13.5px !important;
+    padding: 8px 16px !important;
+    border-radius: 16px !important;
+  }
+
+  .screensaver-clock {
+    font-size: 96px !important;
+  }
+
+  .screensaver-date {
+    font-size: 22px !important;
+  }
+
+  .screensaver-quote {
+    padding: 22px 32px !important;
+    max-width: 680px !important;
+  }
+
+  .screensaver-quote p {
+    font-size: 16px !important;
   }
 }
 
