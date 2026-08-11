@@ -3572,6 +3572,31 @@ button.selected,
     margin-right: auto;
     text-align: center;
   }
+
+  /* ── Contact Section Mobile Centering ── */
+  .contact-info,
+  .contact-info .kicker,
+  .contact-info .title,
+  .contact-info p {
+    text-align: center !important;
+  }
+
+  .contact-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 16px;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    text-align: center;
+    width: 100%;
+  }
 }
 
 /* Extra Small Mobile Devices (< 576px) */
