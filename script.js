@@ -1327,7 +1327,7 @@ options.forEach(function (card) {
       <div style="margin-bottom:14px;text-align:center;padding:18px;background:rgba(16,185,129,0.08);border-radius:14px;border:1.5px solid rgba(16,185,129,0.25)">
         <h4 style="margin:0 0 6px;color:#059669;font-size:16px">🎉 Forms Complete! Document Ready</h4>
         <p style="margin:0 0 14px;font-size:13px;color:#475569">Click below to view your document in full screen mode.</p>
-        <button id="showDocFinalBtn" class="studio-btn save" style="padding:10px 24px;font-size:14px;font-weight:700;display:inline-flex;align-items:center;box-shadow:0 4px 16px rgba(16,185,129,0.3)">
+        <button id="showDocFinalBtn" class="show-doc-btn" style="max-width:260px;margin:0 auto">
           Show Your Document
         </button>
       </div>
