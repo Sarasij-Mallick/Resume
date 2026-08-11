@@ -815,21 +815,7 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
   opacity: 1;
 }
 
-/* ── Gloss overlay visible on hover ── */
-.btn:hover::after,
-.tab-btn:hover::after,
-.submit-btn:hover::after,
-.social-btn:hover::after,
-.pill:hover::after,
-.header-cta-btn:hover::after,
-.header-login-btn:hover::after,
-.btn-ghost:hover::after,
-.btn-pill-purple:hover::after,
-.btn-outline-purple:hover::after,
-.studio-btn:hover::after,
-.theme-toggle-btn:hover::after {
-  opacity: 1;
-}
+
 
 .btn:hover,
 .tab-btn:hover,
