@@ -191,16 +191,27 @@
         </div>
 
         <!-- Confirm Clear Modal -->
-        <div id="confirmClearModal" class="modal" aria-hidden="true" role="dialog">
-            <div class="modal-panel">
-                <header style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px"><h3 style="margin:0">Clear All Resume Data</h3><button id="closeConfirm" class="btn neutral" style="border-radius:50%;width:32px;height:32px;padding:0">✕</button></header>
-                <div class="modal-body">
-                    <p style="margin:0">Are you sure you want to clear all resume data? This action cannot be undone.</p>
+        <div id="confirmClearModal" class="modal studio-confirm-modal" aria-hidden="true" role="dialog">
+            <div class="modal-panel confirm-clear-panel">
+                <button id="closeConfirm" class="confirm-close-btn" aria-label="Close modal">✕</button>
+                <div class="confirm-icon-wrapper">
+                    <div class="confirm-icon-pulse"></div>
+                    <div class="confirm-icon-box">🗑️</div>
                 </div>
-                <footer style="margin-top:20px;display:flex;justify-content:flex-end;gap:8px">
-                    <button id="cancelClear" class="btn neutral">Cancel</button>
-                    <button id="confirmClear" class="btn danger">Clear Everything</button>
-                </footer>
+                <h3 class="confirm-title">Clear All Resume Data?</h3>
+                <p class="confirm-subtitle">Are you sure you want to reset your resume? This action cannot be undone and will erase your current draft.</p>
+                
+                <div class="confirm-warning-banner">
+                    <span class="warning-tag">⚠️ PERMANENT ERASE</span>
+                    <span>Your personal info, education, skills, and projects will be permanently removed.</span>
+                </div>
+
+                <div class="confirm-actions">
+                    <button id="cancelClear" class="btn-confirm-cancel">Cancel</button>
+                    <button id="confirmClear" class="btn-confirm-danger">
+                        <span>🗑️</span> Yes, Clear Everything
+                    </button>
+                </div>
             </div>
         </div>
 

@@ -3548,6 +3548,189 @@ button.dock-item.active span,
   overflow-y: auto !important;
 }
 
+/* Premium Confirm Clear Modal Styling */
+.confirm-clear-panel {
+  max-width: 440px !important;
+  padding: 32px 26px 26px !important;
+  border-radius: 24px !important;
+  text-align: center !important;
+  position: relative !important;
+  background: var(--canva-card-bg, #ffffff) !important;
+  border: 1.5px solid rgba(239, 68, 68, 0.25) !important;
+  box-shadow: 0 25px 60px -15px rgba(239, 68, 68, 0.25), 0 10px 30px rgba(0, 0, 0, 0.15) !important;
+  animation: confirmPopIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+
+@keyframes confirmPopIn {
+  from {
+    opacity: 0;
+    transform: scale(0.85) translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.confirm-close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(100, 116, 139, 0.1);
+  color: #64748b;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.confirm-close-btn:hover {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+  transform: rotate(90deg);
+}
+
+.confirm-icon-wrapper {
+  position: relative;
+  width: 68px;
+  height: 68px;
+  margin: 0 auto 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.confirm-icon-pulse {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  background: rgba(239, 68, 68, 0.25);
+  animation: pulseWarning 2s infinite ease-in-out;
+}
+
+@keyframes pulseWarning {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.22);
+    opacity: 0.15;
+  }
+}
+
+.confirm-icon-box {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: #ffffff;
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(239, 68, 68, 0.35);
+}
+
+.confirm-title {
+  margin: 0 0 8px !important;
+  font-size: 20px !important;
+  font-weight: 800 !important;
+  color: #0f172a !important;
+}
+
+[data-theme="dark"] .confirm-title {
+  color: #f8fafc !important;
+}
+
+.confirm-subtitle {
+  margin: 0 0 18px !important;
+  font-size: 13.5px !important;
+  color: #64748b !important;
+  line-height: 1.5 !important;
+}
+
+.confirm-warning-banner {
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px dashed rgba(239, 68, 68, 0.35);
+  border-radius: 12px;
+  padding: 10px 14px;
+  margin-bottom: 22px;
+  font-size: 12px;
+  color: #b91c1c;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+}
+
+[data-theme="dark"] .confirm-warning-banner {
+  background: rgba(239, 68, 68, 0.15);
+  color: #fca5a5;
+  border-color: rgba(239, 68, 68, 0.4);
+}
+
+.warning-tag {
+  font-weight: 800;
+  font-size: 10.5px;
+  letter-spacing: 0.05em;
+  color: #ef4444;
+}
+
+.confirm-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-confirm-cancel {
+  flex: 1;
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+  color: #475569;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-confirm-cancel:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.btn-confirm-danger {
+  flex: 1.4;
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  box-shadow: 0 6px 18px rgba(239, 68, 68, 0.35);
+  transition: all 0.2s ease;
+}
+
+.btn-confirm-danger:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(239, 68, 68, 0.48);
+  background: linear-gradient(135deg, #f87171 0%, #ef4444 100%);
+}
+
 /* Full Screen Document Preview Modal System */
 .fullscreen-doc-modal {
   display: none !important;
