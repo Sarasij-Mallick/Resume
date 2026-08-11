@@ -1753,21 +1753,6 @@ options.forEach(function (card) {
 
   // Export PDF with loading state & direct download via html2pdf
   function exportPDF(evt) {
-    const completion = checkFormCompletion();
-    if (!completion.isComplete) {
-      alert(
-        "⚠️ Please complete filling out all required form sections first!\n\n" +
-        "Remaining incomplete form sections:\n• " + completion.missingFields.join("\n• ")
-      );
-      if (!state.personal?.fullName) { state.current = 1; }
-      else if (!state.education?.length) { state.current = 2; }
-      else if (!((state.skills?.technical?.length || 0) + (state.skills?.soft?.length || 0))) { state.current = 3; }
-      else if (!state.projects?.length) { state.current = 4; }
-      else if (!state.summary?.text) { state.current = 7; }
-      renderStep(state.current);
-      return;
-    }
-
     const btn = (evt && evt.target) ? evt.target.closest("button") : (evt || document.getElementById("exportPdf") || document.getElementById("fullExportPdf"));
     let originalContent = "";
     if (btn) {
@@ -2025,21 +2010,6 @@ function showToast(msg, timeout = 3000) {
 
     // Fullscreen document helper functions
     function openFullscreenDocument() {
-      const completion = checkFormCompletion();
-      if (!completion.isComplete) {
-        alert(
-          "⚠️ Please complete filling out all required form sections first!\n\n" +
-          "Incomplete form sections:\n• " + completion.missingFields.join("\n• ")
-        );
-        if (!state.personal?.fullName) { state.current = 1; }
-        else if (!state.education?.length) { state.current = 2; }
-        else if (!((state.skills?.technical?.length || 0) + (state.skills?.soft?.length || 0))) { state.current = 3; }
-        else if (!state.projects?.length) { state.current = 4; }
-        else if (!state.summary?.text) { state.current = 7; }
-        renderStep(state.current);
-        return;
-      }
-
       const docModal = document.getElementById("docFullscreenModal");
       const fullCanvas = document.getElementById("fullscreenPaperCanvas");
       if (docModal && fullCanvas) {
