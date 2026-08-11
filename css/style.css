@@ -147,9 +147,10 @@
 }
 
 [data-theme="dark"] .nav .nav-link:hover {
-  color: #e60023 !important;
-  background: rgba(230, 0, 35, 0.08) !important;
-  box-shadow: 0 4px 14px rgba(230, 0, 35, 0.25) !important;
+  color: #ffffff !important;
+  background: #e60023 !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 14px rgba(230, 0, 35, 0.4) !important;
 }
 
 [data-theme="dark"] .nav .nav-link.active {
@@ -589,8 +590,10 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 }
 
 .nav .nav-link:hover {
-  color: #e60023;
-  background: rgba(230, 0, 35, 0.08);
+  color: #ffffff !important;
+  background: #e60023 !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 14px rgba(230, 0, 35, 0.4) !important;
 }
 
 .nav .nav-link.active {
