@@ -403,7 +403,13 @@ options.forEach(function (card) {
     document.body.classList.toggle("step-finalized", step === 8);
     renderSidebar();
     if (!mainCard) return;
+    
+    // Trigger smooth entrance animation on step change
     mainCard.innerHTML = ""; // clear
+    mainCard.classList.remove("step-animate-in");
+    void mainCard.offsetWidth; // trigger reflow
+    mainCard.classList.add("step-animate-in");
+
     const meta = stepsMeta.find((s) => s.id === step);
     const header = createHeader(meta ? meta.title : "Step Details");
     const content = document.createElement("div");
