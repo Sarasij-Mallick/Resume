@@ -3569,24 +3569,15 @@ button.dock-item.active span,
 }
 
 .fullscreen-doc-header {
-  height: 60px;
+  height: 56px;
   background: #1e293b;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 0 24px;
+  justify-content: flex-end;
+  padding: 0 20px;
   color: #ffffff;
   flex-shrink: 0;
-}
-
-.fullscreen-doc-title {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 15px;
-  font-weight: 700;
-  color: #f8fafc;
 }
 
 .fullscreen-doc-actions {
