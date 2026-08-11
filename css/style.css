@@ -1826,6 +1826,208 @@ button.selected,
 }
 
 /* ==========================================================================
+   ABOUT, BLOG & CONTACT SECTIONS
+   ========================================================================== */
+.about-section, .blog-section, .contact-section {
+  padding: 80px 0;
+  border-top: 1px solid var(--canva-border);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 40px;
+}
+
+.about-card {
+  background: var(--canva-card);
+  border: 1px solid var(--canva-border);
+  border-radius: var(--canva-card-radius);
+  padding: 32px 24px;
+  box-shadow: var(--canva-shadow);
+  transition: all 0.25s ease;
+  text-align: center;
+}
+
+.about-card:hover {
+  border-color: #e60023;
+  transform: translateY(-6px);
+  box-shadow: 0 14px 35px rgba(230, 0, 35, 0.18);
+}
+
+.about-icon {
+  font-size: 36px;
+  margin-bottom: 16px;
+}
+
+.about-card h3 {
+  font-size: 18px;
+  font-weight: 800;
+  margin: 0 0 10px;
+  color: var(--canva-dark);
+}
+
+.about-card p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--canva-muted);
+  margin: 0;
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 40px;
+}
+
+.blog-card {
+  background: var(--canva-card);
+  border: 1px solid var(--canva-border);
+  border-radius: var(--canva-card-radius);
+  padding: 28px 24px;
+  box-shadow: var(--canva-shadow);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.25s ease;
+}
+
+.blog-card:hover {
+  border-color: #e60023;
+  transform: translateY(-6px);
+  box-shadow: 0 14px 35px rgba(230, 0, 35, 0.18);
+}
+
+.blog-tag {
+  font-size: 11px;
+  font-weight: 800;
+  color: #e60023;
+  letter-spacing: 0.08em;
+  margin-bottom: 12px;
+}
+
+.blog-title {
+  font-size: 17px;
+  font-weight: 800;
+  line-height: 1.4;
+  margin: 0 0 10px;
+  color: var(--canva-dark);
+}
+
+.blog-excerpt {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--canva-muted);
+  margin: 0 0 18px;
+}
+
+.blog-link {
+  color: #e60023;
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: none;
+  transition: color 0.18s ease;
+}
+
+.blog-link:hover {
+  color: #ad081b;
+  text-decoration: underline;
+}
+
+.contact-card-wrap {
+  background: var(--canva-card);
+  border: 1px solid var(--canva-border);
+  border-radius: var(--canva-card-radius);
+  padding: 44px;
+  box-shadow: var(--canva-shadow-hover);
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.contact-info p {
+  color: var(--canva-muted);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.contact-details {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 14px;
+  color: var(--canva-dark);
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--canva-dark);
+}
+
+.input-pill {
+  width: 100%;
+  padding: 12px 18px;
+  border-radius: 12px;
+  border: 1.5px solid var(--canva-border);
+  background: var(--canva-bg);
+  color: var(--canva-dark);
+  font-family: inherit;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+.input-pill:focus {
+  border-color: #e60023;
+  box-shadow: 0 0 0 3px rgba(230, 0, 35, 0.15);
+}
+
+.textarea-pill {
+  resize: vertical;
+  min-height: 90px;
+}
+
+.submit-contact-btn {
+  width: 100%;
+  padding: 12px 24px;
+  font-weight: 700;
+  margin-top: 8px;
+}
+
+@media (max-width: 992px) {
+  .about-grid, .blog-grid {
+    grid-template-columns: 1fr;
+  }
+  .contact-card-wrap {
+    grid-template-columns: 1fr;
+    padding: 28px 20px;
+    gap: 32px;
+  }
+}
+
+/* ==========================================================================
    CANVA FOOTER & BACK TO TOP BUTTON
    ========================================================================== */
 .site-footer {
