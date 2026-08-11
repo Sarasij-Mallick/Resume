@@ -1516,24 +1516,25 @@ input.search-input:focus {
   box-shadow: 0 4px 14px rgba(230, 0, 35, 0.35);
 }
 
-/* Light Theme: Selected/Active buttons border none */
-/* Active/Selected buttons: no border across all themes */
+/* Active/Selected buttons: Unified Pinterest Red Active Pill Style across all themes */
 button.active,
 button.selected,
-button:active,
 .btn.active,
 .btn.selected,
 .pill.active,
 .pill.selected,
 .tab-btn.active,
 .tab-btn.selected,
-.dock-item.active,
-.dock-item.selected,
 .step.active,
 .nav .nav-link.active {
+  background: #e60023 !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  border-radius: 50rem !important;
   border: none !important;
   border-color: transparent !important;
   outline: none !important;
+  box-shadow: 0 4px 14px rgba(230, 0, 35, 0.4) !important;
 }
 
 [data-theme="dark"] .active::after,
