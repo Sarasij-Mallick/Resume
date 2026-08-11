@@ -1944,9 +1944,8 @@ function showToast(msg, timeout = 3000) {
       const completion = checkFormCompletion();
       if (!completion.isComplete) {
         alert(
-          "⚠️ আগে সব ফর্ম সম্পূর্ণ ফিল আপ করুন!\n" +
-          "(Please complete filling out all required form sections first!)\n\n" +
-          "পূরণ করতে বাকি থাকা সেকশনসমূহ:\n• " + completion.missingFields.join("\n• ")
+          "⚠️ Please complete filling out all required form sections first!\n\n" +
+          "Incomplete form sections:\n• " + completion.missingFields.join("\n• ")
         );
         if (!state.personal?.fullName) { state.current = 1; }
         else if (!state.education?.length) { state.current = 2; }
