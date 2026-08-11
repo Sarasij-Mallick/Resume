@@ -49,21 +49,76 @@ options.forEach(function (card) {
   });
 });
 
-// Animate visible elements on scroll
-var observer = new IntersectionObserver(
-  function (entries) {
-    entries.forEach(function (entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("in");
+// ── SCROLL REVEAL SYSTEM ──────────────────────────────────
+(function () {
+  // 1. Auto-add reveal classes to all major content elements
+  var revealSelectors = [
+    // Section headings
+    { sel: '.section-head',         cls: 'reveal' },
+    { sel: '.hero-content',         cls: 'reveal-left' },
+    { sel: '.hero-visual',          cls: 'reveal-right' },
+    { sel: '.trust-bar .trust-title', cls: 'reveal' },
+    { sel: '.trust-logos',          cls: 'reveal' },
+    // Cards (stagger handled by wrapper)
+    { sel: '.about-grid',           cls: 'reveal-stagger' },
+    { sel: '.path-cards',           cls: 'reveal-stagger' },
+    { sel: '.templates-grid',       cls: 'reveal-stagger' },
+    // Individual elements
+    { sel: '.tmpl-card',            cls: 'reveal-scale' },
+    { sel: '.about-card',           cls: 'reveal' },
+    { sel: '.path-card',            cls: 'reveal' },
+    { sel: '.stat-block',           cls: 'reveal-scale' },
+    { sel: '.testimonial-card',     cls: 'reveal' },
+    { sel: '.blog-card',            cls: 'reveal-scale' },
+    { sel: '.choose-path-section .center', cls: 'reveal' },
+    { sel: '.about-section .section-head', cls: 'reveal' },
+    { sel: '.contact-form-wrap',    cls: 'reveal-right' },
+    { sel: '.contact-info',         cls: 'reveal-left' },
+    { sel: '.footer-brand',         cls: 'reveal-left' },
+    { sel: '.footer-links-col',     cls: 'reveal' },
+  ];
+
+  revealSelectors.forEach(function (item) {
+    document.querySelectorAll(item.sel).forEach(function (el) {
+      // Don't add twice
+      if (!el.classList.contains('reveal') &&
+          !el.classList.contains('reveal-left') &&
+          !el.classList.contains('reveal-right') &&
+          !el.classList.contains('reveal-scale') &&
+          !el.classList.contains('reveal-stagger')) {
+        el.classList.add(item.cls);
       }
     });
-  },
-  { threshold: 0.12 },
-);
+  });
 
-document.querySelectorAll(".fade-up").forEach(function (el) {
-  observer.observe(el);
-});
+  // 2. IntersectionObserver — triggers .visible class
+  var revealObserver = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target); // fire only once
+        }
+      });
+    },
+    { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+  );
+
+  // 3. Observe all reveal elements
+  document.querySelectorAll(
+    '.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-stagger, .fade-up'
+  ).forEach(function (el) {
+    revealObserver.observe(el);
+  });
+
+  // Legacy .fade-up support
+  document.querySelectorAll('.fade-up').forEach(function (el) {
+    el.classList.add('reveal');
+    revealObserver.observe(el);
+  });
+})();
+
+
 
 // Back-to-top button behavior with Radial Progress Ring & Rocket Launch animation
 (function () {
