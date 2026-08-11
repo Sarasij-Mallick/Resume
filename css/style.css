@@ -3936,7 +3936,6 @@ button.dock-item.active span,
 
 /* Idle Screensaver Overlay System */
 .screensaver-overlay {
-  display: none !important;
   position: fixed !important;
   top: 0 !important;
   left: 0 !important;
@@ -3944,18 +3943,22 @@ button.dock-item.active span,
   height: 100vh !important;
   z-index: 9999999 !important;
   background: radial-gradient(circle at center, #1e1b4b 0%, #0f172a 60%, #020617 100%) !important;
+  display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   flex-direction: column !important;
   cursor: pointer !important;
   overflow: hidden !important;
-  opacity: 0;
-  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.6s !important;
 }
 
 .screensaver-overlay[aria-hidden="false"] {
-  display: flex !important;
   opacity: 1 !important;
+  pointer-events: auto !important;
+  visibility: visible !important;
 }
 
 .screensaver-bg-particles {
@@ -4084,7 +4087,6 @@ button.dock-item.active span,
 
 /* Full-Page PDF Generation Loader Overlay */
 .pdf-gen-overlay {
-  display: none !important;
   position: fixed !important;
   top: 0 !important;
   left: 0 !important;
@@ -4093,14 +4095,20 @@ button.dock-item.active span,
   z-index: 999999 !important;
   background: rgba(15, 23, 42, 0.85) !important;
   backdrop-filter: blur(8px) !important;
+  display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   box-sizing: border-box !important;
-  animation: fadeIn 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+  transition: opacity 0.3s ease, visibility 0.3s !important;
 }
 
 .pdf-gen-overlay[aria-hidden="false"] {
-  display: flex !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  visibility: visible !important;
 }
 
 .pdf-gen-card {
