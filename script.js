@@ -1751,7 +1751,7 @@ options.forEach(function (card) {
     </div>`;
   }
 
-  // Export PDF with 3.5s loading spinner state & direct download via html2pdf
+  // Export PDF with 3.5s page loader overlay & direct download via html2pdf
   function exportPDF(evt) {
     const btn = (evt && evt.target) ? evt.target.closest("button") : (evt || document.getElementById("exportPdf") || document.getElementById("fullExportPdf"));
     let originalContent = "";
@@ -1761,6 +1761,17 @@ options.forEach(function (card) {
       btn.style.pointerEvents = "none";
       btn.style.opacity = "0.85";
       btn.innerHTML = `<span class="pdf-spinner"></span> Generating PDF...`;
+    }
+
+    const overlay = document.getElementById("pdfGenLoaderOverlay");
+    if (overlay) {
+      const fill = overlay.querySelector(".pdf-loader-progress-fill");
+      if (fill) {
+        fill.style.animation = "none";
+        void fill.offsetWidth;
+        fill.style.animation = "fillProgress 3.5s linear forwards";
+      }
+      overlay.setAttribute("aria-hidden", "false");
     }
 
     showToast("⏳ Generating high-quality PDF document, please wait...");
@@ -1781,6 +1792,7 @@ options.forEach(function (card) {
       const fileName = `${rawName}_Resume.pdf`;
 
       const cleanup = () => {
+        if (overlay) overlay.setAttribute("aria-hidden", "true");
         if (tempDiv.parentNode) tempDiv.parentNode.removeChild(tempDiv);
         if (btn) {
           btn.disabled = false;
