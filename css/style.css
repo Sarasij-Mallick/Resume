@@ -938,7 +938,20 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
   transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Universal Button Shine Sweep Effect & Borderless Design */
+/* ── Filter Pills — hide scrollbar ── */
+.filter-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;        /* Firefox */
+  -ms-overflow-style: none;     /* IE/Edge */
+}
+.filter-pills::-webkit-scrollbar {
+  display: none;                /* Chrome / Safari */
+}
+
+
 .btn,
 .tab-btn,
 .submit-btn,
