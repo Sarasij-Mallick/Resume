@@ -1,0 +1,655 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="ResumeBuilder Blog — Expert resume writing guides, ATS secrets, interview tips, and career advice." />
+    <title>Career Insights & Resume Guides — ResumeBuilder</title>
+
+    <!-- Google Fonts: Inter & Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Lottie Web Player -->
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+    <style>
+        .blog-hero {
+            background: linear-gradient(135deg, rgba(230, 0, 35, 0.05) 0%, rgba(17, 17, 17, 0.03) 100%);
+            padding: 60px 0 40px;
+            text-align: center;
+            border-bottom: 1px solid var(--canva-border);
+        }
+        .blog-hero .title {
+            font-size: 38px;
+            font-weight: 800;
+            margin: 12px 0 16px;
+            color: var(--canva-dark);
+        }
+        .blog-hero .lead {
+            font-size: 16px;
+            color: var(--canva-muted);
+            max-width: 640px;
+            margin: 0 auto;
+        }
+        .blog-search-bar {
+            max-width: 500px;
+            margin: 28px auto 0;
+            position: relative;
+        }
+        .blog-search-input {
+            width: 100%;
+            padding: 14px 22px;
+            padding-right: 50px;
+            border-radius: 50rem;
+            border: 1.5px solid var(--canva-border);
+            background: var(--canva-card);
+            color: var(--canva-dark);
+            font-size: 14.5px;
+            outline: none;
+            box-sizing: border-box;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        .blog-search-input:focus {
+            border-color: #e60023;
+            box-shadow: 0 0 0 4px rgba(230, 0, 35, 0.15);
+        }
+        .blog-main-wrap {
+            padding: 50px 0 80px;
+        }
+        .blog-meta-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--canva-muted);
+            margin-top: 12px;
+        }
+        .blog-modal-backdrop {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            background: rgba(17, 17, 17, 0.75);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .blog-modal-backdrop.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .blog-modal-container {
+            background: var(--canva-card);
+            border-radius: 20px;
+            max-width: 820px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 24px 60px rgba(0,0,0,0.3);
+            border: 1px solid var(--canva-border);
+            position: relative;
+            transform: scale(0.92) translateY(20px);
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .blog-modal-backdrop.active .blog-modal-container {
+            transform: scale(1) translateY(0);
+        }
+        .blog-modal-header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: var(--canva-card);
+            padding: 16px 28px;
+            border-bottom: 1px solid var(--canva-border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .blog-modal-close {
+            background: #f1f5f9;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--canva-dark);
+            transition: all 0.2s ease;
+        }
+        .blog-modal-close:hover {
+            background: #e60023;
+            color: #ffffff;
+        }
+        .blog-modal-body {
+            padding: 32px 36px 44px;
+        }
+        .blog-modal-hero-img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            border-radius: 14px;
+            margin-bottom: 24px;
+        }
+        .article-h1 {
+            font-size: 28px;
+            font-weight: 800;
+            line-height: 1.3;
+            color: var(--canva-dark);
+            margin: 0 0 16px;
+        }
+        .article-author-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 13.5px;
+            color: var(--canva-muted);
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--canva-border);
+            margin-bottom: 24px;
+        }
+        .article-content {
+            font-size: 15.5px;
+            line-height: 1.75;
+            color: var(--canva-dark);
+        }
+        .article-content h2 {
+            font-size: 20px;
+            font-weight: 800;
+            margin: 28px 0 12px;
+            color: var(--canva-dark);
+        }
+        .article-content p {
+            margin-bottom: 16px;
+        }
+        .article-content ul {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+        .article-content li {
+            margin-bottom: 8px;
+        }
+        .article-takeaway {
+            background: rgba(230, 0, 35, 0.06);
+            border-left: 4px solid #e60023;
+            padding: 16px 20px;
+            border-radius: 8px;
+            margin: 24px 0;
+            font-size: 14.5px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <!-- PAGE PRELOADER -->
+    <div id="pagePreloader" class="page-preloader" aria-hidden="true">
+        <div class="preloader-content">
+            <div class="lottie-wrap">
+                <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_a2chwsbd.json" background="transparent" speed="1.2" style="width: 170px; height: 170px;" loop autoplay></lottie-player>
+            </div>
+            <h3 class="preloader-title">ResumeBuilder</h3>
+            <div class="preloader-bar">
+                <div class="preloader-progress"></div>
+            </div>
+            <p class="preloader-text">Loading Career Guides...</p>
+        </div>
+    </div>
+
+    <!-- SITE HEADER -->
+    <header class="site-header" role="banner" id="siteHeader">
+        <div class="container header-inner">
+            <div style="display:flex;align-items:center;gap:12px">
+                <button class="mobile-btn" id="menuToggle" aria-label="Toggle navigation menu">☰</button>
+                <a class="logo" href="index.html" aria-label="ResumeBuilder Home">
+                    <div class="logo-icon-wrap">
+                        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="grad1-header-blog" x1="0" x2="1">
+                                    <stop offset="0" stop-color="#e60023" />
+                                    <stop offset="1" stop-color="#111111" />
+                                </linearGradient>
+                            </defs>
+                            <rect x="1" y="1" width="22" height="22" rx="7" fill="url(#grad1-header-blog)" />
+                            <path d="M7 13c2-3 6-5 10-5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <div class="brand-text">
+                        <span class="brand">ResumeBuilder</span>
+                        <span class="brand-sub">PRO STUDIO</span>
+                    </div>
+                </a>
+            </div>
+
+            <nav class="nav" id="mainNav" role="navigation" aria-label="Main Navigation">
+                <a href="index.html#home" class="nav-link">Home</a>
+                <a href="index.html#about" class="nav-link">About</a>
+                <a href="index.html#templates" class="nav-link">Templates</a>
+                <a href="index.html#choose" class="nav-link">Career Paths</a>
+                <a href="blog.html" class="nav-link active">Blog</a>
+                <a href="index.html#contact" class="nav-link">Contact</a>
+            </nav>
+
+            <div class="actions">
+                <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle Dark/Light Theme" title="Toggle Dark/Light Theme">🌙</button>
+                <a href="fresher.html" class="btn btn-primary header-cta-btn hide-mobile">
+                    <span>Build My Resume</span>
+                    <span class="sparkle-icon">✨</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- BLOG HERO BANNER -->
+        <section class="blog-hero">
+            <div class="container">
+                <span class="kicker">KNOWLEDGE HUB</span>
+                <h1 class="title">Career Insights & Resume Guides</h1>
+                <p class="lead">Master ATS algorithms, high-impact action verbiage, and modern resume design tactics to land more interviews.</p>
+                
+                <div class="blog-search-bar">
+                    <input type="text" id="blogSearchInput" class="blog-search-input" placeholder="Search guides by keyword (e.g. ATS, Cover Letter, Fresher)..." />
+                </div>
+
+                <div class="filter-pills" style="margin-top: 24px; justify-content: center;">
+                    <button class="pill active" data-cat="all">All Guides</button>
+                    <button class="pill" data-cat="ats">ATS Secrets</button>
+                    <button class="pill" data-cat="fresher">Students & Freshers</button>
+                    <button class="pill" data-cat="executive">Executive & Metrics</button>
+                    <button class="pill" data-cat="cover-letter">Cover Letters</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- BLOG GRID -->
+        <section class="blog-main-wrap">
+            <div class="container">
+                <div class="blog-grid" id="blogGrid">
+                    <!-- Article 1 -->
+                    <article class="blog-card" data-slug="ats-secrets" data-cat="ats">
+                        <div class="blog-img-wrap">
+                            <img src="images/blog_ats_guide.png" alt="10 ATS Resume Secrets" loading="lazy" />
+                        </div>
+                        <div class="blog-card-body">
+                            <div class="blog-tag">ATS GUIDE</div>
+                            <h3 class="blog-title">10 ATS Resume Secrets to Pass Automated Scanners in 2026</h3>
+                            <p class="blog-excerpt">Learn how recruiters configure ATS filters and how to structure your sections to get shortlisted for interviews.</p>
+                            <div class="blog-meta-row">
+                                <span>🕒 5 min read</span>
+                                <span class="blog-link">Read Full Article ›</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Article 2 -->
+                    <article class="blog-card" data-slug="fresher-guide" data-cat="fresher">
+                        <div class="blog-img-wrap">
+                            <img src="images/blog_fresher_tips.png" alt="Fresher Resume Tips" loading="lazy" />
+                        </div>
+                        <div class="blog-card-body">
+                            <div class="blog-tag">FRESHER TIPS</div>
+                            <h3 class="blog-title">How Students Can Build a Strong Resume with Zero Experience</h3>
+                            <p class="blog-excerpt">Discover how academic projects, internships, certifications, and extracurriculars create a compelling starter CV.</p>
+                            <div class="blog-meta-row">
+                                <span>🕒 4 min read</span>
+                                <span class="blog-link">Read Full Article ›</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Article 3 -->
+                    <article class="blog-card" data-slug="executive-metrics" data-cat="executive">
+                        <div class="blog-img-wrap">
+                            <img src="images/blog_executive_guide.png" alt="Executive Resume Formulas" loading="lazy" />
+                        </div>
+                        <div class="blog-card-body">
+                            <div class="blog-tag">EXECUTIVE FORMULAS</div>
+                            <h3 class="blog-title">Mastering Action Verbs & High-Impact Metrics for Senior Roles</h3>
+                            <p class="blog-excerpt">Transform generic job duty bullet points into quantifiable achievement statements that impress hiring directors.</p>
+                            <div class="blog-meta-row">
+                                <span>🕒 6 min read</span>
+                                <span class="blog-link">Read Full Article ›</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Article 4 -->
+                    <article class="blog-card" data-slug="cover-letter-mastery" data-cat="cover-letter">
+                        <div class="blog-img-wrap">
+                            <img src="images/blog_cover_letter.png" alt="Cover Letter Mastery" loading="lazy" />
+                        </div>
+                        <div class="blog-card-body">
+                            <div class="blog-tag">COVER LETTER</div>
+                            <h3 class="blog-title">How to Write a Cover Letter That Recruiters Actually Read</h3>
+                            <p class="blog-excerpt">Uncover the 3-paragraph formula that grabs attention and connects your resume directly to company goals.</p>
+                            <div class="blog-meta-row">
+                                <span>🕒 4 min read</span>
+                                <span class="blog-link">Read Full Article ›</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Article 5 -->
+                    <article class="blog-card" data-slug="linkedin-optimization" data-cat="ats">
+                        <div class="blog-img-wrap">
+                            <img src="images/blog_linkedin.png" alt="LinkedIn Strategy" loading="lazy" />
+                        </div>
+                        <div class="blog-card-body">
+                            <div class="blog-tag">CAREER STRATEGY</div>
+                            <h3 class="blog-title">Aligning Your Resume with LinkedIn: The Dual Profile Strategy</h3>
+                            <p class="blog-excerpt">Ensure seamless consistency between your PDF resume and digital LinkedIn profile to boost recruiter response rates.</p>
+                            <div class="blog-meta-row">
+                                <span>🕒 5 min read</span>
+                                <span class="blog-link">Read Full Article ›</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Article 6 -->
+                    <article class="blog-card" data-slug="tech-resume-guide" data-cat="executive">
+                        <div class="blog-img-wrap">
+                            <img src="images/blog_tech_resume.png" alt="Tech Resume Blueprint" loading="lazy" />
+                        </div>
+                        <div class="blog-card-body">
+                            <div class="blog-tag">TECH & SOFTWARE</div>
+                            <h3 class="blog-title">Software Engineer Resume Blueprint: System Design & Project Impact</h3>
+                            <p class="blog-excerpt">How developers can highlight tech stacks, GitHub projects, and system scalability metrics for FAANG & startup roles.</p>
+                            <div class="blog-meta-row">
+                                <span>🕒 7 min read</span>
+                                <span class="blog-link">Read Full Article ›</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ARTICLE READER MODAL -->
+    <div id="blogModal" class="blog-modal-backdrop" aria-hidden="true">
+        <div class="blog-modal-container" role="dialog" aria-modal="true">
+            <div class="blog-modal-header">
+                <span class="brand-badge" id="modalTag">ATS GUIDE</span>
+                <button class="blog-modal-close" id="closeBlogModal" aria-label="Close Article">×</button>
+            </div>
+            <div class="blog-modal-body">
+                <img id="modalHeroImg" class="blog-modal-hero-img" src="images/blog_ats_guide.png" alt="Article Hero" />
+                <h1 id="modalTitle" class="article-h1">Article Title</h1>
+                <div class="article-author-meta">
+                    <span>✍️ By ResumeBuilder Editorial Team</span>
+                    <span>•</span>
+                    <span id="modalReadTime">🕒 5 min read</span>
+                    <span>•</span>
+                    <span>Updated 2026</span>
+                </div>
+                <div id="modalContent" class="article-content">
+                    <!-- Dynamic Content -->
+                </div>
+                <div style="margin-top:36px; padding-top:24px; border-top:1px solid var(--canva-border); text-align:center;">
+                    <h3>Ready to build your resume with these tips?</h3>
+                    <p style="color:var(--canva-muted); margin: 8px 0 20px;">Use our 100% free builder with Canva templates.</p>
+                    <a href="fresher.html" class="btn btn-pill-purple" style="padding:12px 32px; font-weight:700; text-decoration:none; display:inline-block;">Start Building Resume ✨</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CANVA FOOTER -->
+    <footer class="site-footer" id="siteFooter" role="contentinfo">
+        <div class="container">
+            <div class="footer-top-grid">
+                <div class="footer-col footer-col-brand">
+                    <a class="logo" href="index.html">
+                        <span class="brand">ResumeBuilder <small class="brand-badge">PRO STUDIO</small></span>
+                    </a>
+                    <p class="footer-desc">Empowering job seekers worldwide with smart content enhancement, ATS optimization, and Canva-inspired designs.</p>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-title">Navigation</h4>
+                    <ul class="footer-links-list">
+                        <li><a href="index.html#home">Home</a></li>
+                        <li><a href="index.html#templates">Templates</a></li>
+                        <li><a href="index.html#choose">Career Paths</a></li>
+                        <li><a href="blog.html">Blog & Guides</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-title">Studio Tools</h4>
+                    <ul class="footer-links-list">
+                        <li><a href="fresher.html">Fresher Resume Builder</a></li>
+                        <li><a href="fresher.html">ATS Score Optimizer</a></li>
+                        <li><a href="login.html">Cloud Draft Sync</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-title">Support</h4>
+                    <ul class="footer-links-list">
+                        <li><a href="index.html#contact">Contact Support</a></li>
+                        <li><a href="https://github.com/Sarasij-Mallick/Resume.git" target="_blank">GitHub</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom-bar">
+                <div class="copyright">© <span id="year"></span> <strong>ResumeBuilder Pro Studio</strong> · All Rights Reserved.</div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        const ARTICLES_DATA = {
+            'ats-secrets': {
+                tag: 'ATS GUIDE',
+                title: '10 ATS Resume Secrets to Pass Automated Scanners in 2026',
+                readTime: '5 min read',
+                img: 'images/blog_ats_guide.png',
+                content: `
+                    <p>Over 98% of Fortune 500 companies and modern startups rely on Applicant Tracking Systems (ATS) to filter resumes before a human recruiter ever sees them. Here are 10 proven strategies to ensure your CV scores 90%+ on ATS scanners:</p>
+                    
+                    <h2>1. Use Standard Section Headings</h2>
+                    <p>Avoid creative heading names like "My Background" or "Where I've Been". Stick to standard labels such as <strong>Work Experience</strong>, <strong>Education</strong>, <strong>Skills</strong>, and <strong>Certifications</strong>.</p>
+                    
+                    <h2>2. Choose Clean Single or Double-Column Layouts</h2>
+                    <p>Complex floating text boxes, graphic progress bars, or nested tables confuse parser bots. Our Canva-inspired templates are engineered to be 100% ATS readable.</p>
+
+                    <h2>3. Incorporate Exact Keyword Matches</h2>
+                    <p>Analyze the job description and weave core hard skills and tools (e.g. <em>React, Python, Project Management, Budgeting</em>) naturally throughout your experience bullet points.</p>
+
+                    <div class="article-takeaway">
+                        💡 <strong>Pro Tip:</strong> Never place critical information inside header or footer margins, as some legacy ATS software skips header/footer text during extraction.
+                    </div>
+
+                    <h2>4. Format Dates Consistently</h2>
+                    <p>Use standard date formats such as <em>MM/YYYY</em> (e.g., 05/2023 – Present) across all employment entries.</p>
+                `
+            },
+            'fresher-guide': {
+                tag: 'FRESHER TIPS',
+                title: 'How Students Can Build a Strong Resume with Zero Experience',
+                readTime: '4 min read',
+                img: 'images/blog_fresher_tips.png',
+                content: `
+                    <p>Starting your career as a fresher or student can feel daunting when every entry-level job asks for experience. Here is how you can leverage academic achievements and personal initiatives to build a top-tier resume:</p>
+                    
+                    <h2>1. Lead with Education & Academic Honors</h2>
+                    <p>Place your Education section right under your Professional Summary. Highlight relevant coursework, GPA (if 3.5+), honor rolls, and major academic awards.</p>
+                    
+                    <h2>2. Showcase Capstone & Class Projects</h2>
+                    <p>Treat your major academic or personal coding/design projects like real employment entries. Outline the objective, technologies used, and outcomes achieved.</p>
+
+                    <div class="article-takeaway">
+                        🎓 <strong>Key Takeaway:</strong> Volunteer roles, club leadership (e.g., Student Society Executive), and hackathons demonstrate high initiative and teamwork to hiring managers.
+                    </div>
+
+                    <h2>3. Emphasize Technical & Soft Skills</h2>
+                    <p>Categorize your skills into <em>Technical Tools</em> (MS Excel, Python, Figma) and <em>Interpersonal Attributes</em> (Communication, Problem Solving, Agility).</p>
+                `
+            },
+            'executive-metrics': {
+                tag: 'EXECUTIVE FORMULAS',
+                title: 'Mastering Action Verbs & High-Impact Metrics for Senior Roles',
+                readTime: '6 min read',
+                img: 'images/blog_executive_guide.png',
+                content: `
+                    <p>Executive and senior-level hiring managers skim resumes in less than 7 seconds. To stand out, every bullet point must demonstrate business ROI, scale, and leadership impact.</p>
+
+                    <h2>1. The Google XYZ Resume Formula</h2>
+                    <p>Structure your bullet points using the gold-standard formula: <strong>Accomplished [X] as measured by [Y], by doing [Z]</strong>.</p>
+                    <p><em>Example:</em> "Spearheaded digital transformation initiative (Z), driving a 42% increase in online revenue (X) over 12 months (Y)."</p>
+
+                    <h2>2. Replace Weak Verbs with Power Action Words</h2>
+                    <p>Ditch passive phrases like "Responsible for managing...". Instead, start with dynamic verbs: <strong>Architected, Directed, Engineered, Negotiated, Scaled, Maximized</strong>.</p>
+
+                    <div class="article-takeaway">
+                        📈 <strong>Executive Insight:</strong> Always quantify metrics using percentages, dollar amounts ($ saved or generated), or team size (e.g., "Led 14 cross-functional engineers").
+                    </div>
+                `
+            },
+            'cover-letter-mastery': {
+                tag: 'COVER LETTER',
+                title: 'How to Write a Cover Letter That Recruiters Actually Read',
+                readTime: '4 min read',
+                img: 'images/blog_cover_letter.png',
+                content: `
+                    <p>A great cover letter isn't a repeat of your resume—it's your elevator pitch that explains why you are uniquely passionate about the target role.</p>
+
+                    <h2>Paragraph 1: The Hook</h2>
+                    <p>Start with enthusiasm and mention a specific accomplishment or company mission that aligns with your background.</p>
+
+                    <h2>Paragraph 2: The Proof</h2>
+                    <p>Highlight 2 core achievements that directly solve the employer's biggest pain points outlined in the job description.</p>
+
+                    <h2>Paragraph 3: The Call to Action</h2>
+                    <p>Reiterate your interest and politely request a brief conversation to discuss how your skill set adds value.</p>
+                `
+            },
+            'linkedin-optimization': {
+                tag: 'CAREER STRATEGY',
+                title: 'Aligning Your Resume with LinkedIn: The Dual Profile Strategy',
+                readTime: '5 min read',
+                img: 'images/blog_linkedin.png',
+                content: `
+                    <p>Recruiters cross-check 87% of applicants on LinkedIn before scheduling phone screens. Discrepancies between your PDF resume and LinkedIn profile raise immediate red flags.</p>
+
+                    <h2>1. Match Key Job Titles & Employment Dates</h2>
+                    <p>Ensure company names, job titles, and dates of employment match 100% on both platforms.</p>
+
+                    <h2>2. Make Your LinkedIn Headline Benefit-Driven</h2>
+                    <p>Don't just write "Student at University X". Use: <em>Frontend Developer | React & UI/UX Specialist | Open Source Contributor</em>.</p>
+                `
+            },
+            'tech-resume-guide': {
+                tag: 'TECH & SOFTWARE',
+                title: 'Software Engineer Resume Blueprint: System Design & Project Impact',
+                readTime: '7 min read',
+                img: 'images/blog_tech_resume.png',
+                content: `
+                    <p>Tech recruiters look for clear language stacks, cloud infrastructure knowledge, and verifiable code repositories. Here is how to format a high-converting software developer CV:</p>
+
+                    <h2>1. Highlight Tech Stack at the Top</h2>
+                    <p>Include a structured Skills Matrix listing Languages (JavaScript, Go, Python), Frameworks (React, Node.js), Databases (PostgreSQL, MongoDB), and DevOps tools (Docker, AWS).</p>
+
+                    <h2>2. Link Live Demos & GitHub Repositories</h2>
+                    <p>Provide hyperlinked URLs for your top 2 open-source contributions or deployed web applications.</p>
+                `
+            }
+        };
+
+        // Handle Modal Opening
+        const blogModal = document.getElementById('blogModal');
+        const closeBlogModal = document.getElementById('closeBlogModal');
+        const modalTag = document.getElementById('modalTag');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalReadTime = document.getElementById('modalReadTime');
+        const modalHeroImg = document.getElementById('modalHeroImg');
+        const modalContent = document.getElementById('modalContent');
+
+        function openArticleModal(slug) {
+            const article = ARTICLES_DATA[slug] || ARTICLES_DATA['ats-secrets'];
+            modalTag.textContent = article.tag;
+            modalTitle.textContent = article.title;
+            modalReadTime.textContent = '🕒 ' + article.readTime;
+            modalHeroImg.src = article.img;
+            modalContent.innerHTML = article.content;
+
+            blogModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            blogModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        closeBlogModal?.addEventListener('click', closeModal);
+        blogModal?.addEventListener('click', (e) => {
+            if (e.target === blogModal) closeModal();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && blogModal.classList.contains('active')) closeModal();
+        });
+
+        // Click handlers for cards
+        document.querySelectorAll('.blog-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const slug = card.getAttribute('data-slug');
+                openArticleModal(slug);
+            });
+        });
+
+        // Check URL Query Param ?article=ats-secrets
+        const urlParams = new URLSearchParams(window.location.search);
+        const articleParam = urlParams.get('article');
+        if (articleParam && ARTICLES_DATA[articleParam]) {
+            setTimeout(() => {
+                openArticleModal(articleParam);
+            }, 300);
+        }
+
+        // Category Pill Filter
+        const filterPills = document.querySelectorAll('.filter-pills .pill');
+        const blogCards = document.querySelectorAll('.blog-card');
+
+        filterPills.forEach(pill => {
+            pill.addEventListener('click', () => {
+                filterPills.forEach(p => p.classList.remove('active'));
+                pill.classList.add('active');
+
+                const cat = pill.getAttribute('data-cat');
+                blogCards.forEach(card => {
+                    const cardCat = card.getAttribute('data-cat');
+                    if (cat === 'all' || cardCat === cat) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Search Filter
+        const searchInput = document.getElementById('blogSearchInput');
+        searchInput?.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            blogCards.forEach(card => {
+                const title = card.querySelector('.blog-title').textContent.toLowerCase();
+                const excerpt = card.querySelector('.blog-excerpt').textContent.toLowerCase();
+                if (!query || title.includes(query) || excerpt.includes(query)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
