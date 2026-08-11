@@ -58,61 +58,18 @@
       width: 100%;
       max-width: 1040px;
       margin: 24px;
-      perspective: 1400px;
     }
 
-    .auth-wrapper {
-      position: relative;
-      width: 100%;
-      min-height: 600px;
-      transform-style: preserve-3d;
-      transition: transform 0.85s cubic-bezier(0.34, 1.25, 0.64, 1);
-    }
-
-    .auth-wrapper.flip-x {
-      transform: rotateX(180deg);
-    }
-
-    .auth-wrapper.flip-y {
-      transform: rotateY(180deg);
-    }
-
-    .auth-face {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
+    .auth-card {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(20px);
+      background: #ffffff;
       border-radius: 28px;
-      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.15);
       overflow: hidden;
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
-    }
-
-    .auth-face.auth-front {
-      transform: rotateY(0deg);
-    }
-
-    .auth-face.auth-back {
-      transform: rotateY(180deg);
-    }
-
-    .auth-wrapper.flip-x .auth-face.auth-front {
-      transform: rotateX(0deg);
-    }
-
-    .auth-wrapper.flip-x .auth-face.auth-back {
-      transform: rotateX(180deg);
-    }
-
-    @keyframes zoomInAuth {
-      from { opacity: 0; transform: scale(0.96) translateY(12px); }
-      to { opacity: 1; transform: scale(1) translateY(0); }
+      min-height: 600px;
+      transition: all 0.3s ease;
     }
 
     /* Left Side Branding Showcase */
@@ -125,6 +82,7 @@
       color: #ffffff;
       position: relative;
       overflow: hidden;
+      transition: background 0.4s ease;
     }
 
     .auth-banner::before {
@@ -163,6 +121,7 @@
       line-height: 1.25;
       margin: 0 0 14px;
       letter-spacing: -0.02em;
+      transition: opacity 0.3s ease;
     }
 
     .banner-hero-content p {
@@ -170,6 +129,7 @@
       color: rgba(255, 255, 255, 0.85);
       line-height: 1.55;
       margin: 0 0 24px;
+      transition: opacity 0.3s ease;
     }
 
     .stat-badge {
@@ -215,18 +175,18 @@
 
     /* Right Side Auth Form */
     .auth-box {
-      padding: 28px 36px;
+      padding: 36px 40px;
       position: relative;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      overflow: hidden;
+      background: #ffffff;
     }
 
     .close-btn {
       position: absolute;
-      top: 16px;
-      right: 16px;
+      top: 20px;
+      right: 20px;
       width: 32px;
       height: 32px;
       border-radius: 50%;
@@ -252,17 +212,17 @@
       background: #f1f5f9;
       padding: 4px;
       border-radius: 9999px;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
     }
 
     .tab-btn {
       flex: 1;
-      padding: 8px 0;
-      border: 1.5px solid transparent !important;
+      padding: 9px 0;
+      border: none !important;
       background: transparent;
       border-radius: 9999px;
       font-family: 'Inter', sans-serif;
-      font-size: 13.5px;
+      font-size: 14px;
       font-weight: 700;
       color: #5f6368;
       cursor: pointer;
@@ -271,23 +231,30 @@
 
     .tab-btn:hover {
       color: #7d2ae8;
-      border: 1.5px solid #7d2ae8 !important;
     }
 
     .tab-btn.active {
       background: #ffffff;
       color: #7d2ae8;
       box-shadow: 0 2px 8px rgba(60, 64, 67, 0.15);
-      border: 1.5px solid transparent !important;
+    }
+
+    .form-section {
+      animation: fadeInForm 0.35s ease-in-out;
+    }
+
+    @keyframes fadeInForm {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .form-header {
-      margin-bottom: 14px;
+      margin-bottom: 16px;
     }
 
     .form-header h2 {
       font-family: 'Outfit', sans-serif;
-      font-size: 22px;
+      font-size: 24px;
       font-weight: 800;
       margin: 0 0 4px;
       color: #0f172a;
@@ -313,7 +280,7 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      padding: 8px 14px;
+      padding: 9px 14px;
       border-radius: 10px;
       border: 1.5px solid #e2e8f0;
       background: #ffffff;
@@ -337,7 +304,7 @@
       text-align: center;
       font-size: 12px;
       color: #94a3b8;
-      margin: 12px 0;
+      margin: 14px 0;
       font-weight: 500;
     }
     .divider::before, .divider::after {
@@ -351,11 +318,11 @@
     /* Inputs */
     .input-field {
       position: relative;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
     .input-field input {
       width: 100%;
-      height: 40px;
+      height: 42px;
       padding: 0 40px 0 40px;
       border-radius: 10px;
       border: 1.5px solid #cbd5e1;
@@ -401,7 +368,7 @@
       align-items: center;
       justify-content: space-between;
       font-size: 12.5px;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
     }
     .remember-me {
       display: flex;
@@ -422,7 +389,7 @@
     /* Submit Button */
     .submit-btn {
       width: 100%;
-      height: 42px;
+      height: 44px;
       border-radius: 9999px;
       background: #7d2ae8;
       color: #ffffff;
@@ -436,13 +403,14 @@
     .submit-btn:hover {
       background: #6d28d9;
       transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(125, 42, 232, 0.35);
     }
 
     .form-toggle-text {
       text-align: center;
       font-size: 13px;
       color: #64748b;
-      margin-top: 12px;
+      margin-top: 14px;
       font-weight: 500;
     }
     .form-toggle-text a {
@@ -457,7 +425,7 @@
       height: 4px;
       background: #e2e8f0;
       border-radius: 2px;
-      margin: -4px 0 10px;
+      margin: -4px 0 12px;
       overflow: hidden;
     }
     .pass-strength-bar {
@@ -468,31 +436,35 @@
 
     /* Responsive Design */
     @media (max-width: 860px) {
-      .auth-face { grid-template-columns: 1fr; }
+      .auth-card { grid-template-columns: 1fr; }
       .auth-banner { display: none; }
-      .auth-box { padding: 28px 24px; }
+      .auth-box { padding: 32px 24px; }
       .auth-container { max-width: 480px; margin: 16px; }
     }
 
     @media (max-width: 480px) {
       .auth-container { margin: 8px; width: calc(100% - 16px); }
-      .auth-box { padding: 20px 16px; }
-      .form-header h2 { font-size: 19px; }
+      .auth-box { padding: 24px 16px; }
+      .form-header h2 { font-size: 20px; }
       .form-header p { font-size: 12.5px; }
-      .tab-switcher { margin-bottom: 12px; }
-      .tab-btn { font-size: 12.5px; padding: 7px 0; }
-      .social-btn { padding: 7px 10px; font-size: 12.5px; gap: 6px; }
-      .input-field input { height: 38px; font-size: 12.5px; padding: 0 36px 0 36px; }
+      .tab-switcher { margin-bottom: 14px; }
+      .tab-btn { font-size: 13px; padding: 8px 0; }
+      .social-btn { padding: 8px 10px; font-size: 12.5px; gap: 6px; }
+      .input-field input { height: 40px; font-size: 13px; padding: 0 36px 0 36px; }
       .input-icon { left: 10px; font-size: 14px; }
       .toggle-pass { right: 8px; font-size: 14px; }
-      .submit-btn { height: 38px; font-size: 13.5px; }
-      .close-btn { top: 12px; right: 12px; width: 28px; height: 28px; font-size: 16px; }
+      .submit-btn { height: 40px; font-size: 14px; }
+      .close-btn { top: 14px; right: 14px; width: 28px; height: 28px; font-size: 16px; }
     }
   </style>
   <!-- Lottie Web Player -->
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 <body>
+  <!-- Ambient Background Orbs -->
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+
   <!-- PAGE PRELOADER -->
   <div id="pagePreloader" class="page-preloader" aria-hidden="true">
     <div class="preloader-content">
@@ -515,127 +487,102 @@
   </div>
 
   <div class="auth-container">
-    <div class="auth-wrapper" id="authWrapper">
+    <div class="auth-card">
 
-      <!-- FRONT FACE: LOGIN -->
-      <div class="auth-face auth-front">
-        <div class="auth-banner">
-          <a href="index.html" class="banner-brand">
-            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <defs><linearGradient id="grad-b" x1="0" x2="1"><stop offset="0" stop-color="#00c4cc" /><stop offset="1" stop-color="#ffffff" /></linearGradient></defs>
-              <rect x="1" y="1" width="22" height="22" rx="6" fill="url(#grad-b)" />
-              <path d="M7 13c2-3 6-5 10-5" stroke="#312e81" stroke-width="1.8" stroke-linecap="round" />
-            </svg>
-            <span class="brand-name">ResumeBuilder</span>
-          </a>
-          <div class="banner-hero-content">
-            <h1>Design ATS-Friendly Resumes in Minutes</h1>
-            <p>Unlock 15+ Canva-inspired templates, AI keyword suggestions, and instant PDF downloads.</p>
-            <div class="stat-badge">
-              <div class="avatar-stack"><span>A</span><span>S</span><span>M</span></div>
-              <span>Joined by 50,000+ Job Seekers</span>
-            </div>
-          </div>
-          <div class="banner-footer">© <span id="year"></span> ResumeBuilder · Craft your career success.</div>
-        </div>
-
-        <div class="auth-box">
-          <button class="close-btn" onclick="goHome()" aria-label="Close">×</button>
-          <div class="tab-switcher">
-            <button class="tab-btn active" onclick="switchMode('login', 'vertical')">Sign In</button>
-            <button class="tab-btn" onclick="switchMode('register', 'vertical')">Register</button>
-          </div>
-          <div id="loginFormSection">
-            <div class="form-header">
-              <h2>Welcome back 👋</h2>
-              <p>Please enter your credentials to access your saved resumes.</p>
-            </div>
-            <div class="social-btn-group">
-              <button class="social-btn" onclick="mockSocialAuth('Google')">Google</button>
-              <button class="social-btn" onclick="mockSocialAuth('GitHub')">GitHub</button>
-            </div>
-            <div class="divider">or sign in with email</div>
-            <form onsubmit="handleAuthSubmit(event, 'Login')">
-              <div class="input-field">
-                <span class="input-icon">👤</span>
-                <input type="text" placeholder="Username or Email" required>
-              </div>
-              <div class="input-field">
-                <span class="input-icon">🔒</span>
-                <input type="password" id="loginPass" placeholder="Password" required>
-                <button type="button" class="toggle-pass" onclick="togglePassVisibility('loginPass', this)">👁️</button>
-              </div>
-              <div class="form-options">
-                <label class="remember-me"><input type="checkbox" checked> Keep me signed in</label>
-                <a href="#" class="forgot-link">Forgot password?</a>
-              </div>
-              <button type="submit" class="submit-btn">Sign In to Account</button>
-            </form>
-            <div class="form-toggle-text">Don't have an account? <a href="#" onclick="switchMode('register', 'horizontal')">Register for free</a></div>
+      <!-- LEFT SIDE: DYNAMIC BANNER -->
+      <div class="auth-banner" id="authBanner">
+        <a href="index.html" class="banner-brand">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="grad-b" x1="0" x2="1"><stop offset="0" stop-color="#00c4cc" /><stop offset="1" stop-color="#ffffff" /></linearGradient></defs>
+            <rect x="1" y="1" width="22" height="22" rx="6" fill="url(#grad-b)" />
+            <path d="M7 13c2-3 6-5 10-5" stroke="#312e81" stroke-width="1.8" stroke-linecap="round" />
+          </svg>
+          <span class="brand-name">ResumeBuilder</span>
+        </a>
+        <div class="banner-hero-content">
+          <h1 id="bannerTitle">Design ATS-Friendly Resumes in Minutes</h1>
+          <p id="bannerDesc">Unlock 15+ Canva-inspired templates, AI keyword suggestions, and instant PDF downloads.</p>
+          <div class="stat-badge">
+            <div class="avatar-stack"><span>A</span><span>S</span><span>M</span></div>
+            <span id="bannerStat">Joined by 50,000+ Job Seekers</span>
           </div>
         </div>
+        <div class="banner-footer">© <span id="year"></span> ResumeBuilder · Craft your career success.</div>
       </div>
 
-      <!-- BACK FACE: REGISTER -->
-      <div class="auth-face auth-back">
-        <div class="auth-banner" style="background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0d6efd 100%);">
-          <a href="index.html" class="banner-brand">
-            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <defs><linearGradient id="grad-b2" x1="0" x2="1"><stop offset="0" stop-color="#0dcaf0" /><stop offset="1" stop-color="#ffffff" /></linearGradient></defs>
-              <rect x="1" y="1" width="22" height="22" rx="6" fill="url(#grad-b2)" />
-              <path d="M7 13c2-3 6-5 10-5" stroke="#0f172a" stroke-width="1.8" stroke-linecap="round" />
-            </svg>
-            <span class="brand-name">ResumeBuilder</span>
-          </a>
-          <div class="banner-hero-content">
-            <h1>Start Your Career Journey Today 🚀</h1>
-            <p>Create a free account to build, edit, and export unlimited ATS-optimized resumes.</p>
-            <div class="stat-badge">
-              <div class="avatar-stack"><span>R</span><span>E</span><span>G</span></div>
-              <span>100% Free Forever Registration</span>
-            </div>
-          </div>
-          <div class="banner-footer">© <span id="year2"></span> ResumeBuilder · Craft your career success.</div>
+      <!-- RIGHT SIDE: AUTH BOX -->
+      <div class="auth-box">
+        <button class="close-btn" onclick="goHome()" aria-label="Close">×</button>
+        
+        <div class="tab-switcher">
+          <button id="loginTabBtn" class="tab-btn active" onclick="switchMode('login')">Sign In</button>
+          <button id="regTabBtn" class="tab-btn" onclick="switchMode('register')">Register</button>
         </div>
 
-        <div class="auth-box">
-          <button class="close-btn" onclick="goHome()" aria-label="Close">×</button>
-          <div class="tab-switcher">
-            <button class="tab-btn" onclick="switchMode('login', 'vertical')">Sign In</button>
-            <button class="tab-btn active" onclick="switchMode('register', 'vertical')">Register</button>
+        <!-- LOGIN FORM SECTION -->
+        <div id="loginFormSection" class="form-section">
+          <div class="form-header">
+            <h2>Welcome back 👋</h2>
+            <p>Please enter your credentials to access your saved resumes.</p>
           </div>
-          <div id="registerFormSection">
-            <div class="form-header">
-              <h2>Create Account ✨</h2>
-              <p>Join thousands building standout professional resumes.</p>
-            </div>
-            <div class="social-btn-group">
-              <button class="social-btn" onclick="mockSocialAuth('Google')">Google</button>
-              <button class="social-btn" onclick="mockSocialAuth('GitHub')">GitHub</button>
-            </div>
-            <div class="divider">or register with email</div>
-            <form onsubmit="handleAuthSubmit(event, 'Registration')">
-              <div class="input-field">
-                <span class="input-icon">👤</span>
-                <input type="text" placeholder="Full Name" required>
-              </div>
-              <div class="input-field">
-                <span class="input-icon">✉️</span>
-                <input type="email" placeholder="Email Address" required>
-              </div>
-              <div class="input-field">
-                <span class="input-icon">🔒</span>
-                <input type="password" id="regPass" placeholder="Password" required oninput="checkPassStrength(this.value)">
-                <button type="button" class="toggle-pass" onclick="togglePassVisibility('regPass', this)">👁️</button>
-              </div>
-              <div class="pass-strength"><div id="passStrengthBar" class="pass-strength-bar"></div></div>
-              <label class="remember-me" style="margin-bottom:14px"><input type="checkbox" required> I agree to Terms & Privacy Policy</label>
-              <button type="submit" class="submit-btn">Create Free Account</button>
-            </form>
-            <div class="form-toggle-text">Already have an account? <a href="#" onclick="switchMode('login', 'horizontal')">Sign In</a></div>
+          <div class="social-btn-group">
+            <button class="social-btn" onclick="mockSocialAuth('Google')">Google</button>
+            <button class="social-btn" onclick="mockSocialAuth('GitHub')">GitHub</button>
           </div>
+          <div class="divider">or sign in with email</div>
+          <form onsubmit="handleAuthSubmit(event, 'Login')">
+            <div class="input-field">
+              <span class="input-icon">👤</span>
+              <input type="text" placeholder="Username or Email" required>
+            </div>
+            <div class="input-field">
+              <span class="input-icon">🔒</span>
+              <input type="password" id="loginPass" placeholder="Password" required>
+              <button type="button" class="toggle-pass" onclick="togglePassVisibility('loginPass', this)">👁️</button>
+            </div>
+            <div class="form-options">
+              <label class="remember-me"><input type="checkbox" checked> Keep me signed in</label>
+              <a href="#" class="forgot-link">Forgot password?</a>
+            </div>
+            <button type="submit" class="submit-btn">Sign In to Account</button>
+          </form>
+          <div class="form-toggle-text">Don't have an account? <a href="#" onclick="switchMode('register')">Register for free</a></div>
         </div>
+
+        <!-- REGISTER FORM SECTION -->
+        <div id="registerFormSection" class="form-section" style="display:none">
+          <div class="form-header">
+            <h2>Create Account ✨</h2>
+            <p>Join thousands building standout professional resumes.</p>
+          </div>
+          <div class="social-btn-group">
+            <button class="social-btn" onclick="mockSocialAuth('Google')">Google</button>
+            <button class="social-btn" onclick="mockSocialAuth('GitHub')">GitHub</button>
+          </div>
+          <div class="divider">or register with email</div>
+          <form onsubmit="handleAuthSubmit(event, 'Registration')">
+            <div class="input-field">
+              <span class="input-icon">👤</span>
+              <input type="text" placeholder="Full Name" required>
+            </div>
+            <div class="input-field">
+              <span class="input-icon">✉️</span>
+              <input type="email" placeholder="Email Address" required>
+            </div>
+            <div class="input-field">
+              <span class="input-icon">🔒</span>
+              <input type="password" id="regPass" placeholder="Password" required oninput="checkPassStrength(this.value)">
+              <button type="button" class="toggle-pass" onclick="togglePassVisibility('regPass', this)">👁️</button>
+            </div>
+            <div class="pass-strength"><div id="passStrengthBar" class="pass-strength-bar"></div></div>
+            <label class="remember-me" style="margin-bottom:14px"><input type="checkbox" required> I agree to Terms & Privacy Policy</label>
+            <button type="submit" class="submit-btn">Create Free Account</button>
+          </form>
+          <div class="form-toggle-text">Already have an account? <a href="#" onclick="switchMode('login')">Sign In</a></div>
+        </div>
+
       </div>
+
     </div>
   </div>
 
@@ -650,30 +597,43 @@
     });
 
     const currentYr = new Date().getFullYear();
-    document.getElementById('year').textContent = currentYr;
-    document.getElementById('year2').textContent = currentYr;
+    const yrEl = document.getElementById('year');
+    if (yrEl) yrEl.textContent = currentYr;
 
-    function switchMode(mode, direction = 'horizontal') {
-      const wrapper = document.getElementById('authWrapper');
-      if (direction === 'vertical') {
-        wrapper.classList.remove('flip-y');
-        if (mode === 'register') {
-          wrapper.classList.add('flip-x');
-        } else {
-          wrapper.classList.remove('flip-x');
-        }
+    function switchMode(mode) {
+      const loginTab = document.getElementById('loginTabBtn');
+      const regTab = document.getElementById('regTabBtn');
+      const loginSec = document.getElementById('loginFormSection');
+      const regSec = document.getElementById('registerFormSection');
+      const banner = document.getElementById('authBanner');
+      const title = document.getElementById('bannerTitle');
+      const desc = document.getElementById('bannerDesc');
+      const stat = document.getElementById('bannerStat');
+
+      if (mode === 'register') {
+        if (loginTab) loginTab.classList.remove('active');
+        if (regTab) regTab.classList.add('active');
+        if (loginSec) loginSec.style.display = 'none';
+        if (regSec) regSec.style.display = 'block';
+        if (banner) banner.style.background = 'linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0d6efd 100%)';
+        if (title) title.textContent = 'Start Your Career Journey Today 🚀';
+        if (desc) desc.textContent = 'Create a free account to build, edit, and export unlimited ATS-optimized resumes.';
+        if (stat) stat.textContent = '100% Free Forever Registration';
       } else {
-        wrapper.classList.remove('flip-x');
-        if (mode === 'register') {
-          wrapper.classList.add('flip-y');
-        } else {
-          wrapper.classList.remove('flip-y');
-        }
+        if (regTab) regTab.classList.remove('active');
+        if (loginTab) loginTab.classList.add('active');
+        if (regSec) regSec.style.display = 'none';
+        if (loginSec) loginSec.style.display = 'block';
+        if (banner) banner.style.background = 'linear-gradient(135deg, #1e1b4b 0%, #312e81 40%, #7d2ae8 100%)';
+        if (title) title.textContent = 'Design ATS-Friendly Resumes in Minutes';
+        if (desc) desc.textContent = 'Unlock 15+ Canva-inspired templates, AI keyword suggestions, and instant PDF downloads.';
+        if (stat) stat.textContent = 'Joined by 50,000+ Job Seekers';
       }
     }
 
     function togglePassVisibility(inputId, btn) {
       const input = document.getElementById(inputId);
+      if (!input) return;
       if (input.type === 'password') {
         input.type = 'text';
         btn.textContent = '🙈';
@@ -685,6 +645,7 @@
 
     function checkPassStrength(pass) {
       const bar = document.getElementById('passStrengthBar');
+      if (!bar) return;
       let score = 0;
       if (pass.length > 5) score++;
       if (pass.length > 9) score++;
