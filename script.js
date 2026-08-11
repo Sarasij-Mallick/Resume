@@ -2228,26 +2228,26 @@ function showToast(msg, timeout = 3000) {
   function spawnSparks(x, y) {
     const color = colors[Math.floor(Math.random() * colors.length)];
     const angle = Math.random() * Math.PI * 2;
-    const vel = Math.random() * 0.8 + 0.3;
+    const vel = Math.random() * 1.0 + 0.4;
     particles.push({
-      x: x + (Math.random() - 0.5) * 4,
-      y: y + (Math.random() - 0.5) * 4,
-      size: Math.random() * 3 + 1.5,
+      x: x + (Math.random() - 0.5) * 5,
+      y: y + (Math.random() - 0.5) * 5,
+      size: Math.random() * 4 + 2,
       vx: Math.cos(angle) * vel,
       vy: Math.sin(angle) * vel - 0.2,
-      alpha: 0.85,
-      decay: Math.random() * 0.02 + 0.012,
+      alpha: 0.9,
+      decay: Math.random() * 0.012 + 0.008,
       rotation: Math.random() * Math.PI,
-      spin: (Math.random() - 0.5) * 0.06,
+      spin: (Math.random() - 0.5) * 0.07,
       color: color
     });
   }
 
-  // Mouse Move Event Listener (desktop only)
+  // Mouse Move Event Listener (desktop only - spawns 1 star every 12px movement)
   window.addEventListener("pointermove", (e) => {
     if (e.pointerType === "touch" || isMobileOrTablet()) return;
     const dist = Math.hypot(e.clientX - lastX, e.clientY - lastY);
-    if (dist > 28) {
+    if (dist > 12) {
       spawnSparks(e.clientX, e.clientY);
       lastX = e.clientX;
       lastY = e.clientY;
@@ -2262,24 +2262,24 @@ function showToast(msg, timeout = 3000) {
       x: e.clientX,
       y: e.clientY,
       r: 2,
-      maxR: 28,
+      maxR: 30,
       alpha: 0.9,
       color: color
     });
 
-    // Elegant subtle burst of 6 glowing stars
-    for (let i = 0; i < 6; i++) {
+    // Balanced burst of 10 glowing stars
+    for (let i = 0; i < 10; i++) {
       const c = colors[Math.floor(Math.random() * colors.length)];
-      const angle = (Math.PI * 2 / 6) * i + Math.random() * 0.2;
-      const vel = Math.random() * 1.6 + 0.8;
+      const angle = (Math.PI * 2 / 10) * i + Math.random() * 0.2;
+      const vel = Math.random() * 1.8 + 0.9;
       particles.push({
         x: e.clientX,
         y: e.clientY,
-        size: Math.random() * 4 + 2,
+        size: Math.random() * 4.5 + 2.5,
         vx: Math.cos(angle) * vel,
         vy: Math.sin(angle) * vel,
-        alpha: 0.9,
-        decay: Math.random() * 0.015 + 0.008,
+        alpha: 0.95,
+        decay: Math.random() * 0.012 + 0.006,
         rotation: Math.random() * Math.PI,
         spin: (Math.random() - 0.5) * 0.1,
         color: c
