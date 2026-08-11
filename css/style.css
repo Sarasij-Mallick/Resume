@@ -3531,18 +3531,13 @@ button.selected,
   .section-head *,
   .trust-title,
   .trust-bar,
-  .about-icon,
-  .path-icon,
   .about-card,
   .about-card h3,
   .about-card p,
-  .path-card,
   .path-title,
   .path-desc,
-  .path-features,
   .stat-block,
   .stat-block *,
-  .hero-content,
   .hero-content .kicker,
   .hero-content .title,
   .hero-content .lead,
@@ -3553,7 +3548,13 @@ button.selected,
     text-align: center !important;
   }
 
-  /* Keep list items left-aligned for readability */
+  /* path-features list — left-aligned text, centered as a block */
+  .path-features {
+    text-align: left !important;
+    display: inline-block;
+    width: 100%;
+  }
+
   .path-features li {
     text-align: left !important;
   }
@@ -3562,12 +3563,14 @@ button.selected,
   .about-icon {
     margin-left: auto;
     margin-right: auto;
+    text-align: center;
   }
 
   /* Center path icon */
   .path-icon {
     margin-left: auto;
     margin-right: auto;
+    text-align: center;
   }
 }
 
