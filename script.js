@@ -2707,3 +2707,79 @@ function showToast(msg, timeout = 3000) {
 
   requestAnimationFrame(render);
 })();
+
+/* ---------- Screensaver System (1 Minute Inactivity) ---------- */
+(function initScreensaver() {
+  const IDLE_TIMEOUT_MS = 60000; // 60 seconds = 1 minute
+  let idleTimer = null;
+  let clockInterval = null;
+
+  const overlay = document.getElementById("screensaverOverlay");
+  const clockEl = document.getElementById("screensaverClock");
+  const dateEl = document.getElementById("screensaverDate");
+  const quoteEl = document.getElementById("screensaverQuoteText");
+
+  const quotes = [
+    '"The secret of getting ahead is getting started." — Mark Twain',
+    '"Opportunities don\'t happen, you create them." — Chris Grosser',
+    '"Failure is the opportunity to begin again more intelligently." — Henry Ford',
+    '"Your time is limited, don\'t waste it living someone else\'s life." — Steve Jobs',
+    '"Believe you can and you\'re halfway there." — Theodore Roosevelt',
+    '"Success is not final, failure is not fatal: It is the courage to continue that counts." — Winston Churchill'
+  ];
+
+  function updateClock() {
+    const now = new Date();
+    if (clockEl) {
+      clockEl.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    }
+    if (dateEl) {
+      dateEl.textContent = now.toLocaleDateString([], { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+    }
+  }
+
+  function showScreensaver() {
+    if (!overlay) return;
+    updateClock();
+    if (quoteEl) {
+      const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+      quoteEl.textContent = randomQuote;
+    }
+    overlay.setAttribute("aria-hidden", "false");
+    if (!clockInterval) {
+      clockInterval = setInterval(updateClock, 1000);
+    }
+  }
+
+  function hideScreensaver() {
+    if (!overlay) return;
+    if (overlay.getAttribute("aria-hidden") === "false") {
+      overlay.setAttribute("aria-hidden", "true");
+    }
+    if (clockInterval) {
+      clearInterval(clockInterval);
+      clockInterval = null;
+    }
+    resetIdleTimer();
+  }
+
+  function resetIdleTimer() {
+    if (idleTimer) clearTimeout(idleTimer);
+    idleTimer = setTimeout(showScreensaver, IDLE_TIMEOUT_MS);
+  }
+
+  // Event listeners to detect activity and hide screensaver
+  const activityEvents = ["mousemove", "mousedown", "keydown", "touchstart", "pointerdown", "scroll"];
+  activityEvents.forEach((evtName) => {
+    window.addEventListener(evtName, () => {
+      if (overlay && overlay.getAttribute("aria-hidden") === "false") {
+        hideScreensaver();
+      } else {
+        resetIdleTimer();
+      }
+    }, { passive: true });
+  });
+
+  // Start initial timer
+  resetIdleTimer();
+})();
