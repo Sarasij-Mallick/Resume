@@ -2393,29 +2393,35 @@ button.selected,
   color: #a7acb1;
 }
 
-/* Floating Back-to-Top Button */
+/* Unique Radial Progress & Rocket Launch Back-To-Top Button */
 .back-to-top {
   position: fixed;
-  bottom: 90px;
+  bottom: 32px;
   right: 32px;
-  left: auto;
-  width: 46px;
-  height: 46px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
-  background: var(--canva-purple);
-  color: #ffffff;
-  border: none;
+  background: var(--canva-card);
+  color: #e60023;
+  border: 1.5px solid var(--canva-border);
   outline: none;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 16px rgba(13, 110, 253, 0.4);
+  box-shadow: 0 8px 24px rgba(230, 0, 35, 0.25), 0 0 15px rgba(255, 90, 95, 0.2);
   opacity: 0;
   visibility: hidden;
-  transform: translateY(16px) scale(0.88);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(20px) scale(0.85);
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease, background 0.25s ease;
   z-index: 999;
+}
+
+[data-theme="dark"] .back-to-top {
+  background: #1e1e1e !important;
+  color: #ff5a5f !important;
+  border-color: #333333 !important;
+  box-shadow: 0 8px 24px rgba(230, 0, 35, 0.35), 0 0 15px rgba(230, 0, 35, 0.25) !important;
 }
 
 .back-to-top.visible {
@@ -2425,24 +2431,88 @@ button.selected,
 }
 
 .back-to-top:hover {
-  background: var(--canva-purple-hover);
-  transform: translateY(-3px) scale(1.06);
-  box-shadow: 0 6px 20px rgba(13, 110, 253, 0.5);
+  background: #e60023 !important;
+  color: #ffffff !important;
+  border-color: #e60023 !important;
+  box-shadow: 0 12px 30px rgba(230, 0, 35, 0.45), 0 0 20px rgba(230, 0, 35, 0.35) !important;
+  transform: translateY(-4px) scale(1.08);
 }
 
-.back-to-top:active {
-  transform: translateY(-1px) scale(0.96);
+.progress-ring-svg {
+  position: absolute;
+  top: -1.5px;
+  left: -1.5px;
+  width: 52px;
+  height: 52px;
+  transform: rotate(-90deg);
+  pointer-events: none;
 }
 
-.back-to-top svg {
-  width: 20px;
-  height: 20px;
-  stroke: currentColor;
-  transition: transform 0.2s ease;
+.ring-bg {
+  fill: none;
+  stroke: rgba(230, 0, 35, 0.12);
+  stroke-width: 3.5;
 }
 
-.back-to-top:hover svg {
-  transform: translateY(-2px);
+[data-theme="dark"] .ring-bg {
+  stroke: rgba(255, 90, 95, 0.15);
+}
+
+.ring-fill {
+  fill: none;
+  stroke: #e60023;
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  stroke-dasharray: 138;
+  stroke-dashoffset: calc(138 - (138 * var(--scroll-pct, 0)) / 100);
+  transition: stroke-dashoffset 0.12s ease-out, stroke 0.2s ease;
+}
+
+.back-to-top:hover .ring-fill {
+  stroke: #ffffff;
+}
+
+.rocket-icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.back-to-top:hover .rocket-icon-wrap {
+  transform: translateY(-2px) rotate(-8deg) scale(1.12);
+}
+
+.back-to-top.launching .rocket-icon-wrap {
+  transform: translateY(-90px) scale(0.3) rotate(-15deg);
+  opacity: 0;
+  filter: blur(4px);
+  transition: transform 0.45s cubic-bezier(0.4, 0, 1, 1), opacity 0.45s ease, filter 0.45s ease;
+}
+
+.back-top-text {
+  position: absolute;
+  top: -30px;
+  background: #111111;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  padding: 3px 8px;
+  border-radius: 9999px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px);
+  transition: all 0.2s ease;
+  pointer-events: none;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.back-to-top:hover .back-top-text {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 
 /* ==========================================================================

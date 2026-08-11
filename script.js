@@ -65,7 +65,7 @@ document.querySelectorAll(".fade-up").forEach(function (el) {
   observer.observe(el);
 });
 
-// Back-to-top button behavior
+// Back-to-top button behavior with Radial Progress Ring & Rocket Launch animation
 (function () {
   var backBtn = document.getElementById("backToTop");
   if (!backBtn) return;
@@ -76,29 +76,49 @@ document.querySelectorAll(".fade-up").forEach(function (el) {
     return window.scrollY || document.documentElement.scrollTop || (studioWorkspace ? studioWorkspace.scrollTop : 0);
   }
 
-  function toggleBack() {
-    if (getScrollTop() > 250) {
+  function getScrollHeight() {
+    if (studioWorkspace) {
+      return studioWorkspace.scrollHeight - studioWorkspace.clientHeight;
+    }
+    return document.documentElement.scrollHeight - window.innerHeight;
+  }
+
+  function updateScrollState() {
+    var st = getScrollTop();
+    var maxScroll = getScrollHeight();
+    var pct = maxScroll > 0 ? Math.min(100, Math.max(0, (st / maxScroll) * 100)) : 0;
+
+    backBtn.style.setProperty("--scroll-pct", pct.toFixed(1));
+
+    if (st > 250) {
       backBtn.classList.add("visible");
     } else {
       backBtn.classList.remove("visible");
     }
   }
 
-  // show/hide on scroll
-  window.addEventListener("scroll", toggleBack, { passive: true });
+  // show/hide & update progress on scroll
+  window.addEventListener("scroll", updateScrollState, { passive: true });
   if (studioWorkspace) {
-    studioWorkspace.addEventListener("scroll", toggleBack, { passive: true });
+    studioWorkspace.addEventListener("scroll", updateScrollState, { passive: true });
   }
 
   // init state
-  toggleBack();
+  updateScrollState();
 
   backBtn.addEventListener("click", function (e) {
     e.preventDefault();
+    backBtn.classList.add("launching");
+
     window.scrollTo({ top: 0, behavior: "smooth" });
     if (studioWorkspace) {
       studioWorkspace.scrollTo({ top: 0, behavior: "smooth" });
     }
+
+    setTimeout(function () {
+      backBtn.classList.remove("launching");
+    }, 450);
+
     backBtn.blur();
   });
 
