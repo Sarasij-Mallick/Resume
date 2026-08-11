@@ -2210,33 +2210,29 @@ function showToast(msg, timeout = 3000) {
   let lastX = 0;
   let lastY = 0;
 
-  function spawnSparks(x, y, speed = 1) {
-    const sparkCount = Math.min(Math.floor(speed * 1.2) + 2, 5);
-
-    for (let i = 0; i < sparkCount; i++) {
-      const color = colors[Math.floor(Math.random() * colors.length)];
-      const angle = Math.random() * Math.PI * 2;
-      const vel = Math.random() * 1.2 + 0.4;
-      particles.push({
-        x: x + (Math.random() - 0.5) * 6,
-        y: y + (Math.random() - 0.5) * 6,
-        size: Math.random() * 5 + 2.5,
-        vx: Math.cos(angle) * vel,
-        vy: Math.sin(angle) * vel - 0.2,
-        alpha: 1,
-        decay: Math.random() * 0.008 + 0.005,
-        rotation: Math.random() * Math.PI,
-        spin: (Math.random() - 0.5) * 0.08,
-        color: color
-      });
-    }
+  function spawnSparks(x, y) {
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    const angle = Math.random() * Math.PI * 2;
+    const vel = Math.random() * 0.8 + 0.3;
+    particles.push({
+      x: x + (Math.random() - 0.5) * 4,
+      y: y + (Math.random() - 0.5) * 4,
+      size: Math.random() * 3 + 1.5,
+      vx: Math.cos(angle) * vel,
+      vy: Math.sin(angle) * vel - 0.2,
+      alpha: 0.85,
+      decay: Math.random() * 0.02 + 0.012,
+      rotation: Math.random() * Math.PI,
+      spin: (Math.random() - 0.5) * 0.06,
+      color: color
+    });
   }
 
-  // Mouse Move Event Listener
+  // Mouse Move Event Listener (spawns 1 subtle star every 28px movement)
   window.addEventListener("pointermove", (e) => {
     const dist = Math.hypot(e.clientX - lastX, e.clientY - lastY);
-    if (dist > 4) {
-      spawnSparks(e.clientX, e.clientY, dist / 6);
+    if (dist > 28) {
+      spawnSparks(e.clientX, e.clientY);
       lastX = e.clientX;
       lastY = e.clientY;
     }
@@ -2249,24 +2245,24 @@ function showToast(msg, timeout = 3000) {
       x: e.clientX,
       y: e.clientY,
       r: 2,
-      maxR: 34,
-      alpha: 1,
+      maxR: 28,
+      alpha: 0.9,
       color: color
     });
 
-    // Slow elegant burst of 20 glowing stars
-    for (let i = 0; i < 20; i++) {
+    // Elegant subtle burst of 6 glowing stars
+    for (let i = 0; i < 6; i++) {
       const c = colors[Math.floor(Math.random() * colors.length)];
-      const angle = (Math.PI * 2 / 20) * i + Math.random() * 0.2;
-      const vel = Math.random() * 2.2 + 1.0;
+      const angle = (Math.PI * 2 / 6) * i + Math.random() * 0.2;
+      const vel = Math.random() * 1.6 + 0.8;
       particles.push({
         x: e.clientX,
         y: e.clientY,
-        size: Math.random() * 6 + 3,
+        size: Math.random() * 4 + 2,
         vx: Math.cos(angle) * vel,
         vy: Math.sin(angle) * vel,
-        alpha: 1,
-        decay: Math.random() * 0.008 + 0.004,
+        alpha: 0.9,
+        decay: Math.random() * 0.015 + 0.008,
         rotation: Math.random() * Math.PI,
         spin: (Math.random() - 0.5) * 0.1,
         color: c
