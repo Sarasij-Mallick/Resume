@@ -2291,9 +2291,21 @@ function showToast(msg, timeout = 3000) {
     ctx.save();
     ctx.translate(x, y);
     ctx.rotate(rotation);
-    ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
-    ctx.shadowColor = `rgba(${color.r}, ${color.g}, ${color.b}, ${alpha})`;
-    ctx.shadowBlur = 14;
+
+    const isDarkTheme = document.documentElement.getAttribute("data-theme") === "dark";
+
+    if (isDarkTheme) {
+      ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+      ctx.shadowColor = `rgba(${color.r}, ${color.g}, ${color.b}, ${alpha})`;
+      ctx.shadowBlur = 14;
+    } else {
+      // Light Theme: Vibrant colored fill + crisp white stroke so stars pop on white backgrounds!
+      ctx.fillStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${alpha * 0.95})`;
+      ctx.strokeStyle = `rgba(255, 255, 255, ${alpha * 0.85})`;
+      ctx.lineWidth = 0.8;
+      ctx.shadowColor = `rgba(${color.r}, ${color.g}, ${color.b}, ${alpha * 0.6})`;
+      ctx.shadowBlur = 8;
+    }
 
     ctx.beginPath();
     for (let i = 0; i < 4; i++) {
@@ -2302,6 +2314,9 @@ function showToast(msg, timeout = 3000) {
     }
     ctx.closePath();
     ctx.fill();
+    if (!isDarkTheme) {
+      ctx.stroke();
+    }
     ctx.restore();
   }
 
