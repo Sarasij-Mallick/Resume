@@ -5,28 +5,36 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap');
 
 :root {
-  --canva-purple: #0d6efd;
-  --canva-purple-hover: #0b5ed7;
-  --canva-cyan: #0dcaf0;
-  --canva-gradient: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%);
-  --canva-bg: #f8f9fa;
+  --canva-purple: #e60023;
+  --canva-purple-hover: #ad081b;
+  --canva-cyan: #ff5a5f;
+  --canva-gradient: linear-gradient(135deg, #e60023 0%, #c4001a 50%, #111111 100%);
+  --canva-bg: #f7f7f8;
   --canva-card: #ffffff;
-  --canva-dark: #212529;
-  --canva-slate: #495057;
-  --canva-muted: #6c757d;
-  --canva-light-muted: #adb5bd;
-  --canva-border: #dee2e6;
-  --canva-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-  --canva-shadow-hover: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.12);
+  --canva-dark: #111111;
+  --canva-slate: #333333;
+  --canva-muted: #767676;
+  --canva-light-muted: #cdcdcd;
+  --canva-border: #e1e1e1;
+  --canva-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  --canva-shadow-hover: 0 10px 30px rgba(0, 0, 0, 0.14);
   --canva-pill-radius: 50rem;
-  --canva-card-radius: 0.75rem;
+  --canva-card-radius: 1rem;
   --max-w: 1240px;
+
+  /* Pinterest Design Tokens */
+  --p-red: #e60023;
+  --p-red-hover: #ad081b;
+  --p-dark: #111111;
+  --p-muted: #767676;
+  --p-border: #e1e1e1;
+  --p-bg: #f7f7f8;
 
   /* Legacy variable compatibility */
   --primary: var(--canva-purple);
-  --red: #dc3545;
-  --green: #198754;
-  --yellow: #ffc107;
+  --red: #e60023;
+  --green: #10b981;
+  --yellow: #f59e0b;
   --bg: var(--canva-bg);
   --card: var(--canva-card);
   --muted: var(--canva-muted);
@@ -34,18 +42,18 @@
 }
 
 [data-theme="dark"] {
-  --canva-bg: #212529;
-  --canva-card: #2b3035;
+  --canva-bg: #111111;
+  --canva-card: #1e1e1e;
   --canva-dark: #f8f9fa;
-  --canva-slate: #dee2e6;
-  --canva-muted: #a7acb1;
-  --canva-light-muted: #6c757d;
-  --canva-border: #495057;
-  --canva-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.45);
-  --canva-shadow-hover: 0 1rem 2.5rem rgba(0, 0, 0, 0.55);
-  --bg: #212529;
-  --card: #2b3035;
-  --muted: #a7acb1;
+  --canva-slate: #e1e1e1;
+  --canva-muted: #a0a0a0;
+  --canva-light-muted: #666666;
+  --canva-border: #333333;
+  --canva-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --canva-shadow-hover: 0 16px 40px rgba(0, 0, 0, 0.65);
+  --bg: #111111;
+  --card: #1e1e1e;
+  --muted: #a0a0a0;
   --text: #f8f9fa;
 }
 
@@ -534,7 +542,7 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
   font-family: 'Outfit', sans-serif;
   font-size: 21px;
   font-weight: 800;
-  background: linear-gradient(135deg, #0e131f 0%, #7d2ae8 100%);
+  background: linear-gradient(135deg, #111111 0%, #e60023 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -542,7 +550,7 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 }
 
 [data-theme="dark"] .brand {
-  background: linear-gradient(135deg, #ffffff 0%, #a855f7 100%) !important;
+  background: linear-gradient(135deg, #ffffff 0%, #ff5a5f 100%) !important;
   background-clip: text !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
@@ -552,7 +560,7 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
   font-size: 9.5px;
   font-weight: 800;
   letter-spacing: 0.12em;
-  color: var(--canva-cyan);
+  color: #e60023;
   margin-top: -3px;
 }
 
@@ -577,15 +585,15 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 }
 
 .nav .nav-link:hover {
-  color: #0d6efd;
-  background: rgba(13, 110, 253, 0.08);
+  color: #e60023;
+  background: rgba(230, 0, 35, 0.08);
 }
 
 .nav .nav-link.active {
   color: #ffffff;
-  background: #0d6efd;
+  background: #e60023;
   font-weight: 600;
-  box-shadow: 0 0.125rem 0.25rem rgba(13, 110, 253, 0.3);
+  box-shadow: 0 0.125rem 0.25rem rgba(230, 0, 35, 0.35);
 }
 
 .actions {
@@ -609,9 +617,9 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 .header-cta-btn {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, #7d2ae8 0%, #00c4cc 100%);
+  background: linear-gradient(135deg, #e60023 0%, #c4001a 50%, #111111 100%);
   border: none;
-  box-shadow: 0 2px 8px rgba(60, 64, 67, 0.15);
+  box-shadow: 0 4px 14px rgba(230, 0, 35, 0.35);
 }
 
 .header-cta-btn::after {
@@ -876,7 +884,7 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 }
 
 .hero-banner {
-  background: linear-gradient(135deg, #ffffff 0%, #e8f0fe 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #fff0f2 100%);
   border: 1px solid var(--canva-border);
   box-shadow: 0 1px 3px rgba(60, 64, 67, 0.12), 0 4px 16px rgba(60, 64, 67, 0.06);
   border-radius: 32px;
@@ -913,8 +921,8 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 
 .hero-content .kicker {
   display: inline-block;
-  background: #e7f1ff;
-  color: #0d6efd;
+  background: #fff0f2;
+  color: #e60023;
   font-weight: 600;
   font-size: 12.5px;
   padding: 6px 14px;
@@ -1458,29 +1466,29 @@ input.search-input:focus {
 }
 
 .pill {
-  background: #e9ecef;
-  color: #495057;
-  font-weight: 500;
+  background: #f1f3f5;
+  color: #333333;
+  font-weight: 600;
   font-size: 14px;
   padding: 8px 18px;
   border-radius: 50rem;
-  border: 1px solid #dee2e6;
+  border: 1px solid #e1e1e1;
   cursor: pointer;
   transition: all 0.15s ease-in-out;
 }
 
 .pill:hover {
-  background: #e7f1ff;
-  color: #0d6efd;
-  border-color: #86b7fe;
+  background: #fff0f2;
+  color: #e60023;
+  border-color: #ff5a5f;
   transform: translateY(-1px);
 }
 
 .pill.active {
-  background: #0d6efd;
+  background: #e60023;
   color: #ffffff;
   border: none !important;
-  box-shadow: 0 0.125rem 0.25rem rgba(13, 110, 253, 0.3);
+  box-shadow: 0 4px 14px rgba(230, 0, 35, 0.35);
 }
 
 /* Light Theme: Selected/Active buttons border none */
@@ -1539,8 +1547,8 @@ button:active,
 
 .tmpl-card:hover {
   transform: translateY(-8px);
-  border-color: #00c4cc;
-  box-shadow: 0 14px 40px rgba(125, 42, 232, 0.35), 0 0 25px rgba(0, 196, 204, 0.4);
+  border-color: #e60023;
+  box-shadow: 0 14px 40px rgba(230, 0, 35, 0.25), 0 0 25px rgba(255, 90, 95, 0.3);
 }
 
 .tmpl-preview-box {
