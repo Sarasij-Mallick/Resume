@@ -52,6 +52,7 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  overflow-x: hidden;
 }
 
 /* 2. Box-sizing & base smoothness */
@@ -146,6 +147,7 @@ img {
 
 /* 9. Smooth page-level color/background transitions (dark mode toggle) */
 body {
+  overflow-x: hidden;
   transition:
     background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
     color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -3127,12 +3129,16 @@ button.selected,
    ========================================================================== */
 .studio-body {
   height: 100vh;
+  max-height: 100vh;
   margin: 0;
   padding: 0;
-  overflow: hidden;
+  overflow: hidden !important;
   display: flex;
   flex-direction: column;
   background: #eaedf2;
+  width: 100vw;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 /* Studio Header / Navbar */
@@ -3146,12 +3152,18 @@ button.selected,
   padding: 0 20px;
   z-index: 200;
   flex-shrink: 0;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .studio-header-left {
   display: flex;
   align-items: center;
   gap: 16px;
+  min-width: 0;
+  flex-shrink: 1;
+  overflow: hidden;
 }
 
 .studio-home-link {
@@ -3161,6 +3173,8 @@ button.selected,
   align-items: center;
   gap: 8px;
   font-weight: 700;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .studio-doc-title {
@@ -3169,12 +3183,20 @@ button.selected,
   color: #94a3b8;
   border-left: 1px solid rgba(255, 255, 255, 0.15);
   padding-left: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 220px;
+  flex-shrink: 1;
 }
 
 .studio-header-right {
   display: flex;
   align-items: center;
   gap: 10px;
+  flex-shrink: 0;
+  white-space: nowrap;
+  margin-left: auto;
 }
 
 .studio-btn {
@@ -3185,6 +3207,7 @@ button.selected,
   border: 1.5px solid transparent !important;
   cursor: pointer;
   transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
 }
 
 .studio-btn.save {
@@ -3560,6 +3583,10 @@ button.selected,
 
 /* Tablet & Small Screens (769px to 1024px) */
 @media (max-width: 1024px) {
+  .studio-doc-title {
+    display: none;
+  }
+
   .mobile-btn {
     display: inline-block;
   }
@@ -3781,14 +3808,14 @@ button.selected,
 
   /* Canva Studio Mobile behavior */
   .studio-body {
-    height: auto;
-    overflow: auto;
+    height: 100vh !important;
+    overflow: hidden !important;
   }
 
   .studio-main {
     flex-direction: column;
-    height: auto;
-    overflow: visible;
+    height: calc(100vh - 56px);
+    overflow: hidden;
   }
 
   .studio-header {
@@ -3799,9 +3826,13 @@ button.selected,
     display: none;
   }
 
+  .studio-header-right {
+    gap: 6px;
+  }
+
   .studio-btn {
     padding: 6px 10px;
-    font-size: 11px;
+    font-size: 11.5px;
   }
 
   .studio-dock {
