@@ -6426,7 +6426,7 @@ html, body, .blog-modal-container, div, section, main {
 }
 
 html[data-theme="dark"] .fog-overlay {
-  opacity: 1;
+  opacity: 0.45;
 }
 
 .fog-blob {
