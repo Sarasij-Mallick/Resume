@@ -5435,5 +5435,435 @@ button.dock-item.active span,
 }
 
 
+/* ══════════════════════════════════════════════════════════
+   APPLE LIQUID / LUCID RETINA DISPLAY STYLE LAYER
+   Glassmorphism · Frosted Glass · Liquid Gradients · Premium
+   ══════════════════════════════════════════════════════════ */
 
+/* --- Liquid Glass Root Variables --- */
+:root {
+  --glass-bg: rgba(255, 255, 255, 0.72);
+  --glass-bg-strong: rgba(255, 255, 255, 0.88);
+  --glass-border: rgba(255, 255, 255, 0.55);
+  --glass-border-subtle: rgba(230, 0, 35, 0.12);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.10), 0 1.5px 6px rgba(0,0,0,0.06);
+  --glass-shadow-hover: 0 20px 56px rgba(0, 0, 0, 0.16), 0 4px 16px rgba(230,0,35,0.10);
+  --liquid-radius: 22px;
+  --liquid-radius-sm: 14px;
+  --liquid-radius-lg: 32px;
+  --liquid-gradient: linear-gradient(135deg, #e60023 0%, #7d2ae8 55%, #00c4cc 100%);
+  --liquid-gradient-soft: linear-gradient(135deg, rgba(230,0,35,0.08) 0%, rgba(125,42,232,0.06) 50%, rgba(0,196,204,0.05) 100%);
+  --blur-sm: blur(10px);
+  --blur-md: blur(20px);
+  --blur-lg: blur(32px);
+}
 
+[data-theme="dark"] {
+  --glass-bg: rgba(15, 20, 35, 0.75);
+  --glass-bg-strong: rgba(20, 25, 45, 0.92);
+  --glass-border: rgba(255, 255, 255, 0.10);
+  --glass-border-subtle: rgba(230, 0, 35, 0.18);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.40), 0 1.5px 6px rgba(0,0,0,0.20);
+  --glass-shadow-hover: 0 20px 56px rgba(0, 0, 0, 0.55), 0 4px 16px rgba(230,0,35,0.20);
+}
+
+/* --- Lucid Body Background --- */
+body {
+  background:
+    radial-gradient(ellipse 80% 60% at 15% 5%, rgba(230,0,35,0.055) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 85% 8%, rgba(125,42,232,0.04) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 40% at 50% 100%, rgba(0,196,204,0.035) 0%, transparent 60%),
+    var(--canva-bg);
+  background-attachment: fixed;
+}
+
+[data-theme="dark"] body,
+[data-theme="dark"] {
+  background:
+    radial-gradient(ellipse 80% 60% at 15% 5%, rgba(230,0,35,0.09) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 85% 8%, rgba(125,42,232,0.07) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 40% at 50% 100%, rgba(0,196,204,0.05) 0%, transparent 60%),
+    #0a0e1a !important;
+  background-attachment: fixed !important;
+}
+
+/* --- Frosted Glass Header --- */
+.site-header {
+  background: var(--glass-bg) !important;
+  backdrop-filter: saturate(180%) var(--blur-md) !important;
+  -webkit-backdrop-filter: saturate(180%) var(--blur-md) !important;
+  border-bottom: 1px solid var(--glass-border) !important;
+  box-shadow: 0 1px 0 rgba(230,0,35,0.07), 0 4px 24px rgba(0,0,0,0.06) !important;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.site-header.scrolled {
+  background: var(--glass-bg-strong) !important;
+  box-shadow: 0 1px 0 rgba(230,0,35,0.08), 0 12px 40px rgba(0,0,0,0.10) !important;
+}
+
+/* --- Liquid Brand Text --- */
+.brand {
+  font-family: 'Outfit', sans-serif !important;
+  font-size: 22px !important;
+  font-weight: 800 !important;
+  background: var(--liquid-gradient) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  letter-spacing: -0.03em !important;
+  filter: drop-shadow(0 1px 8px rgba(230,0,35,0.18));
+}
+
+/* --- Glassmorphism Cards --- */
+.about-card,
+.path-card,
+.feature-card,
+.stat-card,
+.testimonial-card {
+  background: var(--glass-bg) !important;
+  backdrop-filter: saturate(160%) var(--blur-sm) !important;
+  -webkit-backdrop-filter: saturate(160%) var(--blur-sm) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: var(--liquid-radius) !important;
+  box-shadow: var(--glass-shadow) !important;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.3s ease !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-card::before,
+.path-card::before,
+.feature-card::before,
+.stat-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--liquid-gradient-soft);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.about-card:hover::before,
+.path-card:hover::before,
+.feature-card:hover::before,
+.stat-card:hover::before {
+  opacity: 1;
+}
+
+.about-card:hover,
+.path-card:hover,
+.feature-card:hover,
+.stat-card:hover {
+  transform: translateY(-8px) scale(1.012) !important;
+  box-shadow: var(--glass-shadow-hover) !important;
+  border-color: var(--glass-border-subtle) !important;
+}
+
+/* --- Template Cards Liquid --- */
+.template-card {
+  border-radius: var(--liquid-radius) !important;
+  box-shadow: var(--glass-shadow) !important;
+  border: 1px solid var(--glass-border) !important;
+  transition: transform 0.38s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.38s ease !important;
+  overflow: hidden;
+}
+
+.template-card:hover {
+  transform: translateY(-10px) scale(1.018) !important;
+  box-shadow: var(--glass-shadow-hover) !important;
+}
+
+/* --- Blog Cards Liquid --- */
+.blog-card {
+  border-radius: var(--liquid-radius) !important;
+  border: 1px solid var(--glass-border) !important;
+  box-shadow: var(--glass-shadow) !important;
+  backdrop-filter: var(--blur-sm) !important;
+  -webkit-backdrop-filter: var(--blur-sm) !important;
+  transition: transform 0.38s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.38s ease !important;
+}
+
+.blog-card:hover {
+  transform: translateY(-10px) !important;
+  box-shadow: var(--glass-shadow-hover) !important;
+}
+
+/* --- Liquid CTA Buttons --- */
+.btn-pill-purple,
+.header-cta-btn {
+  background: var(--liquid-gradient) !important;
+  border: none !important;
+  border-radius: 50px !important;
+  box-shadow: 0 4px 20px rgba(230,0,35,0.30), 0 1px 4px rgba(125,42,232,0.20) !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.01em !important;
+  position: relative !important;
+  overflow: hidden !important;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+
+.btn-pill-purple::before,
+.header-cta-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.25) 0%, transparent 60%);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.btn-pill-purple:hover,
+.header-cta-btn:hover {
+  transform: translateY(-2px) scale(1.03) !important;
+  box-shadow: 0 8px 32px rgba(230,0,35,0.38), 0 2px 8px rgba(125,42,232,0.25) !important;
+}
+
+.btn-pill-purple:active,
+.header-cta-btn:active {
+  transform: scale(0.97) !important;
+}
+
+/* --- Hero Section Liquid Gradient Background --- */
+.hero-section,
+#home {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(230,0,35,0.06) 0%, transparent 70%);
+  top: -200px;
+  right: -200px;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: liquidOrb 12s ease-in-out infinite alternate;
+}
+
+.hero-section::after {
+  content: '';
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(125,42,232,0.05) 0%, transparent 70%);
+  bottom: -100px;
+  left: -100px;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: liquidOrb 16s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes liquidOrb {
+  0%   { transform: scale(1) translate(0, 0); }
+  50%  { transform: scale(1.15) translate(30px, -20px); }
+  100% { transform: scale(0.95) translate(-20px, 30px); }
+}
+
+/* --- Section Headings Liquid --- */
+.section-head h2,
+.section-head .section-title {
+  background: linear-gradient(135deg, var(--canva-dark) 0%, #e60023 80%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+[data-theme="dark"] .section-head h2,
+[data-theme="dark"] .section-head .section-title {
+  background: linear-gradient(135deg, #ffffff 0%, #ff5a5f 80%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* --- Nav Pills Liquid --- */
+.nav {
+  background: var(--glass-bg) !important;
+  backdrop-filter: var(--blur-sm) !important;
+  -webkit-backdrop-filter: var(--blur-sm) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 50px !important;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06) !important;
+}
+
+.nav-link.active,
+.nav-link:hover {
+  background: var(--liquid-gradient) !important;
+  color: #ffffff !important;
+  border-radius: 50px !important;
+  box-shadow: 0 2px 10px rgba(230,0,35,0.22) !important;
+}
+
+/* --- Footer Liquid --- */
+.site-footer {
+  background: var(--glass-bg) !important;
+  backdrop-filter: saturate(160%) var(--blur-md) !important;
+  -webkit-backdrop-filter: saturate(160%) var(--blur-md) !important;
+  border-top: 1px solid var(--glass-border) !important;
+  box-shadow: 0 -4px 24px rgba(0,0,0,0.05) !important;
+}
+
+/* --- Preloader Liquid --- */
+.preloader-title {
+  background: var(--liquid-gradient) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  font-family: 'Outfit', sans-serif !important;
+  font-weight: 800 !important;
+  font-size: 32px !important;
+  filter: drop-shadow(0 2px 12px rgba(230,0,35,0.25));
+}
+
+.preloader-progress {
+  background: var(--liquid-gradient) !important;
+  border-radius: 50px !important;
+  box-shadow: 0 0 12px rgba(230,0,35,0.4) !important;
+}
+
+/* --- Input Fields Liquid Focus --- */
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: transparent !important;
+  outline: none !important;
+  box-shadow: 0 0 0 2.5px rgba(230,0,35,0.30), 0 4px 16px rgba(230,0,35,0.10) !important;
+  transition: box-shadow 0.25s ease, border-color 0.25s ease !important;
+}
+
+/* --- Back to Top Liquid --- */
+.back-to-top {
+  background: var(--liquid-gradient) !important;
+  border: none !important;
+  border-radius: 50% !important;
+  box-shadow: 0 4px 20px rgba(230,0,35,0.32) !important;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+
+.back-to-top:hover {
+  transform: translateY(-4px) scale(1.08) !important;
+  box-shadow: 0 8px 30px rgba(230,0,35,0.45) !important;
+}
+
+/* --- Floating Badges Liquid --- */
+.floating-badge {
+  background: var(--glass-bg-strong) !important;
+  backdrop-filter: var(--blur-sm) !important;
+  -webkit-backdrop-filter: var(--blur-sm) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: var(--liquid-radius) !important;
+  box-shadow: var(--glass-shadow) !important;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+
+.floating-badge:hover {
+  transform: translateY(-4px) scale(1.04) !important;
+}
+
+/* --- Announcement Bar Liquid --- */
+.announcement-bar {
+  background: var(--liquid-gradient) !important;
+  box-shadow: 0 2px 12px rgba(230,0,35,0.25) !important;
+}
+
+/* --- Scrollbar Liquid Style --- */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--liquid-gradient);
+  border-radius: 50px;
+  box-shadow: 0 0 8px rgba(230,0,35,0.3);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #c4001a 0%, #5b1ca8 100%);
+}
+
+/* --- Selection Liquid --- */
+::selection {
+  background: rgba(230, 0, 35, 0.15) !important;
+  color: inherit !important;
+}
+
+/* --- Smooth Image Rendering --- */
+img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* --- Pill Tags Liquid --- */
+.pill,
+.badge,
+.blog-card-tag,
+.filter-btn.active {
+  background: var(--liquid-gradient) !important;
+  color: #ffffff !important;
+  border: none !important;
+  box-shadow: 0 2px 10px rgba(230,0,35,0.20) !important;
+  border-radius: 50px !important;
+}
+
+/* --- Stat Numbers Liquid --- */
+.stat-number,
+.stat-value {
+  background: var(--liquid-gradient) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  font-weight: 800 !important;
+}
+
+/* --- Dark mode border softening --- */
+[data-theme="dark"] .about-card,
+[data-theme="dark"] .path-card,
+[data-theme="dark"] .feature-card,
+[data-theme="dark"] .stat-card,
+[data-theme="dark"] .template-card,
+[data-theme="dark"] .blog-card {
+  border-color: rgba(255,255,255,0.07) !important;
+  background: rgba(20,25,45,0.75) !important;
+}
+
+[data-theme="dark"] .nav {
+  background: rgba(20,25,45,0.75) !important;
+  border-color: rgba(255,255,255,0.08) !important;
+}
+
+[data-theme="dark"] .site-header {
+  background: rgba(12,16,30,0.82) !important;
+  border-bottom-color: rgba(255,255,255,0.07) !important;
+}
+
+[data-theme="dark"] .site-footer {
+  background: rgba(10,14,26,0.85) !important;
+  border-top-color: rgba(255,255,255,0.06) !important;
+}
+
+/* --- Responsive Lucid Adjustments --- */
+@media (max-width: 768px) {
+  .about-card:hover,
+  .path-card:hover,
+  .feature-card:hover,
+  .template-card:hover,
+  .blog-card:hover {
+    transform: translateY(-4px) scale(1.008) !important;
+  }
+}
