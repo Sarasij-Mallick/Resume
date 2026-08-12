@@ -5965,9 +5965,9 @@ h1, h2, h3, h4, h5, h6,
   animation-play-state: paused !important;
   transform: scale(1.042) translateY(-6px) !important;
   z-index: 10 !important;
-  background: rgba(238, 53, 80, 0.03) !important;
-  border-color: rgba(238, 53, 80, 0.14) !important;
-  box-shadow: 0 12px 28px rgba(238, 53, 80, 0.10), 0 4px 12px rgba(238, 53, 80, 0.06) !important;
+  background: rgba(238, 53, 80, 0.015) !important;
+  border-color: rgba(238, 53, 80, 0.18) !important;
+  box-shadow: 0 14px 36px rgba(238, 53, 80, 0.18), 0 5px 14px rgba(238, 53, 80, 0.10) !important;
 }
 
 .contact-card-wrap:hover {
@@ -6018,9 +6018,9 @@ h1, h2, h3, h4, h5, h6,
   animation-play-state: paused !important;
   transform: scale(1.042) translateY(-6px) !important;
   z-index: 10 !important;
-  background: rgba(238, 53, 80, 0.08) !important;
-  border-color: rgba(255, 77, 109, 0.22) !important;
-  box-shadow: 0 12px 28px rgba(255, 77, 109, 0.16), 0 4px 12px rgba(255, 77, 109, 0.08) !important;
+  background: rgba(238, 53, 80, 0.04) !important;
+  border-color: rgba(255, 77, 109, 0.26) !important;
+  box-shadow: 0 14px 36px rgba(255, 77, 109, 0.22), 0 5px 14px rgba(255, 77, 109, 0.12) !important;
 }
 
 [data-theme="dark"] .contact-card-wrap:hover {
