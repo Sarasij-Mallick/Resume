@@ -5675,24 +5675,7 @@ h1, h2, h3, h4, h5, h6,
   will-change: transform, box-shadow;
 }
 
-/* Shimmer glass light beam sweep on hover — 1x slow & subtle diagonal sweep per hover */
-@keyframes slowGlassShineSweep {
-  0% {
-    left: -130%;
-    opacity: 0;
-  }
-  20% {
-    opacity: 0.7;
-  }
-  80% {
-    opacity: 0.7;
-  }
-  100% {
-    left: 180%;
-    opacity: 0;
-  }
-}
-
+/* All Card Hover animations and shine sweeps disabled completely */
 .about-card::after,
 .path-card::after,
 .tmpl-card::after,
@@ -5701,27 +5684,7 @@ h1, h2, h3, h4, h5, h6,
 .feature-card::after,
 .testimonial-card::after,
 .story-cta-card::after,
-.contact-card-wrap::after {
-  content: "";
-  position: absolute;
-  top: -60%;
-  left: -130%;
-  width: 55%;
-  height: 220%;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.04) 25%,
-    rgba(255, 255, 255, 0.22) 50%,
-    rgba(255, 255, 255, 0.04) 75%,
-    rgba(255, 255, 255, 0) 100%
-  );
-  transform: rotate(28deg);
-  pointer-events: none;
-  opacity: 0;
-  z-index: 6;
-}
-
+.contact-card-wrap::after,
 .about-card:hover::after,
 .path-card:hover::after,
 .tmpl-card:hover::after,
@@ -5731,7 +5694,8 @@ h1, h2, h3, h4, h5, h6,
 .testimonial-card:hover::after,
 .story-cta-card:hover::after,
 .contact-card-wrap:hover::after {
-  animation: slowGlassShineSweep 2.5s cubic-bezier(0.22, 1, 0.36, 1) 1 forwards;
+  display: none !important;
+  animation: none !important;
 }
 
 /* Explicitly disable shine reflection on stats strip items */
@@ -5746,7 +5710,7 @@ h1, h2, h3, h4, h5, h6,
 }
 
 
-/* Disable Hover Lift Elevation Across Cards */
+/* Disable Hover Lift Elevation & Animations Across Cards */
 .about-card:hover,
 .path-card:hover,
 .tmpl-card:hover,
@@ -5786,95 +5750,19 @@ h1, h2, h3, h4, h5, h6,
   animation: none !important;
 }
 
-/* Smooth Icon & Image Micro-Transform on Card Hover */
-.about-card .about-icon img,
-.path-card .path-icon img,
-.blog-card .blog-img-wrap img {
-  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1) !important;
-}
-
+/* Disable inner element transforms on card hover */
 .about-card:hover .about-icon img,
-.path-card:hover .path-icon img {
-  transform: scale(1.1) translateY(-4px) !important;
-}
-
-.blog-card:hover .blog-img-wrap img {
-  transform: scale(1.06) !important;
-}
-
-/* Card Action Button Reactivity on Card Hover */
-.path-card .btn-outline-purple,
-.path-card .btn-outline-danger,
-.path-card .btn,
-.story-cta-card .btn {
-  transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1) !important;
-}
-
-.path-card:hover .btn-outline-purple,
-.path-card:hover .btn-outline-danger,
-.path-card:hover .btn,
-.story-cta-card:hover .btn {
-  background: #e60023 !important;
-  color: #ffffff !important;
-  border-color: #e60023 !important;
-  box-shadow: 0 8px 24px rgba(230, 0, 35, 0.35) !important;
-  transform: translateY(-2px) !important;
-}
-
-/* Feature Checkmark & Link Arrow Shift on Card Hover */
-.path-features li {
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
-}
-
-.path-card:hover .path-features li {
-  transform: translateX(4px) !important;
-}
-
-.blog-card .read-full-link,
-.blog-card a {
-  display: inline-flex !important;
-  align-items: center !important;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s ease !important;
-}
-
+.path-card:hover .path-icon img,
+.blog-card:hover .blog-img-wrap img,
+.path-card:hover .path-features li,
 .blog-card:hover .read-full-link,
 .blog-card:hover a {
-  color: #e60023 !important;
-  transform: translateX(6px) !important;
+  transform: none !important;
 }
 
-/* ── 2.5 DYNAMIC MICRO-ANIMATIONS ───────────────────────── */
-
-/* Floating 3D Icon Breathing Animation */
-.about-icon, .path-icon {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.about-icon img, .path-icon img {
-  animation: floatCardIcon 4s ease-in-out infinite;
-  will-change: transform;
-}
-
-/* Stagger floating delays for visual harmony across carousel cards */
-.carousel-slide:nth-child(1) .about-icon img { animation-delay: 0s; }
-.carousel-slide:nth-child(2) .about-icon img { animation-delay: 0.5s; }
-.carousel-slide:nth-child(3) .about-icon img { animation-delay: 1.0s; }
-.carousel-slide:nth-child(4) .about-icon img { animation-delay: 1.5s; }
-.carousel-slide:nth-child(5) .about-icon img { animation-delay: 2.0s; }
-.carousel-slide:nth-child(6) .about-icon img { animation-delay: 2.5s; }
-.carousel-slide:nth-child(7) .about-icon img { animation-delay: 3.0s; }
-.carousel-slide:nth-child(8) .about-icon img { animation-delay: 3.5s; }
-
-@keyframes floatCardIcon {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-6px) rotate(1.8deg);
-  }
+.about-icon img,
+.path-icon img {
+  animation: none !important;
 }
 
 /* Glowing Radial Aura Expansion on Card Hover */
@@ -5893,8 +5781,8 @@ h1, h2, h3, h4, h5, h6,
 
 .about-card:hover .about-icon::before,
 .path-card:hover .path-icon::before {
-  opacity: 1;
-  transform: scale(1.4);
+  opacity: 0 !important;
+  display: none !important;
 }
 
 /* Kicker Badge Ambient Glow Pulse */
