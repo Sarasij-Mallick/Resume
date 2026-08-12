@@ -1851,28 +1851,32 @@ options.forEach(function (card) {
     showToast("⏳ Generating high-quality PDF document, please wait...");
 
     setTimeout(() => {
-      const tempDiv = document.createElement("div");
-      tempDiv.id = "pdfTempExportContainer";
-      tempDiv.style.position = "fixed";
-      tempDiv.style.top = "0";
-      tempDiv.style.left = "0";
-      tempDiv.style.width = "794px";
-      tempDiv.style.zIndex = "-999999";
-      tempDiv.style.opacity = "1";
-      tempDiv.style.visibility = "visible";
-      tempDiv.style.background = "#ffffff";
-      tempDiv.style.color = "#0f172a";
-      tempDiv.style.padding = "32px";
-      tempDiv.style.boxSizing = "border-box";
-      tempDiv.innerHTML = buildResumeHtml();
-      document.body.appendChild(tempDiv);
+      let exportElement = document.getElementById("paperCanvas") || document.getElementById("fullscreenPaperCanvas");
+      let tempDiv = null;
+
+      if (!exportElement || !exportElement.innerHTML.trim()) {
+        tempDiv = document.createElement("div");
+        tempDiv.id = "pdfTempExportContainer";
+        tempDiv.style.position = "absolute";
+        tempDiv.style.top = "0";
+        tempDiv.style.left = "0";
+        tempDiv.style.width = "794px";
+        tempDiv.style.background = "#ffffff";
+        tempDiv.style.color = "#0f172a";
+        tempDiv.style.padding = "32px";
+        tempDiv.style.boxSizing = "border-box";
+        tempDiv.style.zIndex = "99999";
+        tempDiv.innerHTML = buildResumeHtml();
+        document.body.appendChild(tempDiv);
+        exportElement = tempDiv;
+      }
 
       const rawName = state.personal?.fullName ? state.personal.fullName.trim().replace(/\s+/g, "_") : "My";
       const fileName = `${rawName}_Resume.pdf`;
 
       const cleanup = () => {
         if (overlay) overlay.setAttribute("aria-hidden", "true");
-        if (tempDiv.parentNode) tempDiv.parentNode.removeChild(tempDiv);
+        if (tempDiv && tempDiv.parentNode) tempDiv.parentNode.removeChild(tempDiv);
         if (btn) {
           btn.disabled = false;
           btn.style.pointerEvents = "auto";
@@ -1890,16 +1894,14 @@ options.forEach(function (card) {
             scale: 2,
             useCORS: true,
             logging: false,
-            scrollX: 0,
-            scrollY: 0,
-            windowWidth: 850
+            backgroundColor: "#ffffff"
           },
           jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
         };
 
         html2pdf()
           .set(opt)
-          .from(tempDiv)
+          .from(exportElement)
           .save()
           .then(() => {
             cleanup();
@@ -1918,14 +1920,33 @@ options.forEach(function (card) {
   }
 
   function fallbackPrint() {
-    const html = `<!doctype html><html><head><meta charset="utf-8"/><title>Resume</title><style>body{font-family:Inter,Arial;margin:28px;color:#111827}.small{color:#6b7280}</style></head><body>${buildResumeHtml()}</body></html>`;
-    const w = window.open("", "_blank");
-    if (w) {
-      w.document.write(html);
-      w.document.close();
+    const rawName = state.personal?.fullName ? state.personal.fullName.trim().replace(/\s+/g, "_") : "My";
+    const title = `${rawName}_Resume`;
+    const resumeHtml = buildResumeHtml();
+    const printWindow = window.open("", "_blank");
+    if (printWindow) {
+      printWindow.document.write(`<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>${title}</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700;800&display=swap');
+    body { font-family: 'Inter', sans-serif; background: #ffffff; color: #0f172a; margin: 0; padding: 32px; }
+    @page { size: A4 portrait; margin: 10mm; }
+  </style>
+</head>
+<body>
+  ${resumeHtml}
+</body>
+</html>`);
+      printWindow.document.close();
       setTimeout(() => {
-        w.print();
-      }, 600);
+        printWindow.focus();
+        printWindow.print();
+      }, 500);
+    } else {
+      window.print();
     }
   }
 
