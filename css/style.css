@@ -5415,8 +5415,23 @@ button.dock-item.active span,
   margin-bottom: 4px;
 }
 
-.wc-flag {
-  font-size: 15px;
+.wc-flag-img-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 14px;
+  border-radius: 3px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+  flex-shrink: 0;
+}
+
+.wc-flag-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .wc-city {

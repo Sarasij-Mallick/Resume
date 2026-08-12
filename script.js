@@ -2926,32 +2926,32 @@ function showToast(msg, timeout = 3000) {
           <div class="screensaver-world-clock" id="screensaverWorldClock">
             <div class="world-clock-grid">
               <div class="wc-card">
-                <div class="wc-header"><span class="wc-flag">🇺🇸</span><span class="wc-city">New York</span></div>
+                <div class="wc-header"><span class="wc-flag-img-wrap"><img src="https://flagcdn.com/w40/us.png" srcset="https://flagcdn.com/w80/us.png 2x" width="20" height="15" alt="USA Flag" class="wc-flag-img"></span><span class="wc-city">New York</span></div>
                 <div class="wc-time" id="wcTimeNY">--:--:--</div>
                 <div class="wc-meta"><span class="wc-tz">EDT</span> <span class="wc-sun" id="wcSunNY">☀️</span></div>
               </div>
               <div class="wc-card">
-                <div class="wc-header"><span class="wc-flag">🇬🇧</span><span class="wc-city">London</span></div>
+                <div class="wc-header"><span class="wc-flag-img-wrap"><img src="https://flagcdn.com/w40/gb.png" srcset="https://flagcdn.com/w80/gb.png 2x" width="20" height="15" alt="UK Flag" class="wc-flag-img"></span><span class="wc-city">London</span></div>
                 <div class="wc-time" id="wcTimeLDN">--:--:--</div>
                 <div class="wc-meta"><span class="wc-tz">BST</span> <span class="wc-sun" id="wcSunLDN">☀️</span></div>
               </div>
               <div class="wc-card">
-                <div class="wc-header"><span class="wc-flag">🇮🇳</span><span class="wc-city">New Delhi</span></div>
+                <div class="wc-header"><span class="wc-flag-img-wrap"><img src="https://flagcdn.com/w40/in.png" srcset="https://flagcdn.com/w80/in.png 2x" width="20" height="15" alt="India Flag" class="wc-flag-img"></span><span class="wc-city">New Delhi</span></div>
                 <div class="wc-time" id="wcTimeDEL">--:--:--</div>
                 <div class="wc-meta"><span class="wc-tz">IST</span> <span class="wc-sun" id="wcSunDEL">☀️</span></div>
               </div>
               <div class="wc-card">
-                <div class="wc-header"><span class="wc-flag">🇦🇪</span><span class="wc-city">Dubai</span></div>
+                <div class="wc-header"><span class="wc-flag-img-wrap"><img src="https://flagcdn.com/w40/ae.png" srcset="https://flagcdn.com/w80/ae.png 2x" width="20" height="15" alt="UAE Flag" class="wc-flag-img"></span><span class="wc-city">Dubai</span></div>
                 <div class="wc-time" id="wcTimeDXB">--:--:--</div>
                 <div class="wc-meta"><span class="wc-tz">GST</span> <span class="wc-sun" id="wcSunDXB">☀️</span></div>
               </div>
               <div class="wc-card">
-                <div class="wc-header"><span class="wc-flag">🇯🇵</span><span class="wc-city">Tokyo</span></div>
+                <div class="wc-header"><span class="wc-flag-img-wrap"><img src="https://flagcdn.com/w40/jp.png" srcset="https://flagcdn.com/w80/jp.png 2x" width="20" height="15" alt="Japan Flag" class="wc-flag-img"></span><span class="wc-city">Tokyo</span></div>
                 <div class="wc-time" id="wcTimeTYO">--:--:--</div>
                 <div class="wc-meta"><span class="wc-tz">JST</span> <span class="wc-sun" id="wcSunTYO">🌙</span></div>
               </div>
               <div class="wc-card">
-                <div class="wc-header"><span class="wc-flag">🇦🇺</span><span class="wc-city">Sydney</span></div>
+                <div class="wc-header"><span class="wc-flag-img-wrap"><img src="https://flagcdn.com/w40/au.png" srcset="https://flagcdn.com/w80/au.png 2x" width="20" height="15" alt="Australia Flag" class="wc-flag-img"></span><span class="wc-city">Sydney</span></div>
                 <div class="wc-time" id="wcTimeSYD">--:--:--</div>
                 <div class="wc-meta"><span class="wc-tz">AEST</span> <span class="wc-sun" id="wcSunSYD">🌙</span></div>
               </div>
