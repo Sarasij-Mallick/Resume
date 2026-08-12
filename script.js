@@ -2921,36 +2921,46 @@ function showToast(msg, timeout = 3000) {
           </div>
           <div id="screensaverClock" class="screensaver-clock">12:00:00 PM</div>
           <div id="screensaverDate" class="screensaver-date">Wednesday, August 12, 2026</div>
+
+          <!-- USER COUNTRY LOCAL TIME BADGE -->
+          <div class="screensaver-user-location-badge" id="ssUserLocationBadge">
+            <span class="user-loc-pill">
+              <span class="user-loc-icon">📍 YOUR LOCAL TIME:</span>
+              <span class="wc-flag-img-wrap"><img id="ssUserFlagImg" src="https://flagcdn.com/w40/in.png" srcset="https://flagcdn.com/w80/in.png 2x" width="18" height="13" alt="User Country Flag" class="wc-flag-img"></span>
+              <span id="ssUserCountryText" class="user-loc-country">Detecting location...</span>
+              <span id="ssUserLiveTime" class="user-loc-time">--:--:--</span>
+            </span>
+          </div>
           
           <!-- LIVE WORLD CLOCK GRID -->
           <div class="screensaver-world-clock" id="screensaverWorldClock">
             <div class="world-clock-grid">
-              <div class="wc-card">
+              <div class="wc-card" id="wcCardNY">
                 <div class="wc-header"><span class="wc-flag-img-wrap"><img src="https://flagcdn.com/w40/us.png" srcset="https://flagcdn.com/w80/us.png 2x" width="20" height="15" alt="USA Flag" class="wc-flag-img"></span><span class="wc-city">New York</span></div>
                 <div class="wc-time" id="wcTimeNY">--:--:--</div>
                 <div class="wc-meta"><span class="wc-tz">EDT</span> <span class="wc-sun" id="wcSunNY">☀️</span></div>
               </div>
-              <div class="wc-card">
+              <div class="wc-card" id="wcCardLDN">
                 <div class="wc-header"><span class="wc-flag-img-wrap"><img src="https://flagcdn.com/w40/gb.png" srcset="https://flagcdn.com/w80/gb.png 2x" width="20" height="15" alt="UK Flag" class="wc-flag-img"></span><span class="wc-city">London</span></div>
                 <div class="wc-time" id="wcTimeLDN">--:--:--</div>
                 <div class="wc-meta"><span class="wc-tz">BST</span> <span class="wc-sun" id="wcSunLDN">☀️</span></div>
               </div>
-              <div class="wc-card">
+              <div class="wc-card" id="wcCardDEL">
                 <div class="wc-header"><span class="wc-flag-img-wrap"><img src="https://flagcdn.com/w40/in.png" srcset="https://flagcdn.com/w80/in.png 2x" width="20" height="15" alt="India Flag" class="wc-flag-img"></span><span class="wc-city">New Delhi</span></div>
                 <div class="wc-time" id="wcTimeDEL">--:--:--</div>
                 <div class="wc-meta"><span class="wc-tz">IST</span> <span class="wc-sun" id="wcSunDEL">☀️</span></div>
               </div>
-              <div class="wc-card">
+              <div class="wc-card" id="wcCardDXB">
                 <div class="wc-header"><span class="wc-flag-img-wrap"><img src="https://flagcdn.com/w40/ae.png" srcset="https://flagcdn.com/w80/ae.png 2x" width="20" height="15" alt="UAE Flag" class="wc-flag-img"></span><span class="wc-city">Dubai</span></div>
                 <div class="wc-time" id="wcTimeDXB">--:--:--</div>
                 <div class="wc-meta"><span class="wc-tz">GST</span> <span class="wc-sun" id="wcSunDXB">☀️</span></div>
               </div>
-              <div class="wc-card">
+              <div class="wc-card" id="wcCardTYO">
                 <div class="wc-header"><span class="wc-flag-img-wrap"><img src="https://flagcdn.com/w40/jp.png" srcset="https://flagcdn.com/w80/jp.png 2x" width="20" height="15" alt="Japan Flag" class="wc-flag-img"></span><span class="wc-city">Tokyo</span></div>
                 <div class="wc-time" id="wcTimeTYO">--:--:--</div>
                 <div class="wc-meta"><span class="wc-tz">JST</span> <span class="wc-sun" id="wcSunTYO">🌙</span></div>
               </div>
-              <div class="wc-card">
+              <div class="wc-card" id="wcCardSYD">
                 <div class="wc-header"><span class="wc-flag-img-wrap"><img src="https://flagcdn.com/w40/au.png" srcset="https://flagcdn.com/w80/au.png 2x" width="20" height="15" alt="Australia Flag" class="wc-flag-img"></span><span class="wc-city">Sydney</span></div>
                 <div class="wc-time" id="wcTimeSYD">--:--:--</div>
                 <div class="wc-meta"><span class="wc-tz">AEST</span> <span class="wc-sun" id="wcSunSYD">🌙</span></div>
@@ -3049,6 +3059,46 @@ function showToast(msg, timeout = 3000) {
     }
   }
 
+  function detectUserLocation() {
+    let userTz = "Asia/Kolkata";
+    try {
+      userTz = Intl.DateTimeFormat().resolvedOptions().timeZone || "Asia/Kolkata";
+    } catch (e) {}
+
+    const parts = userTz.split("/");
+    const cityName = (parts[parts.length - 1] || "Local").replace(/_/g, " ");
+
+    let countryCode = "in";
+    let countryName = "India";
+    const tzLower = userTz.toLowerCase();
+
+    if (tzLower.includes("kolkata") || tzLower.includes("calcutta") || tzLower.includes("india")) {
+      countryCode = "in"; countryName = "India";
+    } else if (tzLower.includes("dhaka") || tzLower.includes("bangladesh")) {
+      countryCode = "bd"; countryName = "Bangladesh";
+    } else if (tzLower.includes("new_york") || tzLower.includes("chicago") || tzLower.includes("los_angeles") || tzLower.includes("america")) {
+      countryCode = "us"; countryName = "United States";
+    } else if (tzLower.includes("london") || tzLower.includes("gb") || tzLower.includes("uk")) {
+      countryCode = "gb"; countryName = "United Kingdom";
+    } else if (tzLower.includes("dubai") || tzLower.includes("uae")) {
+      countryCode = "ae"; countryName = "UAE";
+    } else if (tzLower.includes("tokyo") || tzLower.includes("japan")) {
+      countryCode = "jp"; countryName = "Japan";
+    } else if (tzLower.includes("sydney") || tzLower.includes("australia") || tzLower.includes("melbourne")) {
+      countryCode = "au"; countryName = "Australia";
+    } else if (tzLower.includes("paris") || tzLower.includes("france")) {
+      countryCode = "fr"; countryName = "France";
+    } else if (tzLower.includes("berlin") || tzLower.includes("germany")) {
+      countryCode = "de"; countryName = "Germany";
+    } else if (tzLower.includes("singapore")) {
+      countryCode = "sg"; countryName = "Singapore";
+    } else if (tzLower.includes("toronto") || tzLower.includes("vancouver") || tzLower.includes("canada")) {
+      countryCode = "ca"; countryName = "Canada";
+    }
+
+    return { userTz, cityName, countryCode, countryName };
+  }
+
   const WORLD_CITIES = [
     { id: "NY", tz: "America/New_York" },
     { id: "LDN", tz: "Europe/London" },
@@ -3057,6 +3107,8 @@ function showToast(msg, timeout = 3000) {
     { id: "TYO", tz: "Asia/Tokyo" },
     { id: "SYD", tz: "Australia/Sydney" }
   ];
+
+  let highlightedUserCard = false;
 
   function updateClock() {
     const clockEl = document.getElementById("screensaverClock");
@@ -3081,10 +3133,36 @@ function showToast(msg, timeout = 3000) {
       });
     }
 
-    // Update Live World Clock for all 6 global cities
+    // Update User Location Badge dynamically
+    const userLoc = detectUserLocation();
+    const userTimeEl = document.getElementById("ssUserLiveTime");
+    const userCountryEl = document.getElementById("ssUserCountryText");
+    const userFlagImg = document.getElementById("ssUserFlagImg");
+
+    if (userTimeEl) {
+      userTimeEl.textContent = now.toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true
+      });
+    }
+
+    if (userCountryEl) {
+      userCountryEl.textContent = `${userLoc.countryName} (${userLoc.cityName})`;
+    }
+
+    if (userFlagImg && !userFlagImg.src.includes(userLoc.countryCode)) {
+      userFlagImg.src = `https://flagcdn.com/w40/${userLoc.countryCode}.png`;
+      userFlagImg.srcset = `https://flagcdn.com/w80/${userLoc.countryCode}.png 2x`;
+    }
+
+    // Update Live World Clock for all 6 global cities & highlight user matching city card
     WORLD_CITIES.forEach((city) => {
       const timeEl = document.getElementById(`wcTime${city.id}`);
       const sunEl = document.getElementById(`wcSun${city.id}`);
+      const cardEl = document.getElementById(`wcCard${city.id}`);
+
       if (timeEl) {
         timeEl.textContent = now.toLocaleTimeString("en-US", {
           timeZone: city.tz,
@@ -3101,11 +3179,25 @@ function showToast(msg, timeout = 3000) {
           if (sunEl && !isNaN(cityHour)) {
             sunEl.textContent = (cityHour >= 6 && cityHour < 18) ? "☀️" : "🌙";
           }
-        } catch (e) {
-          // Fallback if timezone calculation encounters format variance
+        } catch (e) {}
+
+        // Highlight matching user location card
+        if (cardEl && !highlightedUserCard) {
+          if (userLoc.userTz.toLowerCase().includes(city.tz.toLowerCase().split("/")[1])) {
+            cardEl.classList.add("user-location-highlight");
+            const header = cardEl.querySelector(".wc-header");
+            if (header && !header.querySelector(".wc-user-tag")) {
+              const tag = document.createElement("span");
+              tag.className = "wc-user-tag";
+              tag.textContent = "📍 YOUR TIME";
+              header.appendChild(tag);
+            }
+          }
         }
       }
     });
+
+    highlightedUserCard = true;
   }
 
   function typeQuote() {
