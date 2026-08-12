@@ -2881,19 +2881,7 @@ function showToast(msg, timeout = 3000) {
 
 /* ---------- Global Professional Constellation Screensaver (60s Inactivity) ---------- */
 (function initProfessionalScreensaver() {
-  const isLocalhost = Boolean(
-    window.location.hostname === "localhost" ||
-    window.location.hostname === "127.0.0.1" ||
-    window.location.hostname === "::1" ||
-    window.location.hostname.endsWith(".local") ||
-    window.location.protocol === "file:"
-  );
-
-  if (isLocalhost) {
-    return; // Completely disabled on localhost development
-  }
-
-  const IDLE_TIMEOUT_MS = 60000; // Exactly 60 seconds (59s + 1s)
+  const IDLE_TIMEOUT_MS = 60000; // Exactly 60 seconds of inactivity
   let idleTimer = null;
   let clockInterval = null;
   let typewriterTimeout = null;
@@ -2929,10 +2917,47 @@ function showToast(msg, timeout = 3000) {
         <div class="screensaver-content">
           <div class="screensaver-header-tags">
             <span class="ss-badge"><span class="ss-dot"></span> CAREER PRO STUDIO</span>
-            <span class="ss-badge accent">ATS OPTIMIZED</span>
+            <span class="ss-badge accent">GLOBAL WORLD CLOCK</span>
           </div>
           <div id="screensaverClock" class="screensaver-clock">12:00:00 PM</div>
           <div id="screensaverDate" class="screensaver-date">Wednesday, August 12, 2026</div>
+          
+          <!-- LIVE WORLD CLOCK GRID -->
+          <div class="screensaver-world-clock" id="screensaverWorldClock">
+            <div class="world-clock-grid">
+              <div class="wc-card">
+                <div class="wc-header"><span class="wc-flag">🇺🇸</span><span class="wc-city">New York</span></div>
+                <div class="wc-time" id="wcTimeNY">--:--:--</div>
+                <div class="wc-meta"><span class="wc-tz">EDT</span> <span class="wc-sun" id="wcSunNY">☀️</span></div>
+              </div>
+              <div class="wc-card">
+                <div class="wc-header"><span class="wc-flag">🇬🇧</span><span class="wc-city">London</span></div>
+                <div class="wc-time" id="wcTimeLDN">--:--:--</div>
+                <div class="wc-meta"><span class="wc-tz">BST</span> <span class="wc-sun" id="wcSunLDN">☀️</span></div>
+              </div>
+              <div class="wc-card">
+                <div class="wc-header"><span class="wc-flag">🇮🇳</span><span class="wc-city">New Delhi</span></div>
+                <div class="wc-time" id="wcTimeDEL">--:--:--</div>
+                <div class="wc-meta"><span class="wc-tz">IST</span> <span class="wc-sun" id="wcSunDEL">☀️</span></div>
+              </div>
+              <div class="wc-card">
+                <div class="wc-header"><span class="wc-flag">🇦🇪</span><span class="wc-city">Dubai</span></div>
+                <div class="wc-time" id="wcTimeDXB">--:--:--</div>
+                <div class="wc-meta"><span class="wc-tz">GST</span> <span class="wc-sun" id="wcSunDXB">☀️</span></div>
+              </div>
+              <div class="wc-card">
+                <div class="wc-header"><span class="wc-flag">🇯🇵</span><span class="wc-city">Tokyo</span></div>
+                <div class="wc-time" id="wcTimeTYO">--:--:--</div>
+                <div class="wc-meta"><span class="wc-tz">JST</span> <span class="wc-sun" id="wcSunTYO">🌙</span></div>
+              </div>
+              <div class="wc-card">
+                <div class="wc-header"><span class="wc-flag">🇦🇺</span><span class="wc-city">Sydney</span></div>
+                <div class="wc-time" id="wcTimeSYD">--:--:--</div>
+                <div class="wc-meta"><span class="wc-tz">AEST</span> <span class="wc-sun" id="wcSunSYD">🌙</span></div>
+              </div>
+            </div>
+          </div>
+
           <div class="screensaver-quote-box">
             <div class="quote-box-header">
               <span class="terminal-dot red"></span>
@@ -3024,6 +3049,15 @@ function showToast(msg, timeout = 3000) {
     }
   }
 
+  const WORLD_CITIES = [
+    { id: "NY", tz: "America/New_York" },
+    { id: "LDN", tz: "Europe/London" },
+    { id: "DEL", tz: "Asia/Kolkata" },
+    { id: "DXB", tz: "Asia/Dubai" },
+    { id: "TYO", tz: "Asia/Tokyo" },
+    { id: "SYD", tz: "Australia/Sydney" }
+  ];
+
   function updateClock() {
     const clockEl = document.getElementById("screensaverClock");
     const dateEl = document.getElementById("screensaverDate");
@@ -3046,6 +3080,32 @@ function showToast(msg, timeout = 3000) {
         day: "numeric"
       });
     }
+
+    // Update Live World Clock for all 6 global cities
+    WORLD_CITIES.forEach((city) => {
+      const timeEl = document.getElementById(`wcTime${city.id}`);
+      const sunEl = document.getElementById(`wcSun${city.id}`);
+      if (timeEl) {
+        timeEl.textContent = now.toLocaleTimeString("en-US", {
+          timeZone: city.tz,
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          hour12: true
+        });
+
+        // Determine Sun/Moon based on city's 24h local hour
+        try {
+          const cityHourStr = now.toLocaleTimeString("en-US", { timeZone: city.tz, hour: "numeric", hour12: false });
+          const cityHour = parseInt(cityHourStr, 10);
+          if (sunEl && !isNaN(cityHour)) {
+            sunEl.textContent = (cityHour >= 6 && cityHour < 18) ? "☀️" : "🌙";
+          }
+        } catch (e) {
+          // Fallback if timezone calculation encounters format variance
+        }
+      }
+    });
   }
 
   function typeQuote() {
