@@ -2301,6 +2301,13 @@ button.selected,
   font-weight: 800;
   color: #e60023;
   letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  display: inline-block;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.3s ease;
+}
+
+.stat-item:hover .stat-num {
+  transform: scale(1.08);
 }
 
 .stat-label {

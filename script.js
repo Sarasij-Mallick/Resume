@@ -149,6 +149,110 @@ options.forEach(function (card) {
 })();
 
 
+// ── FAST ANIMATED NUMBER COUNTER SYSTEM ───────────────────
+(function () {
+  function formatNumber(val, decimals, hasComma) {
+    var str = val.toFixed(decimals);
+    if (hasComma) {
+      var parts = str.split('.');
+      parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+      return parts.join('.');
+    }
+    return str;
+  }
+
+  function animateSingleCounter(el, duration) {
+    if (!el || el.dataset.counterStarted === "true") return;
+    el.dataset.counterStarted = "true";
+
+    var durationMs = duration || 1400;
+    var originalText = el.getAttribute('data-final-val') || el.textContent.trim();
+    el.setAttribute('data-final-val', originalText);
+
+    var match = originalText.match(/^(.*?)([\d,]+(?:\.\d+)?)(.*)$/);
+    if (!match) return;
+
+    var prefix = match[1];
+    var rawNum = match[2];
+    var suffix = match[3];
+
+    var hasComma = rawNum.includes(',');
+    var decimals = rawNum.includes('.') ? rawNum.split('.')[1].length : 0;
+    var targetVal = parseFloat(rawNum.replace(/,/g, ''));
+
+    if (isNaN(targetVal)) return;
+
+    var startTime = null;
+
+    function easeOutCubic(t) {
+      return 1 - Math.pow(1 - t, 3);
+    }
+
+    function step(timestamp) {
+      if (!startTime) startTime = timestamp;
+      var elapsed = timestamp - startTime;
+      var progress = Math.min(elapsed / durationMs, 1);
+      var eased = easeOutCubic(progress);
+      var currentVal = targetVal * eased;
+
+      el.textContent = prefix + formatNumber(currentVal, decimals, hasComma) + suffix;
+
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      } else {
+        el.textContent = originalText;
+      }
+    }
+
+    // Set initial 0 state immediately
+    el.textContent = prefix + formatNumber(0, decimals, hasComma) + suffix;
+    requestAnimationFrame(step);
+  }
+
+  window.animateCounter = animateSingleCounter;
+
+  function initCounters() {
+    var targets = document.querySelectorAll('.stat-num, [data-counter], .counter-num, #bannerStat');
+    if (!targets.length) return;
+
+    targets.forEach(function (el) {
+      if (!el.getAttribute('data-final-val')) {
+        el.setAttribute('data-final-val', el.textContent.trim());
+      }
+      el.dataset.counterStarted = "false";
+    });
+
+    if ('IntersectionObserver' in window) {
+      var counterObserver = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              animateSingleCounter(entry.target, 1400);
+              counterObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.05, rootMargin: '0px 0px -10px 0px' }
+      );
+
+      targets.forEach(function (el) {
+        counterObserver.observe(el);
+      });
+    } else {
+      targets.forEach(function (el) {
+        animateSingleCounter(el, 1400);
+      });
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCounters);
+  } else {
+    initCounters();
+  }
+})();
+
+
 // Back-to-top button behavior with Radial Progress Ring & Rocket Launch animation
 (function () {
   var backBtn = document.getElementById("backToTop");
