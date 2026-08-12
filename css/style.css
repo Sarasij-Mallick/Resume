@@ -5900,14 +5900,24 @@ h1, h2, h3, h4, h5, h6,
   transform: translateX(-50%) scaleX(1);
 }
 
-/* Smooth scrollbar */
-::-webkit-scrollbar       { width: 5px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #e60023, #ad081b);
-  border-radius: 50px;
+/* Completely Hide Scrollbar across website, blog & modal (Scroll remains 100% functional) */
+html, body, .blog-modal-container, div, section, main {
+  scrollbar-width: none !important; /* Firefox */
+  -ms-overflow-style: none !important; /* IE & Edge */
 }
-::-webkit-scrollbar-thumb:hover { background: #c4001a; }
+
+::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+}
+
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-thumb {
+  display: none !important;
+  background: transparent !important;
+}
 
 /* Preloader title pop */
 .preloader-title {
