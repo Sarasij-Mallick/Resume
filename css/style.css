@@ -5788,28 +5788,74 @@ h1, h2, h3, h4, h5, h6,
   border-color: rgba(230, 0, 35, 0.35) !important;
 }
 
-/* Smooth Icon Micro-Zoom on Card Hover */
+/* Smooth Icon & Image Micro-Transform on Card Hover */
 .about-card .about-icon img,
+.path-card .path-icon img,
 .blog-card .blog-img-wrap img {
-  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .about-card:hover .about-icon img,
+.path-card:hover .path-icon img {
+  transform: scale(1.1) translateY(-4px) !important;
+}
+
 .blog-card:hover .blog-img-wrap img {
-  transform: scale(1.08) !important;
+  transform: scale(1.06) !important;
+}
+
+/* Card Action Button Reactivity on Card Hover */
+.path-card .btn-outline-purple,
+.path-card .btn-outline-danger,
+.path-card .btn,
+.story-cta-card .btn {
+  transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.path-card:hover .btn-outline-purple,
+.path-card:hover .btn-outline-danger,
+.path-card:hover .btn,
+.story-cta-card:hover .btn {
+  background: #e60023 !important;
+  color: #ffffff !important;
+  border-color: #e60023 !important;
+  box-shadow: 0 8px 24px rgba(230, 0, 35, 0.35) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Feature Checkmark & Link Arrow Shift on Card Hover */
+.path-features li {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.path-card:hover .path-features li {
+  transform: translateX(4px) !important;
+}
+
+.blog-card .read-full-link,
+.blog-card a {
+  display: inline-flex !important;
+  align-items: center !important;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s ease !important;
+}
+
+.blog-card:hover .read-full-link,
+.blog-card:hover a {
+  color: #e60023 !important;
+  transform: translateX(6px) !important;
 }
 
 /* ── 2.5 DYNAMIC MICRO-ANIMATIONS ───────────────────────── */
 
 /* Floating 3D Icon Breathing Animation */
-.about-icon {
+.about-icon, .path-icon {
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
 }
 
-.about-icon img {
+.about-icon img, .path-icon img {
   animation: floatCardIcon 4s ease-in-out infinite;
   will-change: transform;
 }
@@ -5834,7 +5880,7 @@ h1, h2, h3, h4, h5, h6,
 }
 
 /* Glowing Radial Aura Expansion on Card Hover */
-.about-icon::before {
+.about-icon::before, .path-icon::before {
   content: "";
   position: absolute;
   inset: -10px;
@@ -5847,7 +5893,8 @@ h1, h2, h3, h4, h5, h6,
   z-index: 0;
 }
 
-.about-card:hover .about-icon::before {
+.about-card:hover .about-icon::before,
+.path-card:hover .path-icon::before {
   opacity: 1;
   transform: scale(1.4);
 }
