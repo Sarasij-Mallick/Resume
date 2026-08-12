@@ -5660,7 +5660,8 @@ h1, h2, h3, h4, h5, h6,
 .stat-card,
 .testimonial-card,
 .story-cta-card,
-.tmpl-select-card {
+.tmpl-select-card,
+.contact-card-wrap {
   border-radius: 20px !important;
   border: 1.5px solid rgba(226, 232, 240, 0.8) !important;
   background: var(--canva-card, #ffffff) !important;
@@ -5702,7 +5703,8 @@ h1, h2, h3, h4, h5, h6,
 .blog-card::after,
 .feature-card::after,
 .testimonial-card::after,
-.story-cta-card::after {
+.story-cta-card::after,
+.contact-card-wrap::after {
   content: "";
   position: absolute;
   top: -60%;
@@ -5730,7 +5732,8 @@ h1, h2, h3, h4, h5, h6,
 .blog-card:hover::after,
 .feature-card:hover::after,
 .testimonial-card:hover::after,
-.story-cta-card:hover::after {
+.story-cta-card:hover::after,
+.contact-card-wrap:hover::after {
   animation: slowGlassShineSweep 2.5s cubic-bezier(0.22, 1, 0.36, 1) 1 forwards;
 }
 
@@ -5756,7 +5759,8 @@ h1, h2, h3, h4, h5, h6,
 .stat-card:hover,
 .testimonial-card:hover,
 .story-cta-card:hover,
-.tmpl-select-card:hover {
+.tmpl-select-card:hover,
+.contact-card-wrap:hover {
   transform: translateY(-8px) scale(1.012) !important;
   border-color: rgba(230, 0, 35, 0.38) !important;
   box-shadow:
@@ -5776,7 +5780,8 @@ h1, h2, h3, h4, h5, h6,
 [data-theme="dark"] .stat-card,
 [data-theme="dark"] .testimonial-card,
 [data-theme="dark"] .story-cta-card,
-[data-theme="dark"] .tmpl-select-card {
+[data-theme="dark"] .tmpl-select-card,
+[data-theme="dark"] .contact-card-wrap {
   border-color: rgba(255, 255, 255, 0.09) !important;
   background: rgba(30, 41, 59, 0.75) !important;
   backdrop-filter: blur(12px) !important;
@@ -5794,7 +5799,8 @@ h1, h2, h3, h4, h5, h6,
 [data-theme="dark"] .stat-card:hover,
 [data-theme="dark"] .testimonial-card:hover,
 [data-theme="dark"] .story-cta-card:hover,
-[data-theme="dark"] .tmpl-select-card:hover {
+[data-theme="dark"] .tmpl-select-card:hover,
+[data-theme="dark"] .contact-card-wrap:hover {
   transform: translateY(-8px) scale(1.012) !important;
   border-color: rgba(230, 0, 35, 0.45) !important;
   box-shadow:
