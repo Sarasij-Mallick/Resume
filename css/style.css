@@ -5510,17 +5510,17 @@ h1, h2, h3, h4, h5, h6,
   overflow: hidden;
 }
 
-/* Shimmer glass light beam sweep on hover — 1x slow diagonal sweep per hover */
+/* Shimmer glass light beam sweep on hover — 1x slow & subtle diagonal sweep per hover */
 @keyframes slowGlassShineSweep {
   0% {
     left: -130%;
     opacity: 0;
   }
-  15% {
-    opacity: 1;
+  20% {
+    opacity: 0.7;
   }
-  85% {
-    opacity: 1;
+  80% {
+    opacity: 0.7;
   }
   100% {
     left: 180%;
@@ -5556,14 +5556,14 @@ h1, h2, h3, h4, h5, h6,
   position: absolute;
   top: -60%;
   left: -130%;
-  width: 60%;
+  width: 55%;
   height: 220%;
   background: linear-gradient(
     90deg,
     rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.08) 25%,
-    rgba(255, 255, 255, 0.42) 50%,
-    rgba(255, 255, 255, 0.08) 75%,
+    rgba(255, 255, 255, 0.04) 25%,
+    rgba(255, 255, 255, 0.22) 50%,
+    rgba(255, 255, 255, 0.04) 75%,
     rgba(255, 255, 255, 0) 100%
   );
   transform: rotate(28deg);
@@ -5582,7 +5582,7 @@ h1, h2, h3, h4, h5, h6,
 .stat-item:hover::after,
 .testimonial-card:hover::after,
 .story-cta-card:hover::after {
-  animation: slowGlassShineSweep 1.5s cubic-bezier(0.22, 1, 0.36, 1) 1 forwards;
+  animation: slowGlassShineSweep 2.5s cubic-bezier(0.22, 1, 0.36, 1) 1 forwards;
 }
 
 
