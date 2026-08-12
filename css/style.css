@@ -5642,8 +5642,7 @@ h1, h2, h3, h4, h5, h6,
 
 /* ── 2. UNIFIED HOVER LIFT EFFECT SYSTEM ─────────────────── */
 
-/* Base card structure with ultra-smooth 0.85s GPU float transition */
-/* ── Standard Normal Card Style & Hover ───────────────────── */
+/* Zero Transition / Zero Motion on Mouse Leave */
 .about-card,
 .path-card,
 .tmpl-card,
@@ -5659,12 +5658,13 @@ h1, h2, h3, h4, h5, h6,
   border: 1px solid var(--canva-border, rgba(226, 232, 240, 0.8)) !important;
   background: var(--canva-card, #ffffff) !important;
   box-shadow: var(--canva-shadow, 0 4px 12px rgba(0, 0, 0, 0.04)) !important;
-  transition: border-color 0.25s ease, box-shadow 0.25s ease !important;
+  transition: none !important;
+  animation: none !important;
   position: relative;
   transform: none !important;
 }
 
-/* Normal Clean Hover — Subtle Red Border Highlight without Lift Transform */
+/* Normal Clean Hover without Motion or Delay */
 .about-card:hover,
 .path-card:hover,
 .tmpl-card:hover,
@@ -5679,6 +5679,7 @@ h1, h2, h3, h4, h5, h6,
   transform: none !important;
   border-color: rgba(230, 0, 35, 0.35) !important;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08) !important;
+  transition: none !important;
   animation: none !important;
 }
 
@@ -5696,6 +5697,8 @@ h1, h2, h3, h4, h5, h6,
 [data-theme="dark"] .contact-card-wrap {
   border-color: rgba(255, 255, 255, 0.09) !important;
   background: rgba(30, 41, 59, 0.75) !important;
+  transition: none !important;
+  animation: none !important;
 }
 
 [data-theme="dark"] .about-card:hover,
@@ -5712,6 +5715,7 @@ h1, h2, h3, h4, h5, h6,
   transform: none !important;
   border-color: rgba(230, 0, 35, 0.45) !important;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5) !important;
+  transition: none !important;
   animation: none !important;
 }
 
