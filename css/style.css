@@ -2446,6 +2446,22 @@ button.selected,
   text-align: center;
 }
 
+.stat-item {
+  border-radius: 16px;
+  padding: 16px 12px;
+  cursor: default;
+  transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.45s cubic-bezier(0.25, 1, 0.5, 1), background 0.35s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.stat-item:hover {
+  transform: scale(1.042) translateY(-6px);
+  z-index: 10;
+  background: rgba(238, 53, 80, 0.06);
+  box-shadow: 0 16px 38px rgba(238, 53, 80, 0.22), 0 6px 18px rgba(238, 53, 80, 0.12);
+}
+
 .stat-num {
   font-family: 'Outfit', sans-serif;
   font-size: 32px;
@@ -2458,7 +2474,8 @@ button.selected,
 }
 
 .stat-item:hover .stat-num {
-  transform: scale(1.08);
+  transform: scale(1.06);
+  color: #e60023;
 }
 
 .stat-label {
