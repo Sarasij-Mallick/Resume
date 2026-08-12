@@ -2,7 +2,7 @@
    Canva Design System for FolioCraft
    100% Responsive for All Devices (Mobile, Tablet, Laptop, Desktop, 4K)
 */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
 
 :root {
   --canva-purple: #e60023;
@@ -5435,5 +5435,302 @@ button.dock-item.active span,
 }
 
 
+/* ══════════════════════════════════════════════════════════
+   FOLIOCRAFT PREMIUM ENHANCEMENT LAYER
+   Card Polish · Entrance Animations · Font Upgrade
+   ══════════════════════════════════════════════════════════ */
 
+/* ── 1. FONT UPGRADE ─────────────────────────────────────── */
 
+body,
+.nav-link,
+input,
+textarea,
+select,
+button {
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-feature-settings: 'kern' 1, 'liga' 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6,
+.brand,
+.section-title,
+.hero-title,
+.card-title,
+.blog-card-title,
+.path-card h3,
+.about-card h3 {
+  font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+  letter-spacing: -0.025em;
+  font-feature-settings: 'kern' 1;
+}
+
+.brand {
+  font-size: 22px !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.035em !important;
+}
+
+.nav-link {
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.01em;
+}
+
+/* ── 2. CARD STYLE UPGRADE ───────────────────────────────── */
+
+/* Base card reset with premium finish */
+.about-card,
+.path-card,
+.template-card,
+.blog-card,
+.feature-card,
+.stat-card,
+.testimonial-card {
+  border-radius: 20px !important;
+  border: 1px solid rgba(14, 19, 31, 0.07) !important;
+  box-shadow:
+    0 2px 6px rgba(0,0,0,0.04),
+    0 8px 24px rgba(0,0,0,0.07) !important;
+  transition:
+    transform 0.38s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.38s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.3s ease !important;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Shimmer sweep on hover */
+.about-card::after,
+.path-card::after,
+.template-card::after,
+.blog-card::after,
+.feature-card::after,
+.stat-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.55) 50%,
+    transparent 80%
+  );
+  background-size: 250% 100%;
+  background-position: -100% 0;
+  border-radius: inherit;
+  pointer-events: none;
+  transition: background-position 0.65s ease;
+  opacity: 0;
+}
+
+.about-card:hover::after,
+.path-card:hover::after,
+.template-card:hover::after,
+.blog-card:hover::after,
+.feature-card:hover::after,
+.stat-card:hover::after {
+  background-position: 200% 0;
+  opacity: 1;
+}
+
+/* Hover lift with red glow */
+.about-card:hover,
+.path-card:hover,
+.feature-card:hover,
+.stat-card:hover {
+  transform: translateY(-8px) scale(1.012) !important;
+  box-shadow:
+    0 4px 10px rgba(0,0,0,0.06),
+    0 16px 40px rgba(0,0,0,0.12),
+    0 0 0 1px rgba(230, 0, 35, 0.10) !important;
+  border-color: rgba(230, 0, 35, 0.14) !important;
+}
+
+.template-card:hover {
+  transform: translateY(-10px) scale(1.016) !important;
+  box-shadow:
+    0 4px 12px rgba(0,0,0,0.08),
+    0 20px 48px rgba(0,0,0,0.14),
+    0 0 0 1.5px rgba(230, 0, 35, 0.12) !important;
+}
+
+.blog-card:hover {
+  transform: translateY(-9px) !important;
+  box-shadow:
+    0 4px 10px rgba(0,0,0,0.06),
+    0 18px 44px rgba(0,0,0,0.12),
+    0 0 0 1px rgba(230, 0, 35, 0.10) !important;
+}
+
+/* Dark mode card refinement */
+[data-theme="dark"] .about-card,
+[data-theme="dark"] .path-card,
+[data-theme="dark"] .template-card,
+[data-theme="dark"] .blog-card,
+[data-theme="dark"] .feature-card,
+[data-theme="dark"] .stat-card {
+  border-color: rgba(255, 255, 255, 0.06) !important;
+  box-shadow:
+    0 2px 6px rgba(0,0,0,0.25),
+    0 8px 28px rgba(0,0,0,0.30) !important;
+}
+
+[data-theme="dark"] .about-card:hover,
+[data-theme="dark"] .path-card:hover,
+[data-theme="dark"] .template-card:hover,
+[data-theme="dark"] .blog-card:hover,
+[data-theme="dark"] .feature-card:hover,
+[data-theme="dark"] .stat-card:hover {
+  box-shadow:
+    0 6px 18px rgba(0,0,0,0.45),
+    0 22px 56px rgba(0,0,0,0.40),
+    0 0 0 1px rgba(230, 0, 35, 0.20) !important;
+  border-color: rgba(230, 0, 35, 0.18) !important;
+}
+
+/* ── 3. ENTRANCE ANIMATIONS ─────────────────────────────── */
+
+@keyframes fadeSlideUp {
+  0%   { opacity: 0; transform: translateY(32px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeSlideLeft {
+  0%   { opacity: 0; transform: translateX(-32px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeSlideRight {
+  0%   { opacity: 0; transform: translateX(32px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scaleIn {
+  0%   { opacity: 0; transform: scale(0.88); }
+  60%  { opacity: 1; transform: scale(1.03); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(230,0,35,0); }
+  50%       { box-shadow: 0 0 0 8px rgba(230,0,35,0.08); }
+}
+
+/* Reveal animation using .visible class from scroll observer */
+.reveal.visible {
+  animation: fadeSlideUp 0.72s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.reveal-left.visible {
+  animation: fadeSlideLeft 0.72s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.reveal-right.visible {
+  animation: fadeSlideRight 0.72s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.reveal-scale.visible {
+  animation: scaleIn 0.78s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Stagger grid children */
+.reveal-stagger > *:nth-child(1)  { animation-delay: 0.05s; }
+.reveal-stagger > *:nth-child(2)  { animation-delay: 0.12s; }
+.reveal-stagger > *:nth-child(3)  { animation-delay: 0.19s; }
+.reveal-stagger > *:nth-child(4)  { animation-delay: 0.26s; }
+.reveal-stagger > *:nth-child(5)  { animation-delay: 0.33s; }
+.reveal-stagger > *:nth-child(6)  { animation-delay: 0.40s; }
+
+/* Subtle glow pulse on CTA buttons */
+.btn-pill-purple,
+.header-cta-btn {
+  animation: glowPulse 3s ease-in-out infinite;
+}
+.btn-pill-purple:hover,
+.header-cta-btn:hover {
+  animation: none;
+  transform: translateY(-2px) scale(1.04) !important;
+  box-shadow: 0 8px 28px rgba(230,0,35,0.35) !important;
+}
+
+/* Floating badge animation (hero section) */
+.floating-badge {
+  animation: float 4s ease-in-out infinite;
+}
+.floating-badge.ats { animation-delay: 0s; }
+.floating-badge.ai  { animation-delay: 1.8s; }
+
+@keyframes float {
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Nav link underline slide animation */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 16px;
+  height: 2px;
+  background: var(--canva-purple);
+  border-radius: 2px;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.nav-link:hover::after,
+.nav-link.active::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+/* Smooth scrollbar */
+::-webkit-scrollbar       { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #e60023, #ad081b);
+  border-radius: 50px;
+}
+::-webkit-scrollbar-thumb:hover { background: #c4001a; }
+
+/* Preloader title pop */
+.preloader-title {
+  animation: scaleIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Responsive: reduce motion on mobile */
+@media (max-width: 768px) {
+  .about-card:hover,
+  .path-card:hover,
+  .feature-card:hover,
+  .template-card:hover,
+  .blog-card:hover {
+    transform: translateY(-4px) scale(1.008) !important;
+  }
+  .floating-badge {
+    animation: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal.visible,
+  .reveal-left.visible,
+  .reveal-right.visible,
+  .reveal-scale.visible {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .floating-badge,
+  .btn-pill-purple,
+  .header-cta-btn {
+    animation: none !important;
+  }
+}
