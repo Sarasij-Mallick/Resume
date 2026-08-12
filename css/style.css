@@ -6440,7 +6440,7 @@ html[data-theme="dark"] .fog-overlay {
 .fog-blob-1 {
   width: 700px;
   height: 500px;
-  background: radial-gradient(ellipse at center, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 55%, transparent 78%);
+  background: radial-gradient(ellipse at center, rgba(255,255,255,0.035) 0%, rgba(255,255,255,0.008) 55%, transparent 78%);
   top: -10%;
   left: -15%;
   animation: fogDrift1 28s ease-in-out infinite alternate;
@@ -6450,7 +6450,7 @@ html[data-theme="dark"] .fog-overlay {
 .fog-blob-2 {
   width: 500px;
   height: 420px;
-  background: radial-gradient(ellipse at center, rgba(255,255,255,0.055) 0%, rgba(255,255,255,0.015) 55%, transparent 78%);
+  background: radial-gradient(ellipse at center, rgba(255,255,255,0.028) 0%, rgba(255,255,255,0.007) 55%, transparent 78%);
   top: 20%;
   right: -10%;
   animation: fogDrift2 34s ease-in-out infinite alternate;
@@ -6461,7 +6461,7 @@ html[data-theme="dark"] .fog-overlay {
 .fog-blob-3 {
   width: 800px;
   height: 380px;
-  background: radial-gradient(ellipse at center, rgba(255,255,255,0.045) 0%, rgba(255,255,255,0.01) 55%, transparent 78%);
+  background: radial-gradient(ellipse at center, rgba(255,255,255,0.022) 0%, rgba(255,255,255,0.005) 55%, transparent 78%);
   bottom: 5%;
   left: 10%;
   animation: fogDrift3 40s ease-in-out infinite alternate;
@@ -6472,7 +6472,7 @@ html[data-theme="dark"] .fog-overlay {
 .fog-blob-4 {
   width: 360px;
   height: 300px;
-  background: radial-gradient(ellipse at center, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.015) 55%, transparent 78%);
+  background: radial-gradient(ellipse at center, rgba(255,255,255,0.030) 0%, rgba(255,255,255,0.007) 55%, transparent 78%);
   top: 45%;
   left: 35%;
   animation: fogDrift4 22s ease-in-out infinite alternate;
@@ -6483,7 +6483,7 @@ html[data-theme="dark"] .fog-overlay {
 .fog-blob-5 {
   width: 420px;
   height: 560px;
-  background: radial-gradient(ellipse at center, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 55%, transparent 78%);
+  background: radial-gradient(ellipse at center, rgba(255,255,255,0.020) 0%, rgba(255,255,255,0.005) 55%, transparent 78%);
   top: 30%;
   left: -8%;
   animation: fogDrift5 30s ease-in-out infinite alternate;
