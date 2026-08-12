@@ -5510,44 +5510,79 @@ h1, h2, h3, h4, h5, h6,
   overflow: hidden;
 }
 
-/* Shimmer sweep on hover — 1x slow left-to-right sweep */
-@keyframes cardShimmerSweep {
-  0%   { background-position: -150% 0; opacity: 0; }
-  12%  { opacity: 1; }
-  88%  { opacity: 1; }
-  100% { background-position: 200% 0; opacity: 0; }
+/* Shimmer glass light beam sweep on hover — 1x slow diagonal sweep per hover */
+@keyframes slowGlassShineSweep {
+  0% {
+    left: -130%;
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    left: 180%;
+    opacity: 0;
+  }
+}
+
+.about-card,
+.path-card,
+.tmpl-card,
+.template-card,
+.blog-card,
+.feature-card,
+.stat-card,
+.stat-item,
+.testimonial-card,
+.story-cta-card {
+  position: relative;
+  overflow: hidden;
 }
 
 .about-card::after,
 .path-card::after,
+.tmpl-card::after,
 .template-card::after,
 .blog-card::after,
 .feature-card::after,
-.stat-card::after {
-  content: '';
+.stat-card::after,
+.stat-item::after,
+.testimonial-card::after,
+.story-cta-card::after {
+  content: "";
   position: absolute;
-  inset: 0;
+  top: -60%;
+  left: -130%;
+  width: 60%;
+  height: 220%;
   background: linear-gradient(
-    110deg,
-    transparent 20%,
-    rgba(255, 255, 255, 0.52) 50%,
-    transparent 80%
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.08) 25%,
+    rgba(255, 255, 255, 0.42) 50%,
+    rgba(255, 255, 255, 0.08) 75%,
+    rgba(255, 255, 255, 0) 100%
   );
-  background-size: 300% 100%;
-  background-position: -150% 0;
-  border-radius: inherit;
+  transform: rotate(28deg);
   pointer-events: none;
   opacity: 0;
-  animation: none;
+  z-index: 6;
 }
 
 .about-card:hover::after,
 .path-card:hover::after,
+.tmpl-card:hover::after,
 .template-card:hover::after,
 .blog-card:hover::after,
 .feature-card:hover::after,
-.stat-card:hover::after {
-  animation: cardShimmerSweep 2s ease-in-out 1 forwards;
+.stat-card:hover::after,
+.stat-item:hover::after,
+.testimonial-card:hover::after,
+.story-cta-card:hover::after {
+  animation: slowGlassShineSweep 1.5s cubic-bezier(0.22, 1, 0.36, 1) 1 forwards;
 }
 
 
