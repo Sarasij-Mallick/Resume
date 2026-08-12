@@ -5503,14 +5503,12 @@ h1, h2, h3, h4, h5, h6,
   overflow: hidden;
 }
 
-/* Shimmer sweep on hover — 2x slow animation */
+/* Shimmer sweep on hover — 1x slow left-to-right sweep */
 @keyframes cardShimmerSweep {
   0%   { background-position: -150% 0; opacity: 0; }
-  10%  { opacity: 1; }
-  50%  { background-position: 150% 0; }
-  55%  { background-position: -150% 0; }
-  90%  { opacity: 1; }
-  100% { background-position: 150% 0; opacity: 0; }
+  12%  { opacity: 1; }
+  88%  { opacity: 1; }
+  100% { background-position: 200% 0; opacity: 0; }
 }
 
 .about-card::after,
@@ -5542,8 +5540,9 @@ h1, h2, h3, h4, h5, h6,
 .blog-card:hover::after,
 .feature-card:hover::after,
 .stat-card:hover::after {
-  animation: cardShimmerSweep 3s ease-in-out 1;
+  animation: cardShimmerSweep 3s ease-in-out 1 forwards;
 }
+
 
 /* Hover lift with red glow */
 .about-card:hover,
