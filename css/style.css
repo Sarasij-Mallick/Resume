@@ -285,35 +285,35 @@ body {
 .delay-4 { transition-delay: 0.38s !important; }
 
 [data-theme="dark"] {
-  --canva-bg: #111111;
-  --canva-card: #1e1e1e;
+  --canva-bg: #080808;
+  --canva-card: #111111;
   --canva-dark: #f8f9fa;
   --canva-slate: #e1e1e1;
-  --canva-muted: #a0a0a0;
-  --canva-light-muted: #666666;
-  --canva-border: #333333;
-  --canva-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
-  --canva-shadow-hover: 0 16px 40px rgba(0, 0, 0, 0.65);
-  --bg: #111111;
-  --card: #1e1e1e;
-  --muted: #a0a0a0;
+  --canva-muted: #909090;
+  --canva-light-muted: #555555;
+  --canva-border: #242424;
+  --canva-shadow: 0 8px 24px rgba(0, 0, 0, 0.7);
+  --canva-shadow-hover: 0 16px 40px rgba(0, 0, 0, 0.8);
+  --bg: #080808;
+  --card: #111111;
+  --muted: #909090;
   --text: #f8f9fa;
 }
 
 [data-theme="dark"] html,
 [data-theme="dark"] body {
-  background-color: #212529;
+  background-color: #0a0a0a;
   color: #f8f9fa;
 }
 
 [data-theme="dark"] .site-header {
-  background: rgba(33, 37, 41, 0.95);
-  border-bottom-color: #495057;
+  background: rgba(8, 8, 8, 0.96);
+  border-bottom-color: #2a2a2a;
 }
 
 [data-theme="dark"] .site-header.scrolled {
-  background: rgba(33, 37, 41, 0.98);
-  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.5);
+  background: rgba(8, 8, 8, 0.99);
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.7);
 }
 
 /* Disable hover border for all header buttons in dark theme */
