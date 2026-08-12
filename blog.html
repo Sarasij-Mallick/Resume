@@ -784,12 +784,96 @@
             document.body.style.overflow = 'hidden';
         }
 
+        function resetCloseBtnPos() {
+            if (!closeBlogModal) return;
+            closeBlogModal.classList.remove('dragging');
+            closeBlogModal.style.transform = '';
+            closeBlogModal.style.opacity = '';
+            closeBlogModal.style.transition = 'all 0.3s ease';
+            setTimeout(() => {
+                if (closeBlogModal) closeBlogModal.style.transition = '';
+            }, 300);
+        }
+
         function closeModal() {
             blogModal.classList.remove('active');
             document.body.style.overflow = '';
+            resetCloseBtnPos();
         }
 
-        closeBlogModal?.addEventListener('click', closeModal);
+        // Click & Hold + Slide / Drag to Close Logic
+        let isDraggingCloseBtn = false;
+        let startX = 0, startY = 0;
+        let currentX = 0, currentY = 0;
+        let hasDraggedFar = false;
+
+        function onDragStart(e) {
+            isDraggingCloseBtn = true;
+            hasDraggedFar = false;
+            const pointer = e.touches ? e.touches[0] : e;
+            startX = pointer.clientX;
+            startY = pointer.clientY;
+            currentX = 0;
+            currentY = 0;
+            closeBlogModal.classList.add('dragging');
+            closeBlogModal.style.transition = 'none';
+        }
+
+        function onDragMove(e) {
+            if (!isDraggingCloseBtn) return;
+            const pointer = e.touches ? e.touches[0] : e;
+            const deltaX = pointer.clientX - startX;
+            const deltaY = pointer.clientY - startY;
+            const dist = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+
+            if (dist > 6) {
+                hasDraggedFar = true;
+            }
+
+            currentX = deltaX;
+            currentY = deltaY;
+
+            const opacityVal = Math.max(0.2, 1 - dist / 110);
+            closeBlogModal.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(0.96)`;
+            closeBlogModal.style.opacity = opacityVal;
+        }
+
+        function onDragEnd() {
+            if (!isDraggingCloseBtn) return;
+            isDraggingCloseBtn = false;
+
+            const dist = Math.sqrt(currentX * currentX + currentY * currentY);
+
+            // Trigger close if dragged past threshold (30px)
+            if (hasDraggedFar && dist > 30) {
+                closeModal();
+            } else {
+                resetCloseBtnPos();
+            }
+        }
+
+        if (closeBlogModal) {
+            // Mouse Drag
+            closeBlogModal.addEventListener('mousedown', onDragStart);
+            window.addEventListener('mousemove', onDragMove);
+            window.addEventListener('mouseup', onDragEnd);
+
+            // Touch Drag
+            closeBlogModal.addEventListener('touchstart', onDragStart, { passive: true });
+            window.addEventListener('touchmove', onDragMove, { passive: true });
+            window.addEventListener('touchend', onDragEnd);
+
+            // Regular Click
+            closeBlogModal.addEventListener('click', (e) => {
+                if (hasDraggedFar) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return;
+                }
+                closeModal();
+            });
+        }
+
         blogModal?.addEventListener('click', (e) => {
             if (e.target === blogModal) closeModal();
         });
