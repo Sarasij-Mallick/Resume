@@ -2925,7 +2925,7 @@ function showToast(msg, timeout = 3000) {
           <!-- USER COUNTRY LOCAL TIME BADGE -->
           <div class="screensaver-user-location-badge" id="ssUserLocationBadge">
             <span class="user-loc-pill">
-              <span class="user-loc-icon">📍 YOUR LOCAL TIME:</span>
+              <span class="user-loc-icon"><span class="green-live-dot"></span> YOUR LOCAL TIME:</span>
               <span class="wc-flag-img-wrap"><img id="ssUserFlagImg" src="https://flagcdn.com/w40/in.png" srcset="https://flagcdn.com/w80/in.png 2x" width="18" height="13" alt="User Country Flag" class="wc-flag-img"></span>
               <span id="ssUserCountryText" class="user-loc-country">Detecting location...</span>
               <span id="ssUserLiveTime" class="user-loc-time">--:--:--</span>
@@ -2996,7 +2996,8 @@ function showToast(msg, timeout = 3000) {
     let height = (canvas.height = window.innerHeight);
 
     const particles = [];
-    const particleCount = Math.min(Math.floor((width * height) / 18000), 75);
+    const particleCount = Math.min(Math.floor((width * height) / 17000), 85);
+    const particleColors = ["#6366f1", "#e60023", "#10b981", "#22c55e", "#34d399"];
 
     for (let i = 0; i < particleCount; i++) {
       particles.push({
@@ -3004,8 +3005,8 @@ function showToast(msg, timeout = 3000) {
         y: Math.random() * height,
         vx: (Math.random() - 0.5) * 0.8,
         vy: (Math.random() - 0.5) * 0.8,
-        radius: Math.random() * 2 + 1,
-        color: Math.random() > 0.5 ? "#6366f1" : "#e60023"
+        radius: Math.random() * 2.3 + 1,
+        color: particleColors[Math.floor(Math.random() * particleColors.length)]
       });
     }
 
@@ -3023,7 +3024,13 @@ function showToast(msg, timeout = 3000) {
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(99, 102, 241, ${0.18 * (1 - dist / 140)})`;
+            
+            const isGreen = particles[i].color.includes("10b9") || particles[j].color.includes("10b9") || particles[i].color.includes("22c5");
+            const strokeColor = isGreen
+              ? `rgba(16, 185, 129, ${0.22 * (1 - dist / 140)})`
+              : `rgba(99, 102, 241, ${0.18 * (1 - dist / 140)})`;
+
+            ctx.strokeStyle = strokeColor;
             ctx.lineWidth = 1;
             ctx.stroke();
           }

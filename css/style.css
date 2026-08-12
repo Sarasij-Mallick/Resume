@@ -5399,6 +5399,30 @@ button.dock-item.active span,
   color: #ff4d6d;
   letter-spacing: 0.05em;
   text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.green-live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 10px #10b981, 0 0 18px #10b981;
+  animation: pulseGreenDot 1.8s ease-in-out infinite;
+  display: inline-block;
+}
+
+@keyframes pulseGreenDot {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 8px #10b981, 0 0 14px #10b981;
+  }
+  50% {
+    transform: scale(1.35);
+    box-shadow: 0 0 16px #22c55e, 0 0 24px #22c55e;
+  }
 }
 
 .user-loc-country {
