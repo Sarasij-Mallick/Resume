@@ -3152,3 +3152,143 @@ function showToast(msg, timeout = 3000) {
   }
 })();
 
+
+// ── ABOUT FEATURE CAROUSEL CONTROLLER ──────────────────────
+(function () {
+  function initFeatureCarousel() {
+    var track = document.getElementById("aboutCarouselTrack");
+    var container = document.getElementById("aboutCarouselContainer");
+    var prevBtn = document.getElementById("aboutCarouselPrev");
+    var nextBtn = document.getElementById("aboutCarouselNext");
+    var dotsContainer = document.getElementById("aboutCarouselDots");
+
+    if (!track || !container || !prevBtn || !nextBtn) return;
+
+    var slides = track.querySelectorAll(".carousel-slide");
+    if (!slides.length) return;
+
+    var currentIndex = 0;
+    var autoPlayTimer = null;
+
+    function getVisibleCount() {
+      var width = window.innerWidth;
+      if (width <= 520) return 1;
+      if (width <= 768) return 2;
+      if (width <= 1100) return 3;
+      return 4;
+    }
+
+    function getMaxIndex() {
+      var visible = getVisibleCount();
+      return Math.max(0, slides.length - visible);
+    }
+
+    function updateDots() {
+      if (!dotsContainer) return;
+      var maxIdx = getMaxIndex();
+      dotsContainer.innerHTML = "";
+
+      for (var i = 0; i <= maxIdx; i++) {
+        (function (index) {
+          var dot = document.createElement("button");
+          dot.className = "carousel-dot" + (index === currentIndex ? " active" : "");
+          dot.setAttribute("aria-label", "Go to slide " + (index + 1));
+          dot.addEventListener("click", function () {
+            goToSlide(index);
+            restartAutoPlay();
+          });
+          dotsContainer.appendChild(dot);
+        })(i);
+      }
+    }
+
+    function goToSlide(index) {
+      var maxIdx = getMaxIndex();
+      if (index < 0) index = maxIdx;
+      if (index > maxIdx) index = 0;
+
+      currentIndex = index;
+
+      var firstSlide = slides[0];
+      var slideWidth = firstSlide ? firstSlide.offsetWidth + 24 : 300;
+      track.style.transform = "translateX(" + (-currentIndex * slideWidth) + "px)";
+
+      updateDots();
+    }
+
+    prevBtn.addEventListener("click", function () {
+      goToSlide(currentIndex - 1);
+      restartAutoPlay();
+    });
+
+    nextBtn.addEventListener("click", function () {
+      goToSlide(currentIndex + 1);
+      restartAutoPlay();
+    });
+
+    function startAutoPlay() {
+      stopAutoPlay();
+      autoPlayTimer = setInterval(function () {
+        goToSlide(currentIndex + 1);
+      }, 4500);
+    }
+
+    function stopAutoPlay() {
+      if (autoPlayTimer) clearInterval(autoPlayTimer);
+    }
+
+    function restartAutoPlay() {
+      stopAutoPlay();
+      startAutoPlay();
+    }
+
+    // Pause auto-play on hover
+    container.addEventListener("mouseenter", stopAutoPlay);
+    container.addEventListener("mouseleave", startAutoPlay);
+
+    // Touch/swipe support
+    var startX = 0;
+    var currentX = 0;
+    var isSwiping = false;
+
+    track.addEventListener("touchstart", function (e) {
+      startX = e.touches[0].clientX;
+      currentX = startX;
+      isSwiping = true;
+      stopAutoPlay();
+    }, { passive: true });
+
+    track.addEventListener("touchmove", function (e) {
+      if (!isSwiping) return;
+      currentX = e.touches[0].clientX;
+    }, { passive: true });
+
+    track.addEventListener("touchend", function () {
+      if (!isSwiping) return;
+      var diffX = startX - currentX;
+      if (Math.abs(diffX) > 40) {
+        if (diffX > 0) {
+          goToSlide(currentIndex + 1);
+        } else {
+          goToSlide(currentIndex - 1);
+        }
+      }
+      isSwiping = false;
+      startAutoPlay();
+    });
+
+    window.addEventListener("resize", function () {
+      goToSlide(Math.min(currentIndex, getMaxIndex()));
+    });
+
+    goToSlide(0);
+    startAutoPlay();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initFeatureCarousel);
+  } else {
+    initFeatureCarousel();
+  }
+})();
+

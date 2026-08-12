@@ -543,37 +543,92 @@
                         <p class="subtitle">Finding a job shouldn't require monthly subscriptions or forced watermarks. We empower candidates worldwide with Canva-inspired, ATS-optimized templates 100% free.</p>
                     </div>
 
-                    <!-- 4-Card Feature Grid -->
-                    <div class="about-grid">
-                        <div class="about-card">
-                            <div class="about-icon">
-                                <img src="images/icon_ats_opt.jpg" alt="Instant ATS Optimization Icon" loading="lazy" />
+                    <!-- Interactive Feature Carousel -->
+                    <div class="about-carousel-wrapper">
+                        <button class="carousel-btn carousel-btn-prev" id="aboutCarouselPrev" aria-label="Previous Slide">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="15 18 9 12 15 6"></polyline>
+                            </svg>
+                        </button>
+                        
+                        <div class="about-carousel-container" id="aboutCarouselContainer">
+                            <div class="about-carousel-track" id="aboutCarouselTrack">
+                                <!-- Card 1 -->
+                                <div class="about-card carousel-slide">
+                                    <div class="about-icon">
+                                        <img src="images/icon_ats_opt.jpg" alt="Instant ATS Optimization Icon" loading="lazy" />
+                                    </div>
+                                    <h3>Instant ATS Optimization</h3>
+                                    <p>Built-in keyword alignment, clean single/double column structure to pass 99% of Automated Applicant Tracking Systems (ATS).</p>
+                                </div>
+                                <!-- Card 2 -->
+                                <div class="about-card carousel-slide">
+                                    <div class="about-icon">
+                                        <img src="images/icon_aesthetic.jpg" alt="Canva-Inspired Aesthetics Icon" loading="lazy" />
+                                    </div>
+                                    <h3>Canva-Inspired Aesthetics</h3>
+                                    <p>Carefully crafted typography, spacing, HSL color tokens, and Pinterest Red accents that make your resume stand out to hiring managers.</p>
+                                </div>
+                                <!-- Card 3 -->
+                                <div class="about-card carousel-slide">
+                                    <div class="about-icon">
+                                        <img src="images/icon_privacy.jpg" alt="100% Free & Private Icon" loading="lazy" />
+                                    </div>
+                                    <h3>100% Free & Private</h3>
+                                    <p>No hidden fees, no subscriptions, no forced watermarks. Your resume data is saved locally in your browser with zero data selling.</p>
+                                </div>
+                                <!-- Card 4 -->
+                                <div class="about-card carousel-slide">
+                                    <div class="about-icon">
+                                        <img src="images/icon_pdf_export.jpg" alt="High-Res PDF Exporter Icon" loading="lazy" />
+                                    </div>
+                                    <h3>High-Res PDF Exporter</h3>
+                                    <p>Single-click vector PDF generation ready for direct upload to LinkedIn, Indeed, Glassdoor, and corporate career portals.</p>
+                                </div>
+                                <!-- Card 5 -->
+                                <div class="about-card carousel-slide">
+                                    <div class="about-icon">
+                                        <img src="images/icon_ai_assistant.png" alt="Smart AI Resume Writer Icon" loading="lazy" />
+                                    </div>
+                                    <h3>Smart AI Resume Writer</h3>
+                                    <p>Intelligent AI suggestions and impact-driven summary generation to highlight your core strengths effortlessly.</p>
+                                </div>
+                                <!-- Card 6 -->
+                                <div class="about-card carousel-slide">
+                                    <div class="about-icon">
+                                        <img src="images/icon_realtime_ats.png" alt="Real-Time Compliance Score Icon" loading="lazy" />
+                                    </div>
+                                    <h3>Real-Time Compliance Score</h3>
+                                    <p>Instant ATS score auditing as you type, giving action-oriented feedback to optimize recruiter pass rates.</p>
+                                </div>
+                                <!-- Card 7 -->
+                                <div class="about-card carousel-slide">
+                                    <div class="about-icon">
+                                        <img src="images/icon_typography.png" alt="Custom Font & Styling Studio Icon" loading="lazy" />
+                                    </div>
+                                    <h3>Custom Font & Styling Studio</h3>
+                                    <p>Tailor your visual identity with Google Fonts, custom color tokens, margin controls, and spacing hierarchy.</p>
+                                </div>
+                                <!-- Card 8 -->
+                                <div class="about-card carousel-slide">
+                                    <div class="about-icon">
+                                        <img src="images/icon_qrcode.png" alt="Digital Link & QR Sharing Icon" loading="lazy" />
+                                    </div>
+                                    <h3>Digital Link & QR Sharing</h3>
+                                    <p>Generate shareable web resume links and scannable QR codes for your portfolio, LinkedIn bio, and email signature.</p>
+                                </div>
                             </div>
-                            <h3>Instant ATS Optimization</h3>
-                            <p>Built-in keyword alignment, clean single/double column structure to pass 99% of Automated Applicant Tracking Systems (ATS).</p>
                         </div>
-                        <div class="about-card">
-                            <div class="about-icon">
-                                <img src="images/icon_aesthetic.jpg" alt="Canva-Inspired Aesthetics Icon" loading="lazy" />
-                            </div>
-                            <h3>Canva-Inspired Aesthetics</h3>
-                            <p>Carefully crafted typography, spacing, HSL color tokens, and Pinterest Red accents that make your resume stand out to hiring managers.</p>
-                        </div>
-                        <div class="about-card">
-                            <div class="about-icon">
-                                <img src="images/icon_privacy.jpg" alt="100% Free & Private Icon" loading="lazy" />
-                            </div>
-                            <h3>100% Free & Private</h3>
-                            <p>No hidden fees, no subscriptions, no forced watermarks. Your resume data is saved locally in your browser with zero data selling.</p>
-                        </div>
-                        <div class="about-card">
-                            <div class="about-icon">
-                                <img src="images/icon_pdf_export.jpg" alt="High-Res PDF Exporter Icon" loading="lazy" />
-                            </div>
-                            <h3>High-Res PDF Exporter</h3>
-                            <p>Single-click vector PDF generation ready for direct upload to LinkedIn, Indeed, Glassdoor, and corporate career portals.</p>
-                        </div>
+
+                        <button class="carousel-btn carousel-btn-next" id="aboutCarouselNext" aria-label="Next Slide">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </button>
                     </div>
+
+                    <!-- Carousel Pagination Dots -->
+                    <div class="carousel-dots" id="aboutCarouselDots"></div>
 
                     <!-- Stats Strip -->
                     <div class="about-stats-strip">
