@@ -2085,16 +2085,9 @@ button.selected,
   padding: 36px;
   border: 1px solid var(--canva-border);
   box-shadow: var(--canva-shadow);
-  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 1.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.8s ease !important;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-}
-
-.path-card:hover {
-  transform: translateY(-12px) scale(1.015) !important;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06), 0 24px 50px rgba(0, 0, 0, 0.14), 0 0 0 1.5px rgba(230, 0, 35, 0.18) !important;
-  border-color: rgba(230, 0, 35, 0.25) !important;
 }
 
 .path-icon {
@@ -5649,7 +5642,7 @@ h1, h2, h3, h4, h5, h6,
 
 /* ── 2. UNIFIED HOVER LIFT EFFECT SYSTEM ─────────────────── */
 
-/* Base card structure with ultra-smooth 0.6s float transition */
+/* Base card structure with ultra-smooth 0.85s GPU float transition */
 .about-card,
 .path-card,
 .tmpl-card,
@@ -5668,16 +5661,18 @@ h1, h2, h3, h4, h5, h6,
     0 4px 12px rgba(0, 0, 0, 0.03),
     0 10px 28px rgba(0, 0, 0, 0.05) !important;
   transition:
-    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-    border-color 0.4s ease,
-    background 0.4s ease !important;
+    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.6s ease,
+    background 0.6s ease !important;
   position: relative;
   overflow: hidden;
   will-change: transform, box-shadow;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
 }
 
-/* Master Hover Lift Effect — Smooth 10px Float & Glowing Red Shadow Tint */
+/* Master Hover Lift Effect — Ultra-Smooth 8px Float & Glowing Red Shadow Tint */
 .about-card:hover,
 .path-card:hover,
 .tmpl-card:hover,
@@ -5689,7 +5684,7 @@ h1, h2, h3, h4, h5, h6,
 .story-cta-card:hover,
 .tmpl-select-card:hover,
 .contact-card-wrap:hover {
-  transform: translateY(-10px) scale(1.015) !important;
+  transform: translateY(-8px) scale(1.012) !important;
   border-color: rgba(230, 0, 35, 0.38) !important;
   box-shadow:
     0 14px 36px rgba(0, 0, 0, 0.08),
