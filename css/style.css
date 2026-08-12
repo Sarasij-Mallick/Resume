@@ -5643,7 +5643,7 @@ h1, h2, h3, h4, h5, h6,
 /* ── 2. UNIFIED HOVER LIFT EFFECT SYSTEM ─────────────────── */
 
 /* Base card structure with ultra-smooth 0.85s GPU float transition */
-/* Anti-Flicker Solid Base & Smooth Hover Lift */
+/* ── Standard Normal Card Style & Hover ───────────────────── */
 .about-card,
 .path-card,
 .tmpl-card,
@@ -5656,36 +5656,15 @@ h1, h2, h3, h4, h5, h6,
 .tmpl-select-card,
 .contact-card-wrap {
   border-radius: 20px !important;
-  border: 1.5px solid rgba(226, 232, 240, 0.8) !important;
+  border: 1px solid var(--canva-border, rgba(226, 232, 240, 0.8)) !important;
   background: var(--canva-card, #ffffff) !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03), 0 10px 28px rgba(0, 0, 0, 0.05) !important;
-  transition: transform 0.4s ease-out, box-shadow 0.4s ease-out, border-color 0.3s ease !important;
+  box-shadow: var(--canva-shadow, 0 4px 12px rgba(0, 0, 0, 0.04)) !important;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease !important;
   position: relative;
-  will-change: transform;
+  transform: none !important;
 }
 
-/* Prevent inner content elements from interrupting mouse hover target and causing flicker */
-.about-card *,
-.path-card *,
-.tmpl-card *,
-.template-card *,
-.blog-card *,
-.feature-card *,
-.testimonial-card *,
-.story-cta-card * {
-  pointer-events: none;
-}
-
-/* Re-enable pointer events for interactive buttons & links */
-.about-card a, .about-card button,
-.path-card a, .path-card button,
-.tmpl-card a, .tmpl-card button,
-.blog-card a, .blog-card button,
-.story-cta-card a, .story-cta-card button {
-  pointer-events: auto;
-}
-
-/* Zero-Flicker Solid Smooth Hover Lift Effect */
+/* Normal Clean Hover — Subtle Red Border Highlight without Lift Transform */
 .about-card:hover,
 .path-card:hover,
 .tmpl-card:hover,
@@ -5697,13 +5676,13 @@ h1, h2, h3, h4, h5, h6,
 .story-cta-card:hover,
 .tmpl-select-card:hover,
 .contact-card-wrap:hover {
-  transform: translateY(-6px) !important;
-  border-color: rgba(230, 0, 35, 0.38) !important;
-  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.08), 0 0 0 2px rgba(230, 0, 35, 0.22) !important;
+  transform: none !important;
+  border-color: rgba(230, 0, 35, 0.35) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08) !important;
   animation: none !important;
 }
 
-/* Dark mode zero-flicker smooth hover lift */
+/* Dark mode normal card hover */
 [data-theme="dark"] .about-card,
 [data-theme="dark"] .path-card,
 [data-theme="dark"] .tmpl-card,
@@ -5717,7 +5696,6 @@ h1, h2, h3, h4, h5, h6,
 [data-theme="dark"] .contact-card-wrap {
   border-color: rgba(255, 255, 255, 0.09) !important;
   background: rgba(30, 41, 59, 0.75) !important;
-  backdrop-filter: blur(12px) !important;
 }
 
 [data-theme="dark"] .about-card:hover,
@@ -5731,9 +5709,9 @@ h1, h2, h3, h4, h5, h6,
 [data-theme="dark"] .story-cta-card:hover,
 [data-theme="dark"] .tmpl-select-card:hover,
 [data-theme="dark"] .contact-card-wrap:hover {
-  transform: translateY(-6px) !important;
+  transform: none !important;
   border-color: rgba(230, 0, 35, 0.45) !important;
-  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.5), 0 0 0 2px rgba(230, 0, 35, 0.32) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5) !important;
   animation: none !important;
 }
 
