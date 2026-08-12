@@ -217,6 +217,32 @@
             </div>
         </div>
 
+        <!-- Form Empty Error Popup Modal -->
+        <div id="formErrorModal" class="modal studio-confirm-modal" aria-hidden="true" role="dialog" aria-label="Form Validation Error">
+            <div class="modal-panel confirm-clear-panel">
+                <button id="closeFormError" class="confirm-close-btn" aria-label="Close modal">✕</button>
+                <div class="confirm-icon-wrapper">
+                    <div class="confirm-icon-pulse" style="background: rgba(239, 68, 68, 0.25);"></div>
+                    <div class="confirm-icon-box" style="background: #e60023; color: #ffffff;">⚠️</div>
+                </div>
+                <h3 class="confirm-title" style="color: #e60023;">Cannot Export PDF: Form Not Filled</h3>
+                <p class="confirm-subtitle">You cannot download or export your resume PDF without filling in your form details first. Please complete the required sections below before generating your document.</p>
+                
+                <div class="confirm-warning-banner" style="background: rgba(230, 0, 35, 0.08); border-color: rgba(230, 0, 35, 0.3); text-align: left;">
+                    <span class="warning-tag" style="background: #e60023; color: #fff;">⚠️ MISSING SECTIONS</span>
+                    <ul id="formErrorList" style="margin: 8px 0 0 0; padding-left: 18px; font-size: 13px; color: var(--canva-dark); line-height: 1.6;">
+                    </ul>
+                </div>
+
+                <div class="confirm-actions">
+                    <button id="closeFormErrorBtn" class="btn-confirm-cancel">Cancel</button>
+                    <button id="fillFormBtn" class="btn-confirm-danger" style="background: linear-gradient(135deg, #e60023 0%, #ad081b 100%);">
+                        <span>✏️</span> Fill Out Form Now
+                    </button>
+                </div>
+            </div>
+        </div>
+
         <!-- PDF GENERATOR FULL-PAGE LOADER OVERLAY -->
         <div id="pdfGenLoaderOverlay" class="pdf-gen-overlay" aria-hidden="true" role="dialog" aria-label="PDF Generation Loading">
             <div class="pdf-gen-card">

@@ -1757,8 +1757,76 @@ options.forEach(function (card) {
     </div>`;
   }
 
+  // Form completion validator
+  function checkFormCompletion() {
+    const missing = [];
+    const p = state.personal || {};
+
+    if (!p.fullName || !p.fullName.trim()) missing.push("Personal Information: Full Name");
+    if (!p.headline || !p.headline.trim()) missing.push("Personal Information: Professional Headline");
+    if (!p.email || !p.email.trim()) missing.push("Personal Information: Email");
+    if (!p.phone || !p.phone.trim()) missing.push("Personal Information: Phone");
+
+    if (!state.education || state.education.length === 0) {
+      missing.push("Education Section: At least 1 education entry required");
+    }
+
+    const s = state.skills || {};
+    const totalSkills = (s.technical?.length || 0) + (s.soft?.length || 0) + (s.languages?.length || 0) + (s.certifications?.length || 0);
+    if (totalSkills === 0) {
+      missing.push("Skills Section: At least 1 skill or certification required");
+    }
+
+    if (!state.projects || state.projects.length === 0) {
+      missing.push("Projects Section: At least 1 project entry required");
+    }
+
+    if (!state.summary || !state.summary.text || !state.summary.text.trim()) {
+      missing.push("Professional Summary: Summary text required");
+    }
+
+    return {
+      isComplete: missing.length === 0,
+      missingFields: missing
+    };
+  }
+
+  function showFormErrorModal(missingFields = []) {
+    const errorModal = document.getElementById("formErrorModal");
+    const errorList = document.getElementById("formErrorList");
+
+    if (errorList) {
+      if (missingFields.length === 0) {
+        errorList.innerHTML = "<li>❌ <strong>Personal Information & required sections missing</strong></li>";
+      } else {
+        errorList.innerHTML = missingFields.map(field => `<li>❌ <strong>${escape(field)}</strong></li>`).join("");
+      }
+    }
+
+    if (errorModal) {
+      errorModal.setAttribute("aria-hidden", "false");
+    } else {
+      alert("❌ Cannot Export PDF!\n\nPlease fill out your resume details before downloading/exporting.\n\nMissing Required Sections:\n• " + missingFields.join("\n• "));
+    }
+
+    showToast("❌ Please fill out your resume details before exporting PDF!", 4500);
+  }
+
+  function closeFormErrorModal() {
+    const errorModal = document.getElementById("formErrorModal");
+    if (errorModal) {
+      errorModal.setAttribute("aria-hidden", "true");
+    }
+  }
+
   // Export PDF with 3.5s page loader overlay & direct download via html2pdf
   function exportPDF(evt) {
+    const check = checkFormCompletion();
+    if (!check.isComplete) {
+      showFormErrorModal(check.missingFields);
+      return;
+    }
+
     const btn = (evt && evt.target) ? evt.target.closest("button") : (evt || document.getElementById("exportPdf") || document.getElementById("fullExportPdf"));
     let originalContent = "";
     if (btn) {
@@ -1992,39 +2060,16 @@ function showToast(msg, timeout = 3000) {
       };
     }
 
-    // Form completion validator
-    function checkFormCompletion() {
-      const missing = [];
-      const p = state.personal || {};
-
-      if (!p.fullName || !p.fullName.trim()) missing.push("Personal Information: Full Name");
-      if (!p.headline || !p.headline.trim()) missing.push("Personal Information: Professional Headline");
-      if (!p.email || !p.email.trim()) missing.push("Personal Information: Email");
-      if (!p.phone || !p.phone.trim()) missing.push("Personal Information: Phone");
-
-      if (!state.education || state.education.length === 0) {
-        missing.push("Education Section: At least 1 education entry required");
-      }
-
-      const s = state.skills || {};
-      const totalSkills = (s.technical?.length || 0) + (s.soft?.length || 0) + (s.languages?.length || 0) + (s.certifications?.length || 0);
-      if (totalSkills === 0) {
-        missing.push("Skills Section: At least 1 skill or certification required");
-      }
-
-      if (!state.projects || state.projects.length === 0) {
-        missing.push("Projects Section: At least 1 project entry required");
-      }
-
-      if (!state.summary || !state.summary.text || !state.summary.text.trim()) {
-        missing.push("Professional Summary: Summary text required");
-      }
-
-      return {
-        isComplete: missing.length === 0,
-        missingFields: missing
-      };
-    }
+    // Form Error Modal Listeners
+    document.getElementById("closeFormError")?.addEventListener("click", closeFormErrorModal);
+    document.getElementById("closeFormErrorBtn")?.addEventListener("click", closeFormErrorModal);
+    document.getElementById("fillFormBtn")?.addEventListener("click", () => {
+      closeFormErrorModal();
+      state.current = 0;
+      renderStep(0);
+      saveState();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
 
     // Fullscreen document helper functions
     function openFullscreenDocument() {
