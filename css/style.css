@@ -5710,7 +5710,29 @@ h1, h2, h3, h4, h5, h6,
 }
 
 
-/* Master Glassmorphic Hover Lift Effect Across All Cards */
+/* ── Master Animated Hover Lift Effect System ───────────────── */
+
+@keyframes cardAnimatedSpringLift {
+  0% {
+    transform: translateY(0px) scale(1);
+  }
+  60% {
+    transform: translateY(-11px) scale(1.02);
+  }
+  100% {
+    transform: translateY(-9px) scale(1.016);
+  }
+}
+
+@keyframes cardIconAnimatedBob {
+  0%, 100% {
+    transform: scale(1.1) translateY(-3px) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.15) translateY(-7px) rotate(2.5deg);
+  }
+}
+
 .about-card:hover,
 .path-card:hover,
 .tmpl-card:hover,
@@ -5722,15 +5744,14 @@ h1, h2, h3, h4, h5, h6,
 .story-cta-card:hover,
 .tmpl-select-card:hover,
 .contact-card-wrap:hover {
-  transform: translateY(-8px) scale(1.015) !important;
+  animation: cardAnimatedSpringLift 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) 1 forwards !important;
   border-color: rgba(230, 0, 35, 0.38) !important;
   box-shadow:
-    0 12px 32px rgba(0, 0, 0, 0.08),
-    0 24px 54px rgba(230, 0, 35, 0.14),
-    0 0 0 2px rgba(230, 0, 35, 0.22) !important;
+    0 14px 36px rgba(0, 0, 0, 0.08),
+    0 28px 60px rgba(230, 0, 35, 0.16),
+    0 0 0 2px rgba(230, 0, 35, 0.24) !important;
 }
 
-/* Dark mode smooth glass float glow */
 [data-theme="dark"] .about-card:hover,
 [data-theme="dark"] .path-card:hover,
 [data-theme="dark"] .tmpl-card:hover,
@@ -5742,22 +5763,24 @@ h1, h2, h3, h4, h5, h6,
 [data-theme="dark"] .story-cta-card:hover,
 [data-theme="dark"] .tmpl-select-card:hover,
 [data-theme="dark"] .contact-card-wrap:hover {
-  transform: translateY(-8px) scale(1.015) !important;
+  animation: cardAnimatedSpringLift 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) 1 forwards !important;
   border-color: rgba(230, 0, 35, 0.45) !important;
   box-shadow:
-    0 12px 36px rgba(0, 0, 0, 0.6),
-    0 28px 72px rgba(230, 0, 35, 0.25),
-    0 0 0 2px rgba(230, 0, 35, 0.32) !important;
+    0 14px 40px rgba(0, 0, 0, 0.6),
+    0 30px 76px rgba(230, 0, 35, 0.28),
+    0 0 0 2px rgba(230, 0, 35, 0.35) !important;
 }
 
-/* Disable inner element transforms on card hover */
+/* Animated inner icon & image floating motion on hover */
 .about-card:hover .about-icon img,
-.path-card:hover .path-icon img,
+.path-card:hover .path-icon img {
+  animation: cardIconAnimatedBob 2.5s ease-in-out infinite !important;
+}
+
 .blog-card:hover .blog-img-wrap img,
-.path-card:hover .path-features li,
-.blog-card:hover .read-full-link,
-.blog-card:hover a {
-  transform: none !important;
+.tmpl-card:hover img {
+  transform: scale(1.06) !important;
+  transition: transform 0.45s ease !important;
 }
 
 .about-icon img,
