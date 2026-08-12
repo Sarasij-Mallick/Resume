@@ -1431,15 +1431,15 @@ options.forEach(function (card) {
       return `<div style="font-family:'Inter', sans-serif; color:#0f172a; line-height:1.5;">
         <div style="border-bottom:3px solid ${theme.primary}; padding-bottom:16px; margin-bottom:20px; display:flex; justify-content:space-between; align-items:flex-end">
           <div>
-            <h1 style="margin:0; font-size:28px; font-weight:800; color:${theme.primary}">${escape(nameText)}</h1>
-            <div style="font-size:14px; color:#475569; font-weight:600; margin-top:2px">${escape(headlineText)}</div>
+            <h1 style="margin:0; font-size:28px; font-weight:800; color:${theme.primary}">${nameText}</h1>
+            <div style="font-size:14px; color:#475569; font-weight:600; margin-top:2px">${headlineText}</div>
           </div>
           ${p.photo ? `<img src="${p.photo}" style="width:64px;height:64px;border-radius:8px;object-fit:cover">` : ""}
         </div>
         <div style="display:flex; flex-wrap:wrap; gap:16px; font-size:12px; color:#64748b; margin-bottom:20px; border-bottom:1px solid #e2e8f0; padding-bottom:12px">
-          <span>📧 ${escape(emailText)}</span>
-          <span>📞 ${escape(phoneText)}</span>
-          <span>📍 ${escape(addressText)}</span>
+          <span>📧 ${emailText}</span>
+          <span>📞 ${phoneText}</span>
+          <span>📍 ${addressText}</span>
           ${p.linkedin ? `<span>🔗 <a href="${escape(p.linkedin)}" target="_blank" style="color:${theme.primary}">LinkedIn</a></span>` : ""}
           ${p.portfolio ? `<span>🌐 <a href="${escape(p.portfolio)}" target="_blank" style="color:${theme.primary}">Portfolio</a></span>` : ""}
         </div>
@@ -1562,20 +1562,20 @@ options.forEach(function (card) {
       return `<div style="font-family:'Outfit', 'Inter', sans-serif; color:#0e131f; line-height:1.5;">
         <div style="background:${theme.gradient}; padding:28px; border-radius:16px; color:#ffffff; margin-bottom:24px; display:flex; justify-content:space-between; align-items:center; box-shadow:0 8px 24px rgba(125,42,232,0.15)">
           <div>
-            <h1 style="margin:0 0 4px; font-size:32px; font-weight:800">${escape(nameText)}</h1>
-            <div style="font-size:16px; opacity:0.95; font-weight:600">${escape(headlineText)}</div>
+            <h1 style="margin:0 0 4px; font-size:32px; font-weight:800">${nameText}</h1>
+            <div style="font-size:16px; opacity:0.95; font-weight:600">${headlineText}</div>
           </div>
           ${p.photo ? `<img src="${p.photo}" style="width:80px;height:80px;border-radius:20px;object-fit:cover;border:3px solid #fff">` : ""}
         </div>
         <div style="display:flex; flex-wrap:wrap; gap:16px; font-size:13px; color:#475569; padding-bottom:16px; border-bottom:2px dashed #e2e8f0; margin-bottom:24px">
-          <span>📧 ${escape(emailText)}</span>
-          <span>📞 ${escape(phoneText)}</span>
-          <span>📍 ${escape(addressText)}</span>
+          <span>📧 ${emailText}</span>
+          <span>📞 ${phoneText}</span>
+          <span>📍 ${addressText}</span>
           ${p.portfolio ? `<span>🌐 <a href="${escape(p.portfolio)}" target="_blank" style="color:${theme.primary};font-weight:700">Portfolio</a></span>` : ""}
         </div>
         <div style="margin-bottom:24px">
           <h3 style="font-size:16px; font-weight:800; color:${theme.primary}; text-transform:uppercase; letter-spacing:0.04em; margin:0 0 8px">Creative Profile</h3>
-          <p style="font-size:13.5px; color:#334155; margin:0; line-height:1.6">${escape(summaryText)}</p>
+          <p style="font-size:13.5px; color:#334155; margin:0; line-height:1.6">${summaryText}</p>
         </div>
         <div style="display:grid; grid-template-columns: 2fr 1fr; gap:28px">
           <div>
@@ -1628,19 +1628,19 @@ options.forEach(function (card) {
       return `<div style="font-family:'Outfit', 'Inter', sans-serif; color:#0f172a; line-height:1.5;">
         <div style="border-bottom:4px double ${theme.primary}; padding-bottom:18px; margin-bottom:20px; display:flex; justify-content:space-between; align-items:center">
           <div>
-            <h1 style="margin:0 0 4px; font-size:30px; font-weight:800; color:${theme.primary}; letter-spacing:-0.02em">${escape(nameText)}</h1>
-            <div style="font-size:15px; color:#334155; font-weight:700">${escape(headlineText)}</div>
+            <h1 style="margin:0 0 4px; font-size:30px; font-weight:800; color:${theme.primary}; letter-spacing:-0.02em">${nameText}</h1>
+            <div style="font-size:15px; color:#334155; font-weight:700">${headlineText}</div>
           </div>
           ${p.photo ? `<img src="${p.photo}" style="width:72px;height:72px;border-radius:10px;object-fit:cover;border:2px solid ${theme.primary}">` : ""}
         </div>
         <div style="display:flex; flex-wrap:wrap; gap:20px; font-size:12.5px; color:#475569; padding-bottom:14px; border-bottom:1px solid #cbd5e1; margin-bottom:22px; font-weight:600">
-          <span>EMAIL: ${escape(emailText)}</span>
-          <span>PHONE: ${escape(phoneText)}</span>
-          <span>LOCATION: ${escape(addressText)}</span>
+          <span>EMAIL: ${emailText}</span>
+          <span>PHONE: ${phoneText}</span>
+          <span>LOCATION: ${addressText}</span>
         </div>
         <div style="margin-bottom:22px">
           <h3 style="font-size:15px; font-weight:800; color:${theme.primary}; text-transform:uppercase; letter-spacing:0.06em; border-bottom:1px solid #cbd5e1; padding-bottom:4px; margin:0 0 8px">Executive Profile</h3>
-          <p style="font-size:13.5px; color:#334155; margin:0; line-height:1.6">${escape(summaryText)}</p>
+          <p style="font-size:13.5px; color:#334155; margin:0; line-height:1.6">${summaryText}</p>
         </div>
         <div style="margin-bottom:22px">
           <h3 style="font-size:15px; font-weight:800; color:${theme.primary}; text-transform:uppercase; letter-spacing:0.06em; border-bottom:1px solid #cbd5e1; padding-bottom:4px; margin:0 0 12px">Leadership & Professional Experience</h3>
@@ -1852,12 +1852,17 @@ options.forEach(function (card) {
 
     setTimeout(() => {
       const tempDiv = document.createElement("div");
-      tempDiv.style.position = "absolute";
-      tempDiv.style.left = "-9999px";
-      tempDiv.style.top = "-9999px";
+      tempDiv.id = "pdfTempExportContainer";
+      tempDiv.style.position = "fixed";
+      tempDiv.style.top = "0";
+      tempDiv.style.left = "0";
       tempDiv.style.width = "794px";
+      tempDiv.style.zIndex = "-999999";
+      tempDiv.style.opacity = "1";
+      tempDiv.style.visibility = "visible";
       tempDiv.style.background = "#ffffff";
-      tempDiv.style.padding = "24px";
+      tempDiv.style.color = "#0f172a";
+      tempDiv.style.padding = "32px";
       tempDiv.style.boxSizing = "border-box";
       tempDiv.innerHTML = buildResumeHtml();
       document.body.appendChild(tempDiv);
@@ -1878,10 +1883,17 @@ options.forEach(function (card) {
 
       if (typeof html2pdf !== "undefined") {
         const opt = {
-          margin: [6, 6, 6, 6],
+          margin: [8, 8, 8, 8],
           filename: fileName,
           image: { type: "jpeg", quality: 0.98 },
-          html2canvas: { scale: 2, useCORS: true, logging: false },
+          html2canvas: {
+            scale: 2,
+            useCORS: true,
+            logging: false,
+            scrollX: 0,
+            scrollY: 0,
+            windowWidth: 850
+          },
           jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
         };
 
