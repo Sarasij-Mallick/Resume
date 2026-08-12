@@ -1331,7 +1331,7 @@ options.forEach(function (card) {
     const resumeHtml = buildResumeHtml();
     wrapper.innerHTML = `
       <div class="mobile-only-doc-box" style="margin-bottom:14px;text-align:center;padding:18px;background:rgba(16,185,129,0.08);border-radius:14px;border:1.5px solid rgba(16,185,129,0.25)">
-        <h4 style="margin:0 0 6px;color:#059669;font-size:16px">🎉 Forms Complete! Document Ready</h4>
+        <h4 style="margin:0 0 6px;color:#059669;font-size:16px">Forms Complete! Document Ready</h4>
         <p style="margin:0 0 14px;font-size:13px;color:#475569">Click below to view your document in full screen mode.</p>
         <button id="showDocFinalBtn" class="show-doc-btn" style="max-width:260px;margin:0 auto">
           Show My Resume
@@ -1394,10 +1394,10 @@ options.forEach(function (card) {
     const hasPersonalEmail = p.email && p.email.trim().length > 0;
     const hasPersonalPhone = p.phone && p.phone.trim().length > 0;
 
-    const errBox = (title, stepNum) => `<div style="border:2px dashed #ef4444;background:#fef2f2;color:#dc2626;padding:12px;border-radius:8px;font-size:12.5px;font-weight:700;text-align:center;margin:10px 0;">⚠️ [${title} Section Empty] - Please fill out Step ${stepNum} in the form drawer.</div>`;
+    const errBox = (title, stepNum) => `<div style="border:2px dashed #ef4444;background:#fef2f2;color:#dc2626;padding:12px;border-radius:8px;font-size:12.5px;font-weight:700;text-align:center;margin:10px 0;">[${title} Section Empty] - Please fill out Step ${stepNum} in the form drawer.</div>`;
 
-    const nameText = hasPersonalName ? escape(p.fullName) : `<span style="color:#dc2626;border:1.5px dashed #fca5a5;padding:2px 8px;border-radius:6px;background:#fef2f2;font-size:15px;font-weight:700;">⚠️ [Full Name Missing]</span>`;
-    const headlineText = hasPersonalHeadline ? escape(p.headline) : `<span style="color:#dc2626;font-size:12.5px;font-weight:600;">⚠️ [Headline Missing]</span>`;
+    const nameText = hasPersonalName ? escape(p.fullName) : `<span style="color:#dc2626;border:1.5px dashed #fca5a5;padding:2px 8px;border-radius:6px;background:#fef2f2;font-size:15px;font-weight:700;">[Full Name Missing]</span>`;
+    const headlineText = hasPersonalHeadline ? escape(p.headline) : `<span style="color:#dc2626;font-size:12.5px;font-weight:600;">[Headline Missing]</span>`;
     const emailText = hasPersonalEmail ? escape(p.email) : `<span style="color:#dc2626;">[Email Missing]</span>`;
     const phoneText = hasPersonalPhone ? escape(p.phone) : `<span style="color:#dc2626;">[Phone Missing]</span>`;
     const addressText = p.address ? escape(p.address) : "Location Not Specified";
@@ -1437,11 +1437,11 @@ options.forEach(function (card) {
           ${p.photo ? `<img src="${p.photo}" style="width:64px;height:64px;border-radius:8px;object-fit:cover">` : ""}
         </div>
         <div style="display:flex; flex-wrap:wrap; gap:16px; font-size:12px; color:#64748b; margin-bottom:20px; border-bottom:1px solid #e2e8f0; padding-bottom:12px">
-          <span>📧 ${emailText}</span>
-          <span>📞 ${phoneText}</span>
-          <span>📍 ${addressText}</span>
-          ${p.linkedin ? `<span>🔗 <a href="${escape(p.linkedin)}" target="_blank" style="color:${theme.primary}">LinkedIn</a></span>` : ""}
-          ${p.portfolio ? `<span>🌐 <a href="${escape(p.portfolio)}" target="_blank" style="color:${theme.primary}">Portfolio</a></span>` : ""}
+          <span>${emailText}</span>
+          <span>${phoneText}</span>
+          <span>${addressText}</span>
+          ${p.linkedin ? `<span><a href="${escape(p.linkedin)}" target="_blank" style="color:${theme.primary}">LinkedIn</a></span>` : ""}
+          ${p.portfolio ? `<span><a href="${escape(p.portfolio)}" target="_blank" style="color:${theme.primary}">Portfolio</a></span>` : ""}
         </div>
         <div style="margin-bottom:20px">
           <h3 style="font-size:14px; font-weight:800; text-transform:uppercase; color:${theme.primary}; letter-spacing:0.05em; border-bottom:1px solid #e2e8f0; padding-bottom:4px; margin:0 0 8px">Summary</h3>
@@ -1505,10 +1505,10 @@ options.forEach(function (card) {
           ${p.photo ? `<img src="${p.photo}" style="width:70px;height:70px;border-radius:50%;object-fit:cover;border:3px solid #fff">` : ""}
         </div>
         <div style="display:flex; flex-wrap:wrap; gap:16px; font-size:12.5px; color:#475569; padding-bottom:14px; border-bottom:2px solid #f1f5f9; margin-bottom:20px">
-          <span>📧 ${emailText}</span>
-          <span>📞 ${phoneText}</span>
-          <span>📍 ${addressText}</span>
-          ${p.linkedin ? `<span>🔗 <a href="${escape(p.linkedin)}" target="_blank" style="color:${theme.primary}">LinkedIn</a></span>` : ""}
+          <span>${emailText}</span>
+          <span>${phoneText}</span>
+          <span>${addressText}</span>
+          ${p.linkedin ? `<span><a href="${escape(p.linkedin)}" target="_blank" style="color:${theme.primary}">LinkedIn</a></span>` : ""}
         </div>
         <div style="margin-bottom:20px">
           <h3 style="font-family:'Outfit', sans-serif; font-size:15px; font-weight:800; color:${theme.primary}; text-transform:uppercase; border-bottom:2px solid ${theme.primary}33; padding-bottom:4px; margin:0 0 8px">Academic Objective & Summary</h3>
@@ -1568,10 +1568,10 @@ options.forEach(function (card) {
           ${p.photo ? `<img src="${p.photo}" style="width:80px;height:80px;border-radius:20px;object-fit:cover;border:3px solid #fff">` : ""}
         </div>
         <div style="display:flex; flex-wrap:wrap; gap:16px; font-size:13px; color:#475569; padding-bottom:16px; border-bottom:2px dashed #e2e8f0; margin-bottom:24px">
-          <span>📧 ${emailText}</span>
-          <span>📞 ${phoneText}</span>
-          <span>📍 ${addressText}</span>
-          ${p.portfolio ? `<span>🌐 <a href="${escape(p.portfolio)}" target="_blank" style="color:${theme.primary};font-weight:700">Portfolio</a></span>` : ""}
+          <span>${emailText}</span>
+          <span>${phoneText}</span>
+          <span>${addressText}</span>
+          ${p.portfolio ? `<span><a href="${escape(p.portfolio)}" target="_blank" style="color:${theme.primary};font-weight:700">Portfolio</a></span>` : ""}
         </div>
         <div style="margin-bottom:24px">
           <h3 style="font-size:16px; font-weight:800; color:${theme.primary}; text-transform:uppercase; letter-spacing:0.04em; margin:0 0 8px">Creative Profile</h3>
@@ -1683,11 +1683,11 @@ options.forEach(function (card) {
       </div>
 
       <div style="display: flex; flex-wrap: wrap; gap: 16px; font-size: 13px; color: #475569; padding-bottom: 16px; border-bottom: 2px solid #f1f5f9; margin-bottom: 24px;">
-        <span>📧 ${emailText}</span>
-        <span>📞 ${phoneText}</span>
-        <span>📍 ${addressText}</span>
-        ${p.linkedin ? `<span>🔗 <a href="${escape(p.linkedin)}" target="_blank" style="color:${theme.primary};text-decoration:none">LinkedIn</a></span>` : ""}
-        ${p.portfolio ? `<span>🌐 <a href="${escape(p.portfolio)}" target="_blank" style="color:${theme.primary};text-decoration:none">Portfolio</a></span>` : ""}
+        <span>${emailText}</span>
+        <span>${phoneText}</span>
+        <span>${addressText}</span>
+        ${p.linkedin ? `<span><a href="${escape(p.linkedin)}" target="_blank" style="color:${theme.primary};text-decoration:none">LinkedIn</a></span>` : ""}
+        ${p.portfolio ? `<span><a href="${escape(p.portfolio)}" target="_blank" style="color:${theme.primary};text-decoration:none">Portfolio</a></span>` : ""}
       </div>
 
       <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 32px;">
@@ -1809,7 +1809,7 @@ options.forEach(function (card) {
       alert("❌ Cannot Export PDF!\n\nPlease fill out your resume details before downloading/exporting.\n\nMissing Required Sections:\n• " + missingFields.join("\n• "));
     }
 
-    showToast("❌ Please fill out your resume details before exporting PDF!", 4500);
+    showToast("Please fill out your resume details before exporting PDF!", 4500);
   }
 
   function closeFormErrorModal() {
@@ -1848,7 +1848,7 @@ options.forEach(function (card) {
       overlay.setAttribute("aria-hidden", "false");
     }
 
-    showToast("⏳ Generating high-quality PDF document, please wait...");
+    showToast("Generating high-quality PDF document, please wait...");
 
     setTimeout(() => {
       let exportElement = document.getElementById("paperCanvas") || document.getElementById("fullscreenPaperCanvas");
@@ -1905,7 +1905,7 @@ options.forEach(function (card) {
           .save()
           .then(() => {
             cleanup();
-            showToast("✅ PDF downloaded successfully!");
+            showToast("PDF downloaded successfully!");
           })
           .catch((err) => {
             console.warn("html2pdf error, falling back to window print:", err);
@@ -2836,7 +2836,7 @@ function showToast(msg, timeout = 3000) {
         <div class="screensaver-content">
           <div class="screensaver-header-tags">
             <span class="ss-badge"><span class="ss-dot"></span> CAREER PRO STUDIO</span>
-            <span class="ss-badge accent">✨ ATS OPTIMIZED</span>
+            <span class="ss-badge accent">ATS OPTIMIZED</span>
           </div>
           <div id="screensaverClock" class="screensaver-clock">12:00:00 PM</div>
           <div id="screensaverDate" class="screensaver-date">Wednesday, August 12, 2026</div>

@@ -158,7 +158,7 @@
                 <!-- Floating Canvas Top Actions Bar -->
                 <div style="display:flex;gap:12px;margin-bottom:16px;background:#ffffff;padding:8px 16px;border-radius:9999px;box-shadow:0 4px 16px rgba(0,0,0,0.06)">
                     <span style="font-size:13px;font-weight:600;color:var(--canva-dark);display:flex;align-items:center;gap:6px">
-                        <span>📄</span> Document Canvas (A4 Standard)
+                        Document Canvas (A4 Standard)
                     </span>
                 </div>
 
@@ -178,7 +178,7 @@
             <div style="display:flex;gap:12px;align-items:center">
                 <span>Page 1 of 1</span>
                 <span>Zoom 100%</span>
-                <button id="showDocFooterBtn" class="studio-btn save" style="padding:4px 12px;font-size:12px;display:inline-flex;align-items:center;gap:6px">📄 Show Your Document</button>
+                <button id="showDocFooterBtn" class="studio-btn save" style="padding:4px 12px;font-size:12px;display:inline-flex;align-items:center;gap:6px">Show Your Document</button>
                 <button id="saveResume" class="btn primary" style="padding:4px 12px;font-size:12px">Save Resume</button>
             </div>
         </footer>
@@ -198,20 +198,20 @@
                 <button id="closeConfirm" class="confirm-close-btn" aria-label="Close modal">✕</button>
                 <div class="confirm-icon-wrapper">
                     <div class="confirm-icon-pulse"></div>
-                    <div class="confirm-icon-box">🗑️</div>
+                    <div class="confirm-icon-box">!</div>
                 </div>
                 <h3 class="confirm-title">Clear All Resume Data?</h3>
                 <p class="confirm-subtitle">Are you sure you want to reset your resume? This action cannot be undone and will erase your current draft.</p>
                 
                 <div class="confirm-warning-banner">
-                    <span class="warning-tag">⚠️ PERMANENT ERASE</span>
+                    <span class="warning-tag">PERMANENT ERASE</span>
                     <span>Your personal info, education, skills, and projects will be permanently removed.</span>
                 </div>
 
                 <div class="confirm-actions">
                     <button id="cancelClear" class="btn-confirm-cancel">Cancel</button>
                     <button id="confirmClear" class="btn-confirm-danger">
-                        <span>🗑️</span> Yes, Clear Everything
+                        Yes, Clear Everything
                     </button>
                 </div>
             </div>
@@ -223,13 +223,13 @@
                 <button id="closeFormError" class="confirm-close-btn" aria-label="Close modal">✕</button>
                 <div class="confirm-icon-wrapper">
                     <div class="confirm-icon-pulse" style="background: rgba(239, 68, 68, 0.25);"></div>
-                    <div class="confirm-icon-box" style="background: #e60023; color: #ffffff;">⚠️</div>
+                    <div class="confirm-icon-box" style="background: #e60023; color: #ffffff;">!</div>
                 </div>
                 <h3 class="confirm-title" style="color: #e60023;">Cannot Export PDF: Form Not Filled</h3>
                 <p class="confirm-subtitle">You cannot download or export your resume PDF without filling in your form details first. Please complete the required sections below before generating your document.</p>
                 
                 <div class="confirm-warning-banner" style="background: rgba(230, 0, 35, 0.08); border-color: rgba(230, 0, 35, 0.3); text-align: left;">
-                    <span class="warning-tag" style="background: #e60023; color: #fff;">⚠️ MISSING SECTIONS</span>
+                    <span class="warning-tag" style="background: #e60023; color: #fff;">MISSING SECTIONS</span>
                     <ul id="formErrorList" style="margin: 8px 0 0 0; padding-left: 18px; font-size: 13px; color: var(--canva-dark); line-height: 1.6;">
                     </ul>
                 </div>
@@ -237,7 +237,7 @@
                 <div class="confirm-actions">
                     <button id="closeFormErrorBtn" class="btn-confirm-cancel">Cancel</button>
                     <button id="fillFormBtn" class="btn-confirm-danger" style="background: linear-gradient(135deg, #e60023 0%, #ad081b 100%);">
-                        <span>✏️</span> Fill Out Form Now
+                        Fill Out Form Now
                     </button>
                 </div>
             </div>
@@ -247,7 +247,7 @@
         <div id="pdfGenLoaderOverlay" class="pdf-gen-overlay" aria-hidden="true" role="dialog" aria-label="PDF Generation Loading">
             <div class="pdf-gen-card">
                 <div class="pdf-loader-pulse"></div>
-                <div class="pdf-loader-icon">📄</div>
+                <div class="pdf-loader-icon">PDF</div>
                 <h3 class="pdf-loader-title">Generating Your Resume PDF</h3>
                 <p class="pdf-loader-desc">Optimizing layout, typography & ATS formatting...</p>
                 <div class="pdf-loader-progress-bar">
@@ -262,7 +262,7 @@
             <div class="fullscreen-doc-header">
                 <div class="fullscreen-doc-actions">
                     <button id="fullExportPdf" class="studio-btn export" style="display:inline-flex;align-items:center;gap:6px">
-                        📥 Export PDF
+                        Export PDF
                     </button>
                     <button id="closeDocFullscreen" class="studio-btn preview" style="display:inline-flex;align-items:center;gap:6px">
                         ✕ Close Fullscreen
