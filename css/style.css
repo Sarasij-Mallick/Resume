@@ -5534,8 +5534,6 @@ h1, h2, h3, h4, h5, h6,
 .template-card,
 .blog-card,
 .feature-card,
-.stat-card,
-.stat-item,
 .testimonial-card,
 .story-cta-card {
   position: relative;
@@ -5548,8 +5546,6 @@ h1, h2, h3, h4, h5, h6,
 .template-card::after,
 .blog-card::after,
 .feature-card::after,
-.stat-card::after,
-.stat-item::after,
 .testimonial-card::after,
 .story-cta-card::after {
   content: "";
@@ -5578,11 +5574,20 @@ h1, h2, h3, h4, h5, h6,
 .template-card:hover::after,
 .blog-card:hover::after,
 .feature-card:hover::after,
-.stat-card:hover::after,
-.stat-item:hover::after,
 .testimonial-card:hover::after,
 .story-cta-card:hover::after {
   animation: slowGlassShineSweep 2.5s cubic-bezier(0.22, 1, 0.36, 1) 1 forwards;
+}
+
+/* Explicitly disable shine reflection on stats strip items */
+.stat-item::after,
+.stat-card::after,
+.about-stats-strip::after,
+.stat-item:hover::after,
+.stat-card:hover::after,
+.about-stats-strip:hover::after {
+  display: none !important;
+  animation: none !important;
 }
 
 
