@@ -5724,17 +5724,36 @@ h1, h2, h3, h4, h5, h6,
   box-shadow: 0 12px 32px rgba(255, 77, 109, 0.3), 0 4px 14px rgba(255, 77, 109, 0.2) !important;
 }
 
-/* Steady Inner Images — No Reflow Flickering on Mouse Off */
+/* Card Icons Wave Float Motion & Hover Pause */
 .about-card .about-icon img,
 .path-card .path-icon img,
 .blog-card .blog-img-wrap img,
 .tmpl-card img,
+.feature-card img,
+.stat-card img {
+  animation: iconWaveFloat 4.2s ease-in-out infinite !important;
+  will-change: transform;
+}
+
+/* Sequential wave animation delays for card icons */
+.carousel-slide:nth-child(1) .about-icon img, .path-card:nth-child(1) .path-icon img, .template-card:nth-child(1) img, .blog-card:nth-child(1) img, .feature-card:nth-child(1) img { animation-delay: 0s !important; }
+.carousel-slide:nth-child(2) .about-icon img, .path-card:nth-child(2) .path-icon img, .template-card:nth-child(2) img, .blog-card:nth-child(2) img, .feature-card:nth-child(2) img { animation-delay: -0.6s !important; }
+.carousel-slide:nth-child(3) .about-icon img, .path-card:nth-child(3) .path-icon img, .template-card:nth-child(3) img, .blog-card:nth-child(3) img, .feature-card:nth-child(3) img { animation-delay: -1.2s !important; }
+.carousel-slide:nth-child(4) .about-icon img, .path-card:nth-child(4) .path-icon img, .template-card:nth-child(4) img, .blog-card:nth-child(4) img, .feature-card:nth-child(4) img { animation-delay: -1.8s !important; }
+.carousel-slide:nth-child(5) .about-icon img, .path-card:nth-child(5) .path-icon img, .template-card:nth-child(5) img, .blog-card:nth-child(5) img, .feature-card:nth-child(5) img { animation-delay: -2.4s !important; }
+.carousel-slide:nth-child(6) .about-icon img, .path-card:nth-child(6) .path-icon img, .template-card:nth-child(6) img, .blog-card:nth-child(6) img, .feature-card:nth-child(6) img { animation-delay: -3.0s !important; }
+.carousel-slide:nth-child(7) .about-icon img, .path-card:nth-child(7) .path-icon img, .template-card:nth-child(7) img, .blog-card:nth-child(7) img, .feature-card:nth-child(7) img { animation-delay: -3.6s !important; }
+.carousel-slide:nth-child(8) .about-icon img, .path-card:nth-child(8) .path-icon img, .template-card:nth-child(8) img, .blog-card:nth-child(8) img, .feature-card:nth-child(8) img { animation-delay: -4.2s !important; }
+
+/* Pause icon wave floating animation when card is hovered */
 .about-card:hover .about-icon img,
 .path-card:hover .path-icon img,
 .blog-card:hover .blog-img-wrap img,
-.tmpl-card:hover img {
-  transform: none !important;
-  transition: none !important;
+.tmpl-card:hover img,
+.template-card:hover img,
+.feature-card:hover img,
+.stat-card:hover img {
+  animation-play-state: paused !important;
 }
 
 /* Kicker Badge Ambient Glow Pulse */
@@ -5823,6 +5842,15 @@ h1, h2, h3, h4, h5, h6,
 }
 .floating-badge.ats { animation-delay: 0s; }
 .floating-badge.ai  { animation-delay: 1.8s; }
+
+@keyframes iconWaveFloat {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-6px) scale(1.04);
+  }
+}
 
 @keyframes waveFloat {
   0%, 100% {
