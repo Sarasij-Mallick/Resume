@@ -101,7 +101,7 @@ svg,
     opacity 0.28s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* 4. Card hover lift effect */
+/* 4. Card hover — completely steady, zero flicker */
 .about-card:hover,
 .path-card:hover,
 .tmpl-card:hover,
@@ -110,9 +110,9 @@ svg,
 .feature-card:hover,
 .testimonial-card:hover,
 .story-cta-card:hover {
-  transform: translateY(-8px) scale(1.015) !important;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08), 0 24px 54px rgba(230, 0, 35, 0.14), 0 0 0 1.5px rgba(230, 0, 35, 0.18) !important;
-  border-color: rgba(230, 0, 35, 0.25) !important;
+  transform: none !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08) !important;
+  border-color: rgba(230, 0, 35, 0.35) !important;
 }
 
 /* 5. Image rendering smoothness */
@@ -5715,22 +5715,17 @@ h1, h2, h3, h4, h5, h6,
   animation: none !important;
 }
 
-/* Smooth Icon & Image Zoom on Card Hover */
+/* Steady Inner Images — No Reflow Flickering on Mouse Off */
 .about-card .about-icon img,
 .path-card .path-icon img,
 .blog-card .blog-img-wrap img,
-.tmpl-card img {
-  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1) !important;
-}
-
+.tmpl-card img,
 .about-card:hover .about-icon img,
-.path-card:hover .path-icon img {
-  transform: scale(1.1) translateY(-4px) !important;
-}
-
+.path-card:hover .path-icon img,
 .blog-card:hover .blog-img-wrap img,
 .tmpl-card:hover img {
-  transform: scale(1.06) !important;
+  transform: none !important;
+  transition: none !important;
 }
 
 /* Kicker Badge Ambient Glow Pulse */
