@@ -6356,3 +6356,55 @@ html, body, .blog-modal-container, div, section, main {
 .logo:hover .logo-icon-wrap {
   transform: scale(1.22) rotate(6deg) !important;
 }
+
+/* ══════════════════════════════════════════════════════
+   📱 MOBILE — DISABLE ALL FLOATING / WAVE ANIMATIONS
+   ══════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .about-card,
+  .path-card,
+  .tmpl-card,
+  .template-card,
+  .blog-card,
+  .feature-card,
+  .stat-card,
+  .testimonial-card,
+  .story-cta-card,
+  .tmpl-select-card,
+  .floating-badge,
+  .about-icon,
+  .about-icon img {
+    animation: none !important;
+    animation-play-state: paused !important;
+    transform: none !important;
+    will-change: auto !important;
+  }
+
+  /* Also disable icon internal float */
+  .about-card .about-icon,
+  .feature-card .feature-icon,
+  .path-card .path-icon,
+  .stat-card .stat-icon {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  /* Keep hover transitions but no scale on mobile (touch devices) */
+  .about-card:hover,
+  .path-card:hover,
+  .tmpl-card:hover,
+  .template-card:hover,
+  .blog-card:hover,
+  .feature-card:hover,
+  .stat-card:hover,
+  .testimonial-card:hover,
+  .story-cta-card:hover,
+  .tmpl-select-card:hover {
+    animation: none !important;
+    transform: none !important;
+    background: rgba(238, 53, 80, 0.04) !important;
+    border-color: rgba(238, 53, 80, 0.2) !important;
+    box-shadow: 0 4px 16px rgba(238, 53, 80, 0.12) !important;
+  }
+}
+
