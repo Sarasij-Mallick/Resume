@@ -2673,38 +2673,7 @@ function showToast(msg, timeout = 3000) {
     }
   });
 
-  // Mouse Click Shockwave Burst (desktop only)
-  window.addEventListener("pointerdown", (e) => {
-    if (e.pointerType === "touch" || isMobileOrTablet()) return;
-    const color = colors[Math.floor(Math.random() * colors.length)];
-    rings.push({
-      x: e.clientX,
-      y: e.clientY,
-      r: 2,
-      maxR: 30,
-      alpha: 0.9,
-      color: color
-    });
-
-    // Balanced burst of 10 glowing stars
-    for (let i = 0; i < 10; i++) {
-      const c = colors[Math.floor(Math.random() * colors.length)];
-      const angle = (Math.PI * 2 / 10) * i + Math.random() * 0.2;
-      const vel = Math.random() * 1.8 + 0.9;
-      particles.push({
-        x: e.clientX,
-        y: e.clientY,
-        size: Math.random() * 4.5 + 2.5,
-        vx: Math.cos(angle) * vel,
-        vy: Math.sin(angle) * vel,
-        alpha: 0.95,
-        decay: Math.random() * 0.012 + 0.006,
-        rotation: Math.random() * Math.PI,
-        spin: (Math.random() - 0.5) * 0.1,
-        color: c
-      });
-    }
-  });
+  // Mouse Click effects disabled (no circles/rings on click)
 
   function drawStar(x, y, size, rotation, alpha, color) {
     ctx.save();
