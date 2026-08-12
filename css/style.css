@@ -730,8 +730,11 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 
 .container {
   max-width: var(--max-w);
-  margin: 0 auto;
+  margin-left: auto !important;
+  margin-right: auto !important;
   padding: 0 24px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* Hide duplicate header inside drawer */
@@ -801,6 +804,8 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(14, 19, 31, 0.08);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .site-header.scrolled {
@@ -813,6 +818,8 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
   align-items: center;
   justify-content: space-between;
   height: 72px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .logo {
@@ -1311,6 +1318,8 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
 .hero-wrapper {
   background: var(--canva-bg);
   padding: 24px 0 64px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .hero-banner {
@@ -1321,6 +1330,9 @@ h1, h2, h3, h4, h5, h6, .brand-title, .title {
   padding: 48px 56px;
   position: relative;
   overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0 auto;
 }
 
 .breadcrumb {
@@ -2390,6 +2402,7 @@ button.selected,
   display: flex;
   flex-direction: column;
   transition: all 0.25s ease;
+  cursor: pointer;
 }
 
 .blog-card:hover {
@@ -2453,6 +2466,7 @@ button.selected,
   font-size: 14px;
   text-decoration: none;
   transition: color 0.18s ease;
+  cursor: pointer;
 }
 
 .blog-link:hover {
