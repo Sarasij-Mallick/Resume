@@ -2786,16 +2786,29 @@ function showToast(msg, timeout = 3000) {
   requestAnimationFrame(render);
 })();
 
-/* ---------- Global Professional Typing Quote Screensaver (60s Inactivity) ---------- */
+/* ---------- Global Professional Constellation Screensaver (60s Inactivity) ---------- */
 (function initProfessionalScreensaver() {
+  const isLocalhost = Boolean(
+    window.location.hostname === "localhost" ||
+    window.location.hostname === "127.0.0.1" ||
+    window.location.hostname === "::1" ||
+    window.location.hostname.endsWith(".local") ||
+    window.location.protocol === "file:"
+  );
+
+  if (isLocalhost) {
+    return; // Completely disabled on localhost development
+  }
+
   const IDLE_TIMEOUT_MS = 60000; // Exactly 60 seconds (59s + 1s)
   let idleTimer = null;
   let clockInterval = null;
   let typewriterTimeout = null;
+  let animFrameId = null;
 
   const quotes = [
     '"The secret of getting ahead is getting started." — Mark Twain',
-    '"Your work is going to fill a large part of your life, and the only way to be truly satisfied is to do what you believe is great work." — Steve Jobs',
+    '"Your work is going to fill a large part of your life, and the only way to be satisfied is to do great work." — Steve Jobs',
     '"Opportunities don\'t happen, you create them." — Chris Grosser',
     '"Success is not final, failure is not fatal: It is the courage to continue that counts." — Winston Churchill',
     '"The future belongs to those who believe in the beauty of their dreams." — Eleanor Roosevelt',
@@ -2818,24 +2831,104 @@ function showToast(msg, timeout = 3000) {
       overlay.setAttribute("role", "dialog");
       overlay.setAttribute("aria-label", "Idle Screensaver");
       overlay.innerHTML = `
+        <canvas id="screensaverCanvas" class="screensaver-canvas"></canvas>
         <div class="screensaver-ambient-glow"></div>
         <div class="screensaver-content">
-          <div class="screensaver-badge">
-            <span class="ss-dot"></span> IDE SCREENSAVER MODE
+          <div class="screensaver-header-tags">
+            <span class="ss-badge"><span class="ss-dot"></span> CAREER AI STUDIO</span>
+            <span class="ss-badge accent">✨ ATS OPTIMIZED</span>
           </div>
           <div id="screensaverClock" class="screensaver-clock">12:00:00 PM</div>
           <div id="screensaverDate" class="screensaver-date">Wednesday, August 12, 2026</div>
           <div class="screensaver-quote-box">
+            <div class="quote-box-header">
+              <span class="terminal-dot red"></span>
+              <span class="terminal-dot yellow"></span>
+              <span class="terminal-dot green"></span>
+              <span class="terminal-title">career_wisdom.sh</span>
+            </div>
             <p id="screensaverTypedQuote" class="screensaver-typed-quote"></p><span class="typed-cursor">|</span>
           </div>
           <div class="screensaver-wake-hint">
-            <span class="pulse-ring"></span> Move mouse or press any key to resume
+            <span class="pulse-ring"></span> Move mouse or press any key to resume editing
           </div>
         </div>
       `;
       document.body.appendChild(overlay);
     }
     return overlay;
+  }
+
+  function startCanvasConstellation() {
+    const canvas = document.getElementById("screensaverCanvas");
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    const particles = [];
+    const particleCount = Math.min(Math.floor((width * height) / 18000), 75);
+
+    for (let i = 0; i < particleCount; i++) {
+      particles.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.8,
+        vy: (Math.random() - 0.5) * 0.8,
+        radius: Math.random() * 2 + 1,
+        color: Math.random() > 0.5 ? "#6366f1" : "#e60023"
+      });
+    }
+
+    function renderCanvas() {
+      ctx.clearRect(0, 0, width, height);
+
+      // Draw constellation connections
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < 140) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(99, 102, 241, ${0.18 * (1 - dist / 140)})`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Draw particles
+      particles.forEach((p) => {
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0 || p.x > width) p.vx *= -1;
+        if (p.y < 0 || p.y > height) p.vy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = p.color;
+        ctx.fill();
+      });
+
+      animFrameId = requestAnimationFrame(renderCanvas);
+    }
+
+    renderCanvas();
+  }
+
+  function stopCanvasConstellation() {
+    if (animFrameId) {
+      cancelAnimationFrame(animFrameId);
+      animFrameId = null;
+    }
   }
 
   function updateClock() {
@@ -2883,7 +2976,7 @@ function showToast(msg, timeout = 3000) {
       quoteEl.textContent = fullQuote.substring(0, charIndex);
       if (charIndex === fullQuote.length) {
         isDeleting = true;
-        typewriterTimeout = setTimeout(typeQuote, 3500); // Hold full quote for 3.5s
+        typewriterTimeout = setTimeout(typeQuote, 3500);
         return;
       }
       typewriterTimeout = setTimeout(typeQuote, 45);
@@ -2898,6 +2991,8 @@ function showToast(msg, timeout = 3000) {
       clockInterval = setInterval(updateClock, 1000);
     }
 
+    startCanvasConstellation();
+
     charIndex = 0;
     isDeleting = false;
     if (typewriterTimeout) clearTimeout(typewriterTimeout);
@@ -2911,6 +3006,8 @@ function showToast(msg, timeout = 3000) {
     if (overlay && overlay.getAttribute("aria-hidden") === "false") {
       overlay.setAttribute("aria-hidden", "true");
     }
+
+    stopCanvasConstellation();
 
     if (clockInterval) {
       clearInterval(clockInterval);
