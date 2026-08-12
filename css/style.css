@@ -5664,7 +5664,7 @@ h1, h2, h3, h4, h5, h6,
   transform: none !important;
 }
 
-/* Normal Clean Hover without Motion or Delay */
+/* Clean Hover with Subtle Reddish Aura Background Tint */
 .about-card:hover,
 .path-card:hover,
 .tmpl-card:hover,
@@ -5677,8 +5677,9 @@ h1, h2, h3, h4, h5, h6,
 .tmpl-select-card:hover,
 .contact-card-wrap:hover {
   transform: none !important;
-  border-color: rgba(230, 0, 35, 0.35) !important;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08) !important;
+  background: linear-gradient(145deg, #fff2f4 0%, #ffffff 100%) !important;
+  border-color: rgba(230, 0, 35, 0.38) !important;
+  box-shadow: 0 8px 28px rgba(230, 0, 35, 0.14), 0 0 0 2px rgba(230, 0, 35, 0.22) !important;
   transition: none !important;
   animation: none !important;
 }
@@ -5713,8 +5714,9 @@ h1, h2, h3, h4, h5, h6,
 [data-theme="dark"] .tmpl-select-card:hover,
 [data-theme="dark"] .contact-card-wrap:hover {
   transform: none !important;
+  background: linear-gradient(145deg, rgba(48, 22, 28, 0.88) 0%, rgba(30, 41, 59, 0.88) 100%) !important;
   border-color: rgba(230, 0, 35, 0.45) !important;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5) !important;
+  box-shadow: 0 8px 30px rgba(230, 0, 35, 0.25), 0 0 0 2px rgba(230, 0, 35, 0.32) !important;
   transition: none !important;
   animation: none !important;
 }
