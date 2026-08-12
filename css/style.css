@@ -5642,7 +5642,7 @@ h1, h2, h3, h4, h5, h6,
 
 /* ── 2. UNIFIED HOVER LIFT EFFECT SYSTEM ─────────────────── */
 
-/* Cards float gently in normal state */
+/* Cards float in smooth ocean-wave motion by default */
 .about-card,
 .path-card,
 .tmpl-card,
@@ -5659,22 +5659,21 @@ h1, h2, h3, h4, h5, h6,
   background: var(--canva-card, #ffffff) !important;
   box-shadow: var(--canva-shadow, 0 4px 12px rgba(0, 0, 0, 0.04)) !important;
   position: relative;
-  animation: float 4s ease-in-out infinite !important;
+  animation: waveFloat 4.8s ease-in-out infinite !important;
   will-change: transform;
 }
 
-/* Stagger even cards for organic multi-card wave motion */
-.carousel-slide:nth-child(even) .about-card,
-.path-card:nth-child(even),
-.template-card:nth-child(even),
-.blog-card:nth-child(even),
-.feature-card:nth-child(even),
-.stat-card:nth-child(even),
-.testimonial-card:nth-child(even) {
-  animation-delay: -2s !important;
-}
+/* Sequential wave animation delays across card series (ঢেউয়ের মতো ভাসার জন্য) */
+.carousel-slide:nth-child(1) .about-card, .path-card:nth-child(1), .template-card:nth-child(1), .blog-card:nth-child(1), .feature-card:nth-child(1), .stat-card:nth-child(1), .testimonial-card:nth-child(1) { animation-delay: 0s !important; }
+.carousel-slide:nth-child(2) .about-card, .path-card:nth-child(2), .template-card:nth-child(2), .blog-card:nth-child(2), .feature-card:nth-child(2), .stat-card:nth-child(2), .testimonial-card:nth-child(2) { animation-delay: -0.7s !important; }
+.carousel-slide:nth-child(3) .about-card, .path-card:nth-child(3), .template-card:nth-child(3), .blog-card:nth-child(3), .feature-card:nth-child(3), .stat-card:nth-child(3), .testimonial-card:nth-child(3) { animation-delay: -1.4s !important; }
+.carousel-slide:nth-child(4) .about-card, .path-card:nth-child(4), .template-card:nth-child(4), .blog-card:nth-child(4), .feature-card:nth-child(4), .stat-card:nth-child(4), .testimonial-card:nth-child(4) { animation-delay: -2.1s !important; }
+.carousel-slide:nth-child(5) .about-card, .path-card:nth-child(5), .template-card:nth-child(5), .blog-card:nth-child(5), .feature-card:nth-child(5), .stat-card:nth-child(5), .testimonial-card:nth-child(5) { animation-delay: -2.8s !important; }
+.carousel-slide:nth-child(6) .about-card, .path-card:nth-child(6), .template-card:nth-child(6), .blog-card:nth-child(6), .feature-card:nth-child(6), .stat-card:nth-child(6), .testimonial-card:nth-child(6) { animation-delay: -3.5s !important; }
+.carousel-slide:nth-child(7) .about-card, .path-card:nth-child(7), .template-card:nth-child(7), .blog-card:nth-child(7), .feature-card:nth-child(7), .stat-card:nth-child(7), .testimonial-card:nth-child(7) { animation-delay: -4.2s !important; }
+.carousel-slide:nth-child(8) .about-card, .path-card:nth-child(8), .template-card:nth-child(8), .blog-card:nth-child(8), .feature-card:nth-child(8), .stat-card:nth-child(8), .testimonial-card:nth-child(8) { animation-delay: -4.9s !important; }
 
-/* Pause floating animation on hover for the hovered card */
+/* Pause wave floating animation on mouse hover for the active card */
 .about-card:hover,
 .path-card:hover,
 .tmpl-card:hover,
@@ -5692,7 +5691,7 @@ h1, h2, h3, h4, h5, h6,
   box-shadow: 0 12px 32px rgba(238, 53, 80, 0.25), 0 4px 14px rgba(238, 53, 80, 0.15) !important;
 }
 
-/* Dark mode normal card hover — Pause floating + Box Shadow Glow */
+/* Dark mode normal card hover — Pause wave floating + Box Shadow Glow */
 [data-theme="dark"] .about-card,
 [data-theme="dark"] .path-card,
 [data-theme="dark"] .tmpl-card,
@@ -5824,6 +5823,15 @@ h1, h2, h3, h4, h5, h6,
 }
 .floating-badge.ats { animation-delay: 0s; }
 .floating-badge.ai  { animation-delay: 1.8s; }
+
+@keyframes waveFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-9px);
+  }
+}
 
 @keyframes float {
   0%   { transform: translateY(0px); }
