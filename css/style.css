@@ -5622,25 +5622,27 @@ h1, h2, h3, h4, h5, h6,
 
 /* ── 2. CARD STYLE UPGRADE ───────────────────────────────── */
 
-/* Base card reset with premium finish */
+/* Base card reset with smooth floating lift finish */
 .about-card,
 .path-card,
+.tmpl-card,
 .template-card,
 .blog-card,
 .feature-card,
-.stat-card,
-.testimonial-card {
+.testimonial-card,
+.story-cta-card {
   border-radius: 20px !important;
   border: 1px solid rgba(14, 19, 31, 0.07) !important;
   box-shadow:
     0 2px 6px rgba(0,0,0,0.04),
     0 8px 24px rgba(0,0,0,0.07) !important;
   transition:
-    transform 0.38s cubic-bezier(0.34, 1.56, 0.64, 1),
-    box-shadow 0.38s cubic-bezier(0.4, 0, 0.2, 1),
-    border-color 0.3s ease !important;
+    transform 0.42s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.42s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.35s ease !important;
   position: relative;
   overflow: hidden;
+  will-change: transform, box-shadow;
 }
 
 /* Shimmer glass light beam sweep on hover — 1x slow & subtle diagonal sweep per hover */
@@ -5659,18 +5661,6 @@ h1, h2, h3, h4, h5, h6,
     left: 180%;
     opacity: 0;
   }
-}
-
-.about-card,
-.path-card,
-.tmpl-card,
-.template-card,
-.blog-card,
-.feature-card,
-.testimonial-card,
-.story-cta-card {
-  position: relative;
-  overflow: hidden;
 }
 
 .about-card::after,
@@ -5724,59 +5714,61 @@ h1, h2, h3, h4, h5, h6,
 }
 
 
-/* Hover lift with red glow */
+/* Smooth Floating Hover Lift Across All Cards */
 .about-card:hover,
 .path-card:hover,
+.tmpl-card:hover,
+.template-card:hover,
+.blog-card:hover,
 .feature-card:hover,
-.stat-card:hover {
-  transform: translateY(-8px) scale(1.012) !important;
+.testimonial-card:hover,
+.story-cta-card:hover {
+  transform: translateY(-12px) scale(1.015) !important;
   box-shadow:
-    0 4px 10px rgba(0,0,0,0.06),
-    0 16px 40px rgba(0,0,0,0.12),
-    0 0 0 1px rgba(230, 0, 35, 0.10) !important;
-  border-color: rgba(230, 0, 35, 0.14) !important;
+    0 8px 20px rgba(0, 0, 0, 0.06),
+    0 24px 50px rgba(0, 0, 0, 0.14),
+    0 0 0 1.5px rgba(230, 0, 35, 0.18) !important;
+  border-color: rgba(230, 0, 35, 0.25) !important;
 }
 
-.template-card:hover {
-  transform: translateY(-10px) scale(1.016) !important;
-  box-shadow:
-    0 4px 12px rgba(0,0,0,0.08),
-    0 20px 48px rgba(0,0,0,0.14),
-    0 0 0 1.5px rgba(230, 0, 35, 0.12) !important;
-}
-
-.blog-card:hover {
-  transform: translateY(-9px) !important;
-  box-shadow:
-    0 4px 10px rgba(0,0,0,0.06),
-    0 18px 44px rgba(0,0,0,0.12),
-    0 0 0 1px rgba(230, 0, 35, 0.10) !important;
-}
-
-/* Dark mode card refinement */
+/* Dark mode smooth card lift glow */
 [data-theme="dark"] .about-card,
 [data-theme="dark"] .path-card,
+[data-theme="dark"] .tmpl-card,
 [data-theme="dark"] .template-card,
 [data-theme="dark"] .blog-card,
-[data-theme="dark"] .feature-card,
-[data-theme="dark"] .stat-card {
-  border-color: rgba(255, 255, 255, 0.06) !important;
+[data-theme="dark"] .feature-card {
+  border-color: rgba(255, 255, 255, 0.08) !important;
   box-shadow:
-    0 2px 6px rgba(0,0,0,0.25),
-    0 8px 28px rgba(0,0,0,0.30) !important;
+    0 2px 6px rgba(0,0,0,0.3),
+    0 8px 28px rgba(0,0,0,0.35) !important;
 }
 
 [data-theme="dark"] .about-card:hover,
 [data-theme="dark"] .path-card:hover,
+[data-theme="dark"] .tmpl-card:hover,
 [data-theme="dark"] .template-card:hover,
 [data-theme="dark"] .blog-card:hover,
 [data-theme="dark"] .feature-card:hover,
-[data-theme="dark"] .stat-card:hover {
+[data-theme="dark"] .testimonial-card:hover,
+[data-theme="dark"] .story-cta-card:hover {
+  transform: translateY(-12px) scale(1.015) !important;
   box-shadow:
-    0 6px 18px rgba(0,0,0,0.45),
-    0 22px 56px rgba(0,0,0,0.40),
-    0 0 0 1px rgba(230, 0, 35, 0.20) !important;
-  border-color: rgba(230, 0, 35, 0.18) !important;
+    0 10px 24px rgba(0, 0, 0, 0.5),
+    0 28px 68px rgba(0, 0, 0, 0.45),
+    0 0 0 1.5px rgba(230, 0, 35, 0.3) !important;
+  border-color: rgba(230, 0, 35, 0.35) !important;
+}
+
+/* Smooth Icon Micro-Zoom on Card Hover */
+.about-card .about-icon img,
+.blog-card .blog-img-wrap img {
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.about-card:hover .about-icon img,
+.blog-card:hover .blog-img-wrap img {
+  transform: scale(1.08) !important;
 }
 
 /* ── 3. ENTRANCE ANIMATIONS ─────────────────────────────── */
