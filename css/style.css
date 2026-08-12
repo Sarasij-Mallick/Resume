@@ -5932,7 +5932,7 @@ h1, h2, h3, h4, h5, h6,
 .carousel-slide:nth-child(7) .about-card, .path-card:nth-child(7), .template-card:nth-child(7), .blog-card:nth-child(7), .feature-card:nth-child(7), .stat-card:nth-child(7), .testimonial-card:nth-child(7) { animation-delay: -4.2s !important; }
 .carousel-slide:nth-child(8) .about-card, .path-card:nth-child(8), .template-card:nth-child(8), .blog-card:nth-child(8), .feature-card:nth-child(8), .stat-card:nth-child(8), .testimonial-card:nth-child(8) { animation-delay: -4.9s !important; }
 
-/* Smooth Slowly-Scaling Hover Zoom Effect for the specific hovered card */
+/* Smooth Slowly-Scaling Hover Zoom + Soft Red Tint Background (Matching Filter Tab Hover Style) */
 .about-card:hover,
 .path-card:hover,
 .tmpl-card:hover,
@@ -5947,12 +5947,24 @@ h1, h2, h3, h4, h5, h6,
   animation-play-state: paused !important;
   transform: scale(1.042) translateY(-6px) !important;
   z-index: 10 !important;
-  background: var(--canva-card, #ffffff) !important;
-  border-color: var(--canva-border, rgba(226, 232, 240, 0.8)) !important;
-  box-shadow: 0 16px 38px rgba(238, 53, 80, 0.28), 0 6px 18px rgba(238, 53, 80, 0.16) !important;
+  background: rgba(238, 53, 80, 0.06) !important;
+  border-color: rgba(238, 53, 80, 0.28) !important;
+  box-shadow: 0 16px 38px rgba(238, 53, 80, 0.22), 0 6px 18px rgba(238, 53, 80, 0.12) !important;
 }
 
-/* Dark mode card hover — Smooth Slowly-Scaling Zoom + Neon Glow */
+/* Card titles turn to vibrant red on hover (Just like tab hover text) */
+.about-card:hover h3,
+.path-card:hover h3,
+.tmpl-card:hover h3,
+.template-card:hover h3,
+.blog-card:hover .blog-title,
+.feature-card:hover h3,
+.stat-card:hover .stat-num {
+  color: #e60023 !important;
+  transition: color 0.3s ease;
+}
+
+/* Dark mode card hover — Soft Red Glow Tint Background + Vibrant Text */
 [data-theme="dark"] .about-card,
 [data-theme="dark"] .path-card,
 [data-theme="dark"] .tmpl-card,
@@ -5982,9 +5994,19 @@ h1, h2, h3, h4, h5, h6,
   animation-play-state: paused !important;
   transform: scale(1.042) translateY(-6px) !important;
   z-index: 10 !important;
-  background: rgba(30, 41, 59, 0.88) !important;
-  border-color: rgba(255, 255, 255, 0.15) !important;
-  box-shadow: 0 16px 40px rgba(255, 77, 109, 0.35), 0 6px 18px rgba(255, 77, 109, 0.22) !important;
+  background: rgba(238, 53, 80, 0.14) !important;
+  border-color: rgba(255, 77, 109, 0.4) !important;
+  box-shadow: 0 16px 40px rgba(255, 77, 109, 0.35), 0 6px 18px rgba(255, 77, 109, 0.2) !important;
+}
+
+[data-theme="dark"] .about-card:hover h3,
+[data-theme="dark"] .path-card:hover h3,
+[data-theme="dark"] .tmpl-card:hover h3,
+[data-theme="dark"] .template-card:hover h3,
+[data-theme="dark"] .blog-card:hover .blog-title,
+[data-theme="dark"] .feature-card:hover h3,
+[data-theme="dark"] .stat-card:hover .stat-num {
+  color: #ff4d6d !important;
 }
 
 /* Card Icons Wave Float Motion — 100% Synced with Parent Card Rhythm */
