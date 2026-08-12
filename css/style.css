@@ -6024,25 +6024,55 @@ h1, h2, h3, h4, h5, h6,
   100% { transform: translateY(0px); }
 }
 
-/* Nav link underline slide animation */
+/* Nav link underline slide animation (Light & Dark Theme Unified) */
 .nav-link {
   position: relative;
+  transition: color 0.25s ease !important;
 }
+
 .nav-link::after {
   content: '';
   position: absolute;
-  bottom: 4px;
+  bottom: -3px;
   left: 50%;
   transform: translateX(-50%) scaleX(0);
-  width: 16px;
-  height: 2px;
-  background: var(--canva-purple);
-  border-radius: 2px;
-  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  width: 20px;
+  height: 3px;
+  background: #e60023 !important;
+  border-radius: 9999px;
+  box-shadow: 0 2px 8px rgba(230, 0, 35, 0.4);
+  transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+  pointer-events: none;
 }
+
 .nav-link:hover::after,
 .nav-link.active::after {
-  transform: translateX(-50%) scaleX(1);
+  transform: translateX(-50%) scaleX(1) !important;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #e60023 !important;
+}
+
+/* Dark Theme Header Nav Underline Bar & Color */
+[data-theme="dark"] .nav-link {
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .nav-link::after {
+  background: #ff3355 !important;
+  box-shadow: 0 2px 10px rgba(255, 51, 85, 0.6) !important;
+}
+
+[data-theme="dark"] .nav-link:hover::after,
+[data-theme="dark"] .nav-link.active::after {
+  transform: translateX(-50%) scaleX(1) !important;
+}
+
+[data-theme="dark"] .nav-link:hover,
+[data-theme="dark"] .nav-link.active {
+  color: #ff3355 !important;
 }
 
 /* Completely Hide Scrollbar across website, blog & modal (Scroll remains 100% functional) */
