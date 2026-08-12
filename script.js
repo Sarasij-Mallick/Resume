@@ -2673,7 +2673,27 @@ function showToast(msg, timeout = 3000) {
     }
   });
 
-  // Mouse Click effects disabled (no circles/rings on click)
+  // Minimal subtle star burst on click (3 tiny stars, no circles)
+  window.addEventListener("pointerdown", (e) => {
+    if (e.pointerType === "touch" || isMobileOrTablet()) return;
+    for (let i = 0; i < 3; i++) {
+      const c = colors[Math.floor(Math.random() * colors.length)];
+      const angle = (Math.PI * 2 / 3) * i + Math.random() * 0.4;
+      const vel = Math.random() * 0.8 + 0.3;
+      particles.push({
+        x: e.clientX,
+        y: e.clientY,
+        size: Math.random() * 2 + 1,
+        vx: Math.cos(angle) * vel,
+        vy: Math.sin(angle) * vel,
+        alpha: 0.6,
+        decay: Math.random() * 0.02 + 0.015,
+        rotation: Math.random() * Math.PI,
+        spin: (Math.random() - 0.5) * 0.08,
+        color: c
+      });
+    }
+  });
 
   function drawStar(x, y, size, rotation, alpha, color) {
     ctx.save();
