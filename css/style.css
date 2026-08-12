@@ -5664,7 +5664,7 @@ h1, h2, h3, h4, h5, h6,
   transform: none !important;
 }
 
-/* Clean Hover with Thin & Deep Red Border + Crisp Outer Glow */
+/* Clean Hover with Thin & Medium Red Border + Smooth Glow */
 .about-card:hover,
 .path-card:hover,
 .tmpl-card:hover,
@@ -5678,13 +5678,13 @@ h1, h2, h3, h4, h5, h6,
 .contact-card-wrap:hover {
   transform: none !important;
   background: var(--canva-card, #ffffff) !important;
-  border-color: #e60023 !important;
-  box-shadow: 0 8px 24px rgba(230, 0, 35, 0.18), 0 0 0 1px #e60023 !important;
+  border-color: #ee3550 !important;
+  box-shadow: 0 8px 24px rgba(238, 53, 80, 0.2), 0 0 0 1px #ee3550 !important;
   transition: none !important;
   animation: none !important;
 }
 
-/* Dark mode normal card hover — Thin & Deep Red Border */
+/* Dark mode normal card hover — Thin & Medium Red Border */
 [data-theme="dark"] .about-card,
 [data-theme="dark"] .path-card,
 [data-theme="dark"] .tmpl-card,
@@ -5715,8 +5715,8 @@ h1, h2, h3, h4, h5, h6,
 [data-theme="dark"] .contact-card-wrap:hover {
   transform: none !important;
   background: rgba(30, 41, 59, 0.75) !important;
-  border-color: #ff3355 !important;
-  box-shadow: 0 8px 24px rgba(255, 51, 85, 0.28), 0 0 0 1px #ff3355 !important;
+  border-color: #ff4d6d !important;
+  box-shadow: 0 8px 24px rgba(255, 77, 109, 0.25), 0 0 0 1px #ff4d6d !important;
   transition: none !important;
   animation: none !important;
 }
