@@ -5647,7 +5647,9 @@ h1, h2, h3, h4, h5, h6,
 
 /* ── 2. CARD STYLE UPGRADE ───────────────────────────────── */
 
-/* Base card reset with smooth glassmorphic finish */
+/* ── 2. UNIFIED HOVER LIFT EFFECT SYSTEM ─────────────────── */
+
+/* Base card structure with ultra-smooth 0.6s float transition */
 .about-card,
 .path-card,
 .tmpl-card,
@@ -5666,70 +5668,16 @@ h1, h2, h3, h4, h5, h6,
     0 4px 12px rgba(0, 0, 0, 0.03),
     0 10px 28px rgba(0, 0, 0, 0.05) !important;
   transition:
-    transform 0.75s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 0.75s cubic-bezier(0.16, 1, 0.3, 1),
-    border-color 0.5s ease,
-    background 0.5s ease !important;
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.4s ease,
+    background 0.4s ease !important;
   position: relative;
   overflow: hidden;
   will-change: transform, box-shadow;
 }
 
-/* All Card Hover animations and shine sweeps disabled completely */
-.about-card::after,
-.path-card::after,
-.tmpl-card::after,
-.template-card::after,
-.blog-card::after,
-.feature-card::after,
-.testimonial-card::after,
-.story-cta-card::after,
-.contact-card-wrap::after,
-.about-card:hover::after,
-.path-card:hover::after,
-.tmpl-card:hover::after,
-.template-card:hover::after,
-.blog-card:hover::after,
-.feature-card:hover::after,
-.testimonial-card:hover::after,
-.story-cta-card:hover::after,
-.contact-card-wrap:hover::after {
-  display: none !important;
-  animation: none !important;
-}
-
-/* Explicitly disable shine reflection on stats strip items */
-.stat-item::after,
-.stat-card::after,
-.about-stats-strip::after,
-.stat-item:hover::after,
-.stat-card:hover::after,
-.about-stats-strip:hover::after {
-  display: none !important;
-  animation: none !important;
-}
-
-
-/* ── Master Animated Hover Lift Effect System ───────────────── */
-
-@keyframes cardAnimatedSlowLift {
-  0% {
-    transform: translateY(0px) scale(1);
-  }
-  100% {
-    transform: translateY(-10px) scale(1.018);
-  }
-}
-
-@keyframes cardIconAnimatedBob {
-  0%, 100% {
-    transform: scale(1.1) translateY(-3px) rotate(0deg);
-  }
-  50% {
-    transform: scale(1.15) translateY(-7px) rotate(2.5deg);
-  }
-}
-
+/* Master Hover Lift Effect — Smooth 10px Float & Glowing Red Shadow Tint */
 .about-card:hover,
 .path-card:hover,
 .tmpl-card:hover,
@@ -5741,12 +5689,30 @@ h1, h2, h3, h4, h5, h6,
 .story-cta-card:hover,
 .tmpl-select-card:hover,
 .contact-card-wrap:hover {
-  animation: cardAnimatedSlowLift 1.4s cubic-bezier(0.16, 1, 0.3, 1) 1 forwards !important;
+  transform: translateY(-10px) scale(1.015) !important;
   border-color: rgba(230, 0, 35, 0.38) !important;
   box-shadow:
     0 14px 36px rgba(0, 0, 0, 0.08),
     0 28px 60px rgba(230, 0, 35, 0.16),
     0 0 0 2px rgba(230, 0, 35, 0.24) !important;
+  animation: none !important;
+}
+
+/* Dark mode smooth card hover float glow */
+[data-theme="dark"] .about-card,
+[data-theme="dark"] .path-card,
+[data-theme="dark"] .tmpl-card,
+[data-theme="dark"] .template-card,
+[data-theme="dark"] .blog-card,
+[data-theme="dark"] .feature-card,
+[data-theme="dark"] .stat-card,
+[data-theme="dark"] .testimonial-card,
+[data-theme="dark"] .story-cta-card,
+[data-theme="dark"] .tmpl-select-card,
+[data-theme="dark"] .contact-card-wrap {
+  border-color: rgba(255, 255, 255, 0.09) !important;
+  background: rgba(30, 41, 59, 0.75) !important;
+  backdrop-filter: blur(12px) !important;
 }
 
 [data-theme="dark"] .about-card:hover,
@@ -5760,49 +5726,31 @@ h1, h2, h3, h4, h5, h6,
 [data-theme="dark"] .story-cta-card:hover,
 [data-theme="dark"] .tmpl-select-card:hover,
 [data-theme="dark"] .contact-card-wrap:hover {
-  animation: cardAnimatedSlowLift 1.4s cubic-bezier(0.16, 1, 0.3, 1) 1 forwards !important;
+  transform: translateY(-10px) scale(1.015) !important;
   border-color: rgba(230, 0, 35, 0.45) !important;
   box-shadow:
     0 14px 40px rgba(0, 0, 0, 0.6),
     0 30px 76px rgba(230, 0, 35, 0.28),
     0 0 0 2px rgba(230, 0, 35, 0.35) !important;
+  animation: none !important;
 }
 
-/* Animated inner icon & image floating motion on hover */
+/* Smooth Icon & Image Zoom on Card Hover */
+.about-card .about-icon img,
+.path-card .path-icon img,
+.blog-card .blog-img-wrap img,
+.tmpl-card img {
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
 .about-card:hover .about-icon img,
 .path-card:hover .path-icon img {
-  animation: cardIconAnimatedBob 2.5s ease-in-out infinite !important;
+  transform: scale(1.1) translateY(-4px) !important;
 }
 
 .blog-card:hover .blog-img-wrap img,
 .tmpl-card:hover img {
   transform: scale(1.06) !important;
-  transition: transform 0.45s ease !important;
-}
-
-.about-icon img,
-.path-icon img {
-  animation: none !important;
-}
-
-/* Glowing Radial Aura Expansion on Card Hover */
-.about-icon::before, .path-icon::before {
-  content: "";
-  position: absolute;
-  inset: -10px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(230, 0, 35, 0.28) 0%, rgba(230, 0, 35, 0) 70%);
-  opacity: 0;
-  transform: scale(0.5);
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.about-card:hover .about-icon::before,
-.path-card:hover .path-icon::before {
-  opacity: 0 !important;
-  display: none !important;
 }
 
 /* Kicker Badge Ambient Glow Pulse */
