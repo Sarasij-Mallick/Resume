@@ -5712,15 +5712,12 @@ h1, h2, h3, h4, h5, h6,
 
 /* ── Master Animated Hover Lift Effect System ───────────────── */
 
-@keyframes cardAnimatedSpringLift {
+@keyframes cardAnimatedSlowLift {
   0% {
     transform: translateY(0px) scale(1);
   }
-  60% {
-    transform: translateY(-11px) scale(1.02);
-  }
   100% {
-    transform: translateY(-9px) scale(1.016);
+    transform: translateY(-10px) scale(1.018);
   }
 }
 
@@ -5744,7 +5741,7 @@ h1, h2, h3, h4, h5, h6,
 .story-cta-card:hover,
 .tmpl-select-card:hover,
 .contact-card-wrap:hover {
-  animation: cardAnimatedSpringLift 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) 1 forwards !important;
+  animation: cardAnimatedSlowLift 1.4s cubic-bezier(0.16, 1, 0.3, 1) 1 forwards !important;
   border-color: rgba(230, 0, 35, 0.38) !important;
   box-shadow:
     0 14px 36px rgba(0, 0, 0, 0.08),
@@ -5763,7 +5760,7 @@ h1, h2, h3, h4, h5, h6,
 [data-theme="dark"] .story-cta-card:hover,
 [data-theme="dark"] .tmpl-select-card:hover,
 [data-theme="dark"] .contact-card-wrap:hover {
-  animation: cardAnimatedSpringLift 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) 1 forwards !important;
+  animation: cardAnimatedSlowLift 1.4s cubic-bezier(0.16, 1, 0.3, 1) 1 forwards !important;
   border-color: rgba(230, 0, 35, 0.45) !important;
   box-shadow:
     0 14px 40px rgba(0, 0, 0, 0.6),
