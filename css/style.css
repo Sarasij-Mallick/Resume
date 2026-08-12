@@ -478,8 +478,8 @@ body {
 
 [data-theme="dark"] .path-card:hover {
   transform: translateY(-12px) scale(1.015) !important;
-  border-color: rgba(230, 0, 35, 0.35) !important;
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.5), 0 28px 68px rgba(0, 0, 0, 0.45), 0 0 0 1.5px rgba(230, 0, 35, 0.3) !important;
+  border-color: rgba(230, 0, 35, 0.14) !important;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.5), 0 28px 68px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(230, 0, 35, 0.08) !important;
 }
 
 [data-theme="dark"] .path-title {
@@ -2013,8 +2013,8 @@ button.selected,
 
 .tmpl-card:hover {
   transform: translateY(-8px);
-  border-color: #e60023;
-  box-shadow: 0 14px 40px rgba(230, 0, 35, 0.25), 0 0 25px rgba(255, 90, 95, 0.3);
+  border-color: rgba(230, 0, 35, 0.2);
+  box-shadow: 0 14px 40px rgba(230, 0, 35, 0.10), 0 0 25px rgba(255, 90, 95, 0.08);
 }
 
 .tmpl-preview-box {
@@ -2389,9 +2389,9 @@ button.selected,
 }
 
 .about-card:hover {
-  border-color: rgba(230, 0, 35, 0.25) !important;
+  border-color: rgba(230, 0, 35, 0.1) !important;
   transform: translateY(-12px) scale(1.015) !important;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06), 0 24px 50px rgba(0, 0, 0, 0.14), 0 0 0 1.5px rgba(230, 0, 35, 0.18) !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06), 0 24px 50px rgba(0, 0, 0, 0.14), 0 0 0 1px rgba(230, 0, 35, 0.08) !important;
 }
 
 .about-icon {
@@ -2577,9 +2577,9 @@ button.selected,
 }
 
 .blog-card:hover {
-  border-color: rgba(230, 0, 35, 0.25) !important;
+  border-color: rgba(230, 0, 35, 0.12) !important;
   transform: translateY(-12px) scale(1.015) !important;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06), 0 24px 50px rgba(0, 0, 0, 0.14), 0 0 0 1.5px rgba(230, 0, 35, 0.18) !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06), 0 24px 50px rgba(0, 0, 0, 0.14), 0 0 0 1px rgba(230, 0, 35, 0.08) !important;
 }
 
 .blog-img-wrap {
@@ -5965,9 +5965,9 @@ h1, h2, h3, h4, h5, h6,
   animation-play-state: paused !important;
   transform: scale(1.042) translateY(-6px) !important;
   z-index: 10 !important;
-  background: rgba(238, 53, 80, 0.06) !important;
-  border-color: rgba(238, 53, 80, 0.28) !important;
-  box-shadow: 0 16px 38px rgba(238, 53, 80, 0.22), 0 6px 18px rgba(238, 53, 80, 0.12) !important;
+  background: rgba(238, 53, 80, 0.03) !important;
+  border-color: rgba(238, 53, 80, 0.14) !important;
+  box-shadow: 0 12px 28px rgba(238, 53, 80, 0.10), 0 4px 12px rgba(238, 53, 80, 0.06) !important;
 }
 
 .contact-card-wrap:hover {
@@ -6018,9 +6018,9 @@ h1, h2, h3, h4, h5, h6,
   animation-play-state: paused !important;
   transform: scale(1.042) translateY(-6px) !important;
   z-index: 10 !important;
-  background: rgba(238, 53, 80, 0.14) !important;
-  border-color: rgba(255, 77, 109, 0.4) !important;
-  box-shadow: 0 16px 40px rgba(255, 77, 109, 0.35), 0 6px 18px rgba(255, 77, 109, 0.2) !important;
+  background: rgba(238, 53, 80, 0.08) !important;
+  border-color: rgba(255, 77, 109, 0.22) !important;
+  box-shadow: 0 12px 28px rgba(255, 77, 109, 0.16), 0 4px 12px rgba(255, 77, 109, 0.08) !important;
 }
 
 [data-theme="dark"] .contact-card-wrap:hover {
@@ -6081,7 +6081,7 @@ h1, h2, h3, h4, h5, h6,
     box-shadow: 0 0 0 0 rgba(230, 0, 35, 0);
   }
   50% {
-    box-shadow: 0 0 16px 2px rgba(230, 0, 35, 0.22);
+    box-shadow: 0 0 8px 1px rgba(230, 0, 35, 0.08);
   }
 }
 
