@@ -1302,7 +1302,7 @@ options.forEach(function (card) {
     const wrapper = document.createElement("div");
     wrapper.className = "form";
     wrapper.innerHTML = `<div class="field"><label>Professional Summary</label><textarea id="summaryText">${escape(state.summary.text || "")}</textarea><div class="small muted"><span id="charCount">0</span> characters</div></div>
-      <div class="field"><label>AI Suggestions</label><div class="entry"><div class="small muted">Try: "Recent Computer Science graduate with internship experience in full-stack development..."</div></div></div>
+      <div class="field"><label>Professional Suggestions</label><div class="entry"><div class="small muted">Try: "Recent Computer Science graduate with internship experience in full-stack development..."</div></div></div>
       <div class="actions"><div style="flex:1"></div><button id="saveSum" class="btn neutral">Save</button><button id="toNext7" class="btn primary">Next</button></div>`;
     const ta = wrapper.querySelector("#summaryText");
     const charCount = wrapper.querySelector("#charCount");
@@ -2835,7 +2835,7 @@ function showToast(msg, timeout = 3000) {
         <div class="screensaver-ambient-glow"></div>
         <div class="screensaver-content">
           <div class="screensaver-header-tags">
-            <span class="ss-badge"><span class="ss-dot"></span> CAREER AI STUDIO</span>
+            <span class="ss-badge"><span class="ss-dot"></span> CAREER PRO STUDIO</span>
             <span class="ss-badge accent">✨ ATS OPTIMIZED</span>
           </div>
           <div id="screensaverClock" class="screensaver-clock">12:00:00 PM</div>
