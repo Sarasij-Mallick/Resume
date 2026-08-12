@@ -2785,3 +2785,180 @@ function showToast(msg, timeout = 3000) {
 
   requestAnimationFrame(render);
 })();
+
+/* ---------- Global Professional Typing Quote Screensaver (60s Inactivity) ---------- */
+(function initProfessionalScreensaver() {
+  const IDLE_TIMEOUT_MS = 60000; // Exactly 60 seconds (59s + 1s)
+  let idleTimer = null;
+  let clockInterval = null;
+  let typewriterTimeout = null;
+
+  const quotes = [
+    '"The secret of getting ahead is getting started." — Mark Twain',
+    '"Your work is going to fill a large part of your life, and the only way to be truly satisfied is to do what you believe is great work." — Steve Jobs',
+    '"Opportunities don\'t happen, you create them." — Chris Grosser',
+    '"Success is not final, failure is not fatal: It is the courage to continue that counts." — Winston Churchill',
+    '"The future belongs to those who believe in the beauty of their dreams." — Eleanor Roosevelt',
+    '"Failure is simply the opportunity to begin again, this time more intelligently." — Henry Ford',
+    '"Believe you can and you\'re halfway there." — Theodore Roosevelt',
+    '"Strive not to be a success, but rather to be of value." — Albert Einstein'
+  ];
+
+  let currentQuoteIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+
+  function ensureScreensaverMarkup() {
+    let overlay = document.getElementById("screensaverOverlay");
+    if (!overlay) {
+      overlay = document.createElement("div");
+      overlay.id = "screensaverOverlay";
+      overlay.className = "screensaver-overlay";
+      overlay.setAttribute("aria-hidden", "true");
+      overlay.setAttribute("role", "dialog");
+      overlay.setAttribute("aria-label", "Idle Screensaver");
+      overlay.innerHTML = `
+        <div class="screensaver-ambient-glow"></div>
+        <div class="screensaver-content">
+          <div class="screensaver-badge">
+            <span class="ss-dot"></span> IDE SCREENSAVER MODE
+          </div>
+          <div id="screensaverClock" class="screensaver-clock">12:00:00 PM</div>
+          <div id="screensaverDate" class="screensaver-date">Wednesday, August 12, 2026</div>
+          <div class="screensaver-quote-box">
+            <p id="screensaverTypedQuote" class="screensaver-typed-quote"></p><span class="typed-cursor">|</span>
+          </div>
+          <div class="screensaver-wake-hint">
+            <span class="pulse-ring"></span> Move mouse or press any key to resume
+          </div>
+        </div>
+      `;
+      document.body.appendChild(overlay);
+    }
+    return overlay;
+  }
+
+  function updateClock() {
+    const clockEl = document.getElementById("screensaverClock");
+    const dateEl = document.getElementById("screensaverDate");
+    const now = new Date();
+
+    if (clockEl) {
+      clockEl.textContent = now.toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true
+      });
+    }
+
+    if (dateEl) {
+      dateEl.textContent = now.toLocaleDateString("en-US", {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+      });
+    }
+  }
+
+  function typeQuote() {
+    const quoteEl = document.getElementById("screensaverTypedQuote");
+    if (!quoteEl) return;
+
+    const fullQuote = quotes[currentQuoteIndex];
+
+    if (isDeleting) {
+      charIndex--;
+      quoteEl.textContent = fullQuote.substring(0, charIndex);
+      if (charIndex === 0) {
+        isDeleting = false;
+        currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
+        typewriterTimeout = setTimeout(typeQuote, 500);
+        return;
+      }
+      typewriterTimeout = setTimeout(typeQuote, 20);
+    } else {
+      charIndex++;
+      quoteEl.textContent = fullQuote.substring(0, charIndex);
+      if (charIndex === fullQuote.length) {
+        isDeleting = true;
+        typewriterTimeout = setTimeout(typeQuote, 3500); // Hold full quote for 3.5s
+        return;
+      }
+      typewriterTimeout = setTimeout(typeQuote, 45);
+    }
+  }
+
+  function showScreensaver() {
+    const overlay = ensureScreensaverMarkup();
+    updateClock();
+
+    if (!clockInterval) {
+      clockInterval = setInterval(updateClock, 1000);
+    }
+
+    charIndex = 0;
+    isDeleting = false;
+    if (typewriterTimeout) clearTimeout(typewriterTimeout);
+    typeQuote();
+
+    overlay.setAttribute("aria-hidden", "false");
+  }
+
+  function hideScreensaver() {
+    const overlay = document.getElementById("screensaverOverlay");
+    if (overlay && overlay.getAttribute("aria-hidden") === "false") {
+      overlay.setAttribute("aria-hidden", "true");
+    }
+
+    if (clockInterval) {
+      clearInterval(clockInterval);
+      clockInterval = null;
+    }
+
+    if (typewriterTimeout) {
+      clearTimeout(typewriterTimeout);
+      typewriterTimeout = null;
+    }
+
+    resetIdleTimer();
+  }
+
+  function resetIdleTimer() {
+    if (idleTimer) clearTimeout(idleTimer);
+    idleTimer = setTimeout(showScreensaver, IDLE_TIMEOUT_MS);
+  }
+
+  let lastMouseX = -1;
+  let lastMouseY = -1;
+
+  function handleUserActivity(e) {
+    if (e && e.type === "mousemove") {
+      if (lastMouseX !== -1 && Math.abs(e.clientX - lastMouseX) < 5 && Math.abs(e.clientY - lastMouseY) < 5) {
+        return; // Ignore micro jitter
+      }
+      lastMouseX = e.clientX;
+      lastMouseY = e.clientY;
+    }
+
+    const overlay = document.getElementById("screensaverOverlay");
+    if (overlay && overlay.getAttribute("aria-hidden") === "false") {
+      hideScreensaver();
+    } else {
+      resetIdleTimer();
+    }
+  }
+
+  const activityEvents = ["mousemove", "mousedown", "keydown", "touchstart", "pointerdown", "scroll"];
+  activityEvents.forEach((evtName) => {
+    window.addEventListener(evtName, handleUserActivity, { passive: true });
+  });
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", resetIdleTimer);
+  } else {
+    resetIdleTimer();
+  }
+})();
+
