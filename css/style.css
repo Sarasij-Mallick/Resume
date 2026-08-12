@@ -2688,70 +2688,58 @@ button.selected,
 .blog-modal-close {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 6px 14px 6px 16px;
-  background: rgba(230, 0, 35, 0.06);
-  border: 1.5px solid rgba(230, 0, 35, 0.22);
-  border-radius: 9999px;
+  justify-content: center;
+  padding: 0;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 50%;
   cursor: grab;
   user-select: none;
   -webkit-user-select: none;
   touch-action: none;
-  color: var(--canva-dark);
-  font-family: 'Outfit', sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+  box-shadow: none !important;
   outline: none;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
 }
 
 .blog-modal-close.dragging {
   cursor: grabbing !important;
 }
 
-.blog-modal-close .close-btn-text {
-  color: var(--canva-dark);
-  transition: color 0.25s ease;
-}
-
 .blog-modal-close .close-icon-wrap {
-  width: 26px;
-  height: 26px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   background: #e60023;
   color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 3px 10px rgba(230, 0, 35, 0.35);
+  box-shadow: 0 4px 14px rgba(230, 0, 35, 0.35);
   transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.25s ease, box-shadow 0.25s ease;
 }
 
 .blog-modal-close .close-icon-wrap svg {
-  width: 11px;
-  height: 11px;
+  width: 14px;
+  height: 14px;
   stroke-width: 2.4;
   transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .blog-modal-close:hover {
-  background: rgba(230, 0, 35, 0.12) !important;
-  border-color: #e60023 !important;
-  transform: scale(1.06) translateY(-1px) !important;
-  box-shadow: 0 8px 22px rgba(230, 0, 35, 0.25) !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 .blog-modal-close:hover .close-icon-wrap {
-  transform: rotate(180deg) scale(1.1);
+  transform: rotate(180deg) scale(1.12);
   background: #ee3550;
-  box-shadow: 0 6px 16px rgba(230, 0, 35, 0.45);
+  box-shadow: 0 8px 22px rgba(230, 0, 35, 0.45);
 }
 
-.blog-modal-close:active {
-  transform: scale(0.96) !important;
+.blog-modal-close:active .close-icon-wrap {
+  transform: scale(0.94);
 }
 
 .blog-modal-body {
