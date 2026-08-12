@@ -5540,7 +5540,7 @@ h1, h2, h3, h4, h5, h6,
 .blog-card:hover::after,
 .feature-card:hover::after,
 .stat-card:hover::after {
-  animation: cardShimmerSweep 3s ease-in-out 1 forwards;
+  animation: cardShimmerSweep 1s ease-in-out 1 forwards;
 }
 
 
