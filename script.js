@@ -2917,7 +2917,6 @@ function showToast(msg, timeout = 3000) {
         <div class="screensaver-content">
           <div class="screensaver-header-tags">
             <span class="ss-badge"><span class="ss-dot"></span> CAREER PRO STUDIO</span>
-            <span class="ss-badge accent">GLOBAL WORLD CLOCK</span>
           </div>
           <div id="screensaverClock" class="screensaver-clock">12:00:00 PM</div>
           <div id="screensaverDate" class="screensaver-date">Wednesday, August 12, 2026</div>
