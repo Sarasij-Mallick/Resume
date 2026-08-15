@@ -5922,8 +5922,7 @@ h1, h2, h3, h4, h5, h6,
 .feature-card,
 .stat-card,
 .testimonial-card,
-.story-cta-card,
-.tmpl-select-card {
+.story-cta-card {
   border-radius: 20px !important;
   border: 1px solid var(--canva-border, rgba(226, 232, 240, 0.8)) !important;
   background: var(--canva-card, #ffffff) !important;
@@ -5938,7 +5937,12 @@ h1, h2, h3, h4, h5, h6,
 .contact-card-wrap {
   animation: none !important;
   transform: none !important;
-  transition: box-shadow 0.3s ease !important;
+}
+
+/* Template select cards — No floating animation */
+.tmpl-select-card {
+  animation: none !important;
+  transform: none;
 }
 
 /* Sequential wave animation delays across card series (ঢেউয়ের মতো ভাসার জন্য) */
