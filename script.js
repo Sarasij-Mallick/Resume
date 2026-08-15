@@ -2915,9 +2915,7 @@ function showToast(msg, timeout = 3000) {
         <canvas id="screensaverCanvas" class="screensaver-canvas"></canvas>
         <div class="screensaver-ambient-glow"></div>
         <div class="screensaver-content">
-          <div class="screensaver-header-tags">
-            <span class="ss-badge"><span class="ss-dot"></span> CAREER PRO STUDIO</span>
-          </div>
+
           <div id="screensaverClock" class="screensaver-clock">12:00:00 PM</div>
           <div id="screensaverDate" class="screensaver-date">Wednesday, August 12, 2026</div>
 
