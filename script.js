@@ -335,24 +335,24 @@ options.forEach(function (card) {
 
   const TEMPLATES_THEMES = {
     "modern-minimalist": { key: "modern-minimalist", name: "Modern Minimalist", category: "Modern", tag: "Clean · ATS Optimized", gradient: "linear-gradient(135deg, #7d2ae8 0%, #00c4cc 100%)", primary: "#7d2ae8", accent: "#00c4cc", layout: "modern" },
-    "modern-tech": { key: "modern-tech", name: "Modern Tech Specialist", category: "Modern", tag: "Structured · Developer Friendly", gradient: "linear-gradient(135deg, #0f172a 0%, #3b82f6 100%)", primary: "#3b82f6", accent: "#0f172a", layout: "modern" },
-    "modern-pro": { key: "modern-pro", name: "Modern Professional", category: "Modern", tag: "Dynamic · Sleek Design", gradient: "linear-gradient(135deg, #6366f1 0%, #a855f7 100%)", primary: "#6366f1", accent: "#a855f7", layout: "modern" },
+    "modern-tech": { key: "modern-tech", name: "Modern Tech Specialist", category: "Modern", tag: "Structured · Developer Friendly", gradient: "linear-gradient(135deg, #0f172a 0%, #3b82f6 100%)", primary: "#3b82f6", accent: "#0f172a", layout: "tech" },
+    "modern-pro": { key: "modern-pro", name: "Modern Professional", category: "Modern", tag: "Dynamic · Sleek Design", gradient: "linear-gradient(135deg, #6366f1 0%, #a855f7 100%)", primary: "#6366f1", accent: "#a855f7", layout: "modern-pro" },
 
     "minimalist-essential": { key: "minimalist-essential", name: "Minimalist Essential", category: "Minimalist", tag: "Pure · Minimalist Lines", gradient: "linear-gradient(135deg, #334155 0%, #475569 100%)", primary: "#334155", accent: "#64748b", layout: "minimalist" },
-    "minimalist-clean-slate": { key: "minimalist-clean-slate", name: "Clean Slate", category: "Minimalist", tag: "Simple · Ultra Readable", gradient: "linear-gradient(135deg, #1e293b 0%, #0f172a 100%)", primary: "#1e293b", accent: "#334155", layout: "minimalist" },
-    "minimalist-monochrome": { key: "minimalist-monochrome", name: "Monochrome Classic", category: "Minimalist", tag: "Timeless · Compact Grid", gradient: "linear-gradient(135deg, #525252 0%, #262626 100%)", primary: "#262626", accent: "#525252", layout: "minimalist" },
+    "minimalist-clean-slate": { key: "minimalist-clean-slate", name: "Clean Slate", category: "Minimalist", tag: "Simple · Ultra Readable", gradient: "linear-gradient(135deg, #1e293b 0%, #0f172a 100%)", primary: "#1e293b", accent: "#334155", layout: "clean-slate" },
+    "minimalist-monochrome": { key: "minimalist-monochrome", name: "Monochrome Classic", category: "Minimalist", tag: "Timeless · Compact Grid", gradient: "linear-gradient(135deg, #525252 0%, #262626 100%)", primary: "#262626", accent: "#525252", layout: "monochrome" },
 
     "creative-designer": { key: "creative-designer", name: "Creative Designer", category: "Creative", tag: "Vibrant · Portfolio Ready", gradient: "linear-gradient(135deg, #7d2ae8 0%, #f43f5e 100%)", primary: "#f43f5e", accent: "#7d2ae8", layout: "creative" },
-    "creative-artistic": { key: "creative-artistic", name: "Artistic Showcase", category: "Creative", tag: "Bold · Media & Design", gradient: "linear-gradient(135deg, #ec4899 0%, #f97316 100%)", primary: "#ec4899", accent: "#f97316", layout: "creative" },
-    "creative-innovator": { key: "creative-innovator", name: "Studio Innovator", category: "Creative", tag: "Expressive · Studio Ready", gradient: "linear-gradient(135deg, #8b5cf6 0%, #d946ef 100%)", primary: "#8b5cf6", accent: "#d946ef", layout: "creative" },
+    "creative-artistic": { key: "creative-artistic", name: "Artistic Showcase", category: "Creative", tag: "Bold · Media & Design", gradient: "linear-gradient(135deg, #ec4899 0%, #f97316 100%)", primary: "#ec4899", accent: "#f97316", layout: "artistic" },
+    "creative-innovator": { key: "creative-innovator", name: "Studio Innovator", category: "Creative", tag: "Expressive · Studio Ready", gradient: "linear-gradient(135deg, #8b5cf6 0%, #d946ef 100%)", primary: "#8b5cf6", accent: "#d946ef", layout: "innovator" },
 
     "executive-pro": { key: "executive-pro", name: "Executive Professional", category: "Executive", tag: "Formal · High Impact", gradient: "linear-gradient(135deg, #10b981 0%, #00c4cc 100%)", primary: "#10b981", accent: "#00c4cc", layout: "executive" },
-    "executive-director": { key: "executive-director", name: "Corporate Director", category: "Executive", tag: "Authoritative · Leadership Focus", gradient: "linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%)", primary: "#1e3a8a", accent: "#0f172a", layout: "executive" },
-    "executive-manager": { key: "executive-manager", name: "Senior Manager", category: "Executive", tag: "Structured · Executive Suite", gradient: "linear-gradient(135deg, #1e1b4b 0%, #312e81 100%)", primary: "#312e81", accent: "#1e1b4b", layout: "executive" },
+    "executive-director": { key: "executive-director", name: "Corporate Director", category: "Executive", tag: "Authoritative · Leadership Focus", gradient: "linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%)", primary: "#1e3a8a", accent: "#0f172a", layout: "director" },
+    "executive-manager": { key: "executive-manager", name: "Senior Manager", category: "Executive", tag: "Structured · Executive Suite", gradient: "linear-gradient(135deg, #1e1b4b 0%, #312e81 100%)", primary: "#312e81", accent: "#1e1b4b", layout: "manager" },
 
     "fresher-academic": { key: "fresher-academic", name: "Fresher Academic", category: "Fresher", tag: "Student Friendly · First Job", gradient: "linear-gradient(135deg, #f59e0b 0%, #ef4444 100%)", primary: "#f59e0b", accent: "#ef4444", layout: "fresher" },
-    "fresher-starter": { key: "fresher-starter", name: "Entry Level Starter", category: "Fresher", tag: "Skills First · Internship Ready", gradient: "linear-gradient(135deg, #14b8a6 0%, #06b6d4 100%)", primary: "#14b8a6", accent: "#06b6d4", layout: "fresher" },
-    "fresher-scholar": { key: "fresher-scholar", name: "Graduate Scholar", category: "Fresher", tag: "Academic Focus · Scholar Layout", gradient: "linear-gradient(135deg, #a855f7 0%, #ec4899 100%)", primary: "#a855f7", accent: "#ec4899", layout: "fresher" }
+    "fresher-starter": { key: "fresher-starter", name: "Entry Level Starter", category: "Fresher", tag: "Skills First · Internship Ready", gradient: "linear-gradient(135deg, #14b8a6 0%, #06b6d4 100%)", primary: "#14b8a6", accent: "#06b6d4", layout: "starter" },
+    "fresher-scholar": { key: "fresher-scholar", name: "Graduate Scholar", category: "Fresher", tag: "Academic Focus · Scholar Layout", gradient: "linear-gradient(135deg, #a855f7 0%, #ec4899 100%)", primary: "#a855f7", accent: "#ec4899", layout: "scholar" }
   };
 
   const stepsMeta = [
@@ -1773,6 +1773,475 @@ options.forEach(function (card) {
                 <div style="font-size:12.5px; color:#64748b">${escape(edu.institution || "")}</div>
               </div>
             `).join("")}
+          </div>
+        </div>
+      </div>`;
+    }
+
+    // 1. Tech Specialist Layout (Developer friendly, terminal vibes, monospace chips)
+    if (theme.layout === "tech") {
+      return `<div style="font-family:'Inter', -apple-system, sans-serif; color:#0f172a; line-height:1.5;">
+        <div style="background:#0f172a; padding:24px; border-radius:10px; color:#ffffff; margin-bottom:20px; border-left:5px solid ${theme.primary}; display:flex; justify-content:space-between; align-items:center">
+          <div>
+            <div style="font-family:monospace; font-size:11px; color:#38bdf8; letter-spacing:1px; margin-bottom:4px">&lt;DEVELOPER_PROFILE /&gt;</div>
+            <h1 style="margin:0 0 4px; font-size:28px; font-weight:800; color:#f8fafc">${nameText}</h1>
+            <div style="font-size:14px; color:#94a3b8; font-weight:600">${headlineText}</div>
+          </div>
+          ${p.photo ? `<img src="${p.photo}" style="width:68px;height:68px;border-radius:8px;object-fit:cover;border:2px solid #38bdf8">` : ""}
+        </div>
+        <div style="display:flex; flex-wrap:wrap; gap:12px; font-size:12px; color:#475569; padding-bottom:12px; border-bottom:1px solid #cbd5e1; margin-bottom:20px; font-family:monospace">
+          <span style="background:#f1f5f9;padding:3px 8px;border-radius:4px">📧 ${emailText}</span>
+          <span style="background:#f1f5f9;padding:3px 8px;border-radius:4px">📞 ${phoneText}</span>
+          <span style="background:#f1f5f9;padding:3px 8px;border-radius:4px">📍 ${addressText}</span>
+          ${p.portfolio ? `<a href="${escape(p.portfolio)}" target="_blank" style="background:#e0f2fe;color:#0284c7;padding:3px 8px;border-radius:4px;text-decoration:none">🔗 Portfolio</a>` : ""}
+          ${p.linkedin ? `<a href="${escape(p.linkedin)}" target="_blank" style="background:#e0e7ff;color:#4338ca;padding:3px 8px;border-radius:4px;text-decoration:none">💼 LinkedIn</a>` : ""}
+        </div>
+        <div style="margin-bottom:20px">
+          <h3 style="font-family:monospace; font-size:13px; font-weight:800; color:${theme.primary}; text-transform:uppercase; border-bottom:1.5px solid #cbd5e1; padding-bottom:4px; margin:0 0 8px">// 01. TECHNICAL SUMMARY</h3>
+          ${summaryBlock}
+        </div>
+        <div style="display:grid; grid-template-columns: 2fr 1fr; gap:24px">
+          <div>
+            <div style="margin-bottom:20px">
+              <h3 style="font-family:monospace; font-size:13px; font-weight:800; color:${theme.primary}; text-transform:uppercase; border-bottom:1.5px solid #cbd5e1; padding-bottom:4px; margin:0 0 10px">// 02. PROJECTS & REPOSITORIES</h3>
+              ${projBlock((proj) => `
+                <div style="margin-bottom:12px; background:#f8fafc; border:1px solid #e2e8f0; border-left:3px solid ${theme.primary}; padding:10px 12px; border-radius:6px">
+                  <div style="display:flex; justify-content:space-between; align-items:baseline">
+                    <strong style="font-size:13.5px; color:#0f172a">${escape(proj.name || "")}</strong>
+                    <span style="font-family:monospace; font-size:11px; color:${theme.primary}; background:#eff6ff; padding:2px 6px; border-radius:4px">${escape(proj.tech || "")}</span>
+                  </div>
+                  <div style="font-size:12.5px; color:#475569; margin-top:4px">${escape(proj.description || "")}</div>
+                </div>
+              `)}
+            </div>
+            <div>
+              <h3 style="font-family:monospace; font-size:13px; font-weight:800; color:${theme.primary}; text-transform:uppercase; border-bottom:1.5px solid #cbd5e1; padding-bottom:4px; margin:0 0 10px">// 03. EXPERIENCE</h3>
+              ${expBlock((x) => `
+                <div style="margin-bottom:12px">
+                  <div style="display:flex; justify-content:space-between">
+                    <strong style="font-size:13.5px; color:#0f172a">${escape(x.title || "")} @ ${escape(x.company || "")}</strong>
+                    <span style="font-size:11.5px; color:#64748b; font-family:monospace">${escape(x.start || "")} - ${escape(x.end || "Present")}</span>
+                  </div>
+                  <div style="font-size:12.5px; color:#475569; margin-top:2px">${escape(x.responsibilities || "")}</div>
+                </div>
+              `)}
+            </div>
+          </div>
+          <div>
+            <div style="margin-bottom:20px">
+              <h3 style="font-family:monospace; font-size:13px; font-weight:800; color:${theme.primary}; text-transform:uppercase; border-bottom:1.5px solid #cbd5e1; padding-bottom:4px; margin:0 0 8px">// 04. TECH STACK</h3>
+              ${skillsBlock}
+            </div>
+            <div>
+              <h3 style="font-family:monospace; font-size:13px; font-weight:800; color:${theme.primary}; text-transform:uppercase; border-bottom:1.5px solid #cbd5e1; padding-bottom:4px; margin:0 0 8px">// 05. EDUCATION</h3>
+              ${eduBlock((edu) => `
+                <div style="margin-bottom:10px">
+                  <strong style="font-size:13px; color:#0f172a; display:block">${escape(edu.degree || "")}</strong>
+                  <div style="font-size:12px; color:#64748b">${escape(edu.institution || "")}</div>
+                  <div style="font-size:11px; color:#94a3b8; font-family:monospace">${escape(edu.start || "")} - ${escape(edu.end || "")}</div>
+                </div>
+              `)}
+            </div>
+          </div>
+        </div>
+      </div>`;
+    }
+
+    // 2. Modern Pro Layout (Timeline based, dynamic purple/indigo)
+    if (theme.layout === "modern-pro") {
+      return `<div style="font-family:'Outfit', 'Inter', sans-serif; color:#0f172a; line-height:1.5;">
+        <div style="background:${theme.gradient}; padding:26px; border-radius:16px; color:#ffffff; display:flex; justify-content:space-between; align-items:center; margin-bottom:22px; box-shadow:0 8px 24px rgba(99,102,241,0.18)">
+          <div>
+            <h1 style="margin:0 0 4px; font-size:30px; font-weight:800; letter-spacing:-0.01em">${nameText}</h1>
+            <div style="font-size:15px; font-weight:600; opacity:0.95">${headlineText}</div>
+          </div>
+          ${p.photo ? `<img src="${p.photo}" style="width:72px;height:72px;border-radius:14px;object-fit:cover;border:3px solid rgba(255,255,255,0.85)">` : ""}
+        </div>
+        <div style="display:flex; flex-wrap:wrap; gap:16px; font-size:12.5px; color:#475569; padding-bottom:14px; border-bottom:2px solid #e0e7ff; margin-bottom:22px">
+          <span>📧 ${emailText}</span>
+          <span>📞 ${phoneText}</span>
+          <span>📍 ${addressText}</span>
+          ${p.linkedin ? `<span>💼 <a href="${escape(p.linkedin)}" target="_blank" style="color:${theme.primary};font-weight:600">LinkedIn</a></span>` : ""}
+          ${p.portfolio ? `<span>🌐 <a href="${escape(p.portfolio)}" target="_blank" style="color:${theme.primary};font-weight:600">Portfolio</a></span>` : ""}
+        </div>
+        <div style="margin-bottom:22px">
+          <h3 style="font-size:15px; font-weight:800; color:${theme.primary}; text-transform:uppercase; letter-spacing:0.04em; border-left:3px solid ${theme.primary}; padding-left:8px; margin:0 0 8px">About Me</h3>
+          ${summaryBlock}
+        </div>
+        <div style="display:grid; grid-template-columns: 2fr 1fr; gap:28px">
+          <div>
+            <div style="margin-bottom:22px">
+              <h3 style="font-size:15px; font-weight:800; color:${theme.primary}; text-transform:uppercase; letter-spacing:0.04em; border-left:3px solid ${theme.primary}; padding-left:8px; margin:0 0 12px">Work Experience</h3>
+              ${expBlock((x) => `
+                <div style="margin-bottom:14px; padding-left:12px; border-left:2px solid #e2e8f0; position:relative">
+                  <div style="display:flex; justify-content:space-between">
+                    <strong style="font-size:14px; color:#0f172a">${escape(x.title || "")} @ ${escape(x.company || "")}</strong>
+                    <span style="font-size:12px; color:#64748b">${escape(x.start || "")} - ${escape(x.end || "Present")}</span>
+                  </div>
+                  <div style="font-size:12.5px; color:#475569; margin-top:3px">${escape(x.responsibilities || "")}</div>
+                </div>
+              `)}
+            </div>
+            <div>
+              <h3 style="font-size:15px; font-weight:800; color:${theme.primary}; text-transform:uppercase; letter-spacing:0.04em; border-left:3px solid ${theme.primary}; padding-left:8px; margin:0 0 12px">Key Projects</h3>
+              ${projBlock((proj) => `
+                <div style="margin-bottom:12px; padding:10px 12px; background:#f8fafc; border-radius:8px; border:1px solid #e2e8f0">
+                  <div style="display:flex; justify-content:space-between">
+                    <strong style="font-size:13.5px; color:#0f172a">${escape(proj.name || "")}</strong>
+                    <span style="font-size:12px; color:${theme.primary}; font-weight:700">${escape(proj.tech || "")}</span>
+                  </div>
+                  <div style="font-size:12.5px; color:#475569; margin-top:2px">${escape(proj.description || "")}</div>
+                </div>
+              `)}
+            </div>
+          </div>
+          <div>
+            <div style="margin-bottom:22px">
+              <h3 style="font-size:15px; font-weight:800; color:${theme.primary}; text-transform:uppercase; letter-spacing:0.04em; border-left:3px solid ${theme.primary}; padding-left:8px; margin:0 0 10px">Core Skills</h3>
+              ${skillsBlock}
+            </div>
+            <div>
+              <h3 style="font-size:15px; font-weight:800; color:${theme.primary}; text-transform:uppercase; letter-spacing:0.04em; border-left:3px solid ${theme.primary}; padding-left:8px; margin:0 0 10px">Education</h3>
+              ${eduBlock((edu) => `
+                <div style="margin-bottom:12px; padding:8px 10px; background:#faf5ff; border-radius:6px">
+                  <strong style="font-size:13.5px; color:#0f172a; display:block">${escape(edu.degree || "")}</strong>
+                  <div style="font-size:12px; color:#64748b">${escape(edu.institution || "")}</div>
+                  <div style="font-size:11.5px; color:#a855f7">${escape(edu.start || "")} - ${escape(edu.end || "")}</div>
+                </div>
+              `)}
+            </div>
+          </div>
+        </div>
+      </div>`;
+    }
+
+    // 3. Clean Slate Layout (High ATS score, structured single-look)
+    if (theme.layout === "clean-slate") {
+      return `<div style="font-family:'Inter', sans-serif; color:#1e293b; line-height:1.5;">
+        <div style="border-left:5px solid ${theme.primary}; padding-left:16px; margin-bottom:20px; display:flex; justify-content:space-between; align-items:center">
+          <div>
+            <h1 style="margin:0 0 4px; font-size:28px; font-weight:800; color:${theme.primary}">${nameText}</h1>
+            <div style="font-size:14px; color:#475569; font-weight:600">${headlineText}</div>
+          </div>
+          ${p.photo ? `<img src="${p.photo}" style="width:64px;height:64px;border-radius:6px;object-fit:cover">` : ""}
+        </div>
+        <div style="display:flex; flex-wrap:wrap; gap:16px; font-size:12px; color:#64748b; padding-bottom:12px; border-bottom:1px solid #cbd5e1; margin-bottom:20px">
+          <span>${emailText}</span> | <span>${phoneText}</span> | <span>${addressText}</span>
+          ${p.linkedin ? `| <span><a href="${escape(p.linkedin)}" target="_blank" style="color:${theme.primary}">LinkedIn</a></span>` : ""}
+          ${p.portfolio ? `| <span><a href="${escape(p.portfolio)}" target="_blank" style="color:${theme.primary}">Portfolio</a></span>` : ""}
+        </div>
+        <div style="margin-bottom:20px">
+          <h3 style="font-size:13.5px; font-weight:800; text-transform:uppercase; color:${theme.primary}; letter-spacing:0.06em; margin:0 0 6px">Profile Summary</h3>
+          ${summaryBlock}
+        </div>
+        <div style="margin-bottom:20px">
+          <h3 style="font-size:13.5px; font-weight:800; text-transform:uppercase; color:${theme.primary}; letter-spacing:0.06em; margin:0 0 10px">Work Experience</h3>
+          ${expBlock((x) => `
+            <div style="margin-bottom:12px">
+              <div style="display:flex; justify-content:space-between">
+                <strong style="font-size:13.5px; color:#0f172a">${escape(x.title || "")} — ${escape(x.company || "")}</strong>
+                <span style="font-size:12px; color:#64748b">${escape(x.start || "")} - ${escape(x.end || "Present")}</span>
+              </div>
+              <div style="font-size:12.5px; color:#475569; margin-top:2px">${escape(x.responsibilities || "")}</div>
+            </div>
+          `)}
+        </div>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:24px; margin-bottom:20px">
+          <div>
+            <h3 style="font-size:13.5px; font-weight:800; text-transform:uppercase; color:${theme.primary}; letter-spacing:0.06em; margin:0 0 10px">Projects</h3>
+            ${projBlock((proj) => `
+              <div style="margin-bottom:10px">
+                <strong style="font-size:13px; color:#0f172a">${escape(proj.name || "")}</strong>
+                <div style="font-size:12px; color:#475569">${escape(proj.description || "")}</div>
+              </div>
+            `)}
+          </div>
+          <div>
+            <h3 style="font-size:13.5px; font-weight:800; text-transform:uppercase; color:${theme.primary}; letter-spacing:0.06em; margin:0 0 8px">Skills & Competencies</h3>
+            ${skillsBlock}
+          </div>
+        </div>
+        <div>
+          <h3 style="font-size:13.5px; font-weight:800; text-transform:uppercase; color:${theme.primary}; letter-spacing:0.06em; margin:0 0 8px">Education</h3>
+          ${eduBlock((edu) => `
+            <div style="margin-bottom:8px">
+              <strong style="font-size:13px; color:#0f172a">${escape(edu.degree || "")}</strong> — <span style="font-size:12px; color:#64748b">${escape(edu.institution || "")} (${escape(edu.start || "")} - ${escape(edu.end || "")})</span>
+            </div>
+          `)}
+        </div>
+      </div>`;
+    }
+
+    // 4. Monochrome Classic Layout (Boxed, editorial timeless style)
+    if (theme.layout === "monochrome") {
+      return `<div style="font-family:'Inter', serif, sans-serif; color:#171717; line-height:1.5; border:2px solid #262626; padding:24px; border-radius:4px">
+        <div style="text-align:center; border-bottom:2px solid #262626; padding-bottom:14px; margin-bottom:18px">
+          <h1 style="margin:0 0 4px; font-size:28px; font-weight:800; letter-spacing:1px; text-transform:uppercase">${nameText}</h1>
+          <div style="font-size:13.5px; font-weight:600; color:#525252">${headlineText}</div>
+          <div style="display:flex; justify-content:center; flex-wrap:wrap; gap:12px; font-size:11.5px; color:#525252; margin-top:8px">
+            <span>${emailText}</span> • <span>${phoneText}</span> • <span>${addressText}</span>
+          </div>
+        </div>
+        <div style="margin-bottom:18px">
+          <h3 style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:1px; border-bottom:1px solid #737373; padding-bottom:2px; margin:0 0 6px">Professional Summary</h3>
+          ${summaryBlock}
+        </div>
+        <div style="margin-bottom:18px">
+          <h3 style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:1px; border-bottom:1px solid #737373; padding-bottom:2px; margin:0 0 8px">Experience</h3>
+          ${expBlock((x) => `
+            <div style="margin-bottom:10px">
+              <div style="display:flex; justify-content:space-between">
+                <strong style="font-size:13.5px">${escape(x.title || "")} | ${escape(x.company || "")}</strong>
+                <span style="font-size:12px">${escape(x.start || "")} - ${escape(x.end || "Present")}</span>
+              </div>
+              <div style="font-size:12px; color:#404040; margin-top:2px">${escape(x.responsibilities || "")}</div>
+            </div>
+          `)}
+        </div>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px">
+          <div>
+            <h3 style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:1px; border-bottom:1px solid #737373; padding-bottom:2px; margin:0 0 8px">Projects</h3>
+            ${projBlock((proj) => `
+              <div style="margin-bottom:8px">
+                <strong style="font-size:13px">${escape(proj.name || "")}</strong>
+                <div style="font-size:12px; color:#525252">${escape(proj.description || "")}</div>
+              </div>
+            `)}
+          </div>
+          <div>
+            <h3 style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:1px; border-bottom:1px solid #737373; padding-bottom:2px; margin:0 0 8px">Core Skills</h3>
+            ${skillsBlock}
+          </div>
+        </div>
+      </div>`;
+    }
+
+    // 5. Artistic Showcase Layout (Sunset gradient, portfolio tiles)
+    if (theme.layout === "artistic") {
+      return `<div style="font-family:'Outfit', 'Inter', sans-serif; color:#0e131f; line-height:1.5;">
+        <div style="background:${theme.gradient}; padding:26px; border-radius:18px; color:#ffffff; display:flex; justify-content:space-between; align-items:center; margin-bottom:22px; box-shadow:0 8px 24px rgba(249,115,22,0.2)">
+          <div>
+            <h1 style="margin:0 0 4px; font-size:30px; font-weight:800">${nameText}</h1>
+            <div style="font-size:15px; font-weight:600; opacity:0.95">${headlineText}</div>
+          </div>
+          ${p.photo ? `<img src="${p.photo}" style="width:76px;height:76px;border-radius:18px;object-fit:cover;border:3px solid #fff">` : ""}
+        </div>
+        <div style="display:flex; flex-wrap:wrap; gap:14px; font-size:12.5px; color:#64748b; padding-bottom:14px; border-bottom:2px dashed #fed7aa; margin-bottom:22px">
+          <span>📧 ${emailText}</span>
+          <span>📞 ${phoneText}</span>
+          <span>📍 ${addressText}</span>
+          ${p.portfolio ? `<a href="${escape(p.portfolio)}" target="_blank" style="color:${theme.primary};font-weight:700">🎨 Portfolio</a>` : ""}
+        </div>
+        <div style="margin-bottom:22px">
+          <h3 style="font-size:15px; font-weight:800; color:${theme.primary}; text-transform:uppercase; margin:0 0 8px">Visual Bio & Profile</h3>
+          ${summaryBlock}
+        </div>
+        <div style="display:grid; grid-template-columns: 2fr 1fr; gap:24px">
+          <div>
+            <div style="margin-bottom:22px">
+              <h3 style="font-size:15px; font-weight:800; color:${theme.primary}; text-transform:uppercase; margin:0 0 10px">Design & Work Portfolio</h3>
+              ${projBlock((proj) => `
+                <div style="margin-bottom:12px; background:#fff7ed; padding:12px; border-radius:12px; border-left:4px solid #f97316">
+                  <strong style="font-size:14px; color:#9a3412">${escape(proj.name || "")}</strong>
+                  <div style="font-size:12px; color:#ea580c; font-weight:600">${escape(proj.tech || "")}</div>
+                  <div style="font-size:12.5px; color:#475569; margin-top:3px">${escape(proj.description || "")}</div>
+                </div>
+              `)}
+            </div>
+            <div>
+              <h3 style="font-size:15px; font-weight:800; color:${theme.primary}; text-transform:uppercase; margin:0 0 10px">Work Experience</h3>
+              ${expBlock((x) => `
+                <div style="margin-bottom:12px">
+                  <strong style="font-size:13.5px; color:#0e131f">${escape(x.title || "")} @ ${escape(x.company || "")}</strong>
+                  <div style="font-size:12px; color:#64748b">${escape(x.start || "")} - ${escape(x.end || "Present")}</div>
+                  <div style="font-size:12.5px; color:#475569; margin-top:2px">${escape(x.responsibilities || "")}</div>
+                </div>
+              `)}
+            </div>
+          </div>
+          <div>
+            <div style="margin-bottom:22px">
+              <h3 style="font-size:15px; font-weight:800; color:${theme.primary}; text-transform:uppercase; margin:0 0 10px">Art & Technical Skills</h3>
+              ${skillsBlock}
+            </div>
+            <div>
+              <h3 style="font-size:15px; font-weight:800; color:${theme.primary}; text-transform:uppercase; margin:0 0 10px">Education</h3>
+              ${eduBlock((edu) => `
+                <div style="margin-bottom:10px">
+                  <strong style="font-size:13px; color:#0e131f; display:block">${escape(edu.degree || "")}</strong>
+                  <div style="font-size:12px; color:#64748b">${escape(edu.institution || "")}</div>
+                </div>
+              `)}
+            </div>
+          </div>
+        </div>
+      </div>`;
+    }
+
+    // 6. Corporate Director Layout (Navy authoritative, formal hierarchy)
+    if (theme.layout === "director") {
+      return `<div style="font-family:'Outfit', 'Inter', sans-serif; color:#0f172a; line-height:1.5;">
+        <div style="border-top:4px solid #1e3a8a; border-bottom:2px solid #0f172a; padding:18px 0; margin-bottom:20px; display:flex; justify-content:space-between; align-items:center">
+          <div>
+            <h1 style="margin:0 0 4px; font-size:32px; font-weight:800; color:#1e3a8a; letter-spacing:-0.02em">${nameText}</h1>
+            <div style="font-size:16px; color:#334155; font-weight:700">${headlineText}</div>
+          </div>
+          ${p.photo ? `<img src="${p.photo}" style="width:72px;height:72px;border-radius:6px;object-fit:cover;border:2px solid #1e3a8a">` : ""}
+        </div>
+        <div style="display:flex; flex-wrap:wrap; gap:20px; font-size:12.5px; color:#475569; padding-bottom:12px; border-bottom:1px solid #cbd5e1; margin-bottom:22px; font-weight:600">
+          <span>EMAIL: ${emailText}</span> | <span>PHONE: ${phoneText}</span> | <span>LOCATION: ${addressText}</span>
+        </div>
+        <div style="margin-bottom:22px">
+          <h3 style="font-size:14.5px; font-weight:800; color:#1e3a8a; text-transform:uppercase; letter-spacing:0.06em; border-bottom:1.5px solid #1e3a8a; padding-bottom:3px; margin:0 0 8px">Executive Leadership Profile</h3>
+          ${summaryBlock}
+        </div>
+        <div style="margin-bottom:22px">
+          <h3 style="font-size:14.5px; font-weight:800; color:#1e3a8a; text-transform:uppercase; letter-spacing:0.06em; border-bottom:1.5px solid #1e3a8a; padding-bottom:3px; margin:0 0 12px">Executive History & Directorships</h3>
+          ${expBlock((x) => `
+            <div style="margin-bottom:14px">
+              <div style="display:flex; justify-content:space-between; align-items:baseline">
+                <strong style="font-size:14.5px; color:#0f172a">${escape(x.title || "")} — ${escape(x.company || "")}</strong>
+                <span style="font-size:12px; color:#64748b; font-weight:600">${escape(x.start || "")} – ${escape(x.end || "Present")}</span>
+              </div>
+              <div style="font-size:13px; color:#475569; margin-top:3px">${escape(x.responsibilities || "")}</div>
+            </div>
+          `)}
+        </div>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:24px">
+          <div>
+            <h3 style="font-size:14.5px; font-weight:800; color:#1e3a8a; text-transform:uppercase; letter-spacing:0.06em; border-bottom:1.5px solid #1e3a8a; padding-bottom:3px; margin:0 0 10px">Core Competencies</h3>
+            ${skillsBlock}
+          </div>
+          <div>
+            <h3 style="font-size:14.5px; font-weight:800; color:#1e3a8a; text-transform:uppercase; letter-spacing:0.06em; border-bottom:1.5px solid #1e3a8a; padding-bottom:3px; margin:0 0 10px">Credentials & Education</h3>
+            ${eduBlock((edu) => `
+              <div style="margin-bottom:8px">
+                <strong style="font-size:13.5px; color:#0f172a; display:block">${escape(edu.degree || "")}</strong>
+                <div style="font-size:12px; color:#64748b">${escape(edu.institution || "")}</div>
+              </div>
+            `)}
+          </div>
+        </div>
+      </div>`;
+    }
+
+    // 7. Starter / Fresher Skills First Layout
+    if (theme.layout === "starter") {
+      return `<div style="font-family:'Inter', sans-serif; color:#0e131f; line-height:1.5;">
+        <div style="background:${theme.gradient}; padding:24px; border-radius:14px; color:#ffffff; display:flex; justify-content:space-between; align-items:center; margin-bottom:20px">
+          <div>
+            <h1 style="font-family:'Outfit', sans-serif; margin:0 0 4px; font-size:28px; font-weight:800">${nameText}</h1>
+            <div style="font-size:14px; font-weight:600; opacity:0.95">${headlineText}</div>
+          </div>
+          ${p.photo ? `<img src="${p.photo}" style="width:68px;height:68px;border-radius:50%;object-fit:cover;border:3px solid #fff">` : ""}
+        </div>
+        <div style="display:flex; flex-wrap:wrap; gap:14px; font-size:12.5px; color:#475569; padding-bottom:12px; border-bottom:2px solid #ccfbf1; margin-bottom:20px">
+          <span>📧 ${emailText}</span>
+          <span>📞 ${phoneText}</span>
+          <span>📍 ${addressText}</span>
+          ${p.linkedin ? `<span><a href="${escape(p.linkedin)}" target="_blank" style="color:${theme.primary}">LinkedIn</a></span>` : ""}
+        </div>
+        <div style="background:#f0fdfa; border:1px solid #99f6e4; padding:14px; border-radius:10px; margin-bottom:20px">
+          <h3 style="font-size:14px; font-weight:800; color:#0f766e; text-transform:uppercase; margin:0 0 6px">Skills & Proficiencies (Skills-First)</h3>
+          ${skillsBlock}
+        </div>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:22px">
+          <div>
+            <div style="margin-bottom:20px">
+              <h3 style="font-size:14px; font-weight:800; color:${theme.primary}; text-transform:uppercase; border-bottom:2px solid #ccfbf1; padding-bottom:4px; margin:0 0 8px">Education & Academics</h3>
+              ${eduBlock((edu) => `
+                <div style="margin-bottom:10px; background:#fff; border:1px solid #e2e8f0; padding:8px 10px; border-radius:6px">
+                  <strong style="font-size:13px; color:#0f172a">${escape(edu.degree || "")}</strong>
+                  <div style="font-size:12px; color:#64748b">${escape(edu.institution || "")}</div>
+                  <div style="font-size:11px; color:#14b8a6">${escape(edu.start || "")} - ${escape(edu.end || "")}</div>
+                </div>
+              `)}
+            </div>
+            <div>
+              <h3 style="font-size:14px; font-weight:800; color:${theme.primary}; text-transform:uppercase; border-bottom:2px solid #ccfbf1; padding-bottom:4px; margin:0 0 8px">Objective</h3>
+              ${summaryBlock}
+            </div>
+          </div>
+          <div>
+            <div style="margin-bottom:20px">
+              <h3 style="font-size:14px; font-weight:800; color:${theme.primary}; text-transform:uppercase; border-bottom:2px solid #ccfbf1; padding-bottom:4px; margin:0 0 8px">Projects & Portfolio</h3>
+              ${projBlock((proj) => `
+                <div style="margin-bottom:10px">
+                  <strong style="font-size:13px; color:#0f172a">${escape(proj.name || "")}</strong>
+                  <div style="font-size:12px; color:#475569">${escape(proj.description || "")}</div>
+                </div>
+              `)}
+            </div>
+            <div>
+              <h3 style="font-size:14px; font-weight:800; color:${theme.primary}; text-transform:uppercase; border-bottom:2px solid #ccfbf1; padding-bottom:4px; margin:0 0 8px">Internships / Experience</h3>
+              ${expBlock((x) => `
+                <div style="margin-bottom:10px">
+                  <strong style="font-size:13px; color:#0f172a">${escape(x.title || "")} @ ${escape(x.company || "")}</strong>
+                  <div style="font-size:12px; color:#475569">${escape(x.responsibilities || "")}</div>
+                </div>
+              `)}
+            </div>
+          </div>
+        </div>
+      </div>`;
+    }
+
+    // 8. Graduate Scholar Layout
+    if (theme.layout === "scholar") {
+      return `<div style="font-family:'Inter', sans-serif; color:#0e131f; line-height:1.5;">
+        <div style="background:${theme.gradient}; padding:26px; border-radius:14px; color:#ffffff; display:flex; justify-content:space-between; align-items:center; margin-bottom:22px">
+          <div>
+            <div style="font-size:11px; text-transform:uppercase; letter-spacing:1px; opacity:0.9">Graduate Scholar Profile</div>
+            <h1 style="font-family:'Outfit', sans-serif; margin:2px 0; font-size:30px; font-weight:800">${nameText}</h1>
+            <div style="font-size:14px; font-weight:600; opacity:0.95">${headlineText}</div>
+          </div>
+          ${p.photo ? `<img src="${p.photo}" style="width:72px;height:72px;border-radius:12px;object-fit:cover;border:3px solid #fff">` : ""}
+        </div>
+        <div style="display:flex; flex-wrap:wrap; gap:16px; font-size:12.5px; color:#475569; padding-bottom:12px; border-bottom:2px solid #fae8ff; margin-bottom:20px">
+          <span>📧 ${emailText}</span>
+          <span>📞 ${phoneText}</span>
+          <span>📍 ${addressText}</span>
+        </div>
+        <div style="margin-bottom:20px">
+          <h3 style="font-size:14.5px; font-weight:800; color:${theme.primary}; text-transform:uppercase; border-bottom:2px solid #fae8ff; padding-bottom:4px; margin:0 0 8px">Academic Focus & Research Summary</h3>
+          ${summaryBlock}
+        </div>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:24px">
+          <div>
+            <div style="margin-bottom:20px">
+              <h3 style="font-size:14.5px; font-weight:800; color:${theme.primary}; text-transform:uppercase; border-bottom:2px solid #fae8ff; padding-bottom:4px; margin:0 0 10px">Education & Degrees</h3>
+              ${eduBlock((edu) => `
+                <div style="margin-bottom:12px; background:#faf5ff; padding:10px 12px; border-radius:8px; border-left:3px solid #a855f7">
+                  <strong style="font-size:14px; color:#581c87">${escape(edu.degree || "")}</strong>
+                  <div style="font-size:12.5px; color:#64748b">${escape(edu.institution || "")}</div>
+                  <div style="font-size:11.5px; color:#a855f7">${escape(edu.start || "")} - ${escape(edu.end || "")}</div>
+                </div>
+              `)}
+            </div>
+            <div>
+              <h3 style="font-size:14.5px; font-weight:800; color:${theme.primary}; text-transform:uppercase; border-bottom:2px solid #fae8ff; padding-bottom:4px; margin:0 0 10px">Academic Projects & Research</h3>
+              ${projBlock((proj) => `
+                <div style="margin-bottom:10px">
+                  <strong style="font-size:13.5px; color:#0e131f">${escape(proj.name || "")}</strong>
+                  <div style="font-size:12.5px; color:#475569">${escape(proj.description || "")}</div>
+                </div>
+              `)}
+            </div>
+          </div>
+          <div>
+            <div style="margin-bottom:20px">
+              <h3 style="font-size:14.5px; font-weight:800; color:${theme.primary}; text-transform:uppercase; border-bottom:2px solid #fae8ff; padding-bottom:4px; margin:0 0 10px">Skills & Competencies</h3>
+              ${skillsBlock}
+            </div>
+            <div>
+              <h3 style="font-size:14.5px; font-weight:800; color:${theme.primary}; text-transform:uppercase; border-bottom:2px solid #fae8ff; padding-bottom:4px; margin:0 0 10px">Experience & Internships</h3>
+              ${expBlock((x) => `
+                <div style="margin-bottom:10px">
+                  <strong style="font-size:13.5px; color:#0e131f">${escape(x.title || "")} @ ${escape(x.company || "")}</strong>
+                  <div style="font-size:12.5px; color:#475569">${escape(x.responsibilities || "")}</div>
+                </div>
+              `)}
+            </div>
           </div>
         </div>
       </div>`;
