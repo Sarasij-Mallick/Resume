@@ -17,7 +17,20 @@
         <!-- Lottie Web Player -->
         <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
         <script>
-            // Immediately remove any legacy trail canvases or custom cursor nodes
+            // Active canvas / cursor blocker: completely prevents any mouse trail canvas from ever attaching
+            try {
+                var observer = new MutationObserver(function(mutations) {
+                    mutations.forEach(function(mutation) {
+                        mutation.addedNodes.forEach(function(node) {
+                            if (node && node.nodeType === 1 && (node.tagName === "CANVAS" || node.id) && 
+                               (node.id === "mouseStarCanvas" || node.id === "mouseFirefliesCanvas" || node.id === "mouseCreativeTrailCanvas" || node.id.indexOf("mouse") !== -1 || node.id.indexOf("magnetic") !== -1)) {
+                                node.remove();
+                            }
+                        });
+                    });
+                });
+                observer.observe(document.documentElement, { childList: true, subtree: true });
+            } catch(e) {}
             document.addEventListener("DOMContentLoaded", function() {
                 var els = document.querySelectorAll("#magneticCursorDot, #magneticCursorRing, #mouseFirefliesCanvas, #mouseCreativeTrailCanvas, #mouseStarCanvas, canvas[id*='mouse']");
                 els.forEach(function(el) { el.remove(); });
@@ -1385,6 +1398,6 @@
             </svg>
         </button>
 
-        <script src="script.js?v=20260825_final_clean"></script>
+        <script src="app.js?v=2026_clean"></script>
     </body>
 </html>
