@@ -13,10 +13,16 @@
         <link
             href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap"
             rel="stylesheet">
-
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/style.css?v=20260825_final_clean">
         <!-- Lottie Web Player -->
         <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+        <script>
+            // Immediately remove any legacy trail canvases or custom cursor nodes
+            document.addEventListener("DOMContentLoaded", function() {
+                var els = document.querySelectorAll("#magneticCursorDot, #magneticCursorRing, #mouseFirefliesCanvas, #mouseCreativeTrailCanvas, #mouseStarCanvas, canvas[id*='mouse']");
+                els.forEach(function(el) { el.remove(); });
+            });
+        </script>
     </head>
     <body>
         <!-- DARK MODE FOG OVERLAY -->
@@ -1379,6 +1385,6 @@
             </svg>
         </button>
 
-        <script src="script.js"></script>
+        <script src="script.js?v=20260825_final_clean"></script>
     </body>
 </html>
