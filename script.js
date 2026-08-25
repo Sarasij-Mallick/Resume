@@ -3817,96 +3817,115 @@ function showToast(msg, timeout = 3000) {
   const colors = [
     { r: 125, g: 42, b: 232 },  // Canva Purple
     { r: 0, g: 196, b: 204 },    // Vibrant Cyan
-    { r: 244, g: 63, b: 94 },    // Glowing Pink/Red
+    { r: 244, g: 63, b: 94 },    // Glowing Coral / Rose
     { r: 59, g: 130, b: 246 },   // Electric Blue
     { r: 245, g: 158, b: 11 },   // Neon Gold
     { r: 168, g: 85, b: 247 }    // Bright Violet
   ];
 
+  const shapes = ["square", "circle", "triangle", "diamond", "ring", "cross"];
+
   let lastX = 0;
   let lastY = 0;
 
-  function spawnSparks(x, y) {
-    if (particles.length > 20) return; // balanced active stars on screen
+  function spawnGeometricTile(x, y) {
+    if (particles.length > 22) return;
     const color = colors[Math.floor(Math.random() * colors.length)];
+    const shape = shapes[Math.floor(Math.random() * shapes.length)];
     const angle = Math.random() * Math.PI * 2;
-    const vel = Math.random() * 0.8 + 0.3;
+    const vel = Math.random() * 0.7 + 0.25;
     particles.push({
-      x: x + (Math.random() - 0.5) * 4,
-      y: y + (Math.random() - 0.5) * 4,
-      size: Math.random() * 2.8 + 1.6,
+      x: x + (Math.random() - 0.5) * 6,
+      y: y + (Math.random() - 0.5) * 6,
+      size: Math.random() * 3.5 + 2.5,
       vx: Math.cos(angle) * vel,
-      vy: Math.sin(angle) * vel - 0.15,
+      vy: Math.sin(angle) * vel - 0.2,
       alpha: 0.85,
-      decay: Math.random() * 0.018 + 0.012, // graceful balanced fade
-      rotation: Math.random() * Math.PI,
+      decay: Math.random() * 0.016 + 0.012, // graceful balanced decay
+      rotation: Math.random() * Math.PI * 2,
       spin: (Math.random() - 0.5) * 0.06,
-      color: color
+      color: color,
+      shape: shape
     });
   }
 
-  // Mouse Move Event Listener (balanced sweet spot: spawns every 28px movement)
+  // Mouse Move Event Listener (spawns floating geometric tiles on movement)
   window.addEventListener("pointermove", (e) => {
     if (e.pointerType === "touch" || isMobileOrTablet()) return;
     const dist = Math.hypot(e.clientX - lastX, e.clientY - lastY);
-    if (dist > 28) {
-      spawnSparks(e.clientX, e.clientY);
+    if (dist > 26) {
+      spawnGeometricTile(e.clientX, e.clientY);
       lastX = e.clientX;
       lastY = e.clientY;
     }
   });
 
-  // Minimal subtle star burst on click (3 tiny stars, no circles)
+  // Subtle geometric tile burst on click
   window.addEventListener("pointerdown", (e) => {
     if (e.pointerType === "touch" || isMobileOrTablet()) return;
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 4; i++) {
       const c = colors[Math.floor(Math.random() * colors.length)];
-      const angle = (Math.PI * 2 / 3) * i + Math.random() * 0.4;
-      const vel = Math.random() * 0.8 + 0.3;
+      const s = shapes[Math.floor(Math.random() * shapes.length)];
+      const angle = (Math.PI * 2 / 4) * i + Math.random() * 0.4;
+      const vel = Math.random() * 0.9 + 0.3;
       particles.push({
         x: e.clientX,
         y: e.clientY,
-        size: Math.random() * 2 + 1,
+        size: Math.random() * 3 + 2,
         vx: Math.cos(angle) * vel,
         vy: Math.sin(angle) * vel,
-        alpha: 0.6,
-        decay: Math.random() * 0.02 + 0.015,
-        rotation: Math.random() * Math.PI,
+        alpha: 0.8,
+        decay: Math.random() * 0.02 + 0.014,
+        rotation: Math.random() * Math.PI * 2,
         spin: (Math.random() - 0.5) * 0.08,
-        color: c
+        color: c,
+        shape: s
       });
     }
   });
 
-  function drawStar(x, y, size, rotation, alpha, color) {
+  function drawGeometricTile(x, y, size, rotation, alpha, color, shape) {
     ctx.save();
     ctx.translate(x, y);
     ctx.rotate(rotation);
 
-    const isDarkTheme = document.documentElement.getAttribute("data-theme") === "dark";
+    const rgbStr = `${color.r}, ${color.g}, ${color.b}`;
 
-    if (isDarkTheme) {
-      ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
-      ctx.shadowColor = `rgba(${color.r}, ${color.g}, ${color.b}, ${alpha})`;
-      ctx.shadowBlur = 14;
-    } else {
-      // Light Theme: Vibrant colored fill + crisp white stroke so stars pop on white backgrounds!
-      ctx.fillStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${alpha * 0.95})`;
-      ctx.strokeStyle = `rgba(255, 255, 255, ${alpha * 0.85})`;
-      ctx.lineWidth = 0.8;
-      ctx.shadowColor = `rgba(${color.r}, ${color.g}, ${color.b}, ${alpha * 0.6})`;
-      ctx.shadowBlur = 8;
-    }
+    ctx.fillStyle = `rgba(${rgbStr}, ${alpha * 0.85})`;
+    ctx.strokeStyle = `rgba(${rgbStr}, ${alpha})`;
+    ctx.lineWidth = 1.2;
+    ctx.shadowColor = `rgba(${rgbStr}, ${alpha * 0.5})`;
+    ctx.shadowBlur = 6;
 
     ctx.beginPath();
-    for (let i = 0; i < 4; i++) {
-      ctx.lineTo(Math.cos((i * Math.PI) / 2) * size, Math.sin((i * Math.PI) / 2) * size);
-      ctx.lineTo(Math.cos(((i + 0.5) * Math.PI) / 2) * (size * 0.35), Math.sin(((i + 0.5) * Math.PI) / 2) * (size * 0.35));
-    }
-    ctx.closePath();
-    ctx.fill();
-    if (!isDarkTheme) {
+    if (shape === "square") {
+      ctx.rect(-size / 2, -size / 2, size, size);
+      ctx.fill();
+    } else if (shape === "circle") {
+      ctx.arc(0, 0, size / 2, 0, Math.PI * 2);
+      ctx.fill();
+    } else if (shape === "ring") {
+      ctx.arc(0, 0, size / 2, 0, Math.PI * 2);
       ctx.stroke();
+    } else if (shape === "diamond") {
+      ctx.moveTo(0, -size);
+      ctx.lineTo(size * 0.7, 0);
+      ctx.lineTo(0, size);
+      ctx.lineTo(-size * 0.7, 0);
+      ctx.closePath();
+      ctx.fill();
+    } else if (shape === "triangle") {
+      ctx.moveTo(0, -size);
+      ctx.lineTo(size * 0.86, size * 0.5);
+      ctx.lineTo(-size * 0.86, size * 0.5);
+      ctx.closePath();
+      ctx.fill();
+    } else if (shape === "cross") {
+      const w = size * 0.85;
+      const t = size * 0.28;
+      ctx.rect(-w / 2, -t / 2, w, t);
+      ctx.rect(-t / 2, -w / 2, t, w);
+      ctx.fill();
     }
     ctx.restore();
   }
@@ -3914,29 +3933,7 @@ function showToast(msg, timeout = 3000) {
   function render() {
     ctx.clearRect(0, 0, width, height);
 
-    // Render Thin & Sleek Shockwave Rings
-    for (let i = rings.length - 1; i >= 0; i--) {
-      const ring = rings[i];
-      ring.r += (ring.maxR - ring.r) * 0.12;
-      ring.alpha -= 0.02;
-
-      if (ring.alpha <= 0) {
-        rings.splice(i, 1);
-        continue;
-      }
-
-      ctx.save();
-      ctx.strokeStyle = `rgba(${ring.color.r}, ${ring.color.g}, ${ring.color.b}, ${ring.alpha})`;
-      ctx.lineWidth = 1.0;
-      ctx.shadowColor = `rgba(${ring.color.r}, ${ring.color.g}, ${ring.color.b}, ${ring.alpha * 0.6})`;
-      ctx.shadowBlur = 6;
-      ctx.beginPath();
-      ctx.arc(ring.x, ring.y, ring.r, 0, Math.PI * 2);
-      ctx.stroke();
-      ctx.restore();
-    }
-
-    // Render Star Particles
+    // Render Geometric Tile Particles
     for (let i = particles.length - 1; i >= 0; i--) {
       const p = particles[i];
       p.x += p.vx;
@@ -3949,7 +3946,7 @@ function showToast(msg, timeout = 3000) {
         continue;
       }
 
-      drawStar(p.x, p.y, p.size, p.rotation, p.alpha, p.color);
+      drawGeometricTile(p.x, p.y, p.size, p.rotation, p.alpha, p.color, p.shape);
     }
 
     requestAnimationFrame(render);
