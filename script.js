@@ -3827,29 +3827,29 @@ function showToast(msg, timeout = 3000) {
   let lastY = 0;
 
   function spawnSparks(x, y) {
-    if (particles.length > 12) return; // limit max active stars on screen
+    if (particles.length > 20) return; // balanced active stars on screen
     const color = colors[Math.floor(Math.random() * colors.length)];
     const angle = Math.random() * Math.PI * 2;
-    const vel = Math.random() * 0.6 + 0.2;
+    const vel = Math.random() * 0.8 + 0.3;
     particles.push({
       x: x + (Math.random() - 0.5) * 4,
       y: y + (Math.random() - 0.5) * 4,
-      size: Math.random() * 2.2 + 1.2,
+      size: Math.random() * 2.8 + 1.6,
       vx: Math.cos(angle) * vel,
-      vy: Math.sin(angle) * vel - 0.1,
-      alpha: 0.75,
-      decay: Math.random() * 0.025 + 0.018, // fades out smoothly and quickly
+      vy: Math.sin(angle) * vel - 0.15,
+      alpha: 0.85,
+      decay: Math.random() * 0.018 + 0.012, // graceful balanced fade
       rotation: Math.random() * Math.PI,
-      spin: (Math.random() - 0.5) * 0.05,
+      spin: (Math.random() - 0.5) * 0.06,
       color: color
     });
   }
 
-  // Mouse Move Event Listener (subtle trail - spawns sparingly every 48px movement)
+  // Mouse Move Event Listener (balanced sweet spot: spawns every 28px movement)
   window.addEventListener("pointermove", (e) => {
     if (e.pointerType === "touch" || isMobileOrTablet()) return;
     const dist = Math.hypot(e.clientX - lastX, e.clientY - lastY);
-    if (dist > 48) {
+    if (dist > 28) {
       spawnSparks(e.clientX, e.clientY);
       lastX = e.clientX;
       lastY = e.clientY;
