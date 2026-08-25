@@ -3904,6 +3904,39 @@ button.dock-item.active span,
   padding: 48px;
   margin-bottom: 60px;
   transition: transform 0.2s ease;
+  box-sizing: border-box;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.paper-canvas * {
+  box-sizing: border-box;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.paper-canvas [style*="grid-template-columns"] > * {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.paper-canvas [style*="display:flex"] > *,
+.paper-canvas [style*="display: flex"] > * {
+  min-width: 0;
+}
+
+.paper-canvas p, 
+.paper-canvas div, 
+.paper-canvas span, 
+.paper-canvas h1, 
+.paper-canvas h2, 
+.paper-canvas h3, 
+.paper-canvas h4, 
+.paper-canvas a, 
+.paper-canvas strong {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  max-width: 100%;
 }
 
 /* Studio Status Bar (Bottom) */
