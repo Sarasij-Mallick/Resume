@@ -464,15 +464,17 @@ options.forEach(function (card) {
 
   // Initialize
   function init() {
+    loadState();
+
     try {
       const urlParams = new URLSearchParams(window.location.search);
       const templateParam = urlParams.get("template");
       if (templateParam && TEMPLATES_THEMES[templateParam]) {
         state.selectedTemplate = templateParam;
+        saveState();
       }
     } catch (e) {}
 
-    loadState();
     renderSidebar();
     renderStep(state.current);
     attachGlobalHandlers();
