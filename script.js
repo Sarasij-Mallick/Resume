@@ -1,13 +1,24 @@
 
 // Page Preloader Dismissal
-window.addEventListener("load", function () {
+function dismissPreloader() {
   var preloader = document.getElementById("pagePreloader");
-  if (preloader) {
-    setTimeout(function () {
-      preloader.classList.add("loaded");
-    }, 200);
+  if (preloader && !preloader.classList.contains("loaded")) {
+    preloader.classList.add("loaded");
   }
-});
+}
+
+if (document.readyState === "complete" || document.readyState === "interactive") {
+  setTimeout(dismissPreloader, 100);
+} else {
+  window.addEventListener("DOMContentLoaded", function () {
+    setTimeout(dismissPreloader, 150);
+  });
+  window.addEventListener("load", function () {
+    setTimeout(dismissPreloader, 100);
+  });
+}
+// Instant safety fallback guarantees no stuck screen
+setTimeout(dismissPreloader, 400);
 
 
 
