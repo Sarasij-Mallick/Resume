@@ -348,18 +348,23 @@ options.forEach(function (card) {
     "modern-minimalist": { key: "modern-minimalist", name: "Modern Minimalist", category: "Modern", tag: "Clean · ATS Optimized", gradient: "linear-gradient(135deg, #7d2ae8 0%, #00c4cc 100%)", primary: "#7d2ae8", accent: "#00c4cc", layout: "modern" },
     "modern-tech": { key: "modern-tech", name: "Modern Tech Specialist", category: "Modern", tag: "Structured · Developer Friendly", gradient: "linear-gradient(135deg, #0f172a 0%, #3b82f6 100%)", primary: "#3b82f6", accent: "#0f172a", layout: "tech" },
     "modern-pro": { key: "modern-pro", name: "Modern Professional", category: "Modern", tag: "Dynamic · Sleek Design", gradient: "linear-gradient(135deg, #6366f1 0%, #a855f7 100%)", primary: "#6366f1", accent: "#a855f7", layout: "modern-pro" },
+    "tech-cloud": { key: "tech-cloud", name: "Cloud & DevOps Architect", category: "Modern", tag: "Infrastructure · Systems & AWS", gradient: "linear-gradient(135deg, #0f172a 0%, #0284c7 100%)", primary: "#0284c7", accent: "#0f172a", layout: "cloud" },
+    "tech-ai": { key: "tech-ai", name: "AI & Data Scientist", category: "Modern", tag: "Machine Learning · Python & Metrics", gradient: "linear-gradient(135deg, #1e1b4b 0%, #06b6d4 100%)", primary: "#06b6d4", accent: "#1e1b4b", layout: "ai-data" },
 
     "minimalist-essential": { key: "minimalist-essential", name: "Minimalist Essential", category: "Minimalist", tag: "Pure · Minimalist Lines", gradient: "linear-gradient(135deg, #334155 0%, #475569 100%)", primary: "#334155", accent: "#64748b", layout: "minimalist" },
     "minimalist-clean-slate": { key: "minimalist-clean-slate", name: "Clean Slate", category: "Minimalist", tag: "Simple · Ultra Readable", gradient: "linear-gradient(135deg, #1e293b 0%, #0f172a 100%)", primary: "#1e293b", accent: "#334155", layout: "clean-slate" },
     "minimalist-monochrome": { key: "minimalist-monochrome", name: "Monochrome Classic", category: "Minimalist", tag: "Timeless · Compact Grid", gradient: "linear-gradient(135deg, #525252 0%, #262626 100%)", primary: "#262626", accent: "#525252", layout: "monochrome" },
+    "minimalist-ivy": { key: "minimalist-ivy", name: "Ivy League Scholar", category: "Minimalist", tag: "Oxford Serif · Highest ATS Score", gradient: "linear-gradient(135deg, #450a0a 0%, #7f1d1d 100%)", primary: "#7f1d1d", accent: "#991b1b", layout: "ivy" },
 
     "creative-designer": { key: "creative-designer", name: "Creative Designer", category: "Creative", tag: "Vibrant · Portfolio Ready", gradient: "linear-gradient(135deg, #7d2ae8 0%, #f43f5e 100%)", primary: "#f43f5e", accent: "#7d2ae8", layout: "creative" },
     "creative-artistic": { key: "creative-artistic", name: "Artistic Showcase", category: "Creative", tag: "Bold · Media & Design", gradient: "linear-gradient(135deg, #ec4899 0%, #f97316 100%)", primary: "#ec4899", accent: "#f97316", layout: "artistic" },
     "creative-innovator": { key: "creative-innovator", name: "Studio Innovator", category: "Creative", tag: "Expressive · Studio Ready", gradient: "linear-gradient(135deg, #8b5cf6 0%, #d946ef 100%)", primary: "#8b5cf6", accent: "#d946ef", layout: "innovator" },
+    "creative-ux": { key: "creative-ux", name: "UX/UI Product Designer", category: "Creative", tag: "Design Systems · User Research", gradient: "linear-gradient(135deg, #4338ca 0%, #06b6d4 100%)", primary: "#4338ca", accent: "#06b6d4", layout: "ux" },
 
     "executive-pro": { key: "executive-pro", name: "Executive Professional", category: "Executive", tag: "Formal · High Impact", gradient: "linear-gradient(135deg, #10b981 0%, #00c4cc 100%)", primary: "#10b981", accent: "#00c4cc", layout: "executive" },
     "executive-director": { key: "executive-director", name: "Corporate Director", category: "Executive", tag: "Authoritative · Leadership Focus", gradient: "linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%)", primary: "#1e3a8a", accent: "#0f172a", layout: "director" },
     "executive-manager": { key: "executive-manager", name: "Senior Manager", category: "Executive", tag: "Structured · Executive Suite", gradient: "linear-gradient(135deg, #1e1b4b 0%, #312e81 100%)", primary: "#312e81", accent: "#1e1b4b", layout: "manager" },
+    "corp-consultant": { key: "corp-consultant", name: "Management Consultant", category: "Executive", tag: "Strategy · Quantitative Impact", gradient: "linear-gradient(135deg, #0f172a 0%, #b45309 100%)", primary: "#b45309", accent: "#0f172a", layout: "consultant" },
 
     "fresher-academic": { key: "fresher-academic", name: "Fresher Academic", category: "Fresher", tag: "Student Friendly · First Job", gradient: "linear-gradient(135deg, #f59e0b 0%, #ef4444 100%)", primary: "#f59e0b", accent: "#ef4444", layout: "fresher" },
     "fresher-starter": { key: "fresher-starter", name: "Entry Level Starter", category: "Fresher", tag: "Skills First · Internship Ready", gradient: "linear-gradient(135deg, #14b8a6 0%, #06b6d4 100%)", primary: "#14b8a6", accent: "#06b6d4", layout: "starter" },
@@ -2018,6 +2023,311 @@ options.forEach(function (card) {
                 </div>
               `)}
             </div>
+          </div>
+        </div>
+      </div>`;
+    }
+
+    // 9. Cloud & DevOps Architect Layout
+    if (theme.layout === "cloud") {
+      return `<div style="font-family:'Inter', sans-serif; color:#0f172a; line-height:1.5;">
+        <div style="background:#0f172a; padding:24px; border-radius:10px; color:#ffffff; border-top:4px solid #0284c7; margin-bottom:20px; display:flex; justify-content:space-between; align-items:center">
+          <div>
+            <div style="font-size:11px; font-weight:700; color:#38bdf8; text-transform:uppercase; letter-spacing:1px; margin-bottom:2px">☁️ CLOUD & SYSTEMS ARCHITECT</div>
+            <h1 style="margin:0 0 4px; font-size:28px; font-weight:800">${nameText}</h1>
+            <div style="font-size:14px; color:#94a3b8; font-weight:600">${headlineText}</div>
+          </div>
+          ${p.photo ? `<img src="${p.photo}" style="width:68px;height:68px;border-radius:10px;object-fit:cover;border:2px solid #38bdf8">` : ""}
+        </div>
+        <div style="display:flex; flex-wrap:wrap; gap:12px; font-size:12px; color:#475569; padding-bottom:12px; border-bottom:1px solid #cbd5e1; margin-bottom:20px; font-family:monospace">
+          <span style="background:#f0f9ff;padding:3px 8px;border-radius:4px;color:#0369a1">📧 ${emailText}</span>
+          <span style="background:#f0f9ff;padding:3px 8px;border-radius:4px;color:#0369a1">📞 ${phoneText}</span>
+          <span style="background:#f0f9ff;padding:3px 8px;border-radius:4px;color:#0369a1">📍 ${addressText}</span>
+          ${p.linkedin ? `<a href="${escape(p.linkedin)}" target="_blank" style="background:#0284c7;color:#fff;padding:3px 8px;border-radius:4px;text-decoration:none">LinkedIn</a>` : ""}
+        </div>
+        <div style="margin-bottom:20px">
+          <h3 style="font-size:14px; font-weight:800; color:#0284c7; text-transform:uppercase; letter-spacing:0.05em; border-bottom:1.5px solid #0284c7; padding-bottom:3px; margin:0 0 6px">Architecture & Systems Summary</h3>
+          ${summaryBlock}
+        </div>
+        <div style="display:grid; grid-template-columns: 2fr 1fr; gap:24px">
+          <div>
+            <div style="margin-bottom:20px">
+              <h3 style="font-size:14px; font-weight:800; color:#0284c7; text-transform:uppercase; letter-spacing:0.05em; border-bottom:1.5px solid #0284c7; padding-bottom:3px; margin:0 0 10px">Infrastructure Experience</h3>
+              ${expBlock((x) => `
+                <div style="margin-bottom:12px; padding-left:10px; border-left:2px solid #0284c7">
+                  <div style="display:flex; justify-content:space-between">
+                    <strong style="font-size:13.5px; color:#0f172a">${escape(x.title || "")} @ ${escape(x.company || "")}</strong>
+                    <span style="font-size:11.5px; color:#64748b">${escape(x.start || "")} - ${escape(x.end || "Present")}</span>
+                  </div>
+                  ${formatBullets(x.responsibilities)}
+                </div>
+              `)}
+            </div>
+            <div>
+              <h3 style="font-size:14px; font-weight:800; color:#0284c7; text-transform:uppercase; letter-spacing:0.05em; border-bottom:1.5px solid #0284c7; padding-bottom:3px; margin:0 0 10px">Deployments & Systems</h3>
+              ${projBlock((proj) => `
+                <div style="margin-bottom:10px; background:#f8fafc; border:1px solid #e2e8f0; padding:8px 10px; border-radius:6px">
+                  <div style="display:flex; justify-content:space-between">
+                    <strong style="font-size:13px; color:#0f172a">${escape(proj.name || "")}</strong>
+                    <span style="font-size:11px; font-family:monospace; color:#0284c7">${escape(proj.tech || "")}</span>
+                  </div>
+                  ${formatBullets(proj.description)}
+                </div>
+              `)}
+            </div>
+          </div>
+          <div>
+            <div style="margin-bottom:20px">
+              <h3 style="font-size:14px; font-weight:800; color:#0284c7; text-transform:uppercase; letter-spacing:0.05em; border-bottom:1.5px solid #0284c7; padding-bottom:3px; margin:0 0 8px">DevOps & Cloud Stack</h3>
+              ${formatSkillsChips("#e0f2fe", "#7dd3fc", "#0369a1")}
+            </div>
+            <div>
+              <h3 style="font-size:14px; font-weight:800; color:#0284c7; text-transform:uppercase; letter-spacing:0.05em; border-bottom:1.5px solid #0284c7; padding-bottom:3px; margin:0 0 8px">Education</h3>
+              ${eduBlock((edu) => `
+                <div style="margin-bottom:8px">
+                  <strong style="font-size:13px; color:#0f172a; display:block">${escape(edu.degree || "")}</strong>
+                  <div style="font-size:12px; color:#64748b">${escape(edu.institution || "")}</div>
+                </div>
+              `)}
+            </div>
+          </div>
+        </div>
+      </div>`;
+    }
+
+    // 10. AI & Data Scientist Layout
+    if (theme.layout === "ai-data") {
+      return `<div style="font-family:'Inter', sans-serif; color:#0f172a; line-height:1.5;">
+        <div style="background:linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%); padding:24px; border-radius:12px; color:#ffffff; border-bottom:3px solid #06b6d4; margin-bottom:20px; display:flex; justify-content:space-between; align-items:center">
+          <div>
+            <div style="font-size:11px; font-weight:700; color:#22d3ee; text-transform:uppercase; letter-spacing:1px; margin-bottom:2px">🤖 AI & DATA SCIENCE SPECIALIST</div>
+            <h1 style="margin:0 0 4px; font-size:28px; font-weight:800">${nameText}</h1>
+            <div style="font-size:14px; color:#cbd5e1; font-weight:600">${headlineText}</div>
+          </div>
+          ${p.photo ? `<img src="${p.photo}" style="width:68px;height:68px;border-radius:12px;object-fit:cover;border:2px solid #22d3ee">` : ""}
+        </div>
+        <div style="display:flex; flex-wrap:wrap; gap:14px; font-size:12px; color:#475569; padding-bottom:12px; border-bottom:1px solid #cbd5e1; margin-bottom:20px">
+          <span>📧 ${emailText}</span> • <span>📞 ${phoneText}</span> • <span>📍 ${addressText}</span>
+          ${p.portfolio ? `• <a href="${escape(p.portfolio)}" target="_blank" style="color:#0891b2;font-weight:700">Kaggle / Portfolio</a>` : ""}
+        </div>
+        <div style="margin-bottom:20px">
+          <h3 style="font-size:14px; font-weight:800; color:#0891b2; text-transform:uppercase; margin:0 0 6px">Research & Quantitative Focus</h3>
+          ${summaryBlock}
+        </div>
+        <div style="display:grid; grid-template-columns: 2fr 1fr; gap:24px">
+          <div>
+            <div style="margin-bottom:20px">
+              <h3 style="font-size:14px; font-weight:800; color:#0891b2; text-transform:uppercase; border-bottom:1.5px solid #0891b2; padding-bottom:3px; margin:0 0 10px">AI & ML Projects</h3>
+              ${projBlock((proj) => `
+                <div style="margin-bottom:12px; background:#ecfeff; border:1px solid #a5f3fc; border-left:3px solid #0891b2; padding:10px; border-radius:6px">
+                  <div style="display:flex; justify-content:space-between">
+                    <strong style="font-size:13.5px; color:#0e7490">${escape(proj.name || "")}</strong>
+                    <span style="font-size:11.5px; color:#0891b2; font-weight:600">${escape(proj.tech || "")}</span>
+                  </div>
+                  ${formatBullets(proj.description)}
+                </div>
+              `)}
+            </div>
+            <div>
+              <h3 style="font-size:14px; font-weight:800; color:#0891b2; text-transform:uppercase; border-bottom:1.5px solid #0891b2; padding-bottom:3px; margin:0 0 10px">Professional Experience</h3>
+              ${expBlock((x) => `
+                <div style="margin-bottom:12px">
+                  <div style="display:flex; justify-content:space-between">
+                    <strong style="font-size:13.5px; color:#0f172a">${escape(x.title || "")} @ ${escape(x.company || "")}</strong>
+                    <span style="font-size:11.5px; color:#64748b">${escape(x.start || "")} - ${escape(x.end || "Present")}</span>
+                  </div>
+                  ${formatBullets(x.responsibilities)}
+                </div>
+              `)}
+            </div>
+          </div>
+          <div>
+            <div style="margin-bottom:20px">
+              <h3 style="font-size:14px; font-weight:800; color:#0891b2; text-transform:uppercase; border-bottom:1.5px solid #0891b2; padding-bottom:3px; margin:0 0 8px">Machine Learning & Tools</h3>
+              ${formatSkillsChips("#cffafe", "#67e8f9", "#0e7490")}
+            </div>
+            <div>
+              <h3 style="font-size:14px; font-weight:800; color:#0891b2; text-transform:uppercase; border-bottom:1.5px solid #0891b2; padding-bottom:3px; margin:0 0 8px">Education</h3>
+              ${eduBlock((edu) => `
+                <div style="margin-bottom:8px">
+                  <strong style="font-size:13px; color:#0f172a; display:block">${escape(edu.degree || "")}</strong>
+                  <div style="font-size:12px; color:#64748b">${escape(edu.institution || "")}</div>
+                </div>
+              `)}
+            </div>
+          </div>
+        </div>
+      </div>`;
+    }
+
+    // 11. Ivy League Academic Layout (Oxford / Harvard Traditional Serif ATS Standard)
+    if (theme.layout === "ivy") {
+      return `<div style="font-family:'Georgia', 'Cambria', serif; color:#1c1917; line-height:1.5;">
+        <div style="text-align:center; border-bottom:2px solid #7f1d1d; padding-bottom:14px; margin-bottom:18px">
+          <h1 style="margin:0 0 4px; font-size:30px; font-weight:700; color:#7f1d1d; letter-spacing:0.5px">${nameText}</h1>
+          <div style="font-size:14px; font-style:italic; color:#44403c">${headlineText}</div>
+          <div style="font-family:'Inter', sans-serif; display:flex; justify-content:center; flex-wrap:wrap; gap:14px; font-size:11.5px; color:#57534e; margin-top:8px">
+            <span>${emailText}</span> • <span>${phoneText}</span> • <span>${addressText}</span>
+            ${p.linkedin ? `• <a href="${escape(p.linkedin)}" target="_blank" style="color:#7f1d1d">LinkedIn</a>` : ""}
+          </div>
+        </div>
+        <div style="margin-bottom:18px">
+          <h3 style="font-size:13.5px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#7f1d1d; border-bottom:1px solid #d6d3d1; padding-bottom:2px; margin:0 0 6px">Academic & Career Profile</h3>
+          ${summaryBlock}
+        </div>
+        <div style="margin-bottom:18px">
+          <h3 style="font-size:13.5px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#7f1d1d; border-bottom:1px solid #d6d3d1; padding-bottom:2px; margin:0 0 10px">Professional Experience</h3>
+          ${expBlock((x) => `
+            <div style="margin-bottom:12px">
+              <div style="display:flex; justify-content:space-between; align-items:baseline">
+                <strong style="font-size:14px; color:#1c1917">${escape(x.title || "")}, ${escape(x.company || "")}</strong>
+                <span style="font-family:'Inter', sans-serif; font-size:11.5px; color:#78716c">${escape(x.start || "")} – ${escape(x.end || "Present")}</span>
+              </div>
+              <div style="font-family:'Inter', sans-serif;">${formatBullets(x.responsibilities)}</div>
+            </div>
+          `)}
+        </div>
+        <div style="margin-bottom:18px">
+          <h3 style="font-size:13.5px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#7f1d1d; border-bottom:1px solid #d6d3d1; padding-bottom:2px; margin:0 0 10px">Education & Degrees</h3>
+          ${eduBlock((edu) => `
+            <div style="margin-bottom:8px">
+              <div style="display:flex; justify-content:space-between; align-items:baseline">
+                <strong style="font-size:13.5px; color:#1c1917">${escape(edu.degree || "")}</strong>
+                <span style="font-family:'Inter', sans-serif; font-size:11.5px; color:#78716c">${escape(edu.start || "")} – ${escape(edu.end || "")}</span>
+              </div>
+              <div style="font-size:12.5px; color:#57534e">${escape(edu.institution || "")}</div>
+            </div>
+          `)}
+        </div>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px">
+          <div>
+            <h3 style="font-size:13.5px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#7f1d1d; border-bottom:1px solid #d6d3d1; padding-bottom:2px; margin:0 0 8px">Key Projects & Research</h3>
+            ${projBlock((proj) => `
+              <div style="margin-bottom:8px">
+                <strong style="font-size:13px">${escape(proj.name || "")}</strong>
+                <div style="font-family:'Inter', sans-serif;">${formatBullets(proj.description)}</div>
+              </div>
+            `)}
+          </div>
+          <div>
+            <h3 style="font-size:13.5px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#7f1d1d; border-bottom:1px solid #d6d3d1; padding-bottom:2px; margin:0 0 8px">Skills & Competencies</h3>
+            <div style="font-family:'Inter', sans-serif;">${formatSkillsChips("#fef2f2", "#fecaca", "#7f1d1d")}</div>
+          </div>
+        </div>
+      </div>`;
+    }
+
+    // 12. UX/UI Product Designer Layout
+    if (theme.layout === "ux") {
+      return `<div style="font-family:'Outfit', 'Inter', sans-serif; color:#0f172a; line-height:1.5;">
+        <div style="background:linear-gradient(135deg, #4338ca 0%, #06b6d4 100%); padding:26px; border-radius:16px; color:#ffffff; display:flex; justify-content:space-between; align-items:center; margin-bottom:22px; box-shadow:0 8px 24px rgba(67,56,202,0.2)">
+          <div>
+            <div style="font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; opacity:0.9">PRODUCT & INTERACTION DESIGN</div>
+            <h1 style="margin:2px 0 4px; font-size:30px; font-weight:800">${nameText}</h1>
+            <div style="font-size:14.5px; font-weight:600; opacity:0.95">${headlineText}</div>
+          </div>
+          ${p.photo ? `<img src="${p.photo}" style="width:72px;height:72px;border-radius:18px;object-fit:cover;border:3px solid #fff">` : ""}
+        </div>
+        <div style="display:flex; flex-wrap:wrap; gap:14px; font-size:12.5px; color:#475569; padding-bottom:12px; border-bottom:2px solid #e0e7ff; margin-bottom:20px">
+          <span>📧 ${emailText}</span>
+          <span>📞 ${phoneText}</span>
+          <span>📍 ${addressText}</span>
+          ${p.portfolio ? `<a href="${escape(p.portfolio)}" target="_blank" style="color:#4338ca;font-weight:700">🎨 Figma / Portfolio</a>` : ""}
+        </div>
+        <div style="margin-bottom:20px">
+          <h3 style="font-size:14.5px; font-weight:800; color:#4338ca; text-transform:uppercase; letter-spacing:0.04em; margin:0 0 6px">Product Design Philosophy</h3>
+          ${summaryBlock}
+        </div>
+        <div style="display:grid; grid-template-columns: 2fr 1fr; gap:24px">
+          <div>
+            <div style="margin-bottom:20px">
+              <h3 style="font-size:14.5px; font-weight:800; color:#4338ca; text-transform:uppercase; letter-spacing:0.04em; margin:0 0 10px">Featured Case Studies</h3>
+              ${projBlock((proj) => `
+                <div style="margin-bottom:12px; background:#f5f3ff; padding:12px; border-radius:10px; border-left:4px solid #4338ca">
+                  <div style="display:flex; justify-content:space-between">
+                    <strong style="font-size:14px; color:#312e81">${escape(proj.name || "")}</strong>
+                    <span style="font-size:11.5px; color:#4338ca; font-weight:700">${escape(proj.tech || "")}</span>
+                  </div>
+                  ${formatBullets(proj.description)}
+                </div>
+              `)}
+            </div>
+            <div>
+              <h3 style="font-size:14.5px; font-weight:800; color:#4338ca; text-transform:uppercase; letter-spacing:0.04em; margin:0 0 10px">Design Experience</h3>
+              ${expBlock((x) => `
+                <div style="margin-bottom:12px">
+                  <div style="display:flex; justify-content:space-between">
+                    <strong style="font-size:13.5px; color:#0f172a">${escape(x.title || "")} @ ${escape(x.company || "")}</strong>
+                    <span style="font-size:12px; color:#64748b">${escape(x.start || "")} - ${escape(x.end || "Present")}</span>
+                  </div>
+                  ${formatBullets(x.responsibilities)}
+                </div>
+              `)}
+            </div>
+          </div>
+          <div>
+            <div style="margin-bottom:20px">
+              <h3 style="font-size:14.5px; font-weight:800; color:#4338ca; text-transform:uppercase; letter-spacing:0.04em; margin:0 0 8px">Design Systems & Tools</h3>
+              ${formatSkillsChips("#eef2ff", "#c7d2fe", "#3730a3")}
+            </div>
+            <div>
+              <h3 style="font-size:14.5px; font-weight:800; color:#4338ca; text-transform:uppercase; letter-spacing:0.04em; margin:0 0 8px">Education</h3>
+              ${eduBlock((edu) => `
+                <div style="margin-bottom:8px">
+                  <strong style="font-size:13px; color:#0f172a; display:block">${escape(edu.degree || "")}</strong>
+                  <div style="font-size:12px; color:#64748b">${escape(edu.institution || "")}</div>
+                </div>
+              `)}
+            </div>
+          </div>
+        </div>
+      </div>`;
+    }
+
+    // 13. Management Consultant Layout (McKinsey / BCG Quantitative Impact)
+    if (theme.layout === "consultant") {
+      return `<div style="font-family:'Outfit', 'Inter', sans-serif; color:#0f172a; line-height:1.5;">
+        <div style="background:#0f172a; padding:24px; border-radius:10px; color:#ffffff; border-left:5px solid #d97706; margin-bottom:20px; display:flex; justify-content:space-between; align-items:center">
+          <div>
+            <div style="font-size:11px; font-weight:700; color:#fbbf24; text-transform:uppercase; letter-spacing:1px; margin-bottom:2px">STRATEGY & MANAGEMENT CONSULTING</div>
+            <h1 style="margin:0 0 4px; font-size:30px; font-weight:800">${nameText}</h1>
+            <div style="font-size:14.5px; color:#cbd5e1; font-weight:600">${headlineText}</div>
+          </div>
+          ${p.photo ? `<img src="${p.photo}" style="width:70px;height:70px;border-radius:8px;object-fit:cover;border:2px solid #fbbf24">` : ""}
+        </div>
+        <div style="display:flex; flex-wrap:wrap; gap:16px; font-size:12px; color:#64748b; padding-bottom:12px; border-bottom:1.5px solid #cbd5e1; margin-bottom:20px; font-weight:600">
+          <span>EMAIL: ${emailText}</span> | <span>PHONE: ${phoneText}</span> | <span>LOCATION: ${addressText}</span>
+          ${p.linkedin ? `| <span><a href="${escape(p.linkedin)}" target="_blank" style="color:#b45309">LinkedIn</a></span>` : ""}
+        </div>
+        <div style="margin-bottom:20px; background:#fffbeb; border:1px solid #fde68a; padding:12px; border-radius:6px">
+          <h3 style="font-size:13.5px; font-weight:800; color:#92400e; text-transform:uppercase; margin:0 0 4px">Executive Summary & Advisory Scope</h3>
+          ${summaryBlock}
+        </div>
+        <div style="margin-bottom:20px">
+          <h3 style="font-size:14px; font-weight:800; color:#b45309; text-transform:uppercase; letter-spacing:0.06em; border-bottom:1.5px solid #b45309; padding-bottom:3px; margin:0 0 10px">Consulting & Leadership Track Record</h3>
+          ${expBlock((x) => `
+            <div style="margin-bottom:14px">
+              <div style="display:flex; justify-content:space-between; align-items:baseline">
+                <strong style="font-size:14px; color:#0f172a">${escape(x.title || "")} — ${escape(x.company || "")}</strong>
+                <span style="font-size:11.5px; color:#64748b; font-weight:600">${escape(x.start || "")} – ${escape(x.end || "Present")}</span>
+              </div>
+              ${formatBullets(x.responsibilities)}
+            </div>
+          `)}
+        </div>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:24px">
+          <div>
+            <h3 style="font-size:14px; font-weight:800; color:#b45309; text-transform:uppercase; letter-spacing:0.06em; border-bottom:1.5px solid #b45309; padding-bottom:3px; margin:0 0 8px">Advisory Engagements</h3>
+            ${projBlock((proj) => `
+              <div style="margin-bottom:10px">
+                <strong style="font-size:13px; color:#0f172a">${escape(proj.name || "")}</strong>
+                ${formatBullets(proj.description)}
+              </div>
+            `)}
+          </div>
+          <div>
+            <h3 style="font-size:14px; font-weight:800; color:#b45309; text-transform:uppercase; letter-spacing:0.06em; border-bottom:1.5px solid #b45309; padding-bottom:3px; margin:0 0 8px">Core Strategy Matrix</h3>
+            ${formatSkillsChips("#fef3c7", "#fde68a", "#92400e")}
           </div>
         </div>
       </div>`;
