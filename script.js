@@ -1549,11 +1549,6 @@ options.forEach(function (card) {
       </ul>`;
     }
 
-    const tech = (state.skills?.technical || []).join(", ");
-    const soft = (state.skills?.soft || []).join(", ");
-    const lang = (state.skills?.languages || []).join(", ");
-    const cert = (state.skills?.certifications || []).join(", ");
-
     const hasSkills = Boolean(tech || soft || lang || cert);
     const formatSkillsChips = (bg = "#f1f5f9", border = "#cbd5e1", textCol = "#1e293b") => {
       if (!hasSkills) return errBox("Skills", 3);
