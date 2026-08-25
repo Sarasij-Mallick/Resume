@@ -1524,264 +1524,42 @@ options.forEach(function (card) {
     const eduList = hasEdu ? state.education : [];
     const eduBlock = (eduRenderFn) => hasEdu ? eduList.map(eduRenderFn).join("") : errBox("Education", 2);
 
+    function formatBullets(text) {
+      if (!text) return "";
+      const lines = text.split("\n").map((l) => l.trim()).filter(Boolean);
+      if (lines.length <= 1 && !lines[0].startsWith("-") && !lines[0].startsWith("•") && !lines[0].startsWith("*")) {
+        return `<div style="font-size:12.5px; color:#334155; line-height:1.6">${escape(text)}</div>`;
+      }
+      return `<ul style="margin:4px 0 0 0; padding-left:18px; font-size:12.5px; color:#334155; line-height:1.6">
+        ${lines.map((line) => {
+          const clean = line.replace(/^[-•*]\s*/, "");
+          return `<li style="margin-bottom:3px">${escape(clean)}</li>`;
+        }).join("")}
+      </ul>`;
+    }
+
+    const tech = (state.skills?.technical || []).join(", ");
+    const soft = (state.skills?.soft || []).join(", ");
+    const lang = (state.skills?.languages || []).join(", ");
+    const cert = (state.skills?.certifications || []).join(", ");
+
     const hasSkills = Boolean(tech || soft || lang || cert);
-    const skillsParts = [];
-    if (tech) skillsParts.push(`<div style="margin-bottom:6px"><strong>Technical:</strong> ${escape(tech)}</div>`);
-    if (soft) skillsParts.push(`<div style="margin-bottom:6px"><strong>Soft Skills:</strong> ${escape(soft)}</div>`);
-    if (lang) skillsParts.push(`<div style="margin-bottom:6px"><strong>Languages:</strong> ${escape(lang)}</div>`);
-    if (cert) skillsParts.push(`<div style="margin-bottom:6px"><strong>Certifications:</strong> ${escape(cert)}</div>`);
-    const skillsBlock = hasSkills ? `<div style="font-size:12.5px; color:#334155">${skillsParts.join("")}</div>` : errBox("Skills", 3);
-
-    // Minimalist Layout
-    if (theme.layout === "minimalist") {
-      return `<div style="font-family:'Inter', sans-serif; color:#0f172a; line-height:1.5;">
-        <div style="border-bottom:3px solid ${theme.primary}; padding-bottom:16px; margin-bottom:20px; display:flex; justify-content:space-between; align-items:flex-end">
-          <div>
-            <h1 style="margin:0; font-size:28px; font-weight:800; color:${theme.primary}">${nameText}</h1>
-            <div style="font-size:14px; color:#475569; font-weight:600; margin-top:2px">${headlineText}</div>
-          </div>
-          ${p.photo ? `<img src="${p.photo}" style="width:64px;height:64px;border-radius:8px;object-fit:cover">` : ""}
-        </div>
-        <div style="display:flex; flex-wrap:wrap; gap:16px; font-size:12px; color:#64748b; margin-bottom:20px; border-bottom:1px solid #e2e8f0; padding-bottom:12px">
-          <span>${emailText}</span>
-          <span>${phoneText}</span>
-          <span>${addressText}</span>
-          ${p.linkedin ? `<span><a href="${escape(p.linkedin)}" target="_blank" style="color:${theme.primary}">LinkedIn</a></span>` : ""}
-          ${p.portfolio ? `<span><a href="${escape(p.portfolio)}" target="_blank" style="color:${theme.primary}">Portfolio</a></span>` : ""}
-        </div>
-        <div style="margin-bottom:20px">
-          <h3 style="font-size:14px; font-weight:800; text-transform:uppercase; color:${theme.primary}; letter-spacing:0.05em; border-bottom:1px solid #e2e8f0; padding-bottom:4px; margin:0 0 8px">Summary</h3>
-          ${summaryBlock}
-        </div>
-        <div style="display:grid; grid-template-columns: 2fr 1fr; gap:24px">
-          <div>
-            <div style="margin-bottom:20px">
-              <h3 style="font-size:14px; font-weight:800; text-transform:uppercase; color:${theme.primary}; letter-spacing:0.05em; border-bottom:1px solid #e2e8f0; padding-bottom:4px; margin:0 0 10px">Experience</h3>
-              ${expBlock((x) => `
-                <div style="margin-bottom:12px">
-                  <div style="display:flex; justify-content:space-between">
-                    <strong style="font-size:13.5px; color:#0f172a">${escape(x.title || "")} @ ${escape(x.company || "")}</strong>
-                    <span style="font-size:11.5px; color:#64748b">${escape(x.start || "")} - ${escape(x.end || "Present")}</span>
-                  </div>
-                  <div style="font-size:12.5px; color:#475569; margin-top:2px">${escape(x.responsibilities || "")}</div>
-                </div>
-              `)}
-            </div>
-            <div>
-              <h3 style="font-size:14px; font-weight:800; text-transform:uppercase; color:${theme.primary}; letter-spacing:0.05em; border-bottom:1px solid #e2e8f0; padding-bottom:4px; margin:0 0 10px">Projects</h3>
-              ${projBlock((proj) => `
-                <div style="margin-bottom:12px">
-                  <div style="display:flex; justify-content:space-between">
-                    <strong style="font-size:13.5px; color:#0f172a">${escape(proj.name || "")}</strong>
-                    <span style="font-size:11.5px; color:${theme.primary}">${escape(proj.tech || "")}</span>
-                  </div>
-                  <div style="font-size:12.5px; color:#475569; margin-top:2px">${escape(proj.description || "")}</div>
-                </div>
-              `)}
-            </div>
-          </div>
-          <div>
-            <div style="margin-bottom:20px">
-              <h3 style="font-size:14px; font-weight:800; text-transform:uppercase; color:${theme.primary}; letter-spacing:0.05em; border-bottom:1px solid #e2e8f0; padding-bottom:4px; margin:0 0 8px">Skills</h3>
-              ${skillsBlock}
-            </div>
-            <div style="margin-bottom:20px">
-              <h3 style="font-size:14px; font-weight:800; text-transform:uppercase; color:${theme.primary}; letter-spacing:0.05em; border-bottom:1px solid #e2e8f0; padding-bottom:4px; margin:0 0 8px">Education</h3>
-              ${eduBlock((edu) => `
-                <div style="margin-bottom:10px">
-                  <strong style="font-size:13px; color:#0f172a; display:block">${escape(edu.degree || "")}</strong>
-                  <div style="font-size:12px; color:#64748b">${escape(edu.institution || "")}</div>
-                  <div style="font-size:11.5px; color:#94a3b8">${escape(edu.start || "")} - ${escape(edu.end || "")}</div>
-                </div>
-              `)}
-            </div>
-          </div>
-        </div>
+    const formatSkillsChips = (bg = "#f1f5f9", border = "#cbd5e1", textCol = "#1e293b") => {
+      if (!hasSkills) return errBox("Skills", 3);
+      return `<div style="display:flex; flex-direction:column; gap:8px">
+        ${tech ? `<div><div style="font-size:11px; font-weight:700; color:#64748b; margin-bottom:4px; text-transform:uppercase; letter-spacing:0.5px">Technical Skills</div><div style="display:flex; flex-wrap:wrap; gap:5px">${(state.skills.technical || []).map((s) => `<span style="background:${bg}; color:${textCol}; border:1px solid ${border}; padding:2px 8px; border-radius:4px; font-size:11.5px; font-weight:600">${escape(s)}</span>`).join("")}</div></div>` : ""}
+        ${soft ? `<div><div style="font-size:11px; font-weight:700; color:#64748b; margin-bottom:4px; text-transform:uppercase; letter-spacing:0.5px">Soft Skills</div><div style="display:flex; flex-wrap:wrap; gap:5px">${(state.skills.soft || []).map((s) => `<span style="background:${bg}; color:${textCol}; border:1px solid ${border}; padding:2px 8px; border-radius:4px; font-size:11.5px; font-weight:600">${escape(s)}</span>`).join("")}</div></div>` : ""}
+        ${lang ? `<div><div style="font-size:11px; font-weight:700; color:#64748b; margin-bottom:2px; text-transform:uppercase; letter-spacing:0.5px">Languages</div><div style="font-size:12px; color:#334155">${escape(lang)}</div></div>` : ""}
+        ${cert ? `<div><div style="font-size:11px; font-weight:700; color:#64748b; margin-bottom:2px; text-transform:uppercase; letter-spacing:0.5px">Certifications</div><div style="font-size:12px; color:#334155">${escape(cert)}</div></div>` : ""}
       </div>`;
-    }
+    };
 
-    // Fresher Layout
-    if (theme.layout === "fresher") {
-      return `<div style="font-family:'Inter', sans-serif; color:#0e131f; line-height:1.5;">
-        <div style="background:${theme.gradient}; padding:24px; border-radius:12px; color:#ffffff; margin-bottom:20px; display:flex; justify-content:space-between; align-items:center">
-          <div>
-            <h1 style="font-family:'Outfit', sans-serif; margin:0 0 4px; font-size:28px; font-weight:800">${nameText}</h1>
-            <div style="font-size:14px; opacity:0.95; font-weight:600">${headlineText}</div>
-          </div>
-          ${p.photo ? `<img src="${p.photo}" style="width:70px;height:70px;border-radius:50%;object-fit:cover;border:3px solid #fff">` : ""}
-        </div>
-        <div style="display:flex; flex-wrap:wrap; gap:16px; font-size:12.5px; color:#475569; padding-bottom:14px; border-bottom:2px solid #f1f5f9; margin-bottom:20px">
-          <span>${emailText}</span>
-          <span>${phoneText}</span>
-          <span>${addressText}</span>
-          ${p.linkedin ? `<span><a href="${escape(p.linkedin)}" target="_blank" style="color:${theme.primary}">LinkedIn</a></span>` : ""}
-        </div>
-        <div style="margin-bottom:20px">
-          <h3 style="font-family:'Outfit', sans-serif; font-size:15px; font-weight:800; color:${theme.primary}; text-transform:uppercase; border-bottom:2px solid ${theme.primary}33; padding-bottom:4px; margin:0 0 8px">Academic Objective & Summary</h3>
-          ${summaryBlock}
-        </div>
-        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:24px">
-          <div>
-            <div style="margin-bottom:20px">
-              <h3 style="font-family:'Outfit', sans-serif; font-size:15px; font-weight:800; color:${theme.primary}; text-transform:uppercase; border-bottom:2px solid ${theme.primary}33; padding-bottom:4px; margin:0 0 10px">Education & Qualifications</h3>
-              ${eduBlock((edu) => `
-                <div style="margin-bottom:12px; background:#fffbf5; padding:10px; border-radius:8px; border-left:3px solid ${theme.primary}">
-                  <strong style="font-size:14px; color:#0e131f; display:block">${escape(edu.degree || "")}</strong>
-                  <div style="font-size:12.5px; color:#64748b">${escape(edu.institution || "")}</div>
-                  <div style="font-size:11.5px; color:#94a3b8">${escape(edu.start || "")} - ${escape(edu.end || "")}</div>
-                </div>
-              `)}
-            </div>
-            <div>
-              <h3 style="font-family:'Outfit', sans-serif; font-size:15px; font-weight:800; color:${theme.primary}; text-transform:uppercase; border-bottom:2px solid ${theme.primary}33; padding-bottom:4px; margin:0 0 10px">Key Projects</h3>
-              ${projBlock((proj) => `
-                <div style="margin-bottom:12px">
-                  <strong style="font-size:13.5px; color:#0e131f">${escape(proj.name || "")}</strong>
-                  <div style="font-size:11.5px; color:${theme.primary}; font-weight:600">${escape(proj.tech || "")}</div>
-                  <div style="font-size:12.5px; color:#475569; margin-top:2px">${escape(proj.description || "")}</div>
-                </div>
-              `)}
-            </div>
-          </div>
-          <div>
-            <div style="margin-bottom:20px">
-              <h3 style="font-family:'Outfit', sans-serif; font-size:15px; font-weight:800; color:${theme.primary}; text-transform:uppercase; border-bottom:2px solid ${theme.primary}33; padding-bottom:4px; margin:0 0 10px">Skills & Competencies</h3>
-              ${skillsBlock}
-            </div>
-            <div>
-              <h3 style="font-family:'Outfit', sans-serif; font-size:15px; font-weight:800; color:${theme.primary}; text-transform:uppercase; border-bottom:2px solid ${theme.primary}33; padding-bottom:4px; margin:0 0 10px">Experience / Internships</h3>
-              ${expBlock((x) => `
-                <div style="margin-bottom:12px">
-                  <strong style="font-size:13.5px; color:#0e131f">${escape(x.title || "")} @ ${escape(x.company || "")}</strong>
-                  <div style="font-size:11.5px; color:#64748b">${escape(x.start || "")} - ${escape(x.end || "Present")}</div>
-                  <div style="font-size:12.5px; color:#475569; margin-top:2px">${escape(x.responsibilities || "")}</div>
-                </div>
-              `)}
-            </div>
-          </div>
-        </div>
-      </div>`;
-    }
-
-    // Creative Layout
-    if (theme.layout === "creative") {
-      return `<div style="font-family:'Outfit', 'Inter', sans-serif; color:#0e131f; line-height:1.5;">
-        <div style="background:${theme.gradient}; padding:28px; border-radius:16px; color:#ffffff; margin-bottom:24px; display:flex; justify-content:space-between; align-items:center; box-shadow:0 8px 24px rgba(125,42,232,0.15)">
-          <div>
-            <h1 style="margin:0 0 4px; font-size:32px; font-weight:800">${nameText}</h1>
-            <div style="font-size:16px; opacity:0.95; font-weight:600">${headlineText}</div>
-          </div>
-          ${p.photo ? `<img src="${p.photo}" style="width:80px;height:80px;border-radius:20px;object-fit:cover;border:3px solid #fff">` : ""}
-        </div>
-        <div style="display:flex; flex-wrap:wrap; gap:16px; font-size:13px; color:#475569; padding-bottom:16px; border-bottom:2px dashed #e2e8f0; margin-bottom:24px">
-          <span>${emailText}</span>
-          <span>${phoneText}</span>
-          <span>${addressText}</span>
-          ${p.portfolio ? `<span><a href="${escape(p.portfolio)}" target="_blank" style="color:${theme.primary};font-weight:700">Portfolio</a></span>` : ""}
-        </div>
-        <div style="margin-bottom:24px">
-          <h3 style="font-size:16px; font-weight:800; color:${theme.primary}; text-transform:uppercase; letter-spacing:0.04em; margin:0 0 8px">Creative Profile</h3>
-          <p style="font-size:13.5px; color:#334155; margin:0; line-height:1.6">${summaryText}</p>
-        </div>
-        <div style="display:grid; grid-template-columns: 2fr 1fr; gap:28px">
-          <div>
-            <div style="margin-bottom:24px">
-              <h3 style="font-size:16px; font-weight:800; color:${theme.primary}; text-transform:uppercase; margin:0 0 12px">Featured Work & Projects</h3>
-              ${projList.map((proj) => `
-                <div style="margin-bottom:14px; background:#faf5ff; padding:12px; border-radius:10px; border-left:4px solid ${theme.primary}">
-                  <div style="display:flex; justify-content:space-between">
-                    <strong style="font-size:14.5px; color:#0e131f">${escape(proj.name || "")}</strong>
-                    <span style="font-size:12px; color:${theme.primary}; font-weight:700">${escape(proj.tech || "")}</span>
-                  </div>
-                  <div style="font-size:13px; color:#475569; margin-top:4px">${escape(proj.description || "")}</div>
-                </div>
-              `).join("")}
-            </div>
-            <div>
-              <h3 style="font-size:16px; font-weight:800; color:${theme.primary}; text-transform:uppercase; margin:0 0 12px">Experience</h3>
-              ${expList.map((x) => `
-                <div style="margin-bottom:14px">
-                  <div style="display:flex; justify-content:space-between">
-                    <strong style="font-size:14.5px; color:#0e131f">${escape(x.title || "")} @ ${escape(x.company || "")}</strong>
-                    <span style="font-size:12px; color:#64748b">${escape(x.start || "")} - ${escape(x.end || "Present")}</span>
-                  </div>
-                  <div style="font-size:13px; color:#475569; margin-top:4px">${escape(x.responsibilities || "")}</div>
-                </div>
-              `).join("")}
-            </div>
-          </div>
-          <div>
-            <div style="margin-bottom:24px">
-              <h3 style="font-size:16px; font-weight:800; color:${theme.primary}; text-transform:uppercase; margin:0 0 10px">Skills & Stack</h3>
-              <div style="font-size:13px; color:#334155">${skillsParts.join("")}</div>
-            </div>
-            <div>
-              <h3 style="font-size:16px; font-weight:800; color:${theme.primary}; text-transform:uppercase; margin:0 0 10px">Education</h3>
-              ${eduList.map((edu) => `
-                <div style="margin-bottom:12px">
-                  <strong style="font-size:13.5px; color:#0e131f; display:block">${escape(edu.degree || "")}</strong>
-                  <div style="font-size:12.5px; color:#64748b">${escape(edu.institution || "")}</div>
-                </div>
-              `).join("")}
-            </div>
-          </div>
-        </div>
-      </div>`;
-    }
-
-    // Executive Layout
-    if (theme.layout === "executive") {
-      return `<div style="font-family:'Outfit', 'Inter', sans-serif; color:#0f172a; line-height:1.5;">
-        <div style="border-bottom:4px double ${theme.primary}; padding-bottom:18px; margin-bottom:20px; display:flex; justify-content:space-between; align-items:center">
-          <div>
-            <h1 style="margin:0 0 4px; font-size:30px; font-weight:800; color:${theme.primary}; letter-spacing:-0.02em">${nameText}</h1>
-            <div style="font-size:15px; color:#334155; font-weight:700">${headlineText}</div>
-          </div>
-          ${p.photo ? `<img src="${p.photo}" style="width:72px;height:72px;border-radius:10px;object-fit:cover;border:2px solid ${theme.primary}">` : ""}
-        </div>
-        <div style="display:flex; flex-wrap:wrap; gap:20px; font-size:12.5px; color:#475569; padding-bottom:14px; border-bottom:1px solid #cbd5e1; margin-bottom:22px; font-weight:600">
-          <span>EMAIL: ${emailText}</span>
-          <span>PHONE: ${phoneText}</span>
-          <span>LOCATION: ${addressText}</span>
-        </div>
-        <div style="margin-bottom:22px">
-          <h3 style="font-size:15px; font-weight:800; color:${theme.primary}; text-transform:uppercase; letter-spacing:0.06em; border-bottom:1px solid #cbd5e1; padding-bottom:4px; margin:0 0 8px">Executive Profile</h3>
-          <p style="font-size:13.5px; color:#334155; margin:0; line-height:1.6">${summaryText}</p>
-        </div>
-        <div style="margin-bottom:22px">
-          <h3 style="font-size:15px; font-weight:800; color:${theme.primary}; text-transform:uppercase; letter-spacing:0.06em; border-bottom:1px solid #cbd5e1; padding-bottom:4px; margin:0 0 12px">Leadership & Professional Experience</h3>
-          ${expList.map((x) => `
-            <div style="margin-bottom:16px">
-              <div style="display:flex; justify-content:space-between; align-items:baseline">
-                <strong style="font-size:15px; color:#0f172a">${escape(x.title || "")} — ${escape(x.company || "")}</strong>
-                <span style="font-size:12px; color:#64748b; font-weight:600">${escape(x.start || "")} – ${escape(x.end || "Present")}</span>
-              </div>
-              <div style="font-size:13px; color:#475569; margin-top:4px">${escape(x.responsibilities || "")}</div>
-            </div>
-          `).join("")}
-        </div>
-        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:24px">
-          <div>
-            <h3 style="font-size:15px; font-weight:800; color:${theme.primary}; text-transform:uppercase; letter-spacing:0.06em; border-bottom:1px solid #cbd5e1; padding-bottom:4px; margin:0 0 10px">Strategic Core Competencies</h3>
-            <div style="font-size:13px; color:#334155">${skillsParts.join("")}</div>
-          </div>
-          <div>
-            <h3 style="font-size:15px; font-weight:800; color:${theme.primary}; text-transform:uppercase; letter-spacing:0.06em; border-bottom:1px solid #cbd5e1; padding-bottom:4px; margin:0 0 10px">Education & Credentials</h3>
-            ${eduList.map((edu) => `
-              <div style="margin-bottom:10px">
-                <strong style="font-size:13.5px; color:#0f172a; display:block">${escape(edu.degree || "")}</strong>
-                <div style="font-size:12.5px; color:#64748b">${escape(edu.institution || "")}</div>
-              </div>
-            `).join("")}
-          </div>
-        </div>
-      </div>`;
-    }
+    const skillsBlock = formatSkillsChips();
 
     // 1. Tech Specialist Layout (Developer friendly, terminal vibes, monospace chips)
     if (theme.layout === "tech") {
       return `<div style="font-family:'Inter', -apple-system, sans-serif; color:#0f172a; line-height:1.5;">
-        <div style="background:#0f172a; padding:24px; border-radius:10px; color:#ffffff; margin-bottom:20px; border-left:5px solid ${theme.primary}; display:flex; justify-content:space-between; align-items:center">
+        <div style="background:#0f172a; padding:24px; border-radius:8px; color:#ffffff; margin-bottom:20px; border-left:5px solid ${theme.primary}; display:flex; justify-content:space-between; align-items:center">
           <div>
             <div style="font-family:monospace; font-size:11px; color:#38bdf8; letter-spacing:1px; margin-bottom:4px">&lt;DEVELOPER_PROFILE /&gt;</div>
             <h1 style="margin:0 0 4px; font-size:28px; font-weight:800; color:#f8fafc">${nameText}</h1>
@@ -1789,7 +1567,7 @@ options.forEach(function (card) {
           </div>
           ${p.photo ? `<img src="${p.photo}" style="width:68px;height:68px;border-radius:8px;object-fit:cover;border:2px solid #38bdf8">` : ""}
         </div>
-        <div style="display:flex; flex-wrap:wrap; gap:12px; font-size:12px; color:#475569; padding-bottom:12px; border-bottom:1px solid #cbd5e1; margin-bottom:20px; font-family:monospace">
+        <div style="display:flex; flex-wrap:wrap; gap:10px; font-size:12px; color:#475569; padding-bottom:12px; border-bottom:1px solid #cbd5e1; margin-bottom:20px; font-family:monospace">
           <span style="background:#f1f5f9;padding:3px 8px;border-radius:4px">📧 ${emailText}</span>
           <span style="background:#f1f5f9;padding:3px 8px;border-radius:4px">📞 ${phoneText}</span>
           <span style="background:#f1f5f9;padding:3px 8px;border-radius:4px">📍 ${addressText}</span>
@@ -1810,7 +1588,7 @@ options.forEach(function (card) {
                     <strong style="font-size:13.5px; color:#0f172a">${escape(proj.name || "")}</strong>
                     <span style="font-family:monospace; font-size:11px; color:${theme.primary}; background:#eff6ff; padding:2px 6px; border-radius:4px">${escape(proj.tech || "")}</span>
                   </div>
-                  <div style="font-size:12.5px; color:#475569; margin-top:4px">${escape(proj.description || "")}</div>
+                  ${formatBullets(proj.description)}
                 </div>
               `)}
             </div>
@@ -1822,7 +1600,7 @@ options.forEach(function (card) {
                     <strong style="font-size:13.5px; color:#0f172a">${escape(x.title || "")} @ ${escape(x.company || "")}</strong>
                     <span style="font-size:11.5px; color:#64748b; font-family:monospace">${escape(x.start || "")} - ${escape(x.end || "Present")}</span>
                   </div>
-                  <div style="font-size:12.5px; color:#475569; margin-top:2px">${escape(x.responsibilities || "")}</div>
+                  ${formatBullets(x.responsibilities)}
                 </div>
               `)}
             </div>
@@ -1830,7 +1608,7 @@ options.forEach(function (card) {
           <div>
             <div style="margin-bottom:20px">
               <h3 style="font-family:monospace; font-size:13px; font-weight:800; color:${theme.primary}; text-transform:uppercase; border-bottom:1.5px solid #cbd5e1; padding-bottom:4px; margin:0 0 8px">// 04. TECH STACK</h3>
-              ${skillsBlock}
+              ${formatSkillsChips("#0f172a", "#334155", "#38bdf8")}
             </div>
             <div>
               <h3 style="font-family:monospace; font-size:13px; font-weight:800; color:${theme.primary}; text-transform:uppercase; border-bottom:1.5px solid #cbd5e1; padding-bottom:4px; margin:0 0 8px">// 05. EDUCATION</h3>
@@ -1850,12 +1628,12 @@ options.forEach(function (card) {
     // 2. Modern Pro Layout (Timeline based, dynamic purple/indigo)
     if (theme.layout === "modern-pro") {
       return `<div style="font-family:'Outfit', 'Inter', sans-serif; color:#0f172a; line-height:1.5;">
-        <div style="background:${theme.gradient}; padding:26px; border-radius:16px; color:#ffffff; display:flex; justify-content:space-between; align-items:center; margin-bottom:22px; box-shadow:0 8px 24px rgba(99,102,241,0.18)">
+        <div style="background:${theme.gradient}; padding:26px; border-radius:14px; color:#ffffff; display:flex; justify-content:space-between; align-items:center; margin-bottom:22px">
           <div>
             <h1 style="margin:0 0 4px; font-size:30px; font-weight:800; letter-spacing:-0.01em">${nameText}</h1>
             <div style="font-size:15px; font-weight:600; opacity:0.95">${headlineText}</div>
           </div>
-          ${p.photo ? `<img src="${p.photo}" style="width:72px;height:72px;border-radius:14px;object-fit:cover;border:3px solid rgba(255,255,255,0.85)">` : ""}
+          ${p.photo ? `<img src="${p.photo}" style="width:72px;height:72px;border-radius:12px;object-fit:cover;border:3px solid rgba(255,255,255,0.85)">` : ""}
         </div>
         <div style="display:flex; flex-wrap:wrap; gap:16px; font-size:12.5px; color:#475569; padding-bottom:14px; border-bottom:2px solid #e0e7ff; margin-bottom:22px">
           <span>📧 ${emailText}</span>
@@ -1878,7 +1656,7 @@ options.forEach(function (card) {
                     <strong style="font-size:14px; color:#0f172a">${escape(x.title || "")} @ ${escape(x.company || "")}</strong>
                     <span style="font-size:12px; color:#64748b">${escape(x.start || "")} - ${escape(x.end || "Present")}</span>
                   </div>
-                  <div style="font-size:12.5px; color:#475569; margin-top:3px">${escape(x.responsibilities || "")}</div>
+                  ${formatBullets(x.responsibilities)}
                 </div>
               `)}
             </div>
@@ -1890,7 +1668,7 @@ options.forEach(function (card) {
                     <strong style="font-size:13.5px; color:#0f172a">${escape(proj.name || "")}</strong>
                     <span style="font-size:12px; color:${theme.primary}; font-weight:700">${escape(proj.tech || "")}</span>
                   </div>
-                  <div style="font-size:12.5px; color:#475569; margin-top:2px">${escape(proj.description || "")}</div>
+                  ${formatBullets(proj.description)}
                 </div>
               `)}
             </div>
@@ -1898,7 +1676,7 @@ options.forEach(function (card) {
           <div>
             <div style="margin-bottom:22px">
               <h3 style="font-size:15px; font-weight:800; color:${theme.primary}; text-transform:uppercase; letter-spacing:0.04em; border-left:3px solid ${theme.primary}; padding-left:8px; margin:0 0 10px">Core Skills</h3>
-              ${skillsBlock}
+              ${formatSkillsChips("#f3e8ff", "#d8b4fe", "#6b21a8")}
             </div>
             <div>
               <h3 style="font-size:15px; font-weight:800; color:${theme.primary}; text-transform:uppercase; letter-spacing:0.04em; border-left:3px solid ${theme.primary}; padding-left:8px; margin:0 0 10px">Education</h3>
@@ -1942,7 +1720,7 @@ options.forEach(function (card) {
                 <strong style="font-size:13.5px; color:#0f172a">${escape(x.title || "")} — ${escape(x.company || "")}</strong>
                 <span style="font-size:12px; color:#64748b">${escape(x.start || "")} - ${escape(x.end || "Present")}</span>
               </div>
-              <div style="font-size:12.5px; color:#475569; margin-top:2px">${escape(x.responsibilities || "")}</div>
+              ${formatBullets(x.responsibilities)}
             </div>
           `)}
         </div>
@@ -1952,13 +1730,13 @@ options.forEach(function (card) {
             ${projBlock((proj) => `
               <div style="margin-bottom:10px">
                 <strong style="font-size:13px; color:#0f172a">${escape(proj.name || "")}</strong>
-                <div style="font-size:12px; color:#475569">${escape(proj.description || "")}</div>
+                ${formatBullets(proj.description)}
               </div>
             `)}
           </div>
           <div>
             <h3 style="font-size:13.5px; font-weight:800; text-transform:uppercase; color:${theme.primary}; letter-spacing:0.06em; margin:0 0 8px">Skills & Competencies</h3>
-            ${skillsBlock}
+            ${formatSkillsChips()}
           </div>
         </div>
         <div>
@@ -1972,7 +1750,75 @@ options.forEach(function (card) {
       </div>`;
     }
 
-    // 4. Monochrome Classic Layout (Boxed, editorial timeless style)
+    // 4. Minimalist Essential (Ivy League ATS Standard)
+    if (theme.layout === "minimalist") {
+      return `<div style="font-family:'Inter', sans-serif; color:#0f172a; line-height:1.5;">
+        <div style="border-bottom:3px solid ${theme.primary}; padding-bottom:16px; margin-bottom:20px; display:flex; justify-content:space-between; align-items:flex-end">
+          <div>
+            <h1 style="margin:0; font-size:28px; font-weight:800; color:${theme.primary}">${nameText}</h1>
+            <div style="font-size:14px; color:#475569; font-weight:600; margin-top:2px">${headlineText}</div>
+          </div>
+          ${p.photo ? `<img src="${p.photo}" style="width:64px;height:64px;border-radius:8px;object-fit:cover">` : ""}
+        </div>
+        <div style="display:flex; flex-wrap:wrap; gap:16px; font-size:12px; color:#64748b; margin-bottom:20px; border-bottom:1px solid #e2e8f0; padding-bottom:12px">
+          <span>📧 ${emailText}</span>
+          <span>📞 ${phoneText}</span>
+          <span>📍 ${addressText}</span>
+          ${p.linkedin ? `<span>💼 <a href="${escape(p.linkedin)}" target="_blank" style="color:${theme.primary}">LinkedIn</a></span>` : ""}
+          ${p.portfolio ? `<span>🌐 <a href="${escape(p.portfolio)}" target="_blank" style="color:${theme.primary}">Portfolio</a></span>` : ""}
+        </div>
+        <div style="margin-bottom:20px">
+          <h3 style="font-size:14px; font-weight:800; text-transform:uppercase; color:${theme.primary}; letter-spacing:0.05em; border-bottom:1px solid #e2e8f0; padding-bottom:4px; margin:0 0 8px">Summary</h3>
+          ${summaryBlock}
+        </div>
+        <div style="display:grid; grid-template-columns: 2fr 1fr; gap:24px">
+          <div>
+            <div style="margin-bottom:20px">
+              <h3 style="font-size:14px; font-weight:800; text-transform:uppercase; color:${theme.primary}; letter-spacing:0.05em; border-bottom:1px solid #e2e8f0; padding-bottom:4px; margin:0 0 10px">Experience</h3>
+              ${expBlock((x) => `
+                <div style="margin-bottom:12px">
+                  <div style="display:flex; justify-content:space-between">
+                    <strong style="font-size:13.5px; color:#0f172a">${escape(x.title || "")} @ ${escape(x.company || "")}</strong>
+                    <span style="font-size:11.5px; color:#64748b">${escape(x.start || "")} - ${escape(x.end || "Present")}</span>
+                  </div>
+                  ${formatBullets(x.responsibilities)}
+                </div>
+              `)}
+            </div>
+            <div>
+              <h3 style="font-size:14px; font-weight:800; text-transform:uppercase; color:${theme.primary}; letter-spacing:0.05em; border-bottom:1px solid #e2e8f0; padding-bottom:4px; margin:0 0 10px">Projects</h3>
+              ${projBlock((proj) => `
+                <div style="margin-bottom:12px">
+                  <div style="display:flex; justify-content:space-between">
+                    <strong style="font-size:13.5px; color:#0f172a">${escape(proj.name || "")}</strong>
+                    <span style="font-size:11.5px; color:${theme.primary}">${escape(proj.tech || "")}</span>
+                  </div>
+                  ${formatBullets(proj.description)}
+                </div>
+              `)}
+            </div>
+          </div>
+          <div>
+            <div style="margin-bottom:20px">
+              <h3 style="font-size:14px; font-weight:800; text-transform:uppercase; color:${theme.primary}; letter-spacing:0.05em; border-bottom:1px solid #e2e8f0; padding-bottom:4px; margin:0 0 8px">Skills</h3>
+              ${formatSkillsChips()}
+            </div>
+            <div>
+              <h3 style="font-size:14px; font-weight:800; text-transform:uppercase; color:${theme.primary}; letter-spacing:0.05em; border-bottom:1px solid #e2e8f0; padding-bottom:4px; margin:0 0 8px">Education</h3>
+              ${eduBlock((edu) => `
+                <div style="margin-bottom:10px">
+                  <strong style="font-size:13px; color:#0f172a; display:block">${escape(edu.degree || "")}</strong>
+                  <div style="font-size:12px; color:#64748b">${escape(edu.institution || "")}</div>
+                  <div style="font-size:11.5px; color:#94a3b8">${escape(edu.start || "")} - ${escape(edu.end || "")}</div>
+                </div>
+              `)}
+            </div>
+          </div>
+        </div>
+      </div>`;
+    }
+
+    // 5. Monochrome Classic Layout (Boxed, editorial timeless style)
     if (theme.layout === "monochrome") {
       return `<div style="font-family:'Inter', serif, sans-serif; color:#171717; line-height:1.5; border:2px solid #262626; padding:24px; border-radius:4px">
         <div style="text-align:center; border-bottom:2px solid #262626; padding-bottom:14px; margin-bottom:18px">
@@ -1994,7 +1840,7 @@ options.forEach(function (card) {
                 <strong style="font-size:13.5px">${escape(x.title || "")} | ${escape(x.company || "")}</strong>
                 <span style="font-size:12px">${escape(x.start || "")} - ${escape(x.end || "Present")}</span>
               </div>
-              <div style="font-size:12px; color:#404040; margin-top:2px">${escape(x.responsibilities || "")}</div>
+              ${formatBullets(x.responsibilities)}
             </div>
           `)}
         </div>
@@ -2004,81 +1850,66 @@ options.forEach(function (card) {
             ${projBlock((proj) => `
               <div style="margin-bottom:8px">
                 <strong style="font-size:13px">${escape(proj.name || "")}</strong>
-                <div style="font-size:12px; color:#525252">${escape(proj.description || "")}</div>
+                ${formatBullets(proj.description)}
               </div>
             `)}
           </div>
           <div>
             <h3 style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:1px; border-bottom:1px solid #737373; padding-bottom:2px; margin:0 0 8px">Core Skills</h3>
-            ${skillsBlock}
+            ${formatSkillsChips("#f5f5f5", "#d4d4d4", "#171717")}
           </div>
         </div>
       </div>`;
     }
 
-    // 5. Artistic Showcase Layout (Sunset gradient, portfolio tiles)
-    if (theme.layout === "artistic") {
-      return `<div style="font-family:'Outfit', 'Inter', sans-serif; color:#0e131f; line-height:1.5;">
-        <div style="background:${theme.gradient}; padding:26px; border-radius:18px; color:#ffffff; display:flex; justify-content:space-between; align-items:center; margin-bottom:22px; box-shadow:0 8px 24px rgba(249,115,22,0.2)">
+    // 6. Executive Layout (Navy authoritative, formal hierarchy)
+    if (theme.layout === "executive") {
+      return `<div style="font-family:'Outfit', 'Inter', sans-serif; color:#0f172a; line-height:1.5;">
+        <div style="border-top:3px solid #10b981; border-bottom:1.5px solid #cbd5e1; padding:18px 0; margin-bottom:20px; display:flex; justify-content:space-between; align-items:center">
           <div>
-            <h1 style="margin:0 0 4px; font-size:30px; font-weight:800">${nameText}</h1>
-            <div style="font-size:15px; font-weight:600; opacity:0.95">${headlineText}</div>
+            <h1 style="margin:0 0 4px; font-size:30px; font-weight:800; color:${theme.primary}; letter-spacing:-0.02em">${nameText}</h1>
+            <div style="font-size:15px; color:#334155; font-weight:700">${headlineText}</div>
           </div>
-          ${p.photo ? `<img src="${p.photo}" style="width:76px;height:76px;border-radius:18px;object-fit:cover;border:3px solid #fff">` : ""}
+          ${p.photo ? `<img src="${p.photo}" style="width:72px;height:72px;border-radius:10px;object-fit:cover;border:2px solid ${theme.primary}">` : ""}
         </div>
-        <div style="display:flex; flex-wrap:wrap; gap:14px; font-size:12.5px; color:#64748b; padding-bottom:14px; border-bottom:2px dashed #fed7aa; margin-bottom:22px">
-          <span>📧 ${emailText}</span>
-          <span>📞 ${phoneText}</span>
-          <span>📍 ${addressText}</span>
-          ${p.portfolio ? `<a href="${escape(p.portfolio)}" target="_blank" style="color:${theme.primary};font-weight:700">🎨 Portfolio</a>` : ""}
+        <div style="display:flex; flex-wrap:wrap; gap:20px; font-size:12.5px; color:#475569; padding-bottom:14px; border-bottom:1px solid #cbd5e1; margin-bottom:22px; font-weight:600">
+          <span>EMAIL: ${emailText}</span> | <span>PHONE: ${phoneText}</span> | <span>LOCATION: ${addressText}</span>
         </div>
-        <div style="margin-bottom:22px">
-          <h3 style="font-size:15px; font-weight:800; color:${theme.primary}; text-transform:uppercase; margin:0 0 8px">Visual Bio & Profile</h3>
+        <div style="margin-bottom:22px; background:#f0fdf4; border-left:4px solid #10b981; padding:12px 14px; border-radius:4px">
+          <h3 style="font-size:14px; font-weight:800; color:#065f46; text-transform:uppercase; letter-spacing:0.06em; margin:0 0 6px">Executive Profile</h3>
           ${summaryBlock}
         </div>
-        <div style="display:grid; grid-template-columns: 2fr 1fr; gap:24px">
+        <div style="margin-bottom:22px">
+          <h3 style="font-size:15px; font-weight:800; color:${theme.primary}; text-transform:uppercase; letter-spacing:0.06em; border-bottom:1px solid #cbd5e1; padding-bottom:4px; margin:0 0 12px">Leadership & Professional Experience</h3>
+          ${expBlock((x) => `
+            <div style="margin-bottom:16px">
+              <div style="display:flex; justify-content:space-between; align-items:baseline">
+                <strong style="font-size:15px; color:#0f172a">${escape(x.title || "")} — ${escape(x.company || "")}</strong>
+                <span style="font-size:12px; color:#64748b; font-weight:600">${escape(x.start || "")} – ${escape(x.end || "Present")}</span>
+              </div>
+              ${formatBullets(x.responsibilities)}
+            </div>
+          `)}
+        </div>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:24px">
           <div>
-            <div style="margin-bottom:22px">
-              <h3 style="font-size:15px; font-weight:800; color:${theme.primary}; text-transform:uppercase; margin:0 0 10px">Design & Work Portfolio</h3>
-              ${projBlock((proj) => `
-                <div style="margin-bottom:12px; background:#fff7ed; padding:12px; border-radius:12px; border-left:4px solid #f97316">
-                  <strong style="font-size:14px; color:#9a3412">${escape(proj.name || "")}</strong>
-                  <div style="font-size:12px; color:#ea580c; font-weight:600">${escape(proj.tech || "")}</div>
-                  <div style="font-size:12.5px; color:#475569; margin-top:3px">${escape(proj.description || "")}</div>
-                </div>
-              `)}
-            </div>
-            <div>
-              <h3 style="font-size:15px; font-weight:800; color:${theme.primary}; text-transform:uppercase; margin:0 0 10px">Work Experience</h3>
-              ${expBlock((x) => `
-                <div style="margin-bottom:12px">
-                  <strong style="font-size:13.5px; color:#0e131f">${escape(x.title || "")} @ ${escape(x.company || "")}</strong>
-                  <div style="font-size:12px; color:#64748b">${escape(x.start || "")} - ${escape(x.end || "Present")}</div>
-                  <div style="font-size:12.5px; color:#475569; margin-top:2px">${escape(x.responsibilities || "")}</div>
-                </div>
-              `)}
-            </div>
+            <h3 style="font-size:15px; font-weight:800; color:${theme.primary}; text-transform:uppercase; letter-spacing:0.06em; border-bottom:1px solid #cbd5e1; padding-bottom:4px; margin:0 0 10px">Strategic Core Competencies</h3>
+            ${formatSkillsChips("#ecfdf5", "#a7f3d0", "#065f46")}
           </div>
           <div>
-            <div style="margin-bottom:22px">
-              <h3 style="font-size:15px; font-weight:800; color:${theme.primary}; text-transform:uppercase; margin:0 0 10px">Art & Technical Skills</h3>
-              ${skillsBlock}
-            </div>
-            <div>
-              <h3 style="font-size:15px; font-weight:800; color:${theme.primary}; text-transform:uppercase; margin:0 0 10px">Education</h3>
-              ${eduBlock((edu) => `
-                <div style="margin-bottom:10px">
-                  <strong style="font-size:13px; color:#0e131f; display:block">${escape(edu.degree || "")}</strong>
-                  <div style="font-size:12px; color:#64748b">${escape(edu.institution || "")}</div>
-                </div>
-              `)}
-            </div>
+            <h3 style="font-size:15px; font-weight:800; color:${theme.primary}; text-transform:uppercase; letter-spacing:0.06em; border-bottom:1px solid #cbd5e1; padding-bottom:4px; margin:0 0 10px">Education & Credentials</h3>
+            ${eduBlock((edu) => `
+              <div style="margin-bottom:10px">
+                <strong style="font-size:13.5px; color:#0f172a; display:block">${escape(edu.degree || "")}</strong>
+                <div style="font-size:12.5px; color:#64748b">${escape(edu.institution || "")}</div>
+              </div>
+            `)}
           </div>
         </div>
       </div>`;
     }
 
-    // 6. Corporate Director Layout (Navy authoritative, formal hierarchy)
+    // 7. Corporate Director Layout (Navy authoritative, formal hierarchy)
     if (theme.layout === "director") {
       return `<div style="font-family:'Outfit', 'Inter', sans-serif; color:#0f172a; line-height:1.5;">
         <div style="border-top:4px solid #1e3a8a; border-bottom:2px solid #0f172a; padding:18px 0; margin-bottom:20px; display:flex; justify-content:space-between; align-items:center">
@@ -2103,14 +1934,14 @@ options.forEach(function (card) {
                 <strong style="font-size:14.5px; color:#0f172a">${escape(x.title || "")} — ${escape(x.company || "")}</strong>
                 <span style="font-size:12px; color:#64748b; font-weight:600">${escape(x.start || "")} – ${escape(x.end || "Present")}</span>
               </div>
-              <div style="font-size:13px; color:#475569; margin-top:3px">${escape(x.responsibilities || "")}</div>
+              ${formatBullets(x.responsibilities)}
             </div>
           `)}
         </div>
         <div style="display:grid; grid-template-columns: 1fr 1fr; gap:24px">
           <div>
             <h3 style="font-size:14.5px; font-weight:800; color:#1e3a8a; text-transform:uppercase; letter-spacing:0.06em; border-bottom:1.5px solid #1e3a8a; padding-bottom:3px; margin:0 0 10px">Core Competencies</h3>
-            ${skillsBlock}
+            ${formatSkillsChips("#eff6ff", "#bfdbfe", "#1e40af")}
           </div>
           <div>
             <h3 style="font-size:14.5px; font-weight:800; color:#1e3a8a; text-transform:uppercase; letter-spacing:0.06em; border-bottom:1.5px solid #1e3a8a; padding-bottom:3px; margin:0 0 10px">Credentials & Education</h3>
@@ -2125,10 +1956,10 @@ options.forEach(function (card) {
       </div>`;
     }
 
-    // 7. Starter / Fresher Skills First Layout
+    // 8. Starter / Fresher Skills First Layout
     if (theme.layout === "starter") {
       return `<div style="font-family:'Inter', sans-serif; color:#0e131f; line-height:1.5;">
-        <div style="background:${theme.gradient}; padding:24px; border-radius:14px; color:#ffffff; display:flex; justify-content:space-between; align-items:center; margin-bottom:20px">
+        <div style="background:${theme.gradient}; padding:24px; border-radius:12px; color:#ffffff; display:flex; justify-content:space-between; align-items:center; margin-bottom:20px">
           <div>
             <h1 style="font-family:'Outfit', sans-serif; margin:0 0 4px; font-size:28px; font-weight:800">${nameText}</h1>
             <div style="font-size:14px; font-weight:600; opacity:0.95">${headlineText}</div>
@@ -2141,9 +1972,9 @@ options.forEach(function (card) {
           <span>📍 ${addressText}</span>
           ${p.linkedin ? `<span><a href="${escape(p.linkedin)}" target="_blank" style="color:${theme.primary}">LinkedIn</a></span>` : ""}
         </div>
-        <div style="background:#f0fdfa; border:1px solid #99f6e4; padding:14px; border-radius:10px; margin-bottom:20px">
+        <div style="background:#f0fdfa; border:1px solid #99f6e4; padding:14px; border-radius:8px; margin-bottom:20px">
           <h3 style="font-size:14px; font-weight:800; color:#0f766e; text-transform:uppercase; margin:0 0 6px">Skills & Proficiencies (Skills-First)</h3>
-          ${skillsBlock}
+          ${formatSkillsChips("#ccfbf1", "#5eead4", "#0f766e")}
         </div>
         <div style="display:grid; grid-template-columns: 1fr 1fr; gap:22px">
           <div>
@@ -2168,7 +1999,7 @@ options.forEach(function (card) {
               ${projBlock((proj) => `
                 <div style="margin-bottom:10px">
                   <strong style="font-size:13px; color:#0f172a">${escape(proj.name || "")}</strong>
-                  <div style="font-size:12px; color:#475569">${escape(proj.description || "")}</div>
+                  ${formatBullets(proj.description)}
                 </div>
               `)}
             </div>
@@ -2177,7 +2008,7 @@ options.forEach(function (card) {
               ${expBlock((x) => `
                 <div style="margin-bottom:10px">
                   <strong style="font-size:13px; color:#0f172a">${escape(x.title || "")} @ ${escape(x.company || "")}</strong>
-                  <div style="font-size:12px; color:#475569">${escape(x.responsibilities || "")}</div>
+                  ${formatBullets(x.responsibilities)}
                 </div>
               `)}
             </div>
@@ -2186,68 +2017,7 @@ options.forEach(function (card) {
       </div>`;
     }
 
-    // 8. Graduate Scholar Layout
-    if (theme.layout === "scholar") {
-      return `<div style="font-family:'Inter', sans-serif; color:#0e131f; line-height:1.5;">
-        <div style="background:${theme.gradient}; padding:26px; border-radius:14px; color:#ffffff; display:flex; justify-content:space-between; align-items:center; margin-bottom:22px">
-          <div>
-            <div style="font-size:11px; text-transform:uppercase; letter-spacing:1px; opacity:0.9">Graduate Scholar Profile</div>
-            <h1 style="font-family:'Outfit', sans-serif; margin:2px 0; font-size:30px; font-weight:800">${nameText}</h1>
-            <div style="font-size:14px; font-weight:600; opacity:0.95">${headlineText}</div>
-          </div>
-          ${p.photo ? `<img src="${p.photo}" style="width:72px;height:72px;border-radius:12px;object-fit:cover;border:3px solid #fff">` : ""}
-        </div>
-        <div style="display:flex; flex-wrap:wrap; gap:16px; font-size:12.5px; color:#475569; padding-bottom:12px; border-bottom:2px solid #fae8ff; margin-bottom:20px">
-          <span>📧 ${emailText}</span>
-          <span>📞 ${phoneText}</span>
-          <span>📍 ${addressText}</span>
-        </div>
-        <div style="margin-bottom:20px">
-          <h3 style="font-size:14.5px; font-weight:800; color:${theme.primary}; text-transform:uppercase; border-bottom:2px solid #fae8ff; padding-bottom:4px; margin:0 0 8px">Academic Focus & Research Summary</h3>
-          ${summaryBlock}
-        </div>
-        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:24px">
-          <div>
-            <div style="margin-bottom:20px">
-              <h3 style="font-size:14.5px; font-weight:800; color:${theme.primary}; text-transform:uppercase; border-bottom:2px solid #fae8ff; padding-bottom:4px; margin:0 0 10px">Education & Degrees</h3>
-              ${eduBlock((edu) => `
-                <div style="margin-bottom:12px; background:#faf5ff; padding:10px 12px; border-radius:8px; border-left:3px solid #a855f7">
-                  <strong style="font-size:14px; color:#581c87">${escape(edu.degree || "")}</strong>
-                  <div style="font-size:12.5px; color:#64748b">${escape(edu.institution || "")}</div>
-                  <div style="font-size:11.5px; color:#a855f7">${escape(edu.start || "")} - ${escape(edu.end || "")}</div>
-                </div>
-              `)}
-            </div>
-            <div>
-              <h3 style="font-size:14.5px; font-weight:800; color:${theme.primary}; text-transform:uppercase; border-bottom:2px solid #fae8ff; padding-bottom:4px; margin:0 0 10px">Academic Projects & Research</h3>
-              ${projBlock((proj) => `
-                <div style="margin-bottom:10px">
-                  <strong style="font-size:13.5px; color:#0e131f">${escape(proj.name || "")}</strong>
-                  <div style="font-size:12.5px; color:#475569">${escape(proj.description || "")}</div>
-                </div>
-              `)}
-            </div>
-          </div>
-          <div>
-            <div style="margin-bottom:20px">
-              <h3 style="font-size:14.5px; font-weight:800; color:${theme.primary}; text-transform:uppercase; border-bottom:2px solid #fae8ff; padding-bottom:4px; margin:0 0 10px">Skills & Competencies</h3>
-              ${skillsBlock}
-            </div>
-            <div>
-              <h3 style="font-size:14.5px; font-weight:800; color:${theme.primary}; text-transform:uppercase; border-bottom:2px solid #fae8ff; padding-bottom:4px; margin:0 0 10px">Experience & Internships</h3>
-              ${expBlock((x) => `
-                <div style="margin-bottom:10px">
-                  <strong style="font-size:13.5px; color:#0e131f">${escape(x.title || "")} @ ${escape(x.company || "")}</strong>
-                  <div style="font-size:12.5px; color:#475569">${escape(x.responsibilities || "")}</div>
-                </div>
-              `)}
-            </div>
-          </div>
-        </div>
-      </div>`;
-    }
-
-    // Default Modern Layout
+    // Default Modern Layout (Corporate standard)
     return `<div style="font-family:'Inter', sans-serif; color:#0e131f; line-height:1.5;">
       <div style="background: ${theme.gradient}; padding: 28px; border-radius: 12px; color: #ffffff; display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px;">
         <div>
@@ -2258,42 +2028,42 @@ options.forEach(function (card) {
       </div>
 
       <div style="display: flex; flex-wrap: wrap; gap: 16px; font-size: 13px; color: #475569; padding-bottom: 16px; border-bottom: 2px solid #f1f5f9; margin-bottom: 24px;">
-        <span>${emailText}</span>
-        <span>${phoneText}</span>
-        <span>${addressText}</span>
-        ${p.linkedin ? `<span><a href="${escape(p.linkedin)}" target="_blank" style="color:${theme.primary};text-decoration:none">LinkedIn</a></span>` : ""}
-        ${p.portfolio ? `<span><a href="${escape(p.portfolio)}" target="_blank" style="color:${theme.primary};text-decoration:none">Portfolio</a></span>` : ""}
+        <span>📧 ${emailText}</span>
+        <span>📞 ${phoneText}</span>
+        <span>📍 ${addressText}</span>
+        ${p.linkedin ? `<span>💼 <a href="${escape(p.linkedin)}" target="_blank" style="color:${theme.primary};text-decoration:none;font-weight:600">LinkedIn</a></span>` : ""}
+        ${p.portfolio ? `<span>🌐 <a href="${escape(p.portfolio)}" target="_blank" style="color:${theme.primary};text-decoration:none;font-weight:600">Portfolio</a></span>` : ""}
       </div>
 
       <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 32px;">
         <div>
           <div style="margin-bottom: 24px;">
-            <h3 style="font-family:'Outfit', sans-serif; font-size: 16px; font-weight: 800; color: ${theme.primary}; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid ${theme.primary}22; padding-bottom: 4px; margin-bottom: 10px;">Professional Summary</h3>
+            <h3 style="font-family:'Outfit', sans-serif; font-size: 15px; font-weight: 800; color: ${theme.primary}; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid ${theme.primary}22; padding-bottom: 4px; margin-bottom: 10px;">Professional Summary</h3>
             ${summaryBlock}
           </div>
 
           <div style="margin-bottom: 24px;">
-            <h3 style="font-family:'Outfit', sans-serif; font-size: 16px; font-weight: 800; color: ${theme.primary}; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid ${theme.primary}22; padding-bottom: 4px; margin-bottom: 12px;">Experience</h3>
+            <h3 style="font-family:'Outfit', sans-serif; font-size: 15px; font-weight: 800; color: ${theme.primary}; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid ${theme.primary}22; padding-bottom: 4px; margin-bottom: 12px;">Experience</h3>
             ${expBlock((x) => `
               <div style="margin-bottom: 14px;">
                 <div style="display: flex; justify-content: space-between; align-items: baseline;">
                   <strong style="font-size: 14.5px; color: #0e131f;">${escape(x.title || "")} @ ${escape(x.company || "")}</strong>
                   <span style="font-size: 12px; color: #64748b;">${escape(x.start || "")} - ${escape(x.end || "Present")}</span>
                 </div>
-                <div style="font-size: 13px; color: #475569; margin-top: 4px;">${escape(x.responsibilities || "")}</div>
+                ${formatBullets(x.responsibilities)}
               </div>
             `)}
           </div>
 
           <div style="margin-bottom: 24px;">
-            <h3 style="font-family:'Outfit', sans-serif; font-size: 16px; font-weight: 800; color: ${theme.primary}; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid ${theme.primary}22; padding-bottom: 4px; margin-bottom: 12px;">Key Projects</h3>
+            <h3 style="font-family:'Outfit', sans-serif; font-size: 15px; font-weight: 800; color: ${theme.primary}; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid ${theme.primary}22; padding-bottom: 4px; margin-bottom: 12px;">Key Projects</h3>
             ${projBlock((proj) => `
               <div style="margin-bottom: 14px;">
                 <div style="display: flex; justify-content: space-between; align-items: baseline;">
                   <strong style="font-size: 14.5px; color: #0e131f;">${escape(proj.name || "")}</strong>
                   <span style="font-size: 12px; color: ${theme.primary}; font-weight: 600;">${escape(proj.tech || "")}</span>
                 </div>
-                <div style="font-size: 13px; color: #475569; margin-top: 4px;">${escape(proj.description || "")}</div>
+                ${formatBullets(proj.description)}
               </div>
             `)}
           </div>
@@ -2301,12 +2071,12 @@ options.forEach(function (card) {
 
         <div>
           <div style="margin-bottom: 24px;">
-            <h3 style="font-family:'Outfit', sans-serif; font-size: 16px; font-weight: 800; color: ${theme.primary}; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid ${theme.primary}22; padding-bottom: 4px; margin-bottom: 12px;">Skills</h3>
-            ${skillsBlock}
+            <h3 style="font-family:'Outfit', sans-serif; font-size: 15px; font-weight: 800; color: ${theme.primary}; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid ${theme.primary}22; padding-bottom: 4px; margin-bottom: 12px;">Skills</h3>
+            ${formatSkillsChips()}
           </div>
 
           <div style="margin-bottom: 24px;">
-            <h3 style="font-family:'Outfit', sans-serif; font-size: 16px; font-weight: 800; color: ${theme.primary}; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid ${theme.primary}22; padding-bottom: 4px; margin-bottom: 12px;">Education</h3>
+            <h3 style="font-family:'Outfit', sans-serif; font-size: 15px; font-weight: 800; color: ${theme.primary}; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid ${theme.primary}22; padding-bottom: 4px; margin-bottom: 12px;">Education</h3>
             ${eduBlock((edu) => `
               <div style="margin-bottom: 12px;">
                 <strong style="font-size: 14px; color: #0e131f; display: block;">${escape(edu.degree || "")}</strong>
@@ -2318,7 +2088,7 @@ options.forEach(function (card) {
 
           ${state.achievements?.length ? `
             <div style="margin-bottom: 24px;">
-              <h3 style="font-family:'Outfit', sans-serif; font-size: 16px; font-weight: 800; color: ${theme.primary}; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid ${theme.primary}22; padding-bottom: 4px; margin-bottom: 12px;">Achievements</h3>
+              <h3 style="font-family:'Outfit', sans-serif; font-size: 15px; font-weight: 800; color: ${theme.primary}; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid ${theme.primary}22; padding-bottom: 4px; margin-bottom: 12px;">Achievements</h3>
               ${state.achievements.map((ach) => `
                 <div style="margin-bottom: 10px;">
                   <strong style="font-size: 13.5px; color: #0e131f; display: block;">${escape(ach.title || "")}</strong>
