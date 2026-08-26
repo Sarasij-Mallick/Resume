@@ -383,15 +383,7 @@ options.forEach(function (card) {
     "fresher-scholar": { key: "fresher-scholar", name: "Graduate Scholar", category: "Fresher", tag: "Academic Focus · Scholar Layout", gradient: "linear-gradient(135deg, #a855f7 0%, #ec4899 100%)", primary: "#a855f7", accent: "#ec4899", layout: "scholar" },
     "fresher-stem": { key: "fresher-stem", name: "STEM Engineering Graduate", category: "Fresher", tag: "Capstone Projects · Lab Research", gradient: "linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%)", primary: "#1d4ed8", accent: "#3b82f6", layout: "stem" },
     "fresher-intern": { key: "fresher-intern", name: "High-Potential Intern", category: "Fresher", tag: "Quick Learner · Summer Placement", gradient: "linear-gradient(135deg, #0d9488 0%, #10b981 100%)", primary: "#0d9488", accent: "#10b981", layout: "intern" },
-    "fresher-honors": { key: "fresher-honors", name: "Dean's List Honors", category: "Fresher", tag: "Academic Distinction · Honors Roll", gradient: "linear-gradient(135deg, #6b21a8 0%, #9333ea 100%)", primary: "#6b21a8", accent: "#9333ea", layout: "honors" },
-
-    // 6. CANVA PRO SPECIALS (6 Additional Top Canva Designs)
-    "canva-infographic": { key: "canva-infographic", name: "Canva Infographic Visual", category: "Creative", tag: "Visual Timeline · Skill Badges", gradient: "linear-gradient(135deg, #7d2ae8 0%, #00c4cc 100%)", primary: "#7d2ae8", accent: "#00c4cc", layout: "modern-pro" },
-    "canva-growth": { key: "canva-growth", name: "Growth & Social Marketing", category: "Modern", tag: "Campaign ROI · Social Metrics", gradient: "linear-gradient(135deg, #f43f5e 0%, #3b82f6 100%)", primary: "#f43f5e", accent: "#3b82f6", layout: "modern" },
-    "canva-medical": { key: "canva-medical", name: "Clinical Healthcare Specialist", category: "Executive", tag: "Clinical Research · Medical Credentials", gradient: "linear-gradient(135deg, #0f766e 0%, #06b6d4 100%)", primary: "#0f766e", accent: "#06b6d4", layout: "director" },
-    "canva-finance": { key: "canva-finance", name: "Wall Street Investment Banking", category: "Executive", tag: "Capital Markets · M&A Deal Matrix", gradient: "linear-gradient(135deg, #064e3b 0%, #d97706 100%)", primary: "#064e3b", accent: "#d97706", layout: "consultant" },
-    "canva-startup": { key: "canva-startup", name: "Tech Founder & Product Lead", category: "Modern", tag: "Agile Roadmap · KPI Impact Widgets", gradient: "linear-gradient(135deg, #18181b 0%, #6366f1 100%)", primary: "#6366f1", accent: "#18181b", layout: "tech" },
-    "canva-legal": { key: "canva-legal", name: "Corporate Legal Counsel", category: "Minimalist", tag: "High-Density ATS · Judicial Precision", gradient: "linear-gradient(135deg, #1e1b4b 0%, #991b1b 100%)", primary: "#991b1b", accent: "#1e1b4b", layout: "ivy" }
+    "fresher-honors": { key: "fresher-honors", name: "Dean's List Honors", category: "Fresher", tag: "Academic Distinction · Honors Roll", gradient: "linear-gradient(135deg, #6b21a8 0%, #9333ea 100%)", primary: "#6b21a8", accent: "#9333ea", layout: "honors" }
   };
 
   const stepsMeta = [
