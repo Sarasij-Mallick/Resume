@@ -329,47 +329,242 @@ options.forEach(function (card) {
 (() => {
   const STORAGE_KEY = "resumeai_fresher_v1";
 
-  const TEMPLATES_THEMES = {
-    // 1. MODERN (6 Templates)
-    "modern-minimalist": { key: "modern-minimalist", name: "Modern Minimalist", category: "Modern", tag: "Clean · ATS Optimized", gradient: "linear-gradient(135deg, #7d2ae8 0%, #00c4cc 100%)", primary: "#7d2ae8", accent: "#00c4cc", layout: "modern" },
-    "modern-tech": { key: "modern-tech", name: "Modern Tech Specialist", category: "Modern", tag: "Structured · Developer Friendly", gradient: "linear-gradient(135deg, #0f172a 0%, #3b82f6 100%)", primary: "#3b82f6", accent: "#0f172a", layout: "tech" },
-    "modern-pro": { key: "modern-pro", name: "Modern Professional", category: "Modern", tag: "Dynamic · Sleek Design", gradient: "linear-gradient(135deg, #6366f1 0%, #a855f7 100%)", primary: "#6366f1", accent: "#a855f7", layout: "modern-pro" },
-    "tech-cloud": { key: "tech-cloud", name: "Cloud & DevOps Architect", category: "Modern", tag: "Infrastructure · Systems & AWS", gradient: "linear-gradient(135deg, #0f172a 0%, #0284c7 100%)", primary: "#0284c7", accent: "#0f172a", layout: "cloud" },
-    "tech-ai": { key: "tech-ai", name: "AI & Data Scientist", category: "Modern", tag: "Machine Learning · Python & Metrics", gradient: "linear-gradient(135deg, #1e1b4b 0%, #06b6d4 100%)", primary: "#06b6d4", accent: "#1e1b4b", layout: "ai-data" },
-    "modern-cyber": { key: "modern-cyber", name: "Cybersecurity & SecOps", category: "Modern", tag: "Security Matrix · Compliance & CVE", gradient: "linear-gradient(135deg, #0f172a 0%, #dc2626 100%)", primary: "#dc2626", accent: "#0f172a", layout: "cyber" },
+  // ── 300+ COMPREHENSIVE DIVERSE RESUME TEMPLATES CATALOG & THEMES ──
+  const TEMPLATE_CLUSTERS = [
+    // 1. Tech, Cloud & Coding (35 templates)
+    { cat: "tech", badge: "Tech", tags: "tech tech resume stem software developer engineer coding stem engineering", roles: [
+      { id: "modern-tech", title: "Tech Lead & Software Engineer", sub: "Full-Stack · Systems Architecture & Microservices", layout: "left-sidebar", p: "#3b82f6", s: "#94a3b8", bg: "#0f172a" },
+      { id: "python-backend", title: "Python Backend Architect", sub: "FastAPI / Django · High-Concurrency Microservices", layout: "left-sidebar", p: "#38bdf8", s: "#0284c7", bg: "#1e293b" },
+      { id: "frontend-react", title: "React & Next.js UI Specialist", sub: "Server Components · Modern State & Vercel", layout: "standard", p: "#06b6d4", s: "#3b82f6", h: "linear-gradient(135deg, #06b6d4, #3b82f6)" },
+      { id: "mobile-ios", title: "iOS Swift & SwiftUI Developer", sub: "Apple Native Ecosystem · Combine & CoreData", layout: "standard", p: "#0284c7", s: "#6366f1", h: "linear-gradient(135deg, #0284c7, #6366f1)" },
+      { id: "mobile-android", title: "Android Kotlin Engineer", sub: "Jetpack Compose · Coroutines & Architecture", layout: "standard", p: "#10b981", s: "#059669", h: "linear-gradient(135deg, #10b981, #059669)" },
+      { id: "flutter-crossplatform", title: "Flutter Cross-Platform Lead", sub: "Dart · iOS & Android Native Plugins", layout: "standard", p: "#0284c7", s: "#38bdf8", h: "linear-gradient(135deg, #0284c7, #38bdf8)" },
+      { id: "tech-cloud", title: "Cloud Architect & DevOps Lead", sub: "AWS & GCP · Kubernetes & CI/CD Pipelines", layout: "left-sidebar", p: "#0284c7", s: "#38bdf8", bg: "#0f172a" },
+      { id: "azure-cloud-eng", title: "Azure Enterprise Cloud Specialist", sub: "Terraform · ARM Templates & Azure DevOps", layout: "executive", p: "#0078d4", s: "#60a5fa" },
+      { id: "kubernetes-sre", title: "Site Reliability Engineer (SRE)", sub: "K8s Cluster Orchestration · Prometheus & Chaos", layout: "left-sidebar", p: "#326ce5", s: "#93c5fd", bg: "#0f172a" },
+      { id: "cybersecurity-lead", title: "Cybersecurity & InfoSec Officer", sub: "Zero Trust Security · Penetration Testing & SOC", layout: "left-sidebar", p: "#ef4444", s: "#f87171", bg: "#0f172a" },
+      { id: "web3-blockchain", title: "Web3 & Blockchain Architect", sub: "Smart Contracts · Solidity & DeFi Protocols", layout: "standard", p: "#8b5cf6", s: "#ec4899", h: "linear-gradient(135deg, #8b5cf6, #ec4899)" },
+      { id: "database-dba", title: "Database Administrator (DBA)", sub: "PostgreSQL & Oracle · Query Optimization & Sharding", layout: "standard", p: "#336791", s: "#60a5fa", h: "linear-gradient(135deg, #1e3a8a, #3b82f6)" },
+      { id: "graphql-api-dev", title: "GraphQL & API Platform Engineer", sub: "Apollo Federation · REST / gRPC Microservices", layout: "standard", p: "#e10098", s: "#ec4899", h: "linear-gradient(135deg, #e10098, #8b5cf6)" },
+      { id: "linux-sysadmin", title: "Senior Linux & Infrastructure Admin", sub: "RedHat / Ubuntu · Shell Scripting & Ansible", layout: "left-sidebar", p: "#f97316", s: "#fdba74", bg: "#18181b" },
+      { id: "qa-automation", title: "QA Lead & Test Automation Engineer", sub: "Playwright & Cypress · Selenium CI/CD Frameworks", layout: "standard", p: "#059669", s: "#34d399", h: "linear-gradient(135deg, #059669, #10b981)" },
+      { id: "golang-microservices", title: "Golang Distributed Systems Lead", sub: "High-Throughput Goroutines & Kafka Queues", layout: "left-sidebar", p: "#00add8", s: "#7dd3fc", bg: "#0f172a" },
+      { id: "java-spring-architect", title: "Java Spring Boot Architect", sub: "Enterprise Microservices · JPA Hibernate & Docker", layout: "executive", p: "#b07219", s: "#f59e0b" },
+      { id: "csharp-dotnet", title: "C# .NET Core Enterprise Lead", sub: "ASP.NET Web APIs · Entity Framework & Blazor", layout: "executive", p: "#512bd4", s: "#a78bfa" },
+      { id: "game-developer", title: "Game Engine & Unity Developer", sub: "C# Scripting · 3D Shader Physics & Real-Time Render", layout: "standard", p: "#6366f1", s: "#d946ef", h: "linear-gradient(135deg, #6366f1, #d946ef)" },
+      { id: "unreal-tech-artist", title: "Unreal Engine 5 Technical Artist", sub: "Lumen & Nanite · Blueprint & C++ Optimization", layout: "timeline", p: "#09090b", s: "#3b82f6", h: "linear-gradient(135deg, #09090b, #1e3a8a)" }
+    ]},
 
-    // 2. MINIMALIST (6 Templates)
-    "minimalist-essential": { key: "minimalist-essential", name: "Minimalist Essential", category: "Minimalist", tag: "Pure · Minimalist Lines", gradient: "linear-gradient(135deg, #334155 0%, #475569 100%)", primary: "#334155", accent: "#64748b", layout: "minimalist" },
-    "minimalist-clean-slate": { key: "minimalist-clean-slate", name: "Clean Slate", category: "Minimalist", tag: "Simple · Ultra Readable", gradient: "linear-gradient(135deg, #1e293b 0%, #0f172a 100%)", primary: "#1e293b", accent: "#334155", layout: "clean-slate" },
-    "minimalist-monochrome": { key: "minimalist-monochrome", name: "Monochrome Classic", category: "Minimalist", tag: "Timeless · Compact Grid", gradient: "linear-gradient(135deg, #525252 0%, #262626 100%)", primary: "#262626", accent: "#525252", layout: "monochrome" },
-    "minimalist-ivy": { key: "minimalist-ivy", name: "Ivy League Scholar", category: "Minimalist", tag: "Oxford Serif · Highest ATS Score", gradient: "linear-gradient(135deg, #450a0a 0%, #7f1d1d 100%)", primary: "#7f1d1d", accent: "#991b1b", layout: "ivy" },
-    "minimalist-swiss": { key: "minimalist-swiss", name: "Swiss International Grid", category: "Minimalist", tag: "Helvetica Geometric · Crisp Contrast", gradient: "linear-gradient(135deg, #18181b 0%, #e11d48 100%)", primary: "#18181b", accent: "#e11d48", layout: "swiss" },
-    "minimalist-nordic": { key: "minimalist-nordic", name: "Nordic Clean Slate", category: "Minimalist", tag: "Airy · Refined Polar Slate", gradient: "linear-gradient(135deg, #475569 0%, #94a3b8 100%)", primary: "#475569", accent: "#94a3b8", layout: "nordic" },
+    // 2. AI & Data Science (25 templates)
+    { cat: "tech", badge: "AI", tags: "ai & data science tech resume tech stem engineering ai ml python deep learning data science", roles: [
+      { id: "ai-engineer", title: "AI & Machine Learning Researcher", sub: "Deep Learning · Neural Models & Python Analytics", layout: "standard", p: "#4f46e5", s: "#06b6d4", h: "linear-gradient(135deg, #4f46e5, #06b6d4)" },
+      { id: "nlp-specialist", title: "NLP & LLM Prompt Engineer", sub: "Transformers · Fine-Tuning RAG & LangChain Systems", layout: "standard", p: "#14b8a6", s: "#3b82f6", h: "linear-gradient(135deg, #14b8a6, #3b82f6)" },
+      { id: "computer-vision", title: "Computer Vision & Spatial AI", sub: "OpenCV · YOLO Object Detection & PyTorch", layout: "standard", p: "#6366f1", s: "#a855f7", h: "linear-gradient(135deg, #6366f1, #a855f7)" },
+      { id: "bigdata-architect", title: "Data Engineer & Big Data Lead", sub: "Apache Spark · Snowflake, Kafka & ETL Pipelines", layout: "left-sidebar", p: "#3b82f6", s: "#93c5fd", bg: "#172554" },
+      { id: "mlops-platform-eng", title: "MLOps & Model Deployment Lead", sub: "Kubeflow · MLflow, Model Monitoring & Docker", layout: "left-sidebar", p: "#0284c7", s: "#38bdf8", bg: "#0f172a" },
+      { id: "bi-tableau", title: "Tableau & PowerBI Specialist", sub: "Executive KPI Dashboards · SQL Modeling & Analytics", layout: "standard", p: "#f59e0b", s: "#d97706", h: "linear-gradient(135deg, #f59e0b, #d97706)" },
+      { id: "data-analyst-pro", title: "Quantitative Data Analyst", sub: "Exploratory Data Analysis · Statistical Hypotheses & SQL", layout: "executive", p: "#0d9488", s: "#14b8a6" },
+      { id: "ai-ethics-officer", title: "AI Ethics & Governance Officer", sub: "Responsible AI Standards · Bias Mitigation & Compliance", layout: "centered", p: "#3b0764", s: "#6b21a8" },
+      { id: "genai-developer", title: "Generative AI Solutions Architect", sub: "Autonomous Agents · Vector Databases & API Embeddings", layout: "standard", p: "#7c3aed", s: "#06b6d4", h: "linear-gradient(135deg, #7c3aed, #06b6d4)" },
+      { id: "data-warehouse-lead", title: "Data Warehouse Cloud Architect", sub: "dbt Modeling · Redshift, BigQuery & Lakehouses", layout: "left-sidebar", p: "#1e3a8a", s: "#60a5fa", bg: "#0f172a" }
+    ]},
 
-    // 3. CREATIVE (6 Templates)
-    "creative-designer": { key: "creative-designer", name: "Creative Designer", category: "Creative", tag: "Vibrant · Portfolio Ready", gradient: "linear-gradient(135deg, #7d2ae8 0%, #f43f5e 100%)", primary: "#f43f5e", accent: "#7d2ae8", layout: "creative" },
-    "creative-artistic": { key: "creative-artistic", name: "Artistic Showcase", category: "Creative", tag: "Bold · Media & Design", gradient: "linear-gradient(135deg, #ec4899 0%, #f97316 100%)", primary: "#ec4899", accent: "#f97316", layout: "artistic" },
-    "creative-innovator": { key: "creative-innovator", name: "Studio Innovator", category: "Creative", tag: "Expressive · Studio Ready", gradient: "linear-gradient(135deg, #8b5cf6 0%, #d946ef 100%)", primary: "#8b5cf6", accent: "#d946ef", layout: "innovator" },
-    "creative-ux": { key: "creative-ux", name: "UX/UI Product Designer", category: "Creative", tag: "Design Systems · User Research", gradient: "linear-gradient(135deg, #4338ca 0%, #06b6d4 100%)", primary: "#4338ca", accent: "#06b6d4", layout: "ux" },
-    "creative-motion": { key: "creative-motion", name: "Motion & 3D Animator", category: "Creative", tag: "VFX · Showreel & Digital Art", gradient: "linear-gradient(135deg, #9333ea 0%, #ec4899 100%)", primary: "#9333ea", accent: "#ec4899", layout: "motion" },
-    "creative-editorial": { key: "creative-editorial", name: "Editorial & Art Director", category: "Creative", tag: "High Fashion · Publishing & Brand", gradient: "linear-gradient(135deg, #831843 0%, #be185d 100%)", primary: "#831843", accent: "#be185d", layout: "editorial" },
+    // 3. UI/UX, Graphic Design & Creative (35 templates)
+    { cat: "creative", badge: "Design", tags: "graphic design creative ui/ux design colorful freelance resume portfolio visual branding", roles: [
+      { id: "creative-designer", title: "Graphic Design Visual Pro", sub: "Visual Identity · UI/UX Design & Creative Portfolio", layout: "left-sidebar", p: "#f43f5e", s: "#7d2ae8", bg: "linear-gradient(180deg, #7d2ae8, #f43f5e)" },
+      { id: "uiux-pro", title: "UI/UX & Product Design Lead", sub: "Figma Design Systems · User Journey & Wireframes", layout: "left-sidebar", p: "#a855f7", s: "#d8b4fe", bg: "#18181b" },
+      { id: "brand-identity", title: "Brand Identity Specialist", sub: "Vector Typography · Logo Guidelines & Brand Kits", layout: "left-sidebar", p: "#ec4899", s: "#8b5cf6", bg: "linear-gradient(180deg, #ec4899, #8b5cf6)" },
+      { id: "3d-blender", title: "3D Visualizer & Blender Pro", sub: "Photorealistic Texturing · Lighting & Environment Art", layout: "standard", p: "#ea580c", s: "#c2410c", h: "linear-gradient(135deg, #ea580c, #c2410c)" },
+      { id: "motion-aftereffects", title: "Motion Graphics Animator", sub: "After Effects Keyframing · 2D/3D Broadcast Title Design", layout: "timeline", p: "#7c3aed", s: "#db2777", h: "linear-gradient(135deg, #7c3aed, #db2777)" },
+      { id: "editorial-designer", title: "Editorial & Magazine Designer", sub: "InDesign Typography · Book Publishing & Print Grids", layout: "centered", p: "#18181b", s: "#71717a" },
+      { id: "digital-illustrator", title: "Digital Concept Illustrator", sub: "Photoshop Procreate · Character Design & Storyboarding", layout: "standard", p: "#f43f5e", s: "#a855f7", h: "linear-gradient(135deg, #f43f5e, #a855f7)" },
+      { id: "design-systems-lead", title: "Design Systems & Token Architect", sub: "Figma Component Libraries · Accessibility & Tokens", layout: "left-sidebar", p: "#a855f7", s: "#e4e4e7", bg: "#27272a" },
+      { id: "ux-researcher", title: "UX Researcher & Usability Lead", sub: "Qualitative Interviews · Usability Testing & Journey Maps", layout: "standard", p: "#0d9488", s: "#0284c7", h: "linear-gradient(135deg, #0d9488, #0284c7)" },
+      { id: "creative-innovator", title: "Infographic Visual Specialist", sub: "Data Storytelling · Colorful Visual Charts", layout: "standard", p: "#8b5cf6", s: "#d946ef", h: "linear-gradient(135deg, #8b5cf6, #d946ef)" },
+      { id: "package-designer", title: "Packaging & Print Production Pro", sub: "Dieline Engineering · Foil Stamping & CMYK Pre-press", layout: "standard", p: "#d97706", s: "#f59e0b", h: "linear-gradient(135deg, #d97706, #f59e0b)" },
+      { id: "ar-vr-designer", title: "AR / VR Spatial UI Designer", sub: "VisionOS Interfaces · Unity XR Interactions & 3D Canvas", layout: "timeline", p: "#6366f1", s: "#06b6d4", h: "linear-gradient(135deg, #6366f1, #06b6d4)" }
+    ]},
 
-    // 4. EXECUTIVE (6 Templates)
-    "executive-pro": { key: "executive-pro", name: "Executive Professional", category: "Executive", tag: "Formal · High Impact", gradient: "linear-gradient(135deg, #10b981 0%, #00c4cc 100%)", primary: "#10b981", accent: "#00c4cc", layout: "executive" },
-    "executive-director": { key: "executive-director", name: "Corporate Director", category: "Executive", tag: "Authoritative · Leadership Focus", gradient: "linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%)", primary: "#1e3a8a", accent: "#0f172a", layout: "director" },
-    "executive-manager": { key: "executive-manager", name: "Senior Manager", category: "Executive", tag: "Structured · Executive Suite", gradient: "linear-gradient(135deg, #1e1b4b 0%, #312e81 100%)", primary: "#312e81", accent: "#1e1b4b", layout: "manager" },
-    "corp-consultant": { key: "corp-consultant", name: "Management Consultant", category: "Executive", tag: "Strategy · Quantitative Impact", gradient: "linear-gradient(135deg, #0f172a 0%, #b45309 100%)", primary: "#b45309", accent: "#0f172a", layout: "consultant" },
-    "executive-vp": { key: "executive-vp", name: "Vice President & GM", category: "Executive", tag: "P&L Ownership · Enterprise Scale", gradient: "linear-gradient(135deg, #1e3a8a 0%, #0284c7 100%)", primary: "#1e3a8a", accent: "#0284c7", layout: "vp" },
-    "executive-cfo": { key: "executive-cfo", name: "Chief Financial Officer", category: "Executive", tag: "Capital Markets · Fiscal Governance", gradient: "linear-gradient(135deg, #064e3b 0%, #047857 100%)", primary: "#047857", accent: "#064e3b", layout: "cfo" },
+    // 4. Business Analyst, Consulting & Strategy (30 templates)
+    { cat: "corporate", badge: "Analyst", tags: "business analyst resumes consulting & strategy corporate professional finance consulting strategy", roles: [
+      { id: "executive-pro", title: "Business Analyst & Strategy Lead", sub: "Quantitative Insights · Consulting & BI Leadership", layout: "executive", p: "#059669", s: "#047857" },
+      { id: "consulting-partner", title: "Management Consulting Partner", sub: "Top-Tier Advisory · M&A & Transformation Strategy", layout: "left-sidebar", p: "#047857", s: "#34d399", bg: "#064e3b" },
+      { id: "quant-finance", title: "Quantitative Trading Analyst", sub: "Algorithmic Models · Risk Parity & High-Frequency Data", layout: "executive", p: "#047857", s: "#10b981" },
+      { id: "agile-scrum-master", title: "Agile Coach & Senior Scrum Master", sub: "Sprint Velocity · Scaled Agile (SAFe) & Coaching", layout: "standard", p: "#0284c7", s: "#0d9488", h: "linear-gradient(135deg, #0284c7, #0d9488)" },
+      { id: "technical-pm", title: "Technical Project Manager (PMP)", sub: "Gantt Milestones · Risk Mitigation & Cross-Functional PM", layout: "executive", p: "#1e293b", s: "#475569" },
+      { id: "product-manager-tech", title: "Senior Product Manager (SaaS)", sub: "PRD Specs · Roadmaps, User Growth & Feature Launch", layout: "standard", p: "#4f46e5", s: "#06b6d4", h: "linear-gradient(135deg, #4f46e5, #06b6d4)" },
+      { id: "chief-of-staff", title: "Chief of Staff & Ops Executive", sub: "Executive Alignment · Board Briefings & OKRs", layout: "executive", p: "#1e1b4b", s: "#6366f1" },
+      { id: "supply-chain-director", title: "Supply Chain & Global Logistics", sub: "Freight Optimization · ERP Procurement & Vendor Matrix", layout: "executive", p: "#334155", s: "#64748b" },
+      { id: "change-management-lead", title: "Organizational Change Lead", sub: "Prosci Methodology · Cultural Transition & Training", layout: "standard", p: "#0891b2", s: "#06b6d4", h: "linear-gradient(135deg, #0891b2, #06b6d4)" },
+      { id: "business-dev-director", title: "Director of Strategic Partnerships", sub: "Global Joint Ventures · Alliance Building & B2B Expansion", layout: "left-sidebar", p: "#1e3a8a", s: "#3b82f6", bg: "#1e1b4b" }
+    ]},
 
-    // 5. FRESHER (6 Templates)
-    "fresher-academic": { key: "fresher-academic", name: "Fresher Academic", category: "Fresher", tag: "Student Friendly · First Job", gradient: "linear-gradient(135deg, #f59e0b 0%, #ef4444 100%)", primary: "#f59e0b", accent: "#ef4444", layout: "fresher" },
-    "fresher-starter": { key: "fresher-starter", name: "Entry Level Starter", category: "Fresher", tag: "Skills First · Internship Ready", gradient: "linear-gradient(135deg, #14b8a6 0%, #06b6d4 100%)", primary: "#14b8a6", accent: "#06b6d4", layout: "starter" },
-    "fresher-scholar": { key: "fresher-scholar", name: "Graduate Scholar", category: "Fresher", tag: "Academic Focus · Scholar Layout", gradient: "linear-gradient(135deg, #a855f7 0%, #ec4899 100%)", primary: "#a855f7", accent: "#ec4899", layout: "scholar" },
-    "fresher-stem": { key: "fresher-stem", name: "STEM Engineering Graduate", category: "Fresher", tag: "Capstone Projects · Lab Research", gradient: "linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%)", primary: "#1d4ed8", accent: "#3b82f6", layout: "stem" },
-    "fresher-intern": { key: "fresher-intern", name: "High-Potential Intern", category: "Fresher", tag: "Quick Learner · Summer Placement", gradient: "linear-gradient(135deg, #0d9488 0%, #10b981 100%)", primary: "#0d9488", accent: "#10b981", layout: "intern" },
-    "fresher-honors": { key: "fresher-honors", name: "Dean's List Honors", category: "Fresher", tag: "Academic Distinction · Honors Roll", gradient: "linear-gradient(135deg, #6b21a8 0%, #9333ea 100%)", primary: "#6b21a8", accent: "#9333ea", layout: "honors" }
-  };
+    // 5. Executive Leadership & C-Suite (25 templates)
+    { cat: "corporate", badge: "Executive", tags: "executive leadership corporate director c-suite management consultant executive governance", roles: [
+      { id: "executive-director", title: "Executive Director & Board VP", sub: "C-Suite Governance · Global Operational Growth", layout: "executive", p: "#1e3a8a", s: "#3b82f6" },
+      { id: "cto-executive", title: "Chief Technology Officer (CTO)", sub: "Engineering Vision · Scalability & Multi-Cloud Strategy", layout: "left-sidebar", p: "#6366f1", s: "#a5b4fc", bg: "#09090b" },
+      { id: "cfo-finance", title: "Chief Financial Officer (CFO)", sub: "Capital Allocation · Treasury, Audit & Board Governance", layout: "executive", p: "#064e3b", s: "#10b981" },
+      { id: "cmo-marketing", title: "Chief Marketing Officer (CMO)", sub: "Brand Positioning · Multi-Million Media Budgets & PR", layout: "standard", p: "#be123c", s: "#fb7185", h: "linear-gradient(135deg, #be123c, #fb7185)" },
+      { id: "coo-operations", title: "Chief Operating Officer (COO)", sub: "Operational Excellence · P&L Management & Scale", layout: "left-sidebar", p: "#4338ca", s: "#818cf8", bg: "#1e1b4b" },
+      { id: "healthcare-exec", title: "Executive Healthcare Administrator", sub: "Clinical Operations · Hospital Governance & Care Standards", layout: "left-sidebar", p: "#0f766e", s: "#5eead4", bg: "#0f766e" },
+      { id: "ceo-general-manager", title: "CEO & Managing Director", sub: "Venture Backed · Turnaround Leadership & Valuation", layout: "executive", p: "#0f172a", s: "#38bdf8" },
+      { id: "vp-engineering", title: "VP of Software Engineering", sub: "100+ Dev Teams · Architecture Roadmap & Delivery", layout: "left-sidebar", p: "#1e293b", s: "#60a5fa", bg: "#0f172a" },
+      { id: "nonprofit-exec-director", title: "Non-Profit Executive Director", sub: "Grant Fundraising · Donor Relations & Public Advocacy", layout: "centered", p: "#047857", s: "#10b981" }
+    ]},
+
+    // 6. Sales, Marketing & Growth (30 templates)
+    { cat: "corporate", badge: "Sales", tags: "sales resume corporate professional sales executive leadership revenue pipeline marketing", roles: [
+      { id: "executive-manager", title: "High-Ticket Sales Executive", sub: "Revenue Growth · B2B Key Accounts & Growth", layout: "left-sidebar", p: "#312e81", s: "#818cf8", bg: "#1e1b4b" },
+      { id: "enterprise-saas-sales", title: "B2B SaaS Enterprise Account Lead", sub: "$1M+ ARR Quotas · C-Level Executive Demos & Closing", layout: "executive", p: "#1e3a8a", s: "#3b82f6" },
+      { id: "marketing-colorful", title: "Colorful Digital Marketing Lead", sub: "Growth Marketing · Social Media & Paid Ad Campaigns", layout: "standard", p: "#f43f5e", s: "#fb7185", h: "linear-gradient(135deg, #f43f5e, #fb7185)" },
+      { id: "medical-sales-rep", title: "Medical Device Sales Specialist", sub: "Hospital Surgical Equipment · Clinical Surgeon Advisory", layout: "left-sidebar", p: "#0f766e", s: "#2dd4bf", bg: "#0f766e" },
+      { id: "real-estate-broker", title: "Luxury Real Estate Broker", sub: "High-Net-Worth Portfolio · Commercial & Luxury Listings", layout: "standard", p: "#b45309", s: "#d97706", h: "linear-gradient(135deg, #b45309, #d97706)", isPhoto: true },
+      { id: "growth-hacker", title: "Growth Hacker & Viral Funnels", sub: "A/B Experimentation · Acquisition Loop & Retention", layout: "standard", p: "#ef4444", s: "#f97316", h: "linear-gradient(135deg, #ef4444, #f97316)" },
+      { id: "seo-strategist", title: "SEO & Inbound Marketing Lead", sub: "Technical SEO Audits · Backlink Strategy & Content Hubs", layout: "standard", p: "#10b981", s: "#047857", h: "linear-gradient(135deg, #10b981, #047857)" },
+      { id: "social-media-manager", title: "Social Media & Community Lead", sub: "Omnichannel Engagement · TikTok, Instagram & Viral Reach", layout: "standard", p: "#ec4899", s: "#f43f5e", h: "linear-gradient(135deg, #ec4899, #f43f5e)" },
+      { id: "customer-success-lead", title: "Customer Success & Retention Lead", sub: "Net Promoter Score (NPS) · Churn Reduction & QBRs", layout: "standard", p: "#0d9488", s: "#3b82f6", h: "linear-gradient(135deg, #0d9488, #3b82f6)" },
+      { id: "pr-communications-mgr", title: "PR & Corporate Communications Lead", sub: "Crisis PR · Press Releases & Tier-1 Media Pitching", layout: "centered", p: "#1e1b4b", s: "#818cf8" }
+    ]},
+
+    // 7. Academic, Education, Teaching & Scholarships (30 templates)
+    { cat: "academic", badge: "Academic", tags: "academic scholarship college university oxford researcher education scholar teacher resume", roles: [
+      { id: "minimalist-ivy", title: "Ivy League Academic & Scholarship", sub: "Oxford Serif · Research Fellowship & Grants", layout: "centered", p: "#7f1d1d", s: "#991b1b" },
+      { id: "fresher-academic", title: "Teacher & STEM Educator", sub: "Classroom Leadership · Curriculum & Mentorship", layout: "standard", p: "#ea580c", s: "#f59e0b", h: "linear-gradient(135deg, #ea580c, #f59e0b)" },
+      { id: "scholarship-phd", title: "Merit Scholarship & PhD Candidate", sub: "Peer-Reviewed Papers · Academic Grants & Research CV", layout: "centered", p: "#1e3a8a", s: "#3b82f6" },
+      { id: "high-school-valedictorian", title: "High School Valedictorian CV", sub: "AP Scholar With Distinction · Science Olympiad Gold", layout: "centered", p: "#7f1d1d", s: "#b91c1c" },
+      { id: "research-assistant-stem", title: "University STEM Lab Researcher", sub: "Spectroscopy Analysis · Lab Protocol & Python Data", layout: "standard", p: "#1d4ed8", s: "#06b6d4", h: "linear-gradient(135deg, #1d4ed8, #06b6d4)" },
+      { id: "university-grantee", title: "University Fellowship & Grantee CV", sub: "National Endowment Grant · Research Proposal & Thesis", layout: "centered", p: "#1e3a8a", s: "#2563eb" },
+      { id: "fulbright-scholar", title: "Fulbright Scholar & Global Fellow", sub: "International Field Research · Cross-Cultural Ambassador", layout: "centered", p: "#064e3b", s: "#059669" },
+      { id: "primary-educator", title: "Primary & Montessori Educator", sub: "Child Development · Inclusive Learning & Parent Comms", layout: "standard", p: "#f59e0b", s: "#10b981", h: "linear-gradient(135deg, #f59e0b, #10b981)" },
+      { id: "stem-physics-teacher", title: "High School Physics & Math Master", sub: "Interactive Experiments · AP Physics Exam Mastery", layout: "standard", p: "#2563eb", s: "#7c3aed", h: "linear-gradient(135deg, #2563eb, #7c3aed)" },
+      { id: "university-professor", title: "Tenured University Professor", sub: "Department Chair · Peer Review Editor & Doctoral Advisor", layout: "centered", p: "#450a0a", s: "#991b1b" },
+      { id: "online-course-creator", title: "Online Course Creator & EdTech", sub: "100k+ Students Enrolled · Curriculum Video Production", layout: "standard", p: "#8b5cf6", s: "#06b6d4", h: "linear-gradient(135deg, #8b5cf6, #06b6d4)" }
+    ]},
+
+    // 8. Students, High School, College & Internships (30 templates)
+    { cat: "fresher", badge: "Fresher", tags: "high school college fresher starter internship resume simple student entry level", roles: [
+      { id: "fresher-starter", title: "High School & College Starter", sub: "Internship Ready · Skills-First & Education", layout: "left-sidebar", p: "#0d9488", s: "#06b6d4", bg: "#0d9488" },
+      { id: "college-grad", title: "College Graduate First Career", sub: "University Honors · Campus Leadership & Co-curriculars", layout: "standard", p: "#3b82f6", s: "#6366f1", h: "linear-gradient(135deg, #3b82f6, #6366f1)" },
+      { id: "internship-pro", title: "Summer Internship Starter Pro", sub: "Corporate Co-op · Capstone Projects & Soft Skills", layout: "left-sidebar", p: "#0284c7", s: "#bae6fd", bg: "#0284c7" },
+      { id: "fresher-universal", title: "Fresher Entry Starter Universal", sub: "Zero Experience Friendly · Fast-Track Professional CV", layout: "standard", p: "#4338ca", s: "#6366f1" },
+      { id: "high-school-parttime", title: "High School First Job Starter", sub: "Customer Service · School Clubs & Fast-Learner Profile", layout: "standard", p: "#0d9488", s: "#14b8a6" },
+      { id: "campus-ambassador", title: "Campus Brand Ambassador", sub: "Student Leadership · Event Organizing & Campus Outreach", layout: "standard", p: "#f59e0b", s: "#ea580c", h: "linear-gradient(135deg, #f59e0b, #ea580c)" },
+      { id: "swe-summer-intern", title: "Software Engineering Summer Intern", sub: "Git Pull Requests · Unit Testing & Agile Feature Sprints", layout: "left-sidebar", p: "#38bdf8", s: "#0284c7", bg: "#0f172a" },
+      { id: "finance-winter-intern", title: "Financial Services Co-op Intern", sub: "Portfolio Reconciliation · Bloomberg Terminal & Excel", layout: "left-sidebar", p: "#1d4ed8", s: "#93c5fd", bg: "#172554" },
+      { id: "design-studio-intern", title: "Graphic Design Studio Intern", sub: "Social Media Collateral · Vector Retouching & Mockups", layout: "standard", p: "#d946ef", s: "#8b5cf6", h: "linear-gradient(135deg, #d946ef, #8b5cf6)" },
+      { id: "clinical-nursing-trainee", title: "Clinical Nursing Practicum Trainee", sub: "Patient Vitals · Electronic Health Records & Triage", layout: "left-sidebar", p: "#0f766e", s: "#5eead4", bg: "#0f766e" },
+      { id: "gap-year-volunteer", title: "International Volunteer & NGO Starter", sub: "Community Outreach · Cross-Cultural Field Leadership", layout: "standard", p: "#059669", s: "#34d399", h: "linear-gradient(135deg, #059669, #34d399)" }
+    ]},
+
+    // 9. Accounting, Finance & Legal (30 templates)
+    { cat: "corporate", badge: "Finance", tags: "accounting resumes corporate finance accounting tax audit professional cpa legal", roles: [
+      { id: "minimalist-monochrome", title: "CPA Accounting & Financial Audit", sub: "Monochrome · Tax Compliance & Analytics", layout: "left-sidebar", p: "#171717", s: "#404040", bg: "#171717" },
+      { id: "legal-pro", title: "Corporate Legal & Compliance", sub: "Contract Negotiation · Regulatory Risk & Corporate Law", layout: "executive", p: "#1e293b", s: "#475569" },
+      { id: "investment-banking", title: "Investment Banking Analyst", sub: "DCF Valuation · Financial Modeling & M&A Pitch Books", layout: "left-sidebar", p: "#1d4ed8", s: "#60a5fa", bg: "#172554" },
+      { id: "forensic-auditor", title: "Forensic Accountant & Fraud Auditor", sub: "Anti-Money Laundering · Fraud Investigation & Compliance", layout: "standard", p: "#18181b", s: "#525252" },
+      { id: "private-equity", title: "Private Equity & VC Associate", sub: "Due Diligence · Cap Table Modeling & Portfolio Growth", layout: "executive", p: "#0f766e", s: "#14b8a6" },
+      { id: "tax-strategist", title: "Senior Tax & Wealth Strategist", sub: "Corporate Tax Credits · Cross-Border Structuring", layout: "left-sidebar", p: "#404040", s: "#a3a3a3", bg: "#262626" },
+      { id: "ip-patent-lawyer", title: "Intellectual Property & Patent Counsel", sub: "Patent Prosecution · Trademark Defense & Tech Licensing", layout: "executive", p: "#1e1b4b", s: "#6366f1" },
+      { id: "litigation-counsel", title: "Litigation & Trial Defense Counsel", sub: "Courtroom Advocacy · Appellate Briefs & Deposition", layout: "centered", p: "#18181b", s: "#3f3f46" },
+      { id: "corporate-paralegal", title: "Senior Corporate Paralegal", sub: "SEC Filings · Corporate Governance & Contract Discovery", layout: "standard", p: "#334155", s: "#64748b" },
+      { id: "financial-planner-cfp", title: "Certified Financial Planner (CFP)", sub: "Retirement Portfolios · Asset Allocation & Wealth Advisory", layout: "executive", p: "#047857", s: "#10b981" }
+    ]},
+
+    // 10. Media, Music, Acting & Entertainment (35 templates)
+    { cat: "creative", badge: "Media", tags: "acting model resume photo creative acting resume headshot theatre film videographer music", roles: [
+      { id: "creative-artistic", title: "Acting & Theatre Portfolio", sub: "Headshot Showcase · Stage & Screen Casting CV", layout: "standard", p: "#ec4899", s: "#f97316", h: "linear-gradient(135deg, #ec4899, #f97316)", isPhoto: true },
+      { id: "creative-motion", title: "Videographer & Film Editor", sub: "Cinematography · Premiere Pro & Motion Design", layout: "timeline", p: "#9333ea", s: "#ec4899", h: "linear-gradient(135deg, #9333ea, #ec4899)" },
+      { id: "music-pro", title: "Music Producer & Audio Engineer", sub: "Sound Synthesis · Ableton Live & Studio Mixing", layout: "standard", p: "#e11d48", s: "#fda4af", h: "linear-gradient(135deg, #e11d48, #be185d)" },
+      { id: "model-pro", title: "Fashion Model Comp Card", sub: "High Fashion · Runway & Commercial Brand Ambassador", layout: "left-sidebar", p: "#c026d3", s: "#d946ef", bg: "#fdf4ff", isPhoto: true },
+      { id: "voiceover-artist", title: "Voice Actor & Audiobook Narrator", sub: "Character Voices · Home Studio Audio & Commercial VO", layout: "standard", p: "#d946ef", s: "#ec4899", h: "linear-gradient(135deg, #d946ef, #ec4899)" },
+      { id: "commercial-actor", title: "Commercial & Television Actor", sub: "SAG-AFTRA Eligible · On-Camera Improvisation & Screen", layout: "standard", p: "#ea580c", s: "#f43f5e", h: "linear-gradient(135deg, #ea580c, #f43f5e)", isPhoto: true },
+      { id: "theatre-director", title: "Theatre Director & Stage Manager", sub: "Cast Blocking · Lighting Cues & Production Schedules", layout: "standard", p: "#4c1d95", s: "#831843", h: "linear-gradient(135deg, #4c1d95, #831843)" },
+      { id: "cinematographer-dop", title: "Documentary Cinematographer & DOP", sub: "Arri / RED Cameras · Color Grading (DaVinci Resolve)", layout: "timeline", p: "#f59e0b", s: "#d97706", h: "linear-gradient(135deg, #09090b, #27272a)" },
+      { id: "drone-pilot", title: "FAA Drone Pilot & Aerial Film Maker", sub: "4K Aerial Tracking · Commercial Real Estate & Cinema", layout: "standard", p: "#0284c7", s: "#0f172a", h: "linear-gradient(135deg, #0284c7, #0f172a)" },
+      { id: "live-sound-engineer", title: "Live Concert Sound Engineer", sub: "FOH Mixing · Dante Audio Networks & Wireless Mics", layout: "standard", p: "#be123c", s: "#f43f5e", h: "linear-gradient(135deg, #18181b, #be123c)" },
+      { id: "film-composer", title: "Film Score & Orchestral Composer", sub: "MIDI Orchestration · Film Scoring & Mood Textures", layout: "centered", p: "#3b0764", s: "#6b21a8" },
+      { id: "runway-model", title: "Editorial & Runway Fashion Model", sub: "Fashion Week Runway · Haute Couture & Lookbooks", layout: "left-sidebar", p: "#be185d", s: "#f472b6", bg: "#fdf2f8", isPhoto: true },
+      { id: "fitness-lifestyle-model", title: "Athletic & Lifestyle Model", sub: "Sportswear Commercials · Active Movement & Health Brand", layout: "standard", p: "#059669", s: "#0d9488", h: "linear-gradient(135deg, #059669, #0d9488)", isPhoto: true }
+    ]},
+
+    // 11. STEM, Robotics & Industrial Engineering (25 templates)
+    { cat: "tech", badge: "STEM", tags: "stem engineering tech tech resume hardware cad robotics mechanical civil electrical", roles: [
+      { id: "stem-robotics", title: "STEM Mechanical & Robotics Engineer", sub: "CAD Modeling · Automation Systems & Hardware Prototyping", layout: "executive", p: "#334155", s: "#64748b" },
+      { id: "mechanical-cad-engineer", title: "Mechanical Design & SolidWorks Pro", sub: "Finite Element Analysis (FEA) · Injection Molding CAD", layout: "executive", p: "#334155", s: "#475569" },
+      { id: "embedded-iot-engineer", title: "Embedded Systems & IoT Engineer", sub: "C/C++ Firmware · ARM Cortex & Microcontroller PCB", layout: "left-sidebar", p: "#059669", s: "#34d399", bg: "#022c22" },
+      { id: "civil-structural-engineer", title: "Civil & Infrastructure Engineer", sub: "AutoCAD Civil 3D · Structural Load Calculations & Site", layout: "executive", p: "#1e293b", s: "#64748b" },
+      { id: "biomedical-engineer", title: "Biomedical & Clinical Device Engineer", sub: "FDA Medical Device Compliance · Biosensors & ISO 13485", layout: "standard", p: "#0f766e", s: "#0284c7", h: "linear-gradient(135deg, #0f766e, #0284c7)" },
+      { id: "aerospace-engineer", title: "Aerospace & Flight Systems Engineer", sub: "Aerodynamics Simulation · Avionics & Propulsion", layout: "executive", p: "#0c4a6e", s: "#0284c7" },
+      { id: "chemical-process-engineer", title: "Chemical Process & Plant Engineer", sub: "Process Flow Diagrams · Aspen HYSYS & Safety Compliance", layout: "standard", p: "#b45309", s: "#f59e0b", h: "linear-gradient(135deg, #b45309, #f59e0b)" },
+      { id: "environmental-engineer", title: "Environmental & Sustainability Engineer", sub: "Carbon Footprint Audits · Renewable Energy Systems", layout: "standard", p: "#15803d", s: "#4ade80", h: "linear-gradient(135deg, #15803d, #4ade80)" }
+    ]},
+
+    // 12. Freelance, Writers & Universal (25 templates)
+    { cat: "minimalist", badge: "Universal", tags: "writer resume freelance resume minimalist simple universal standard clean ats", roles: [
+      { id: "minimalist-essential", title: "Content Writer & Copywriter", sub: "SEO Copywriting · Editorial & Content Strategy", layout: "centered", p: "#334155", s: "#64748b" },
+      { id: "minimalist-clean-slate", title: "Clean Slate One-Pager", sub: "Simple · Ultra Readable · Multi-purpose Standard", layout: "standard", p: "#1e293b", s: "#475569" },
+      { id: "freelance-pro", title: "Freelance Digital Consultant", sub: "Remote Client Success · Growth Deliverables & Advisory", layout: "standard", p: "#0284c7", s: "#2563eb", h: "linear-gradient(135deg, #0284c7, #2563eb)" },
+      { id: "upwork-top-rated", title: "Upwork Top-Rated Fullstack Contractor", sub: "100% Job Success Score · 5-Star Client Reviews & API", layout: "standard", p: "#10b981", s: "#0284c7", h: "linear-gradient(135deg, #10b981, #0284c7)" },
+      { id: "technical-copywriter", title: "Freelance Technical Copywriter", sub: "Whitepapers, API Docs & Developer Documentation", layout: "centered", p: "#334155", s: "#475569" },
+      { id: "remote-creative-director", title: "Remote Creative Agency Director", sub: "International Client Campaigns · Remote Squad Leadership", layout: "left-sidebar", p: "#f43f5e", s: "#fda4af", bg: "#18181b" },
+      { id: "independent-consultant", title: "Independent Strategy Consultant", sub: "Market Entry Studies · Operating Model Restructuring", layout: "executive", p: "#047857", s: "#065f46" },
+      { id: "virtual-assistant", title: "Digital Nomad Virtual Assistant", sub: "Calendar Management · Remote Inbox & Project Support", layout: "standard", p: "#6366f1", s: "#818cf8" },
+      { id: "universal-standard-ats", title: "Universal Standard ATS Resume", sub: "100% Parsing Accuracy · Clean Single-Column Structure", layout: "centered", p: "#0f172a", s: "#334155" }
+    ]}
+  ];
+
+  const STYLE_VARIANTS = [
+    { suffix: "", namePrefix: "", layoutMod: null },
+    { suffix: "-pro", namePrefix: "Executive ", layoutMod: "executive" },
+    { suffix: "-minimal", namePrefix: "Minimalist ", layoutMod: "centered" }
+  ];
+
+  const ALL_320_TEMPLATES = [];
+  TEMPLATE_CLUSTERS.forEach(cluster => {
+    cluster.roles.forEach(role => {
+      STYLE_VARIANTS.forEach((variant, vIdx) => {
+        const uniqueId = `${role.id}${variant.suffix}`;
+        const uniqueTitle = `${variant.namePrefix}${role.title}`;
+        const currentLayout = variant.layoutMod || role.layout || "standard";
+
+        let finalTags = `${cluster.tags} ${role.title.toLowerCase()} ${cluster.cat}`;
+        if (currentLayout === "centered") finalTags += " minimalist simple clean";
+        if (currentLayout === "executive") finalTags += " corporate professional executive";
+        if (role.isPhoto) finalTags += " photo headshot acting model";
+
+        ALL_320_TEMPLATES.push({
+          id: uniqueId,
+          key: uniqueId,
+          name: uniqueTitle,
+          title: uniqueTitle,
+          tag: role.sub,
+          badge: vIdx === 1 ? "Executive" : (vIdx === 2 ? "Minimal" : cluster.badge),
+          category: cluster.cat.charAt(0).toUpperCase() + cluster.cat.slice(1),
+          tags: finalTags,
+          layout: currentLayout,
+          gradient: role.h || `linear-gradient(135deg, ${role.p}, ${role.s || '#3b82f6'})`,
+          headBg: role.h,
+          primary: role.p,
+          secondary: role.s,
+          accent: role.s || "#00c4cc",
+          sidebarBg: role.bg || role.p,
+          isPhoto: role.isPhoto || false
+        });
+      });
+    });
+  });
+
+  const TEMPLATES_THEMES = {};
+  ALL_320_TEMPLATES.forEach((t) => {
+    TEMPLATES_THEMES[t.id] = t;
+  });
+
+  function getTemplateTheme(key) {
+    if (TEMPLATES_THEMES[key]) return TEMPLATES_THEMES[key];
+    const found = ALL_320_TEMPLATES.find((t) => t.id === key);
+    if (found) return found;
+    return TEMPLATES_THEMES["modern-minimalist"] || ALL_320_TEMPLATES[0];
+  }
 
   const stepsMeta = [
     { id: 0, key: "templates", title: "Choose Resume Template" },
@@ -485,8 +680,12 @@ options.forEach(function (card) {
     try {
       const urlParams = new URLSearchParams(window.location.search);
       const templateParam = urlParams.get("template");
-      if (templateParam && TEMPLATES_THEMES[templateParam]) {
+      if (templateParam) {
         state.selectedTemplate = templateParam;
+        const currentTheme = getTemplateTheme(templateParam);
+        if (currentTheme && (!state.personal.headline || state.personal.headline.trim() === "" || state.personal.headline === "Full-Stack Software Engineer & CS Graduate")) {
+          state.personal.headline = currentTheme.name;
+        }
         saveState();
       }
     } catch (e) {}
@@ -576,33 +775,38 @@ options.forEach(function (card) {
 
   /* ---------- Step Renderers ---------- */
 
-  // 0. Templates Selector
+  // 0. Templates Selector (300+ Templates Searchable & Categorized)
   function renderTemplatesSelector() {
     const wrapper = document.createElement("div");
     wrapper.className = "form";
     const selectedKey = state.selectedTemplate || "modern-minimalist";
 
     wrapper.innerHTML = `
-      <p style="margin:0 0 12px;font-size:13.5px;color:var(--canva-muted)">Select a template design for your resume:</p>
+      <p style="margin:0 0 12px;font-size:13.5px;color:var(--canva-muted)">Choose any of 300+ professional template styles to customize your resume:</p>
       
-      <div class="filter-pills" style="margin-bottom:12px;justify-content:flex-start">
-        <button class="pill active" data-cat="all" style="padding:5px 12px;font-size:12px">All</button>
-        <button class="pill" data-cat="Modern" style="padding:5px 12px;font-size:12px">Modern</button>
-        <button class="pill" data-cat="Minimalist" style="padding:5px 12px;font-size:12px">Minimalist</button>
-        <button class="pill" data-cat="Creative" style="padding:5px 12px;font-size:12px">Creative</button>
-        <button class="pill" data-cat="Executive" style="padding:5px 12px;font-size:12px">Executive</button>
-        <button class="pill" data-cat="Fresher" style="padding:5px 12px;font-size:12px">Fresher</button>
+      <div style="margin-bottom:12px">
+        <input type="text" id="tmplStudioSearch" placeholder="🔍 Search by role (e.g. Python, Teacher, Sales, Analyst, Design)..." style="width:100%;padding:9px 14px;border-radius:8px;border:1px solid #cbd5e1;font-size:13px">
       </div>
 
-      <div class="template-select-grid" id="tmplDrawerGrid">
-        ${Object.values(TEMPLATES_THEMES).map((t) => `
-          <div class="tmpl-select-card ${t.key === selectedKey ? 'selected' : ''}" data-key="${t.key}" data-category="${t.category}">
+      <div class="filter-pills" style="margin-bottom:14px;justify-content:flex-start;overflow-x:auto;padding-bottom:4px;white-space:nowrap">
+        <button class="pill active" data-cat="all" style="padding:5px 12px;font-size:12px">All (300+)</button>
+        <button class="pill" data-cat="tech" style="padding:5px 12px;font-size:12px">Tech & Coding</button>
+        <button class="pill" data-cat="creative" style="padding:5px 12px;font-size:12px">UI/UX & Design</button>
+        <button class="pill" data-cat="corporate" style="padding:5px 12px;font-size:12px">Corporate & Exec</button>
+        <button class="pill" data-cat="academic" style="padding:5px 12px;font-size:12px">Academic & Teacher</button>
+        <button class="pill" data-cat="fresher" style="padding:5px 12px;font-size:12px">Fresher & Intern</button>
+        <button class="pill" data-cat="minimalist" style="padding:5px 12px;font-size:12px">Minimalist & ATS</button>
+      </div>
+
+      <div class="template-select-grid" id="tmplDrawerGrid" style="max-height:380px;overflow-y:auto;padding-right:4px">
+        ${ALL_320_TEMPLATES.map((t) => `
+          <div class="tmpl-select-card ${t.id === selectedKey ? 'selected' : ''}" data-key="${t.id}" data-category="${t.category.toLowerCase()}" data-tags="${t.tags.toLowerCase()} ${t.name.toLowerCase()}">
             <div class="tmpl-select-swatch" style="background:${t.gradient}"></div>
             <div class="tmpl-select-info">
               <div class="tmpl-select-name">${escape(t.name)}</div>
               <div class="tmpl-select-tag">${escape(t.category)} · ${escape(t.tag)}</div>
             </div>
-            ${t.key === selectedKey ? `<span style="color:var(--canva-purple);font-weight:800;font-size:16px">✓</span>` : ''}
+            ${t.id === selectedKey ? `<span style="color:var(--canva-purple);font-weight:800;font-size:16px">✓</span>` : ''}
           </div>
         `).join("")}
       </div>
@@ -613,22 +817,38 @@ options.forEach(function (card) {
       </div>
     `;
 
+    const searchInput = wrapper.querySelector("#tmplStudioSearch");
     const pills = wrapper.querySelectorAll(".filter-pills .pill");
     const cards = wrapper.querySelectorAll(".tmpl-select-card");
+
+    let currentCat = "all";
+
+    function filterCards() {
+      const q = (searchInput?.value || "").trim().toLowerCase();
+      cards.forEach((c) => {
+        const cCat = c.dataset.category || "";
+        const cTags = c.dataset.tags || "";
+        const matchesCat = currentCat === "all" || cCat.includes(currentCat) || cTags.includes(currentCat);
+        const matchesQuery = !q || cTags.includes(q);
+
+        if (matchesCat && matchesQuery) {
+          c.style.display = "flex";
+        } else {
+          c.style.display = "none";
+        }
+      });
+    }
+
+    if (searchInput) {
+      searchInput.addEventListener("input", filterCards);
+    }
 
     pills.forEach((p) => {
       p.onclick = () => {
         pills.forEach((el) => el.classList.remove("active"));
         p.classList.add("active");
-        const cat = (p.dataset.cat || "").toLowerCase();
-        cards.forEach((c) => {
-          const cardCat = (c.dataset.category || "").toLowerCase();
-          if (cat === "all" || cardCat.includes(cat)) {
-            c.style.display = "flex";
-          } else {
-            c.style.display = "none";
-          }
-        });
+        currentCat = (p.dataset.cat || "all").toLowerCase();
+        filterCards();
       };
     });
 
@@ -636,6 +856,10 @@ options.forEach(function (card) {
       c.onclick = () => {
         const key = c.dataset.key;
         state.selectedTemplate = key;
+        const chosenTheme = getTemplateTheme(key);
+        if (chosenTheme && (!state.personal.headline || state.personal.headline === "" || state.personal.headline === "Full-Stack Software Engineer & CS Graduate")) {
+          state.personal.headline = chosenTheme.name;
+        }
         saveState();
         renderLivePreview();
         renderStep(0);
@@ -1504,7 +1728,7 @@ options.forEach(function (card) {
   function buildResumeHtml() {
     const p = state.personal || {};
     const key = state.selectedTemplate || "modern-minimalist";
-    const theme = TEMPLATES_THEMES[key] || TEMPLATES_THEMES["modern-minimalist"];
+    const theme = getTemplateTheme(key);
 
     const tech = (state.skills?.technical || []).join(", ");
     const soft = (state.skills?.soft || []).join(", ");
@@ -1566,6 +1790,181 @@ options.forEach(function (card) {
     };
 
     const skillsBlock = formatSkillsChips();
+
+    // 0A. Left Sidebar Layout (Two-Column Modern / Developer / Creative)
+    if (theme.layout === "left-sidebar") {
+      const sbBg = theme.sidebarBg || theme.primary || "#0f172a";
+      return `<div style="font-family:'Outfit', 'Inter', sans-serif; color:#0f172a; line-height:1.5; display:grid; grid-template-columns: 240px 1fr; gap:0; border-radius:10px; overflow:hidden; border:1px solid #e2e8f0; min-height:850px; background:#ffffff">
+        <div style="background:${sbBg}; color:#ffffff; padding:28px 18px; display:flex; flex-direction:column; gap:20px">
+          <div style="text-align:center">
+            ${p.photo ? `<img src="${p.photo}" style="width:90px;height:90px;border-radius:50%;object-fit:cover;border:3px solid rgba(255,255,255,0.85);margin-bottom:12px">` : `<div style="width:68px;height:68px;border-radius:50%;background:rgba(255,255,255,0.15);border:2px solid rgba(255,255,255,0.3);margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:26px">👤</div>`}
+            <h1 style="margin:0 0 4px; font-size:19px; font-weight:800; color:#ffffff; letter-spacing:-0.01em">${nameText}</h1>
+            <div style="font-size:12px; font-weight:600; color:rgba(255,255,255,0.85)">${headlineText}</div>
+          </div>
+          <div>
+            <h4 style="font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:rgba(255,255,255,0.6); margin:0 0 8px; border-bottom:1px solid rgba(255,255,255,0.2); padding-bottom:4px">Contact</h4>
+            <div style="display:flex; flex-direction:column; gap:6px; font-size:11px; color:rgba(255,255,255,0.9)">
+              <div style="word-break:break-all">📧 ${emailText}</div>
+              <div>📞 ${phoneText}</div>
+              <div>📍 ${addressText}</div>
+              ${p.linkedin ? `<div>💼 <a href="${escape(p.linkedin)}" target="_blank" style="color:#ffffff;text-decoration:underline">LinkedIn</a></div>` : ""}
+              ${p.portfolio ? `<div>🌐 <a href="${escape(p.portfolio)}" target="_blank" style="color:#ffffff;text-decoration:underline">Portfolio</a></div>` : ""}
+            </div>
+          </div>
+          <div>
+            <h4 style="font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:rgba(255,255,255,0.6); margin:0 0 8px; border-bottom:1px solid rgba(255,255,255,0.2); padding-bottom:4px">Skills</h4>
+            ${formatSkillsChips("rgba(255,255,255,0.15)", "rgba(255,255,255,0.25)", "#ffffff")}
+          </div>
+          <div>
+            <h4 style="font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:rgba(255,255,255,0.6); margin:0 0 8px; border-bottom:1px solid rgba(255,255,255,0.2); padding-bottom:4px">Education</h4>
+            ${eduBlock((edu) => `
+              <div style="margin-bottom:8px">
+                <strong style="font-size:11.5px; color:#ffffff; display:block">${escape(edu.degree || "")}</strong>
+                <div style="font-size:10.5px; color:rgba(255,255,255,0.75)">${escape(edu.institution || "")}</div>
+                <div style="font-size:9.5px; color:rgba(255,255,255,0.6)">${escape(edu.start || "")} - ${escape(edu.end || "")}</div>
+              </div>
+            `)}
+          </div>
+        </div>
+        <div style="padding:26px 22px; display:flex; flex-direction:column; gap:18px">
+          <div>
+            <h3 style="font-size:14px; font-weight:800; color:${theme.primary}; text-transform:uppercase; letter-spacing:0.05em; border-bottom:2px solid ${theme.primary}; padding-bottom:4px; margin:0 0 8px">About Me</h3>
+            ${summaryBlock}
+          </div>
+          <div>
+            <h3 style="font-size:14px; font-weight:800; color:${theme.primary}; text-transform:uppercase; letter-spacing:0.05em; border-bottom:2px solid ${theme.primary}; padding-bottom:4px; margin:0 0 12px">Experience</h3>
+            ${expBlock((x) => `
+              <div style="margin-bottom:12px; padding-left:10px; border-left:2px solid #e2e8f0">
+                <div style="display:flex; justify-content:space-between; align-items:baseline">
+                  <strong style="font-size:13px; color:#0f172a">${escape(x.title || "")} @ ${escape(x.company || "")}</strong>
+                  <span style="font-size:11px; color:#64748b">${escape(x.start || "")} - ${escape(x.end || "Present")}</span>
+                </div>
+                ${formatBullets(x.responsibilities)}
+              </div>
+            `)}
+          </div>
+          <div>
+            <h3 style="font-size:14px; font-weight:800; color:${theme.primary}; text-transform:uppercase; letter-spacing:0.05em; border-bottom:2px solid ${theme.primary}; padding-bottom:4px; margin:0 0 12px">Projects & Deliverables</h3>
+            ${projBlock((proj) => `
+              <div style="margin-bottom:10px; padding:10px; background:#f8fafc; border-radius:6px; border:1px solid #e2e8f0">
+                <div style="display:flex; justify-content:space-between; align-items:baseline">
+                  <strong style="font-size:12.5px; color:#0f172a">${escape(proj.name || "")}</strong>
+                  <span style="font-size:10.5px; color:${theme.primary}; font-weight:700">${escape(proj.tech || "")}</span>
+                </div>
+                ${formatBullets(proj.description)}
+              </div>
+            `)}
+          </div>
+        </div>
+      </div>`;
+    }
+
+    // 0B. Centered / Ivy League Oxford Layout
+    if (theme.layout === "centered") {
+      return `<div style="font-family:'Georgia', 'Times New Roman', serif; color:#1e293b; line-height:1.6; max-width:800px; margin:0 auto; border-top:4px solid ${theme.primary}; padding-top:20px">
+        <div style="text-align:center; margin-bottom:20px; border-bottom:1.5px solid #cbd5e1; padding-bottom:16px">
+          <h1 style="margin:0 0 4px; font-size:28px; font-weight:700; color:${theme.primary}; letter-spacing:0.02em">${nameText}</h1>
+          <div style="font-size:14px; font-style:italic; color:#475569">${headlineText}</div>
+          <div style="display:flex; justify-content:center; flex-wrap:wrap; gap:12px; font-size:12px; color:#64748b; margin-top:8px; font-family:'Inter', sans-serif">
+            <span>${emailText}</span> • <span>${phoneText}</span> • <span>${addressText}</span>
+            ${p.linkedin ? `• <span><a href="${escape(p.linkedin)}" target="_blank" style="color:${theme.primary}">LinkedIn</a></span>` : ""}
+            ${p.portfolio ? `• <span><a href="${escape(p.portfolio)}" target="_blank" style="color:${theme.primary}">Portfolio</a></span>` : ""}
+          </div>
+        </div>
+        <div style="margin-bottom:18px">
+          <h3 style="font-family:'Inter', sans-serif; font-size:12.5px; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:${theme.primary}; border-bottom:1px solid #94a3b8; padding-bottom:2px; margin:0 0 6px">Academic & Professional Summary</h3>
+          ${summaryBlock}
+        </div>
+        <div style="margin-bottom:18px">
+          <h3 style="font-family:'Inter', sans-serif; font-size:12.5px; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:${theme.primary}; border-bottom:1px solid #94a3b8; padding-bottom:2px; margin:0 0 8px">Experience & Appointments</h3>
+          ${expBlock((x) => `
+            <div style="margin-bottom:10px">
+              <div style="display:flex; justify-content:space-between">
+                <strong style="font-size:13px; color:#0f172a">${escape(x.title || "")}, ${escape(x.company || "")}</strong>
+                <span style="font-size:11.5px; color:#64748b; font-family:'Inter', sans-serif">${escape(x.start || "")} – ${escape(x.end || "Present")}</span>
+              </div>
+              ${formatBullets(x.responsibilities)}
+            </div>
+          `)}
+        </div>
+        <div style="margin-bottom:18px">
+          <h3 style="font-family:'Inter', sans-serif; font-size:12.5px; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:${theme.primary}; border-bottom:1px solid #94a3b8; padding-bottom:2px; margin:0 0 8px">Education & Degrees</h3>
+          ${eduBlock((edu) => `
+            <div style="margin-bottom:8px; display:flex; justify-content:space-between">
+              <div>
+                <strong style="font-size:13px; color:#0f172a">${escape(edu.degree || "")}</strong>
+                <span style="font-size:12px; color:#475569"> — ${escape(edu.institution || "")}</span>
+              </div>
+              <span style="font-size:11.5px; color:#64748b; font-family:'Inter', sans-serif">${escape(edu.start || "")} – ${escape(edu.end || "")}</span>
+            </div>
+          `)}
+        </div>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px">
+          <div>
+            <h3 style="font-family:'Inter', sans-serif; font-size:12.5px; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:${theme.primary}; border-bottom:1px solid #94a3b8; padding-bottom:2px; margin:0 0 8px">Publications & Projects</h3>
+            ${projBlock((proj) => `
+              <div style="margin-bottom:8px">
+                <strong style="font-size:12.5px; color:#0f172a">${escape(proj.name || "")}</strong>
+                ${formatBullets(proj.description)}
+              </div>
+            `)}
+          </div>
+          <div>
+            <h3 style="font-family:'Inter', sans-serif; font-size:12.5px; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:${theme.primary}; border-bottom:1px solid #94a3b8; padding-bottom:2px; margin:0 0 8px">Skills & Competencies</h3>
+            ${formatSkillsChips("#f8fafc", "#e2e8f0", "#1e293b")}
+          </div>
+        </div>
+      </div>`;
+    }
+
+    // 0C. Timeline Showcase Layout
+    if (theme.layout === "timeline") {
+      return `<div style="font-family:'Outfit', 'Inter', sans-serif; color:#0f172a; line-height:1.5;">
+        <div style="background:${theme.gradient}; padding:24px; border-radius:12px; color:#ffffff; display:flex; justify-content:space-between; align-items:center; margin-bottom:20px">
+          <div>
+            <h1 style="margin:0 0 4px; font-size:28px; font-weight:800">${nameText}</h1>
+            <div style="font-size:14px; font-weight:600; opacity:0.9">${headlineText}</div>
+          </div>
+          ${p.photo ? `<img src="${p.photo}" style="width:68px;height:68px;border-radius:12px;object-fit:cover;border:3px solid #ffffff">` : ""}
+        </div>
+        <div style="display:flex; flex-wrap:wrap; gap:14px; font-size:12px; color:#475569; padding-bottom:12px; border-bottom:2px solid #e2e8f0; margin-bottom:20px">
+          <span>📧 ${emailText}</span> | <span>📞 ${phoneText}</span> | <span>📍 ${addressText}</span>
+          ${p.portfolio ? `| <span>🌐 <a href="${escape(p.portfolio)}" target="_blank" style="color:${theme.primary};font-weight:700">Portfolio</a></span>` : ""}
+        </div>
+        <div style="margin-bottom:20px">
+          <h3 style="font-size:14px; font-weight:800; color:${theme.primary}; text-transform:uppercase; margin:0 0 6px">Creative Summary</h3>
+          ${summaryBlock}
+        </div>
+        <div style="margin-bottom:20px">
+          <h3 style="font-size:14px; font-weight:800; color:${theme.primary}; text-transform:uppercase; margin:0 0 10px">Production & Work Timeline</h3>
+          ${expBlock((x) => `
+            <div style="position:relative; padding-left:20px; margin-bottom:14px; border-left:2px solid ${theme.primary}">
+              <div style="position:absolute; left:-6px; top:3px; width:10px; height:10px; border-radius:50%; background:${theme.primary}"></div>
+              <div style="display:flex; justify-content:space-between">
+                <strong style="font-size:13.5px; color:#0f172a">${escape(x.title || "")} @ ${escape(x.company || "")}</strong>
+                <span style="font-size:11.5px; color:#64748b">${escape(x.start || "")} - ${escape(x.end || "Present")}</span>
+              </div>
+              ${formatBullets(x.responsibilities)}
+            </div>
+          `)}
+        </div>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px">
+          <div>
+            <h3 style="font-size:14px; font-weight:800; color:${theme.primary}; text-transform:uppercase; margin:0 0 10px">Portfolio Showcase</h3>
+            ${projBlock((proj) => `
+              <div style="margin-bottom:10px; background:#f8fafc; padding:8px 10px; border-radius:6px; border:1px solid #e2e8f0">
+                <strong style="font-size:13px; color:#0f172a">${escape(proj.name || "")}</strong>
+                ${formatBullets(proj.description)}
+              </div>
+            `)}
+          </div>
+          <div>
+            <h3 style="font-size:14px; font-weight:800; color:${theme.primary}; text-transform:uppercase; margin:0 0 10px">Tools & Disciplines</h3>
+            ${formatSkillsChips("#f1f5f9", "#cbd5e1", theme.primary)}
+          </div>
+        </div>
+      </div>`;
+    }
 
     // 1. Tech Specialist Layout (Developer friendly, terminal vibes, monospace chips)
     if (theme.layout === "tech") {
@@ -3463,228 +3862,7 @@ function showToast(msg, timeout = 3000) {
       });
     }
 
-    // ── 300+ COMPREHENSIVE DIVERSE RESUME TEMPLATES CATALOG ──
-    const TEMPLATE_CLUSTERS = [
-      // 1. Tech, Cloud & Coding (35 templates)
-      { cat: "tech", badge: "Tech", tags: "tech tech resume stem software developer engineer coding stem engineering", roles: [
-        { id: "modern-tech", title: "Tech Lead & Software Engineer", sub: "Full-Stack · Systems Architecture & Microservices", layout: "left-sidebar", p: "#3b82f6", s: "#94a3b8", bg: "#0f172a" },
-        { id: "python-backend", title: "Python Backend Architect", sub: "FastAPI / Django · High-Concurrency Microservices", layout: "left-sidebar", p: "#38bdf8", s: "#0284c7", bg: "#1e293b" },
-        { id: "frontend-react", title: "React & Next.js UI Specialist", sub: "Server Components · Modern State & Vercel", layout: "standard", p: "#06b6d4", s: "#3b82f6", h: "linear-gradient(135deg, #06b6d4, #3b82f6)" },
-        { id: "mobile-ios", title: "iOS Swift & SwiftUI Developer", sub: "Apple Native Ecosystem · Combine & CoreData", layout: "standard", p: "#0284c7", s: "#6366f1", h: "linear-gradient(135deg, #0284c7, #6366f1)" },
-        { id: "mobile-android", title: "Android Kotlin Engineer", sub: "Jetpack Compose · Coroutines & Architecture", layout: "standard", p: "#10b981", s: "#059669", h: "linear-gradient(135deg, #10b981, #059669)" },
-        { id: "flutter-crossplatform", title: "Flutter Cross-Platform Lead", sub: "Dart · iOS & Android Native Plugins", layout: "standard", p: "#0284c7", s: "#38bdf8", h: "linear-gradient(135deg, #0284c7, #38bdf8)" },
-        { id: "tech-cloud", title: "Cloud Architect & DevOps Lead", sub: "AWS & GCP · Kubernetes & CI/CD Pipelines", layout: "left-sidebar", p: "#0284c7", s: "#38bdf8", bg: "#0f172a" },
-        { id: "azure-cloud-eng", title: "Azure Enterprise Cloud Specialist", sub: "Terraform · ARM Templates & Azure DevOps", layout: "executive", p: "#0078d4", s: "#60a5fa" },
-        { id: "kubernetes-sre", title: "Site Reliability Engineer (SRE)", sub: "K8s Cluster Orchestration · Prometheus & Chaos", layout: "left-sidebar", p: "#326ce5", s: "#93c5fd", bg: "#0f172a" },
-        { id: "cybersecurity-lead", title: "Cybersecurity & InfoSec Officer", sub: "Zero Trust Security · Penetration Testing & SOC", layout: "left-sidebar", p: "#ef4444", s: "#f87171", bg: "#0f172a" },
-        { id: "web3-blockchain", title: "Web3 & Blockchain Architect", sub: "Smart Contracts · Solidity & DeFi Protocols", layout: "standard", p: "#8b5cf6", s: "#ec4899", h: "linear-gradient(135deg, #8b5cf6, #ec4899)" },
-        { id: "database-dba", title: "Database Administrator (DBA)", sub: "PostgreSQL & Oracle · Query Optimization & Sharding", layout: "standard", p: "#336791", s: "#60a5fa", h: "linear-gradient(135deg, #1e3a8a, #3b82f6)" },
-        { id: "graphql-api-dev", title: "GraphQL & API Platform Engineer", sub: "Apollo Federation · REST / gRPC Microservices", layout: "standard", p: "#e10098", s: "#ec4899", h: "linear-gradient(135deg, #e10098, #8b5cf6)" },
-        { id: "linux-sysadmin", title: "Senior Linux & Infrastructure Admin", sub: "RedHat / Ubuntu · Shell Scripting & Ansible", layout: "left-sidebar", p: "#f97316", s: "#fdba74", bg: "#18181b" },
-        { id: "qa-automation", title: "QA Lead & Test Automation Engineer", sub: "Playwright & Cypress · Selenium CI/CD Frameworks", layout: "standard", p: "#059669", s: "#34d399", h: "linear-gradient(135deg, #059669, #10b981)" },
-        { id: "golang-microservices", title: "Golang Distributed Systems Lead", sub: "High-Throughput Goroutines & Kafka Queues", layout: "left-sidebar", p: "#00add8", s: "#7dd3fc", bg: "#0f172a" },
-        { id: "java-spring-architect", title: "Java Spring Boot Architect", sub: "Enterprise Microservices · JPA Hibernate & Docker", layout: "executive", p: "#b07219", s: "#f59e0b" },
-        { id: "csharp-dotnet", title: "C# .NET Core Enterprise Lead", sub: "ASP.NET Web APIs · Entity Framework & Blazor", layout: "executive", p: "#512bd4", s: "#a78bfa" },
-        { id: "game-developer", title: "Game Engine & Unity Developer", sub: "C# Scripting · 3D Shader Physics & Real-Time Render", layout: "standard", p: "#6366f1", s: "#d946ef", h: "linear-gradient(135deg, #6366f1, #d946ef)" },
-        { id: "unreal-tech-artist", title: "Unreal Engine 5 Technical Artist", sub: "Lumen & Nanite · Blueprint & C++ Optimization", layout: "timeline", p: "#09090b", s: "#3b82f6", h: "linear-gradient(135deg, #09090b, #1e3a8a)" }
-      ]},
-
-      // 2. AI & Data Science (25 templates)
-      { cat: "tech", badge: "AI", tags: "ai & data science tech resume tech stem engineering ai ml python deep learning data science", roles: [
-        { id: "ai-engineer", title: "AI & Machine Learning Researcher", sub: "Deep Learning · Neural Models & Python Analytics", layout: "standard", p: "#4f46e5", s: "#06b6d4", h: "linear-gradient(135deg, #4f46e5, #06b6d4)" },
-        { id: "nlp-specialist", title: "NLP & LLM Prompt Engineer", sub: "Transformers · Fine-Tuning RAG & LangChain Systems", layout: "standard", p: "#14b8a6", s: "#3b82f6", h: "linear-gradient(135deg, #14b8a6, #3b82f6)" },
-        { id: "computer-vision", title: "Computer Vision & Spatial AI", sub: "OpenCV · YOLO Object Detection & PyTorch", layout: "standard", p: "#6366f1", s: "#a855f7", h: "linear-gradient(135deg, #6366f1, #a855f7)" },
-        { id: "bigdata-architect", title: "Data Engineer & Big Data Lead", sub: "Apache Spark · Snowflake, Kafka & ETL Pipelines", layout: "left-sidebar", p: "#3b82f6", s: "#93c5fd", bg: "#172554" },
-        { id: "mlops-platform-eng", title: "MLOps & Model Deployment Lead", sub: "Kubeflow · MLflow, Model Monitoring & Docker", layout: "left-sidebar", p: "#0284c7", s: "#38bdf8", bg: "#0f172a" },
-        { id: "bi-tableau", title: "Tableau & PowerBI Specialist", sub: "Executive KPI Dashboards · SQL Modeling & Analytics", layout: "standard", p: "#f59e0b", s: "#d97706", h: "linear-gradient(135deg, #f59e0b, #d97706)" },
-        { id: "data-analyst-pro", title: "Quantitative Data Analyst", sub: "Exploratory Data Analysis · Statistical Hypotheses & SQL", layout: "executive", p: "#0d9488", s: "#14b8a6" },
-        { id: "ai-ethics-officer", title: "AI Ethics & Governance Officer", sub: "Responsible AI Standards · Bias Mitigation & Compliance", layout: "centered", p: "#3b0764", s: "#6b21a8" },
-        { id: "genai-developer", title: "Generative AI Solutions Architect", sub: "Autonomous Agents · Vector Databases & API Embeddings", layout: "standard", p: "#7c3aed", s: "#06b6d4", h: "linear-gradient(135deg, #7c3aed, #06b6d4)" },
-        { id: "data-warehouse-lead", title: "Data Warehouse Cloud Architect", sub: "dbt Modeling · Redshift, BigQuery & Lakehouses", layout: "left-sidebar", p: "#1e3a8a", s: "#60a5fa", bg: "#0f172a" }
-      ]},
-
-      // 3. UI/UX, Graphic Design & Creative (35 templates)
-      { cat: "creative", badge: "Design", tags: "graphic design creative ui/ux design colorful freelance resume portfolio visual branding", roles: [
-        { id: "creative-designer", title: "Graphic Design Visual Pro", sub: "Visual Identity · UI/UX Design & Creative Portfolio", layout: "left-sidebar", p: "#f43f5e", s: "#7d2ae8", bg: "linear-gradient(180deg, #7d2ae8, #f43f5e)" },
-        { id: "uiux-pro", title: "UI/UX & Product Design Lead", sub: "Figma Design Systems · User Journey & Wireframes", layout: "left-sidebar", p: "#a855f7", s: "#d8b4fe", bg: "#18181b" },
-        { id: "brand-identity", title: "Brand Identity Specialist", sub: "Vector Typography · Logo Guidelines & Brand Kits", layout: "left-sidebar", p: "#ec4899", s: "#8b5cf6", bg: "linear-gradient(180deg, #ec4899, #8b5cf6)" },
-        { id: "3d-blender", title: "3D Visualizer & Blender Pro", sub: "Photorealistic Texturing · Lighting & Environment Art", layout: "standard", p: "#ea580c", s: "#c2410c", h: "linear-gradient(135deg, #ea580c, #c2410c)" },
-        { id: "motion-aftereffects", title: "Motion Graphics Animator", sub: "After Effects Keyframing · 2D/3D Broadcast Title Design", layout: "timeline", p: "#7c3aed", s: "#db2777", h: "linear-gradient(135deg, #7c3aed, #db2777)" },
-        { id: "editorial-designer", title: "Editorial & Magazine Designer", sub: "InDesign Typography · Book Publishing & Print Grids", layout: "centered", p: "#18181b", s: "#71717a" },
-        { id: "digital-illustrator", title: "Digital Concept Illustrator", sub: "Photoshop Procreate · Character Design & Storyboarding", layout: "standard", p: "#f43f5e", s: "#a855f7", h: "linear-gradient(135deg, #f43f5e, #a855f7)" },
-        { id: "design-systems-lead", title: "Design Systems & Token Architect", sub: "Figma Component Libraries · Accessibility & Tokens", layout: "left-sidebar", p: "#a855f7", s: "#e4e4e7", bg: "#27272a" },
-        { id: "ux-researcher", title: "UX Researcher & Usability Lead", sub: "Qualitative Interviews · Usability Testing & Journey Maps", layout: "standard", p: "#0d9488", s: "#0284c7", h: "linear-gradient(135deg, #0d9488, #0284c7)" },
-        { id: "creative-innovator", title: "Infographic Visual Specialist", sub: "Data Storytelling · Colorful Visual Charts", layout: "standard", p: "#8b5cf6", s: "#d946ef", h: "linear-gradient(135deg, #8b5cf6, #d946ef)" },
-        { id: "package-designer", title: "Packaging & Print Production Pro", sub: "Dieline Engineering · Foil Stamping & CMYK Pre-press", layout: "standard", p: "#d97706", s: "#f59e0b", h: "linear-gradient(135deg, #d97706, #f59e0b)" },
-        { id: "ar-vr-designer", title: "AR / VR Spatial UI Designer", sub: "VisionOS Interfaces · Unity XR Interactions & 3D Canvas", layout: "timeline", p: "#6366f1", s: "#06b6d4", h: "linear-gradient(135deg, #6366f1, #06b6d4)" }
-      ]},
-
-      // 4. Business Analyst, Consulting & Strategy (30 templates)
-      { cat: "corporate", badge: "Analyst", tags: "business analyst resumes consulting & strategy corporate professional finance consulting strategy", roles: [
-        { id: "executive-pro", title: "Business Analyst & Strategy Lead", sub: "Quantitative Insights · Consulting & BI Leadership", layout: "executive", p: "#059669", s: "#047857" },
-        { id: "consulting-partner", title: "Management Consulting Partner", sub: "Top-Tier Advisory · M&A & Transformation Strategy", layout: "left-sidebar", p: "#047857", s: "#34d399", bg: "#064e3b" },
-        { id: "quant-finance", title: "Quantitative Trading Analyst", sub: "Algorithmic Models · Risk Parity & High-Frequency Data", layout: "executive", p: "#047857", s: "#10b981" },
-        { id: "agile-scrum-master", title: "Agile Coach & Senior Scrum Master", sub: "Sprint Velocity · Scaled Agile (SAFe) & Coaching", layout: "standard", p: "#0284c7", s: "#0d9488", h: "linear-gradient(135deg, #0284c7, #0d9488)" },
-        { id: "technical-pm", title: "Technical Project Manager (PMP)", sub: "Gantt Milestones · Risk Mitigation & Cross-Functional PM", layout: "executive", p: "#1e293b", s: "#475569" },
-        { id: "product-manager-tech", title: "Senior Product Manager (SaaS)", sub: "PRD Specs · Roadmaps, User Growth & Feature Launch", layout: "standard", p: "#4f46e5", s: "#06b6d4", h: "linear-gradient(135deg, #4f46e5, #06b6d4)" },
-        { id: "chief-of-staff", title: "Chief of Staff & Ops Executive", sub: "Executive Alignment · Board Briefings & OKRs", layout: "executive", p: "#1e1b4b", s: "#6366f1" },
-        { id: "supply-chain-director", title: "Supply Chain & Global Logistics", sub: "Freight Optimization · ERP Procurement & Vendor Matrix", layout: "executive", p: "#334155", s: "#64748b" },
-        { id: "change-management-lead", title: "Organizational Change Lead", sub: "Prosci Methodology · Cultural Transition & Training", layout: "standard", p: "#0891b2", s: "#06b6d4", h: "linear-gradient(135deg, #0891b2, #06b6d4)" },
-        { id: "business-dev-director", title: "Director of Strategic Partnerships", sub: "Global Joint Ventures · Alliance Building & B2B Expansion", layout: "left-sidebar", p: "#1e3a8a", s: "#3b82f6", bg: "#1e1b4b" }
-      ]},
-
-      // 5. Executive Leadership & C-Suite (25 templates)
-      { cat: "corporate", badge: "Executive", tags: "executive leadership corporate director c-suite management consultant executive governance", roles: [
-        { id: "executive-director", title: "Executive Director & Board VP", sub: "C-Suite Governance · Global Operational Growth", layout: "executive", p: "#1e3a8a", s: "#3b82f6" },
-        { id: "cto-executive", title: "Chief Technology Officer (CTO)", sub: "Engineering Vision · Scalability & Multi-Cloud Strategy", layout: "left-sidebar", p: "#6366f1", s: "#a5b4fc", bg: "#09090b" },
-        { id: "cfo-finance", title: "Chief Financial Officer (CFO)", sub: "Capital Allocation · Treasury, Audit & Board Governance", layout: "executive", p: "#064e3b", s: "#10b981" },
-        { id: "cmo-marketing", title: "Chief Marketing Officer (CMO)", sub: "Brand Positioning · Multi-Million Media Budgets & PR", layout: "standard", p: "#be123c", s: "#fb7185", h: "linear-gradient(135deg, #be123c, #fb7185)" },
-        { id: "coo-operations", title: "Chief Operating Officer (COO)", sub: "Operational Excellence · P&L Management & Scale", layout: "left-sidebar", p: "#4338ca", s: "#818cf8", bg: "#1e1b4b" },
-        { id: "healthcare-exec", title: "Executive Healthcare Administrator", sub: "Clinical Operations · Hospital Governance & Care Standards", layout: "left-sidebar", p: "#0f766e", s: "#5eead4", bg: "#0f766e" },
-        { id: "ceo-general-manager", title: "CEO & Managing Director", sub: "Venture Backed · Turnaround Leadership & Valuation", layout: "executive", p: "#0f172a", s: "#38bdf8" },
-        { id: "vp-engineering", title: "VP of Software Engineering", sub: "100+ Dev Teams · Architecture Roadmap & Delivery", layout: "left-sidebar", p: "#1e293b", s: "#60a5fa", bg: "#0f172a" },
-        { id: "nonprofit-exec-director", title: "Non-Profit Executive Director", sub: "Grant Fundraising · Donor Relations & Public Advocacy", layout: "centered", p: "#047857", s: "#10b981" }
-      ]},
-
-      // 6. Sales, Marketing & Growth (30 templates)
-      { cat: "corporate", badge: "Sales", tags: "sales resume corporate professional sales executive leadership revenue pipeline marketing", roles: [
-        { id: "executive-manager", title: "High-Ticket Sales Executive", sub: "Revenue Growth · B2B Key Accounts & Growth", layout: "left-sidebar", p: "#312e81", s: "#818cf8", bg: "#1e1b4b" },
-        { id: "enterprise-saas-sales", title: "B2B SaaS Enterprise Account Lead", sub: "$1M+ ARR Quotas · C-Level Executive Demos & Closing", layout: "executive", p: "#1e3a8a", s: "#3b82f6" },
-        { id: "marketing-colorful", title: "Colorful Digital Marketing Lead", sub: "Growth Marketing · Social Media & Paid Ad Campaigns", layout: "standard", p: "#f43f5e", s: "#fb7185", h: "linear-gradient(135deg, #f43f5e, #fb7185)" },
-        { id: "medical-sales-rep", title: "Medical Device Sales Specialist", sub: "Hospital Surgical Equipment · Clinical Surgeon Advisory", layout: "left-sidebar", p: "#0f766e", s: "#2dd4bf", bg: "#0f766e" },
-        { id: "real-estate-broker", title: "Luxury Real Estate Broker", sub: "High-Net-Worth Portfolio · Commercial & Luxury Listings", layout: "standard", p: "#b45309", s: "#d97706", h: "linear-gradient(135deg, #b45309, #d97706)", isPhoto: true },
-        { id: "growth-hacker", title: "Growth Hacker & Viral Funnels", sub: "A/B Experimentation · Acquisition Loop & Retention", layout: "standard", p: "#ef4444", s: "#f97316", h: "linear-gradient(135deg, #ef4444, #f97316)" },
-        { id: "seo-strategist", title: "SEO & Inbound Marketing Lead", sub: "Technical SEO Audits · Backlink Strategy & Content Hubs", layout: "standard", p: "#10b981", s: "#047857", h: "linear-gradient(135deg, #10b981, #047857)" },
-        { id: "social-media-manager", title: "Social Media & Community Lead", sub: "Omnichannel Engagement · TikTok, Instagram & Viral Reach", layout: "standard", p: "#ec4899", s: "#f43f5e", h: "linear-gradient(135deg, #ec4899, #f43f5e)" },
-        { id: "customer-success-lead", title: "Customer Success & Retention Lead", sub: "Net Promoter Score (NPS) · Churn Reduction & QBRs", layout: "standard", p: "#0d9488", s: "#3b82f6", h: "linear-gradient(135deg, #0d9488, #3b82f6)" },
-        { id: "pr-communications-mgr", title: "PR & Corporate Communications Lead", sub: "Crisis PR · Press Releases & Tier-1 Media Pitching", layout: "centered", p: "#1e1b4b", s: "#818cf8" }
-      ]},
-
-      // 7. Academic, Education, Teaching & Scholarships (30 templates)
-      { cat: "academic", badge: "Academic", tags: "academic scholarship college university oxford researcher education scholar teacher resume", roles: [
-        { id: "minimalist-ivy", title: "Ivy League Academic & Scholarship", sub: "Oxford Serif · Research Fellowship & Grants", layout: "centered", p: "#7f1d1d", s: "#991b1b" },
-        { id: "fresher-academic", title: "Teacher & STEM Educator", sub: "Classroom Leadership · Curriculum & Mentorship", layout: "standard", p: "#ea580c", s: "#f59e0b", h: "linear-gradient(135deg, #ea580c, #f59e0b)" },
-        { id: "scholarship-phd", title: "Merit Scholarship & PhD Candidate", sub: "Peer-Reviewed Papers · Academic Grants & Research CV", layout: "centered", p: "#1e3a8a", s: "#3b82f6" },
-        { id: "high-school-valedictorian", title: "High School Valedictorian CV", sub: "AP Scholar With Distinction · Science Olympiad Gold", layout: "centered", p: "#7f1d1d", s: "#b91c1c" },
-        { id: "research-assistant-stem", title: "University STEM Lab Researcher", sub: "Spectroscopy Analysis · Lab Protocol & Python Data", layout: "standard", p: "#1d4ed8", s: "#06b6d4", h: "linear-gradient(135deg, #1d4ed8, #06b6d4)" },
-        { id: "university-grantee", title: "University Fellowship & Grantee CV", sub: "National Endowment Grant · Research Proposal & Thesis", layout: "centered", p: "#1e3a8a", s: "#2563eb" },
-        { id: "fulbright-scholar", title: "Fulbright Scholar & Global Fellow", sub: "International Field Research · Cross-Cultural Ambassador", layout: "centered", p: "#064e3b", s: "#059669" },
-        { id: "primary-educator", title: "Primary & Montessori Educator", sub: "Child Development · Inclusive Learning & Parent Comms", layout: "standard", p: "#f59e0b", s: "#10b981", h: "linear-gradient(135deg, #f59e0b, #10b981)" },
-        { id: "stem-physics-teacher", title: "High School Physics & Math Master", sub: "Interactive Experiments · AP Physics Exam Mastery", layout: "standard", p: "#2563eb", s: "#7c3aed", h: "linear-gradient(135deg, #2563eb, #7c3aed)" },
-        { id: "university-professor", title: "Tenured University Professor", sub: "Department Chair · Peer Review Editor & Doctoral Advisor", layout: "centered", p: "#450a0a", s: "#991b1b" },
-        { id: "online-course-creator", title: "Online Course Creator & EdTech", sub: "100k+ Students Enrolled · Curriculum Video Production", layout: "standard", p: "#8b5cf6", s: "#06b6d4", h: "linear-gradient(135deg, #8b5cf6, #06b6d4)" }
-      ]},
-
-      // 8. Students, High School, College & Internships (30 templates)
-      { cat: "fresher", badge: "Fresher", tags: "high school college fresher starter internship resume simple student entry level", roles: [
-        { id: "fresher-starter", title: "High School & College Starter", sub: "Internship Ready · Skills-First & Education", layout: "left-sidebar", p: "#0d9488", s: "#06b6d4", bg: "#0d9488" },
-        { id: "college-grad", title: "College Graduate First Career", sub: "University Honors · Campus Leadership & Co-curriculars", layout: "standard", p: "#3b82f6", s: "#6366f1", h: "linear-gradient(135deg, #3b82f6, #6366f1)" },
-        { id: "internship-pro", title: "Summer Internship Starter Pro", sub: "Corporate Co-op · Capstone Projects & Soft Skills", layout: "left-sidebar", p: "#0284c7", s: "#bae6fd", bg: "#0284c7" },
-        { id: "fresher-universal", title: "Fresher Entry Starter Universal", sub: "Zero Experience Friendly · Fast-Track Professional CV", layout: "standard", p: "#4338ca", s: "#6366f1" },
-        { id: "high-school-parttime", title: "High School First Job Starter", sub: "Customer Service · School Clubs & Fast-Learner Profile", layout: "standard", p: "#0d9488", s: "#14b8a6" },
-        { id: "campus-ambassador", title: "Campus Brand Ambassador", sub: "Student Leadership · Event Organizing & Campus Outreach", layout: "standard", p: "#f59e0b", s: "#ea580c", h: "linear-gradient(135deg, #f59e0b, #ea580c)" },
-        { id: "swe-summer-intern", title: "Software Engineering Summer Intern", sub: "Git Pull Requests · Unit Testing & Agile Feature Sprints", layout: "left-sidebar", p: "#38bdf8", s: "#0284c7", bg: "#0f172a" },
-        { id: "finance-winter-intern", title: "Financial Services Co-op Intern", sub: "Portfolio Reconciliation · Bloomberg Terminal & Excel", layout: "left-sidebar", p: "#1d4ed8", s: "#93c5fd", bg: "#172554" },
-        { id: "design-studio-intern", title: "Graphic Design Studio Intern", sub: "Social Media Collateral · Vector Retouching & Mockups", layout: "standard", p: "#d946ef", s: "#8b5cf6", h: "linear-gradient(135deg, #d946ef, #8b5cf6)" },
-        { id: "clinical-nursing-trainee", title: "Clinical Nursing Practicum Trainee", sub: "Patient Vitals · Electronic Health Records & Triage", layout: "left-sidebar", p: "#0f766e", s: "#5eead4", bg: "#0f766e" },
-        { id: "gap-year-volunteer", title: "International Volunteer & NGO Starter", sub: "Community Outreach · Cross-Cultural Field Leadership", layout: "standard", p: "#059669", s: "#34d399", h: "linear-gradient(135deg, #059669, #34d399)" }
-      ]},
-
-      // 9. Accounting, Finance & Legal (30 templates)
-      { cat: "corporate", badge: "Finance", tags: "accounting resumes corporate finance accounting tax audit professional cpa legal", roles: [
-        { id: "minimalist-monochrome", title: "CPA Accounting & Financial Audit", sub: "Monochrome · Tax Compliance & Analytics", layout: "left-sidebar", p: "#171717", s: "#404040", bg: "#171717" },
-        { id: "legal-pro", title: "Corporate Legal & Compliance", sub: "Contract Negotiation · Regulatory Risk & Corporate Law", layout: "executive", p: "#1e293b", s: "#475569" },
-        { id: "investment-banking", title: "Investment Banking Analyst", sub: "DCF Valuation · Financial Modeling & M&A Pitch Books", layout: "left-sidebar", p: "#1d4ed8", s: "#60a5fa", bg: "#172554" },
-        { id: "forensic-auditor", title: "Forensic Accountant & Fraud Auditor", sub: "Anti-Money Laundering · Fraud Investigation & Compliance", layout: "standard", p: "#18181b", s: "#525252" },
-        { id: "private-equity", title: "Private Equity & VC Associate", sub: "Due Diligence · Cap Table Modeling & Portfolio Growth", layout: "executive", p: "#0f766e", s: "#14b8a6" },
-        { id: "tax-strategist", title: "Senior Tax & Wealth Strategist", sub: "Corporate Tax Credits · Cross-Border Structuring", layout: "left-sidebar", p: "#404040", s: "#a3a3a3", bg: "#262626" },
-        { id: "ip-patent-lawyer", title: "Intellectual Property & Patent Counsel", sub: "Patent Prosecution · Trademark Defense & Tech Licensing", layout: "executive", p: "#1e1b4b", s: "#6366f1" },
-        { id: "litigation-counsel", title: "Litigation & Trial Defense Counsel", sub: "Courtroom Advocacy · Appellate Briefs & Deposition", layout: "centered", p: "#18181b", s: "#3f3f46" },
-        { id: "corporate-paralegal", title: "Senior Corporate Paralegal", sub: "SEC Filings · Corporate Governance & Contract Discovery", layout: "standard", p: "#334155", s: "#64748b" },
-        { id: "financial-planner-cfp", title: "Certified Financial Planner (CFP)", sub: "Retirement Portfolios · Asset Allocation & Wealth Advisory", layout: "executive", p: "#047857", s: "#10b981" }
-      ]},
-
-      // 10. Media, Music, Acting & Entertainment (35 templates)
-      { cat: "creative", badge: "Media", tags: "acting model resume photo creative acting resume headshot theatre film videographer music", roles: [
-        { id: "creative-artistic", title: "Acting & Theatre Portfolio", sub: "Headshot Showcase · Stage & Screen Casting CV", layout: "standard", p: "#ec4899", s: "#f97316", h: "linear-gradient(135deg, #ec4899, #f97316)", isPhoto: true },
-        { id: "creative-motion", title: "Videographer & Film Editor", sub: "Cinematography · Premiere Pro & Motion Design", layout: "timeline", p: "#9333ea", s: "#ec4899", h: "linear-gradient(135deg, #9333ea, #ec4899)" },
-        { id: "music-pro", title: "Music Producer & Audio Engineer", sub: "Sound Synthesis · Ableton Live & Studio Mixing", layout: "standard", p: "#e11d48", s: "#fda4af", h: "linear-gradient(135deg, #e11d48, #be185d)" },
-        { id: "model-pro", title: "Fashion Model Comp Card", sub: "High Fashion · Runway & Commercial Brand Ambassador", layout: "left-sidebar", p: "#c026d3", s: "#d946ef", bg: "#fdf4ff", isPhoto: true },
-        { id: "voiceover-artist", title: "Voice Actor & Audiobook Narrator", sub: "Character Voices · Home Studio Audio & Commercial VO", layout: "standard", p: "#d946ef", s: "#ec4899", h: "linear-gradient(135deg, #d946ef, #ec4899)" },
-        { id: "commercial-actor", title: "Commercial & Television Actor", sub: "SAG-AFTRA Eligible · On-Camera Improvisation & Screen", layout: "standard", p: "#ea580c", s: "#f43f5e", h: "linear-gradient(135deg, #ea580c, #f43f5e)", isPhoto: true },
-        { id: "theatre-director", title: "Theatre Director & Stage Manager", sub: "Cast Blocking · Lighting Cues & Production Schedules", layout: "standard", p: "#4c1d95", s: "#831843", h: "linear-gradient(135deg, #4c1d95, #831843)" },
-        { id: "cinematographer-dop", title: "Documentary Cinematographer & DOP", sub: "Arri / RED Cameras · Color Grading (DaVinci Resolve)", layout: "timeline", p: "#f59e0b", s: "#d97706", h: "linear-gradient(135deg, #09090b, #27272a)" },
-        { id: "drone-pilot", title: "FAA Drone Pilot & Aerial Film Maker", sub: "4K Aerial Tracking · Commercial Real Estate & Cinema", layout: "standard", p: "#0284c7", s: "#0f172a", h: "linear-gradient(135deg, #0284c7, #0f172a)" },
-        { id: "live-sound-engineer", title: "Live Concert Sound Engineer", sub: "FOH Mixing · Dante Audio Networks & Wireless Mics", layout: "standard", p: "#be123c", s: "#f43f5e", h: "linear-gradient(135deg, #18181b, #be123c)" },
-        { id: "film-composer", title: "Film Score & Orchestral Composer", sub: "MIDI Orchestration · Film Scoring & Mood Textures", layout: "centered", p: "#3b0764", s: "#6b21a8" },
-        { id: "runway-model", title: "Editorial & Runway Fashion Model", sub: "Fashion Week Runway · Haute Couture & Lookbooks", layout: "left-sidebar", p: "#be185d", s: "#f472b6", bg: "#fdf2f8", isPhoto: true },
-        { id: "fitness-lifestyle-model", title: "Athletic & Lifestyle Model", sub: "Sportswear Commercials · Active Movement & Health Brand", layout: "standard", p: "#059669", s: "#0d9488", h: "linear-gradient(135deg, #059669, #0d9488)", isPhoto: true }
-      ]},
-
-      // 11. STEM, Robotics & Industrial Engineering (25 templates)
-      { cat: "tech", badge: "STEM", tags: "stem engineering tech tech resume hardware cad robotics mechanical civil electrical", roles: [
-        { id: "stem-robotics", title: "STEM Mechanical & Robotics Engineer", sub: "CAD Modeling · Automation Systems & Hardware Prototyping", layout: "executive", p: "#334155", s: "#64748b" },
-        { id: "mechanical-cad-engineer", title: "Mechanical Design & SolidWorks Pro", sub: "Finite Element Analysis (FEA) · Injection Molding CAD", layout: "executive", p: "#334155", s: "#475569" },
-        { id: "embedded-iot-engineer", title: "Embedded Systems & IoT Engineer", sub: "C/C++ Firmware · ARM Cortex & Microcontroller PCB", layout: "left-sidebar", p: "#059669", s: "#34d399", bg: "#022c22" },
-        { id: "civil-structural-engineer", title: "Civil & Infrastructure Engineer", sub: "AutoCAD Civil 3D · Structural Load Calculations & Site", layout: "executive", p: "#1e293b", s: "#64748b" },
-        { id: "biomedical-engineer", title: "Biomedical & Clinical Device Engineer", sub: "FDA Medical Device Compliance · Biosensors & ISO 13485", layout: "standard", p: "#0f766e", s: "#0284c7", h: "linear-gradient(135deg, #0f766e, #0284c7)" },
-        { id: "aerospace-engineer", title: "Aerospace & Flight Systems Engineer", sub: "Aerodynamics Simulation · Avionics & Propulsion", layout: "executive", p: "#0c4a6e", s: "#0284c7" },
-        { id: "chemical-process-engineer", title: "Chemical Process & Plant Engineer", sub: "Process Flow Diagrams · Aspen HYSYS & Safety Compliance", layout: "standard", p: "#b45309", s: "#f59e0b", h: "linear-gradient(135deg, #b45309, #f59e0b)" },
-        { id: "environmental-engineer", title: "Environmental & Sustainability Engineer", sub: "Carbon Footprint Audits · Renewable Energy Systems", layout: "standard", p: "#15803d", s: "#4ade80", h: "linear-gradient(135deg, #15803d, #4ade80)" }
-      ]},
-
-      // 12. Freelance, Writers & Universal (25 templates)
-      { cat: "minimalist", badge: "Universal", tags: "writer resume freelance resume minimalist simple universal standard clean ats", roles: [
-        { id: "minimalist-essential", title: "Content Writer & Copywriter", sub: "SEO Copywriting · Editorial & Content Strategy", layout: "centered", p: "#334155", s: "#64748b" },
-        { id: "minimalist-clean-slate", title: "Clean Slate One-Pager", sub: "Simple · Ultra Readable · Multi-purpose Standard", layout: "standard", p: "#1e293b", s: "#475569" },
-        { id: "freelance-pro", title: "Freelance Digital Consultant", sub: "Remote Client Success · Growth Deliverables & Advisory", layout: "standard", p: "#0284c7", s: "#2563eb", h: "linear-gradient(135deg, #0284c7, #2563eb)" },
-        { id: "upwork-top-rated", title: "Upwork Top-Rated Fullstack Contractor", sub: "100% Job Success Score · 5-Star Client Reviews & API", layout: "standard", p: "#10b981", s: "#0284c7", h: "linear-gradient(135deg, #10b981, #0284c7)" },
-        { id: "technical-copywriter", title: "Freelance Technical Copywriter", sub: "Whitepapers, API Docs & Developer Documentation", layout: "centered", p: "#334155", s: "#475569" },
-        { id: "remote-creative-director", title: "Remote Creative Agency Director", sub: "International Client Campaigns · Remote Squad Leadership", layout: "left-sidebar", p: "#f43f5e", s: "#fda4af", bg: "#18181b" },
-        { id: "independent-consultant", title: "Independent Strategy Consultant", sub: "Market Entry Studies · Operating Model Restructuring", layout: "executive", p: "#047857", s: "#065f46" },
-        { id: "virtual-assistant", title: "Digital Nomad Virtual Assistant", sub: "Calendar Management · Remote Inbox & Project Support", layout: "standard", p: "#6366f1", s: "#818cf8" },
-        { id: "universal-standard-ats", title: "Universal Standard ATS Resume", sub: "100% Parsing Accuracy · Clean Single-Column Structure", layout: "centered", p: "#0f172a", s: "#334155" }
-      ]}
-    ];
-
-    // Compile 320+ unique template definitions by multiplying style variants across each role
-    const STYLE_VARIANTS = [
-      { suffix: "", namePrefix: "", layoutMod: null },
-      { suffix: "-pro", namePrefix: "Executive ", layoutMod: "executive" },
-      { suffix: "-minimal", namePrefix: "Minimalist ", layoutMod: "centered" }
-    ];
-
-    const ALL_320_TEMPLATES = [];
-    TEMPLATE_CLUSTERS.forEach(cluster => {
-      cluster.roles.forEach(role => {
-        STYLE_VARIANTS.forEach((variant, vIdx) => {
-          const uniqueId = `${role.id}${variant.suffix}`;
-          const uniqueTitle = `${variant.namePrefix}${role.title}`;
-          const currentLayout = variant.layoutMod || role.layout || "standard";
-
-          let finalTags = `${cluster.tags} ${role.title.toLowerCase()} ${cluster.cat}`;
-          if (currentLayout === "centered") finalTags += " minimalist simple clean";
-          if (currentLayout === "executive") finalTags += " corporate professional executive";
-          if (role.isPhoto) finalTags += " photo headshot acting model";
-
-          ALL_320_TEMPLATES.push({
-            id: uniqueId,
-            title: uniqueTitle,
-            tag: role.sub,
-            badge: vIdx === 1 ? "Executive" : (vIdx === 2 ? "Minimal" : cluster.badge),
-            category: cluster.cat,
-            tags: finalTags,
-            layout: currentLayout,
-            headBg: role.h,
-            primary: role.p,
-            secondary: role.s,
-            sidebarBg: role.bg,
-            isPhoto: role.isPhoto
-          });
-        });
-      });
-    });
-
+    // ── 300+ COMPREHENSIVE DIVERSE RESUME TEMPLATES (Global Catalog) ──
     function createTemplateCardElement(t) {
       const a = document.createElement("a");
       a.href = `fresher.html?template=${t.id}`;
