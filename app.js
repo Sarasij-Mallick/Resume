@@ -1,33 +1,8 @@
 
-// Canva / Vercel Top Laser Loading Bar System
-(function initTopProgressBar() {
-  var bar = document.getElementById("topPageProgressBar");
+// Instant Page Ready Handler
+(function initPage() {
   var oldPreloader = document.getElementById("pagePreloader");
-  if (oldPreloader) oldPreloader.classList.add("loaded");
-
-  if (bar) {
-    bar.style.width = "45%";
-    setTimeout(function() {
-      if (bar) bar.style.width = "85%";
-    }, 60);
-  }
-
-  function finishProgress() {
-    if (bar && !bar.classList.contains("loaded")) {
-      bar.style.width = "100%";
-      setTimeout(function() {
-        bar.classList.add("loaded");
-      }, 150);
-    }
-  }
-
-  if (document.readyState === "complete" || document.readyState === "interactive") {
-    setTimeout(finishProgress, 100);
-  } else {
-    window.addEventListener("DOMContentLoaded", finishProgress);
-    window.addEventListener("load", finishProgress);
-  }
-  setTimeout(finishProgress, 350);
+  if (oldPreloader) oldPreloader.remove();
 })();
 
 
