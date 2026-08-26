@@ -4172,33 +4172,41 @@ button.dock-item.active span,
 
 /* Paper Sheet Canvas (A4 Aspect Ratio Document) */
 .paper-canvas {
-  width: 100%;
-  max-width: 794px; /* A4 width standard at 96 DPI */
-  min-height: 1123px; /* A4 height standard at 96 DPI */
+  width: 794px;
+  max-width: 100%;
+  min-height: 1123px;
+  aspect-ratio: 210 / 297;
   background: #ffffff;
   border-radius: 4px;
   box-shadow: 0 14px 40px rgba(14, 19, 31, 0.12), 0 2px 6px rgba(0, 0, 0, 0.04);
-  padding: 48px;
-  margin-bottom: 60px;
+  padding: 0;
+  margin: 0 auto 60px auto;
   transition: transform 0.2s ease;
   box-sizing: border-box;
-  overflow-wrap: anywhere;
+  overflow: hidden;
   word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
-.paper-canvas * {
+.paper-canvas *, 
+#fullscreenPaperCanvas *, 
+#pdfTempExportContainer * {
   box-sizing: border-box;
-  overflow-wrap: anywhere;
-  word-break: break-word;
+  overflow-wrap: anywhere !important;
+  word-break: break-word !important;
 }
 
-.paper-canvas [style*="grid-template-columns"] > * {
+.paper-canvas [style*="grid-template-columns"] > *,
+#fullscreenPaperCanvas [style*="grid-template-columns"] > *,
+#pdfTempExportContainer [style*="grid-template-columns"] > * {
   min-width: 0;
   max-width: 100%;
 }
 
 .paper-canvas [style*="display:flex"] > *,
-.paper-canvas [style*="display: flex"] > * {
+.paper-canvas [style*="display: flex"] > *,
+#fullscreenPaperCanvas [style*="display:flex"] > *,
+#pdfTempExportContainer [style*="display:flex"] > * {
   min-width: 0;
 }
 
@@ -4210,9 +4218,10 @@ button.dock-item.active span,
 .paper-canvas h3, 
 .paper-canvas h4, 
 .paper-canvas a, 
-.paper-canvas strong {
-  overflow-wrap: anywhere;
-  word-break: break-word;
+.paper-canvas strong,
+.paper-canvas li {
+  overflow-wrap: anywhere !important;
+  word-break: break-word !important;
   max-width: 100%;
 }
 
@@ -5696,6 +5705,15 @@ button.dock-item.active span,
 
 /* Print Media Styles for High-Quality PDF Export */
 @media print {
+  @page {
+    size: A4 portrait;
+    margin: 0 !important;
+  }
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+  }
   body * {
     visibility: hidden !important;
   }
@@ -5707,16 +5725,14 @@ button.dock-item.active span,
     left: 0 !important;
     top: 0 !important;
     width: 100% !important;
+    min-width: 100% !important;
     max-width: 100% !important;
     box-shadow: none !important;
+    border-radius: 0 !important;
     padding: 0 !important;
     margin: 0 !important;
     background: #ffffff !important;
     color: #0f172a !important;
-  }
-  @page {
-    size: A4 portrait;
-    margin: 10mm;
   }
 }
 
