@@ -253,18 +253,52 @@
                         <div id="searchSuggestions" class="search-suggestions-dropdown" aria-expanded="false"></div>
                     </div>
 
-                    <div class="filter-pills">
-                        <button class="pill active" data-category="all">All Templates</button>
-                        <button class="pill" data-category="modern">Modern</button>
-                        <button class="pill" data-category="minimalist">Minimalist</button>
-                        <button class="pill" data-category="creative">Creative</button>
-                        <button class="pill" data-category="executive">Executive</button>
-                        <button class="pill" data-category="fresher">Fresher</button>
+                    <div class="filter-pills-wrap">
+                        <div class="filter-pills">
+                            <button class="pill active" data-category="all">All</button>
+                            <button class="pill" data-category="professional">Professional</button>
+                            <button class="pill" data-category="modern">Modern</button>
+                            <button class="pill" data-category="simple">Simple</button>
+                            <button class="pill" data-category="infographic">Infographic</button>
+                            <button class="pill" data-category="minimalist">Minimalist</button>
+                            <button class="pill" data-category="corporate">Corporate</button>
+                            <button class="pill" data-category="creative">Creative</button>
+                            <button class="pill" data-category="photo">Photo</button>
+                            <button class="pill" data-category="colorful">Colorful</button>
+                            <button class="pill" data-category="acting">Acting</button>
+                            <button class="pill" data-category="tech">Tech</button>
+                            <button class="pill" data-category="academic">Academic</button>
+                            <button class="pill more-toggle-pill" id="morePillsToggleBtn" type="button">··· More</button>
+                        </div>
+                        <div class="more-pills-drawer" id="morePillsDrawer">
+                            <button class="pill" data-category="graphic design">Graphic Design</button>
+                            <button class="pill" data-category="college">College</button>
+                            <button class="pill" data-category="high school">High School</button>
+                            <button class="pill" data-category="scholarship">Scholarship</button>
+                            <button class="pill" data-category="internship">Internship Resume</button>
+                            <button class="pill" data-category="freelance">Freelance Resume</button>
+                            <button class="pill" data-category="business analyst">Business Analyst Resumes</button>
+                            <button class="pill" data-category="sales">Sales Resume</button>
+                            <button class="pill" data-category="writer">Writer Resume</button>
+                            <button class="pill" data-category="accounting">Accounting Resumes</button>
+                            <button class="pill" data-category="teacher">Teacher Resume</button>
+                            <button class="pill" data-category="videographer">Videographer Resume</button>
+                            <button class="pill" data-category="music">Music Resume</button>
+                            <button class="pill" data-category="model">Model Resume</button>
+                            <button class="pill" data-category="tech">Tech Resume</button>
+                            <button class="pill" data-category="executive">Executive Leadership</button>
+                            <button class="pill" data-category="consultant">Consulting & Strategy</button>
+                            <button class="pill" data-category="stem">STEM Engineering</button>
+                            <button class="pill" data-category="cloud">Cloud & DevOps</button>
+                            <button class="pill" data-category="ai">AI & Data Science</button>
+                            <button class="pill" data-category="ux">UI/UX Design</button>
+                            <button class="pill" data-category="fresher">Fresher Starter</button>
+                        </div>
                     </div>
 
                     <div class="templates-grid">
                         <!-- Modern Templates -->
-                        <a href="fresher.html?template=modern-minimalist" class="tmpl-card" data-category="modern">
+                        <a href="fresher.html?template=modern-minimalist" class="tmpl-card" data-category="modern" data-tags="modern professional simple corporate clean ats photo colorful">
                             <div class="tmpl-preview-box">
                                 <div class="tmpl-paper-sheet">
                                     <div class="tmpl-mock-head" style="background:linear-gradient(135deg, #7d2ae8, #00c4cc)">
@@ -299,11 +333,11 @@
                             </div>
                             <div class="tmpl-info">
                                 <div class="tmpl-title">Modern Minimalist</div>
-                                <div class="tmpl-tag">Clean · ATS Optimized · Corporate</div>
+                                <div class="tmpl-tag">Clean · ATS Optimized · Corporate · Professional</div>
                             </div>
                         </a>
 
-                        <a href="fresher.html?template=modern-tech" class="tmpl-card" data-category="modern">
+                        <a href="fresher.html?template=modern-tech" class="tmpl-card" data-category="modern" data-tags="modern tech software developer engineer coding cloud tech resume">
                             <div class="tmpl-preview-box">
                                 <div class="tmpl-paper-sheet">
                                     <div class="tmpl-mock-head" style="background:#0f172a;border-bottom:2px solid #3b82f6">
@@ -333,7 +367,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <span class="tmpl-badge">Modern</span>
+                                <span class="tmpl-badge">Tech</span>
                             </div>
                             <div class="tmpl-info">
                                 <div class="tmpl-title">Modern Tech Specialist</div>
@@ -341,7 +375,7 @@
                             </div>
                         </a>
 
-                        <a href="fresher.html?template=modern-pro" class="tmpl-card" data-category="modern">
+                        <a href="fresher.html?template=modern-pro" class="tmpl-card" data-category="modern" data-tags="modern professional colorful creative ui ux project manager high school college">
                             <div class="tmpl-preview-box">
                                 <div class="tmpl-paper-sheet">
                                     <div class="tmpl-mock-head" style="background:linear-gradient(135deg, #6366f1, #a855f7)">
@@ -377,7 +411,7 @@
                         </a>
 
                         <!-- Minimalist Templates (Centered Ivy League Layout) -->
-                        <a href="fresher.html?template=minimalist-essential" class="tmpl-card" data-category="minimalist">
+                        <a href="fresher.html?template=minimalist-essential" class="tmpl-card" data-category="minimalist" data-tags="minimalist simple academic scholar high school college writer teacher simple">
                             <div class="tmpl-preview-box">
                                 <div class="tmpl-paper-sheet layout-minimalist-centered">
                                     <div class="tmpl-mock-center-head">
@@ -402,7 +436,7 @@
                             </div>
                         </a>
 
-                        <a href="fresher.html?template=minimalist-clean-slate" class="tmpl-card" data-category="minimalist">
+                        <a href="fresher.html?template=minimalist-clean-slate" class="tmpl-card" data-category="minimalist" data-tags="minimalist simple clean corporate business analyst accounting freelance">
                             <div class="tmpl-preview-box">
                                 <div class="tmpl-paper-sheet" style="background:#fafafa">
                                     <div style="border-left:3px solid #1e293b;padding-left:6px;margin-bottom:4px">
@@ -425,7 +459,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <span class="tmpl-badge">Minimalist</span>
+                                <span class="tmpl-badge">Simple</span>
                             </div>
                             <div class="tmpl-info">
                                 <div class="tmpl-title">Clean Slate</div>
@@ -434,7 +468,7 @@
                         </a>
 
                         <!-- Left Sidebar Architecture: Monochrome Classic -->
-                        <a href="fresher.html?template=minimalist-monochrome" class="tmpl-card" data-category="minimalist">
+                        <a href="fresher.html?template=minimalist-monochrome" class="tmpl-card" data-category="minimalist" data-tags="minimalist monochrome simple corporate professional accounting finance legal">
                             <div class="tmpl-preview-box">
                                 <div class="tmpl-paper-sheet layout-left-sidebar">
                                     <div class="tmpl-mock-sidebar" style="background:#171717">
@@ -465,7 +499,7 @@
                         </a>
 
                         <!-- Left Sidebar Architecture: Creative Designer -->
-                        <a href="fresher.html?template=creative-designer" class="tmpl-card" data-category="creative">
+                        <a href="fresher.html?template=creative-designer" class="tmpl-card" data-category="creative" data-tags="creative graphic design photo colorful visual acting model freelance portfolio">
                             <div class="tmpl-preview-box">
                                 <div class="tmpl-paper-sheet layout-left-sidebar">
                                     <div class="tmpl-mock-sidebar" style="background:linear-gradient(180deg, #7d2ae8, #f43f5e)">
@@ -491,11 +525,11 @@
                             </div>
                             <div class="tmpl-info">
                                 <div class="tmpl-title">Creative Designer</div>
-                                <div class="tmpl-tag">Vibrant · Left Sidebar Portfolio · Media & Art</div>
+                                <div class="tmpl-tag">Vibrant · Left Sidebar Portfolio · Graphic Design</div>
                             </div>
                         </a>
 
-                        <a href="fresher.html?template=creative-artistic" class="tmpl-card" data-category="creative">
+                        <a href="fresher.html?template=creative-artistic" class="tmpl-card" data-category="creative" data-tags="creative artistic graphic design colorful videographer music acting photo">
                             <div class="tmpl-preview-box">
                                 <div class="tmpl-paper-sheet" style="background:#fffaf0">
                                     <div class="tmpl-mock-head" style="background:linear-gradient(135deg, #ec4899, #f97316)">
@@ -522,7 +556,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <span class="tmpl-badge">Creative</span>
+                                <span class="tmpl-badge">Colorful</span>
                             </div>
                             <div class="tmpl-info">
                                 <div class="tmpl-title">Artistic Showcase</div>
@@ -530,7 +564,7 @@
                             </div>
                         </a>
 
-                        <a href="fresher.html?template=creative-innovator" class="tmpl-card" data-category="creative" data-extra="true">
+                        <a href="fresher.html?template=creative-innovator" class="tmpl-card" data-category="creative" data-tags="creative studio innovator marketing ui ux product sales writer" data-extra="true">
                             <div class="tmpl-preview-box">
                                 <div class="tmpl-paper-sheet">
                                     <div class="tmpl-mock-head" style="background:linear-gradient(135deg, #8b5cf6, #d946ef)">
@@ -566,7 +600,7 @@
                         </a>
 
                         <!-- Executive Framed Architecture: Executive Pro -->
-                        <a href="fresher.html?template=executive-pro" class="tmpl-card" data-category="executive">
+                        <a href="fresher.html?template=executive-pro" class="tmpl-card" data-category="executive" data-tags="executive professional corporate leadership business analyst consultant sales management">
                             <div class="tmpl-preview-box">
                                 <div class="tmpl-paper-sheet layout-executive-frame" style="border-color:#059669">
                                     <div style="border-bottom:2px solid #059669;padding-bottom:4px;margin-bottom:4px;display:flex;justify-content:space-between;align-items:center">
@@ -591,7 +625,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <span class="tmpl-badge">Executive</span>
+                                <span class="tmpl-badge">Corporate</span>
                             </div>
                             <div class="tmpl-info">
                                 <div class="tmpl-title">Executive Professional</div>
@@ -600,7 +634,7 @@
                         </a>
 
                         <!-- Executive Framed Architecture: Corporate Director -->
-                        <a href="fresher.html?template=executive-director" class="tmpl-card" data-category="executive">
+                        <a href="fresher.html?template=executive-director" class="tmpl-card" data-category="executive" data-tags="executive corporate director leadership board c-suite finance business analyst">
                             <div class="tmpl-preview-box">
                                 <div class="tmpl-paper-sheet layout-executive-frame" style="border-color:#1e3a8a">
                                     <div style="border-bottom:2px solid #1e3a8a;padding-bottom:4px;margin-bottom:4px;display:flex;justify-content:space-between;align-items:center">
@@ -625,7 +659,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <span class="tmpl-badge">Executive</span>
+                                <span class="tmpl-badge">Corporate</span>
                             </div>
                             <div class="tmpl-info">
                                 <div class="tmpl-title">Corporate Director</div>
@@ -634,7 +668,7 @@
                         </a>
 
                         <!-- Left Sidebar Architecture: Senior Manager -->
-                        <a href="fresher.html?template=executive-manager" class="tmpl-card" data-category="executive" data-extra="true">
+                        <a href="fresher.html?template=executive-manager" class="tmpl-card" data-category="executive" data-tags="executive manager corporate operations leadership sales teacher" data-extra="true">
                             <div class="tmpl-preview-box">
                                 <div class="tmpl-paper-sheet layout-left-sidebar">
                                     <div class="tmpl-mock-sidebar" style="background:#1e1b4b">
@@ -665,7 +699,7 @@
                         </a>
 
                         <!-- Timeline Rail Architecture: Cloud & DevOps Architect -->
-                        <a href="fresher.html?template=tech-cloud" class="tmpl-card" data-category="modern" data-extra="true">
+                        <a href="fresher.html?template=tech-cloud" class="tmpl-card" data-category="modern" data-tags="modern tech cloud devops aws infrastructure software engineer tech resume" data-extra="true">
                             <div class="tmpl-preview-box">
                                 <div class="tmpl-paper-sheet layout-left-sidebar">
                                     <div class="tmpl-mock-sidebar" style="background:#0f172a">
@@ -687,7 +721,7 @@
                                         <div class="tmpl-mock-line full"></div>
                                     </div>
                                 </div>
-                                <span class="tmpl-badge">Modern</span>
+                                <span class="tmpl-badge">Tech</span>
                             </div>
                             <div class="tmpl-info">
                                 <div class="tmpl-title">Cloud & DevOps Architect</div>
@@ -696,7 +730,7 @@
                         </a>
 
                         <!-- Timeline Architecture: Motion & 3D Animator -->
-                        <a href="fresher.html?template=creative-motion" class="tmpl-card" data-category="creative" data-extra="true">
+                        <a href="fresher.html?template=creative-motion" class="tmpl-card" data-category="creative" data-tags="creative infographic timeline motion videographer 3d animator visual acting photo" data-extra="true">
                             <div class="tmpl-preview-box">
                                 <div class="tmpl-paper-sheet layout-timeline">
                                     <div class="tmpl-mock-head" style="background:linear-gradient(135deg, #9333ea, #ec4899);padding:5px 8px">
@@ -716,16 +750,16 @@
                                         </div>
                                     </div>
                                 </div>
-                                <span class="tmpl-badge">Creative</span>
+                                <span class="tmpl-badge">Infographic</span>
                             </div>
                             <div class="tmpl-info">
                                 <div class="tmpl-title">Motion & 3D Animator</div>
-                                <div class="tmpl-tag">Timeline Nodes · VFX & Digital Art</div>
+                                <div class="tmpl-tag">Timeline Nodes · VFX & Digital Art · Infographic</div>
                             </div>
                         </a>
 
                         <!-- Minimalist Centered Architecture: Ivy League Scholar -->
-                        <a href="fresher.html?template=minimalist-ivy" class="tmpl-card" data-category="minimalist" data-extra="true">
+                        <a href="fresher.html?template=minimalist-ivy" class="tmpl-card" data-category="minimalist" data-tags="minimalist academic oxford ivy league scholarship college scholar high school teacher" data-extra="true">
                             <div class="tmpl-preview-box">
                                 <div class="tmpl-paper-sheet layout-minimalist-centered" style="border-top:3px solid #7f1d1d">
                                     <div class="tmpl-mock-center-head" style="border-bottom-color:#7f1d1d">
@@ -742,16 +776,16 @@
                                         <div class="tmpl-mock-line full"></div>
                                     </div>
                                 </div>
-                                <span class="tmpl-badge">Minimalist</span>
+                                <span class="tmpl-badge">Academic</span>
                             </div>
                             <div class="tmpl-info">
                                 <div class="tmpl-title">Ivy League Scholar</div>
-                                <div class="tmpl-tag">Oxford Serif · Highest ATS Score</div>
+                                <div class="tmpl-tag">Oxford Serif · Highest ATS Score · Scholarship</div>
                             </div>
                         </a>
 
                         <!-- Fresher Academic Centered Architecture -->
-                        <a href="fresher.html?template=fresher-academic" class="tmpl-card" data-category="fresher">
+                        <a href="fresher.html?template=fresher-academic" class="tmpl-card" data-category="fresher" data-tags="fresher academic college high school student scholarship graduate internship entry level">
                             <div class="tmpl-preview-box">
                                 <div class="tmpl-paper-sheet">
                                     <div class="tmpl-mock-head" style="background:linear-gradient(135deg, #f59e0b, #ef4444)">
@@ -778,7 +812,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <span class="tmpl-badge">Fresher</span>
+                                <span class="tmpl-badge">Academic</span>
                             </div>
                             <div class="tmpl-info">
                                 <div class="tmpl-title">Fresher Academic</div>
@@ -787,7 +821,7 @@
                         </a>
 
                         <!-- Fresher Starter Skills-First Architecture -->
-                        <a href="fresher.html?template=fresher-starter" class="tmpl-card" data-category="fresher">
+                        <a href="fresher.html?template=fresher-starter" class="tmpl-card" data-category="fresher" data-tags="fresher internship starter skills first entry level freelance babysitter high school">
                             <div class="tmpl-preview-box">
                                 <div class="tmpl-paper-sheet layout-left-sidebar">
                                     <div class="tmpl-mock-sidebar" style="background:#0d9488">

@@ -3480,11 +3480,22 @@ function showToast(msg, timeout = 3000) {
 
     // Template Search & Category Filter handler for landing page
     const templateSearch = document.getElementById("templateSearch");
-    const filterPills = document.querySelectorAll(".filter-pills .pill");
+    const filterPills = document.querySelectorAll(".filter-pills .pill:not(#morePillsToggleBtn), .more-pills-drawer .pill");
     const templateCards = document.querySelectorAll(".templates-grid .tmpl-card");
     const templatesGrid = document.querySelector(".templates-grid");
     const toggleTemplatesBtn = document.getElementById("toggleTemplatesBtn");
     const toggleWrap = document.querySelector(".show-more-templates-wrap");
+    const morePillsToggleBtn = document.getElementById("morePillsToggleBtn");
+    const morePillsDrawer = document.getElementById("morePillsDrawer");
+
+    if (morePillsToggleBtn && morePillsDrawer) {
+      morePillsToggleBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        morePillsDrawer.classList.toggle("open");
+        const isOpen = morePillsDrawer.classList.contains("open");
+        morePillsToggleBtn.textContent = isOpen ? "✕ Close" : "··· More";
+      });
+    }
 
     let activeCategory = "all";
     let searchQuery = "";
@@ -3492,9 +3503,9 @@ function showToast(msg, timeout = 3000) {
 
     function getInitialRowLimit() {
       const width = window.innerWidth;
-      if (width <= 1024) return 2;
-      if (width <= 1240) return 3;
-      return 4;
+      if (width <= 1024) return 4;
+      if (width <= 1240) return 6;
+      return 8;
     }
 
     function applyTemplateFilters() {
@@ -3507,11 +3518,15 @@ function showToast(msg, timeout = 3000) {
 
       templateCards.forEach((card) => {
         const cardCat = (card.getAttribute("data-category") || "").toLowerCase().trim();
+        const cardTags = (card.getAttribute("data-tags") || "").toLowerCase().trim();
         const title = (card.querySelector(".tmpl-title")?.textContent || "").toLowerCase();
         const tag = (card.querySelector(".tmpl-tag")?.textContent || "").toLowerCase();
 
-        const matchesCat = activeCategory === "all" || activeCategory === "all templates" || cardCat === activeCategory || cardCat.includes(activeCategory);
-        const matchesSearch = !searchQuery || title.includes(searchQuery) || tag.includes(searchQuery) || cardCat.includes(searchQuery);
+        const matchesCat = activeCategory === "all" || activeCategory === "all templates" ||
+          cardCat === activeCategory || cardCat.includes(activeCategory) ||
+          cardTags.includes(activeCategory) ||
+          title.includes(activeCategory) || tag.includes(activeCategory);
+        const matchesSearch = !searchQuery || title.includes(searchQuery) || tag.includes(searchQuery) || cardCat.includes(searchQuery) || cardTags.includes(searchQuery);
 
         if (matchesCat && matchesSearch) {
           if (isDefaultAllView && !showAllTemplates && matchIndex >= initialLimit) {
@@ -3540,7 +3555,7 @@ function showToast(msg, timeout = 3000) {
           if (showAllTemplates) {
             toggleTemplatesBtn.textContent = "Show Fewer Templates ↑";
           } else {
-            toggleTemplatesBtn.textContent = "Explore All 15+ Templates ↓";
+            toggleTemplatesBtn.textContent = "Explore All 30+ Templates ↓";
           }
         } else {
           toggleWrap.style.display = "none";
