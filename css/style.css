@@ -664,30 +664,6 @@ body {
   box-shadow: 0 0 22px rgba(251, 191, 36, 0.9), 0 0 40px rgba(0, 196, 204, 0.6);
 }
 
-/* ==========================================================================
-   AUTHENTIC APPLE macOS RETINA CURSOR DESIGN SYSTEM
-   ========================================================================== */
-:root {
-  /* Apple macOS Default Arrow (HiDPI Retina with Multi-layer Ambient & Key Light Shadows) */
-  --macos-default: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28' fill='none'%3E%3Cdefs%3E%3Cfilter id='macShadow' x='-30%25' y='-30%25' width='180%25' height='180%25'%3E%3CfeDropShadow dx='0.5' dy='1.8' stdDeviation='1.4' flood-color='%23000000' flood-opacity='0.42'/%3E%3CfeDropShadow dx='0' dy='0.5' stdDeviation='0.5' flood-color='%23000000' flood-opacity='0.3'/%3E%3C/filter%3E%3C/defs%3E%3Cg filter='url(%23macShadow)'%3E%3Cpath d='M4.5 2.5 L4.5 21.6 L9.6 16.5 L13.8 25.8 L16.9 24.4 L12.8 15.2 L19.8 15.2 Z' fill='%23111111' stroke='%23ffffff' stroke-width='1.6' stroke-linejoin='round' stroke-linecap='round'/%3E%3C/g%3E%3C/svg%3E") 4 3, default;
-
-  /* Apple macOS Link / Pointer Hand (Iconic White Glove with Fine Details & Authentic Shadow) */
-  --macos-pointer: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28' fill='none'%3E%3Cdefs%3E%3Cfilter id='macHandShadow' x='-30%25' y='-30%25' width='180%25' height='180%25'%3E%3CfeDropShadow dx='0.5' dy='1.8' stdDeviation='1.4' flood-color='%23000000' flood-opacity='0.38'/%3E%3C/filter%3E%3C/defs%3E%3Cg filter='url(%23macHandShadow)'%3E%3Cpath d='M9.5 2.5 C8.1 2.5 7 3.6 7 5 L7 14.8 L6.2 13.6 C5.2 12.4 3.4 12.2 2.2 13.2 C1.1 14.1 0.9 15.8 1.8 17 L7.8 24.2 C9.8 26.5 12.6 27.5 15.5 27.5 H18 C22.4 27.5 26 23.9 26 19.5 V12.8 C26 11.7 25.1 10.8 24 10.8 C23.6 10.8 23.2 10.9 22.9 11.2 C22.5 10.2 21.6 9.6 20.5 9.6 C20.1 9.6 19.7 9.7 19.4 9.9 C18.9 9 18 8.4 17 8.4 C16.6 8.4 16.2 8.5 15.9 8.7 V5 C15.9 3.6 14.8 2.5 13.4 2.5 C12.8 2.5 12.2 2.7 11.8 3.1 C11.4 2.7 10.8 2.5 9.5 2.5 Z' fill='%23ffffff' stroke='%23111111' stroke-width='1.5' stroke-linejoin='round'/%3E%3Cpath d='M12.5 8.5 V15 M16 9.8 V16 M19.5 11 V17' stroke='%23333333' stroke-width='1' stroke-linecap='round'/%3E%3C/g%3E%3C/svg%3E") 8 2, pointer;
-
-  /* Apple macOS I-Beam (Text Selection with Contrast Halo for Maximum Legibility) */
-  --macos-text: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'%3E%3Cdefs%3E%3Cfilter id='macHalo' x='-30%25' y='-30%25' width='180%25' height='180%25'%3E%3CfeDropShadow dx='0' dy='0' stdDeviation='0.8' flood-color='%23ffffff' flood-opacity='0.95'/%3E%3C/filter%3E%3C/defs%3E%3Cpath d='M7.5 3.5 H16.5 M12 3.5 V20.5 M7.5 20.5 H16.5' stroke='%23111111' stroke-width='1.9' stroke-linecap='round' filter='url(%23macHalo)'/%3E%3C/svg%3E") 12 12, text;
-
-  /* Apple macOS Open Hand (Grab) */
-  --macos-grab: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28' fill='none'%3E%3Cdefs%3E%3Cfilter id='macGrabSh' x='-30%25' y='-30%25' width='180%25' height='180%25'%3E%3CfeDropShadow dx='0.5' dy='1.8' stdDeviation='1.4' flood-color='%23000000' flood-opacity='0.36'/%3E%3C/filter%3E%3C/defs%3E%3Cg filter='url(%23macGrabSh)'%3E%3Cpath d='M10 2.5 C8.9 2.5 8 3.4 8 4.5 V12.2 C7.5 12 7 11.9 6.5 12 C5.4 12 4.5 12.9 4.5 14 V15.2 L3.6 14.1 C2.6 13 0.9 13 -0.1 14 C-1.1 15 -1.1 16.7 -0.1 17.7 L6.2 24.3 C8.4 26.6 11.4 27.8 14.5 27.8 H16.2 C21 27.8 25 23.8 25 19 V13.5 C25 12.4 24.1 11.5 23 11.5 C22.5 11.5 22.1 11.7 21.8 12 V9.5 C21.8 8.4 20.9 7.5 19.8 7.5 C19.4 7.5 19 7.6 18.7 7.9 V5.5 C18.7 4.4 17.8 3.5 16.7 3.5 C16.3 3.5 15.9 3.6 15.6 3.9 V4.5 C15.6 3.4 14.7 2.5 13.6 2.5 H10 Z' fill='%23ffffff' stroke='%23111111' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/g%3E%3C/svg%3E") 11 3, grab;
-
-  /* Apple macOS Closed Fist (Grabbing) */
-  --macos-grabbing: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28' fill='none'%3E%3Cdefs%3E%3Cfilter id='macGrabbingSh' x='-30%25' y='-30%25' width='180%25' height='180%25'%3E%3CfeDropShadow dx='0.5' dy='1.8' stdDeviation='1.4' flood-color='%23000000' flood-opacity='0.36'/%3E%3C/filter%3E%3C/defs%3E%3Cg filter='url(%23macGrabbingSh)'%3E%3Cpath d='M7 9 C5.9 9 5 9.9 5 11 V13 C4.2 13.3 3.6 14.1 3.6 15 C3.6 15.5 3.8 16 4.1 16.4 C3.4 16.9 3 17.7 3 18.6 C3 20 4.1 21.1 5.5 21.1 H7 C8 24.5 11.2 27 15 27 C19.4 27 23 23.4 23 19 V14 C23 12.9 22.1 12 21 12 C20.6 12 20.2 12.1 19.9 12.4 C19.5 11.5 18.6 10.9 17.5 10.9 C17.1 10.9 16.7 11 16.4 11.3 C15.9 10.5 15 9.9 14 9.9 C13.6 9.9 13.2 10 12.9 10.3 C12.5 9.5 11.6 9 10.5 9 H7 Z' fill='%23ffffff' stroke='%23111111' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/g%3E%3C/svg%3E") 10 9, grabbing;
-}
-
-html, body {
-  cursor: var(--macos-default);
-}
-
 * {
   box-sizing: border-box;
 }
@@ -721,28 +697,6 @@ canvas[style*="999999"],
   left: -9999px !important;
   top: -9999px !important;
   z-index: -99999 !important;
-}
-
-/* Apple macOS Interactive State Handlers */
-a, button, [role="button"], select, summary, label[for], 
-input[type="button"], input[type="submit"], input[type="reset"], input[type="checkbox"], input[type="radio"], 
-.btn, .nav-link, .tab-btn, .color-swatch, .font-btn, .pill, .template-card, .blog-card, .faq-item, 
-.dropdown-trigger, .theme-toggle, .theme-toggle-btn, .blog-sugg-item, .article-card, [onclick], 
-[style*="cursor:pointer"], [style*="cursor: pointer"] {
-  cursor: var(--macos-pointer) !important;
-}
-
-input[type="text"], input[type="email"], input[type="password"], input[type="search"], 
-input[type="tel"], input[type="url"], input[type="number"], textarea, [contenteditable="true"], .form-control {
-  cursor: var(--macos-text) !important;
-}
-
-.draggable, [draggable="true"], .reorder-handle {
-  cursor: var(--macos-grab) !important;
-}
-
-.dragging, .reorder-handle:active, [draggable="true"]:active {
-  cursor: var(--macos-grabbing) !important;
 }
 
 html {
