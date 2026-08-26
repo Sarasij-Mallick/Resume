@@ -1750,7 +1750,7 @@ options.forEach(function (card) {
 
     const hasSummary = state.summary?.text && state.summary.text.trim().length > 0;
     const summaryText = hasSummary ? escape(state.summary.text) : "";
-    const summaryBlock = hasSummary ? `<p style="font-size:13px; color:#334155; margin:0; line-height:1.6; word-break:break-word; overflow-wrap:anywhere; white-space:pre-wrap;">${summaryText}</p>` : errBox("Summary", 7);
+    const summaryBlock = hasSummary ? `<p style="font-size:13px; color:#334155; margin:0; line-height:1.6; word-break:break-all !important; overflow-wrap:break-word !important; white-space:normal !important; max-width:100%; box-sizing:border-box;">${summaryText}</p>` : errBox("Summary", 7);
 
     const hasExp = state.experience && state.experience.length > 0;
     const expList = hasExp ? state.experience : [];
@@ -1768,12 +1768,12 @@ options.forEach(function (card) {
       if (!text) return "";
       const lines = text.split("\n").map((l) => l.trim()).filter(Boolean);
       if (lines.length <= 1 && !lines[0].startsWith("-") && !lines[0].startsWith("•") && !lines[0].startsWith("*")) {
-        return `<div style="font-size:12.5px; color:#334155; line-height:1.6; word-break:break-word; overflow-wrap:anywhere;">${escape(text)}</div>`;
+        return `<div style="font-size:12.5px; color:#334155; line-height:1.6; word-break:break-all !important; overflow-wrap:break-word !important; white-space:normal !important; max-width:100%; box-sizing:border-box;">${escape(text)}</div>`;
       }
-      return `<ul style="margin:4px 0 0 0; padding-left:18px; font-size:12.5px; color:#334155; line-height:1.6; word-break:break-word; overflow-wrap:anywhere;">
+      return `<ul style="margin:4px 0 0 0; padding-left:18px; font-size:12.5px; color:#334155; line-height:1.6; word-break:break-all !important; overflow-wrap:break-word !important; white-space:normal !important; max-width:100%; box-sizing:border-box;">
         ${lines.map((line) => {
           const clean = line.replace(/^[-•*]\s*/, "");
-          return `<li style="margin-bottom:3px; word-break:break-word; overflow-wrap:anywhere;">${escape(clean)}</li>`;
+          return `<li style="margin-bottom:3px; word-break:break-all !important; overflow-wrap:break-word !important; white-space:normal !important; max-width:100%;">${escape(clean)}</li>`;
         }).join("")}
       </ul>`;
     }
@@ -1781,11 +1781,11 @@ options.forEach(function (card) {
     const hasSkills = Boolean(tech || soft || lang || cert);
     const formatSkillsChips = (bg = "#f1f5f9", border = "#cbd5e1", textCol = "#1e293b") => {
       if (!hasSkills) return errBox("Skills", 3);
-      return `<div style="display:flex; flex-direction:column; gap:8px">
-        ${tech ? `<div><div style="font-size:11px; font-weight:700; color:#64748b; margin-bottom:4px; text-transform:uppercase; letter-spacing:0.5px">Technical Skills</div><div style="display:flex; flex-wrap:wrap; gap:5px">${(state.skills.technical || []).map((s) => `<span style="background:${bg}; color:${textCol}; border:1px solid ${border}; padding:2px 8px; border-radius:4px; font-size:11.5px; font-weight:600; word-break:break-word; overflow-wrap:anywhere;">${escape(s)}</span>`).join("")}</div></div>` : ""}
-        ${soft ? `<div><div style="font-size:11px; font-weight:700; color:#64748b; margin-bottom:4px; text-transform:uppercase; letter-spacing:0.5px">Soft Skills</div><div style="display:flex; flex-wrap:wrap; gap:5px">${(state.skills.soft || []).map((s) => `<span style="background:${bg}; color:${textCol}; border:1px solid ${border}; padding:2px 8px; border-radius:4px; font-size:11.5px; font-weight:600; word-break:break-word; overflow-wrap:anywhere;">${escape(s)}</span>`).join("")}</div></div>` : ""}
-        ${lang ? `<div><div style="font-size:11px; font-weight:700; color:#64748b; margin-bottom:2px; text-transform:uppercase; letter-spacing:0.5px">Languages</div><div style="font-size:12px; color:#334155; word-break:break-word; overflow-wrap:anywhere;">${escape(lang)}</div></div>` : ""}
-        ${cert ? `<div><div style="font-size:11px; font-weight:700; color:#64748b; margin-bottom:2px; text-transform:uppercase; letter-spacing:0.5px">Certifications</div><div style="font-size:12px; color:#334155; word-break:break-word; overflow-wrap:anywhere;">${escape(cert)}</div></div>` : ""}
+      return `<div style="display:flex; flex-direction:column; gap:8px; max-width:100%">
+        ${tech ? `<div><div style="font-size:11px; font-weight:700; color:#64748b; margin-bottom:4px; text-transform:uppercase; letter-spacing:0.5px">Technical Skills</div><div style="display:flex; flex-wrap:wrap; gap:5px">${(state.skills.technical || []).map((s) => `<span style="background:${bg}; color:${textCol}; border:1px solid ${border}; padding:2px 8px; border-radius:4px; font-size:11.5px; font-weight:600; word-break:break-all; overflow-wrap:break-word; max-width:100%">${escape(s)}</span>`).join("")}</div></div>` : ""}
+        ${soft ? `<div><div style="font-size:11px; font-weight:700; color:#64748b; margin-bottom:4px; text-transform:uppercase; letter-spacing:0.5px">Soft Skills</div><div style="display:flex; flex-wrap:wrap; gap:5px">${(state.skills.soft || []).map((s) => `<span style="background:${bg}; color:${textCol}; border:1px solid ${border}; padding:2px 8px; border-radius:4px; font-size:11.5px; font-weight:600; word-break:break-all; overflow-wrap:break-word; max-width:100%">${escape(s)}</span>`).join("")}</div></div>` : ""}
+        ${lang ? `<div><div style="font-size:11px; font-weight:700; color:#64748b; margin-bottom:2px; text-transform:uppercase; letter-spacing:0.5px">Languages</div><div style="font-size:12px; color:#334155; word-break:break-all; overflow-wrap:break-word">${escape(lang)}</div></div>` : ""}
+        ${cert ? `<div><div style="font-size:11px; font-weight:700; color:#64748b; margin-bottom:2px; text-transform:uppercase; letter-spacing:0.5px">Certifications</div><div style="font-size:12px; color:#334155; word-break:break-all; overflow-wrap:break-word">${escape(cert)}</div></div>` : ""}
       </div>`;
     };
 
@@ -1794,19 +1794,19 @@ options.forEach(function (card) {
     // 0A. Left Sidebar Layout (Two-Column Modern / Developer / Creative)
     if (theme.layout === "left-sidebar") {
       const sbBg = theme.sidebarBg || theme.primary || "#0f172a";
-      return `<div style="font-family:'Outfit', 'Inter', sans-serif; color:#0f172a; line-height:1.5; display:grid; grid-template-columns: 260px 1fr; gap:0; border:none; min-height:1123px; box-sizing:border-box; background:#ffffff; overflow:hidden">
-        <div style="background:${sbBg}; color:#ffffff; padding:32px 20px; display:flex; flex-direction:column; gap:20px; min-width:0; box-sizing:border-box">
+      return `<div style="font-family:'Outfit', 'Inter', sans-serif; color:#0f172a; line-height:1.5; display:grid; grid-template-columns: 260px minmax(0, 1fr); gap:0; border:none; min-height:1123px; width:100%; max-width:100%; box-sizing:border-box; background:#ffffff; overflow:hidden">
+        <div style="background:${sbBg}; color:#ffffff; padding:32px 20px; display:flex; flex-direction:column; gap:20px; min-width:0; max-width:260px; box-sizing:border-box">
           <div style="text-align:center">
             ${p.photo ? `<img src="${p.photo}" style="width:90px;height:90px;border-radius:50%;object-fit:cover;border:3px solid rgba(255,255,255,0.85);margin-bottom:12px">` : `<div style="width:68px;height:68px;border-radius:50%;background:rgba(255,255,255,0.15);border:2px solid rgba(255,255,255,0.3);margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:26px">👤</div>`}
-            <h1 style="margin:0 0 4px; font-size:19px; font-weight:800; color:#ffffff; letter-spacing:-0.01em; word-break:break-word">${nameText}</h1>
-            <div style="font-size:12px; font-weight:600; color:rgba(255,255,255,0.85); word-break:break-word">${headlineText}</div>
+            <h1 style="margin:0 0 4px; font-size:19px; font-weight:800; color:#ffffff; letter-spacing:-0.01em; word-break:break-all">${nameText}</h1>
+            <div style="font-size:12px; font-weight:600; color:rgba(255,255,255,0.85); word-break:break-all">${headlineText}</div>
           </div>
           <div>
             <h4 style="font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:rgba(255,255,255,0.6); margin:0 0 8px; border-bottom:1px solid rgba(255,255,255,0.2); padding-bottom:4px">Contact</h4>
             <div style="display:flex; flex-direction:column; gap:6px; font-size:11px; color:rgba(255,255,255,0.9)">
-              <div style="word-break:break-word; overflow-wrap:anywhere">📧 ${emailText}</div>
-              <div style="word-break:break-word; overflow-wrap:anywhere">📞 ${phoneText}</div>
-              <div style="word-break:break-word; overflow-wrap:anywhere">📍 ${addressText}</div>
+              <div style="word-break:break-all; overflow-wrap:break-word">📧 ${emailText}</div>
+              <div style="word-break:break-all; overflow-wrap:break-word">📞 ${phoneText}</div>
+              <div style="word-break:break-all; overflow-wrap:break-word">📍 ${addressText}</div>
               ${p.linkedin ? `<div>💼 <a href="${escape(p.linkedin)}" target="_blank" style="color:#ffffff;text-decoration:underline;word-break:break-all">LinkedIn</a></div>` : ""}
               ${p.portfolio ? `<div>🌐 <a href="${escape(p.portfolio)}" target="_blank" style="color:#ffffff;text-decoration:underline;word-break:break-all">Portfolio</a></div>` : ""}
             </div>
@@ -1818,7 +1818,7 @@ options.forEach(function (card) {
           <div>
             <h4 style="font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:rgba(255,255,255,0.6); margin:0 0 8px; border-bottom:1px solid rgba(255,255,255,0.2); padding-bottom:4px">Education</h4>
             ${eduBlock((edu) => `
-              <div style="margin-bottom:8px; word-break:break-word">
+              <div style="margin-bottom:8px; word-break:break-all">
                 <strong style="font-size:11.5px; color:#ffffff; display:block">${escape(edu.degree || "")}</strong>
                 <div style="font-size:10.5px; color:rgba(255,255,255,0.75)">${escape(edu.institution || "")}</div>
                 <div style="font-size:9.5px; color:rgba(255,255,255,0.6)">${escape(edu.start || "")} - ${escape(edu.end || "")}</div>
@@ -1826,30 +1826,30 @@ options.forEach(function (card) {
             `)}
           </div>
         </div>
-        <div style="padding:32px 24px; display:flex; flex-direction:column; gap:20px; min-width:0; box-sizing:border-box">
-          <div>
+        <div style="padding:32px 24px; display:flex; flex-direction:column; gap:20px; min-width:0; max-width:100%; box-sizing:border-box; overflow:hidden">
+          <div style="min-width:0; max-width:100%">
             <h3 style="font-size:14px; font-weight:800; color:${theme.primary}; text-transform:uppercase; letter-spacing:0.05em; border-bottom:2px solid ${theme.primary}; padding-bottom:4px; margin:0 0 8px">About Me</h3>
             ${summaryBlock}
           </div>
-          <div>
+          <div style="min-width:0; max-width:100%">
             <h3 style="font-size:14px; font-weight:800; color:${theme.primary}; text-transform:uppercase; letter-spacing:0.05em; border-bottom:2px solid ${theme.primary}; padding-bottom:4px; margin:0 0 12px">Experience</h3>
             ${expBlock((x) => `
-              <div style="margin-bottom:12px; padding-left:10px; border-left:2px solid #e2e8f0; min-width:0">
+              <div style="margin-bottom:12px; padding-left:10px; border-left:2px solid #e2e8f0; min-width:0; max-width:100%">
                 <div style="display:flex; justify-content:space-between; align-items:baseline; gap:8px">
-                  <strong style="font-size:13px; color:#0f172a; word-break:break-word">${escape(x.title || "")} @ ${escape(x.company || "")}</strong>
+                  <strong style="font-size:13px; color:#0f172a; word-break:break-all">${escape(x.title || "")} @ ${escape(x.company || "")}</strong>
                   <span style="font-size:11px; color:#64748b; white-space:nowrap">${escape(x.start || "")} - ${escape(x.end || "Present")}</span>
                 </div>
                 ${formatBullets(x.responsibilities)}
               </div>
             `)}
           </div>
-          <div>
+          <div style="min-width:0; max-width:100%">
             <h3 style="font-size:14px; font-weight:800; color:${theme.primary}; text-transform:uppercase; letter-spacing:0.05em; border-bottom:2px solid ${theme.primary}; padding-bottom:4px; margin:0 0 12px">Projects & Deliverables</h3>
             ${projBlock((proj) => `
-              <div style="margin-bottom:10px; padding:10px; background:#f8fafc; border-radius:6px; border:1px solid #e2e8f0; min-width:0">
+              <div style="margin-bottom:10px; padding:10px; background:#f8fafc; border-radius:6px; border:1px solid #e2e8f0; min-width:0; max-width:100%">
                 <div style="display:flex; justify-content:space-between; align-items:baseline; gap:8px">
-                  <strong style="font-size:12.5px; color:#0f172a; word-break:break-word">${escape(proj.name || "")}</strong>
-                  <span style="font-size:10.5px; color:${theme.primary}; font-weight:700; word-break:break-word">${escape(proj.tech || "")}</span>
+                  <strong style="font-size:12.5px; color:#0f172a; word-break:break-all">${escape(proj.name || "")}</strong>
+                  <span style="font-size:10.5px; color:${theme.primary}; font-weight:700; word-break:break-all">${escape(proj.tech || "")}</span>
                 </div>
                 ${formatBullets(proj.description)}
               </div>

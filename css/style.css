@@ -4184,30 +4184,39 @@ button.dock-item.active span,
   transition: transform 0.2s ease;
   box-sizing: border-box;
   overflow: hidden;
-  word-break: break-word;
-  overflow-wrap: anywhere;
+  word-break: break-all !important;
+  overflow-wrap: break-word !important;
+  white-space: normal !important;
 }
 
 .paper-canvas *, 
 #fullscreenPaperCanvas *, 
+#pdfTempExportWrapper *,
+#pdfTempExportWrapper *,
 #pdfTempExportContainer * {
-  box-sizing: border-box;
-  overflow-wrap: anywhere !important;
-  word-break: break-word !important;
+  box-sizing: border-box !important;
+  overflow-wrap: break-word !important;
+  word-break: break-all !important;
+  white-space: normal !important;
+  max-width: 100% !important;
 }
 
 .paper-canvas [style*="grid-template-columns"] > *,
 #fullscreenPaperCanvas [style*="grid-template-columns"] > *,
+#pdfTempExportWrapper [style*="grid-template-columns"] > *,
 #pdfTempExportContainer [style*="grid-template-columns"] > * {
-  min-width: 0;
-  max-width: 100%;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
 }
 
 .paper-canvas [style*="display:flex"] > *,
 .paper-canvas [style*="display: flex"] > *,
 #fullscreenPaperCanvas [style*="display:flex"] > *,
+#pdfTempExportWrapper [style*="display:flex"] > *,
 #pdfTempExportContainer [style*="display:flex"] > * {
-  min-width: 0;
+  min-width: 0 !important;
+  max-width: 100% !important;
 }
 
 .paper-canvas p, 
@@ -4219,10 +4228,15 @@ button.dock-item.active span,
 .paper-canvas h4, 
 .paper-canvas a, 
 .paper-canvas strong,
-.paper-canvas li {
-  overflow-wrap: anywhere !important;
-  word-break: break-word !important;
-  max-width: 100%;
+.paper-canvas li,
+#pdfTempExportWrapper p,
+#pdfTempExportWrapper div,
+#pdfTempExportWrapper span,
+#pdfTempExportWrapper li {
+  overflow-wrap: break-word !important;
+  word-break: break-all !important;
+  white-space: normal !important;
+  max-width: 100% !important;
 }
 
 /* Studio Status Bar (Bottom) */
