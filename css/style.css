@@ -2259,6 +2259,100 @@ button.selected,
   opacity: 0.75;
 }
 
+/* ==========================================================================
+   DIVERSE CANVA TEMPLATE ARCHITECTURES (Distinct Unique Visual Layouts)
+   ========================================================================== */
+
+/* 1. Left Full-Height Colored Sidebar (2-Column CV) */
+.tmpl-paper-sheet.layout-left-sidebar {
+  flex-direction: row !important;
+  padding: 0 !important;
+  gap: 0 !important;
+}
+.tmpl-paper-sheet.layout-left-sidebar .tmpl-mock-sidebar {
+  width: 35%;
+  height: 100%;
+  padding: 10px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  box-sizing: border-box;
+}
+.tmpl-paper-sheet.layout-left-sidebar .tmpl-mock-content {
+  width: 65%;
+  height: 100%;
+  padding: 10px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background: #ffffff;
+  box-sizing: border-box;
+}
+
+/* 2. Minimalist Single Column Centered Layout (Ivy League / Academic) */
+.tmpl-paper-sheet.layout-minimalist-centered {
+  padding: 12px 14px !important;
+  gap: 5px !important;
+  background: #ffffff !important;
+}
+.tmpl-paper-sheet.layout-minimalist-centered .tmpl-mock-center-head {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  border-bottom: 2px solid #0f172a;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+}
+.tmpl-paper-sheet.layout-minimalist-centered .tmpl-mock-sec-row {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 4px;
+}
+
+/* 3. Infographic & Visual Timeline Layout */
+.tmpl-paper-sheet.layout-timeline {
+  padding: 8px 10px !important;
+}
+.tmpl-paper-sheet.layout-timeline .tmpl-timeline-rail {
+  border-left: 2px solid #7d2ae8;
+  padding-left: 8px;
+  margin-left: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.tmpl-paper-sheet.layout-timeline .tmpl-timeline-node {
+  position: relative;
+}
+.tmpl-paper-sheet.layout-timeline .tmpl-timeline-node::before {
+  content: "";
+  position: absolute;
+  left: -13px;
+  top: 2px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #7d2ae8;
+  border: 1.5px solid #ffffff;
+}
+
+/* 4. Creative Portfolio Card Grid Layout */
+.tmpl-paper-sheet.layout-portfolio-grid .tmpl-proj-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+}
+
+/* 5. Executive Framed Border Layout */
+.tmpl-paper-sheet.layout-executive-frame {
+  border: 3px double #0f172a !important;
+  padding: 10px 12px !important;
+}
+
 .tmpl-info {
   padding: 16px;
 }
