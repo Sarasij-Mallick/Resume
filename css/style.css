@@ -2040,9 +2040,9 @@ button.selected,
 }
 
 .pill:hover {
-  border-color: #7d2ae8;
-  color: #7d2ae8;
-  background: #faf5ff;
+  border-color: #e60023;
+  color: #e60023;
+  background: #fff5f5;
   transform: translateY(-1px);
 }
 
@@ -2064,9 +2064,9 @@ button.selected,
 }
 
 .pill.more-toggle-pill:hover {
-  background: #f1f5f9;
-  border-color: #7d2ae8;
-  color: #7d2ae8;
+  background: #fff5f5;
+  border-color: #e60023;
+  color: #e60023;
 }
 
 .more-pills-drawer {
@@ -2514,6 +2514,31 @@ button.selected,
   list-style: none;
   padding: 0;
   margin: 0 0 28px;
+}
+
+.path-card .btn-pill-purple {
+  display: block !important;
+  width: 100% !important;
+  text-align: center !important;
+  padding: 13px 24px !important;
+  font-weight: 700 !important;
+  font-size: 15px !important;
+  border-radius: 9999px !important;
+  background: transparent !important;
+  color: #e60023 !important;
+  border: 1.5px solid #e60023 !important;
+  box-shadow: 0 2px 8px rgba(230, 0, 35, 0.08) !important;
+  transition: all 0.25s ease !important;
+  text-decoration: none !important;
+  box-sizing: border-box !important;
+  margin-top: 16px !important;
+}
+
+.path-card .btn-pill-purple:hover {
+  background: #e60023 !important;
+  color: #ffffff !important;
+  box-shadow: 0 6px 20px rgba(230, 0, 35, 0.3) !important;
+  transform: translateY(-2px) !important;
 }
 
 /* Template Selector Drawer Styles */
