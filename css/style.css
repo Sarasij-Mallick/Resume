@@ -6368,12 +6368,12 @@ h1, h2, h3, h4, h5, h6,
   background: var(--canva-card, #ffffff) !important;
   box-shadow: var(--canva-shadow, 0 4px 12px rgba(0, 0, 0, 0.04)) !important;
   position: relative;
-  animation: waveFloat 4.8s ease-in-out infinite !important;
-  will-change: transform;
-  transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.45s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.35s ease, background 0.35s ease !important;
+  animation: none !important;
+  transform: none;
+  transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.35s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s ease, background 0.3s ease !important;
 }
 
-/* Contact card — No hover scale, no red tint, no floating animation */
+/* Contact card — No floating animation */
 .contact-card-wrap {
   animation: none !important;
   transform: none !important;
@@ -6384,16 +6384,6 @@ h1, h2, h3, h4, h5, h6,
   animation: none !important;
   transform: none;
 }
-
-/* Sequential wave animation delays across card series (ঢেউয়ের মতো ভাসার জন্য) */
-.carousel-slide:nth-child(1) .about-card, .path-card:nth-child(1), .template-card:nth-child(1), .blog-card:nth-child(1), .feature-card:nth-child(1), .stat-card:nth-child(1), .testimonial-card:nth-child(1) { animation-delay: 0s !important; }
-.carousel-slide:nth-child(2) .about-card, .path-card:nth-child(2), .template-card:nth-child(2), .blog-card:nth-child(2), .feature-card:nth-child(2), .stat-card:nth-child(2), .testimonial-card:nth-child(2) { animation-delay: -0.7s !important; }
-.carousel-slide:nth-child(3) .about-card, .path-card:nth-child(3), .template-card:nth-child(3), .blog-card:nth-child(3), .feature-card:nth-child(3), .stat-card:nth-child(3), .testimonial-card:nth-child(3) { animation-delay: -1.4s !important; }
-.carousel-slide:nth-child(4) .about-card, .path-card:nth-child(4), .template-card:nth-child(4), .blog-card:nth-child(4), .feature-card:nth-child(4), .stat-card:nth-child(4), .testimonial-card:nth-child(4) { animation-delay: -2.1s !important; }
-.carousel-slide:nth-child(5) .about-card, .path-card:nth-child(5), .template-card:nth-child(5), .blog-card:nth-child(5), .feature-card:nth-child(5), .stat-card:nth-child(5), .testimonial-card:nth-child(5) { animation-delay: -2.8s !important; }
-.carousel-slide:nth-child(6) .about-card, .path-card:nth-child(6), .template-card:nth-child(6), .blog-card:nth-card(6), .feature-card:nth-child(6), .stat-card:nth-child(6), .testimonial-card:nth-child(6) { animation-delay: -3.5s !important; }
-.carousel-slide:nth-child(7) .about-card, .path-card:nth-child(7), .template-card:nth-child(7), .blog-card:nth-child(7), .feature-card:nth-child(7), .stat-card:nth-child(7), .testimonial-card:nth-child(7) { animation-delay: -4.2s !important; }
-.carousel-slide:nth-child(8) .about-card, .path-card:nth-child(8), .template-card:nth-child(8), .blog-card:nth-child(8), .feature-card:nth-child(8), .stat-card:nth-child(8), .testimonial-card:nth-child(8) { animation-delay: -4.9s !important; }
 
 /* Smooth Slowly-Scaling Hover Zoom + Soft Red Tint Background (Matching Filter Tab Hover Style) */
 .about-card:hover,
@@ -6482,36 +6472,15 @@ h1, h2, h3, h4, h5, h6,
   color: #ff4d6d !important;
 }
 
-/* Card Icons Wave Float Motion — 100% Synced with Parent Card Rhythm */
+/* Card Icons — Strictly No Floating Animation */
 .about-card .about-icon img,
 .path-card .path-icon img,
 .blog-card .blog-img-wrap img,
 .tmpl-card img,
 .feature-card img,
 .stat-card img {
-  animation: iconWaveFloat 4.8s ease-in-out infinite !important;
-  will-change: transform;
-}
-
-/* 100% Synced animation delays matching card wave flow */
-.carousel-slide:nth-child(1) .about-icon img, .path-card:nth-child(1) .path-icon img, .template-card:nth-child(1) img, .blog-card:nth-child(1) img, .feature-card:nth-child(1) img { animation-delay: 0s !important; }
-.carousel-slide:nth-child(2) .about-icon img, .path-card:nth-child(2) .path-icon img, .template-card:nth-child(2) img, .blog-card:nth-child(2) img, .feature-card:nth-child(2) img { animation-delay: -0.7s !important; }
-.carousel-slide:nth-child(3) .about-icon img, .path-card:nth-child(3) .path-icon img, .template-card:nth-child(3) img, .blog-card:nth-child(3) img, .feature-card:nth-child(3) img { animation-delay: -1.4s !important; }
-.carousel-slide:nth-child(4) .about-icon img, .path-card:nth-child(4) .path-icon img, .template-card:nth-child(4) img, .blog-card:nth-child(4) img, .feature-card:nth-child(4) img { animation-delay: -2.1s !important; }
-.carousel-slide:nth-child(5) .about-icon img, .path-card:nth-child(5) .path-icon img, .template-card:nth-child(5) img, .blog-card:nth-child(5) img, .feature-card:nth-child(5) img { animation-delay: -2.8s !important; }
-.carousel-slide:nth-child(6) .about-icon img, .path-card:nth-child(6) .path-icon img, .template-card:nth-child(6) img, .blog-card:nth-child(6) img, .feature-card:nth-child(6) img { animation-delay: -3.5s !important; }
-.carousel-slide:nth-child(7) .about-icon img, .path-card:nth-child(7) .path-icon img, .template-card:nth-child(7) img, .blog-card:nth-child(7) img, .feature-card:nth-child(7) img { animation-delay: -4.2s !important; }
-.carousel-slide:nth-child(8) .about-icon img, .path-card:nth-child(8) .path-icon img, .template-card:nth-child(8) img, .blog-card:nth-child(8) img, .feature-card:nth-child(8) img { animation-delay: -4.9s !important; }
-
-/* Pause icon wave floating animation when card is hovered */
-.about-card:hover .about-icon img,
-.path-card:hover .path-icon img,
-.blog-card:hover .blog-img-wrap img,
-.tmpl-card:hover img,
-.template-card:hover img,
-.feature-card:hover img,
-.stat-card:hover img {
-  animation-play-state: paused !important;
+  animation: none !important;
+  transform: none;
 }
 
 /* Kicker Badge Ambient Glow Pulse */
@@ -6594,35 +6563,10 @@ h1, h2, h3, h4, h5, h6,
   box-shadow: 0 8px 28px rgba(230,0,35,0.35) !important;
 }
 
-/* Floating badge animation (hero section) */
+/* Hero badges — Strictly No Floating Animation */
 .floating-badge {
-  animation: float 4s ease-in-out infinite;
-}
-.floating-badge.ats { animation-delay: 0s; }
-.floating-badge.ai  { animation-delay: 1.8s; }
-
-@keyframes iconWaveFloat {
-  0%, 100% {
-    transform: translateY(0px) scale(1);
-  }
-  50% {
-    transform: translateY(-3px) scale(1.04);
-  }
-}
-
-@keyframes waveFloat {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-9px);
-  }
-}
-
-@keyframes float {
-  0%   { transform: translateY(0px); }
-  50%  { transform: translateY(-8px); }
-  100% { transform: translateY(0px); }
+  animation: none !important;
+  transform: none !important;
 }
 
 
