@@ -13,7 +13,7 @@
         <link
             href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap"
             rel="stylesheet">
-        <link rel="stylesheet" href="css/style.css?v=20260826_canva_dense_mock">
+        <link rel="stylesheet" href="css/style.css?v=20260826_index_design_fixed">
         <!-- Lottie Web Player -->
         <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
         <script>
@@ -880,7 +880,7 @@
                                     <li>One-click PDF download</li>
                                 </ul>
                             </div>
-                            <a href="fresher.html" class="btn btn-pill-purple" style="width:100%;text-align:center">Start as Fresher</a>
+                            <a href="fresher.html" class="btn btn-pill-purple" style="width:100%;text-align:center;display:block">Start as Fresher</a>
                         </div>
 
                         <div class="path-card">
@@ -897,7 +897,7 @@
                                     <li>ATS compliance score check</li>
                                 </ul>
                             </div>
-                            <a href="experienced.html" id="startProfessionalBtn" class="btn btn-pill-purple" style="width:100%;text-align:center">Start as Professional</a>
+                            <a href="fresher.html?mode=pro" class="btn btn-pill-purple" style="width:100%;text-align:center;display:block">Start as Professional</a>
                         </div>
                     </div>
                 </div>
@@ -1052,7 +1052,7 @@
                         <p class="subtitle">Expert tips, resume writing formulas, and interview strategies to accelerate your career growth.</p>
                     </div>
                     <div class="blog-grid">
-                        <article class="blog-card">
+                        <article class="blog-card" onclick="location.href='blog.html?article=ats-secrets'">
                             <div class="blog-img-wrap">
                                 <img src="images/blog_ats_guide.png" alt="10 ATS Resume Secrets" loading="lazy" />
                             </div>
@@ -1060,10 +1060,10 @@
                                 <div class="blog-tag">ATS GUIDE</div>
                                 <h3 class="blog-title">10 ATS Resume Secrets to Pass Automated Scanners in 2026</h3>
                                 <p class="blog-excerpt">Learn how recruiters configure ATS filters and how to structure your sections to get shortlisted for interviews.</p>
-                                <a href="blog.html?article=ats-secrets" class="blog-link">Read Full Guide ›</a>
+                                <a href="blog.html?article=ats-secrets" class="blog-link" onclick="event.stopPropagation()">Read Full Guide ›</a>
                             </div>
                         </article>
-                        <article class="blog-card">
+                        <article class="blog-card" onclick="location.href='blog.html?article=fresher-guide'">
                             <div class="blog-img-wrap">
                                 <img src="images/blog_fresher_tips.png" alt="Fresher Resume Tips" loading="lazy" />
                             </div>
@@ -1071,10 +1071,10 @@
                                 <div class="blog-tag">FRESHER TIPS</div>
                                 <h3 class="blog-title">How Students Can Build a Strong Resume with Zero Experience</h3>
                                 <p class="blog-excerpt">Discover how academic projects, internships, certifications, and extracurriculars create a compelling starter CV.</p>
-                                <a href="blog.html?article=fresher-guide" class="blog-link">Read Full Guide ›</a>
+                                <a href="blog.html?article=fresher-guide" class="blog-link" onclick="event.stopPropagation()">Read Full Guide ›</a>
                             </div>
                         </article>
-                        <article class="blog-card">
+                        <article class="blog-card" onclick="location.href='blog.html?article=executive-metrics'">
                             <div class="blog-img-wrap">
                                 <img src="images/blog_executive_guide.png" alt="Executive Resume Formulas" loading="lazy" />
                             </div>
@@ -1082,7 +1082,7 @@
                                 <div class="blog-tag">EXECUTIVE FORMULAS</div>
                                 <h3 class="blog-title">Mastering Action Verbs & High-Impact Metrics for Senior Roles</h3>
                                 <p class="blog-excerpt">Transform generic job duty bullet points into quantifiable achievement statements that impress hiring directors.</p>
-                                <a href="blog.html?article=executive-metrics" class="blog-link">Read Full Guide ›</a>
+                                <a href="blog.html?article=executive-metrics" class="blog-link" onclick="event.stopPropagation()">Read Full Guide ›</a>
                             </div>
                         </article>
                     </div>
