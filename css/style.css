@@ -2039,7 +2039,7 @@ button.selected,
 
 .tmpl-preview-box {
   width: 100%;
-  aspect-ratio: 1 / 1.35;
+  aspect-ratio: 1 / 1.28;
   background: #f1f5f9;
   position: relative;
   overflow: hidden;
@@ -2047,34 +2047,58 @@ button.selected,
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 12px;
-  transition: all 0.3s ease;
+  padding: 10px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .tmpl-paper-sheet {
   width: 100%;
   height: 100%;
   background: #ffffff;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.04);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04);
   border-radius: 6px;
-  padding: 10px;
+  padding: 8px 10px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  border: 1px solid rgba(0,0,0,0.06);
+  gap: 5px;
+  border: 1px solid rgba(0,0,0,0.08);
   position: relative;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .tmpl-card:hover .tmpl-paper-sheet {
-  transform: scale(1.02);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+}
+
+/* Canva Hover "Use Template" Badge */
+.tmpl-preview-box::after {
+  content: "Use Template ›";
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #7d2ae8;
+  color: #ffffff;
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  box-shadow: 0 4px 14px rgba(125, 42, 232, 0.4);
+  transition: bottom 0.25s cubic-bezier(0.4, 0, 0.2, 1), transform 0.2s ease;
+  z-index: 10;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.tmpl-card:hover .tmpl-preview-box::after {
+  bottom: 14px;
 }
 
 /* Base Mock Elements */
 .tmpl-mock-head {
-  padding: 8px 10px;
+  padding: 7px 9px;
   border-radius: 4px;
   display: flex;
   align-items: center;
@@ -2084,8 +2108,8 @@ button.selected,
 }
 
 .tmpl-mock-avatar {
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   background: rgba(255,255,255,0.85);
   border: 1.5px solid #ffffff;
@@ -2097,7 +2121,7 @@ button.selected,
 }
 
 .tmpl-mock-name {
-  height: 8px;
+  height: 7px;
   border-radius: 3px;
   background: #ffffff;
   width: 65%;
@@ -2105,7 +2129,7 @@ button.selected,
 }
 
 .tmpl-mock-sub {
-  height: 5px;
+  height: 4.5px;
   border-radius: 2px;
   background: rgba(255,255,255,0.7);
   width: 45%;
@@ -2122,7 +2146,7 @@ button.selected,
   height: 1.5px;
   background: #e2e8f0;
   width: 100%;
-  margin: 1px 0 3px;
+  margin: 1px 0 2px;
 }
 
 .tmpl-mock-body {
@@ -2130,32 +2154,33 @@ button.selected,
   gap: 8px;
   flex: 1;
   overflow: hidden;
+  position: relative;
 }
 
 .tmpl-mock-col-main {
-  flex: 1.5;
+  flex: 1.6;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 4px;
 }
 
 .tmpl-mock-col-side {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 4px;
 }
 
 .tmpl-mock-sec-title {
   height: 5px;
   border-radius: 2px;
-  width: 40%;
+  width: 42%;
   margin-bottom: 2px;
   font-weight: 700;
 }
 
 .tmpl-mock-line {
-  height: 4px;
+  height: 3.5px;
   border-radius: 2px;
   background: #e2e8f0;
   width: 100%;
@@ -2191,11 +2216,47 @@ button.selected,
 }
 
 .tmpl-mock-chip {
-  height: 6px;
+  height: 5.5px;
   border-radius: 9999px;
   padding: 0 4px;
   background: #e2e8f0;
-  width: 24px;
+  width: 22px;
+}
+
+/* Auto-fill Dense Lower Resume Content to Eliminate Empty Space */
+.tmpl-mock-col-main::after {
+  content: "";
+  display: block;
+  flex: 1;
+  background: repeating-linear-gradient(
+    to bottom,
+    #f8fafc,
+    #f8fafc 16px,
+    transparent 16px,
+    transparent 22px
+  );
+  border-radius: 4px;
+  border-left: 2px solid #e2e8f0;
+  padding-left: 4px;
+  margin-top: 2px;
+  min-height: 55px;
+}
+
+.tmpl-mock-col-side::after {
+  content: "";
+  display: block;
+  flex: 1;
+  background: repeating-linear-gradient(
+    to bottom,
+    #f1f5f9,
+    #f1f5f9 6px,
+    transparent 6px,
+    transparent 10px
+  );
+  border-radius: 3px;
+  margin-top: 2px;
+  min-height: 55px;
+  opacity: 0.75;
 }
 
 .tmpl-info {
