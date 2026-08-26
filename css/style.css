@@ -2008,6 +2008,8 @@ button.selected,
     transform: translateY(0) scale(1);
     filter: blur(0px);
   }
+}
+
 /* ════════════════════════════════════════════════════
    ✦ CANVA / VERCEL TOP LASER PROGRESS BAR
    ════════════════════════════════════════════════════ */
