@@ -3773,10 +3773,25 @@ function showToast(msg, timeout = 3000) {
   init();
 })();
 
-// Clean up any previous mouse trail / cursor elements if present
+// Clean up and completely eradicate any mouse trail / star / geometric shapes / cursor elements
 (function removeMouseEffects() {
-  const elements = document.querySelectorAll("#magneticCursorDot, #magneticCursorRing, #mouseFirefliesCanvas, #mouseCreativeTrailCanvas, #mouseStarCanvas");
-  elements.forEach(el => el.remove());
+  function purgeTrails() {
+    const elements = document.querySelectorAll(
+      "#mouseStarCanvas, #magneticCursorDot, #magneticCursorRing, #mouseFirefliesCanvas, #mouseCreativeTrailCanvas, canvas[id*='mouse'], canvas[class*='mouse'], canvas[id*='star'], canvas[class*='star'], canvas[id*='trail'], canvas[style*='999999'], .mouse-star, .mouse-trail, .sparkle, .star-particle"
+    );
+    elements.forEach(el => {
+      try {
+        el.style.display = "none";
+        el.remove();
+      } catch(e) {}
+    });
+  }
+  purgeTrails();
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", purgeTrails);
+  }
+  window.addEventListener("load", purgeTrails);
+  setInterval(purgeTrails, 1000);
 })();
 
 /* ---------- Global Professional Constellation Screensaver (60s Inactivity) ---------- */

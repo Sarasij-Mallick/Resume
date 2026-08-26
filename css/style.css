@@ -668,19 +668,35 @@ body {
   box-sizing: border-box;
 }
 
-/* Force remove all mouse trail canvases and cursor followers */
+/* Force remove all mouse trail canvases, star particles, geometric tiles, and cursor followers */
 canvas#mouseStarCanvas,
 canvas#mouseFirefliesCanvas,
 canvas#mouseCreativeTrailCanvas,
 canvas[id*="mouse"],
+canvas[class*="mouse"],
+canvas[id*="star"],
+canvas[class*="star"],
+canvas[id*="trail"],
+canvas[class*="trail"],
+canvas[id*="spark"],
+canvas[class*="spark"],
+canvas[style*="999999"],
+.mouse-star,
+.mouse-trail,
+.sparkle,
+.star-particle,
 .magnetic-cursor-dot,
 .magnetic-cursor-ring {
   display: none !important;
   visibility: hidden !important;
   opacity: 0 !important;
   pointer-events: none !important;
-  width: 0 !important;
-  height: 0 !important;
+  width: 0px !important;
+  height: 0px !important;
+  position: absolute !important;
+  left: -9999px !important;
+  top: -9999px !important;
+  z-index: -99999 !important;
 }
 
 html {

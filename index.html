@@ -13,28 +13,36 @@
         <link
             href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap"
             rel="stylesheet">
-        <link rel="stylesheet" href="css/style.css?v=20260825_final_clean">
+        <link rel="stylesheet" href="css/style.css?v=20260826_1215_kill_all_trails">
         <!-- Lottie Web Player -->
         <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
         <script>
-            // Active canvas / cursor blocker: completely prevents any mouse trail canvas from ever attaching
+            // Active canvas / cursor blocker: completely prevents any mouse trail canvas or star/shape particles from ever attaching
             try {
                 var observer = new MutationObserver(function(mutations) {
                     mutations.forEach(function(mutation) {
                         mutation.addedNodes.forEach(function(node) {
-                            if (node && node.nodeType === 1 && (node.tagName === "CANVAS" || node.id) && 
-                               (node.id === "mouseStarCanvas" || node.id === "mouseFirefliesCanvas" || node.id === "mouseCreativeTrailCanvas" || node.id.indexOf("mouse") !== -1 || node.id.indexOf("magnetic") !== -1)) {
-                                node.remove();
+                            if (node && node.nodeType === 1) {
+                                if (node.id === "mouseStarCanvas" || node.id === "mouseFirefliesCanvas" || node.id === "mouseCreativeTrailCanvas" || 
+                                   (node.id && (node.id.indexOf("mouse") !== -1 || node.id.indexOf("star") !== -1 || node.id.indexOf("trail") !== -1 || node.id.indexOf("magnetic") !== -1)) ||
+                                   (node.tagName === "CANVAS" && node.id !== "screensaverCanvas") ||
+                                   (typeof node.className === "string" && (node.className.indexOf("mouse") !== -1 || node.className.indexOf("spark") !== -1 || node.className.indexOf("star") !== -1 || node.className.indexOf("trail") !== -1))) {
+                                    node.style.display = "none";
+                                    node.remove();
+                                }
                             }
                         });
                     });
                 });
                 observer.observe(document.documentElement, { childList: true, subtree: true });
             } catch(e) {}
-            document.addEventListener("DOMContentLoaded", function() {
-                var els = document.querySelectorAll("#magneticCursorDot, #magneticCursorRing, #mouseFirefliesCanvas, #mouseCreativeTrailCanvas, #mouseStarCanvas, canvas[id*='mouse']");
-                els.forEach(function(el) { el.remove(); });
-            });
+            function purgeAllTrails() {
+                var els = document.querySelectorAll("#mouseStarCanvas, #magneticCursorDot, #magneticCursorRing, #mouseFirefliesCanvas, #mouseCreativeTrailCanvas, canvas[id*='mouse'], canvas[id*='star'], canvas[id*='trail'], canvas[style*='999999'], .mouse-star, .mouse-trail, .sparkle, .star-particle");
+                els.forEach(function(el) { el.style.display = "none"; el.remove(); });
+            }
+            document.addEventListener("DOMContentLoaded", purgeAllTrails);
+            window.addEventListener("load", purgeAllTrails);
+            setInterval(purgeAllTrails, 1000);
         </script>
     </head>
     <body>
@@ -1398,6 +1406,6 @@
             </svg>
         </button>
 
-        <script src="app.js?v=2026_clean"></script>
+        <script src="app.js?v=20260826_1215_kill_all_trails"></script>
     </body>
 </html>
