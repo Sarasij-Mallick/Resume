@@ -3463,11 +3463,268 @@ function showToast(msg, timeout = 3000) {
       });
     }
 
+    // ── 100+ COMPREHENSIVE DIVERSE RESUME TEMPLATES CATALOG ──
+    const ALL_105_TEMPLATES = [
+      { id: "modern-minimalist", title: "Modern Minimalist", tag: "Clean · ATS Optimized · Corporate · Professional", badge: "Modern", category: "modern", tags: "modern professional simple corporate clean ats minimalist", layout: "standard", headBg: "linear-gradient(135deg, #7d2ae8, #00c4cc)", primary: "#7d2ae8", secondary: "#00c4cc" },
+      { id: "modern-tech", title: "Tech Lead & Software Engineer", tag: "Full-Stack · Systems Architecture & Microservices", badge: "Tech", category: "tech", tags: "tech tech resume stem software developer engineer coding stem engineering fullstack", layout: "left-sidebar", sidebarBg: "#0f172a", primary: "#3b82f6", secondary: "#94a3b8" },
+      { id: "creative-designer", title: "Graphic Design Visual Pro", tag: "Visual Identity · UI/UX Design & Creative Portfolio", badge: "Design", category: "creative", tags: "graphic design creative ui/ux design colorful freelance resume portfolio visual", layout: "left-sidebar", sidebarBg: "linear-gradient(180deg, #7d2ae8, #f43f5e)", primary: "#f43f5e", secondary: "#7d2ae8" },
+      { id: "minimalist-ivy", title: "Ivy League Academic & Scholarship", tag: "Oxford Serif · Research Fellowship & Grants", badge: "Academic", category: "academic", tags: "academic scholarship college university oxford researcher education scholar", layout: "centered", primary: "#7f1d1d", secondary: "#991b1b" },
+      { id: "executive-pro", title: "Business Analyst & Strategy Lead", tag: "Quantitative Insights · Consulting & BI Leadership", badge: "Analyst", category: "corporate", tags: "business analyst resumes consulting & strategy corporate professional finance consulting", layout: "executive", primary: "#059669", secondary: "#047857" },
+      { id: "executive-manager", title: "High-Ticket Sales Executive", tag: "Revenue Growth · B2B Key Accounts & Growth", badge: "Sales", category: "corporate", tags: "sales resume corporate professional sales executive leadership revenue pipeline", layout: "left-sidebar", sidebarBg: "#1e1b4b", primary: "#312e81", secondary: "#818cf8" },
+      { id: "fresher-starter", title: "High School & College Starter", tag: "Internship Ready · Skills-First & Education", badge: "Fresher", category: "fresher", tags: "high school college fresher starter internship resume simple student entry level", layout: "left-sidebar", sidebarBg: "#0d9488", primary: "#0d9488", secondary: "#06b6d4" },
+      { id: "minimalist-monochrome", title: "CPA Accounting & Financial Audit", tag: "Monochrome · Tax Compliance & Analytics", badge: "Finance", category: "corporate", tags: "accounting resumes corporate finance accounting tax audit professional cpa", layout: "left-sidebar", sidebarBg: "#171717", primary: "#171717", secondary: "#404040" },
+      { id: "fresher-academic", title: "Teacher & STEM Educator", tag: "Classroom Leadership · Curriculum & Mentorship", badge: "Education", category: "academic", tags: "teacher resume academic education teacher high school college stem stem engineering", layout: "standard", headBg: "linear-gradient(135deg, #ea580c, #f59e0b)", primary: "#ea580c", secondary: "#f59e0b" },
+      { id: "creative-artistic", title: "Acting & Theatre Portfolio", tag: "Headshot Showcase · Stage & Screen Casting CV", badge: "Photo", category: "creative", tags: "acting model resume photo creative acting resume headshot theatre film acting", layout: "standard", headBg: "linear-gradient(135deg, #ec4899, #f97316)", primary: "#ec4899", secondary: "#f97316", isPhoto: true },
+      { id: "creative-motion", title: "Videographer & Film Editor", tag: "Cinematography · Premiere Pro & Motion Design", badge: "Media", category: "creative", tags: "videographer resume music resume creative colorful infographic multimedia film editing", layout: "timeline", headBg: "linear-gradient(135deg, #9333ea, #ec4899)", primary: "#9333ea", secondary: "#ec4899" },
+      { id: "tech-cloud", title: "Cloud Architect & DevOps Lead", tag: "AWS & GCP · Kubernetes & CI/CD Pipelines", badge: "Cloud", category: "tech", tags: "cloud & devops ai & data science tech resume stem engineering infrastructure aws devops", layout: "left-sidebar", sidebarBg: "#0f172a", primary: "#0284c7", secondary: "#38bdf8" },
+      { id: "minimalist-essential", title: "Content Writer & Copywriter", tag: "SEO Copywriting · Editorial & Content Strategy", badge: "Writer", category: "minimalist", tags: "writer resume freelance resume minimalist simple copywriting author content", layout: "centered", primary: "#334155", secondary: "#64748b" },
+      { id: "executive-director", title: "Executive Director & Board VP", tag: "C-Suite Governance · Global Operational Growth", badge: "Executive", category: "corporate", tags: "executive leadership corporate director c-suite management consultant executive", layout: "executive", primary: "#1e3a8a", secondary: "#3b82f6" },
+      { id: "creative-innovator", title: "Infographic Visual Specialist", tag: "Data Storytelling · Colorful Visual Charts", badge: "Infographic", category: "creative", tags: "infographic colorful creative modern visual analytics data", layout: "standard", headBg: "linear-gradient(135deg, #8b5cf6, #d946ef)", primary: "#8b5cf6", secondary: "#d946ef" },
+      { id: "minimalist-clean-slate", title: "Clean Slate One-Pager", tag: "Simple · Ultra Readable · Multi-purpose Standard", badge: "Simple", category: "simple", tags: "simple minimalist clean fresher starter universal standard simple", layout: "standard", primary: "#1e293b", secondary: "#475569" },
+      { id: "ai-engineer", title: "AI & Machine Learning Researcher", tag: "Deep Learning · Neural Models & Python Analytics", badge: "AI", category: "tech", tags: "ai & data science tech resume tech stem engineering ai ml python deep learning", layout: "standard", headBg: "linear-gradient(135deg, #4f46e5, #06b6d4)", primary: "#4f46e5", secondary: "#06b6d4" },
+      { id: "uiux-pro", title: "UI/UX & Product Design Lead", tag: "Figma Design Systems · User Journey & Wireframes", badge: "UI/UX", category: "creative", tags: "ui/ux design graphic design creative modern figma user experience product", layout: "left-sidebar", sidebarBg: "#18181b", primary: "#a855f7", secondary: "#d8b4fe" },
+      { id: "music-pro", title: "Music Producer & Audio Engineer", tag: "Sound Synthesis · Ableton Live & Studio Mixing", badge: "Music", category: "creative", tags: "music resume creative videographer audio sound sound design", layout: "standard", headBg: "linear-gradient(135deg, #e11d48, #be185d)", primary: "#e11d48", secondary: "#fda4af" },
+      { id: "model-pro", title: "Fashion Model Comp Card", tag: "High Fashion · Runway & Commercial Brand Ambassador", badge: "Model", category: "creative", tags: "model resume acting photo creative fashion runway talent commercial", layout: "left-sidebar", sidebarBg: "#fdf4ff", primary: "#c026d3", secondary: "#d946ef", isPhoto: true },
+      { id: "freelance-pro", title: "Freelance Digital Consultant", tag: "Remote Client Success · Growth Deliverables & Advisory", badge: "Freelance", category: "corporate", tags: "freelance resume consulting & strategy business analyst consultant upwork remote", layout: "standard", headBg: "linear-gradient(135deg, #0284c7, #2563eb)", primary: "#0284c7", secondary: "#2563eb" },
+      { id: "stem-robotics", title: "STEM Mechanical & Robotics Engineer", tag: "CAD Modeling · Automation Systems & Hardware Prototyping", badge: "STEM", category: "tech", tags: "stem engineering tech tech resume hardware cad robotics mechanical", layout: "executive", primary: "#334155", secondary: "#64748b" },
+      { id: "consulting-partner", title: "Management Consulting Partner", tag: "Top-Tier Advisory · M&A & Transformation Strategy", badge: "Consulting", category: "corporate", tags: "consulting & strategy corporate professional business analyst resumes strategy advisory", layout: "left-sidebar", sidebarBg: "#064e3b", primary: "#047857", secondary: "#34d399" },
+      { id: "college-grad", title: "College Graduate First Career", tag: "University Honors · Campus Leadership & Co-curriculars", badge: "College", category: "fresher", tags: "college fresher starter academic internship resume university graduate", layout: "standard", headBg: "linear-gradient(135deg, #3b82f6, #6366f1)", primary: "#3b82f6", secondary: "#6366f1" },
+      { id: "internship-pro", title: "Summer Internship Starter Pro", tag: "Corporate Co-op · Capstone Projects & Soft Skills", badge: "Internship", category: "fresher", tags: "internship resume fresher starter college high school student entry level", layout: "left-sidebar", sidebarBg: "#0284c7", primary: "#0284c7", secondary: "#bae6fd" },
+      { id: "marketing-colorful", title: "Colorful Digital Marketing Lead", tag: "Growth Marketing · Social Media & Paid Ad Campaigns", badge: "Colorful", category: "creative", tags: "colorful creative sales resume marketing social media paid ads", layout: "standard", headBg: "linear-gradient(135deg, #f43f5e, #fb7185)", primary: "#f43f5e", secondary: "#fb7185" },
+      { id: "legal-pro", title: "Corporate Legal & Compliance", tag: "Contract Negotiation · Regulatory Risk & Corporate Law", badge: "Legal", category: "corporate", tags: "corporate professional executive leadership legal compliance contract", layout: "executive", primary: "#1e293b", secondary: "#475569" },
+      { id: "scholarship-phd", title: "Merit Scholarship & PhD Candidate", tag: "Peer-Reviewed Papers · Academic Grants & Research CV", badge: "Scholar", category: "academic", tags: "scholarship academic college teacher researcher phd peer-reviewed", layout: "centered", primary: "#1e3a8a", secondary: "#3b82f6" },
+      { id: "healthcare-exec", title: "Executive Healthcare Administrator", tag: "Clinical Operations · Hospital Governance & Care Standards", badge: "Health", category: "corporate", tags: "executive leadership corporate healthcare medical operations hospital", layout: "left-sidebar", sidebarBg: "#0f766e", primary: "#0f766e", secondary: "#5eead4" },
+      { id: "fresher-universal", title: "Fresher Entry Starter Universal", tag: "Zero Experience Friendly · Fast-Track Professional CV", badge: "Starter", category: "fresher", tags: "fresher starter simple minimalist high school entry level universal", layout: "standard", primary: "#4338ca", secondary: "#6366f1" },
+      // ── 75+ Additional High-Impact Role Templates ──
+      { id: "python-backend", title: "Python Backend Architect", tag: "Django / FastAPI · High-Concurrency Microservices", badge: "Python", category: "tech", tags: "tech tech resume python backend api microservices stem", layout: "left-sidebar", sidebarBg: "#1e293b", primary: "#38bdf8", secondary: "#0284c7" },
+      { id: "frontend-react", title: "React & Next.js UI Specialist", tag: "Server Components · Modern State Management & Vercel", badge: "React", category: "tech", tags: "tech modern ui/ux design web react javascript frontend", layout: "standard", headBg: "linear-gradient(135deg, #06b6d4, #3b82f6)", primary: "#06b6d4", secondary: "#3b82f6" },
+      { id: "mobile-ios", title: "iOS Swift & SwiftUI Developer", tag: "Apple Native Ecosystem · Combine & CoreData", badge: "iOS", category: "tech", tags: "tech tech resume mobile swift apple ios app", layout: "standard", headBg: "linear-gradient(135deg, #0284c7, #6366f1)", primary: "#0284c7", secondary: "#6366f1" },
+      { id: "mobile-android", title: "Android Kotlin Engineer", tag: "Jetpack Compose · Coroutines & Clean Architecture", badge: "Android", category: "tech", tags: "tech tech resume mobile android kotlin google app", layout: "standard", headBg: "linear-gradient(135deg, #10b981, #059669)", primary: "#10b981", secondary: "#059669" },
+      { id: "cybersecurity-lead", title: "Cybersecurity & InfoSec Officer", tag: "Penetration Testing · Zero Trust Security & SOC", badge: "Security", category: "tech", tags: "tech tech resume cybersecurity infosec network ethical hacking", layout: "left-sidebar", sidebarBg: "#0f172a", primary: "#ef4444", secondary: "#f87171" },
+      { id: "web3-blockchain", title: "Web3 & Blockchain Architect", tag: "Smart Contracts · Solidity & DeFi Protocol Engineering", badge: "Web3", category: "tech", tags: "tech tech resume blockchain web3 solidity crypto fintech", layout: "standard", headBg: "linear-gradient(135deg, #8b5cf6, #ec4899)", primary: "#8b5cf6", secondary: "#ec4899" },
+      { id: "game-developer", title: "Game Engine & Unity Developer", tag: "C# Scripting · 3D Shader Physics & Real-Time Render", badge: "Gaming", category: "creative", tags: "creative tech gaming unity unreal 3d csharp", layout: "standard", headBg: "linear-gradient(135deg, #6366f1, #d946ef)", primary: "#6366f1", secondary: "#d946ef" },
+      { id: "bigdata-architect", title: "Data Engineer & Big Data Lead", tag: "Apache Spark · Snowflake, Kafka & ETL Pipelines", badge: "BigData", category: "tech", tags: "ai & data science tech big data data engineer spark snowflake", layout: "left-sidebar", sidebarBg: "#172554", primary: "#3b82f6", secondary: "#93c5fd" },
+      { id: "nlp-specialist", title: "NLP & LLM Prompt Engineer", tag: "Transformers · Fine-Tuning RAG & LangChain Systems", badge: "NLP", category: "tech", tags: "ai & data science tech ai nlp llm transformers langchain", layout: "standard", headBg: "linear-gradient(135deg, #14b8a6, #3b82f6)", primary: "#14b8a6", secondary: "#3b82f6" },
+      { id: "computer-vision", title: "Computer Vision & Spatial AI", tag: "OpenCV · YOLO Object Detection & PyTorch", badge: "Vision", category: "tech", tags: "ai & data science tech stem engineering opencv vision pytorch", layout: "standard", headBg: "linear-gradient(135deg, #6366f1, #a855f7)", primary: "#6366f1", secondary: "#a855f7" },
+      { id: "quant-finance", title: "Quantitative Trading Analyst", tag: "Algorithmic Models · Risk Parity & High-Frequency Data", badge: "Quant", category: "corporate", tags: "business analyst resumes corporate finance trading quant algorithmic", layout: "executive", primary: "#047857", secondary: "#10b981" },
+      { id: "bi-tableau", title: "Tableau & PowerBI Specialist", tag: "Executive KPI Dashboards · SQL Modeling & Visual Analytics", badge: "BI", category: "corporate", tags: "business analyst resumes corporate infographic tableau powerbi data", layout: "standard", headBg: "linear-gradient(135deg, #f59e0b, #d97706)", primary: "#f59e0b", secondary: "#d97706" },
+      { id: "brand-identity", title: "Brand Identity Specialist", tag: "Vector Typography · Logo Guidelines & Brand Kits", badge: "Branding", category: "creative", tags: "graphic design creative branding logo identity vector", layout: "left-sidebar", sidebarBg: "linear-gradient(180deg, #ec4899, #8b5cf6)", primary: "#ec4899", secondary: "#8b5cf6" },
+      { id: "3d-blender", title: "3D Visualizer & Blender Pro", tag: "Photorealistic Texturing · Lighting & Environment Art", badge: "3D", category: "creative", tags: "graphic design creative videographer 3d blender visual", layout: "standard", headBg: "linear-gradient(135deg, #ea580c, #c2410c)", primary: "#ea580c", secondary: "#c2410c" },
+      { id: "motion-aftereffects", title: "Motion Graphics Animator", tag: "After Effects Keyframing · 2D/3D Broadcast Title Design", badge: "Motion", category: "creative", tags: "videographer resume creative colorful animation motion after effects", layout: "timeline", headBg: "linear-gradient(135deg, #7c3aed, #db2777)", primary: "#7c3aed", secondary: "#db2777" },
+      { id: "editorial-designer", title: "Editorial & Magazine Designer", tag: "InDesign Typography · Book Publishing & Print Grids", badge: "Editorial", category: "creative", tags: "graphic design creative minimalist publishing editorial print", layout: "centered", primary: "#18181b", secondary: "#71717a" },
+      { id: "digital-illustrator", title: "Digital Concept Illustrator", tag: "Photoshop Procreate · Character Design & Storyboarding", badge: "Art", category: "creative", tags: "creative graphic design colorful art illustration painting", layout: "standard", headBg: "linear-gradient(135deg, #f43f5e, #a855f7)", primary: "#f43f5e", secondary: "#a855f7" },
+      { id: "design-systems-lead", title: "Design Systems & Token Architect", tag: "Figma Component Libraries · Accessibility & Tokens", badge: "DesignSystem", category: "creative", tags: "ui/ux design tech modern product design systems figma", layout: "left-sidebar", sidebarBg: "#27272a", primary: "#a855f7", secondary: "#e4e4e7" },
+      { id: "ux-researcher", title: "UX Researcher & Usability Lead", tag: "Qualitative Interviews · Usability Testing & Journey Maps", badge: "Research", category: "creative", tags: "ui/ux design business analyst resumes research usability user testing", layout: "standard", headBg: "linear-gradient(135deg, #0d9488, #0284c7)", primary: "#0d9488", secondary: "#0284c7" },
+      { id: "growth-hacker", title: "Growth Hacker & Viral Funnels", tag: "A/B Experimentation · Acquisition Loop & Retention", badge: "Growth", category: "creative", tags: "sales resume creative digital marketing growth funnel conversion", layout: "standard", headBg: "linear-gradient(135deg, #ef4444, #f97316)", primary: "#ef4444", secondary: "#f97316" },
+      { id: "seo-strategist", title: "SEO & Inbound Marketing Lead", tag: "Technical SEO Audits · Backlink Strategy & Content Hubs", badge: "SEO", category: "creative", tags: "writer resume sales resume digital marketing seo organic inbound", layout: "standard", headBg: "linear-gradient(135deg, #10b981, #047857)", primary: "#10b981", secondary: "#047857" },
+      { id: "social-media-manager", title: "Social Media & Community Lead", tag: "Omnichannel Engagement · TikTok, Instagram & Viral Reach", badge: "Social", category: "creative", tags: "colorful creative sales resume social media community viral", layout: "standard", headBg: "linear-gradient(135deg, #ec4899, #f43f5e)", primary: "#ec4899", secondary: "#f43f5e" },
+      { id: "enterprise-saas-sales", title: "B2B SaaS Enterprise Account Lead", tag: "$1M+ ARR Quotas · C-Level Executive Demos & Closing", badge: "Enterprise", category: "corporate", tags: "sales resume corporate professional b2b saas quota closing", layout: "executive", primary: "#1e3a8a", secondary: "#3b82f6" },
+      { id: "medical-sales-rep", title: "Medical Device Sales Specialist", tag: "Hospital Surgical Equipment · Clinical Surgeon Advisory", badge: "MedSales", category: "corporate", tags: "sales resume corporate healthcare medical pharma sales", layout: "left-sidebar", sidebarBg: "#0f766e", primary: "#0f766e", secondary: "#2dd4bf" },
+      { id: "real-estate-broker", title: "Luxury Real Estate Broker", tag: "High-Net-Worth Portfolio · Commercial & Luxury Listings", badge: "Property", category: "corporate", tags: "sales resume corporate photo property real estate luxury broker", layout: "standard", headBg: "linear-gradient(135deg, #b45309, #d97706)", primary: "#b45309", secondary: "#d97706", isPhoto: true },
+      { id: "supply-chain-director", title: "Supply Chain & Global Logistics", tag: "Freight Optimization · ERP Procurement & Vendor Matrix", badge: "Logistics", category: "corporate", tags: "executive leadership corporate operations supply chain logistics", layout: "executive", primary: "#334155", secondary: "#64748b" },
+      { id: "agile-scrum-master", title: "Agile Coach & Senior Scrum Master", tag: "Sprint Velocity · Scaled Agile (SAFe) & Team Coaching", badge: "Scrum", category: "corporate", tags: "corporate professional tech agile scrum project management", layout: "standard", headBg: "linear-gradient(135deg, #0284c7, #0d9488)", primary: "#0284c7", secondary: "#0d9488" },
+      { id: "technical-pm", title: "Technical Project Manager (PMP)", tag: "Gantt Milestones · Risk Mitigation & Cross-Functional PM", badge: "PMP", category: "corporate", tags: "corporate tech engineering project planning pmp manager", layout: "executive", primary: "#1e293b", secondary: "#475569" },
+      { id: "cto-executive", title: "Chief Technology Officer (CTO)", tag: "Engineering Vision · Scalability & Multi-Cloud Strategy", badge: "CTO", category: "corporate", tags: "executive leadership tech cto engineering architecture strategy", layout: "left-sidebar", sidebarBg: "#09090b", primary: "#6366f1", secondary: "#a5b4fc" },
+      { id: "cfo-finance", title: "Chief Financial Officer (CFO)", tag: "Capital Allocation · Treasury, Audit & Board Governance", badge: "CFO", category: "corporate", tags: "executive leadership corporate accounting resumes finance cfo", layout: "executive", primary: "#064e3b", secondary: "#10b981" },
+      { id: "cmo-marketing", title: "Chief Marketing Officer (CMO)", tag: "Brand Positioning · Multi-Million Media Budgets & PR", badge: "CMO", category: "corporate", tags: "executive leadership creative sales resume branding cmo", layout: "standard", headBg: "linear-gradient(135deg, #be123c, #fb7185)", primary: "#be123c", secondary: "#fb7185" },
+      { id: "coo-operations", title: "Chief Operating Officer (COO)", tag: "Operational Excellence · P&L Management & Scale", badge: "COO", category: "corporate", tags: "executive leadership corporate operations coo pnl scale", layout: "left-sidebar", sidebarBg: "#1e1b4b", primary: "#4338ca", secondary: "#818cf8" },
+      { id: "investment-banking", title: "Investment Banking Analyst", tag: "DCF Valuation · Financial Modeling & M&A Pitch Books", badge: "M&A", category: "corporate", tags: "corporate accounting resumes finance wall street investment banking", layout: "left-sidebar", sidebarBg: "#172554", primary: "#1d4ed8", secondary: "#60a5fa" },
+      { id: "forensic-auditor", title: "Forensic Accountant & Fraud Auditor", tag: "Anti-Money Laundering · Fraud Investigation & Compliance", badge: "Auditor", category: "corporate", tags: "accounting resumes corporate legal compliance forensic fraud", layout: "standard", primary: "#18181b", secondary: "#525252" },
+      { id: "private-equity", title: "Private Equity & VC Associate", tag: "Due Diligence · Cap Table Modeling & Portfolio Growth", badge: "PE/VC", category: "corporate", tags: "corporate business analyst resumes finance private equity venture capital", layout: "executive", primary: "#0f766e", secondary: "#14b8a6" },
+      { id: "tax-strategist", title: "Senior Tax & Wealth Strategist", tag: "Corporate Tax Credits · Cross-Border Structuring", badge: "Tax", category: "corporate", tags: "accounting resumes corporate finance legal tax wealth", layout: "left-sidebar", sidebarBg: "#262626", primary: "#404040", secondary: "#a3a3a3" },
+      { id: "ip-patent-lawyer", title: "Intellectual Property & Patent Counsel", tag: "Patent Prosecution · Trademark Defense & Tech Licensing", badge: "Patent", category: "corporate", tags: "corporate legal tech stem engineering patent trademark", layout: "executive", primary: "#1e1b4b", secondary: "#6366f1" },
+      { id: "litigation-counsel", title: "Litigation & Trial Defense Counsel", tag: "Courtroom Advocacy · Appellate Briefs & Deposition", badge: "Litigation", category: "corporate", tags: "corporate legal professional trial litigation courtroom law", layout: "centered", primary: "#18181b", secondary: "#3f3f46" },
+      { id: "hr-people-ops", title: "VP of People & HR Operations", tag: "DEI Programs · Executive Compensation & Culture", badge: "HR", category: "corporate", tags: "corporate executive leadership talent hr people operations culture", layout: "standard", headBg: "linear-gradient(135deg, #7c3aed, #a855f7)", primary: "#7c3aed", secondary: "#a855f7" },
+      { id: "tech-recruiter", title: "Senior Technical Talent Headhunter", tag: "Full-Lifecycle Recruitment · Passive Candidate Sourcing", badge: "Recruiter", category: "corporate", tags: "corporate tech sales resume talent acquisition recruiting", layout: "standard", headBg: "linear-gradient(135deg, #0284c7, #38bdf8)", primary: "#0284c7", secondary: "#38bdf8" },
+      { id: "high-school-valedictorian", title: "High School Valedictorian CV", tag: "AP Scholar With Distinction · Science Olympiad Gold", badge: "Honors", category: "academic", tags: "high school academic scholarship college honor roll valedictorian", layout: "centered", primary: "#7f1d1d", secondary: "#b91c1c" },
+      { id: "high-school-parttime", title: "High School First Job Starter", tag: "Customer Service · School Clubs & Fast-Learner Profile", badge: "FirstJob", category: "fresher", tags: "high school simple fresher starter entry level part time student", layout: "standard", primary: "#0d9488", secondary: "#14b8a6" },
+      { id: "research-assistant-stem", title: "University STEM Lab Researcher", tag: "Spectroscopy Analysis · Lab Protocol & Python Data", badge: "Lab", category: "academic", tags: "college academic stem engineering research lab assistant", layout: "standard", headBg: "linear-gradient(135deg, #1d4ed8, #06b6d4)", primary: "#1d4ed8", secondary: "#06b6d4" },
+      { id: "campus-ambassador", title: "Campus Brand Ambassador", tag: "Student Leadership · Event Organizing & Campus Outreach", badge: "Campus", category: "fresher", tags: "college creative sales resume leadership campus ambassador", layout: "standard", headBg: "linear-gradient(135deg, #f59e0b, #ea580c)", primary: "#f59e0b", secondary: "#ea580c" },
+      { id: "university-grantee", title: "University Fellowship & Grantee CV", tag: "National Endowment Grant · Research Proposal & Thesis", badge: "Fellowship", category: "academic", tags: "scholarship academic college researcher funding grant fellowship", layout: "centered", primary: "#1e3a8a", secondary: "#2563eb" },
+      { id: "fulbright-scholar", title: "Fulbright Scholar & Global Fellow", tag: "International Field Research · Cross-Cultural Ambassador", badge: "Fulbright", category: "academic", tags: "scholarship academic college language global fulbright fellow", layout: "centered", primary: "#064e3b", secondary: "#059669" },
+      { id: "swe-summer-intern", title: "Software Engineering Summer Intern", tag: "Git Pull Requests · Unit Testing & Agile Feature Sprints", badge: "SWE-Intern", category: "fresher", tags: "internship resume tech college software coding engineer intern", layout: "left-sidebar", sidebarBg: "#0f172a", primary: "#38bdf8", secondary: "#0284c7" },
+      { id: "finance-winter-intern", title: "Financial Services Co-op Intern", tag: "Portfolio Reconciliation · Bloomberg Terminal & Excel", badge: "FinIntern", category: "fresher", tags: "internship resume accounting resumes college banking finance intern", layout: "left-sidebar", sidebarBg: "#172554", primary: "#1d4ed8", secondary: "#93c5fd" },
+      { id: "design-studio-intern", title: "Graphic Design Studio Intern", tag: "Social Media Collateral · Vector Retouching & Mockups", badge: "ArtIntern", category: "creative", tags: "internship resume graphic design creative portfolio intern", layout: "standard", headBg: "linear-gradient(135deg, #d946ef, #8b5cf6)", primary: "#d946ef", secondary: "#8b5cf6" },
+      { id: "clinical-nursing-trainee", title: "Clinical Nursing Practicum Trainee", tag: "Patient Vitals · Electronic Health Records & Triage", badge: "Nursing", category: "corporate", tags: "internship resume corporate healthcare clinical nursing medical", layout: "left-sidebar", sidebarBg: "#0f766e", primary: "#0f766e", secondary: "#5eead4" },
+      { id: "upwork-top-rated", title: "Upwork Top-Rated Fullstack Contractor", tag: "100% Job Success Score · 5-Star Client Reviews & API", badge: "TopRated", category: "corporate", tags: "freelance resume tech software remote upwork contractor", layout: "standard", headBg: "linear-gradient(135deg, #10b981, #0284c7)", primary: "#10b981", secondary: "#0284c7" },
+      { id: "technical-copywriter", title: "Freelance Technical Copywriter", tag: "Whitepapers, API Docs & Developer Documentation", badge: "TechWriter", category: "minimalist", tags: "freelance resume writer resume simple seo articles technical writing", layout: "centered", primary: "#334155", secondary: "#475569" },
+      { id: "remote-creative-director", title: "Remote Creative Agency Director", tag: "International Client Campaigns · Remote Squad Leadership", badge: "CreativeDir", category: "creative", tags: "freelance resume creative graphic design agency director", layout: "left-sidebar", sidebarBg: "#18181b", primary: "#f43f5e", secondary: "#fda4af" },
+      { id: "independent-consultant", title: "Independent Strategy Consultant", tag: "Market Entry Studies · Operating Model Restructuring", badge: "Advisory", category: "corporate", tags: "freelance resume consulting & strategy business analyst advisory", layout: "executive", primary: "#047857", secondary: "#065f46" },
+      { id: "primary-educator", title: "Primary & Montessori Educator", tag: "Child Development · Inclusive Learning & Parent Comms", badge: "PrimaryEd", category: "academic", tags: "teacher resume academic education children montessori primary", layout: "standard", headBg: "linear-gradient(135deg, #f59e0b, #10b981)", primary: "#f59e0b", secondary: "#10b981" },
+      { id: "stem-physics-teacher", title: "High School Physics & Math Master", tag: "Interactive Experiments · AP Physics Exam Mastery", badge: "STEM-Ed", category: "academic", tags: "teacher resume academic stem engineering science physics math", layout: "standard", headBg: "linear-gradient(135deg, #2563eb, #7c3aed)", primary: "#2563eb", secondary: "#7c3aed" },
+      { id: "university-professor", title: "Tenured University Professor", tag: "Department Chair · Peer Review Editor & Doctoral Advisor", badge: "Professor", category: "academic", tags: "teacher resume academic researcher higher ed university professor", layout: "centered", primary: "#450a0a", secondary: "#991b1b" },
+      { id: "online-course-creator", title: "Online Course Creator & EdTech", tag: "100k+ Students Enrolled · Curriculum Video Production", badge: "EdTech", category: "creative", tags: "teacher resume creative edtech remote teaching online course", layout: "standard", headBg: "linear-gradient(135deg, #8b5cf6, #06b6d4)", primary: "#8b5cf6", secondary: "#06b6d4" },
+      { id: "voiceover-artist", title: "Voice Actor & Audiobook Narrator", tag: "Character Voices · Home Studio Audio & Commercial VO", badge: "Voiceover", category: "creative", tags: "acting creative music resume studio voiceover audio", layout: "standard", headBg: "linear-gradient(135deg, #d946ef, #ec4899)", primary: "#d946ef", secondary: "#ec4899" },
+      { id: "commercial-actor", title: "Commercial & Television Actor", tag: "SAG-AFTRA Eligible · On-Camera Improvisation & Screen", badge: "Actor", category: "creative", tags: "acting photo creative casting screen acting television", layout: "standard", headBg: "linear-gradient(135deg, #ea580c, #f43f5e)", primary: "#ea580c", secondary: "#f43f5e", isPhoto: true },
+      { id: "theatre-director", title: "Theatre Director & Stage Manager", tag: "Cast Blocking · Lighting Cues & Production Schedules", badge: "Theatre", category: "creative", tags: "acting creative production stage theatre director", layout: "standard", headBg: "linear-gradient(135deg, #4c1d95, #831843)", primary: "#4c1d95", secondary: "#831843" },
+      { id: "cinematographer-dop", title: "Documentary Cinematographer & DOP", tag: "Arri / RED Cameras · Color Grading (DaVinci Resolve)", badge: "Cinema", category: "creative", tags: "videographer resume creative photo film cinematography dop", layout: "timeline", headBg: "linear-gradient(135deg, #09090b, #27272a)", primary: "#f59e0b", secondary: "#d97706" },
+      { id: "drone-pilot", title: "FAA Drone Pilot & Aerial Film Maker", tag: "4K Aerial Tracking · Commercial Real Estate & Cinema", badge: "Aerial", category: "creative", tags: "videographer resume tech creative 4k drone pilot aerial", layout: "standard", headBg: "linear-gradient(135deg, #0284c7, #0f172a)", primary: "#0284c7", secondary: "#0f172a" },
+      { id: "live-sound-engineer", title: "Live Concert Sound Engineer", tag: "FOH Mixing · Dante Audio Networks & Wireless Mics", badge: "LiveSound", category: "creative", tags: "music resume tech audio concerts live acoustics sound", layout: "standard", headBg: "linear-gradient(135deg, #18181b, #be123c)", primary: "#be123c", secondary: "#f43f5e" },
+      { id: "film-composer", title: "Film Score & Orchestral Composer", tag: "MIDI Orchestration · Film Scoring & Mood Textures", badge: "Composer", category: "creative", tags: "music resume creative cinema soundtrack composer score", layout: "centered", primary: "#3b0764", secondary: "#6b21a8" },
+      { id: "runway-model", title: "Editorial & Runway Fashion Model", tag: "Fashion Week Runway · Haute Couture & Lookbooks", badge: "Runway", category: "creative", tags: "model resume photo creative fashion haute couture runway", layout: "left-sidebar", sidebarBg: "#fdf2f8", primary: "#be185d", secondary: "#f472b6", isPhoto: true },
+      { id: "fitness-lifestyle-model", title: "Athletic & Lifestyle Model", tag: "Sportswear Commercials · Active Movement & Health Brand", badge: "Fitness", category: "creative", tags: "model resume photo creative athletic health fitness lifestyle", layout: "standard", headBg: "linear-gradient(135deg, #059669, #0d9488)", primary: "#059669", secondary: "#0d9488", isPhoto: true },
+      { id: "mechanical-cad-engineer", title: "Mechanical Design & SolidWorks Pro", tag: "Finite Element Analysis (FEA) · Injection Molding CAD", badge: "MechCAD", category: "tech", tags: "stem engineering tech cad 3d design hardware solidworks", layout: "executive", primary: "#334155", secondary: "#475569" },
+      { id: "embedded-iot-engineer", title: "Embedded Systems & IoT Engineer", tag: "C/C++ Firmware · ARM Cortex & Microcontroller PCB", badge: "Embedded", category: "tech", tags: "stem engineering tech microcontrollers iot embedded firmware", layout: "left-sidebar", sidebarBg: "#022c22", primary: "#059669", secondary: "#34d399" },
+      { id: "civil-structural-engineer", title: "Civil & Infrastructure Engineer", tag: "AutoCAD Civil 3D · Structural Load Calculations & Site", badge: "Civil", category: "corporate", tags: "stem engineering corporate construction autocad civil structural", layout: "executive", primary: "#1e293b", secondary: "#64748b" },
+      { id: "biomedical-engineer", title: "Biomedical & Clinical Device Engineer", tag: "FDA Medical Device Compliance · Biosensors & ISO 13485", badge: "Biomed", category: "tech", tags: "stem engineering tech healthcare clinical bio biomedical", layout: "standard", headBg: "linear-gradient(135deg, #0f766e, #0284c7)", primary: "#0f766e", secondary: "#0284c7" },
+      { id: "aerospace-engineer", title: "Aerospace & Flight Systems Engineer", tag: "Aerodynamics Simulation · Avionics & Propulsion", badge: "Aero", category: "tech", tags: "stem engineering tech aerodynamics satellite aerospace avionics", layout: "executive", primary: "#0c4a6e", secondary: "#0284c7" },
+      { id: "virtual-assistant", title: "Digital Nomad Virtual Assistant", tag: "Calendar Management · Remote Inbox & Project Support", badge: "Nomad", category: "simple", tags: "freelance resume simple remote administrative virtual assistant", layout: "standard", primary: "#6366f1", secondary: "#818cf8" },
+      { id: "customer-success-lead", title: "Customer Success & Retention Lead", tag: "Net Promoter Score (NPS) · Churn Reduction & QBRs", badge: "Support", category: "corporate", tags: "corporate sales resume client satisfaction customer success", layout: "standard", headBg: "linear-gradient(135deg, #0d9488, #3b82f6)", primary: "#0d9488", secondary: "#3b82f6" },
+      { id: "universal-standard-ats", title: "Universal Standard ATS Resume", tag: "100% Parsing Accuracy · Clean Single-Column Structure", badge: "Universal", category: "simple", tags: "simple minimalist modern corporate universal ats standard", layout: "centered", primary: "#0f172a", secondary: "#334155" }
+    ];
+
+    function createTemplateCardElement(t) {
+      const a = document.createElement("a");
+      a.href = `fresher.html?template=${t.id}`;
+      a.className = "tmpl-card";
+      a.setAttribute("data-category", t.category);
+      a.setAttribute("data-tags", t.tags);
+
+      let sheetContent = "";
+      if (t.layout === "left-sidebar") {
+        sheetContent = `
+          <div class="tmpl-paper-sheet layout-left-sidebar" style="background:#ffffff">
+            <div class="tmpl-mock-sidebar" style="background:${t.sidebarBg || t.primary}">
+              <div class="tmpl-mock-avatar ${t.isPhoto ? 'photo' : ''}" style="border-color:#ffffff"></div>
+              <div class="tmpl-mock-name" style="background:#ffffff;width:80%"></div>
+              <div class="tmpl-mock-sub" style="background:rgba(255,255,255,0.7);width:60%"></div>
+              <div class="tmpl-mock-chips" style="margin-top:4px">
+                <div class="tmpl-mock-chip" style="background:rgba(255,255,255,0.3)"></div>
+                <div class="tmpl-mock-chip" style="background:rgba(255,255,255,0.3)"></div>
+              </div>
+            </div>
+            <div class="tmpl-mock-content">
+              <div class="tmpl-mock-sec-title" style="background:${t.primary}"></div>
+              <div class="tmpl-mock-card" style="border-left-color:${t.primary};background:#f8fafc">
+                <div class="tmpl-mock-line full" style="height:5px;background:${t.primary}"></div>
+                <div class="tmpl-mock-line med"></div>
+              </div>
+              <div class="tmpl-mock-sec-title" style="background:${t.secondary || t.primary};margin-top:4px"></div>
+              <div class="tmpl-mock-line full"></div>
+            </div>
+          </div>
+        `;
+      } else if (t.layout === "centered") {
+        sheetContent = `
+          <div class="tmpl-paper-sheet layout-minimalist-centered" style="border-top:3px solid ${t.primary}">
+            <div class="tmpl-mock-center-head" style="border-bottom-color:${t.primary}">
+              <div class="tmpl-mock-name" style="background:${t.primary};width:65%;height:8px"></div>
+              <div class="tmpl-mock-sub" style="background:${t.secondary || '#64748b'};width:45%"></div>
+            </div>
+            <div class="tmpl-mock-sec-row">
+              <div class="tmpl-mock-sec-title" style="background:${t.primary};width:50%"></div>
+              <div class="tmpl-mock-line full" style="height:4.5px;background:${t.secondary || '#64748b'}"></div>
+              <div class="tmpl-mock-line med"></div>
+            </div>
+            <div class="tmpl-mock-sec-row">
+              <div class="tmpl-mock-sec-title" style="background:${t.primary};width:40%"></div>
+              <div class="tmpl-mock-line full"></div>
+            </div>
+          </div>
+        `;
+      } else if (t.layout === "executive") {
+        sheetContent = `
+          <div class="tmpl-paper-sheet layout-executive-frame" style="border-color:${t.primary}">
+            <div style="border-bottom:2px solid ${t.primary};padding-bottom:4px;margin-bottom:4px;display:flex;justify-content:space-between;align-items:center">
+              <div>
+                <div class="tmpl-mock-name" style="background:${t.primary};width:75%;height:8px"></div>
+                <div class="tmpl-mock-sub" style="background:${t.secondary || '#64748b'};width:50%"></div>
+              </div>
+              <div class="tmpl-mock-avatar sq" style="background:${t.primary}"></div>
+            </div>
+            <div class="tmpl-mock-body">
+              <div class="tmpl-mock-col-main">
+                <div class="tmpl-mock-sec-title" style="background:${t.primary}"></div>
+                <div class="tmpl-mock-line full" style="height:5px;background:${t.primary}"></div>
+                <div class="tmpl-mock-line med"></div>
+              </div>
+              <div class="tmpl-mock-col-side">
+                <div class="tmpl-mock-sec-title" style="background:${t.secondary || '#94a3b8'}"></div>
+                <div class="tmpl-mock-chips">
+                  <div class="tmpl-mock-chip" style="background:#e2e8f0"></div>
+                  <div class="tmpl-mock-chip" style="background:#e2e8f0"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      } else if (t.layout === "timeline") {
+        sheetContent = `
+          <div class="tmpl-paper-sheet layout-timeline">
+            <div class="tmpl-mock-head" style="background:${t.headBg || t.primary};padding:5px 8px">
+              <div style="flex:1">
+                <div class="tmpl-mock-name" style="width:65%"></div>
+                <div class="tmpl-mock-sub" style="width:45%"></div>
+              </div>
+            </div>
+            <div class="tmpl-timeline-rail">
+              <div class="tmpl-timeline-node">
+                <div class="tmpl-mock-line full" style="height:4.5px;background:${t.primary}"></div>
+                <div class="tmpl-mock-line med"></div>
+              </div>
+              <div class="tmpl-timeline-node">
+                <div class="tmpl-mock-line full" style="height:4.5px;background:${t.secondary || t.primary}"></div>
+                <div class="tmpl-mock-line short"></div>
+              </div>
+            </div>
+          </div>
+        `;
+      } else {
+        sheetContent = `
+          <div class="tmpl-paper-sheet" style="background:#ffffff">
+            <div class="tmpl-mock-head" style="background:${t.headBg || t.primary}">
+              <div style="flex:1">
+                <div class="tmpl-mock-name" style="width:65%"></div>
+                <div class="tmpl-mock-sub" style="width:45%"></div>
+              </div>
+              <div class="tmpl-mock-avatar ${t.isPhoto ? 'photo' : ''}"></div>
+            </div>
+            <div class="tmpl-mock-body">
+              <div class="tmpl-mock-col-main">
+                <div class="tmpl-mock-sec-title" style="background:${t.primary}"></div>
+                <div class="tmpl-mock-card" style="border-left-color:${t.primary};background:#f8fafc">
+                  <div class="tmpl-mock-line full" style="height:5px;background:${t.primary}"></div>
+                  <div class="tmpl-mock-line med"></div>
+                </div>
+              </div>
+              <div class="tmpl-mock-col-side">
+                <div class="tmpl-mock-sec-title" style="background:${t.secondary || '#64748b'}"></div>
+                <div class="tmpl-mock-chips">
+                  <div class="tmpl-mock-chip" style="background:#e2e8f0"></div>
+                  <div class="tmpl-mock-chip" style="background:#e2e8f0"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      a.innerHTML = `
+        <div class="tmpl-preview-box">
+          ${sheetContent}
+          <span class="tmpl-badge">${t.badge}</span>
+        </div>
+        <div class="tmpl-info">
+          <div class="tmpl-title">${t.title}</div>
+          <div class="tmpl-tag">${t.tag}</div>
+        </div>
+      `;
+      return a;
+    }
+
     // Template Search & Category Filter handler for landing page
+    const templatesGrid = document.querySelector(".templates-grid");
+    if (templatesGrid) {
+      // Clear and populate 105+ templates
+      templatesGrid.innerHTML = "";
+      ALL_105_TEMPLATES.forEach(t => {
+        templatesGrid.appendChild(createTemplateCardElement(t));
+      });
+    }
+
     const templateSearch = document.getElementById("templateSearch");
     const filterPills = document.querySelectorAll(".filter-pills .pill:not(#morePillsToggleBtn), .more-pills-drawer .pill");
     const templateCards = document.querySelectorAll(".templates-grid .tmpl-card");
-    const templatesGrid = document.querySelector(".templates-grid");
     const toggleTemplatesBtn = document.getElementById("toggleTemplatesBtn");
     const toggleWrap = document.querySelector(".show-more-templates-wrap");
     const morePillsToggleBtn = document.getElementById("morePillsToggleBtn");
@@ -3547,7 +3804,7 @@ function showToast(msg, timeout = 3000) {
           if (showAllTemplates) {
             toggleTemplatesBtn.textContent = "Show Fewer Templates ↑";
           } else {
-            toggleTemplatesBtn.textContent = "Explore All 30+ Templates ↓";
+            toggleTemplatesBtn.textContent = "Explore All 100+ Diverse Templates ↓";
           }
         } else {
           toggleWrap.style.display = "none";
