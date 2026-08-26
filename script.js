@@ -3507,10 +3507,17 @@ function showToast(msg, timeout = 3000) {
         const title = (card.querySelector(".tmpl-title")?.textContent || "").toLowerCase();
         const tag = (card.querySelector(".tmpl-tag")?.textContent || "").toLowerCase();
 
+        const catClean = activeCategory.replace(/resumes?$/i, '').trim();
+        const catWords = catClean.split(/[\s&+/]+/).filter(w => w.length > 2 && w !== "and");
+        const hasAllWords = catWords.length > 0 && catWords.every(w => 
+          cardCat.includes(w) || cardTags.includes(w) || title.includes(w) || tag.includes(w)
+        );
+
         const matchesCat = activeCategory === "all" || activeCategory === "all templates" ||
           cardCat === activeCategory || cardCat.includes(activeCategory) ||
           cardTags.includes(activeCategory) ||
-          title.includes(activeCategory) || tag.includes(activeCategory);
+          title.includes(activeCategory) || tag.includes(activeCategory) ||
+          cardTags.includes(catClean) || hasAllWords;
         const matchesSearch = !searchQuery || title.includes(searchQuery) || tag.includes(searchQuery) || cardCat.includes(searchQuery) || cardTags.includes(searchQuery);
 
         if (matchesCat && matchesSearch) {
