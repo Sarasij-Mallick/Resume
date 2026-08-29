@@ -13,7 +13,7 @@
         <link
             href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap"
             rel="stylesheet">
-        <link rel="stylesheet" href="css/style.css?v=20260826_300plus_templates">
+        <link rel="stylesheet" href="css/style.css?v=20260828_instant_sharp_tabs_v14">
         <!-- Lottie Web Player -->
         <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
         <script>
@@ -238,318 +238,29 @@
                                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                             </svg>
                         </span>
-                        <input type="text" id="templateSearch" class="search-input" placeholder="Search thousands of templates (e.g., Minimalist, Creative, Fresher, Executive)..." autocomplete="off">
+                        <input type="text" id="templateSearch" class="search-input" placeholder="Search templates (e.g., Minimalist, Tech, Fresher)..." autocomplete="off">
                         <div id="searchSuggestions" class="search-suggestions-dropdown" aria-expanded="false"></div>
                     </div>
 
                     <div class="filter-pills-wrap">
                         <div class="filter-pills">
                             <button class="pill active" data-category="all">All</button>
-                            <button class="pill" data-category="professional">Professional</button>
-                            <button class="pill" data-category="modern">Modern</button>
-                            <button class="pill" data-category="simple">Simple</button>
-                            <button class="pill" data-category="infographic">Infographic</button>
-                            <button class="pill" data-category="minimalist">Minimalist</button>
-                            <button class="pill" data-category="corporate">Corporate</button>
-                            <button class="pill" data-category="creative">Creative</button>
-                            <button class="pill" data-category="photo">Photo</button>
-                            <button class="pill" data-category="colorful">Colorful</button>
-                            <button class="pill" data-category="acting">Acting</button>
-                            <button class="pill" data-category="tech">Tech</button>
-                            <button class="pill" data-category="academic">Academic</button>
-                            <button class="pill more-toggle-pill" id="morePillsToggleBtn" type="button">··· More</button>
+                            <button id="morePillsToggleBtn" class="pill more-toggle-pill" type="button" title="Show more category tabs">··· More</button>
                         </div>
-                        <div class="more-pills-drawer" id="morePillsDrawer">
-                            <button class="pill" data-category="graphic design">Graphic Design</button>
-                            <button class="pill" data-category="college">College</button>
-                            <button class="pill" data-category="high school">High School</button>
-                            <button class="pill" data-category="scholarship">Scholarship</button>
-                            <button class="pill" data-category="internship">Internship Resume</button>
-                            <button class="pill" data-category="freelance">Freelance Resume</button>
-                            <button class="pill" data-category="business analyst">Business Analyst Resumes</button>
-                            <button class="pill" data-category="sales">Sales Resume</button>
-                            <button class="pill" data-category="writer">Writer Resume</button>
-                            <button class="pill" data-category="accounting">Accounting Resumes</button>
-                            <button class="pill" data-category="teacher">Teacher Resume</button>
-                            <button class="pill" data-category="videographer">Videographer Resume</button>
-                            <button class="pill" data-category="music">Music Resume</button>
-                            <button class="pill" data-category="model">Model Resume</button>
-                            <button class="pill" data-category="tech">Tech Resume</button>
-                            <button class="pill" data-category="executive">Executive Leadership</button>
-                            <button class="pill" data-category="consultant">Consulting & Strategy</button>
-                            <button class="pill" data-category="stem">STEM Engineering</button>
-                            <button class="pill" data-category="cloud">Cloud & DevOps</button>
-                            <button class="pill" data-category="ai">AI & Data Science</button>
-                            <button class="pill" data-category="ux">UI/UX Design</button>
-                            <button class="pill" data-category="fresher">Fresher Starter</button>
+                        <div id="morePillsDrawer" class="more-pills-drawer">
+                            <button class="pill" data-category="professional">Professional</button>
+                            <button class="pill" data-category="tech">Tech & IT</button>
+                            <button class="pill" data-category="creative">Creative & Design</button>
+                            <button class="pill" data-category="executive">Executive & Leadership</button>
+                            <button class="pill" data-category="fresher">Fresher & Student</button>
+                            <button class="pill" data-category="corporate">Finance & Corporate</button>
+                            <button class="pill" data-category="academic">Academic & Research</button>
+                            <button class="pill" data-category="minimalist">Minimalist ATS</button>
                         </div>
                     </div>
 
                     <div class="templates-grid">
-                        <!-- 1. Modern Minimalist -->
-                        <a href="fresher.html?template=modern-minimalist" class="tmpl-card" data-category="modern" data-tags="modern professional simple corporate clean ats minimalist">
-                            <div class="tmpl-preview-box">
-                                <div class="tmpl-paper-sheet">
-                                    <div class="tmpl-mock-head" style="background:linear-gradient(135deg, #7d2ae8, #00c4cc)">
-                                        <div style="flex:1">
-                                            <div class="tmpl-mock-name"></div>
-                                            <div class="tmpl-mock-sub"></div>
-                                        </div>
-                                        <div class="tmpl-mock-avatar"></div>
-                                    </div>
-                                    <div class="tmpl-mock-body">
-                                        <div class="tmpl-mock-col-main">
-                                            <div class="tmpl-mock-sec-title" style="background:#7d2ae8"></div>
-                                            <div class="tmpl-mock-card" style="border-left-color:#7d2ae8">
-                                                <div class="tmpl-mock-line full" style="height:5px;background:#1e293b"></div>
-                                                <div class="tmpl-mock-line med"></div>
-                                            </div>
-                                            <div class="tmpl-mock-card" style="border-left-color:#00c4cc">
-                                                <div class="tmpl-mock-line full" style="height:5px;background:#1e293b"></div>
-                                                <div class="tmpl-mock-line short"></div>
-                                            </div>
-                                        </div>
-                                        <div class="tmpl-mock-col-side">
-                                            <div class="tmpl-mock-sec-title" style="background:#00c4cc"></div>
-                                            <div class="tmpl-mock-chips">
-                                                <div class="tmpl-mock-chip" style="background:#e0f2fe;border:1px solid #7dd3fc"></div>
-                                                <div class="tmpl-mock-chip" style="background:#f3e8ff;border:1px solid #d8b4fe"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <span class="tmpl-badge">Modern</span>
-                            </div>
-                            <div class="tmpl-info">
-                                <div class="tmpl-title">Modern Minimalist</div>
-                                <div class="tmpl-tag">Clean · ATS Optimized · Corporate · Professional</div>
-                            </div>
-                        </a>
-
-                        <!-- 2. Tech Lead & Software Engineer -->
-                        <a href="fresher.html?template=modern-tech" class="tmpl-card" data-category="tech" data-tags="tech tech resume stem software developer engineer coding stem engineering fullstack">
-                            <div class="tmpl-preview-box">
-                                <div class="tmpl-paper-sheet">
-                                    <div class="tmpl-mock-head" style="background:#0f172a;border-bottom:2px solid #3b82f6">
-                                        <div style="flex:1">
-                                            <div class="tmpl-mock-name" style="background:#3b82f6;width:55%"></div>
-                                            <div class="tmpl-mock-sub" style="background:#94a3b8"></div>
-                                        </div>
-                                        <div class="tmpl-mock-avatar sq" style="background:#3b82f6"></div>
-                                    </div>
-                                    <div class="tmpl-mock-body">
-                                        <div class="tmpl-mock-col-main">
-                                            <div class="tmpl-mock-sec-title" style="background:#3b82f6"></div>
-                                            <div class="tmpl-mock-card" style="border-left-color:#3b82f6;background:#f0f9ff">
-                                                <div class="tmpl-mock-line full" style="height:5px;background:#0f172a"></div>
-                                                <div class="tmpl-mock-chips" style="margin:2px 0">
-                                                    <div class="tmpl-mock-chip" style="background:#dbeafe;width:18px"></div>
-                                                    <div class="tmpl-mock-chip" style="background:#dbeafe;width:22px"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="tmpl-mock-col-side">
-                                            <div class="tmpl-mock-sec-title" style="background:#0f172a"></div>
-                                            <div class="tmpl-mock-chips">
-                                                <div class="tmpl-mock-chip" style="background:#0f172a"></div>
-                                                <div class="tmpl-mock-chip" style="background:#3b82f6"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <span class="tmpl-badge">Tech</span>
-                            </div>
-                            <div class="tmpl-info">
-                                <div class="tmpl-title">Tech Lead & Software Engineer</div>
-                                <div class="tmpl-tag">Software Engineer · Full-Stack & Microservices</div>
-                            </div>
-                        </a>
-
-                        <!-- 3. Graphic Design Visual Pro -->
-                        <a href="fresher.html?template=creative-designer" class="tmpl-card" data-category="creative" data-tags="graphic design creative ui/ux design colorful freelance resume portfolio visual">
-                            <div class="tmpl-preview-box">
-                                <div class="tmpl-paper-sheet layout-left-sidebar">
-                                    <div class="tmpl-mock-sidebar" style="background:linear-gradient(180deg, #7d2ae8, #f43f5e)">
-                                        <div class="tmpl-mock-avatar" style="border-color:#ffffff"></div>
-                                        <div class="tmpl-mock-name" style="background:#ffffff;width:85%"></div>
-                                        <div class="tmpl-mock-sub" style="background:rgba(255,255,255,0.7);width:60%"></div>
-                                        <div class="tmpl-mock-chips" style="margin-top:4px">
-                                            <div class="tmpl-mock-chip" style="background:rgba(255,255,255,0.3)"></div>
-                                            <div class="tmpl-mock-chip" style="background:rgba(255,255,255,0.3)"></div>
-                                        </div>
-                                    </div>
-                                    <div class="tmpl-mock-content">
-                                        <div class="tmpl-mock-sec-title" style="background:#f43f5e"></div>
-                                        <div class="tmpl-mock-card" style="border-left-color:#f43f5e;background:#fff1f2">
-                                            <div class="tmpl-mock-line full" style="height:5px;background:#e11d48"></div>
-                                            <div class="tmpl-mock-line med"></div>
-                                        </div>
-                                        <div class="tmpl-mock-sec-title" style="background:#7d2ae8;margin-top:4px"></div>
-                                        <div class="tmpl-mock-line full"></div>
-                                    </div>
-                                </div>
-                                <span class="tmpl-badge">Design</span>
-                            </div>
-                            <div class="tmpl-info">
-                                <div class="tmpl-title">Graphic Design Visual Pro</div>
-                                <div class="tmpl-tag">Visual Identity · UI/UX Design & Creative Portfolio</div>
-                            </div>
-                        </a>
-
-                        <!-- 4. Ivy League Academic & Scholarship -->
-                        <a href="fresher.html?template=minimalist-ivy" class="tmpl-card" data-category="academic" data-tags="academic scholarship college university oxford researcher education scholar">
-                            <div class="tmpl-preview-box">
-                                <div class="tmpl-paper-sheet layout-minimalist-centered" style="border-top:3px solid #7f1d1d">
-                                    <div class="tmpl-mock-center-head" style="border-bottom-color:#7f1d1d">
-                                        <div class="tmpl-mock-name" style="background:#7f1d1d;width:65%;height:8px"></div>
-                                        <div class="tmpl-mock-sub" style="background:#991b1b;width:45%"></div>
-                                    </div>
-                                    <div class="tmpl-mock-sec-row">
-                                        <div class="tmpl-mock-sec-title" style="background:#7f1d1d;width:50%"></div>
-                                        <div class="tmpl-mock-line full" style="height:4.5px;background:#991b1b"></div>
-                                        <div class="tmpl-mock-line med"></div>
-                                    </div>
-                                    <div class="tmpl-mock-sec-row">
-                                        <div class="tmpl-mock-sec-title" style="background:#7f1d1d;width:40%"></div>
-                                        <div class="tmpl-mock-line full"></div>
-                                    </div>
-                                </div>
-                                <span class="tmpl-badge">Academic</span>
-                            </div>
-                            <div class="tmpl-info">
-                                <div class="tmpl-title">Ivy League Academic & Scholarship</div>
-                                <div class="tmpl-tag">Oxford Serif · Research Fellowship & Grants</div>
-                            </div>
-                        </a>
-
-                        <!-- 5. Business Analyst & Strategy Lead -->
-                        <a href="fresher.html?template=executive-pro" class="tmpl-card" data-category="corporate" data-tags="business analyst resumes consulting & strategy corporate professional finance consulting">
-                            <div class="tmpl-preview-box">
-                                <div class="tmpl-paper-sheet layout-executive-frame" style="border-color:#059669">
-                                    <div style="border-bottom:2px solid #059669;padding-bottom:4px;margin-bottom:4px;display:flex;justify-content:space-between;align-items:center">
-                                        <div>
-                                            <div class="tmpl-mock-name" style="background:#059669;width:70%;height:8px"></div>
-                                            <div class="tmpl-mock-sub" style="background:#047857;width:45%"></div>
-                                        </div>
-                                        <div class="tmpl-mock-avatar sq" style="background:#059669"></div>
-                                    </div>
-                                    <div class="tmpl-mock-body">
-                                        <div class="tmpl-mock-col-main">
-                                            <div class="tmpl-mock-sec-title" style="background:#059669"></div>
-                                            <div class="tmpl-mock-line full" style="height:5px;background:#047857"></div>
-                                            <div class="tmpl-mock-line med"></div>
-                                        </div>
-                                        <div class="tmpl-mock-col-side">
-                                            <div class="tmpl-mock-sec-title" style="background:#00c4cc"></div>
-                                            <div class="tmpl-mock-chips">
-                                                <div class="tmpl-mock-chip" style="background:#ccfbf1"></div>
-                                                <div class="tmpl-mock-chip" style="background:#ccfbf1"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <span class="tmpl-badge">Analyst</span>
-                            </div>
-                            <div class="tmpl-info">
-                                <div class="tmpl-title">Business Analyst & Strategy Lead</div>
-                                <div class="tmpl-tag">Quantitative Insights · Consulting & BI Leadership</div>
-                            </div>
-                        </a>
-
-                        <!-- 6. High-Ticket Sales Executive -->
-                        <a href="fresher.html?template=executive-manager" class="tmpl-card" data-category="corporate" data-tags="sales resume corporate professional sales executive leadership revenue pipeline">
-                            <div class="tmpl-preview-box">
-                                <div class="tmpl-paper-sheet layout-left-sidebar">
-                                    <div class="tmpl-mock-sidebar" style="background:#1e1b4b">
-                                        <div class="tmpl-mock-avatar" style="border-color:#818cf8"></div>
-                                        <div class="tmpl-mock-name" style="background:#ffffff;width:80%"></div>
-                                        <div class="tmpl-mock-sub" style="background:#a5b4fc;width:60%"></div>
-                                        <div class="tmpl-mock-chips" style="margin-top:4px">
-                                            <div class="tmpl-mock-chip" style="background:#312e81"></div>
-                                            <div class="tmpl-mock-chip" style="background:#312e81"></div>
-                                        </div>
-                                    </div>
-                                    <div class="tmpl-mock-content">
-                                        <div class="tmpl-mock-sec-title" style="background:#312e81"></div>
-                                        <div class="tmpl-mock-card" style="border-left-color:#312e81;background:#f5f3ff">
-                                            <div class="tmpl-mock-line full" style="height:5px;background:#312e81"></div>
-                                            <div class="tmpl-mock-line med"></div>
-                                        </div>
-                                        <div class="tmpl-mock-sec-title" style="background:#312e81;margin-top:4px"></div>
-                                        <div class="tmpl-mock-line full"></div>
-                                    </div>
-                                </div>
-                                <span class="tmpl-badge">Sales</span>
-                            </div>
-                            <div class="tmpl-info">
-                                <div class="tmpl-title">High-Ticket Sales Executive</div>
-                                <div class="tmpl-tag">Revenue Growth · B2B Key Accounts & Growth</div>
-                            </div>
-                        </a>
-
-                        <!-- 7. High School & College Starter -->
-                        <a href="fresher.html?template=fresher-starter" class="tmpl-card" data-category="fresher" data-tags="high school college fresher starter internship resume simple student entry level">
-                            <div class="tmpl-preview-box">
-                                <div class="tmpl-paper-sheet layout-left-sidebar">
-                                    <div class="tmpl-mock-sidebar" style="background:#0d9488">
-                                        <div class="tmpl-mock-avatar" style="border-color:#ffffff"></div>
-                                        <div class="tmpl-mock-name" style="background:#ffffff;width:80%"></div>
-                                        <div class="tmpl-mock-sub" style="background:#99f6e4;width:60%"></div>
-                                        <div class="tmpl-mock-chips" style="margin-top:4px">
-                                            <div class="tmpl-mock-chip" style="background:#042f2e"></div>
-                                            <div class="tmpl-mock-chip" style="background:#042f2e"></div>
-                                        </div>
-                                    </div>
-                                    <div class="tmpl-mock-content">
-                                        <div class="tmpl-mock-sec-title" style="background:#0d9488"></div>
-                                        <div class="tmpl-mock-card" style="border-left-color:#0d9488;background:#ccfbf1">
-                                            <div class="tmpl-mock-line full" style="height:5px;background:#0f766e"></div>
-                                            <div class="tmpl-mock-line med"></div>
-                                        </div>
-                                        <div class="tmpl-mock-sec-title" style="background:#06b6d4;margin-top:4px"></div>
-                                        <div class="tmpl-mock-line full"></div>
-                                    </div>
-                                </div>
-                                <span class="tmpl-badge">Fresher</span>
-                            </div>
-                            <div class="tmpl-info">
-                                <div class="tmpl-title">High School & College Starter</div>
-                                <div class="tmpl-tag">Internship Ready · Skills-First & Education</div>
-                            </div>
-                        </a>
-
-                        <!-- 8. CPA Accounting & Financial Audit -->
-                        <a href="fresher.html?template=minimalist-monochrome" class="tmpl-card" data-category="corporate" data-tags="accounting resumes corporate finance accounting tax audit professional cpa">
-                            <div class="tmpl-preview-box">
-                                <div class="tmpl-paper-sheet layout-left-sidebar">
-                                    <div class="tmpl-mock-sidebar" style="background:#171717">
-                                        <div class="tmpl-mock-avatar" style="border-color:#525252"></div>
-                                        <div class="tmpl-mock-name" style="background:#ffffff;width:80%"></div>
-                                        <div class="tmpl-mock-sub" style="background:#a3a3a3;width:60%"></div>
-                                        <div class="tmpl-mock-chips" style="margin-top:4px">
-                                            <div class="tmpl-mock-chip" style="background:#404040"></div>
-                                            <div class="tmpl-mock-chip" style="background:#404040"></div>
-                                        </div>
-                                    </div>
-                                    <div class="tmpl-mock-content">
-                                        <div class="tmpl-mock-sec-title" style="background:#171717"></div>
-                                        <div class="tmpl-mock-card" style="border-left-color:#171717;background:#f5f5f5">
-                                            <div class="tmpl-mock-line full" style="height:5px;background:#262626"></div>
-                                            <div class="tmpl-mock-line med"></div>
-                                        </div>
-                                        <div class="tmpl-mock-sec-title" style="background:#171717;margin-top:4px"></div>
-                                        <div class="tmpl-mock-line full"></div>
-                                    </div>
-                                </div>
-                                <span class="tmpl-badge">Finance</span>
-                            </div>
-                            <div class="tmpl-info">
-                                <div class="tmpl-title">CPA Accounting & Financial Audit</div>
-                                <div class="tmpl-tag">Monochrome · Tax Compliance & Analytics</div>
-                            </div>
-                        </a>
-
-                        <!-- 9. Teacher & STEM Educator -->
+                        <!-- 1. Teacher & STEM Educator -->
                         <a href="fresher.html?template=fresher-academic" class="tmpl-card" data-category="academic" data-tags="teacher resume academic education teacher high school college stem stem engineering">
                             <div class="tmpl-preview-box">
                                 <div class="tmpl-paper-sheet">
@@ -1619,6 +1330,6 @@
             </svg>
         </button>
 
-        <script src="app.js?v=20260826_1215_kill_all_trails"></script>
+        <script src="app.js?v=20260828_canva_official_templates_v16"></script>
     </body>
 </html>

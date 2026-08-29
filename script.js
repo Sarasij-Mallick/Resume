@@ -329,227 +329,66 @@ options.forEach(function (card) {
 (() => {
   const STORAGE_KEY = "resumeai_fresher_v1";
 
-  // ── 300+ COMPREHENSIVE DIVERSE RESUME TEMPLATES CATALOG & THEMES ──
+  // ── CURATED DIVERSE RESUME TEMPLATES CATALOG (1 Best Template Per Category) ──
   const TEMPLATE_CLUSTERS = [
-    // 1. Tech, Cloud & Coding (35 templates)
-    { cat: "tech", badge: "Tech", tags: "tech tech resume stem software developer engineer coding stem engineering", roles: [
-      { id: "modern-tech", title: "Tech Lead & Software Engineer", sub: "Full-Stack · Systems Architecture & Microservices", layout: "left-sidebar", p: "#3b82f6", s: "#94a3b8", bg: "#0f172a" },
-      { id: "python-backend", title: "Python Backend Architect", sub: "FastAPI / Django · High-Concurrency Microservices", layout: "left-sidebar", p: "#38bdf8", s: "#0284c7", bg: "#1e293b" },
-      { id: "frontend-react", title: "React & Next.js UI Specialist", sub: "Server Components · Modern State & Vercel", layout: "standard", p: "#06b6d4", s: "#3b82f6", h: "linear-gradient(135deg, #06b6d4, #3b82f6)" },
-      { id: "mobile-ios", title: "iOS Swift & SwiftUI Developer", sub: "Apple Native Ecosystem · Combine & CoreData", layout: "standard", p: "#0284c7", s: "#6366f1", h: "linear-gradient(135deg, #0284c7, #6366f1)" },
-      { id: "mobile-android", title: "Android Kotlin Engineer", sub: "Jetpack Compose · Coroutines & Architecture", layout: "standard", p: "#10b981", s: "#059669", h: "linear-gradient(135deg, #10b981, #059669)" },
-      { id: "flutter-crossplatform", title: "Flutter Cross-Platform Lead", sub: "Dart · iOS & Android Native Plugins", layout: "standard", p: "#0284c7", s: "#38bdf8", h: "linear-gradient(135deg, #0284c7, #38bdf8)" },
-      { id: "tech-cloud", title: "Cloud Architect & DevOps Lead", sub: "AWS & GCP · Kubernetes & CI/CD Pipelines", layout: "left-sidebar", p: "#0284c7", s: "#38bdf8", bg: "#0f172a" },
-      { id: "azure-cloud-eng", title: "Azure Enterprise Cloud Specialist", sub: "Terraform · ARM Templates & Azure DevOps", layout: "executive", p: "#0078d4", s: "#60a5fa" },
-      { id: "kubernetes-sre", title: "Site Reliability Engineer (SRE)", sub: "K8s Cluster Orchestration · Prometheus & Chaos", layout: "left-sidebar", p: "#326ce5", s: "#93c5fd", bg: "#0f172a" },
-      { id: "cybersecurity-lead", title: "Cybersecurity & InfoSec Officer", sub: "Zero Trust Security · Penetration Testing & SOC", layout: "left-sidebar", p: "#ef4444", s: "#f87171", bg: "#0f172a" },
-      { id: "web3-blockchain", title: "Web3 & Blockchain Architect", sub: "Smart Contracts · Solidity & DeFi Protocols", layout: "standard", p: "#8b5cf6", s: "#ec4899", h: "linear-gradient(135deg, #8b5cf6, #ec4899)" },
-      { id: "database-dba", title: "Database Administrator (DBA)", sub: "PostgreSQL & Oracle · Query Optimization & Sharding", layout: "standard", p: "#336791", s: "#60a5fa", h: "linear-gradient(135deg, #1e3a8a, #3b82f6)" },
-      { id: "graphql-api-dev", title: "GraphQL & API Platform Engineer", sub: "Apollo Federation · REST / gRPC Microservices", layout: "standard", p: "#e10098", s: "#ec4899", h: "linear-gradient(135deg, #e10098, #8b5cf6)" },
-      { id: "linux-sysadmin", title: "Senior Linux & Infrastructure Admin", sub: "RedHat / Ubuntu · Shell Scripting & Ansible", layout: "left-sidebar", p: "#f97316", s: "#fdba74", bg: "#18181b" },
-      { id: "qa-automation", title: "QA Lead & Test Automation Engineer", sub: "Playwright & Cypress · Selenium CI/CD Frameworks", layout: "standard", p: "#059669", s: "#34d399", h: "linear-gradient(135deg, #059669, #10b981)" },
-      { id: "golang-microservices", title: "Golang Distributed Systems Lead", sub: "High-Throughput Goroutines & Kafka Queues", layout: "left-sidebar", p: "#00add8", s: "#7dd3fc", bg: "#0f172a" },
-      { id: "java-spring-architect", title: "Java Spring Boot Architect", sub: "Enterprise Microservices · JPA Hibernate & Docker", layout: "executive", p: "#b07219", s: "#f59e0b" },
-      { id: "csharp-dotnet", title: "C# .NET Core Enterprise Lead", sub: "ASP.NET Web APIs · Entity Framework & Blazor", layout: "executive", p: "#512bd4", s: "#a78bfa" },
-      { id: "game-developer", title: "Game Engine & Unity Developer", sub: "C# Scripting · 3D Shader Physics & Real-Time Render", layout: "standard", p: "#6366f1", s: "#d946ef", h: "linear-gradient(135deg, #6366f1, #d946ef)" },
-      { id: "unreal-tech-artist", title: "Unreal Engine 5 Technical Artist", sub: "Lumen & Nanite · Blueprint & C++ Optimization", layout: "timeline", p: "#09090b", s: "#3b82f6", h: "linear-gradient(135deg, #09090b, #1e3a8a)" }
+    { cat: "minimalist", badge: "Universal", tags: "modern minimalist pro clean ats corporate professional simple", roles: [
+      { id: "modern-minimalist", title: "Modern Minimalist Pro", sub: "Clean · ATS Optimized · Corporate · Professional", layout: "standard", p: "#7d2ae8", s: "#00c4cc", h: "linear-gradient(135deg, #7d2ae8, #00c4cc)" }
     ]},
-
-    // 2. AI & Data Science (25 templates)
-    { cat: "tech", badge: "AI", tags: "ai & data science tech resume tech stem engineering ai ml python deep learning data science", roles: [
-      { id: "ai-engineer", title: "AI & Machine Learning Researcher", sub: "Deep Learning · Neural Models & Python Analytics", layout: "standard", p: "#4f46e5", s: "#06b6d4", h: "linear-gradient(135deg, #4f46e5, #06b6d4)" },
-      { id: "nlp-specialist", title: "NLP & LLM Prompt Engineer", sub: "Transformers · Fine-Tuning RAG & LangChain Systems", layout: "standard", p: "#14b8a6", s: "#3b82f6", h: "linear-gradient(135deg, #14b8a6, #3b82f6)" },
-      { id: "computer-vision", title: "Computer Vision & Spatial AI", sub: "OpenCV · YOLO Object Detection & PyTorch", layout: "standard", p: "#6366f1", s: "#a855f7", h: "linear-gradient(135deg, #6366f1, #a855f7)" },
-      { id: "bigdata-architect", title: "Data Engineer & Big Data Lead", sub: "Apache Spark · Snowflake, Kafka & ETL Pipelines", layout: "left-sidebar", p: "#3b82f6", s: "#93c5fd", bg: "#172554" },
-      { id: "mlops-platform-eng", title: "MLOps & Model Deployment Lead", sub: "Kubeflow · MLflow, Model Monitoring & Docker", layout: "left-sidebar", p: "#0284c7", s: "#38bdf8", bg: "#0f172a" },
-      { id: "bi-tableau", title: "Tableau & PowerBI Specialist", sub: "Executive KPI Dashboards · SQL Modeling & Analytics", layout: "standard", p: "#f59e0b", s: "#d97706", h: "linear-gradient(135deg, #f59e0b, #d97706)" },
-      { id: "data-analyst-pro", title: "Quantitative Data Analyst", sub: "Exploratory Data Analysis · Statistical Hypotheses & SQL", layout: "executive", p: "#0d9488", s: "#14b8a6" },
-      { id: "ai-ethics-officer", title: "AI Ethics & Governance Officer", sub: "Responsible AI Standards · Bias Mitigation & Compliance", layout: "centered", p: "#3b0764", s: "#6b21a8" },
-      { id: "genai-developer", title: "Generative AI Solutions Architect", sub: "Autonomous Agents · Vector Databases & API Embeddings", layout: "standard", p: "#7c3aed", s: "#06b6d4", h: "linear-gradient(135deg, #7c3aed, #06b6d4)" },
-      { id: "data-warehouse-lead", title: "Data Warehouse Cloud Architect", sub: "dbt Modeling · Redshift, BigQuery & Lakehouses", layout: "left-sidebar", p: "#1e3a8a", s: "#60a5fa", bg: "#0f172a" }
+    { cat: "tech", badge: "Tech", tags: "tech software developer engineer coding cloud devops", roles: [
+      { id: "modern-tech", title: "Tech Lead & Software Engineer", sub: "Full-Stack · Left Sidebar · Systems Architecture", layout: "left-sidebar", p: "#3b82f6", s: "#94a3b8", bg: "#0f172a" }
     ]},
-
-    // 3. UI/UX, Graphic Design & Creative (35 templates)
-    { cat: "creative", badge: "Design", tags: "graphic design creative ui/ux design colorful freelance resume portfolio visual branding", roles: [
-      { id: "creative-designer", title: "Graphic Design Visual Pro", sub: "Visual Identity · UI/UX Design & Creative Portfolio", layout: "left-sidebar", p: "#f43f5e", s: "#7d2ae8", bg: "linear-gradient(180deg, #7d2ae8, #f43f5e)" },
-      { id: "uiux-pro", title: "UI/UX & Product Design Lead", sub: "Figma Design Systems · User Journey & Wireframes", layout: "left-sidebar", p: "#a855f7", s: "#d8b4fe", bg: "#18181b" },
-      { id: "brand-identity", title: "Brand Identity Specialist", sub: "Vector Typography · Logo Guidelines & Brand Kits", layout: "left-sidebar", p: "#ec4899", s: "#8b5cf6", bg: "linear-gradient(180deg, #ec4899, #8b5cf6)" },
-      { id: "3d-blender", title: "3D Visualizer & Blender Pro", sub: "Photorealistic Texturing · Lighting & Environment Art", layout: "standard", p: "#ea580c", s: "#c2410c", h: "linear-gradient(135deg, #ea580c, #c2410c)" },
-      { id: "motion-aftereffects", title: "Motion Graphics Animator", sub: "After Effects Keyframing · 2D/3D Broadcast Title Design", layout: "timeline", p: "#7c3aed", s: "#db2777", h: "linear-gradient(135deg, #7c3aed, #db2777)" },
-      { id: "editorial-designer", title: "Editorial & Magazine Designer", sub: "InDesign Typography · Book Publishing & Print Grids", layout: "centered", p: "#18181b", s: "#71717a" },
-      { id: "digital-illustrator", title: "Digital Concept Illustrator", sub: "Photoshop Procreate · Character Design & Storyboarding", layout: "standard", p: "#f43f5e", s: "#a855f7", h: "linear-gradient(135deg, #f43f5e, #a855f7)" },
-      { id: "design-systems-lead", title: "Design Systems & Token Architect", sub: "Figma Component Libraries · Accessibility & Tokens", layout: "left-sidebar", p: "#a855f7", s: "#e4e4e7", bg: "#27272a" },
-      { id: "ux-researcher", title: "UX Researcher & Usability Lead", sub: "Qualitative Interviews · Usability Testing & Journey Maps", layout: "standard", p: "#0d9488", s: "#0284c7", h: "linear-gradient(135deg, #0d9488, #0284c7)" },
-      { id: "creative-innovator", title: "Infographic Visual Specialist", sub: "Data Storytelling · Colorful Visual Charts", layout: "standard", p: "#8b5cf6", s: "#d946ef", h: "linear-gradient(135deg, #8b5cf6, #d946ef)" },
-      { id: "package-designer", title: "Packaging & Print Production Pro", sub: "Dieline Engineering · Foil Stamping & CMYK Pre-press", layout: "standard", p: "#d97706", s: "#f59e0b", h: "linear-gradient(135deg, #d97706, #f59e0b)" },
-      { id: "ar-vr-designer", title: "AR / VR Spatial UI Designer", sub: "VisionOS Interfaces · Unity XR Interactions & 3D Canvas", layout: "timeline", p: "#6366f1", s: "#06b6d4", h: "linear-gradient(135deg, #6366f1, #06b6d4)" }
+    { cat: "tech", badge: "AI", tags: "ai machine learning data science python deep learning", roles: [
+      { id: "ai-engineer", title: "AI & Machine Learning Researcher", sub: "Deep Learning · Neural Models & Python Analytics", layout: "standard", p: "#4f46e5", s: "#06b6d4", h: "linear-gradient(135deg, #4f46e5, #06b6d4)" }
     ]},
-
-    // 4. Business Analyst, Consulting & Strategy (30 templates)
-    { cat: "corporate", badge: "Analyst", tags: "business analyst resumes consulting & strategy corporate professional finance consulting strategy", roles: [
-      { id: "executive-pro", title: "Business Analyst & Strategy Lead", sub: "Quantitative Insights · Consulting & BI Leadership", layout: "executive", p: "#059669", s: "#047857" },
-      { id: "consulting-partner", title: "Management Consulting Partner", sub: "Top-Tier Advisory · M&A & Transformation Strategy", layout: "left-sidebar", p: "#047857", s: "#34d399", bg: "#064e3b" },
-      { id: "quant-finance", title: "Quantitative Trading Analyst", sub: "Algorithmic Models · Risk Parity & High-Frequency Data", layout: "executive", p: "#047857", s: "#10b981" },
-      { id: "agile-scrum-master", title: "Agile Coach & Senior Scrum Master", sub: "Sprint Velocity · Scaled Agile (SAFe) & Coaching", layout: "standard", p: "#0284c7", s: "#0d9488", h: "linear-gradient(135deg, #0284c7, #0d9488)" },
-      { id: "technical-pm", title: "Technical Project Manager (PMP)", sub: "Gantt Milestones · Risk Mitigation & Cross-Functional PM", layout: "executive", p: "#1e293b", s: "#475569" },
-      { id: "product-manager-tech", title: "Senior Product Manager (SaaS)", sub: "PRD Specs · Roadmaps, User Growth & Feature Launch", layout: "standard", p: "#4f46e5", s: "#06b6d4", h: "linear-gradient(135deg, #4f46e5, #06b6d4)" },
-      { id: "chief-of-staff", title: "Chief of Staff & Ops Executive", sub: "Executive Alignment · Board Briefings & OKRs", layout: "executive", p: "#1e1b4b", s: "#6366f1" },
-      { id: "supply-chain-director", title: "Supply Chain & Global Logistics", sub: "Freight Optimization · ERP Procurement & Vendor Matrix", layout: "executive", p: "#334155", s: "#64748b" },
-      { id: "change-management-lead", title: "Organizational Change Lead", sub: "Prosci Methodology · Cultural Transition & Training", layout: "standard", p: "#0891b2", s: "#06b6d4", h: "linear-gradient(135deg, #0891b2, #06b6d4)" },
-      { id: "business-dev-director", title: "Director of Strategic Partnerships", sub: "Global Joint Ventures · Alliance Building & B2B Expansion", layout: "left-sidebar", p: "#1e3a8a", s: "#3b82f6", bg: "#1e1b4b" }
+    { cat: "creative", badge: "Design", tags: "ui/ux design graphic creative portfolio branding figma", roles: [
+      { id: "uiux-pro", title: "UI/UX & Product Design Lead", sub: "Figma Design Systems · User Journey & Wireframes", layout: "left-sidebar", p: "#a855f7", s: "#d8b4fe", bg: "#18181b" }
     ]},
-
-    // 5. Executive Leadership & C-Suite (25 templates)
-    { cat: "corporate", badge: "Executive", tags: "executive leadership corporate director c-suite management consultant executive governance", roles: [
-      { id: "executive-director", title: "Executive Director & Board VP", sub: "C-Suite Governance · Global Operational Growth", layout: "executive", p: "#1e3a8a", s: "#3b82f6" },
-      { id: "cto-executive", title: "Chief Technology Officer (CTO)", sub: "Engineering Vision · Scalability & Multi-Cloud Strategy", layout: "left-sidebar", p: "#6366f1", s: "#a5b4fc", bg: "#09090b" },
-      { id: "cfo-finance", title: "Chief Financial Officer (CFO)", sub: "Capital Allocation · Treasury, Audit & Board Governance", layout: "executive", p: "#064e3b", s: "#10b981" },
-      { id: "cmo-marketing", title: "Chief Marketing Officer (CMO)", sub: "Brand Positioning · Multi-Million Media Budgets & PR", layout: "standard", p: "#be123c", s: "#fb7185", h: "linear-gradient(135deg, #be123c, #fb7185)" },
-      { id: "coo-operations", title: "Chief Operating Officer (COO)", sub: "Operational Excellence · P&L Management & Scale", layout: "left-sidebar", p: "#4338ca", s: "#818cf8", bg: "#1e1b4b" },
-      { id: "healthcare-exec", title: "Executive Healthcare Administrator", sub: "Clinical Operations · Hospital Governance & Care Standards", layout: "left-sidebar", p: "#0f766e", s: "#5eead4", bg: "#0f766e" },
-      { id: "ceo-general-manager", title: "CEO & Managing Director", sub: "Venture Backed · Turnaround Leadership & Valuation", layout: "executive", p: "#0f172a", s: "#38bdf8" },
-      { id: "vp-engineering", title: "VP of Software Engineering", sub: "100+ Dev Teams · Architecture Roadmap & Delivery", layout: "left-sidebar", p: "#1e293b", s: "#60a5fa", bg: "#0f172a" },
-      { id: "nonprofit-exec-director", title: "Non-Profit Executive Director", sub: "Grant Fundraising · Donor Relations & Public Advocacy", layout: "centered", p: "#047857", s: "#10b981" }
+    { cat: "corporate", badge: "Analyst", tags: "business analyst consulting strategy corporate finance", roles: [
+      { id: "executive-pro", title: "Business Analyst & Strategy Lead", sub: "Quantitative Insights · Consulting & BI Leadership", layout: "executive", p: "#059669", s: "#047857" }
     ]},
-
-    // 6. Sales, Marketing & Growth (30 templates)
-    { cat: "corporate", badge: "Sales", tags: "sales resume corporate professional sales executive leadership revenue pipeline marketing", roles: [
-      { id: "executive-manager", title: "High-Ticket Sales Executive", sub: "Revenue Growth · B2B Key Accounts & Growth", layout: "left-sidebar", p: "#312e81", s: "#818cf8", bg: "#1e1b4b" },
-      { id: "enterprise-saas-sales", title: "B2B SaaS Enterprise Account Lead", sub: "$1M+ ARR Quotas · C-Level Executive Demos & Closing", layout: "executive", p: "#1e3a8a", s: "#3b82f6" },
-      { id: "marketing-colorful", title: "Colorful Digital Marketing Lead", sub: "Growth Marketing · Social Media & Paid Ad Campaigns", layout: "standard", p: "#f43f5e", s: "#fb7185", h: "linear-gradient(135deg, #f43f5e, #fb7185)" },
-      { id: "medical-sales-rep", title: "Medical Device Sales Specialist", sub: "Hospital Surgical Equipment · Clinical Surgeon Advisory", layout: "left-sidebar", p: "#0f766e", s: "#2dd4bf", bg: "#0f766e" },
-      { id: "real-estate-broker", title: "Luxury Real Estate Broker", sub: "High-Net-Worth Portfolio · Commercial & Luxury Listings", layout: "standard", p: "#b45309", s: "#d97706", h: "linear-gradient(135deg, #b45309, #d97706)", isPhoto: true },
-      { id: "growth-hacker", title: "Growth Hacker & Viral Funnels", sub: "A/B Experimentation · Acquisition Loop & Retention", layout: "standard", p: "#ef4444", s: "#f97316", h: "linear-gradient(135deg, #ef4444, #f97316)" },
-      { id: "seo-strategist", title: "SEO & Inbound Marketing Lead", sub: "Technical SEO Audits · Backlink Strategy & Content Hubs", layout: "standard", p: "#10b981", s: "#047857", h: "linear-gradient(135deg, #10b981, #047857)" },
-      { id: "social-media-manager", title: "Social Media & Community Lead", sub: "Omnichannel Engagement · TikTok, Instagram & Viral Reach", layout: "standard", p: "#ec4899", s: "#f43f5e", h: "linear-gradient(135deg, #ec4899, #f43f5e)" },
-      { id: "customer-success-lead", title: "Customer Success & Retention Lead", sub: "Net Promoter Score (NPS) · Churn Reduction & QBRs", layout: "standard", p: "#0d9488", s: "#3b82f6", h: "linear-gradient(135deg, #0d9488, #3b82f6)" },
-      { id: "pr-communications-mgr", title: "PR & Corporate Communications Lead", sub: "Crisis PR · Press Releases & Tier-1 Media Pitching", layout: "centered", p: "#1e1b4b", s: "#818cf8" }
+    { cat: "corporate", badge: "Executive", tags: "executive director c-suite leadership management governance", roles: [
+      { id: "executive-director", title: "Executive Director & Board VP", sub: "C-Suite Governance · Global Operational Growth", layout: "executive", p: "#1e3a8a", s: "#3b82f6" }
     ]},
-
-    // 7. Academic, Education, Teaching & Scholarships (30 templates)
-    { cat: "academic", badge: "Academic", tags: "academic scholarship college university oxford researcher education scholar teacher resume", roles: [
-      { id: "minimalist-ivy", title: "Ivy League Academic & Scholarship", sub: "Oxford Serif · Research Fellowship & Grants", layout: "centered", p: "#7f1d1d", s: "#991b1b" },
-      { id: "fresher-academic", title: "Teacher & STEM Educator", sub: "Classroom Leadership · Curriculum & Mentorship", layout: "standard", p: "#ea580c", s: "#f59e0b", h: "linear-gradient(135deg, #ea580c, #f59e0b)" },
-      { id: "scholarship-phd", title: "Merit Scholarship & PhD Candidate", sub: "Peer-Reviewed Papers · Academic Grants & Research CV", layout: "centered", p: "#1e3a8a", s: "#3b82f6" },
-      { id: "high-school-valedictorian", title: "High School Valedictorian CV", sub: "AP Scholar With Distinction · Science Olympiad Gold", layout: "centered", p: "#7f1d1d", s: "#b91c1c" },
-      { id: "research-assistant-stem", title: "University STEM Lab Researcher", sub: "Spectroscopy Analysis · Lab Protocol & Python Data", layout: "standard", p: "#1d4ed8", s: "#06b6d4", h: "linear-gradient(135deg, #1d4ed8, #06b6d4)" },
-      { id: "university-grantee", title: "University Fellowship & Grantee CV", sub: "National Endowment Grant · Research Proposal & Thesis", layout: "centered", p: "#1e3a8a", s: "#2563eb" },
-      { id: "fulbright-scholar", title: "Fulbright Scholar & Global Fellow", sub: "International Field Research · Cross-Cultural Ambassador", layout: "centered", p: "#064e3b", s: "#059669" },
-      { id: "primary-educator", title: "Primary & Montessori Educator", sub: "Child Development · Inclusive Learning & Parent Comms", layout: "standard", p: "#f59e0b", s: "#10b981", h: "linear-gradient(135deg, #f59e0b, #10b981)" },
-      { id: "stem-physics-teacher", title: "High School Physics & Math Master", sub: "Interactive Experiments · AP Physics Exam Mastery", layout: "standard", p: "#2563eb", s: "#7c3aed", h: "linear-gradient(135deg, #2563eb, #7c3aed)" },
-      { id: "university-professor", title: "Tenured University Professor", sub: "Department Chair · Peer Review Editor & Doctoral Advisor", layout: "centered", p: "#450a0a", s: "#991b1b" },
-      { id: "online-course-creator", title: "Online Course Creator & EdTech", sub: "100k+ Students Enrolled · Curriculum Video Production", layout: "standard", p: "#8b5cf6", s: "#06b6d4", h: "linear-gradient(135deg, #8b5cf6, #06b6d4)" }
+    { cat: "corporate", badge: "Sales", tags: "sales growth marketing digital revenue campaigns", roles: [
+      { id: "marketing-colorful", title: "Growth & Digital Marketing Lead", sub: "Growth Marketing · Social Media & Paid Ad Campaigns", layout: "standard", p: "#f43f5e", s: "#fb7185", h: "linear-gradient(135deg, #f43f5e, #fb7185)" }
     ]},
-
-    // 8. Students, High School, College & Internships (30 templates)
-    { cat: "fresher", badge: "Fresher", tags: "high school college fresher starter internship resume simple student entry level", roles: [
-      { id: "fresher-starter", title: "High School & College Starter", sub: "Internship Ready · Skills-First & Education", layout: "left-sidebar", p: "#0d9488", s: "#06b6d4", bg: "#0d9488" },
-      { id: "college-grad", title: "College Graduate First Career", sub: "University Honors · Campus Leadership & Co-curriculars", layout: "standard", p: "#3b82f6", s: "#6366f1", h: "linear-gradient(135deg, #3b82f6, #6366f1)" },
-      { id: "internship-pro", title: "Summer Internship Starter Pro", sub: "Corporate Co-op · Capstone Projects & Soft Skills", layout: "left-sidebar", p: "#0284c7", s: "#bae6fd", bg: "#0284c7" },
-      { id: "fresher-universal", title: "Fresher Entry Starter Universal", sub: "Zero Experience Friendly · Fast-Track Professional CV", layout: "standard", p: "#4338ca", s: "#6366f1" },
-      { id: "high-school-parttime", title: "High School First Job Starter", sub: "Customer Service · School Clubs & Fast-Learner Profile", layout: "standard", p: "#0d9488", s: "#14b8a6" },
-      { id: "campus-ambassador", title: "Campus Brand Ambassador", sub: "Student Leadership · Event Organizing & Campus Outreach", layout: "standard", p: "#f59e0b", s: "#ea580c", h: "linear-gradient(135deg, #f59e0b, #ea580c)" },
-      { id: "swe-summer-intern", title: "Software Engineering Summer Intern", sub: "Git Pull Requests · Unit Testing & Agile Feature Sprints", layout: "left-sidebar", p: "#38bdf8", s: "#0284c7", bg: "#0f172a" },
-      { id: "finance-winter-intern", title: "Financial Services Co-op Intern", sub: "Portfolio Reconciliation · Bloomberg Terminal & Excel", layout: "left-sidebar", p: "#1d4ed8", s: "#93c5fd", bg: "#172554" },
-      { id: "design-studio-intern", title: "Graphic Design Studio Intern", sub: "Social Media Collateral · Vector Retouching & Mockups", layout: "standard", p: "#d946ef", s: "#8b5cf6", h: "linear-gradient(135deg, #d946ef, #8b5cf6)" },
-      { id: "clinical-nursing-trainee", title: "Clinical Nursing Practicum Trainee", sub: "Patient Vitals · Electronic Health Records & Triage", layout: "left-sidebar", p: "#0f766e", s: "#5eead4", bg: "#0f766e" },
-      { id: "gap-year-volunteer", title: "International Volunteer & NGO Starter", sub: "Community Outreach · Cross-Cultural Field Leadership", layout: "standard", p: "#059669", s: "#34d399", h: "linear-gradient(135deg, #059669, #34d399)" }
+    { cat: "academic", badge: "Academic", tags: "academic scholarship ivy league oxford researcher education cv", roles: [
+      { id: "minimalist-ivy", title: "Ivy League Academic & Scholarship", sub: "Oxford Serif · Research Fellowship & Grants", layout: "centered", p: "#7f1d1d", s: "#991b1b" }
     ]},
-
-    // 9. Accounting, Finance & Legal (30 templates)
-    { cat: "corporate", badge: "Finance", tags: "accounting resumes corporate finance accounting tax audit professional cpa legal", roles: [
-      { id: "minimalist-monochrome", title: "CPA Accounting & Financial Audit", sub: "Monochrome · Tax Compliance & Analytics", layout: "left-sidebar", p: "#171717", s: "#404040", bg: "#171717" },
-      { id: "legal-pro", title: "Corporate Legal & Compliance", sub: "Contract Negotiation · Regulatory Risk & Corporate Law", layout: "executive", p: "#1e293b", s: "#475569" },
-      { id: "investment-banking", title: "Investment Banking Analyst", sub: "DCF Valuation · Financial Modeling & M&A Pitch Books", layout: "left-sidebar", p: "#1d4ed8", s: "#60a5fa", bg: "#172554" },
-      { id: "forensic-auditor", title: "Forensic Accountant & Fraud Auditor", sub: "Anti-Money Laundering · Fraud Investigation & Compliance", layout: "standard", p: "#18181b", s: "#525252" },
-      { id: "private-equity", title: "Private Equity & VC Associate", sub: "Due Diligence · Cap Table Modeling & Portfolio Growth", layout: "executive", p: "#0f766e", s: "#14b8a6" },
-      { id: "tax-strategist", title: "Senior Tax & Wealth Strategist", sub: "Corporate Tax Credits · Cross-Border Structuring", layout: "left-sidebar", p: "#404040", s: "#a3a3a3", bg: "#262626" },
-      { id: "ip-patent-lawyer", title: "Intellectual Property & Patent Counsel", sub: "Patent Prosecution · Trademark Defense & Tech Licensing", layout: "executive", p: "#1e1b4b", s: "#6366f1" },
-      { id: "litigation-counsel", title: "Litigation & Trial Defense Counsel", sub: "Courtroom Advocacy · Appellate Briefs & Deposition", layout: "centered", p: "#18181b", s: "#3f3f46" },
-      { id: "corporate-paralegal", title: "Senior Corporate Paralegal", sub: "SEC Filings · Corporate Governance & Contract Discovery", layout: "standard", p: "#334155", s: "#64748b" },
-      { id: "financial-planner-cfp", title: "Certified Financial Planner (CFP)", sub: "Retirement Portfolios · Asset Allocation & Wealth Advisory", layout: "executive", p: "#047857", s: "#10b981" }
+    { cat: "fresher", badge: "Fresher", tags: "fresher starter student high school college internship entry level", roles: [
+      { id: "fresher-starter", title: "Fresher & Student Starter", sub: "Skills-First · Internship Ready & Education", layout: "starter", p: "#0d9488", s: "#06b6d4", bg: "#0d9488" }
     ]},
-
-    // 10. Media, Music, Acting & Entertainment (35 templates)
-    { cat: "creative", badge: "Media", tags: "acting model resume photo creative acting resume headshot theatre film videographer music", roles: [
-      { id: "creative-artistic", title: "Acting & Theatre Portfolio", sub: "Headshot Showcase · Stage & Screen Casting CV", layout: "standard", p: "#ec4899", s: "#f97316", h: "linear-gradient(135deg, #ec4899, #f97316)", isPhoto: true },
-      { id: "creative-motion", title: "Videographer & Film Editor", sub: "Cinematography · Premiere Pro & Motion Design", layout: "timeline", p: "#9333ea", s: "#ec4899", h: "linear-gradient(135deg, #9333ea, #ec4899)" },
-      { id: "music-pro", title: "Music Producer & Audio Engineer", sub: "Sound Synthesis · Ableton Live & Studio Mixing", layout: "standard", p: "#e11d48", s: "#fda4af", h: "linear-gradient(135deg, #e11d48, #be185d)" },
-      { id: "model-pro", title: "Fashion Model Comp Card", sub: "High Fashion · Runway & Commercial Brand Ambassador", layout: "left-sidebar", p: "#c026d3", s: "#d946ef", bg: "#fdf4ff", isPhoto: true },
-      { id: "voiceover-artist", title: "Voice Actor & Audiobook Narrator", sub: "Character Voices · Home Studio Audio & Commercial VO", layout: "standard", p: "#d946ef", s: "#ec4899", h: "linear-gradient(135deg, #d946ef, #ec4899)" },
-      { id: "commercial-actor", title: "Commercial & Television Actor", sub: "SAG-AFTRA Eligible · On-Camera Improvisation & Screen", layout: "standard", p: "#ea580c", s: "#f43f5e", h: "linear-gradient(135deg, #ea580c, #f43f5e)", isPhoto: true },
-      { id: "theatre-director", title: "Theatre Director & Stage Manager", sub: "Cast Blocking · Lighting Cues & Production Schedules", layout: "standard", p: "#4c1d95", s: "#831843", h: "linear-gradient(135deg, #4c1d95, #831843)" },
-      { id: "cinematographer-dop", title: "Documentary Cinematographer & DOP", sub: "Arri / RED Cameras · Color Grading (DaVinci Resolve)", layout: "timeline", p: "#f59e0b", s: "#d97706", h: "linear-gradient(135deg, #09090b, #27272a)" },
-      { id: "drone-pilot", title: "FAA Drone Pilot & Aerial Film Maker", sub: "4K Aerial Tracking · Commercial Real Estate & Cinema", layout: "standard", p: "#0284c7", s: "#0f172a", h: "linear-gradient(135deg, #0284c7, #0f172a)" },
-      { id: "live-sound-engineer", title: "Live Concert Sound Engineer", sub: "FOH Mixing · Dante Audio Networks & Wireless Mics", layout: "standard", p: "#be123c", s: "#f43f5e", h: "linear-gradient(135deg, #18181b, #be123c)" },
-      { id: "film-composer", title: "Film Score & Orchestral Composer", sub: "MIDI Orchestration · Film Scoring & Mood Textures", layout: "centered", p: "#3b0764", s: "#6b21a8" },
-      { id: "runway-model", title: "Editorial & Runway Fashion Model", sub: "Fashion Week Runway · Haute Couture & Lookbooks", layout: "left-sidebar", p: "#be185d", s: "#f472b6", bg: "#fdf2f8", isPhoto: true },
-      { id: "fitness-lifestyle-model", title: "Athletic & Lifestyle Model", sub: "Sportswear Commercials · Active Movement & Health Brand", layout: "standard", p: "#059669", s: "#0d9488", h: "linear-gradient(135deg, #059669, #0d9488)", isPhoto: true }
+    { cat: "corporate", badge: "Finance", tags: "cpa accounting finance audit legal compliance tax", roles: [
+      { id: "minimalist-monochrome", title: "CPA Accounting & Financial Audit", sub: "Monochrome · Tax Compliance & Analytics", layout: "left-sidebar", p: "#171717", s: "#404040", bg: "#171717" }
     ]},
-
-    // 11. STEM, Robotics & Industrial Engineering (25 templates)
-    { cat: "tech", badge: "STEM", tags: "stem engineering tech tech resume hardware cad robotics mechanical civil electrical", roles: [
-      { id: "stem-robotics", title: "STEM Mechanical & Robotics Engineer", sub: "CAD Modeling · Automation Systems & Hardware Prototyping", layout: "executive", p: "#334155", s: "#64748b" },
-      { id: "mechanical-cad-engineer", title: "Mechanical Design & SolidWorks Pro", sub: "Finite Element Analysis (FEA) · Injection Molding CAD", layout: "executive", p: "#334155", s: "#475569" },
-      { id: "embedded-iot-engineer", title: "Embedded Systems & IoT Engineer", sub: "C/C++ Firmware · ARM Cortex & Microcontroller PCB", layout: "left-sidebar", p: "#059669", s: "#34d399", bg: "#022c22" },
-      { id: "civil-structural-engineer", title: "Civil & Infrastructure Engineer", sub: "AutoCAD Civil 3D · Structural Load Calculations & Site", layout: "executive", p: "#1e293b", s: "#64748b" },
-      { id: "biomedical-engineer", title: "Biomedical & Clinical Device Engineer", sub: "FDA Medical Device Compliance · Biosensors & ISO 13485", layout: "standard", p: "#0f766e", s: "#0284c7", h: "linear-gradient(135deg, #0f766e, #0284c7)" },
-      { id: "aerospace-engineer", title: "Aerospace & Flight Systems Engineer", sub: "Aerodynamics Simulation · Avionics & Propulsion", layout: "executive", p: "#0c4a6e", s: "#0284c7" },
-      { id: "chemical-process-engineer", title: "Chemical Process & Plant Engineer", sub: "Process Flow Diagrams · Aspen HYSYS & Safety Compliance", layout: "standard", p: "#b45309", s: "#f59e0b", h: "linear-gradient(135deg, #b45309, #f59e0b)" },
-      { id: "environmental-engineer", title: "Environmental & Sustainability Engineer", sub: "Carbon Footprint Audits · Renewable Energy Systems", layout: "standard", p: "#15803d", s: "#4ade80", h: "linear-gradient(135deg, #15803d, #4ade80)" }
+    { cat: "creative", badge: "Media", tags: "acting media theatre film headshot portfolio performing arts", roles: [
+      { id: "creative-artistic", title: "Media & Performing Arts Portfolio", sub: "Headshot Showcase · Stage & Screen Casting CV", layout: "standard", p: "#ec4899", s: "#f97316", h: "linear-gradient(135deg, #ec4899, #f97316)", isPhoto: true }
     ]},
-
-    // 12. Freelance, Writers & Universal (25 templates)
-    { cat: "minimalist", badge: "Universal", tags: "writer resume freelance resume minimalist simple universal standard clean ats", roles: [
-      { id: "minimalist-essential", title: "Content Writer & Copywriter", sub: "SEO Copywriting · Editorial & Content Strategy", layout: "centered", p: "#334155", s: "#64748b" },
-      { id: "minimalist-clean-slate", title: "Clean Slate One-Pager", sub: "Simple · Ultra Readable · Multi-purpose Standard", layout: "standard", p: "#1e293b", s: "#475569" },
-      { id: "freelance-pro", title: "Freelance Digital Consultant", sub: "Remote Client Success · Growth Deliverables & Advisory", layout: "standard", p: "#0284c7", s: "#2563eb", h: "linear-gradient(135deg, #0284c7, #2563eb)" },
-      { id: "upwork-top-rated", title: "Upwork Top-Rated Fullstack Contractor", sub: "100% Job Success Score · 5-Star Client Reviews & API", layout: "standard", p: "#10b981", s: "#0284c7", h: "linear-gradient(135deg, #10b981, #0284c7)" },
-      { id: "technical-copywriter", title: "Freelance Technical Copywriter", sub: "Whitepapers, API Docs & Developer Documentation", layout: "centered", p: "#334155", s: "#475569" },
-      { id: "remote-creative-director", title: "Remote Creative Agency Director", sub: "International Client Campaigns · Remote Squad Leadership", layout: "left-sidebar", p: "#f43f5e", s: "#fda4af", bg: "#18181b" },
-      { id: "independent-consultant", title: "Independent Strategy Consultant", sub: "Market Entry Studies · Operating Model Restructuring", layout: "executive", p: "#047857", s: "#065f46" },
-      { id: "virtual-assistant", title: "Digital Nomad Virtual Assistant", sub: "Calendar Management · Remote Inbox & Project Support", layout: "standard", p: "#6366f1", s: "#818cf8" },
-      { id: "universal-standard-ats", title: "Universal Standard ATS Resume", sub: "100% Parsing Accuracy · Clean Single-Column Structure", layout: "centered", p: "#0f172a", s: "#334155" }
+    { cat: "tech", badge: "STEM", tags: "stem robotics engineering cad automation hardware", roles: [
+      { id: "stem-robotics", title: "STEM Mechanical & Robotics Engineer", sub: "CAD Modeling · Automation Systems & Hardware Prototyping", layout: "executive", p: "#334155", s: "#64748b" }
     ]}
-  ];
-
-  const STYLE_VARIANTS = [
-    { suffix: "", namePrefix: "", layoutMod: null },
-    { suffix: "-pro", namePrefix: "Executive ", layoutMod: "executive" },
-    { suffix: "-minimal", namePrefix: "Minimalist ", layoutMod: "centered" }
   ];
 
   const ALL_320_TEMPLATES = [];
   TEMPLATE_CLUSTERS.forEach(cluster => {
     cluster.roles.forEach(role => {
-      STYLE_VARIANTS.forEach((variant, vIdx) => {
-        const uniqueId = `${role.id}${variant.suffix}`;
-        const uniqueTitle = `${variant.namePrefix}${role.title}`;
-        const currentLayout = variant.layoutMod || role.layout || "standard";
-
-        let finalTags = `${cluster.tags} ${role.title.toLowerCase()} ${cluster.cat}`;
-        if (currentLayout === "centered") finalTags += " minimalist simple clean";
-        if (currentLayout === "executive") finalTags += " corporate professional executive";
-        if (role.isPhoto) finalTags += " photo headshot acting model";
-
-        ALL_320_TEMPLATES.push({
-          id: uniqueId,
-          key: uniqueId,
-          name: uniqueTitle,
-          title: uniqueTitle,
-          tag: role.sub,
-          badge: vIdx === 1 ? "Executive" : (vIdx === 2 ? "Minimal" : cluster.badge),
-          category: cluster.cat.charAt(0).toUpperCase() + cluster.cat.slice(1),
-          tags: finalTags,
-          layout: currentLayout,
-          gradient: role.h || `linear-gradient(135deg, ${role.p}, ${role.s || '#3b82f6'})`,
-          headBg: role.h,
-          primary: role.p,
-          secondary: role.s,
-          accent: role.s || "#00c4cc",
-          sidebarBg: role.bg || role.p,
-          isPhoto: role.isPhoto || false
-        });
+      ALL_320_TEMPLATES.push({
+        id: role.id,
+        key: role.id,
+        name: role.title,
+        title: role.title,
+        tag: role.sub,
+        badge: cluster.badge,
+        category: cluster.cat.charAt(0).toUpperCase() + cluster.cat.slice(1),
+        tags: `${cluster.tags} ${role.title.toLowerCase()} ${cluster.cat}`,
+        layout: role.layout || "standard",
+        gradient: role.h || `linear-gradient(135deg, ${role.p}, ${role.s || '#3b82f6'})`,
+        headBg: role.h,
+        primary: role.p,
+        secondary: role.s,
+        accent: role.s || "#00c4cc",
+        sidebarBg: role.bg || role.p,
+        isPhoto: role.isPhoto || false
       });
     });
   });
@@ -567,7 +406,7 @@ options.forEach(function (card) {
   }
 
   const stepsMeta = [
-    { id: 0, key: "templates", title: "Choose Resume Template" },
+    { id: 0, key: "templates", title: "Choose Template & Custom Colors" },
     { id: 1, key: "personal", title: "Personal Information" },
     { id: 2, key: "education", title: "Education" },
     { id: 3, key: "skills", title: "Skills" },
@@ -582,6 +421,7 @@ options.forEach(function (card) {
   let state = {
     current: 1,
     selectedTemplate: "modern-minimalist",
+    customColor: null,
     personal: {
       fullName: "",
       headline: "",
@@ -676,6 +516,9 @@ options.forEach(function (card) {
   // Initialize
   function init() {
     loadState();
+    if (!state.current || state.current === 0) {
+      state.current = 1;
+    }
 
     try {
       const urlParams = new URLSearchParams(window.location.search);
@@ -725,11 +568,8 @@ options.forEach(function (card) {
     renderSidebar();
     if (!mainCard) return;
     
-    // Trigger smooth entrance animation on step change
-    mainCard.innerHTML = ""; // clear
-    mainCard.classList.remove("step-animate-in");
-    void mainCard.offsetWidth; // trigger reflow
-    mainCard.classList.add("step-animate-in");
+    // Instant sharp render on step change
+    mainCard.innerHTML = "";
 
     const meta = stepsMeta.find((s) => s.id === step);
     const header = createHeader(meta ? meta.title : "Step Details");
@@ -775,21 +615,54 @@ options.forEach(function (card) {
 
   /* ---------- Step Renderers ---------- */
 
-  // 0. Templates Selector (300+ Templates Searchable & Categorized)
+  // 0. Templates Selector (Clean, fast & searchable with Color Customizer)
   function renderTemplatesSelector() {
     const wrapper = document.createElement("div");
     wrapper.className = "form";
     const selectedKey = state.selectedTemplate || "modern-minimalist";
+    const activeCustomHex = state.customColor || "#3b82f6";
 
     wrapper.innerHTML = `
-      <p style="margin:0 0 12px;font-size:13.5px;color:var(--canva-muted)">Choose any of 300+ professional template styles to customize your resume:</p>
+      <!-- Live Template Color Palette Customizer Card -->
+      <div style="background:#f8fafc;border:1px solid #cbd5e1;border-radius:10px;padding:12px 14px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,0.03)">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+          <strong style="font-size:13px;color:#0f172a;display:flex;align-items:center;gap:6px">
+            🎨 <span>Customize Template Color Theme</span>
+          </strong>
+          <button id="drawerResetColorBtn" type="button" style="border:none;background:#e2e8f0;color:#475569;font-size:11px;font-weight:700;padding:3px 9px;border-radius:10px;cursor:pointer" title="Reset to template default color">Reset Default</button>
+        </div>
+        
+        <p style="margin:0 0 10px;font-size:12px;color:var(--canva-muted)">Click any color palette or pick a custom hex color to change your resume accent:</p>
+        
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+          <div class="drawer-color-swatches" style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+            <button type="button" class="color-swatch-dot ${state.customColor === '#2563eb' ? 'active' : ''}" data-color="#2563eb" style="background:#2563eb;width:22px;height:22px" title="Royal Blue"></button>
+            <button type="button" class="color-swatch-dot ${state.customColor === '#7c3aed' ? 'active' : ''}" data-color="#7c3aed" style="background:#7c3aed;width:22px;height:22px" title="Electric Violet"></button>
+            <button type="button" class="color-swatch-dot ${state.customColor === '#059669' ? 'active' : ''}" data-color="#059669" style="background:#059669;width:22px;height:22px" title="Emerald Green"></button>
+            <button type="button" class="color-swatch-dot ${state.customColor === '#dc2626' ? 'active' : ''}" data-color="#dc2626" style="background:#dc2626;width:22px;height:22px" title="Ruby Red"></button>
+            <button type="button" class="color-swatch-dot ${state.customColor === '#ea580c' ? 'active' : ''}" data-color="#ea580c" style="background:#ea580c;width:22px;height:22px" title="Sunset Orange"></button>
+            <button type="button" class="color-swatch-dot ${state.customColor === '#d97706' ? 'active' : ''}" data-color="#d97706" style="background:#d97706;width:22px;height:22px" title="Amber Gold"></button>
+            <button type="button" class="color-swatch-dot ${state.customColor === '#0284c7' ? 'active' : ''}" data-color="#0284c7" style="background:#0284c7;width:22px;height:22px" title="Ocean Cyan"></button>
+            <button type="button" class="color-swatch-dot ${state.customColor === '#0f766e' ? 'active' : ''}" data-color="#0f766e" style="background:#0f766e;width:22px;height:22px" title="Deep Teal"></button>
+            <button type="button" class="color-swatch-dot ${state.customColor === '#e11d48' ? 'active' : ''}" data-color="#e11d48" style="background:#e11d48;width:22px;height:22px" title="Rose Magenta"></button>
+            <button type="button" class="color-swatch-dot ${state.customColor === '#0f172a' ? 'active' : ''}" data-color="#0f172a" style="background:#0f172a;width:22px;height:22px" title="Midnight Slate"></button>
+          </div>
+          
+          <label style="display:inline-flex;align-items:center;gap:6px;background:#ffffff;border:1px solid #cbd5e1;padding:3px 10px;border-radius:8px;font-size:12px;font-weight:700;color:#334155;cursor:pointer">
+            <span>Custom Color:</span>
+            <input type="color" id="drawerColorPicker" value="${activeCustomHex}" style="width:24px;height:24px;border:none;border-radius:4px;cursor:pointer;padding:0">
+          </label>
+        </div>
+      </div>
+
+      <p style="margin:0 0 10px;font-size:13.5px;color:var(--canva-muted)">Choose any of 300+ professional template styles to customize your resume layout:</p>
       
       <div style="margin-bottom:12px">
-        <input type="text" id="tmplStudioSearch" placeholder="🔍 Search by role (e.g. Python, Teacher, Sales, Analyst, Design)..." style="width:100%;padding:9px 14px;border-radius:8px;border:1px solid #cbd5e1;font-size:13px">
+        <input type="text" id="tmplStudioSearch" placeholder="🔍 Search template by role (e.g. Python, Teacher, Sales, Analyst, Design)..." style="width:100%;padding:9px 14px;border-radius:8px;border:1px solid #cbd5e1;font-size:13px;background:#ffffff">
       </div>
 
       <div class="filter-pills" style="margin-bottom:14px;justify-content:flex-start;overflow-x:auto;padding-bottom:4px;white-space:nowrap">
-        <button class="pill active" data-cat="all" style="padding:5px 12px;font-size:12px">All (300+)</button>
+        <button class="pill active" data-cat="all" style="padding:5px 12px;font-size:12px">All</button>
         <button class="pill" data-cat="tech" style="padding:5px 12px;font-size:12px">Tech & Coding</button>
         <button class="pill" data-cat="creative" style="padding:5px 12px;font-size:12px">UI/UX & Design</button>
         <button class="pill" data-cat="corporate" style="padding:5px 12px;font-size:12px">Corporate & Exec</button>
@@ -801,7 +674,7 @@ options.forEach(function (card) {
       <div class="template-select-grid" id="tmplDrawerGrid" style="max-height:380px;overflow-y:auto;padding-right:4px">
         ${ALL_320_TEMPLATES.map((t) => `
           <div class="tmpl-select-card ${t.id === selectedKey ? 'selected' : ''}" data-key="${t.id}" data-category="${t.category.toLowerCase()}" data-tags="${t.tags.toLowerCase()} ${t.name.toLowerCase()}">
-            <div class="tmpl-select-swatch" style="background:${t.gradient}"></div>
+            <div class="tmpl-select-swatch" style="background:${state.customColor || t.gradient}"></div>
             <div class="tmpl-select-info">
               <div class="tmpl-select-name">${escape(t.name)}</div>
               <div class="tmpl-select-tag">${escape(t.category)} · ${escape(t.tag)}</div>
@@ -816,6 +689,28 @@ options.forEach(function (card) {
         <button id="toNextFromTmpl" class="btn primary">Next: Personal Info ›</button>
       </div>
     `;
+
+    // Hook drawer color picker
+    const drawerPicker = wrapper.querySelector("#drawerColorPicker");
+    if (drawerPicker) {
+      drawerPicker.addEventListener("input", (e) => applyCustomColor(e.target.value));
+      drawerPicker.addEventListener("change", (e) => applyCustomColor(e.target.value));
+    }
+
+    wrapper.querySelector("#drawerResetColorBtn")?.addEventListener("click", () => {
+      resetCustomColor();
+      renderStep(0);
+    });
+
+    wrapper.querySelectorAll(".drawer-color-swatches .color-swatch-dot").forEach((dot) => {
+      dot.onclick = () => {
+        const c = dot.dataset.color;
+        if (c) {
+          applyCustomColor(c);
+          renderStep(0);
+        }
+      };
+    });
 
     const searchInput = wrapper.querySelector("#tmplStudioSearch");
     const pills = wrapper.querySelectorAll(".filter-pills .pill");
@@ -964,6 +859,7 @@ options.forEach(function (card) {
               state.personal.portfolio = inp.value;
               break;
           }
+          if (typeof updateAtsScore === "function") updateAtsScore();
           saveState();
         });
       });
@@ -1656,6 +1552,7 @@ options.forEach(function (card) {
     ta.addEventListener("input", () => {
       state.summary.text = ta.value;
       charCount.textContent = ta.value.length;
+      if (typeof updateAtsScore === "function") updateAtsScore();
       saveState();
     });
     wrapper.querySelector("#saveSum").onclick = () => {
@@ -1706,6 +1603,53 @@ options.forEach(function (card) {
 
   /* ---------- Utilities ---------- */
 
+  function applyCustomColor(color) {
+    state.customColor = color;
+    saveState();
+    updateColorSwatchesActiveState();
+    renderLivePreview();
+  }
+
+  function resetCustomColor() {
+    state.customColor = null;
+    saveState();
+    updateColorSwatchesActiveState();
+    renderLivePreview();
+  }
+
+  function updateColorSwatchesActiveState() {
+    const key = state.selectedTemplate || "modern-minimalist";
+    const currentTheme = getTemplateTheme(key);
+    const currentColor = (state.customColor || currentTheme.primary || "").toLowerCase();
+
+    document.querySelectorAll(".color-swatch-dot").forEach((dot) => {
+      const dotColor = (dot.dataset.color || "").toLowerCase();
+      dot.classList.toggle("active", dotColor === currentColor);
+    });
+
+    const topPicker = document.getElementById("templateColorPicker");
+    if (topPicker && state.customColor) {
+      topPicker.value = state.customColor;
+    }
+    const drawerPicker = document.getElementById("drawerColorPicker");
+    if (drawerPicker && state.customColor) {
+      drawerPicker.value = state.customColor;
+    }
+
+    const indicator = document.getElementById("customColorIndicator");
+    if (indicator) {
+      if (state.customColor) {
+        indicator.style.background = state.customColor;
+        indicator.textContent = "✓";
+        indicator.style.color = "#ffffff";
+      } else {
+        indicator.style.background = "conic-gradient(from 180deg, red, yellow, lime, aqua, blue, magenta, red)";
+        indicator.textContent = "✨";
+        indicator.style.color = "inherit";
+      }
+    }
+  }
+
   function renderLivePreview() {
     const paperCanvas = document.getElementById("paperCanvas");
     if (paperCanvas) {
@@ -1714,6 +1658,13 @@ options.forEach(function (card) {
     if (livePreview) {
       livePreview.innerHTML = buildLivePreviewHtml();
     }
+    const tmplNameEl = document.getElementById("activeTemplateName");
+    if (tmplNameEl) {
+      const key = state.selectedTemplate || "modern-minimalist";
+      const currentTheme = getTemplateTheme(key);
+      tmplNameEl.textContent = currentTheme?.name || "Modern Minimalist";
+    }
+    updateColorSwatchesActiveState();
   }
 
   function buildLivePreviewHtml() {
@@ -1728,64 +1679,174 @@ options.forEach(function (card) {
   function buildResumeHtml() {
     const p = state.personal || {};
     const key = state.selectedTemplate || "modern-minimalist";
-    const theme = getTemplateTheme(key);
+    const baseTheme = getTemplateTheme(key);
+    const activeColor = state.customColor || state.accentColor || baseTheme.primary || "#3b82f6";
+    const activeSecondary = state.customSecondary || (state.customColor ? state.customColor : (baseTheme.secondary || activeColor));
+    const activeGradient = state.customColor
+      ? `linear-gradient(135deg, ${activeColor} 0%, ${activeSecondary} 100%)`
+      : (baseTheme.gradient || `linear-gradient(135deg, ${activeColor} 0%, ${activeSecondary} 100%)`);
+    const theme = {
+      ...baseTheme,
+      primary: activeColor,
+      secondary: activeSecondary,
+      gradient: activeGradient,
+      sidebarBg: (state.customColor && baseTheme.layout === "left-sidebar" ? activeColor : (baseTheme.sidebarBg || activeColor)),
+      headerBg: (state.customColor ? activeColor : (baseTheme.headerBg || activeColor))
+    };
+    const activeFont = state.fontFamily || theme.font || "'Outfit', 'Inter', sans-serif";
 
-    const tech = (state.skills?.technical || []).join(", ");
-    const soft = (state.skills?.soft || []).join(", ");
-    const lang = (state.skills?.languages || []).join(", ");
-    const cert = (state.skills?.certifications || []).join(", ");
+    const hasPersonalName = Boolean(p.fullName && p.fullName.trim().length > 0);
+    const hasPersonalHeadline = Boolean(p.headline && p.headline.trim().length > 0);
+    const hasPersonalEmail = Boolean(p.email && p.email.trim().length > 0);
+    const hasPersonalPhone = Boolean(p.phone && p.phone.trim().length > 0);
 
-    const hasPersonalName = p.fullName && p.fullName.trim().length > 0;
-    const hasPersonalHeadline = p.headline && p.headline.trim().length > 0;
-    const hasPersonalEmail = p.email && p.email.trim().length > 0;
-    const hasPersonalPhone = p.phone && p.phone.trim().length > 0;
+    const sampleExpList = [
+      {
+        title: "Software Engineering Intern",
+        company: "TechNova Solutions",
+        type: "Internship",
+        start: "Jun 2023",
+        end: "Dec 2023",
+        responsibilities: "• Developed interactive responsive user interfaces using React and modern CSS, boosting user engagement by 28%.\n• Built RESTful API endpoints and integrated database caching layer, reducing response latency by 35%.\n• Collaborated with senior engineers in an agile sprint environment to deliver clean, unit-tested code."
+      },
+      {
+        title: "Frontend Web Developer (Project Lead)",
+        company: "Campus Developer Community",
+        type: "Part-Time",
+        start: "Jan 2023",
+        end: "May 2023",
+        responsibilities: "• Led a team of 4 student developers to build the official university event portal used by 5,000+ active students.\n• Implemented automated CI/CD deployment pipelines using GitHub Actions."
+      }
+    ];
 
-    const errBox = (title, stepNum) => `<div style="border:2px dashed #ef4444;background:#fef2f2;color:#dc2626;padding:12px;border-radius:8px;font-size:12.5px;font-weight:700;text-align:center;margin:10px 0;">[${title} Section Empty] - Please fill out Step ${stepNum} in the form drawer.</div>`;
+    const sampleProjList = [
+      {
+        name: "Cloud Task Orchestration & Management System",
+        tech: "React, Node.js, Express, MongoDB, TailwindCSS",
+        github: "https://github.com/alexmorgan/cloud-tasks",
+        demo: "https://cloudtasks.demo.app",
+        description: "• Built a full-stack distributed task manager with real-time WebSocket notifications and role-based JWT authentication.\n• Implemented drag-and-drop Kanban workflow and automated analytics dashboard."
+      },
+      {
+        name: "AI-Powered Resume & Portfolio Builder",
+        tech: "JavaScript, HTML5/CSS3, Vite, REST API",
+        github: "https://github.com/alexmorgan/resume-builder",
+        demo: "https://alexbuilder.demo.app",
+        description: "• Engineered interactive live client-side PDF export tool with 20+ customizable theme palettes.\n• Designed accessible, responsive UI with WCAG 2.1 compliance."
+      }
+    ];
 
-    const nameText = hasPersonalName ? escape(p.fullName) : `<span style="color:#dc2626;border:1.5px dashed #fca5a5;padding:2px 8px;border-radius:6px;background:#fef2f2;font-size:15px;font-weight:700;">[Full Name Missing]</span>`;
-    const headlineText = hasPersonalHeadline ? escape(p.headline) : `<span style="color:#dc2626;font-size:12.5px;font-weight:600;">[Headline Missing]</span>`;
-    const emailText = hasPersonalEmail ? escape(p.email) : `<span style="color:#dc2626;">[Email Missing]</span>`;
-    const phoneText = hasPersonalPhone ? escape(p.phone) : `<span style="color:#dc2626;">[Phone Missing]</span>`;
-    const addressText = p.address ? escape(p.address) : "Location Not Specified";
+    const sampleEduList = [
+      {
+        degree: "B.Tech / B.S. in Computer Science & Engineering",
+        institution: "State University of Technology",
+        start: "2020",
+        end: "2024"
+      }
+    ];
 
-    const hasSummary = state.summary?.text && state.summary.text.trim().length > 0;
-    const summaryText = hasSummary ? escape(state.summary.text) : "";
-    const summaryBlock = hasSummary ? `<p style="font-size:13px; color:#334155; margin:0; line-height:1.6; word-break:break-all !important; overflow-wrap:break-word !important; white-space:normal !important; max-width:100%; box-sizing:border-box;">${summaryText}</p>` : errBox("Summary", 7);
+    const sampleAchList = [
+      {
+        title: "1st Place Winner - National Hackathon 2023",
+        org: "TechFest Innovation Summit",
+        date: "Nov 2023",
+        description: "Built an automated disaster alert platform among 150+ competing teams."
+      },
+      {
+        title: "Dean's List for Academic Excellence",
+        org: "School of Engineering",
+        date: "2022 - 2023",
+        description: "Maintained top 5% GPA across consecutive academic semesters."
+      }
+    ];
 
-    const hasExp = state.experience && state.experience.length > 0;
-    const expList = hasExp ? state.experience : [];
-    const expBlock = (expRenderFn) => hasExp ? expList.map(expRenderFn).join("") : errBox("Experience", 5);
+    const defaultSummary = "Enthusiastic and results-driven Computer Science graduate with hands-on experience in full-stack web development, modern frontend frameworks, and RESTful API architecture. Passionate about building high-performance, user-centric web applications and eager to contribute to innovative software engineering teams.";
+    const defaultTechSkills = ["JavaScript (ES6+)", "TypeScript", "React.js", "Node.js", "Express", "HTML5 & CSS3", "Python", "SQL / PostgreSQL", "Git & GitHub", "Docker", "REST APIs"];
+    const defaultSoftSkills = ["Problem Solving", "Agile / Scrum", "Team Collaboration", "Fast Learner", "Effective Communication"];
+    const defaultLanguages = "English (Professional Working), Bengali (Native / Fluent), Hindi (Conversational)";
+    const defaultCerts = "AWS Certified Cloud Practitioner, Meta Certified Frontend Developer";
 
-    const hasProj = state.projects && state.projects.length > 0;
-    const projList = hasProj ? state.projects : [];
-    const projBlock = (projRenderFn) => hasProj ? projList.map(projRenderFn).join("") : errBox("Projects", 4);
+    const nameText = hasPersonalName ? escape(p.fullName) : "Alex Morgan";
+    const headlineText = hasPersonalHeadline ? escape(p.headline) : (theme.name || "Junior Full Stack Developer & CS Graduate");
+    const emailText = hasPersonalEmail ? escape(p.email) : "alex.morgan@example.com";
+    const phoneText = hasPersonalPhone ? escape(p.phone) : "+1 (555) 019-2834";
+    const addressText = (p.address && p.address.trim().length > 0) ? escape(p.address) : "San Francisco, CA, USA";
+    const linkedinUrl = (p.linkedin && p.linkedin.trim().length > 0) ? escape(p.linkedin) : "https://linkedin.com/in/alexmorgan";
+    const portfolioUrl = (p.portfolio && p.portfolio.trim().length > 0) ? escape(p.portfolio) : "https://alexmorgan.dev";
 
-    const hasEdu = state.education && state.education.length > 0;
-    const eduList = hasEdu ? state.education : [];
-    const eduBlock = (eduRenderFn) => hasEdu ? eduList.map(eduRenderFn).join("") : errBox("Education", 2);
+    const hasSummary = Boolean(state.summary?.text && state.summary.text.trim().length > 0);
+    const summaryText = hasSummary ? escape(state.summary.text) : defaultSummary;
+    const summaryBlock = `<p style="font-size:13px; color:#334155; margin:0; line-height:1.65; overflow-wrap:break-word; white-space:normal; max-width:100%; box-sizing:border-box;">${summaryText}</p>`;
+
+    const hasExp = Boolean(state.experience && state.experience.length > 0);
+    const expList = hasExp ? state.experience : sampleExpList;
+    const expBlock = (expRenderFn) => expList.map(expRenderFn).join("");
+
+    const hasProj = Boolean(state.projects && state.projects.length > 0);
+    const projList = hasProj ? state.projects : sampleProjList;
+    const projBlock = (projRenderFn) => projList.map(projRenderFn).join("");
+
+    const hasEdu = Boolean(state.education && state.education.length > 0);
+    const eduList = hasEdu ? state.education : sampleEduList;
+    const eduBlock = (eduRenderFn) => eduList.map(eduRenderFn).join("");
+
+    const hasAch = Boolean(state.achievements && state.achievements.length > 0);
+    const achList = hasAch ? state.achievements : [];
+    const achBlock = (achRenderFn) => achList.map(achRenderFn).join("");
+
+    const hasCustomTech = Boolean(state.skills?.technical && state.skills.technical.length > 0);
+    const hasCustomSoft = Boolean(state.skills?.soft && state.skills.soft.length > 0);
+    const hasCustomLang = Boolean(state.skills?.languages && state.skills.languages.length > 0);
+    const hasCustomCert = Boolean(state.skills?.certifications && state.skills.certifications.length > 0);
+    const hasAnyCustomSkills = hasCustomTech || hasCustomSoft || hasCustomLang || hasCustomCert;
+
+    const techArray = hasCustomTech ? state.skills.technical : (hasAnyCustomSkills ? [] : defaultTechSkills);
+    const softArray = hasCustomSoft ? state.skills.soft : (hasAnyCustomSkills ? [] : defaultSoftSkills);
+    const langString = hasCustomLang ? (state.skills.languages || []).join(", ") : (hasAnyCustomSkills ? "" : defaultLanguages);
+    const certString = hasCustomCert ? (state.skills.certifications || []).join(", ") : (hasAnyCustomSkills ? "" : defaultCerts);
 
     function formatBullets(text) {
       if (!text) return "";
       const lines = text.split("\n").map((l) => l.trim()).filter(Boolean);
       if (lines.length <= 1 && !lines[0].startsWith("-") && !lines[0].startsWith("•") && !lines[0].startsWith("*")) {
-        return `<div style="font-size:12.5px; color:#334155; line-height:1.6; word-break:break-all !important; overflow-wrap:break-word !important; white-space:normal !important; max-width:100%; box-sizing:border-box;">${escape(text)}</div>`;
+        return `<div style="font-size:13px; color:#334155; line-height:1.5; overflow-wrap:break-word; word-break:break-word; white-space:normal; max-width:100%; box-sizing:border-box; overflow:hidden;">${escape(text)}</div>`;
       }
-      return `<ul style="margin:4px 0 0 0; padding-left:18px; font-size:12.5px; color:#334155; line-height:1.6; word-break:break-all !important; overflow-wrap:break-word !important; white-space:normal !important; max-width:100%; box-sizing:border-box;">
+      return `<ul style="margin:3px 0 0 0; padding-left:16px; font-size:13px; color:#334155; line-height:1.48; overflow-wrap:break-word; word-break:break-word; white-space:normal; max-width:100%; box-sizing:border-box; overflow:hidden;">
         ${lines.map((line) => {
           const clean = line.replace(/^[-•*]\s*/, "");
-          return `<li style="margin-bottom:3px; word-break:break-all !important; overflow-wrap:break-word !important; white-space:normal !important; max-width:100%;">${escape(clean)}</li>`;
+          return `<li style="margin-bottom:3px; overflow-wrap:break-word; word-break:break-word; white-space:normal; max-width:100%;">${escape(clean)}</li>`;
         }).join("")}
       </ul>`;
     }
 
-    const hasSkills = Boolean(tech || soft || lang || cert);
-    const formatSkillsChips = (bg = "#f1f5f9", border = "#cbd5e1", textCol = "#1e293b") => {
-      if (!hasSkills) return errBox("Skills", 3);
+    const formatSkillsChips = (bg, border, textCol) => {
+      const chipBg = bg || `${theme.primary}12`;
+      const chipBorder = border || `${theme.primary}30`;
+      const chipText = textCol || (theme.primary || "#0f172a");
+
       return `<div style="display:flex; flex-direction:column; gap:8px; max-width:100%">
-        ${tech ? `<div><div style="font-size:11px; font-weight:700; color:#64748b; margin-bottom:4px; text-transform:uppercase; letter-spacing:0.5px">Technical Skills</div><div style="display:flex; flex-wrap:wrap; gap:5px">${(state.skills.technical || []).map((s) => `<span style="background:${bg}; color:${textCol}; border:1px solid ${border}; padding:2px 8px; border-radius:4px; font-size:11.5px; font-weight:600; word-break:break-all; overflow-wrap:break-word; max-width:100%">${escape(s)}</span>`).join("")}</div></div>` : ""}
-        ${soft ? `<div><div style="font-size:11px; font-weight:700; color:#64748b; margin-bottom:4px; text-transform:uppercase; letter-spacing:0.5px">Soft Skills</div><div style="display:flex; flex-wrap:wrap; gap:5px">${(state.skills.soft || []).map((s) => `<span style="background:${bg}; color:${textCol}; border:1px solid ${border}; padding:2px 8px; border-radius:4px; font-size:11.5px; font-weight:600; word-break:break-all; overflow-wrap:break-word; max-width:100%">${escape(s)}</span>`).join("")}</div></div>` : ""}
-        ${lang ? `<div><div style="font-size:11px; font-weight:700; color:#64748b; margin-bottom:2px; text-transform:uppercase; letter-spacing:0.5px">Languages</div><div style="font-size:12px; color:#334155; word-break:break-all; overflow-wrap:break-word">${escape(lang)}</div></div>` : ""}
-        ${cert ? `<div><div style="font-size:11px; font-weight:700; color:#64748b; margin-bottom:2px; text-transform:uppercase; letter-spacing:0.5px">Certifications</div><div style="font-size:12px; color:#334155; word-break:break-all; overflow-wrap:break-word">${escape(cert)}</div></div>` : ""}
+        ${techArray.length > 0 ? `<div>
+          <div style="font-size:11px; font-weight:800; color:#64748b; margin-bottom:4px; text-transform:uppercase; letter-spacing:0.5px">⚡ Technical Skills</div>
+          <div style="display:flex; flex-wrap:wrap; gap:5px">
+            ${techArray.map((s) => `<span style="background:${chipBg}; color:${chipText}; border:1px solid ${chipBorder}; padding:3px 8px; border-radius:4px; font-size:12px; font-weight:600; overflow-wrap:break-word; max-width:100%; display:inline-block">${escape(s)}</span>`).join("")}
+          </div>
+        </div>` : ""}
+        ${softArray.length > 0 ? `<div>
+          <div style="font-size:11px; font-weight:800; color:#64748b; margin-bottom:4px; text-transform:uppercase; letter-spacing:0.5px">💡 Soft Skills</div>
+          <div style="display:flex; flex-wrap:wrap; gap:5px">
+            ${softArray.map((s) => `<span style="background:${chipBg}; color:${chipText}; border:1px solid ${chipBorder}; padding:3px 8px; border-radius:4px; font-size:12px; font-weight:600; overflow-wrap:break-word; max-width:100%; display:inline-block">${escape(s)}</span>`).join("")}
+          </div>
+        </div>` : ""}
+        ${langString ? `<div>
+          <div style="font-size:11px; font-weight:800; color:#64748b; margin-bottom:3px; text-transform:uppercase; letter-spacing:0.5px">🌐 Languages</div>
+          <div style="font-size:12px; color:#334155; font-weight:500; overflow-wrap:break-word; line-height:1.4">${escape(langString)}</div>
+        </div>` : ""}
+        ${certString ? `<div>
+          <div style="font-size:11px; font-weight:800; color:#64748b; margin-bottom:3px; text-transform:uppercase; letter-spacing:0.5px">📜 Certifications</div>
+          <div style="display:flex; flex-wrap:wrap; gap:5px">
+            <span style="background:${chipBg}; color:${chipText}; border:1px solid ${chipBorder}; padding:3px 8px; border-radius:4px; font-size:12px; font-weight:600; overflow-wrap:break-word">${escape(certString)}</span>
+          </div>
+        </div>` : ""}
       </div>`;
     };
 
@@ -1794,64 +1855,85 @@ options.forEach(function (card) {
     // 0A. Left Sidebar Layout (Two-Column Modern / Developer / Creative)
     if (theme.layout === "left-sidebar") {
       const sbBg = theme.sidebarBg || theme.primary || "#0f172a";
-      return `<div style="font-family:'Outfit', 'Inter', sans-serif; color:#0f172a; line-height:1.5; display:grid; grid-template-columns: 260px minmax(0, 1fr); gap:0; border:none; min-height:1123px; width:100%; max-width:100%; box-sizing:border-box; background:#ffffff; overflow:hidden">
-        <div style="background:${sbBg}; color:#ffffff; padding:32px 20px; display:flex; flex-direction:column; gap:20px; min-width:0; max-width:260px; box-sizing:border-box">
-          <div style="text-align:center">
-            ${p.photo ? `<img src="${p.photo}" style="width:90px;height:90px;border-radius:50%;object-fit:cover;border:3px solid rgba(255,255,255,0.85);margin-bottom:12px">` : `<div style="width:68px;height:68px;border-radius:50%;background:rgba(255,255,255,0.15);border:2px solid rgba(255,255,255,0.3);margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:26px">👤</div>`}
-            <h1 style="margin:0 0 4px; font-size:19px; font-weight:800; color:#ffffff; letter-spacing:-0.01em; word-break:break-all">${nameText}</h1>
-            <div style="font-size:12px; font-weight:600; color:rgba(255,255,255,0.85); word-break:break-all">${headlineText}</div>
+      return `<div style="font-family:'Outfit', 'Inter', sans-serif; color:#0f172a; line-height:1.45; display:grid; grid-template-columns: 240px minmax(0, 1fr); gap:0; border:none; min-height:1123px; width:100%; max-width:100%; box-sizing:border-box; background:#ffffff;">
+        <div style="background:${sbBg}; color:#ffffff; padding:24px 18px; display:flex; flex-direction:column; gap:14px; min-width:0; max-width:240px; box-sizing:border-box;">
+          <div style="text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; width:100%; margin-bottom:4px;">
+            ${p.photo ? `<img src="${p.photo}" style="width:72px;height:72px;border-radius:50%;object-fit:cover;border:3px solid rgba(255,255,255,0.9);box-shadow:0 4px 14px rgba(0,0,0,0.25);margin:0 auto 8px auto;display:block;">` : `<div style="width:58px;height:58px;border-radius:50%;background:rgba(255,255,255,0.15);border:2px solid rgba(255,255,255,0.3);margin:0 auto 8px auto;display:flex;align-items:center;justify-content:center;font-size:24px">👤</div>`}
+            <h1 style="margin:0 0 3px; font-size:18px; font-weight:800; color:#ffffff; letter-spacing:-0.01em; text-align:center; width:100%;">${nameText}</h1>
+            <div style="font-size:11.5px; font-weight:600; color:rgba(255,255,255,0.9); text-align:center; width:100%;">${headlineText}</div>
           </div>
           <div>
-            <h4 style="font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:rgba(255,255,255,0.6); margin:0 0 8px; border-bottom:1px solid rgba(255,255,255,0.2); padding-bottom:4px">Contact</h4>
-            <div style="display:flex; flex-direction:column; gap:6px; font-size:11px; color:rgba(255,255,255,0.9)">
-              <div style="word-break:break-all; overflow-wrap:break-word">📧 ${emailText}</div>
-              <div style="word-break:break-all; overflow-wrap:break-word">📞 ${phoneText}</div>
-              <div style="word-break:break-all; overflow-wrap:break-word">📍 ${addressText}</div>
-              ${p.linkedin ? `<div>💼 <a href="${escape(p.linkedin)}" target="_blank" style="color:#ffffff;text-decoration:underline;word-break:break-all">LinkedIn</a></div>` : ""}
-              ${p.portfolio ? `<div>🌐 <a href="${escape(p.portfolio)}" target="_blank" style="color:#ffffff;text-decoration:underline;word-break:break-all">Portfolio</a></div>` : ""}
+            <h4 style="font-size:10.5px; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:rgba(255,255,255,0.7); margin:0 0 5px; border-bottom:1px solid rgba(255,255,255,0.2); padding-bottom:3px">Contact</h4>
+            <div style="display:flex; flex-direction:column; gap:5px; font-size:11px; color:rgba(255,255,255,0.92)">
+              <div style="overflow-wrap:break-word">📧 ${emailText}</div>
+              <div style="overflow-wrap:break-word">📞 ${phoneText}</div>
+              <div style="overflow-wrap:break-word">📍 ${addressText}</div>
+              ${linkedinUrl !== '#' ? `<div>💼 <a href="${linkedinUrl}" target="_blank" style="color:#ffffff;text-decoration:underline;overflow-wrap:break-word;font-weight:600;">LinkedIn</a></div>` : ""}
+              ${portfolioUrl !== '#' ? `<div>🌐 <a href="${portfolioUrl}" target="_blank" style="color:#ffffff;text-decoration:underline;overflow-wrap:break-word;font-weight:600;">Portfolio</a></div>` : ""}
             </div>
           </div>
           <div>
-            <h4 style="font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:rgba(255,255,255,0.6); margin:0 0 8px; border-bottom:1px solid rgba(255,255,255,0.2); padding-bottom:4px">Skills</h4>
+            <h4 style="font-size:10.5px; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:rgba(255,255,255,0.7); margin:0 0 5px; border-bottom:1px solid rgba(255,255,255,0.2); padding-bottom:3px">Skills</h4>
             ${formatSkillsChips("rgba(255,255,255,0.15)", "rgba(255,255,255,0.25)", "#ffffff")}
           </div>
           <div>
-            <h4 style="font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:rgba(255,255,255,0.6); margin:0 0 8px; border-bottom:1px solid rgba(255,255,255,0.2); padding-bottom:4px">Education</h4>
+            <h4 style="font-size:10.5px; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:rgba(255,255,255,0.7); margin:0 0 5px; border-bottom:1px solid rgba(255,255,255,0.2); padding-bottom:3px">Education</h4>
             ${eduBlock((edu) => `
-              <div style="margin-bottom:8px; word-break:break-all">
+              <div style="margin-bottom:6px; background:rgba(255,255,255,0.1); padding:6px 8px; border-radius:5px; overflow-wrap:break-word">
                 <strong style="font-size:11.5px; color:#ffffff; display:block">${escape(edu.degree || "")}</strong>
-                <div style="font-size:10.5px; color:rgba(255,255,255,0.75)">${escape(edu.institution || "")}</div>
-                <div style="font-size:9.5px; color:rgba(255,255,255,0.6)">${escape(edu.start || "")} - ${escape(edu.end || "")}</div>
+                <div style="font-size:10.5px; color:rgba(255,255,255,0.9); margin-top:1px;">${escape(edu.institution || "")}</div>
+                <div style="font-size:9.5px; color:rgba(255,255,255,0.7); margin-top:1px">${escape(edu.start || "")}${edu.end ? ` - ${escape(edu.end)}` : ""}</div>
               </div>
             `)}
           </div>
+          ${achList.length > 0 ? `
+            <div>
+              <h4 style="font-size:10.5px; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:rgba(255,255,255,0.7); margin:0 0 5px; border-bottom:1px solid rgba(255,255,255,0.2); padding-bottom:3px">Honors & Awards</h4>
+              ${achBlock((ach) => `
+                <div style="margin-bottom:5px; background:rgba(255,255,255,0.1); padding:5px 7px; border-radius:5px; font-size:10.5px">
+                  <div style="font-weight:700; color:#fff">🏆 ${escape(ach.title || "")}</div>
+                  <div style="font-size:9.5px; color:rgba(255,255,255,0.8); margin-top:1px;">${escape(ach.org || "")}</div>
+                </div>
+              `)}
+            </div>
+          ` : ""}
         </div>
-        <div style="padding:32px 24px; display:flex; flex-direction:column; gap:20px; min-width:0; max-width:100%; box-sizing:border-box; overflow:hidden">
+        <div style="padding:26px 24px; display:flex; flex-direction:column; gap:14px; min-width:0; max-width:100%; box-sizing:border-box;">
           <div style="min-width:0; max-width:100%">
-            <h3 style="font-size:14px; font-weight:800; color:${theme.primary}; text-transform:uppercase; letter-spacing:0.05em; border-bottom:2px solid ${theme.primary}; padding-bottom:4px; margin:0 0 8px">About Me</h3>
+            <h3 style="font-size:13px; font-weight:800; color:${theme.primary}; text-transform:uppercase; letter-spacing:0.06em; border-bottom:2px solid ${theme.primary}; padding-bottom:3px; margin:0 0 6px">About Me</h3>
             ${summaryBlock}
           </div>
           <div style="min-width:0; max-width:100%">
-            <h3 style="font-size:14px; font-weight:800; color:${theme.primary}; text-transform:uppercase; letter-spacing:0.05em; border-bottom:2px solid ${theme.primary}; padding-bottom:4px; margin:0 0 12px">Experience</h3>
-            ${expBlock((x) => `
-              <div style="margin-bottom:12px; padding-left:10px; border-left:2px solid #e2e8f0; min-width:0; max-width:100%">
-                <div style="display:flex; justify-content:space-between; align-items:baseline; gap:8px">
-                  <strong style="font-size:13px; color:#0f172a; word-break:break-all">${escape(x.title || "")} @ ${escape(x.company || "")}</strong>
-                  <span style="font-size:11px; color:#64748b; white-space:nowrap">${escape(x.start || "")} - ${escape(x.end || "Present")}</span>
+            <h3 style="font-size:13px; font-weight:800; color:${theme.primary}; text-transform:uppercase; letter-spacing:0.06em; border-bottom:2px solid ${theme.primary}; padding-bottom:3px; margin:0 0 8px">Key Projects</h3>
+            ${projBlock((proj) => `
+              <div style="margin-bottom:8px; padding:9px 12px; background:#f8fafc; border-radius:6px; border:1px solid #e2e8f0; border-left:3.5px solid ${theme.primary}; min-width:0; max-width:100%">
+                <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:4px; margin-bottom:2px">
+                  <div>
+                    <strong style="font-size:12px; color:#0f172a; overflow-wrap:break-word">${escape(proj.name || "")}</strong>
+                    ${proj.tech ? `<div style="font-size:10.5px; color:${theme.primary}; font-weight:700; overflow-wrap:break-word; margin-top:1px">${escape(proj.tech)}</div>` : ""}
+                  </div>
+                  <div style="display:flex; gap:4px; align-items:center">
+                    ${proj.github ? `<a href="${escape(proj.github)}" target="_blank" style="font-size:9.5px;color:${theme.primary};text-decoration:none;font-weight:700;background:#ffffff;border:1px solid #cbd5e1;padding:1px 5px;border-radius:3px">💻 Code</a>` : ""}
+                    ${proj.demo ? `<a href="${escape(proj.demo)}" target="_blank" style="font-size:9.5px;color:#059669;text-decoration:none;font-weight:700;background:#ecfdf5;border:1px solid #a7f3d0;padding:1px 5px;border-radius:3px">🔗 Live Demo</a>` : ""}
+                  </div>
                 </div>
-                ${formatBullets(x.responsibilities)}
+                ${formatBullets(proj.description)}
               </div>
             `)}
           </div>
           <div style="min-width:0; max-width:100%">
-            <h3 style="font-size:14px; font-weight:800; color:${theme.primary}; text-transform:uppercase; letter-spacing:0.05em; border-bottom:2px solid ${theme.primary}; padding-bottom:4px; margin:0 0 12px">Projects & Deliverables</h3>
-            ${projBlock((proj) => `
-              <div style="margin-bottom:10px; padding:10px; background:#f8fafc; border-radius:6px; border:1px solid #e2e8f0; min-width:0; max-width:100%">
-                <div style="display:flex; justify-content:space-between; align-items:baseline; gap:8px">
-                  <strong style="font-size:12.5px; color:#0f172a; word-break:break-all">${escape(proj.name || "")}</strong>
-                  <span style="font-size:10.5px; color:${theme.primary}; font-weight:700; word-break:break-all">${escape(proj.tech || "")}</span>
+            <h3 style="font-size:13px; font-weight:800; color:${theme.primary}; text-transform:uppercase; letter-spacing:0.06em; border-bottom:2px solid ${theme.primary}; padding-bottom:3px; margin:0 0 8px">Experience & Internships</h3>
+            ${expBlock((x) => `
+              <div style="margin-bottom:10px; padding-left:10px; border-left:2.5px solid ${theme.primary}44; min-width:0; max-width:100%">
+                <div style="display:flex; justify-content:space-between; align-items:baseline; gap:6px; flex-wrap:wrap; margin-bottom:2px">
+                  <div>
+                    <strong style="font-size:12px; color:#0f172a; overflow-wrap:break-word">${escape(x.title || "")}</strong>
+                    <span style="font-size:11.5px; color:#475569"> @ ${escape(x.company || "")}</span>
+                    ${x.type ? `<span style="font-size:9.5px; background:#f1f5f9; color:#475569; padding:1px 5px; border-radius:3px; margin-left:4px; font-weight:600">${escape(x.type)}</span>` : ""}
+                  </div>
+                  <span style="font-size:10px; color:#64748b; font-weight:600; white-space:nowrap">${escape(x.start || "")} – ${escape(x.end || "Present")}</span>
                 </div>
-                ${formatBullets(proj.description)}
+                ${formatBullets(x.responsibilities)}
               </div>
             `)}
           </div>
@@ -1861,7 +1943,7 @@ options.forEach(function (card) {
 
     // 0B. Centered / Ivy League Oxford Layout
     if (theme.layout === "centered") {
-      return `<div style="font-family:'Georgia', 'Times New Roman', serif; color:#1e293b; line-height:1.6; max-width:800px; margin:0 auto; border-top:4px solid ${theme.primary}; padding-top:20px">
+      return `<div style="font-family:'Georgia', 'Times New Roman', serif; color:#1e293b; line-height:1.6; padding:32px 36px; box-sizing:border-box; min-height:1123px; width:100%; border-top:6px solid ${theme.primary}">
         <div style="text-align:center; margin-bottom:20px; border-bottom:1.5px solid #cbd5e1; padding-bottom:16px">
           <h1 style="margin:0 0 4px; font-size:28px; font-weight:700; color:${theme.primary}; letter-spacing:0.02em">${nameText}</h1>
           <div style="font-size:14px; font-style:italic; color:#475569">${headlineText}</div>
@@ -1919,7 +2001,7 @@ options.forEach(function (card) {
 
     // 0C. Timeline Showcase Layout
     if (theme.layout === "timeline") {
-      return `<div style="font-family:'Outfit', 'Inter', sans-serif; color:#0f172a; line-height:1.5;">
+      return `<div style="font-family:'Outfit', 'Inter', sans-serif; color:#0f172a; line-height:1.5; padding:32px 36px; box-sizing:border-box; min-height:1123px; width:100%;">
         <div style="background:${theme.gradient}; padding:24px; border-radius:12px; color:#ffffff; display:flex; justify-content:space-between; align-items:center; margin-bottom:20px">
           <div>
             <h1 style="margin:0 0 4px; font-size:28px; font-weight:800">${nameText}</h1>
@@ -1968,47 +2050,53 @@ options.forEach(function (card) {
 
     // 1. Tech Specialist Layout (Developer friendly, terminal vibes, monospace chips)
     if (theme.layout === "tech") {
-      return `<div style="font-family:'Inter', -apple-system, sans-serif; color:#0f172a; line-height:1.5;">
-        <div style="background:#0f172a; padding:24px; border-radius:8px; color:#ffffff; margin-bottom:20px; border-left:5px solid ${theme.primary}; display:flex; justify-content:space-between; align-items:center">
+      return `<div style="font-family:'Inter', -apple-system, sans-serif; color:#0f172a; line-height:1.45; padding:24px 26px; box-sizing:border-box; min-height:1123px; width:100%;">
+        <div style="background:#0f172a; padding:16px 18px; border-radius:8px; color:#ffffff; margin-bottom:12px; border-left:4px solid ${theme.primary}; display:flex; justify-content:space-between; align-items:center">
           <div>
-            <div style="font-family:monospace; font-size:11px; color:#38bdf8; letter-spacing:1px; margin-bottom:4px">&lt;DEVELOPER_PROFILE /&gt;</div>
-            <h1 style="margin:0 0 4px; font-size:28px; font-weight:800; color:#f8fafc">${nameText}</h1>
-            <div style="font-size:14px; color:#94a3b8; font-weight:600">${headlineText}</div>
+            <div style="font-family:monospace; font-size:10px; color:#38bdf8; letter-spacing:1px; margin-bottom:2px">&lt;DEVELOPER_PROFILE /&gt;</div>
+            <h1 style="margin:0 0 2px; font-size:23px; font-weight:800; color:#f8fafc">${nameText}</h1>
+            <div style="font-size:12.5px; color:#94a3b8; font-weight:600">${headlineText}</div>
           </div>
-          ${p.photo ? `<img src="${p.photo}" style="width:68px;height:68px;border-radius:8px;object-fit:cover;border:2px solid #38bdf8">` : ""}
+          ${p.photo ? `<img src="${p.photo}" style="width:54px;height:54px;border-radius:8px;object-fit:cover;border:2px solid #38bdf8">` : ""}
         </div>
-        <div style="display:flex; flex-wrap:wrap; gap:10px; font-size:12px; color:#475569; padding-bottom:12px; border-bottom:1px solid #cbd5e1; margin-bottom:20px; font-family:monospace">
-          <span style="background:#f1f5f9;padding:3px 8px;border-radius:4px">📧 ${emailText}</span>
-          <span style="background:#f1f5f9;padding:3px 8px;border-radius:4px">📞 ${phoneText}</span>
-          <span style="background:#f1f5f9;padding:3px 8px;border-radius:4px">📍 ${addressText}</span>
-          ${p.portfolio ? `<a href="${escape(p.portfolio)}" target="_blank" style="background:#e0f2fe;color:#0284c7;padding:3px 8px;border-radius:4px;text-decoration:none">🔗 Portfolio</a>` : ""}
-          ${p.linkedin ? `<a href="${escape(p.linkedin)}" target="_blank" style="background:#e0e7ff;color:#4338ca;padding:3px 8px;border-radius:4px;text-decoration:none">💼 LinkedIn</a>` : ""}
+        <div style="display:flex; flex-wrap:wrap; gap:7px; font-size:11px; color:#475569; padding-bottom:9px; border-bottom:1px solid #cbd5e1; margin-bottom:12px; font-family:monospace">
+          <span style="background:#f1f5f9;padding:2px 7px;border-radius:4px">📧 ${emailText}</span>
+          <span style="background:#f1f5f9;padding:2px 7px;border-radius:4px">📞 ${phoneText}</span>
+          <span style="background:#f1f5f9;padding:2px 7px;border-radius:4px">📍 ${addressText}</span>
+          ${p.portfolio ? `<a href="${escape(p.portfolio)}" target="_blank" style="background:#e0f2fe;color:#0284c7;padding:2px 7px;border-radius:4px;text-decoration:none;font-weight:700">🔗 Portfolio</a>` : ""}
+          ${p.linkedin ? `<a href="${escape(p.linkedin)}" target="_blank" style="background:#e0e7ff;color:#4338ca;padding:2px 7px;border-radius:4px;text-decoration:none;font-weight:700">💼 LinkedIn</a>` : ""}
         </div>
-        <div style="margin-bottom:20px">
-          <h3 style="font-family:monospace; font-size:13px; font-weight:800; color:${theme.primary}; text-transform:uppercase; border-bottom:1.5px solid #cbd5e1; padding-bottom:4px; margin:0 0 8px">// 01. TECHNICAL SUMMARY</h3>
+        <div style="margin-bottom:12px">
+          <h3 style="font-family:monospace; font-size:12px; font-weight:800; color:${theme.primary}; text-transform:uppercase; border-bottom:1.5px solid #cbd5e1; padding-bottom:2px; margin:0 0 5px">// 01. TECHNICAL SUMMARY</h3>
           ${summaryBlock}
         </div>
-        <div style="display:grid; grid-template-columns: 2fr 1fr; gap:24px">
+        <div style="display:grid; grid-template-columns: 1.8fr 1.2fr; gap:16px">
           <div>
-            <div style="margin-bottom:20px">
-              <h3 style="font-family:monospace; font-size:13px; font-weight:800; color:${theme.primary}; text-transform:uppercase; border-bottom:1.5px solid #cbd5e1; padding-bottom:4px; margin:0 0 10px">// 02. PROJECTS & REPOSITORIES</h3>
+            <div style="margin-bottom:12px">
+              <h3 style="font-family:monospace; font-size:12px; font-weight:800; color:${theme.primary}; text-transform:uppercase; border-bottom:1.5px solid #cbd5e1; padding-bottom:2px; margin:0 0 6px">// 02. PROJECTS & REPOSITORIES</h3>
               ${projBlock((proj) => `
-                <div style="margin-bottom:12px; background:#f8fafc; border:1px solid #e2e8f0; border-left:3px solid ${theme.primary}; padding:10px 12px; border-radius:6px">
-                  <div style="display:flex; justify-content:space-between; align-items:baseline">
-                    <strong style="font-size:13.5px; color:#0f172a">${escape(proj.name || "")}</strong>
-                    <span style="font-family:monospace; font-size:11px; color:${theme.primary}; background:#eff6ff; padding:2px 6px; border-radius:4px">${escape(proj.tech || "")}</span>
+                <div style="margin-bottom:7px; background:#f8fafc; border:1px solid #e2e8f0; border-left:3px solid ${theme.primary}; padding:7px 9px; border-radius:6px">
+                  <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:4px; margin-bottom:2px">
+                    <div>
+                      <strong style="font-size:11.5px; color:#0f172a">${escape(proj.name || "")}</strong>
+                      <span style="font-family:monospace; font-size:10px; color:${theme.primary}; background:#eff6ff; padding:1px 5px; border-radius:3px; margin-left:3px; display:inline-block">${escape(proj.tech || "")}</span>
+                    </div>
+                    <div style="display:flex; gap:4px">
+                      ${proj.github ? `<a href="${escape(proj.github)}" target="_blank" style="font-size:9.5px;color:${theme.primary};text-decoration:none;font-weight:700;background:#ffffff;border:1px solid #cbd5e1;padding:1px 5px;border-radius:3px">💻 Code</a>` : ""}
+                      ${proj.demo ? `<a href="${escape(proj.demo)}" target="_blank" style="font-size:9.5px;color:#059669;text-decoration:none;font-weight:700;background:#ecfdf5;border:1px solid #a7f3d0;padding:1px 5px;border-radius:3px">🔗 Live Demo</a>` : ""}
+                    </div>
                   </div>
                   ${formatBullets(proj.description)}
                 </div>
               `)}
             </div>
             <div>
-              <h3 style="font-family:monospace; font-size:13px; font-weight:800; color:${theme.primary}; text-transform:uppercase; border-bottom:1.5px solid #cbd5e1; padding-bottom:4px; margin:0 0 10px">// 03. EXPERIENCE</h3>
+              <h3 style="font-family:monospace; font-size:12px; font-weight:800; color:${theme.primary}; text-transform:uppercase; border-bottom:1.5px solid #cbd5e1; padding-bottom:2px; margin:0 0 6px">// 03. EXPERIENCE</h3>
               ${expBlock((x) => `
-                <div style="margin-bottom:12px">
-                  <div style="display:flex; justify-content:space-between">
-                    <strong style="font-size:13.5px; color:#0f172a">${escape(x.title || "")} @ ${escape(x.company || "")}</strong>
-                    <span style="font-size:11.5px; color:#64748b; font-family:monospace">${escape(x.start || "")} - ${escape(x.end || "Present")}</span>
+                <div style="margin-bottom:8px; padding-left:8px; border-left:2px solid #cbd5e1">
+                  <div style="display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap">
+                    <strong style="font-size:11.5px; color:#0f172a">${escape(x.title || "")} @ ${escape(x.company || "")}</strong>
+                    <span style="font-size:10px; color:#64748b; font-family:monospace">${escape(x.start || "")} - ${escape(x.end || "Present")}</span>
                   </div>
                   ${formatBullets(x.responsibilities)}
                 </div>
@@ -2016,17 +2104,17 @@ options.forEach(function (card) {
             </div>
           </div>
           <div>
-            <div style="margin-bottom:20px">
-              <h3 style="font-family:monospace; font-size:13px; font-weight:800; color:${theme.primary}; text-transform:uppercase; border-bottom:1.5px solid #cbd5e1; padding-bottom:4px; margin:0 0 8px">// 04. TECH STACK</h3>
+            <div style="margin-bottom:12px">
+              <h3 style="font-family:monospace; font-size:12px; font-weight:800; color:${theme.primary}; text-transform:uppercase; border-bottom:1.5px solid #cbd5e1; padding-bottom:2px; margin:0 0 5px">// 04. TECH STACK</h3>
               ${formatSkillsChips("#0f172a", "#334155", "#38bdf8")}
             </div>
             <div>
-              <h3 style="font-family:monospace; font-size:13px; font-weight:800; color:${theme.primary}; text-transform:uppercase; border-bottom:1.5px solid #cbd5e1; padding-bottom:4px; margin:0 0 8px">// 05. EDUCATION</h3>
+              <h3 style="font-family:monospace; font-size:12px; font-weight:800; color:${theme.primary}; text-transform:uppercase; border-bottom:1.5px solid #cbd5e1; padding-bottom:2px; margin:0 0 5px">// 05. EDUCATION</h3>
               ${eduBlock((edu) => `
-                <div style="margin-bottom:10px">
-                  <strong style="font-size:13px; color:#0f172a; display:block">${escape(edu.degree || "")}</strong>
-                  <div style="font-size:12px; color:#64748b">${escape(edu.institution || "")}</div>
-                  <div style="font-size:11px; color:#94a3b8; font-family:monospace">${escape(edu.start || "")} - ${escape(edu.end || "")}</div>
+                <div style="margin-bottom:6px; background:#f8fafc; padding:6px 8px; border-radius:5px; border:1px solid #e2e8f0">
+                  <strong style="font-size:11.5px; color:#0f172a; display:block">${escape(edu.degree || "")}</strong>
+                  <div style="font-size:10.5px; color:#64748b">${escape(edu.institution || "")}</div>
+                  <div style="font-size:10px; color:#94a3b8; font-family:monospace">${escape(edu.start || "")}${edu.end ? ` - ${escape(edu.end)}` : ""}</div>
                 </div>
               `)}
             </div>
@@ -2037,46 +2125,52 @@ options.forEach(function (card) {
 
     // 2. Modern Pro Layout (Timeline based, dynamic purple/indigo)
     if (theme.layout === "modern-pro") {
-      return `<div style="font-family:'Outfit', 'Inter', sans-serif; color:#0f172a; line-height:1.5;">
-        <div style="background:${theme.gradient}; padding:26px; border-radius:14px; color:#ffffff; display:flex; justify-content:space-between; align-items:center; margin-bottom:22px">
+      return `<div style="font-family:'Outfit', 'Inter', sans-serif; color:#0f172a; line-height:1.45; padding:24px 26px; box-sizing:border-box; min-height:1123px; width:100%;">
+        <div style="background:${theme.gradient}; padding:18px 20px; border-radius:10px; color:#ffffff; display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; box-shadow: 0 2px 10px rgba(0,0,0,0.06);">
           <div>
-            <h1 style="margin:0 0 4px; font-size:30px; font-weight:800; letter-spacing:-0.01em">${nameText}</h1>
-            <div style="font-size:15px; font-weight:600; opacity:0.95">${headlineText}</div>
+            <h1 style="margin:0 0 2px; font-size:24px; font-weight:800; letter-spacing:-0.01em">${nameText}</h1>
+            <div style="font-size:13px; font-weight:600; opacity:0.95">${headlineText}</div>
           </div>
-          ${p.photo ? `<img src="${p.photo}" style="width:72px;height:72px;border-radius:12px;object-fit:cover;border:3px solid rgba(255,255,255,0.85)">` : ""}
+          ${p.photo ? `<img src="${p.photo}" style="width:58px;height:58px;border-radius:10px;object-fit:cover;border:2.5px solid rgba(255,255,255,0.85)">` : ""}
         </div>
-        <div style="display:flex; flex-wrap:wrap; gap:16px; font-size:12.5px; color:#475569; padding-bottom:14px; border-bottom:2px solid #e0e7ff; margin-bottom:22px">
+        <div style="display:flex; flex-wrap:wrap; gap:8px; font-size:11px; color:#475569; padding-bottom:10px; border-bottom:1.5px solid #e0e7ff; margin-bottom:14px">
           <span>📧 ${emailText}</span>
           <span>📞 ${phoneText}</span>
           <span>📍 ${addressText}</span>
-          ${p.linkedin ? `<span>💼 <a href="${escape(p.linkedin)}" target="_blank" style="color:${theme.primary};font-weight:600">LinkedIn</a></span>` : ""}
-          ${p.portfolio ? `<span>🌐 <a href="${escape(p.portfolio)}" target="_blank" style="color:${theme.primary};font-weight:600">Portfolio</a></span>` : ""}
+          ${p.linkedin ? `<span>💼 <a href="${escape(p.linkedin)}" target="_blank" style="color:${theme.primary};font-weight:700">LinkedIn</a></span>` : ""}
+          ${p.portfolio ? `<span>🌐 <a href="${escape(p.portfolio)}" target="_blank" style="color:${theme.primary};font-weight:700">Portfolio</a></span>` : ""}
         </div>
-        <div style="margin-bottom:22px">
-          <h3 style="font-size:15px; font-weight:800; color:${theme.primary}; text-transform:uppercase; letter-spacing:0.04em; border-left:3px solid ${theme.primary}; padding-left:8px; margin:0 0 8px">About Me</h3>
+        <div style="margin-bottom:14px">
+          <h3 style="font-size:12.5px; font-weight:800; color:${theme.primary}; text-transform:uppercase; letter-spacing:0.04em; border-left:3px solid ${theme.primary}; padding-left:7px; margin:0 0 5px">About Me</h3>
           ${summaryBlock}
         </div>
-        <div style="display:grid; grid-template-columns: 2fr 1fr; gap:28px">
+        <div style="display:grid; grid-template-columns: 1.8fr 1.2fr; gap:16px">
           <div>
-            <div style="margin-bottom:22px">
-              <h3 style="font-size:15px; font-weight:800; color:${theme.primary}; text-transform:uppercase; letter-spacing:0.04em; border-left:3px solid ${theme.primary}; padding-left:8px; margin:0 0 12px">Work Experience</h3>
+            <div style="margin-bottom:12px">
+              <h3 style="font-size:12.5px; font-weight:800; color:${theme.primary}; text-transform:uppercase; letter-spacing:0.04em; border-left:3px solid ${theme.primary}; padding-left:7px; margin:0 0 7px">Experience & Internships</h3>
               ${expBlock((x) => `
-                <div style="margin-bottom:14px; padding-left:12px; border-left:2px solid #e2e8f0; position:relative">
-                  <div style="display:flex; justify-content:space-between">
-                    <strong style="font-size:14px; color:#0f172a">${escape(x.title || "")} @ ${escape(x.company || "")}</strong>
-                    <span style="font-size:12px; color:#64748b">${escape(x.start || "")} - ${escape(x.end || "Present")}</span>
+                <div style="margin-bottom:8px; padding-left:9px; border-left:2px solid ${theme.primary}33; position:relative">
+                  <div style="display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:4px; margin-bottom:2px">
+                    <strong style="font-size:12px; color:#0f172a">${escape(x.title || "")} @ ${escape(x.company || "")}</strong>
+                    <span style="font-size:10.5px; color:#64748b; font-weight:600">${escape(x.start || "")} – ${escape(x.end || "Present")}</span>
                   </div>
                   ${formatBullets(x.responsibilities)}
                 </div>
               `)}
             </div>
             <div>
-              <h3 style="font-size:15px; font-weight:800; color:${theme.primary}; text-transform:uppercase; letter-spacing:0.04em; border-left:3px solid ${theme.primary}; padding-left:8px; margin:0 0 12px">Key Projects</h3>
+              <h3 style="font-size:12.5px; font-weight:800; color:${theme.primary}; text-transform:uppercase; letter-spacing:0.04em; border-left:3px solid ${theme.primary}; padding-left:7px; margin:0 0 7px">Key Projects</h3>
               ${projBlock((proj) => `
-                <div style="margin-bottom:12px; padding:10px 12px; background:#f8fafc; border-radius:8px; border:1px solid #e2e8f0">
-                  <div style="display:flex; justify-content:space-between">
-                    <strong style="font-size:13.5px; color:#0f172a">${escape(proj.name || "")}</strong>
-                    <span style="font-size:12px; color:${theme.primary}; font-weight:700">${escape(proj.tech || "")}</span>
+                <div style="margin-bottom:8px; padding:8px 10px; background:#f8fafc; border-radius:6px; border:1px solid #e2e8f0; border-left:3px solid ${theme.primary}">
+                  <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:4px; margin-bottom:2px">
+                    <div>
+                      <strong style="font-size:12px; color:#0f172a">${escape(proj.name || "")}</strong>
+                      <div style="font-size:10.5px; color:${theme.primary}; font-weight:700; margin-top:1px">${escape(proj.tech || "")}</div>
+                    </div>
+                    <div style="display:flex; gap:4px">
+                      ${proj.github ? `<a href="${escape(proj.github)}" target="_blank" style="font-size:9.5px;color:${theme.primary};text-decoration:none;font-weight:700;background:#fff;border:1px solid #cbd5e1;padding:1px 5px;border-radius:3px">💻 Code</a>` : ""}
+                      ${proj.demo ? `<a href="${escape(proj.demo)}" target="_blank" style="font-size:9.5px;color:#059669;text-decoration:none;font-weight:700;background:#ecfdf5;border:1px solid #a7f3d0;padding:1px 5px;border-radius:3px">🔗 Live Demo</a>` : ""}
+                    </div>
                   </div>
                   ${formatBullets(proj.description)}
                 </div>
@@ -2084,20 +2178,31 @@ options.forEach(function (card) {
             </div>
           </div>
           <div>
-            <div style="margin-bottom:22px">
-              <h3 style="font-size:15px; font-weight:800; color:${theme.primary}; text-transform:uppercase; letter-spacing:0.04em; border-left:3px solid ${theme.primary}; padding-left:8px; margin:0 0 10px">Core Skills</h3>
+            <div style="margin-bottom:12px">
+              <h3 style="font-size:12.5px; font-weight:800; color:${theme.primary}; text-transform:uppercase; letter-spacing:0.04em; border-left:3px solid ${theme.primary}; padding-left:7px; margin:0 0 6px">Core Skills</h3>
               ${formatSkillsChips("#f3e8ff", "#d8b4fe", "#6b21a8")}
             </div>
             <div>
-              <h3 style="font-size:15px; font-weight:800; color:${theme.primary}; text-transform:uppercase; letter-spacing:0.04em; border-left:3px solid ${theme.primary}; padding-left:8px; margin:0 0 10px">Education</h3>
+              <h3 style="font-size:12.5px; font-weight:800; color:${theme.primary}; text-transform:uppercase; letter-spacing:0.04em; border-left:3px solid ${theme.primary}; padding-left:7px; margin:0 0 6px">Education</h3>
               ${eduBlock((edu) => `
-                <div style="margin-bottom:12px; padding:8px 10px; background:#faf5ff; border-radius:6px">
-                  <strong style="font-size:13.5px; color:#0f172a; display:block">${escape(edu.degree || "")}</strong>
-                  <div style="font-size:12px; color:#64748b">${escape(edu.institution || "")}</div>
-                  <div style="font-size:11.5px; color:#a855f7">${escape(edu.start || "")} - ${escape(edu.end || "")}</div>
+                <div style="margin-bottom:6px; padding:7px 9px; background:#faf5ff; border-radius:6px; border:1px solid #f3e8ff">
+                  <strong style="font-size:11.5px; color:#0f172a; display:block">${escape(edu.degree || "")}</strong>
+                  <div style="font-size:10.5px; color:#64748b">${escape(edu.institution || "")}</div>
+                  <div style="font-size:10px; color:#a855f7; margin-top:1px; font-weight:600">${escape(edu.start || "")}${edu.end ? ` - ${escape(edu.end)}` : ""}</div>
                 </div>
               `)}
             </div>
+            ${achList.length > 0 ? `
+              <div style="margin-top:10px">
+                <h3 style="font-size:12.5px; font-weight:800; color:${theme.primary}; text-transform:uppercase; letter-spacing:0.04em; border-left:3px solid ${theme.primary}; padding-left:7px; margin:0 0 6px">Honors & Awards</h3>
+                ${achBlock((ach) => `
+                  <div style="margin-bottom:6px; background:#fffbeb; border:1px solid #fef3c7; border-left:3px solid #f59e0b; padding:6px 8px; border-radius:5px">
+                    <strong style="font-size:11px; color:#92400e; display:block">🏆 ${escape(ach.title || "")}</strong>
+                    <div style="font-size:10px; color:#78350f">${escape(ach.org || "")}</div>
+                  </div>
+                `)}
+              </div>
+            ` : ""}
           </div>
         </div>
       </div>`;
@@ -2105,55 +2210,58 @@ options.forEach(function (card) {
 
     // 3. Clean Slate Layout (High ATS score, structured single-look)
     if (theme.layout === "clean-slate") {
-      return `<div style="font-family:'Inter', sans-serif; color:#1e293b; line-height:1.5;">
-        <div style="border-left:5px solid ${theme.primary}; padding-left:16px; margin-bottom:20px; display:flex; justify-content:space-between; align-items:center">
+      return `<div style="font-family:'Inter', sans-serif; color:#1e293b; line-height:1.45; padding:24px 26px; box-sizing:border-box; min-height:1123px; width:100%;">
+        <div style="border-left:4px solid ${theme.primary}; padding-left:12px; margin-bottom:12px; display:flex; justify-content:space-between; align-items:center">
           <div>
-            <h1 style="margin:0 0 4px; font-size:28px; font-weight:800; color:${theme.primary}">${nameText}</h1>
-            <div style="font-size:14px; color:#475569; font-weight:600">${headlineText}</div>
+            <h1 style="margin:0 0 2px; font-size:24px; font-weight:800; color:${theme.primary}">${nameText}</h1>
+            <div style="font-size:12.5px; color:#475569; font-weight:600">${headlineText}</div>
           </div>
-          ${p.photo ? `<img src="${p.photo}" style="width:64px;height:64px;border-radius:6px;object-fit:cover">` : ""}
+          ${p.photo ? `<img src="${p.photo}" style="width:54px;height:54px;border-radius:6px;object-fit:cover">` : ""}
         </div>
-        <div style="display:flex; flex-wrap:wrap; gap:16px; font-size:12px; color:#64748b; padding-bottom:12px; border-bottom:1px solid #cbd5e1; margin-bottom:20px">
-          <span>${emailText}</span> | <span>${phoneText}</span> | <span>${addressText}</span>
-          ${p.linkedin ? `| <span><a href="${escape(p.linkedin)}" target="_blank" style="color:${theme.primary}">LinkedIn</a></span>` : ""}
-          ${p.portfolio ? `| <span><a href="${escape(p.portfolio)}" target="_blank" style="color:${theme.primary}">Portfolio</a></span>` : ""}
+        <div style="display:flex; flex-wrap:wrap; gap:8px; font-size:11px; color:#64748b; padding-bottom:9px; border-bottom:1px solid #cbd5e1; margin-bottom:12px">
+          <span>📧 ${emailText}</span> | <span>📞 ${phoneText}</span> | <span>📍 ${addressText}</span>
+          ${p.linkedin ? `| <span><a href="${escape(p.linkedin)}" target="_blank" style="color:${theme.primary};font-weight:700">LinkedIn</a></span>` : ""}
+          ${p.portfolio ? `| <span><a href="${escape(p.portfolio)}" target="_blank" style="color:${theme.primary};font-weight:700">Portfolio</a></span>` : ""}
         </div>
-        <div style="margin-bottom:20px">
-          <h3 style="font-size:13.5px; font-weight:800; text-transform:uppercase; color:${theme.primary}; letter-spacing:0.06em; margin:0 0 6px">Profile Summary</h3>
+        <div style="margin-bottom:12px">
+          <h3 style="font-size:12px; font-weight:800; text-transform:uppercase; color:${theme.primary}; letter-spacing:0.06em; margin:0 0 5px">Profile Summary</h3>
           ${summaryBlock}
         </div>
-        <div style="margin-bottom:20px">
-          <h3 style="font-size:13.5px; font-weight:800; text-transform:uppercase; color:${theme.primary}; letter-spacing:0.06em; margin:0 0 10px">Work Experience</h3>
+        <div style="margin-bottom:12px">
+          <h3 style="font-size:12px; font-weight:800; text-transform:uppercase; color:${theme.primary}; letter-spacing:0.06em; margin:0 0 6px">Work Experience</h3>
           ${expBlock((x) => `
-            <div style="margin-bottom:12px">
-              <div style="display:flex; justify-content:space-between">
-                <strong style="font-size:13.5px; color:#0f172a">${escape(x.title || "")} — ${escape(x.company || "")}</strong>
-                <span style="font-size:12px; color:#64748b">${escape(x.start || "")} - ${escape(x.end || "Present")}</span>
+            <div style="margin-bottom:8px">
+              <div style="display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap">
+                <strong style="font-size:11.5px; color:#0f172a">${escape(x.title || "")} — ${escape(x.company || "")}</strong>
+                <span style="font-size:10.5px; color:#64748b; font-weight:600">${escape(x.start || "")} - ${escape(x.end || "Present")}</span>
               </div>
               ${formatBullets(x.responsibilities)}
             </div>
           `)}
         </div>
-        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:24px; margin-bottom:20px">
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px; margin-bottom:12px">
           <div>
-            <h3 style="font-size:13.5px; font-weight:800; text-transform:uppercase; color:${theme.primary}; letter-spacing:0.06em; margin:0 0 10px">Projects</h3>
+            <h3 style="font-size:12px; font-weight:800; text-transform:uppercase; color:${theme.primary}; letter-spacing:0.06em; margin:0 0 6px">Projects</h3>
             ${projBlock((proj) => `
-              <div style="margin-bottom:10px">
-                <strong style="font-size:13px; color:#0f172a">${escape(proj.name || "")}</strong>
+              <div style="margin-bottom:6px; background:#f8fafc; border:1px solid #e2e8f0; padding:7px 9px; border-radius:5px">
+                <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:2px">
+                  <strong style="font-size:11.5px; color:#0f172a">${escape(proj.name || "")}</strong>
+                  ${proj.tech ? `<span style="font-size:9.5px; color:${theme.primary}; font-weight:700">${escape(proj.tech)}</span>` : ""}
+                </div>
                 ${formatBullets(proj.description)}
               </div>
             `)}
           </div>
           <div>
-            <h3 style="font-size:13.5px; font-weight:800; text-transform:uppercase; color:${theme.primary}; letter-spacing:0.06em; margin:0 0 8px">Skills & Competencies</h3>
+            <h3 style="font-size:12px; font-weight:800; text-transform:uppercase; color:${theme.primary}; letter-spacing:0.06em; margin:0 0 6px">Skills & Competencies</h3>
             ${formatSkillsChips()}
           </div>
         </div>
         <div>
-          <h3 style="font-size:13.5px; font-weight:800; text-transform:uppercase; color:${theme.primary}; letter-spacing:0.06em; margin:0 0 8px">Education</h3>
+          <h3 style="font-size:12px; font-weight:800; text-transform:uppercase; color:${theme.primary}; letter-spacing:0.06em; margin:0 0 5px">Education</h3>
           ${eduBlock((edu) => `
-            <div style="margin-bottom:8px">
-              <strong style="font-size:13px; color:#0f172a">${escape(edu.degree || "")}</strong> — <span style="font-size:12px; color:#64748b">${escape(edu.institution || "")} (${escape(edu.start || "")} - ${escape(edu.end || "")})</span>
+            <div style="margin-bottom:5px">
+              <strong style="font-size:11.5px; color:#0f172a">${escape(edu.degree || "")}</strong> — <span style="font-size:11px; color:#64748b">${escape(edu.institution || "")} (${escape(edu.start || "")}${edu.end ? ` - ${escape(edu.end)}` : ""})</span>
             </div>
           `)}
         </div>
@@ -2162,46 +2270,46 @@ options.forEach(function (card) {
 
     // 4. Minimalist Essential (Ivy League ATS Standard)
     if (theme.layout === "minimalist") {
-      return `<div style="font-family:'Inter', sans-serif; color:#0f172a; line-height:1.5;">
-        <div style="border-bottom:3px solid ${theme.primary}; padding-bottom:16px; margin-bottom:20px; display:flex; justify-content:space-between; align-items:flex-end">
+      return `<div style="font-family:'Inter', sans-serif; color:#0f172a; line-height:1.45; padding:24px 26px; box-sizing:border-box; min-height:1123px; width:100%;">
+        <div style="border-bottom:2px solid ${theme.primary}; padding-bottom:10px; margin-bottom:12px; display:flex; justify-content:space-between; align-items:flex-end">
           <div>
-            <h1 style="margin:0; font-size:28px; font-weight:800; color:${theme.primary}">${nameText}</h1>
-            <div style="font-size:14px; color:#475569; font-weight:600; margin-top:2px">${headlineText}</div>
+            <h1 style="margin:0; font-size:24px; font-weight:800; color:${theme.primary}">${nameText}</h1>
+            <div style="font-size:12.5px; color:#475569; font-weight:600; margin-top:1px">${headlineText}</div>
           </div>
-          ${p.photo ? `<img src="${p.photo}" style="width:64px;height:64px;border-radius:8px;object-fit:cover">` : ""}
+          ${p.photo ? `<img src="${p.photo}" style="width:54px;height:54px;border-radius:6px;object-fit:cover">` : ""}
         </div>
-        <div style="display:flex; flex-wrap:wrap; gap:16px; font-size:12px; color:#64748b; margin-bottom:20px; border-bottom:1px solid #e2e8f0; padding-bottom:12px">
+        <div style="display:flex; flex-wrap:wrap; gap:8px; font-size:11px; color:#64748b; margin-bottom:12px; border-bottom:1px solid #e2e8f0; padding-bottom:9px">
           <span>📧 ${emailText}</span>
           <span>📞 ${phoneText}</span>
           <span>📍 ${addressText}</span>
-          ${p.linkedin ? `<span>💼 <a href="${escape(p.linkedin)}" target="_blank" style="color:${theme.primary}">LinkedIn</a></span>` : ""}
-          ${p.portfolio ? `<span>🌐 <a href="${escape(p.portfolio)}" target="_blank" style="color:${theme.primary}">Portfolio</a></span>` : ""}
+          ${p.linkedin ? `<span>💼 <a href="${escape(p.linkedin)}" target="_blank" style="color:${theme.primary};font-weight:700">LinkedIn</a></span>` : ""}
+          ${p.portfolio ? `<span>🌐 <a href="${escape(p.portfolio)}" target="_blank" style="color:${theme.primary};font-weight:700">Portfolio</a></span>` : ""}
         </div>
-        <div style="margin-bottom:20px">
-          <h3 style="font-size:14px; font-weight:800; text-transform:uppercase; color:${theme.primary}; letter-spacing:0.05em; border-bottom:1px solid #e2e8f0; padding-bottom:4px; margin:0 0 8px">Summary</h3>
+        <div style="margin-bottom:12px">
+          <h3 style="font-size:12px; font-weight:800; text-transform:uppercase; color:${theme.primary}; letter-spacing:0.05em; border-bottom:1px solid #e2e8f0; padding-bottom:2px; margin:0 0 5px">Summary</h3>
           ${summaryBlock}
         </div>
-        <div style="display:grid; grid-template-columns: 2fr 1fr; gap:24px">
+        <div style="display:grid; grid-template-columns: 1.8fr 1.2fr; gap:16px">
           <div>
-            <div style="margin-bottom:20px">
-              <h3 style="font-size:14px; font-weight:800; text-transform:uppercase; color:${theme.primary}; letter-spacing:0.05em; border-bottom:1px solid #e2e8f0; padding-bottom:4px; margin:0 0 10px">Experience</h3>
+            <div style="margin-bottom:12px">
+              <h3 style="font-size:12px; font-weight:800; text-transform:uppercase; color:${theme.primary}; letter-spacing:0.05em; border-bottom:1px solid #e2e8f0; padding-bottom:2px; margin:0 0 6px">Experience</h3>
               ${expBlock((x) => `
-                <div style="margin-bottom:12px">
-                  <div style="display:flex; justify-content:space-between">
-                    <strong style="font-size:13.5px; color:#0f172a">${escape(x.title || "")} @ ${escape(x.company || "")}</strong>
-                    <span style="font-size:11.5px; color:#64748b">${escape(x.start || "")} - ${escape(x.end || "Present")}</span>
+                <div style="margin-bottom:8px">
+                  <div style="display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap">
+                    <strong style="font-size:11.5px; color:#0f172a">${escape(x.title || "")} @ ${escape(x.company || "")}</strong>
+                    <span style="font-size:10px; color:#64748b; font-weight:600">${escape(x.start || "")} - ${escape(x.end || "Present")}</span>
                   </div>
                   ${formatBullets(x.responsibilities)}
                 </div>
               `)}
             </div>
             <div>
-              <h3 style="font-size:14px; font-weight:800; text-transform:uppercase; color:${theme.primary}; letter-spacing:0.05em; border-bottom:1px solid #e2e8f0; padding-bottom:4px; margin:0 0 10px">Projects</h3>
+              <h3 style="font-size:12px; font-weight:800; text-transform:uppercase; color:${theme.primary}; letter-spacing:0.05em; border-bottom:1px solid #e2e8f0; padding-bottom:2px; margin:0 0 6px">Projects</h3>
               ${projBlock((proj) => `
-                <div style="margin-bottom:12px">
-                  <div style="display:flex; justify-content:space-between">
-                    <strong style="font-size:13.5px; color:#0f172a">${escape(proj.name || "")}</strong>
-                    <span style="font-size:11.5px; color:${theme.primary}">${escape(proj.tech || "")}</span>
+                <div style="margin-bottom:7px; background:#f8fafc; border:1px solid #e2e8f0; border-left:3px solid ${theme.primary}; padding:7px 9px; border-radius:5px">
+                  <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:4px; margin-bottom:2px">
+                    <strong style="font-size:11.5px; color:#0f172a">${escape(proj.name || "")}</strong>
+                    <span style="font-size:10px; color:${theme.primary}; font-weight:700">${escape(proj.tech || "")}</span>
                   </div>
                   ${formatBullets(proj.description)}
                 </div>
@@ -2209,17 +2317,17 @@ options.forEach(function (card) {
             </div>
           </div>
           <div>
-            <div style="margin-bottom:20px">
-              <h3 style="font-size:14px; font-weight:800; text-transform:uppercase; color:${theme.primary}; letter-spacing:0.05em; border-bottom:1px solid #e2e8f0; padding-bottom:4px; margin:0 0 8px">Skills</h3>
+            <div style="margin-bottom:12px">
+              <h3 style="font-size:12px; font-weight:800; text-transform:uppercase; color:${theme.primary}; letter-spacing:0.05em; border-bottom:1px solid #e2e8f0; padding-bottom:2px; margin:0 0 5px">Skills</h3>
               ${formatSkillsChips()}
             </div>
             <div>
-              <h3 style="font-size:14px; font-weight:800; text-transform:uppercase; color:${theme.primary}; letter-spacing:0.05em; border-bottom:1px solid #e2e8f0; padding-bottom:4px; margin:0 0 8px">Education</h3>
+              <h3 style="font-size:12px; font-weight:800; text-transform:uppercase; color:${theme.primary}; letter-spacing:0.05em; border-bottom:1px solid #e2e8f0; padding-bottom:2px; margin:0 0 5px">Education</h3>
               ${eduBlock((edu) => `
-                <div style="margin-bottom:10px">
-                  <strong style="font-size:13px; color:#0f172a; display:block">${escape(edu.degree || "")}</strong>
-                  <div style="font-size:12px; color:#64748b">${escape(edu.institution || "")}</div>
-                  <div style="font-size:11.5px; color:#94a3b8">${escape(edu.start || "")} - ${escape(edu.end || "")}</div>
+                <div style="margin-bottom:6px; background:#f8fafc; padding:6px 8px; border-radius:5px; border:1px solid #e2e8f0">
+                  <strong style="font-size:11.5px; color:#0f172a; display:block">${escape(edu.degree || "")}</strong>
+                  <div style="font-size:10.5px; color:#64748b">${escape(edu.institution || "")}</div>
+                  <div style="font-size:10px; color:#94a3b8">${escape(edu.start || "")}${edu.end ? ` - ${escape(edu.end)}` : ""}</div>
                 </div>
               `)}
             </div>
@@ -2230,7 +2338,7 @@ options.forEach(function (card) {
 
     // 5. Monochrome Classic Layout (Boxed, editorial timeless style)
     if (theme.layout === "monochrome") {
-      return `<div style="font-family:'Inter', serif, sans-serif; color:#171717; line-height:1.5; border:2px solid #262626; padding:24px; border-radius:4px">
+      return `<div style="font-family:'Inter', serif, sans-serif; color:#171717; line-height:1.5; border:2px solid #262626; padding:32px 36px; box-sizing:border-box; min-height:1123px; width:100%; border-radius:4px">
         <div style="text-align:center; border-bottom:2px solid #262626; padding-bottom:14px; margin-bottom:18px">
           <h1 style="margin:0 0 4px; font-size:28px; font-weight:800; letter-spacing:1px; text-transform:uppercase">${nameText}</h1>
           <div style="font-size:13.5px; font-weight:600; color:#525252">${headlineText}</div>
@@ -2274,7 +2382,7 @@ options.forEach(function (card) {
 
     // 6. Executive Layout (Navy authoritative, formal hierarchy)
     if (theme.layout === "executive") {
-      return `<div style="font-family:'Outfit', 'Inter', sans-serif; color:#0f172a; line-height:1.5;">
+      return `<div style="font-family:'Outfit', 'Inter', sans-serif; color:#0f172a; line-height:1.5; padding:32px 36px; box-sizing:border-box; min-height:1123px; width:100%;">
         <div style="border-top:3px solid #10b981; border-bottom:1.5px solid #cbd5e1; padding:18px 0; margin-bottom:20px; display:flex; justify-content:space-between; align-items:center">
           <div>
             <h1 style="margin:0 0 4px; font-size:30px; font-weight:800; color:${theme.primary}; letter-spacing:-0.02em">${nameText}</h1>
@@ -2321,7 +2429,7 @@ options.forEach(function (card) {
 
     // 7. Corporate Director Layout (Navy authoritative, formal hierarchy)
     if (theme.layout === "director") {
-      return `<div style="font-family:'Outfit', 'Inter', sans-serif; color:#0f172a; line-height:1.5;">
+      return `<div style="font-family:'Outfit', 'Inter', sans-serif; color:#0f172a; line-height:1.5; padding:32px 36px; box-sizing:border-box; min-height:1123px; width:100%;">
         <div style="border-top:4px solid #1e3a8a; border-bottom:2px solid #0f172a; padding:18px 0; margin-bottom:20px; display:flex; justify-content:space-between; align-items:center">
           <div>
             <h1 style="margin:0 0 4px; font-size:32px; font-weight:800; color:#1e3a8a; letter-spacing:-0.02em">${nameText}</h1>
@@ -2368,68 +2476,87 @@ options.forEach(function (card) {
 
     // 8. Starter / Fresher Skills First Layout
     if (theme.layout === "starter") {
-      return `<div style="font-family:'Inter', sans-serif; color:#0e131f; line-height:1.5;">
-        <div style="background:${theme.gradient}; padding:24px; border-radius:12px; color:#ffffff; display:flex; justify-content:space-between; align-items:center; margin-bottom:20px">
-          <div>
-            <h1 style="font-family:'Outfit', sans-serif; margin:0 0 4px; font-size:28px; font-weight:800">${nameText}</h1>
-            <div style="font-size:14px; font-weight:600; opacity:0.95">${headlineText}</div>
-          </div>
-          ${p.photo ? `<img src="${p.photo}" style="width:68px;height:68px;border-radius:50%;object-fit:cover;border:3px solid #fff">` : ""}
-        </div>
-        <div style="display:flex; flex-wrap:wrap; gap:14px; font-size:12.5px; color:#475569; padding-bottom:12px; border-bottom:2px solid #ccfbf1; margin-bottom:20px">
-          <span>📧 ${emailText}</span>
-          <span>📞 ${phoneText}</span>
-          <span>📍 ${addressText}</span>
-          ${p.linkedin ? `<span><a href="${escape(p.linkedin)}" target="_blank" style="color:${theme.primary}">LinkedIn</a></span>` : ""}
-        </div>
-        <div style="background:#f0fdfa; border:1px solid #99f6e4; padding:14px; border-radius:8px; margin-bottom:20px">
-          <h3 style="font-size:14px; font-weight:800; color:#0f766e; text-transform:uppercase; margin:0 0 6px">Skills & Proficiencies (Skills-First)</h3>
-          ${formatSkillsChips("#ccfbf1", "#5eead4", "#0f766e")}
-        </div>
-        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:22px">
-          <div>
-            <div style="margin-bottom:20px">
-              <h3 style="font-size:14px; font-weight:800; color:${theme.primary}; text-transform:uppercase; border-bottom:2px solid #ccfbf1; padding-bottom:4px; margin:0 0 8px">Education & Academics</h3>
-              ${eduBlock((edu) => `
-                <div style="margin-bottom:10px; background:#fff; border:1px solid #e2e8f0; padding:8px 10px; border-radius:6px">
-                  <strong style="font-size:13px; color:#0f172a">${escape(edu.degree || "")}</strong>
-                  <div style="font-size:12px; color:#64748b">${escape(edu.institution || "")}</div>
-                  <div style="font-size:11px; color:#14b8a6">${escape(edu.start || "")} - ${escape(edu.end || "")}</div>
-                </div>
-              `)}
-            </div>
+      return `<div style="font-family:'Inter', sans-serif; color:#0e131f; line-height:1.55; padding:36px 36px; box-sizing:border-box; min-height:1123px; height:100%; width:100%; background:#ffffff; display:flex; flex-direction:column; justify-content:space-between;">
+        <div>
+          <div style="background:${theme.gradient}; padding:24px 28px; border-radius:14px; color:#ffffff; display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; box-shadow:0 4px 14px rgba(0,0,0,0.06);">
             <div>
-              <h3 style="font-size:14px; font-weight:800; color:${theme.primary}; text-transform:uppercase; border-bottom:2px solid #ccfbf1; padding-bottom:4px; margin:0 0 8px">Objective</h3>
-              ${summaryBlock}
+              <h1 style="font-family:'Outfit', sans-serif; margin:0 0 4px; font-size:28px; font-weight:800; letter-spacing:-0.02em;">${nameText}</h1>
+              <div style="font-size:14px; font-weight:600; opacity:0.95">${headlineText}</div>
+            </div>
+            ${p.photo ? `<img src="${p.photo}" style="width:72px;height:72px;border-radius:50%;object-fit:cover;border:3px solid #ffffff;box-shadow:0 2px 8px rgba(0,0,0,0.15);">` : ""}
+          </div>
+          <div style="display:flex; flex-wrap:wrap; gap:12px; font-size:11.5px; color:#475569; padding-bottom:14px; border-bottom:2px solid #ccfbf1; margin-bottom:22px">
+            <span style="background:#f8fafc;padding:3px 10px;border-radius:5px;border:1px solid #e2e8f0;">📧 ${emailText}</span>
+            <span style="background:#f8fafc;padding:3px 10px;border-radius:5px;border:1px solid #e2e8f0;">📞 ${phoneText}</span>
+            <span style="background:#f8fafc;padding:3px 10px;border-radius:5px;border:1px solid #e2e8f0;">📍 ${addressText}</span>
+            ${linkedinUrl !== '#' ? `<span><a href="${linkedinUrl}" target="_blank" style="background:#eff6ff;color:${theme.primary};text-decoration:none;font-weight:700;padding:3px 10px;border-radius:5px;border:1px solid #dbeafe;">💼 LinkedIn</a></span>` : ""}
+            ${portfolioUrl !== '#' ? `<span><a href="${portfolioUrl}" target="_blank" style="background:#f0fdf4;color:#059669;text-decoration:none;font-weight:700;padding:3px 10px;border-radius:5px;border:1px solid #bbf7d0;">🌐 Portfolio</a></span>` : ""}
+          </div>
+          <div style="background:#f0fdfa; border:1.5px solid #99f6e4; padding:16px 18px; border-radius:10px; margin-bottom:22px">
+            <h3 style="font-size:14px; font-weight:800; color:#0f766e; text-transform:uppercase; letter-spacing:0.06em; margin:0 0 10px">⚡ Skills & Proficiencies</h3>
+            ${formatSkillsChips("#ccfbf1", "#5eead4", "#0f766e")}
+          </div>
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:26px; margin-bottom:20px;">
+            <div style="display:flex; flex-direction:column; gap:22px;">
+              <div>
+                <h3 style="font-size:14px; font-weight:800; color:${theme.primary}; text-transform:uppercase; letter-spacing:0.06em; border-bottom:2px solid #ccfbf1; padding-bottom:4px; margin:0 0 10px">🎓 Education & Academics</h3>
+                ${eduBlock((edu) => `
+                  <div style="margin-bottom:12px; background:#f8fafc; border:1px solid #e2e8f0; padding:10px 14px; border-radius:8px">
+                    <strong style="font-size:13.5px; color:#0f172a">${escape(edu.degree || "")}</strong>
+                    <div style="font-size:12px; color:#64748b; margin-top:2px;">${escape(edu.institution || "")}</div>
+                    <div style="font-size:11px; color:#0f766e; font-weight:600; margin-top:2px;">${escape(edu.start || "")}${edu.end ? ` – ${escape(edu.end)}` : ""}</div>
+                  </div>
+                `)}
+              </div>
+              <div>
+                <h3 style="font-size:14px; font-weight:800; color:${theme.primary}; text-transform:uppercase; letter-spacing:0.06em; border-bottom:2px solid #ccfbf1; padding-bottom:4px; margin:0 0 10px">🎯 Career Objective</h3>
+                ${summaryBlock}
+              </div>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:22px;">
+              <div>
+                <h3 style="font-size:14px; font-weight:800; color:${theme.primary}; text-transform:uppercase; letter-spacing:0.06em; border-bottom:2px solid #ccfbf1; padding-bottom:4px; margin:0 0 10px">🚀 Projects & Portfolio</h3>
+                ${projBlock((proj) => `
+                  <div style="margin-bottom:12px; background:#f8fafc; border:1px solid #e2e8f0; border-left:3.5px solid ${theme.primary}; padding:10px 12px; border-radius:7px;">
+                    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:4px; margin-bottom:3px;">
+                      <div>
+                        <strong style="font-size:13px; color:#0e131f;">${escape(proj.name || "")}</strong>
+                        ${proj.tech ? `<div style="font-size:11px; color:${theme.primary}; font-weight:700; margin-top:1px;">${escape(proj.tech)}</div>` : ""}
+                      </div>
+                      <div style="display:flex; gap:4px; align-items:center;">
+                        ${proj.github ? `<a href="${escape(proj.github)}" target="_blank" style="font-size:9.5px;color:${theme.primary};text-decoration:none;font-weight:700;background:#fff;border:1px solid #cbd5e1;padding:2px 6px;border-radius:4px;">💻 Code</a>` : ""}
+                        ${proj.demo ? `<a href="${escape(proj.demo)}" target="_blank" style="font-size:9.5px;color:#059669;text-decoration:none;font-weight:700;background:#ecfdf5;border:1px solid #a7f3d0;padding:2px 6px;border-radius:4px;">🔗 Live Demo</a>` : ""}
+                      </div>
+                    </div>
+                    ${formatBullets(proj.description)}
+                  </div>
+                `)}
+              </div>
+              <div>
+                <h3 style="font-size:14px; font-weight:800; color:${theme.primary}; text-transform:uppercase; letter-spacing:0.06em; border-bottom:2px solid #ccfbf1; padding-bottom:4px; margin:0 0 10px">💼 Experience & Internships</h3>
+                ${expBlock((x) => `
+                  <div style="margin-bottom:12px; padding-left:10px; border-left:2.5px solid ${theme.primary}44;">
+                    <div style="display:flex; justify-content:space-between; align-items:baseline; gap:6px; flex-wrap:wrap; margin-bottom:2px">
+                      <strong style="font-size:13px; color:#0f172a">${escape(x.title || "")} @ ${escape(x.company || "")}</strong>
+                      <span style="font-size:11px; color:#64748b; font-weight:600;">${escape(x.start || "")} – ${escape(x.end || "Present")}</span>
+                    </div>
+                    ${formatBullets(x.responsibilities)}
+                  </div>
+                `)}
+              </div>
             </div>
           </div>
-          <div>
-            <div style="margin-bottom:20px">
-              <h3 style="font-size:14px; font-weight:800; color:${theme.primary}; text-transform:uppercase; border-bottom:2px solid #ccfbf1; padding-bottom:4px; margin:0 0 8px">Projects & Portfolio</h3>
-              ${projBlock((proj) => `
-                <div style="margin-bottom:10px">
-                  <strong style="font-size:13px; color:#0f172a">${escape(proj.name || "")}</strong>
-                  ${formatBullets(proj.description)}
-                </div>
-              `)}
-            </div>
-            <div>
-              <h3 style="font-size:14px; font-weight:800; color:${theme.primary}; text-transform:uppercase; border-bottom:2px solid #ccfbf1; padding-bottom:4px; margin:0 0 8px">Internships / Experience</h3>
-              ${expBlock((x) => `
-                <div style="margin-bottom:10px">
-                  <strong style="font-size:13px; color:#0f172a">${escape(x.title || "")} @ ${escape(x.company || "")}</strong>
-                  ${formatBullets(x.responsibilities)}
-                </div>
-              `)}
-            </div>
-          </div>
+        </div>
+        <div style="margin-top:auto; padding-top:14px; border-top:1.5px solid #e2e8f0; display:flex; justify-content:space-between; align-items:center; font-size:11px; color:#64748b;">
+          <span>Declaration: I hereby declare that all details above are accurate to the best of my knowledge.</span>
+          <span style="font-weight:600; color:#0f172a;">${nameText}</span>
         </div>
       </div>`;
     }
 
     // 9. Cloud & DevOps Architect Layout
     if (theme.layout === "cloud") {
-      return `<div style="font-family:'Inter', sans-serif; color:#0f172a; line-height:1.5;">
+      return `<div style="font-family:'Inter', sans-serif; color:#0f172a; line-height:1.5; padding:32px 36px; box-sizing:border-box; min-height:1123px; width:100%;">
         <div style="background:#0f172a; padding:24px; border-radius:10px; color:#ffffff; border-top:4px solid #0284c7; margin-bottom:20px; display:flex; justify-content:space-between; align-items:center">
           <div>
             <div style="font-size:11px; font-weight:700; color:#38bdf8; text-transform:uppercase; letter-spacing:1px; margin-bottom:2px">☁️ CLOUD & SYSTEMS ARCHITECT</div>
@@ -2496,7 +2623,7 @@ options.forEach(function (card) {
 
     // 10. AI & Data Scientist Layout
     if (theme.layout === "ai-data") {
-      return `<div style="font-family:'Inter', sans-serif; color:#0f172a; line-height:1.5;">
+      return `<div style="font-family:'Inter', sans-serif; color:#0f172a; line-height:1.5; padding:32px 36px; box-sizing:border-box; min-height:1123px; width:100%;">
         <div style="background:linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%); padding:24px; border-radius:12px; color:#ffffff; border-bottom:3px solid #06b6d4; margin-bottom:20px; display:flex; justify-content:space-between; align-items:center">
           <div>
             <div style="font-size:11px; font-weight:700; color:#22d3ee; text-transform:uppercase; letter-spacing:1px; margin-bottom:2px">🤖 AI & DATA SCIENCE SPECIALIST</div>
@@ -2561,7 +2688,7 @@ options.forEach(function (card) {
 
     // 11. Ivy League Academic Layout (Oxford / Harvard Traditional Serif ATS Standard)
     if (theme.layout === "ivy") {
-      return `<div style="font-family:'Georgia', 'Cambria', serif; color:#1c1917; line-height:1.5;">
+      return `<div style="font-family:'Georgia', 'Cambria', serif; color:#1c1917; line-height:1.5; padding:32px 36px; box-sizing:border-box; min-height:1123px; width:100%;">
         <div style="text-align:center; border-bottom:2px solid #7f1d1d; padding-bottom:14px; margin-bottom:18px">
           <h1 style="margin:0 0 4px; font-size:30px; font-weight:700; color:#7f1d1d; letter-spacing:0.5px">${nameText}</h1>
           <div style="font-size:14px; font-style:italic; color:#44403c">${headlineText}</div>
@@ -2618,7 +2745,7 @@ options.forEach(function (card) {
 
     // 12. UX/UI Product Designer Layout
     if (theme.layout === "ux") {
-      return `<div style="font-family:'Outfit', 'Inter', sans-serif; color:#0f172a; line-height:1.5;">
+      return `<div style="font-family:'Outfit', 'Inter', sans-serif; color:#0f172a; line-height:1.5; padding:32px 36px; box-sizing:border-box; min-height:1123px; width:100%;">
         <div style="background:linear-gradient(135deg, #4338ca 0%, #06b6d4 100%); padding:26px; border-radius:16px; color:#ffffff; display:flex; justify-content:space-between; align-items:center; margin-bottom:22px; box-shadow:0 8px 24px rgba(67,56,202,0.2)">
           <div>
             <div style="font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; opacity:0.9">PRODUCT & INTERACTION DESIGN</div>
@@ -2685,7 +2812,7 @@ options.forEach(function (card) {
 
     // 14. Cybersecurity & SecOps Layout
     if (theme.layout === "cyber") {
-      return `<div style="font-family:'Inter', sans-serif; color:#0f172a; line-height:1.5;">
+      return `<div style="font-family:'Inter', sans-serif; color:#0f172a; line-height:1.5; padding:32px 36px; box-sizing:border-box; min-height:1123px; width:100%;">
         <div style="background:#0f172a; padding:24px; border-radius:10px; color:#ffffff; border-left:5px solid #dc2626; margin-bottom:20px; display:flex; justify-content:space-between; align-items:center">
           <div>
             <div style="font-family:monospace; font-size:11px; color:#f87171; letter-spacing:1px; margin-bottom:2px">&lt;SECURITY_OPERATIONS_PROFILE /&gt;</div>
@@ -2749,7 +2876,7 @@ options.forEach(function (card) {
 
     // 15. Swiss International Typography Layout (Crisp Contrast)
     if (theme.layout === "swiss") {
-      return `<div style="font-family:'Helvetica Neue', Arial, sans-serif; color:#18181b; line-height:1.5;">
+      return `<div style="font-family:'Helvetica Neue', Arial, sans-serif; color:#18181b; line-height:1.5; padding:32px 36px; box-sizing:border-box; min-height:1123px; width:100%;">
         <div style="border-bottom:4px solid #18181b; padding-bottom:16px; margin-bottom:20px; display:flex; justify-content:space-between; align-items:flex-end">
           <div>
             <span style="background:#e11d48; color:#fff; font-size:10px; font-weight:900; letter-spacing:1.5px; padding:2px 6px; text-transform:uppercase">SWISS GRID ATS</span>
@@ -2811,7 +2938,7 @@ options.forEach(function (card) {
 
     // 16. Nordic Clean Slate Layout
     if (theme.layout === "nordic") {
-      return `<div style="font-family:'Inter', sans-serif; color:#334155; line-height:1.6;">
+      return `<div style="font-family:'Inter', sans-serif; color:#334155; line-height:1.6; padding:32px 36px; box-sizing:border-box; min-height:1123px; width:100%;">
         <div style="padding-bottom:16px; margin-bottom:20px; border-bottom:1px solid #cbd5e1; display:flex; justify-content:space-between; align-items:center">
           <div>
             <h1 style="margin:0 0 2px; font-size:28px; font-weight:700; color:#1e293b">${nameText}</h1>
@@ -2859,7 +2986,7 @@ options.forEach(function (card) {
 
     // 17. Motion & 3D Animator Layout
     if (theme.layout === "motion") {
-      return `<div style="font-family:'Outfit', 'Inter', sans-serif; color:#0f172a; line-height:1.5;">
+      return `<div style="font-family:'Outfit', 'Inter', sans-serif; color:#0f172a; line-height:1.5; padding:32px 36px; box-sizing:border-box; min-height:1123px; width:100%;">
         <div style="background:linear-gradient(135deg, #9333ea 0%, #ec4899 100%); padding:26px; border-radius:16px; color:#ffffff; display:flex; justify-content:space-between; align-items:center; margin-bottom:22px">
           <div>
             <div style="font-size:11px; font-weight:800; letter-spacing:1px; text-transform:uppercase; opacity:0.9">🎬 3D ART & MOTION DESIGN</div>
@@ -2924,7 +3051,7 @@ options.forEach(function (card) {
 
     // 18. Editorial & Publishing Layout
     if (theme.layout === "editorial") {
-      return `<div style="font-family:'Georgia', serif; color:#1c1917; line-height:1.5;">
+      return `<div style="font-family:'Georgia', serif; color:#1c1917; line-height:1.5; padding:32px 36px; box-sizing:border-box; min-height:1123px; width:100%;">
         <div style="border-top:3px solid #831843; border-bottom:1px solid #831843; padding:18px 0; margin-bottom:20px; text-align:center">
           <div style="font-family:'Inter', sans-serif; font-size:10px; font-weight:800; color:#be185d; letter-spacing:2px; text-transform:uppercase">EDITORIAL & ART DIRECTION</div>
           <h1 style="margin:2px 0 4px; font-size:32px; font-weight:700; color:#831843">${nameText}</h1>
@@ -2968,7 +3095,7 @@ options.forEach(function (card) {
 
     // 19. Vice President & GM Layout
     if (theme.layout === "vp") {
-      return `<div style="font-family:'Outfit', 'Inter', sans-serif; color:#0f172a; line-height:1.5;">
+      return `<div style="font-family:'Outfit', 'Inter', sans-serif; color:#0f172a; line-height:1.5; padding:32px 36px; box-sizing:border-box; min-height:1123px; width:100%;">
         <div style="background:linear-gradient(135deg, #1e3a8a 0%, #0284c7 100%); padding:26px; border-radius:12px; color:#ffffff; display:flex; justify-content:space-between; align-items:center; margin-bottom:20px">
           <div>
             <div style="font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; opacity:0.9">GENERAL MANAGEMENT & ENTERPRISE LEADERSHIP</div>
@@ -3016,7 +3143,7 @@ options.forEach(function (card) {
 
     // 20. Chief Financial Officer Layout
     if (theme.layout === "cfo") {
-      return `<div style="font-family:'Outfit', 'Inter', sans-serif; color:#0f172a; line-height:1.5;">
+      return `<div style="font-family:'Outfit', 'Inter', sans-serif; color:#0f172a; line-height:1.5; padding:32px 36px; box-sizing:border-box; min-height:1123px; width:100%;">
         <div style="border-top:4px solid #047857; border-bottom:2px solid #064e3b; padding:18px 0; margin-bottom:20px; display:flex; justify-content:space-between; align-items:center">
           <div>
             <div style="font-size:11px; font-weight:800; color:#047857; letter-spacing:1px; text-transform:uppercase">CHIEF FINANCIAL OFFICER & FISCAL STRATEGY</div>
@@ -3064,7 +3191,7 @@ options.forEach(function (card) {
 
     // 21. STEM Engineering Graduate Layout
     if (theme.layout === "stem") {
-      return `<div style="font-family:'Inter', sans-serif; color:#0f172a; line-height:1.5;">
+      return `<div style="font-family:'Inter', sans-serif; color:#0f172a; line-height:1.5; padding:32px 36px; box-sizing:border-box; min-height:1123px; width:100%;">
         <div style="background:linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%); padding:24px; border-radius:12px; color:#ffffff; display:flex; justify-content:space-between; align-items:center; margin-bottom:20px">
           <div>
             <div style="font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; opacity:0.9">⚙️ STEM ENGINEERING & APPLIED SCIENCE</div>
@@ -3075,7 +3202,7 @@ options.forEach(function (card) {
         </div>
         <div style="display:flex; flex-wrap:wrap; gap:14px; font-size:12px; color:#475569; padding-bottom:12px; border-bottom:2px solid #dbeafe; margin-bottom:20px">
           <span>📧 ${emailText}</span> • <span>📞 ${phoneText}</span> • <span>📍 ${addressText}</span>
-          ${p.linkedin ? `• <a href="${escape(p.linkedin)}" target="_blank" style="color:#1d4ed8;font-weight:600">LinkedIn</a>` : ""}
+          ${p.linkedin ? `• <a href="${escape(p.linkedin)}" target="_blank" style="color:#1d4ed8;font-weight:600">LinkedIn</a></span>` : ""}
         </div>
         <div style="margin-bottom:20px">
           <h3 style="font-size:14px; font-weight:800; color:#1d4ed8; text-transform:uppercase; border-bottom:2px solid #dbeafe; padding-bottom:3px; margin:0 0 6px">Engineering Focus & Objectives</h3>
@@ -3124,7 +3251,7 @@ options.forEach(function (card) {
 
     // 22. High-Potential Intern Layout
     if (theme.layout === "intern") {
-      return `<div style="font-family:'Inter', sans-serif; color:#0f172a; line-height:1.5;">
+      return `<div style="font-family:'Inter', sans-serif; color:#0f172a; line-height:1.5; padding:32px 36px; box-sizing:border-box; min-height:1123px; width:100%;">
         <div style="background:linear-gradient(135deg, #0d9488 0%, #10b981 100%); padding:24px; border-radius:12px; color:#ffffff; display:flex; justify-content:space-between; align-items:center; margin-bottom:20px">
           <div>
             <div style="font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; opacity:0.9">🌱 EMERGING TALENT & INTERNSHIP READY</div>
@@ -3182,7 +3309,7 @@ options.forEach(function (card) {
 
     // 23. Dean's List Honors Scholar Layout
     if (theme.layout === "honors") {
-      return `<div style="font-family:'Inter', sans-serif; color:#0f172a; line-height:1.5;">
+      return `<div style="font-family:'Inter', sans-serif; color:#0f172a; line-height:1.5; padding:32px 36px; box-sizing:border-box; min-height:1123px; width:100%;">
         <div style="background:linear-gradient(135deg, #6b21a8 0%, #9333ea 100%); padding:24px; border-radius:12px; color:#ffffff; display:flex; justify-content:space-between; align-items:center; margin-bottom:20px">
           <div>
             <div style="font-size:11px; font-weight:800; letter-spacing:1px; text-transform:uppercase; opacity:0.9">🏆 DEAN'S LIST HONORS & DISTINCTION</div>
@@ -3218,7 +3345,6 @@ options.forEach(function (card) {
                 </div>
               `)}
             </div>
-          </div>
           <div>
             <div style="margin-bottom:20px">
               <h3 style="font-size:14px; font-weight:800; color:#7e22ce; text-transform:uppercase; border-bottom:2px solid #f3e8ff; padding-bottom:3px; margin:0 0 8px">Core Competencies</h3>
@@ -3238,86 +3364,108 @@ options.forEach(function (card) {
       </div>`;
     }
 
-    // Default Modern Layout (Corporate standard)
-    return `<div style="font-family:'Inter', sans-serif; color:#0e131f; line-height:1.5;">
-      <div style="background: ${theme.gradient}; padding: 28px; border-radius: 12px; color: #ffffff; display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px;">
-        <div>
-          <h1 style="font-family:'Outfit', sans-serif; margin: 0 0 4px; font-size: 30px; font-weight: 800; letter-spacing: -0.02em;">${nameText}</h1>
-          <div style="font-size: 15px; font-weight: 600; opacity: 0.95;">${headlineText}</div>
-        </div>
-        ${p.photo ? `<img src="${p.photo}" style="width: 76px; height: 76px; border-radius: 50%; object-fit: cover; border: 3px solid #ffffff; box-shadow: 0 4px 12px rgba(0,0,0,0.15)">` : ""}
-      </div>
-
-      <div style="display: flex; flex-wrap: wrap; gap: 16px; font-size: 13px; color: #475569; padding-bottom: 16px; border-bottom: 2px solid #f1f5f9; margin-bottom: 24px;">
-        <span>📧 ${emailText}</span>
-        <span>📞 ${phoneText}</span>
-        <span>📍 ${addressText}</span>
-        ${p.linkedin ? `<span>💼 <a href="${escape(p.linkedin)}" target="_blank" style="color:${theme.primary};text-decoration:none;font-weight:600">LinkedIn</a></span>` : ""}
-        ${p.portfolio ? `<span>🌐 <a href="${escape(p.portfolio)}" target="_blank" style="color:${theme.primary};text-decoration:none;font-weight:600">Portfolio</a></span>` : ""}
-      </div>
-
-      <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 32px;">
-        <div>
-          <div style="margin-bottom: 24px;">
-            <h3 style="font-family:'Outfit', sans-serif; font-size: 15px; font-weight: 800; color: ${theme.primary}; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid ${theme.primary}22; padding-bottom: 4px; margin-bottom: 10px;">Professional Summary</h3>
-            ${summaryBlock}
+    // Default Modern Layout (Corporate standard — Full A4 balanced height)
+    return `<div style="font-family:'Inter',sans-serif;color:#0e131f;line-height:1.45;padding:24px 26px;box-sizing:border-box;width:100%;min-height:1123px;background:#ffffff;display:flex;flex-direction:column;justify-content:flex-start;">
+      <div style="flex:1;">
+        <div style="background:${theme.gradient};padding:16px 20px;border-radius:10px;color:#ffffff;display:flex;align-items:center;justify-content:space-between;margin-bottom:13px;box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+          <div>
+            <h1 style="font-family:'Outfit',sans-serif;margin:0 0 3px;font-size:26px;font-weight:800;letter-spacing:-0.02em;">${nameText}</h1>
+            <div style="font-size:14px;font-weight:600;opacity:0.95;">${headlineText}</div>
           </div>
-
-          <div style="margin-bottom: 24px;">
-            <h3 style="font-family:'Outfit', sans-serif; font-size: 15px; font-weight: 800; color: ${theme.primary}; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid ${theme.primary}22; padding-bottom: 4px; margin-bottom: 12px;">Experience</h3>
-            ${expBlock((x) => `
-              <div style="margin-bottom: 14px;">
-                <div style="display: flex; justify-content: space-between; align-items: baseline;">
-                  <strong style="font-size: 14.5px; color: #0e131f;">${escape(x.title || "")} @ ${escape(x.company || "")}</strong>
-                  <span style="font-size: 12px; color: #64748b;">${escape(x.start || "")} - ${escape(x.end || "Present")}</span>
-                </div>
-                ${formatBullets(x.responsibilities)}
-              </div>
-            `)}
-          </div>
-
-          <div style="margin-bottom: 24px;">
-            <h3 style="font-family:'Outfit', sans-serif; font-size: 15px; font-weight: 800; color: ${theme.primary}; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid ${theme.primary}22; padding-bottom: 4px; margin-bottom: 12px;">Key Projects</h3>
-            ${projBlock((proj) => `
-              <div style="margin-bottom: 14px;">
-                <div style="display: flex; justify-content: space-between; align-items: baseline;">
-                  <strong style="font-size: 14.5px; color: #0e131f;">${escape(proj.name || "")}</strong>
-                  <span style="font-size: 12px; color: ${theme.primary}; font-weight: 600;">${escape(proj.tech || "")}</span>
-                </div>
-                ${formatBullets(proj.description)}
-              </div>
-            `)}
-          </div>
+          ${p.photo ? `<img src="${p.photo}" style="width:58px;height:58px;border-radius:50%;object-fit:cover;border:2.5px solid #ffffff;box-shadow:0 2px 6px rgba(0,0,0,0.15);">` : ""}
         </div>
 
-        <div>
-          <div style="margin-bottom: 24px;">
-            <h3 style="font-family:'Outfit', sans-serif; font-size: 15px; font-weight: 800; color: ${theme.primary}; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid ${theme.primary}22; padding-bottom: 4px; margin-bottom: 12px;">Skills</h3>
-            ${formatSkillsChips()}
-          </div>
+        <div style="display:flex;flex-wrap:wrap;gap:7px;font-size:12px;color:#475569;padding-bottom:10px;border-bottom:1.5px solid #e2e8f0;margin-bottom:13px;">
+          <span style="background:#f8fafc;padding:3px 8px;border-radius:4px;border:1px solid #e2e8f0;">📧 ${emailText}</span>
+          <span style="background:#f8fafc;padding:3px 8px;border-radius:4px;border:1px solid #e2e8f0;">📞 ${phoneText}</span>
+          <span style="background:#f8fafc;padding:3px 8px;border-radius:4px;border:1px solid #e2e8f0;">📍 ${addressText}</span>
+          ${linkedinUrl !== '#' ? `<a href="${linkedinUrl}" target="_blank" style="background:#eff6ff;color:${theme.primary};text-decoration:none;font-weight:700;padding:3px 8px;border-radius:4px;border:1px solid #dbeafe;">💼 LinkedIn</a>` : ""}
+          ${portfolioUrl !== '#' ? `<a href="${portfolioUrl}" target="_blank" style="background:#f0fdf4;color:#059669;text-decoration:none;font-weight:700;padding:3px 8px;border-radius:4px;border:1px solid #bbf7d0;">🌐 Portfolio</a>` : ""}
+        </div>
 
-          <div style="margin-bottom: 24px;">
-            <h3 style="font-family:'Outfit', sans-serif; font-size: 15px; font-weight: 800; color: ${theme.primary}; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid ${theme.primary}22; padding-bottom: 4px; margin-bottom: 12px;">Education</h3>
-            ${eduBlock((edu) => `
-              <div style="margin-bottom: 12px;">
-                <strong style="font-size: 14px; color: #0e131f; display: block;">${escape(edu.degree || "")}</strong>
-                <div style="font-size: 12.5px; color: #64748b;">${escape(edu.institution || "")}</div>
-                <div style="font-size: 12px; color: #94a3b8;">${escape(edu.start || "")} - ${escape(edu.end || "")}</div>
-              </div>
-            `)}
-          </div>
-
-          ${state.achievements?.length ? `
-            <div style="margin-bottom: 24px;">
-              <h3 style="font-family:'Outfit', sans-serif; font-size: 15px; font-weight: 800; color: ${theme.primary}; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid ${theme.primary}22; padding-bottom: 4px; margin-bottom: 12px;">Achievements</h3>
-              ${state.achievements.map((ach) => `
-                <div style="margin-bottom: 10px;">
-                  <strong style="font-size: 13.5px; color: #0e131f; display: block;">${escape(ach.title || "")}</strong>
-                  <div style="font-size: 12px; color: #64748b;">${escape(ach.org || "")} • ${escape(ach.date || "")}</div>
-                </div>
-              `).join("")}
+        <div style="display:grid;grid-template-columns:1.8fr 1.2fr;gap:16px;margin-bottom:10px;">
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div>
+              <h3 style="font-family:'Outfit',sans-serif;font-size:13px;font-weight:800;color:${theme.primary};text-transform:uppercase;letter-spacing:0.06em;border-bottom:2px solid ${theme.primary}33;padding-bottom:3px;margin:0 0 6px;">Professional Summary</h3>
+              <p style="font-size:12.5px;color:#334155;margin:0;line-height:1.55;overflow-wrap:break-word;word-break:break-word;overflow:hidden;">${summaryText}</p>
             </div>
-          ` : ""}
+
+            <div>
+              <h3 style="font-family:'Outfit',sans-serif;font-size:13px;font-weight:800;color:${theme.primary};text-transform:uppercase;letter-spacing:0.06em;border-bottom:2px solid ${theme.primary}33;padding-bottom:3px;margin:0 0 7px;">Experience & Internships</h3>
+              ${expBlock((x) => `
+                <div style="margin-bottom:9px;padding-left:10px;border-left:2px solid ${theme.primary}44;">
+                  <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:3px;margin-bottom:2px;">
+                    <div>
+                      <strong style="font-size:13px;color:#0e131f;">${escape(x.title || "")}</strong>
+                      <span style="font-size:12.5px;color:#475569;"> @ ${escape(x.company || "")}</span>
+                      ${x.type ? `<span style="font-size:10px;background:#f1f5f9;color:#475569;padding:1px 5px;border-radius:3px;margin-left:3px;font-weight:600;">${escape(x.type)}</span>` : ""}
+                    </div>
+                    <span style="font-size:11px;color:#64748b;font-weight:600;white-space:nowrap;">${escape(x.start || "")} – ${escape(x.end || "Present")}</span>
+                  </div>
+                  ${formatBullets(x.responsibilities)}
+                </div>
+              `)}
+            </div>
+
+            <div>
+              <h3 style="font-family:'Outfit',sans-serif;font-size:13px;font-weight:800;color:${theme.primary};text-transform:uppercase;letter-spacing:0.06em;border-bottom:2px solid ${theme.primary}33;padding-bottom:3px;margin:0 0 7px;">Key Projects</h3>
+              ${projBlock((proj) => `
+                <div style="margin-bottom:8px;background:#f8fafc;border:1px solid #e2e8f0;border-left:3px solid ${theme.primary};padding:8px 10px;border-radius:5px;">
+                  <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:3px;margin-bottom:3px;">
+                    <div>
+                      <strong style="font-size:13px;color:#0e131f;">${escape(proj.name || "")}</strong>
+                      ${proj.tech ? `<div style="font-size:11.5px;color:${theme.primary};font-weight:700;margin-top:1px;">${escape(proj.tech)}</div>` : ""}
+                    </div>
+                    <div style="display:flex;gap:4px;align-items:center;">
+                      ${proj.github ? `<a href="${escape(proj.github)}" target="_blank" style="font-size:10px;color:${theme.primary};text-decoration:none;font-weight:700;background:#fff;border:1px solid #cbd5e1;padding:2px 6px;border-radius:3px;">💻 Code</a>` : ""}
+                      ${proj.demo ? `<a href="${escape(proj.demo)}" target="_blank" style="font-size:10px;color:#059669;text-decoration:none;font-weight:700;background:#ecfdf5;border:1px solid #a7f3d0;padding:2px 6px;border-radius:3px;">🔗 Demo</a>` : ""}
+                    </div>
+                  </div>
+                  ${formatBullets(proj.description)}
+                </div>
+              `)}
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div>
+              <h3 style="font-family:'Outfit',sans-serif;font-size:13px;font-weight:800;color:${theme.primary};text-transform:uppercase;letter-spacing:0.06em;border-bottom:2px solid ${theme.primary}33;padding-bottom:3px;margin:0 0 7px;">Skills & Tools</h3>
+              ${formatSkillsChips()}
+            </div>
+
+            <div>
+              <h3 style="font-family:'Outfit',sans-serif;font-size:13px;font-weight:800;color:${theme.primary};text-transform:uppercase;letter-spacing:0.06em;border-bottom:2px solid ${theme.primary}33;padding-bottom:3px;margin:0 0 7px;">Education</h3>
+              ${eduBlock((edu) => `
+                <div style="margin-bottom:7px;background:#f8fafc;border:1px solid #e2e8f0;padding:8px 10px;border-radius:5px;">
+                  <strong style="font-size:13px;color:#0e131f;display:block;">${escape(edu.degree || "")}</strong>
+                  <div style="font-size:12px;color:#475569;font-weight:500;margin-top:2px;">${escape(edu.institution || "")}</div>
+                  <div style="font-size:11px;color:#64748b;margin-top:2px;font-weight:600;">${escape(edu.start || "")}${edu.end ? ` – ${escape(edu.end)}` : ""}</div>
+                </div>
+              `)}
+            </div>
+
+            ${achList.length > 0 ? `
+              <div>
+                <h3 style="font-family:'Outfit',sans-serif;font-size:13px;font-weight:800;color:${theme.primary};text-transform:uppercase;letter-spacing:0.06em;border-bottom:2px solid ${theme.primary}33;padding-bottom:3px;margin:0 0 7px;">Honors & Awards</h3>
+                ${achBlock((ach) => `
+                  <div style="margin-bottom:7px;background:#fffbeb;border:1px solid #fef3c7;border-left:3px solid #f59e0b;padding:7px 9px;border-radius:5px;">
+                    <strong style="font-size:12.5px;color:#92400e;display:block;">🏆 ${escape(ach.title || "")}</strong>
+                    <div style="font-size:11.5px;color:#78350f;margin-top:2px;">${escape(ach.org || "")}${ach.date ? ` · ${escape(ach.date)}` : ""}</div>
+                  </div>
+                `)}
+              </div>
+            ` : ""}
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:6px;padding-top:6px;border-top:1px solid #e2e8f0;display:flex;justify-content:space-between;align-items:flex-end;font-size:11px;color:#64748b;">
+        <div>
+          <strong style="color:#334155;">Declaration:</strong> I hereby declare that all information above is true and verified.
+        </div>
+        <div style="text-align:right;min-width:120px;border-top:1px dashed #cbd5e1;padding-top:2px;margin-left:10px;">
+          <strong style="color:#0f172a;display:block;font-size:12px;">${nameText}</strong>
+          <span style="font-size:10px;color:#64748b;">Authorized Signatory</span>
         </div>
       </div>
     </div>`;
@@ -3416,79 +3564,51 @@ options.forEach(function (card) {
 
     showToast("Generating high-quality PDF document, please wait...");
 
-    setTimeout(() => {
-      const rawName = state.personal?.fullName ? state.personal.fullName.trim().replace(/\s+/g, "_") : "My";
-      const fileName = `${rawName}_Resume.pdf`;
+    // ── Reliable PDF: styled print window ────────────────────────────────
+    const rawName = state.personal?.fullName
+      ? state.personal.fullName.trim().replace(/\s+/g, "_")
+      : "My";
+    const resumeHtml = buildResumeHtml();
+    const title = `${rawName}_Resume`;
 
-      // Create an isolated, perfectly positioned 794x1123px A4 container at (0, 0)
-      const exportDiv = document.createElement("div");
-      exportDiv.id = "pdfTempExportWrapper";
-      exportDiv.style.position = "fixed";
-      exportDiv.style.top = "0";
-      exportDiv.style.left = "0";
-      exportDiv.style.width = "794px";
-      exportDiv.style.minHeight = "1123px";
-      exportDiv.style.background = "#ffffff";
-      exportDiv.style.color = "#0f172a";
-      exportDiv.style.margin = "0";
-      exportDiv.style.padding = "0";
-      exportDiv.style.boxSizing = "border-box";
-      exportDiv.style.zIndex = "99990";
-      exportDiv.style.overflow = "hidden";
-      exportDiv.innerHTML = buildResumeHtml();
-      document.body.appendChild(exportDiv);
+    const printWin = window.open("", "_blank", "width=900,height=700");
+    if (!printWin) {
+      showToast("Popup blocked! Please allow popups and try again.");
+      if (overlay) overlay.setAttribute("aria-hidden", "true");
+      if (btn) { btn.disabled = false; btn.style.pointerEvents = "auto"; btn.style.opacity = "1"; btn.innerHTML = originalContent; }
+      return;
+    }
 
-      const cleanup = () => {
-        if (overlay) overlay.setAttribute("aria-hidden", "true");
-        if (exportDiv && exportDiv.parentNode) exportDiv.parentNode.removeChild(exportDiv);
-        if (btn) {
-          btn.disabled = false;
-          btn.style.pointerEvents = "auto";
-          btn.style.opacity = "1";
-          btn.innerHTML = originalContent;
-        }
-      };
+    printWin.document.write(`<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>${title}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { font-family: 'Inter', sans-serif; background: #ffffff; color: #0f172a; width: 210mm; margin: 0 auto; }
+    @page { size: A4 portrait; margin: 0; }
+    @media print { html, body { width: 210mm; } body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+    ul.resume-bullets { margin: 3px 0 0 12px; padding: 0; list-style: none; }
+    ul.resume-bullets li { font-size: 10.5px; color: #334155; line-height: 1.5; margin-bottom: 2px; padding-left: 10px; position: relative; }
+    ul.resume-bullets li::before { content: "•"; position: absolute; left: 0; opacity: 0.6; }
+    .skill-chip { display: inline-block; font-size: 9.5px; padding: 2px 7px; border-radius: 20px; margin: 2px; font-weight: 600; }
+  </style>
+</head>
+<body>
+  ${resumeHtml}
+  <script>
+    window.addEventListener('load', function() { setTimeout(function() { window.print(); }, 600); });
+  <\/script>
+</body>
+</html>`);
+    printWin.document.close();
 
-      if (typeof html2pdf !== "undefined") {
-        const opt = {
-          margin: 0,
-          filename: fileName,
-          image: { type: "jpeg", quality: 0.98 },
-          html2canvas: {
-            scale: 2,
-            useCORS: true,
-            logging: false,
-            backgroundColor: "#ffffff",
-            width: 794,
-            height: exportDiv.offsetHeight || 1123,
-            windowWidth: 1200,
-            x: 0,
-            y: 0,
-            scrollY: 0,
-            scrollX: 0
-          },
-          jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
-          pagebreak: { mode: ["avoid-all", "css", "legacy"] }
-        };
-
-        html2pdf()
-          .set(opt)
-          .from(exportDiv)
-          .save()
-          .then(() => {
-            cleanup();
-            showToast("PDF downloaded successfully!");
-          })
-          .catch((err) => {
-            console.warn("html2pdf error, falling back to window print:", err);
-            cleanup();
-            fallbackPrint();
-          });
-      } else {
-        cleanup();
-        fallbackPrint();
-      }
-    }, 1500);
+    if (overlay) overlay.setAttribute("aria-hidden", "true");
+    if (btn) { btn.disabled = false; btn.style.pointerEvents = "auto"; btn.style.opacity = "1"; btn.innerHTML = originalContent; }
+    showToast("Print dialog opened — choose 'Save as PDF' to download! 🎉");
   }
 
   function fallbackPrint() {
@@ -3542,26 +3662,355 @@ options.forEach(function (card) {
     );
   }
 
-  // Update progress/completion estimation
+  // ── ACCURATE REAL-TIME ATS COMPATIBILITY ENGINE ──
+  const ATS_ACTION_VERBS = [
+    "spearheaded", "architected", "optimized", "streamlined", "engineered",
+    "developed", "deployed", "implemented", "orchestrated", "designed",
+    "accelerated", "boosted", "maximized", "automated", "mentored",
+    "executed", "directed", "built", "managed", "formulated", "established",
+    "transformed", "collaborated", "achieved", "delivered", "negotiated", "created",
+    "reduced", "increased", "generated", "solved", "resolved", "improved", "launched",
+    "programmed", "authored", "led", "facilitated", "integrated", "constructed", "scaled"
+  ];
+
+  function calculateAtsScore() {
+    let score = 0;
+    const tips = [];
+    const foundVerbs = [];
+
+    const details = {
+      format: 100,
+      metrics: 0,
+      verbs: 0,
+      sections: 0
+    };
+
+    // 1. Personal & Contact Completeness (max 20 pts)
+    const p = state.personal || {};
+    let personalScore = 0;
+    if (p.fullName && p.fullName.trim().length >= 2) {
+      personalScore += 4;
+    } else {
+      tips.push({ text: "Add your full legal name", done: false });
+    }
+
+    if (p.headline && p.headline.trim().length >= 3) {
+      personalScore += 4;
+    } else {
+      tips.push({ text: "Add a specific target Job Title / Headline (e.g. 'Software Engineer')", done: false });
+    }
+
+    if (p.email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(p.email.trim())) {
+      personalScore += 4;
+    } else {
+      tips.push({ text: "Add a valid professional email address", done: false });
+    }
+
+    if (p.phone && p.phone.replace(/\D/g, '').length >= 7) {
+      personalScore += 4;
+    } else {
+      tips.push({ text: "Add a phone number with country/area code", done: false });
+    }
+
+    if (p.address && p.address.trim().length >= 2) {
+      personalScore += 2;
+    }
+
+    if (p.linkedin || p.portfolio) {
+      personalScore += 2;
+    } else {
+      tips.push({ text: "Add a LinkedIn or Portfolio link for recruiter verification", done: false });
+    }
+    score += personalScore;
+
+    // 2. Professional Summary (max 15 pts)
+    const sumText = (state.summary?.text || "").trim();
+    const sumWords = sumText.length > 0 ? sumText.split(/\s+/).filter(Boolean).length : 0;
+    if (sumWords >= 10) score += 5;
+    if (sumWords >= 30) score += 5;
+    if (sumWords >= 50) score += 5;
+    if (sumWords < 20) {
+      tips.push({ text: "Expand Professional Summary to at least 30-50 words highlighting strengths", done: false });
+    }
+
+    // 3. Technical & Soft Skills Matrix (max 20 pts)
+    const techSkills = Array.isArray(state.skills?.technical) ? state.skills.technical : [];
+    const softSkills = Array.isArray(state.skills?.soft) ? state.skills.soft : [];
+    const langSkills = Array.isArray(state.skills?.languages) ? state.skills.languages : [];
+    const certSkills = Array.isArray(state.skills?.certifications) ? state.skills.certifications : [];
+
+    if (techSkills.length >= 1) score += 3;
+    if (techSkills.length >= 4) score += 4;
+    if (techSkills.length >= 7) score += 4; // up to 11 pts
+    if (softSkills.length >= 2) score += 4;
+    if (langSkills.length >= 1) score += 2;
+    if (certSkills.length >= 1) score += 3;
+
+    if (techSkills.length < 5) {
+      tips.push({ text: `Add ${Math.max(1, 5 - techSkills.length)} more Technical Skill(s) for keyword scanning`, done: false });
+    }
+    if (softSkills.length < 2) {
+      tips.push({ text: "Add 2+ Soft Skills (e.g. Team Collaboration, Problem Solving)", done: false });
+    }
+
+    // 4. Education Credentials (max 15 pts)
+    const eduList = Array.isArray(state.education) ? state.education : [];
+    if (eduList.length >= 1) {
+      score += 6;
+      const firstEdu = eduList[0] || {};
+      if (firstEdu.degree || firstEdu.major || firstEdu.field) score += 5;
+      if (firstEdu.institution || firstEdu.school) score += 4;
+    } else {
+      tips.push({ text: "Add your Education details (Degree & College/University)", done: false });
+    }
+
+    // 5. Work Experience & Projects (max 30 pts)
+    const expList = Array.isArray(state.experience) ? state.experience : [];
+    const projList = Array.isArray(state.projects) ? state.projects : [];
+    const achList = Array.isArray(state.achievements) ? state.achievements : [];
+
+    // Experience pts (up to 18)
+    if (expList.length >= 1) {
+      score += 7;
+      if (expList[0]?.title && expList[0]?.company) score += 4;
+      if (expList[0]?.responsibilities && expList[0].responsibilities.length >= 30) score += 4;
+      if (expList.length >= 2) score += 3;
+    }
+
+    // Projects pts (up to 12)
+    if (projList.length >= 1) {
+      score += 5;
+      if (projList[0]?.tech) score += 3;
+      if (projList[0]?.description && projList[0].description.length >= 20) score += 4;
+    }
+
+    // If candidate has no experience, projects can bridge the gap for freshers
+    if (expList.length === 0 && projList.length >= 2) {
+      score += 6;
+    }
+
+    if (expList.length === 0 && projList.length === 0) {
+      tips.push({ text: "Add at least 1 Work Experience role or hands-on Project", done: false });
+    }
+
+    // Combine all text to analyze metrics & action verbs
+    const allText = [
+      sumText,
+      ...expList.map(e => `${e.title || ""} ${e.company || ""} ${e.responsibilities || ""}`),
+      ...projList.map(p => `${p.name || ""} ${p.tech || ""} ${p.description || ""}`),
+      ...achList.map(a => `${a.title || ""} ${a.org || ""} ${a.description || ""}`),
+    ].join(" ").toLowerCase();
+
+    // Metric Impact Score (check for %, numbers, metrics, $, k, x, etc.)
+    const metricMatches = allText.match(/\b\d+(\.\d+)?%|\b\$\d+(\.\d+)?[km]?\b|\b\d+[kKxX]\b|\b\d+\+\b|\b[1-9]\d{1,3}\b/g) || [];
+    const metricCount = metricMatches.length;
+    if (metricCount === 0) {
+      details.metrics = 15;
+      tips.push({ text: "Include quantified impact (e.g. 'Improved efficiency by 25%', 'Handled 500+ users')", done: false });
+    } else if (metricCount === 1) {
+      details.metrics = 55;
+    } else if (metricCount === 2) {
+      details.metrics = 80;
+    } else {
+      details.metrics = 100;
+    }
+
+    // Power Verbs Score
+    ATS_ACTION_VERBS.forEach(v => {
+      if (allText.includes(v)) {
+        if (!foundVerbs.includes(v)) foundVerbs.push(v);
+      }
+    });
+
+    if (foundVerbs.length === 0) {
+      details.verbs = 20;
+      tips.push({ text: "Start bullet points with power action verbs (e.g. Spearheaded, Engineered, Optimized)", done: false });
+    } else if (foundVerbs.length === 1) {
+      details.verbs = 50;
+    } else if (foundVerbs.length === 2) {
+      details.verbs = 75;
+    } else {
+      details.verbs = 100;
+    }
+
+    // Section Completeness
+    let filledSections = 0;
+    if (p.fullName && p.email && p.phone) filledSections++;
+    if (sumWords >= 15) filledSections++;
+    if (techSkills.length >= 3) filledSections++;
+    if (eduList.length > 0) filledSections++;
+    if (expList.length > 0 || projList.length > 0) filledSections++;
+    details.sections = Math.round((filledSections / 5) * 100);
+
+    // Final score calculation
+    const finalScore = Math.min(100, Math.max(0, score));
+
+    return {
+      score: finalScore,
+      details: details,
+      tips: tips.slice(0, 4), // Top 4 priority recommendations
+      foundVerbs: foundVerbs
+    };
+  }
+
+  function updateAtsScore() {
+    const result = calculateAtsScore();
+    const score = result.score;
+    const details = result.details;
+    const tips = result.tips;
+    const foundVerbs = result.foundVerbs;
+
+    // Header badge
+    const headerBadge = document.getElementById("headerAtsBadge");
+    if (headerBadge) {
+      headerBadge.textContent = `${score}%`;
+      if (score >= 80) {
+        headerBadge.style.background = "#16a34a"; // Green
+        headerBadge.style.color = "#ffffff";
+      } else if (score >= 50) {
+        headerBadge.style.background = "#d97706"; // Amber
+        headerBadge.style.color = "#ffffff";
+      } else {
+        headerBadge.style.background = "#dc2626"; // Red
+        headerBadge.style.color = "#ffffff";
+      }
+    }
+
+    // Modal score number
+    const modalScoreNum = document.getElementById("modalAtsScoreNum");
+    if (modalScoreNum) {
+      modalScoreNum.textContent = score;
+      modalScoreNum.style.color = score >= 80 ? "#16a34a" : (score >= 50 ? "#d97706" : "#dc2626");
+    }
+
+    // Modal Status Header
+    const modalStatusTitle = document.getElementById("modalAtsStatusTitle");
+    const modalStatusDesc = document.getElementById("modalAtsStatusDesc");
+    if (modalStatusTitle) {
+      if (score >= 80) {
+        modalStatusTitle.textContent = "ATS Ready & Verified! 🚀";
+        modalStatusTitle.style.color = "#15803d";
+      } else if (score >= 50) {
+        modalStatusTitle.textContent = "Moderate ATS Match — Needs Optimization ⚡";
+        modalStatusTitle.style.color = "#b45309";
+      } else {
+        modalStatusTitle.textContent = "Incomplete Profile — Low ATS Pass Rate ⚠️";
+        modalStatusTitle.style.color = "#b91c1c";
+      }
+    }
+    if (modalStatusDesc) {
+      if (score >= 80) {
+        modalStatusDesc.textContent = "Your resume structure adheres to standard parsing headings, recruiter keyword density, and metrics.";
+      } else if (score >= 50) {
+        modalStatusDesc.textContent = "Your resume is in good shape. Complete the remaining recommendations below to achieve top ranking.";
+      } else {
+        modalStatusDesc.textContent = "Several critical ATS sections and keywords are missing. Fill in the suggested fields to pass scanner audits.";
+      }
+    }
+
+    // Update modal breakdown bars
+    const formatText = document.getElementById("formatScoreText");
+    const formatBar = document.getElementById("formatScoreBar");
+    if (formatText && formatBar) {
+      formatText.textContent = `${details.format}%`;
+      formatBar.style.width = `${details.format}%`;
+    }
+
+    const metricText = document.getElementById("metricScoreText");
+    const metricBar = document.getElementById("metricScoreBar");
+    if (metricText && metricBar) {
+      metricText.textContent = `${details.metrics}%`;
+      metricBar.style.width = `${details.metrics}%`;
+      metricBar.style.background = details.metrics >= 75 ? "#0284c7" : (details.metrics >= 40 ? "#d97706" : "#dc2626");
+    }
+
+    const verbText = document.getElementById("verbScoreText");
+    const verbBar = document.getElementById("verbScoreBar");
+    if (verbText && verbBar) {
+      verbText.textContent = `${details.verbs}%`;
+      verbBar.style.width = `${details.verbs}%`;
+      verbBar.style.background = details.verbs >= 75 ? "#7c3aed" : (details.verbs >= 40 ? "#d97706" : "#dc2626");
+    }
+
+    const sectionText = document.getElementById("sectionScoreText");
+    const sectionBar = document.getElementById("sectionScoreBar");
+    if (sectionText && sectionBar) {
+      sectionText.textContent = `${details.sections}%`;
+      sectionBar.style.width = `${details.sections}%`;
+      sectionBar.style.background = details.sections >= 80 ? "#16a34a" : (details.sections >= 50 ? "#d97706" : "#dc2626");
+    }
+
+    // Dynamic Recommendations / Tips List
+    const tipsContainer = document.getElementById("atsDynamicTipsContainer");
+    if (tipsContainer) {
+      if (tips.length === 0) {
+        tipsContainer.innerHTML = `
+          <div style="background:#f0fdf4;border:1px solid #bbf7d0;padding:10px 14px;border-radius:8px;display:flex;align-items:center;gap:8px;font-size:12px;color:#166534;font-weight:600">
+            <span>🎉</span>
+            <span>All ATS optimization criteria met! Your resume is primed to beat applicant tracking bots.</span>
+          </div>
+        `;
+      } else {
+        tipsContainer.innerHTML = `
+          <div style="background:#fffbeb;border:1px solid #fde68a;padding:12px 14px;border-radius:10px">
+            <div style="font-size:12px;font-weight:700;color:#92400e;margin-bottom:8px;display:flex;align-items:center;gap:6px">
+              <span>⚡</span> <span>Real-Time Optimization Steps to Reach 100%:</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              ${tips.map(t => `
+                <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:#78350f">
+                  <span style="color:#d97706;font-size:13px">⚠️</span>
+                  <span>${escape(t.text)}</span>
+                </div>
+              `).join("")}
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    // Found Power Verbs
+    const foundVerbsWrap = document.getElementById("atsFoundVerbsList");
+    if (foundVerbsWrap) {
+      if (foundVerbs.length > 0) {
+        foundVerbsWrap.innerHTML = foundVerbs.map(v => `
+          <span style="background:#e0e7ff;border:1px solid #c7d2fe;padding:2px 8px;border-radius:4px;color:#3730a3;font-weight:700;text-transform:capitalize">✓ ${escape(v)}</span>
+        `).join("");
+      } else {
+        foundVerbsWrap.innerHTML = `<span style="color:#94a3b8;font-size:11.5px;font-style:italic">None detected yet. Try adding action verbs in experience/projects!</span>`;
+      }
+    }
+  }
+
+  function openAtsScoreModal() {
+    const atsModal = document.getElementById("atsScoreModal");
+    if (atsModal) {
+      updateAtsScore();
+      atsModal.setAttribute("aria-hidden", "false");
+    }
+  }
+
+  // Update progress/completion estimation & Real-Time ATS Score
   function updateProgress() {
-    if (!progressFill || !progressPct) return;
-    // compute simple completion: count non-empty top-level required fields
-    const total = 6; // fullName,headline,email,phone, at least one education, at least one skill
-    let done = 0;
-    if (state.personal.fullName) done++;
-    if (state.personal.headline) done++;
-    if (state.personal.email) done++;
-    if (state.personal.phone) done++;
-    if (state.education.length > 0) done++;
-    if (
-      (state.skills?.technical && state.skills.technical.length > 0) ||
-      (state.skills?.soft && state.skills.soft.length > 0) ||
-      (state.skills?.languages && state.skills.languages.length > 0) ||
-      (state.skills?.certifications && state.skills.certifications.length > 0)
-    ) done++;
-    const pct = Math.round((done / total) * 100);
-    progressFill.style.width = `${pct}%`;
-    progressPct.textContent = `${pct}%`;
+    if (progressFill && progressPct) {
+      const total = 6; // fullName,headline,email,phone, at least one education, at least one skill
+      let done = 0;
+      if (state.personal?.fullName) done++;
+      if (state.personal?.headline) done++;
+      if (state.personal?.email) done++;
+      if (state.personal?.phone) done++;
+      if (state.education && state.education.length > 0) done++;
+      if (
+        (state.skills?.technical && state.skills.technical.length > 0) ||
+        (state.skills?.soft && state.skills.soft.length > 0) ||
+        (state.skills?.languages && state.skills.languages.length > 0) ||
+        (state.skills?.certifications && state.skills.certifications.length > 0)
+      ) done++;
+      const pct = Math.round((done / total) * 100);
+      progressFill.style.width = `${pct}%`;
+      progressPct.textContent = `${pct}%`;
+    }
+    updateAtsScore();
   }
 
   /* Clear and reset helpers */
@@ -3658,7 +4107,7 @@ function showToast(msg, timeout = 3000) {
     const prevBtnEl = document.getElementById("prevBtn");
     if (prevBtnEl) {
       prevBtnEl.onclick = () => {
-        if (state.current > 0) {
+        if (state.current > 1) {
           state.current--;
           renderStep(state.current);
           saveState();
@@ -3671,8 +4120,8 @@ function showToast(msg, timeout = 3000) {
     document.getElementById("closeFormErrorBtn")?.addEventListener("click", closeFormErrorModal);
     document.getElementById("fillFormBtn")?.addEventListener("click", () => {
       closeFormErrorModal();
-      state.current = 0;
-      renderStep(0);
+      state.current = 1;
+      renderStep(1);
       saveState();
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
@@ -3733,6 +4182,92 @@ function showToast(msg, timeout = 3000) {
         alert("Draft saved locally");
       };
     }
+
+    // Zoom Canvas controls (Resume4U Studio standard)
+    let currentZoom = 100;
+    const paperCanvasEl = document.getElementById("paperCanvas");
+    const zoomLevelDisplay = document.getElementById("zoomLevelDisplay");
+    
+    function applyZoom(zoom) {
+      currentZoom = Math.min(150, Math.max(50, zoom));
+      if (paperCanvasEl) {
+        paperCanvasEl.style.transform = `scale(${currentZoom / 100})`;
+        paperCanvasEl.style.transformOrigin = "top center";
+      }
+      if (zoomLevelDisplay) {
+        zoomLevelDisplay.textContent = `${currentZoom}%`;
+      }
+    }
+
+    document.getElementById("zoomInBtn")?.addEventListener("click", () => applyZoom(currentZoom + 10));
+    document.getElementById("zoomOutBtn")?.addEventListener("click", () => applyZoom(currentZoom - 10));
+    function autoFitCanvas() {
+      const isTablet = window.innerWidth >= 769 && window.innerWidth <= 1200;
+      if (isTablet) {
+        const studioWorkspace = document.querySelector(".studio-workspace");
+        if (studioWorkspace) {
+          const availableW = studioWorkspace.clientWidth - 36;
+          const fitScale = Math.min(100, Math.max(45, Math.floor((availableW / 794) * 100)));
+          applyZoom(fitScale);
+        }
+      }
+    }
+
+    document.getElementById("zoomFitBtn")?.addEventListener("click", () => {
+      const studioWorkspace = document.querySelector(".studio-workspace");
+      if (studioWorkspace) {
+        const availableW = studioWorkspace.clientWidth - 36;
+        const fitScale = Math.min(100, Math.max(45, Math.floor((availableW / 794) * 100)));
+        applyZoom(fitScale);
+      } else {
+        applyZoom(100);
+      }
+    });
+
+    // Auto-fit canvas on tablet on load and resize
+    setTimeout(autoFitCanvas, 300);
+    window.addEventListener("resize", debounce(autoFitCanvas, 150));
+
+    // ATS Score Modal Handlers
+    document.getElementById("checkAtsScoreBtn")?.addEventListener("click", openAtsScoreModal);
+    document.getElementById("closeAtsModal")?.addEventListener("click", () => {
+      document.getElementById("atsScoreModal")?.setAttribute("aria-hidden", "true");
+    });
+    document.getElementById("closeAtsModalBtn")?.addEventListener("click", () => {
+      document.getElementById("atsScoreModal")?.setAttribute("aria-hidden", "true");
+    });
+    document.getElementById("atsModalExportBtn")?.addEventListener("click", (e) => {
+      document.getElementById("atsScoreModal")?.setAttribute("aria-hidden", "true");
+      exportPDF(e);
+    });
+    document.getElementById("headerExportPdf")?.addEventListener("click", (e) => {
+      exportPDF(e);
+    });
+
+    // Template Color Swatches and Custom Color Picker Handlers
+    document.addEventListener("click", (e) => {
+      const swatchBtn = e.target.closest(".color-swatch-dot");
+      if (swatchBtn) {
+        const color = swatchBtn.dataset.color;
+        if (color) {
+          applyCustomColor(color);
+        }
+      }
+    });
+
+    const topColorPicker = document.getElementById("templateColorPicker");
+    if (topColorPicker) {
+      topColorPicker.addEventListener("input", (e) => {
+        applyCustomColor(e.target.value);
+      });
+      topColorPicker.addEventListener("change", (e) => {
+        applyCustomColor(e.target.value);
+      });
+    }
+
+    document.getElementById("resetColorBtn")?.addEventListener("click", () => {
+      resetCustomColor();
+    });
 
     // export and save from preview panel
     if (exportPdfBtn) exportPdfBtn.onclick = exportPDF;
@@ -4052,8 +4587,10 @@ function showToast(msg, timeout = 3000) {
       let staggeredIndex = 0;
       let matchIndex = 0;
 
-      const isDefaultAllView = (activeCategory === "all" || activeCategory === "all templates") && !searchQuery;
-      const initialLimit = getInitialRowLimit();
+      const isMobile = window.innerWidth <= 768;
+      const isAllCategory = (activeCategory === "all" || activeCategory === "all templates") && !searchQuery;
+      // On mobile responsive, strictly show at most 4 templates
+      const maxLimit = isMobile ? 4 : ((isAllCategory && showAllTemplates) ? 9999 : 4);
 
       templateCards.forEach((card) => {
         const cardCat = (card.getAttribute("data-category") || "").toLowerCase().trim();
@@ -4075,10 +4612,7 @@ function showToast(msg, timeout = 3000) {
         const matchesSearch = !searchQuery || title.includes(searchQuery) || tag.includes(searchQuery) || cardCat.includes(searchQuery) || cardTags.includes(searchQuery);
 
         if (matchesCat && matchesSearch) {
-          if (isDefaultAllView && !showAllTemplates && matchIndex >= initialLimit) {
-            card.style.display = "none";
-            card.style.animation = "none";
-          } else {
+          if (matchIndex < maxLimit) {
             card.style.display = "flex";
             card.style.animation = "none";
             // Trigger reflow to restart CSS animation smoothly
@@ -4086,6 +4620,9 @@ function showToast(msg, timeout = 3000) {
             card.style.animation = `tmplCardPopIn 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) ${staggeredIndex * 0.05}s forwards`;
             staggeredIndex++;
             visibleCount++;
+          } else {
+            card.style.display = "none";
+            card.style.animation = "none";
           }
           matchIndex++;
         } else {
@@ -4096,13 +4633,12 @@ function showToast(msg, timeout = 3000) {
 
       // Update Explore All / Show Fewer button visibility & text
       if (toggleWrap && toggleTemplatesBtn) {
-        if (isDefaultAllView && matchIndex > initialLimit) {
-          toggleWrap.style.display = "block";
-          if (showAllTemplates) {
-            toggleTemplatesBtn.textContent = "Show Fewer Templates ↑";
-          } else {
-            toggleTemplatesBtn.textContent = "Explore All 300+ Diverse Templates ↓";
-          }
+        if (!isMobile && isAllCategory && matchIndex > 4) {
+          toggleWrap.style.display = "flex";
+          toggleWrap.style.justifyContent = "center";
+          toggleWrap.style.alignItems = "center";
+          toggleWrap.style.textAlign = "center";
+          toggleTemplatesBtn.textContent = showAllTemplates ? "Show Fewer Templates ↑" : "Explore All Templates ↓";
         } else {
           toggleWrap.style.display = "none";
         }

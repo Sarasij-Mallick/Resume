@@ -12,7 +12,7 @@
             href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap"
             rel="stylesheet">
         
-        <link rel="stylesheet" href="css/style.css?v=20260826_canva_dense_mock">
+        <link rel="stylesheet" href="css/style.css?v=20260828_instant_sharp_tabs_v14">
         <!-- html2pdf.js PDF Generation Library -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
         <!-- Lottie Web Player -->
@@ -48,13 +48,30 @@
         <!-- CANVA STUDIO TOP HEADER -->
         <header class="studio-header">
             <div class="studio-header-left">
-                <a class="studio-home-link" href="index.html" title="Back to Home">
+                <a class="studio-home-link" href="index.html" title="FolioCraft Home" style="display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;color:inherit">
                     <span class="brand">FolioCraft</span>
                 </a>
-                <div class="studio-doc-title">Fresher Resume Builder Studio</div>
             </div>
 
-            <div class="studio-header-right">
+            <div class="studio-header-right" style="display:flex;align-items:center;gap:10px">
+                <!-- Live ATS Score Button -->
+                <button id="checkAtsScoreBtn" class="studio-btn" style="background:#f0fdf4;border:1px solid #bbf7d0;color:#15803d;font-weight:700;padding:6px 14px;border-radius:20px;display:inline-flex;align-items:center;gap:6px;cursor:pointer;font-size:12.5px" title="Check ATS Compatibility Score">
+                    <span>⚡ Check ATS Score</span>
+                    <span id="headerAtsBadge" style="background:#16a34a;color:#ffffff;padding:2px 7px;border-radius:12px;font-size:11px;font-weight:800;transition:all 0.3s ease">--</span>
+                </button>
+                
+                <!-- Zoom Controls -->
+                <div style="display:inline-flex;align-items:center;background:#f1f5f9;border-radius:20px;padding:2px 6px;border:1px solid #cbd5e1">
+                    <button id="zoomOutBtn" type="button" style="border:none;background:none;cursor:pointer;padding:3px 8px;font-weight:700;color:#475569" title="Zoom Out">-</button>
+                    <span id="zoomLevelDisplay" style="font-size:11.5px;font-weight:700;color:#1e293b;min-width:42px;text-align:center">100%</span>
+                    <button id="zoomInBtn" type="button" style="border:none;background:none;cursor:pointer;padding:3px 8px;font-weight:700;color:#475569" title="Zoom In">+</button>
+                    <button id="zoomFitBtn" type="button" style="border:none;background:none;cursor:pointer;padding:3px 6px;font-size:10px;font-weight:700;color:#6366f1" title="Fit to Screen">Fit</button>
+                </div>
+
+                <button id="headerExportPdf" class="btn primary" style="padding:6px 16px;font-size:12.5px;font-weight:700;display:inline-flex;align-items:center;gap:6px">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg> Save & Export PDF
+                </button>
+                
                 <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle Dark/Light Theme" title="Toggle Dark/Light Theme" style="width:36px;height:36px;font-size:16px">🌙</button>
             </div>
         </header>
@@ -63,10 +80,6 @@
         <div class="studio-main">
             <!-- Left Vertical Icon Tool Dock -->
             <nav class="studio-dock" id="stepsNav">
-                <button class="dock-item step" data-step="0" title="Select Template">
-                    <svg viewBox="0 0 24 24"><path d="M4 5v14h16V5H4zm14 12H6V7h12v10zM8 9h8v2H8V9zm0 4h5v2H8v-2z"/></svg>
-                    <span>Templates</span>
-                </button>
                 <button class="dock-item step active" data-step="1" title="Personal Information">
                     <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
                     <span>Personal</span>
@@ -141,14 +154,40 @@
             <!-- Canva Studio Workspace Canvas Center -->
             <section class="studio-workspace">
                 <!-- Floating Canvas Top Actions Bar -->
-                <div style="display:flex;gap:12px;margin-bottom:16px;background:#ffffff;padding:8px 16px;border-radius:9999px;box-shadow:0 4px 16px rgba(0,0,0,0.06)">
-                    <span style="font-size:13px;font-weight:600;color:var(--canva-dark);display:flex;align-items:center;gap:6px">
-                        Document Canvas (A4 Standard)
-                    </span>
+                <div class="canvas-top-bar" style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px;background:#ffffff;padding:8px 18px;border-radius:9999px;box-shadow:0 4px 20px rgba(14,19,31,0.08);border:1px solid #e2e8f0;width:100%;max-width:794px;flex-wrap:wrap">
+                    <div style="display:flex;align-items:center;gap:8px">
+                        <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#10b981"></span>
+                        <span style="font-size:12.5px;font-weight:700;color:var(--canva-dark)">Live Resume Canvas</span>
+                    </div>
+
+                    <!-- Instant Template Color Palette & Custom Color Picker -->
+                    <div id="quickColorToolbar" style="display:flex;align-items:center;gap:5px;flex-wrap:wrap">
+                        <span style="font-size:11.5px;font-weight:700;color:#475569;margin-right:2px">Theme Color:</span>
+                        <div class="color-swatches-strip" style="display:flex;align-items:center;gap:5px">
+                            <button type="button" class="color-swatch-dot" data-color="#2563eb" style="background:#2563eb" title="Royal Blue"></button>
+                            <button type="button" class="color-swatch-dot" data-color="#7c3aed" style="background:#7c3aed" title="Electric Violet"></button>
+                            <button type="button" class="color-swatch-dot" data-color="#059669" style="background:#059669" title="Emerald Green"></button>
+                            <button type="button" class="color-swatch-dot" data-color="#dc2626" style="background:#dc2626" title="Ruby Red"></button>
+                            <button type="button" class="color-swatch-dot" data-color="#ea580c" style="background:#ea580c" title="Sunset Orange"></button>
+                            <button type="button" class="color-swatch-dot" data-color="#d97706" style="background:#d97706" title="Amber Gold"></button>
+                            <button type="button" class="color-swatch-dot" data-color="#0284c7" style="background:#0284c7" title="Ocean Cyan"></button>
+                            <button type="button" class="color-swatch-dot" data-color="#0f766e" style="background:#0f766e" title="Deep Teal"></button>
+                            <button type="button" class="color-swatch-dot" data-color="#e11d48" style="background:#e11d48" title="Rose Magenta"></button>
+                            <button type="button" class="color-swatch-dot" data-color="#0f172a" style="background:#0f172a" title="Midnight Slate"></button>
+                        </div>
+                        
+                        <!-- Custom Color Picker Tool -->
+                        <label for="templateColorPicker" style="position:relative;display:inline-flex;align-items:center;cursor:pointer;margin-left:3px" title="Pick Any Custom Hex Color">
+                            <input type="color" id="templateColorPicker" value="#3b82f6" style="opacity:0;position:absolute;width:24px;height:24px;cursor:pointer">
+                            <span id="customColorIndicator" style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:conic-gradient(from 180deg, red, yellow, lime, aqua, blue, magenta, red);border:2px solid #ffffff;box-shadow:0 0 0 1px #cbd5e1;cursor:pointer;font-size:10px" title="Custom Color Wheel">✨</span>
+                        </label>
+                        
+                        <button id="resetColorBtn" type="button" style="border:none;background:#f1f5f9;color:#64748b;font-size:11px;font-weight:600;padding:3px 8px;border-radius:12px;cursor:pointer;margin-left:2px" title="Reset to template default color">Reset</button>
+                    </div>
                 </div>
 
                 <!-- Paper Sheet Canvas Rendering Live Resume -->
-                <main id="paperCanvas" class="paper-canvas">
+                <main id="paperCanvas" class="paper-canvas" style="overflow-x:hidden;word-break:break-word;overflow-wrap:break-word;">
                     <!-- Live Resume Preview directly on A4 paper -->
                 </main>
             </section>
@@ -256,7 +295,90 @@
             </div>
             <div class="fullscreen-doc-body">
                 <div id="fullscreenPaperCanvas" class="fullscreen-paper-canvas paper-canvas">
-                    <!-- Rendered Live Resume -->
+                    <!-- Cloned dynamic resume renders here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- LIVE ATS AUDIT & SCORE MODAL -->
+        <div id="atsScoreModal" class="modal" aria-hidden="true" role="dialog" aria-label="ATS Compatibility Score Audit">
+            <div class="modal-panel" style="max-width:620px;border-radius:18px;padding:26px;box-shadow:0 25px 50px -12px rgba(0, 0, 0, 0.25)">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+                    <div style="display:flex;align-items:center;gap:10px">
+                        <span style="font-size:24px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:4px 8px">⚡</span>
+                        <div>
+                            <h3 style="margin:0;font-size:18px;font-weight:800;color:#0f172a">AI ATS Compatibility Audit</h3>
+                            <p style="margin:2px 0 0;font-size:12px;color:#64748b">Real-Time Scanner for Enterprise ATS Systems (Workday, Greenhouse, Taleo)</p>
+                        </div>
+                    </div>
+                    <button id="closeAtsModal" class="btn neutral" style="border-radius:50%;width:34px;height:34px;padding:0;font-size:14px;cursor:pointer" aria-label="Close modal">✕</button>
+                </div>
+
+                <!-- Main Score Card -->
+                <div style="display:flex;gap:20px;align-items:center;background:#f8fafc;padding:18px;border-radius:14px;border:1px solid #e2e8f0;margin-bottom:18px">
+                    <div style="text-align:center;min-width:110px;padding-right:14px;border-right:1px solid #e2e8f0">
+                        <div id="modalAtsScoreNum" style="font-size:42px;font-weight:900;color:#16a34a;line-height:1">--</div>
+                        <div style="font-size:11px;font-weight:700;color:#64748b;text-transform:uppercase;margin-top:6px;letter-spacing:0.5px">Out of 100</div>
+                    </div>
+                    <div style="flex:1">
+                        <div id="modalAtsStatusTitle" style="font-size:15px;font-weight:800;color:#15803d;margin-bottom:4px">ATS Ready & Verified! 🚀</div>
+                        <p id="modalAtsStatusDesc" style="margin:0;font-size:12.5px;color:#64748b;line-height:1.45">Your resume structure adheres to standard parsing headings, recruiter keyword density, and metrics.</p>
+                    </div>
+                </div>
+
+                <!-- 4 Core ATS Dimension Bars -->
+                <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:18px;background:#ffffff;border:1px solid #f1f5f9;border-radius:12px;padding:14px">
+                    <div>
+                        <div style="display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:#334155;margin-bottom:5px">
+                            <span>📄 Format & Layout Parsability</span>
+                            <span id="formatScoreText" style="color:#16a34a;font-weight:800">100%</span>
+                        </div>
+                        <div style="height:7px;background:#e2e8f0;border-radius:6px;overflow:hidden"><div id="formatScoreBar" style="width:100%;height:100%;background:#16a34a;border-radius:6px;transition:width 0.3s ease"></div></div>
+                    </div>
+                    <div>
+                        <div style="display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:#334155;margin-bottom:5px">
+                            <span>📊 Quantified Impact & Metrics (%, $, Numbers)</span>
+                            <span id="metricScoreText" style="color:#0284c7;font-weight:800">0%</span>
+                        </div>
+                        <div style="height:7px;background:#e2e8f0;border-radius:6px;overflow:hidden"><div id="metricScoreBar" style="width:0%;height:100%;background:#0284c7;border-radius:6px;transition:width 0.3s ease"></div></div>
+                    </div>
+                    <div>
+                        <div style="display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:#334155;margin-bottom:5px">
+                            <span>🚀 Action Verbs & Power Words</span>
+                            <span id="verbScoreText" style="color:#7c3aed;font-weight:800">0%</span>
+                        </div>
+                        <div style="height:7px;background:#e2e8f0;border-radius:6px;overflow:hidden"><div id="verbScoreBar" style="width:0%;height:100%;background:#7c3aed;border-radius:6px;transition:width 0.3s ease"></div></div>
+                    </div>
+                    <div>
+                        <div style="display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:#334155;margin-bottom:5px">
+                            <span>🎯 Core Section Completeness</span>
+                            <span id="sectionScoreText" style="color:#16a34a;font-weight:800">0%</span>
+                        </div>
+                        <div style="height:7px;background:#e2e8f0;border-radius:6px;overflow:hidden"><div id="sectionScoreBar" style="width:0%;height:100%;background:#16a34a;border-radius:6px;transition:width 0.3s ease"></div></div>
+                    </div>
+                </div>
+
+                <!-- Dynamic Real-Time Tips Container -->
+                <div id="atsDynamicTipsContainer" style="margin-bottom:16px">
+                    <!-- Injected dynamically via JS -->
+                </div>
+
+                <!-- Identified Power Verbs in Resume -->
+                <div style="background:#f8fafc;padding:12px 14px;border-radius:10px;border:1px solid #e2e8f0;margin-bottom:18px">
+                    <div style="font-size:12px;font-weight:700;color:#1e293b;margin-bottom:6px;display:flex;align-items:center;gap:6px">
+                        <span>🔍</span> <span>Identified Power Verbs in Your Resume:</span>
+                    </div>
+                    <div id="atsFoundVerbsList" style="display:flex;flex-wrap:wrap;gap:6px;font-size:11px">
+                        <span style="color:#94a3b8;font-size:11.5px;font-style:italic">None detected yet. Try adding action verbs below!</span>
+                    </div>
+                </div>
+
+                <div style="display:flex;justify-content:space-between;align-items:center">
+                    <div style="font-size:11px;color:#94a3b8">⚡ Updates live as you type</div>
+                    <div style="display:flex;gap:10px">
+                        <button id="closeAtsModalBtn" class="btn neutral">Close</button>
+                        <button id="atsModalExportBtn" class="btn primary">Export Verified PDF</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -267,6 +389,6 @@
             </svg>
         </button>
 
-        <script src="app.js?v=20260826_1215_kill_all_trails"></script>
+        <script src="app.js?v=20260828_pdf_fixed_onscreen_v25"></script>
     </body>
 </html>
