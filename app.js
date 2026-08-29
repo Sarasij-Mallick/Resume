@@ -3565,96 +3565,112 @@ options.forEach(function (card) {
 
     showToast("Generating high-quality PDF document, please wait...");
 
-    // ── Reliable PDF: styled print window ────────────────────────────────
+    // ── Direct html2pdf download (no popup needed) ──────────────────────
     const rawName = state.personal?.fullName
       ? state.personal.fullName.trim().replace(/\s+/g, "_")
       : "My";
     const resumeHtml = buildResumeHtml();
     const title = `${rawName}_Resume`;
 
-    const printWin = window.open("", "_blank", "width=900,height=700");
-    if (!printWin) {
-      showToast("Popup blocked! Please allow popups and try again.");
-      if (overlay) overlay.setAttribute("aria-hidden", "true");
-      if (btn) { btn.disabled = false; btn.style.pointerEvents = "auto"; btn.style.opacity = "1"; btn.innerHTML = originalContent; }
-      return;
-    }
+    // Build a temporary hidden container with full styles
+    const container = document.createElement("div");
+    container.style.cssText = "position:fixed;left:-9999px;top:0;width:210mm;background:#ffffff;font-family:'Inter',sans-serif;color:#0f172a;";
+    container.innerHTML = resumeHtml;
+    document.body.appendChild(container);
 
-    printWin.document.write(`<!doctype html>
+    const opt = {
+      margin: 0,
+      filename: `${title}.pdf`,
+      image: { type: "jpeg", quality: 1 },
+      html2canvas: {
+        scale: 2,
+        useCORS: true,
+        allowTaint: true,
+        letterRendering: true,
+        logging: false,
+        width: 794,
+      },
+      jsPDF: {
+        unit: "mm",
+        format: "a4",
+        orientation: "portrait",
+        compress: true,
+      },
+      pagebreak: { mode: ["avoid-all", "css", "legacy"] },
+    };
+
+    setTimeout(function() {
+      if (typeof html2pdf !== "undefined") {
+        html2pdf().set(opt).from(container).save().then(function() {
+          document.body.removeChild(container);
+          if (overlay) overlay.setAttribute("aria-hidden", "true");
+          if (btn) {
+            btn.disabled = false;
+            btn.style.pointerEvents = "auto";
+            btn.style.opacity = "1";
+            btn.innerHTML = originalContent;
+          }
+          showToast("✅ PDF downloaded successfully! Check your Downloads folder.");
+        }).catch(function(err) {
+          document.body.removeChild(container);
+          if (overlay) overlay.setAttribute("aria-hidden", "true");
+          if (btn) {
+            btn.disabled = false;
+            btn.style.pointerEvents = "auto";
+            btn.style.opacity = "1";
+            btn.innerHTML = originalContent;
+          }
+          showToast("PDF generation failed. Please try again.");
+          console.error("html2pdf error:", err);
+        });
+      } else {
+        // Fallback: use blob URL anchor (no popup)
+        document.body.removeChild(container);
+        fallbackBlobPrint(resumeHtml, title);
+        if (overlay) overlay.setAttribute("aria-hidden", "true");
+        if (btn) {
+          btn.disabled = false;
+          btn.style.pointerEvents = "auto";
+          btn.style.opacity = "1";
+          btn.innerHTML = originalContent;
+        }
+      }
+    }, 3500);
+  }
+
+  // Blob-based fallback PDF (no popup needed)
+  function fallbackBlobPrint(resumeHtml, title) {
+    const htmlContent = `<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8"/>
   <title>${title}</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body {
-      font-family: 'Inter', sans-serif;
-      background: #ffffff;
-      color: #0f172a;
-      width: 210mm;
-      margin: 0 auto;
-    }
-    @page {
-      size: A4 portrait;
-      margin: 0;
-    }
-    @media print {
-      html, body { width: 210mm; }
-      body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    }
-    /* Compact bullet styles */
-    ul.resume-bullets {
-      margin: 3px 0 0 12px;
-      padding: 0;
-      list-style: none;
-    }
-    ul.resume-bullets li {
-      font-size: 10.5px;
-      color: #334155;
-      line-height: 1.5;
-      margin-bottom: 2px;
-      padding-left: 10px;
-      position: relative;
-    }
-    ul.resume-bullets li::before {
-      content: "•";
-      position: absolute;
-      left: 0;
-      color: inherit;
-      opacity: 0.6;
-    }
-    /* Skill chip compact */
-    .skill-chip {
-      display: inline-block;
-      font-size: 9.5px;
-      padding: 2px 7px;
-      border-radius: 20px;
-      margin: 2px;
-      font-weight: 600;
-      line-height: 1.4;
-    }
+    html, body { font-family: 'Inter', sans-serif; background: #ffffff; color: #0f172a; width: 210mm; margin: 0 auto; }
+    @page { size: A4 portrait; margin: 0; }
+    @media print { body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
   </style>
 </head>
-<body>
-  ${resumeHtml}
-  <script>
-    window.addEventListener('load', function() {
-      setTimeout(function() { window.print(); }, 600);
-    });
-  <\/script>
-</body>
-</html>`);
-    printWin.document.close();
-
-    if (overlay) overlay.setAttribute("aria-hidden", "true");
-    if (btn) {
-      btn.disabled = false;
-      btn.style.pointerEvents = "auto";
-      btn.style.opacity = "1";
-      btn.innerHTML = originalContent;
-    }
+<body>${resumeHtml}</body>
+</html>`;
+    const blob = new Blob([htmlContent], { type: "text/html" });
+    const url = URL.createObjectURL(blob);
+    const iframe = document.createElement("iframe");
+    iframe.style.cssText = "position:fixed;left:-9999px;top:0;width:1px;height:1px;border:none;";
+    iframe.src = url;
+    document.body.appendChild(iframe);
+    iframe.onload = function() {
+      try {
+        iframe.contentWindow.focus();
+        iframe.contentWindow.print();
+      } catch(e) {}
+      setTimeout(function() {
+        document.body.removeChild(iframe);
+        URL.revokeObjectURL(url);
+      }, 3000);
+    };
     showToast("Print dialog opened — choose 'Save as PDF' to download! 🎉");
   }
 
