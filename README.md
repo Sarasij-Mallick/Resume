@@ -11,7 +11,9 @@ Welcome to **FolioCraft Pro Studio**! A modern, ATS-friendly resume builder pack
 ## 🚀 Key Features
 
 - **🎯 Smart ATS Scoring & Optimization:** Real-time resume evaluation and recommendations to maximize job application success.
-- **🎨 Dynamic & Modern Templates:** Curated resume designs tailored for professionals and freshers.
+- **🎨 Dynamic & Modern Templates:** Curated resume designs tailored for professionals and freshers with customizable color palettes.
+- **⚡ High-Definition Direct PDF Export:** 300 DPI client-side PDF generator (`html2canvas` + `jsPDF`) with pixel-perfect template parity and smart 1-page vs multi-page pagination.
+- **🖥️ Real-Time Fullscreen Document Viewer:** Full-fidelity interactive canvas synchronized live with all form updates.
 - **🎓 Fresher Resume Builder:** Dedicated interface ([`fresher.html`](file:///d:/codes/web_developement/ui%20design/Resume%28Sarasij%29/fresher.html)) crafted specifically for students and early-career job seekers.
 - **📚 Career & Resume Blog:** In-depth guides on ATS optimization, tech resumes, executive resumes, and career switching ([`blog.html`](file:///d:/codes/web_developement/ui%20design/Resume%28Sarasij%29/blog.html)).
 - **📱 100% Pixel-Perfect Responsive Design:** Optimized layout and seamless experience across mobile, tablet, desktop, and ultra-wide displays.

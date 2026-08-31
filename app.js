@@ -1651,9 +1651,14 @@ options.forEach(function (card) {
   }
 
   function renderLivePreview() {
+    const resumeHtml = buildResumeHtml();
     const paperCanvas = document.getElementById("paperCanvas");
     if (paperCanvas) {
-      paperCanvas.innerHTML = buildResumeHtml();
+      paperCanvas.innerHTML = resumeHtml;
+    }
+    const fullCanvas = document.getElementById("fullscreenPaperCanvas");
+    if (fullCanvas) {
+      fullCanvas.innerHTML = resumeHtml;
     }
     if (livePreview) {
       livePreview.innerHTML = buildLivePreviewHtml();
@@ -3534,15 +3539,15 @@ options.forEach(function (card) {
     }
   }
 
-  // Export PDF with 3.5s page loader overlay & direct download via html2pdf
-  function exportPDF(evt) {
+  // Direct High-Definition PDF Export Engine (100% matching Review Screen)
+  async function exportPDF(evt) {
     const check = checkFormCompletion();
     if (!check.isComplete) {
       showFormErrorModal(check.missingFields);
       return;
     }
 
-    const btn = (evt && evt.target) ? evt.target.closest("button") : (evt || document.getElementById("exportPdf") || document.getElementById("fullExportPdf"));
+    const btn = (evt && evt.target) ? evt.target.closest("button") : (evt || document.getElementById("exportPdf") || document.getElementById("fullExportPdf") || document.getElementById("headerExportPdf"));
     let originalContent = "";
     if (btn) {
       originalContent = btn.innerHTML;
@@ -3565,75 +3570,146 @@ options.forEach(function (card) {
 
     showToast("Generating high-quality PDF document, please wait...");
 
-    // ── Direct html2pdf download (no popup needed) ──────────────────────
     const rawName = state.personal?.fullName
       ? state.personal.fullName.trim().replace(/\s+/g, "_")
       : "My";
     const resumeHtml = buildResumeHtml();
     const title = `${rawName}_Resume`;
 
-    // Build a temporary hidden container with full styles
-    const container = document.createElement("div");
-    container.style.cssText = "position:fixed;left:-9999px;top:0;width:210mm;background:#ffffff;font-family:'Inter',sans-serif;color:#0f172a;";
-    container.innerHTML = resumeHtml;
-    document.body.appendChild(container);
+    // Clean up any previous temp export host
+    const existingHost = document.getElementById("pdfExportHost");
+    if (existingHost) {
+      existingHost.remove();
+    }
 
-    const opt = {
-      margin: 0,
-      filename: `${title}.pdf`,
-      image: { type: "jpeg", quality: 1 },
-      html2canvas: {
-        scale: 2,
-        useCORS: true,
-        allowTaint: true,
-        letterRendering: true,
-        logging: false,
-        width: 794,
-      },
-      jsPDF: {
-        unit: "mm",
-        format: "a4",
-        orientation: "portrait",
-        compress: true,
-      },
-      pagebreak: { mode: ["avoid-all", "css", "legacy"] },
+    // Build host container positioned under the loader overlay (invisible to user)
+    const host = document.createElement("div");
+    host.id = "pdfExportHost";
+    host.style.cssText = "position:fixed;left:0;top:0;width:794px;background:#ffffff;z-index:50;pointer-events:none;margin:0;padding:0;box-sizing:border-box;opacity:1;";
+
+    const exportContainer = document.createElement("div");
+    exportContainer.id = "pdfTempExportContainer";
+    exportContainer.className = "paper-canvas";
+    exportContainer.style.cssText = "width:794px;max-width:794px;min-height:1123px;box-sizing:border-box;background:#ffffff;margin:0 !important;padding:0 !important;box-shadow:none !important;border-radius:0 !important;transform:none !important;overflow:visible;";
+    exportContainer.innerHTML = resumeHtml;
+    host.appendChild(exportContainer);
+    document.body.appendChild(host);
+
+    const cleanup = () => {
+      if (host && host.parentNode) {
+        host.parentNode.removeChild(host);
+      }
+      if (overlay) overlay.setAttribute("aria-hidden", "true");
+      if (btn) {
+        btn.disabled = false;
+        btn.style.pointerEvents = "auto";
+        btn.style.opacity = "1";
+        btn.innerHTML = originalContent;
+      }
     };
 
-    setTimeout(function() {
-      if (typeof html2pdf !== "undefined") {
-        html2pdf().set(opt).from(container).save().then(function() {
-          document.body.removeChild(container);
-          if (overlay) overlay.setAttribute("aria-hidden", "true");
-          if (btn) {
-            btn.disabled = false;
-            btn.style.pointerEvents = "auto";
-            btn.style.opacity = "1";
-            btn.innerHTML = originalContent;
-          }
-          showToast("✅ PDF downloaded successfully! Check your Downloads folder.");
-        }).catch(function(err) {
-          document.body.removeChild(container);
-          if (overlay) overlay.setAttribute("aria-hidden", "true");
-          if (btn) {
-            btn.disabled = false;
-            btn.style.pointerEvents = "auto";
-            btn.style.opacity = "1";
-            btn.innerHTML = originalContent;
-          }
-          showToast("PDF generation failed. Please try again.");
-          console.error("html2pdf error:", err);
-        });
-      } else {
-        // Fallback: use blob URL anchor (no popup)
-        document.body.removeChild(container);
-        fallbackBlobPrint(resumeHtml, title);
-        if (overlay) overlay.setAttribute("aria-hidden", "true");
-        if (btn) {
-          btn.disabled = false;
-          btn.style.pointerEvents = "auto";
-          btn.style.opacity = "1";
-          btn.innerHTML = originalContent;
+    setTimeout(async function() {
+      try {
+        if (document.fonts && document.fonts.ready) {
+          try { await document.fonts.ready; } catch(e) {}
         }
+
+        let pdf = null;
+        const PDFConstructor = (window.jspdf && window.jspdf.jsPDF) || window.jsPDF;
+        if (typeof PDFConstructor === "function") {
+          try {
+            pdf = new PDFConstructor("p", "mm", "a4");
+          } catch(e) {
+            try {
+              pdf = new PDFConstructor({ orientation: "portrait", unit: "mm", format: "a4", compress: true });
+            } catch(e2) {}
+          }
+        }
+
+        if (H2C && pdf) {
+          const renderedCanvas = await H2C(exportContainer, {
+            scale: 2,
+            useCORS: true,
+            allowTaint: true,
+            letterRendering: true,
+            logging: false,
+            width: 794,
+            height: exportContainer.scrollHeight || 1120,
+            x: 0,
+            y: 0,
+            scrollX: 0,
+            scrollY: 0,
+            windowWidth: 794,
+            backgroundColor: "#ffffff"
+          });
+
+          if (!renderedCanvas || renderedCanvas.width === 0 || renderedCanvas.height === 0) {
+            throw new Error("Canvas rendering failed");
+          }
+
+          const imgData = renderedCanvas.toDataURL("image/jpeg", 0.98);
+          const pageWidth = 210;
+          const pageHeight = 297;
+          const imgWidth = 210;
+          const totalHeightMm = (renderedCanvas.height * 210) / renderedCanvas.width;
+
+          // Single-Page vs Multi-Page Determination:
+          // A standard single page at 794px width is ~1120px (297mm).
+          // If the rendered content is within 1350px (or <= 350mm), it strictly fits on 1 PAGE!
+          if (renderedCanvas.height <= 1350 || totalHeightMm <= 350) {
+            pdf.addImage(imgData, "JPEG", 0, 0, pageWidth, pageHeight);
+          } else {
+            // True multi-page resume:
+            const numPages = Math.ceil(renderedCanvas.height / 1120);
+            for (let i = 0; i < numPages; i++) {
+              const remainingPx = renderedCanvas.height - (i * 1120);
+              if (i > 0 && remainingPx < 200) {
+                break; // Skip accidental trailing empty page
+              }
+              if (i > 0) {
+                pdf.addPage();
+              }
+              const positionMm = -(i * pageHeight);
+              pdf.addImage(imgData, "JPEG", 0, positionMm, imgWidth, totalHeightMm);
+            }
+          }
+
+          pdf.save(`${title}.pdf`);
+          cleanup();
+          showToast("✅ PDF downloaded successfully! Check your Downloads folder.");
+        } else if (typeof html2pdf !== "undefined") {
+          const opt = {
+            margin: 0,
+            filename: `${title}.pdf`,
+            image: { type: "jpeg", quality: 0.98 },
+            html2canvas: {
+              scale: 2,
+              useCORS: true,
+              allowTaint: true,
+              logging: false,
+              width: 794,
+              height: 1120,
+              backgroundColor: "#ffffff"
+            },
+            jsPDF: {
+              unit: "mm",
+              format: "a4",
+              orientation: "portrait"
+            },
+            pagebreak: { mode: "css" }
+          };
+          await html2pdf().set(opt).from(exportContainer).save();
+          cleanup();
+          showToast("✅ PDF downloaded successfully! Check your Downloads folder.");
+        } else {
+          cleanup();
+          fallbackBlobPrint(resumeHtml, title);
+        }
+      } catch (err) {
+        console.error("PDF export error:", err);
+        cleanup();
+        showToast("Generating direct PDF failed, opening print dialog fallback...", 3000);
+        fallbackBlobPrint(resumeHtml, title);
       }
     }, 3500);
   }
@@ -3645,15 +3721,21 @@ options.forEach(function (card) {
 <head>
   <meta charset="utf-8"/>
   <title>${title}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { font-family: 'Inter', sans-serif; background: #ffffff; color: #0f172a; width: 210mm; margin: 0 auto; }
     @page { size: A4 portrait; margin: 0; }
-    @media print { body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+    @media print { html, body { width: 210mm; } body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
   </style>
 </head>
-<body>${resumeHtml}</body>
+<body>
+  <main class="paper-canvas" style="box-shadow:none;margin:0 auto;width:210mm;min-height:297mm">
+    ${resumeHtml}
+  </main>
+</body>
 </html>`;
     const blob = new Blob([htmlContent], { type: "text/html" });
     const url = URL.createObjectURL(blob);
