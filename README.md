@@ -15,7 +15,7 @@ Welcome to **FolioCraft Pro Studio**! A modern, ATS-friendly resume builder pack
 - **⚡ High-Definition Direct PDF Export:** 300 DPI client-side PDF generator (`html2canvas` + `jsPDF`) with pixel-perfect template parity and smart 1-page vs multi-page pagination.
 - **🖥️ Real-Time Fullscreen Document Viewer:** Full-fidelity interactive canvas synchronized live with all form updates.
 - **🎓 Fresher Resume Builder:** Dedicated interface ([`fresher.html`](file:///d:/resume_genarator/fresher.html)) crafted specifically for students and early-career job seekers with a SaaS-grade stepper header and dynamic progress indicator.
-- **🌗 Dual Premium Themes:** Warm **Cream White (`#faf8f5`)** light theme and sophisticated **Slate Ash (`#1f232b`)** dark theme.
+- **🌗 Dual Premium Themes:** Crisp **Corporate White (`#f8fafc`)** light theme and authoritative **Corporate Dark (`#0b0f19` Midnight Navy Slate)** dark theme.
 - **💎 Clean Corporate Blue Design System:** Streamlined action buttons (Corporate Blue `#1d4ed8`, Violet `#7c3aed`) with zero harsh glows and refined typography.
 - **📚 Career & Resume Blog:** In-depth guides on ATS optimization, tech resumes, executive resumes, and career switching ([`blog.html`](file:///d:/resume_genarator/blog.html)).
 - **📱 100% Pixel-Perfect Responsive Design:** Optimized layout and seamless experience across mobile, tablet, desktop, and ultra-wide displays.
