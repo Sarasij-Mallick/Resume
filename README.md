@@ -14,8 +14,10 @@ Welcome to **FolioCraft Pro Studio**! A modern, ATS-friendly resume builder pack
 - **🎨 Dynamic & Modern Templates:** Curated resume designs tailored for professionals and freshers with customizable color palettes.
 - **⚡ High-Definition Direct PDF Export:** 300 DPI client-side PDF generator (`html2canvas` + `jsPDF`) with pixel-perfect template parity and smart 1-page vs multi-page pagination.
 - **🖥️ Real-Time Fullscreen Document Viewer:** Full-fidelity interactive canvas synchronized live with all form updates.
-- **🎓 Fresher Resume Builder:** Dedicated interface ([`fresher.html`](file:///d:/codes/web_developement/ui%20design/Resume%28Sarasij%29/fresher.html)) crafted specifically for students and early-career job seekers.
-- **📚 Career & Resume Blog:** In-depth guides on ATS optimization, tech resumes, executive resumes, and career switching ([`blog.html`](file:///d:/codes/web_developement/ui%20design/Resume%28Sarasij%29/blog.html)).
+- **🎓 Fresher Resume Builder:** Dedicated interface ([`fresher.html`](file:///d:/resume_genarator/fresher.html)) crafted specifically for students and early-career job seekers with a SaaS-grade stepper header and dynamic progress indicator.
+- **🌗 Dual Premium Themes:** Warm **Cream White (`#faf8f5`)** light theme and sophisticated **Slate Ash (`#1f232b`)** dark theme.
+- **💎 Clean Corporate Blue Design System:** Streamlined action buttons (Corporate Blue `#1d4ed8`, Violet `#7c3aed`) with zero harsh glows and refined typography.
+- **📚 Career & Resume Blog:** In-depth guides on ATS optimization, tech resumes, executive resumes, and career switching ([`blog.html`](file:///d:/resume_genarator/blog.html)).
 - **📱 100% Pixel-Perfect Responsive Design:** Optimized layout and seamless experience across mobile, tablet, desktop, and ultra-wide displays.
 - **🔒 Privacy & Client-Side Execution:** Your data remains safe and processed directly in your browser.
 
@@ -23,8 +25,8 @@ Welcome to **FolioCraft Pro Studio**! A modern, ATS-friendly resume builder pack
 
 ## 🏗️ Tech Stack & Architecture
 
-- **Frontend:** HTML5, CSS3 (Vanilla CSS, Modern Flexbox & Grid), JavaScript (ES6+)
-- **Styling & Assets:** Custom modern stylesheets ([`css/style.css`](file:///d:/codes/web_developement/ui%20design/Resume%28Sarasij%29/css/style.css)), responsive media assets in [`images/`](file:///d:/codes/web_developement/ui%20design/Resume%28Sarasij%29/images/)
+- **Frontend:** HTML5, CSS3 (Vanilla CSS, Modern Flexbox & CSS Grid Design System), JavaScript (ES6+)
+- **Styling & Assets:** Custom modern stylesheets ([`css/style.css`](file:///d:/resume_genarator/css/style.css)), responsive media assets in [`images/`](file:///d:/resume_genarator/images/)
 - **Version Control & Collaboration:** Git & GitHub
 - **Deployment:** Vercel
 

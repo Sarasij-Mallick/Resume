@@ -68,7 +68,7 @@
                     <button id="zoomFitBtn" type="button" style="border:none;background:none;cursor:pointer;padding:3px 6px;font-size:10px;font-weight:700;color:#6366f1" title="Fit to Screen">Fit</button>
                 </div>
 
-                <button id="headerExportPdf" class="btn primary" style="padding:6px 16px;font-size:12.5px;font-weight:700;display:inline-flex;align-items:center;gap:6px">
+                <button id="headerExportPdf" class="btn btn-corporate-blue" style="padding:6px 16px;font-size:12.5px;font-weight:700;display:inline-flex;align-items:center;gap:6px">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg> Save & Export PDF
                 </button>
                 
@@ -117,12 +117,21 @@
             <!-- Collapsible Control Form Drawer -->
             <aside class="studio-drawer">
                 <div class="drawer-head">
-                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-                        <h3 id="stepDrawerTitle" style="margin:0">Step Details</h3>
-                        <span id="progressPct" style="font-weight:700;color:var(--canva-purple)">0%</span>
+                    <div class="drawer-head-top">
+                        <span class="step-num-badge" id="stepDrawerBadge">Step 1 of 8</span>
+                        <div class="progress-pill-badge" id="progressPctBadge">
+                            <span class="progress-pulse-dot"></span>
+                            <span id="progressPct">0%</span>
+                            <span class="progress-pill-label">Complete</span>
+                        </div>
                     </div>
-                    <div style="height:6px;background:#e2e8f0;border-radius:9999px;overflow:hidden;margin-bottom:12px">
-                        <div id="progressFill" style="height:100%;width:0%;background:var(--canva-gradient)"></div>
+                    <div class="drawer-head-title-wrap">
+                        <h3 id="stepDrawerTitle" class="drawer-step-title">Personal Information</h3>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-track">
+                            <div id="progressFill" class="progress-bar-fill" style="width:0%"></div>
+                        </div>
                     </div>
                     <!-- Action Buttons directly above Show Document -->
                     <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px">
@@ -153,17 +162,35 @@
 
             <!-- Canva Studio Workspace Canvas Center -->
             <section class="studio-workspace">
+                <!-- Mobile Interactive Slide-Up Handle -->
+                <div id="mobileFullscreenHandle" class="mobile-fullscreen-handle" role="button" tabindex="0" title="Slide up or tap for full screen preview">
+                    <div class="handle-pill">
+                        <span class="handle-arrow">▲</span>
+                        <span class="handle-text">Slide up for Fullscreen</span>
+                    </div>
+                </div>
+
                 <!-- Floating Canvas Top Actions Bar -->
-                <div class="canvas-top-bar" style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px;background:#ffffff;padding:8px 18px;border-radius:9999px;box-shadow:0 4px 20px rgba(14,19,31,0.08);border:1px solid #e2e8f0;width:100%;max-width:794px;flex-wrap:wrap">
-                    <div style="display:flex;align-items:center;gap:8px">
-                        <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#10b981"></span>
-                        <span style="font-size:12.5px;font-weight:700;color:var(--canva-dark)">Live Resume Canvas</span>
+                <div class="canvas-top-bar">
+                    <div class="canvas-title-wrap">
+                        <div class="canvas-title-left">
+                            <span class="live-dot" style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#10b981"></span>
+                            <span class="canvas-title-text" style="font-size:12.5px;font-weight:700">Live Resume Canvas</span>
+                        </div>
+                        <div class="canvas-title-actions-mobile">
+                            <!-- Custom Color Picker Tool -->
+                            <label for="templateColorPicker" class="custom-color-picker-label" title="Pick Any Custom Hex Color">
+                                <input type="color" id="templateColorPicker" value="#3b82f6">
+                                <span id="customColorIndicator" title="Custom Color Wheel">✨</span>
+                            </label>
+                            <button id="resetColorBtn" type="button" class="reset-color-btn" title="Reset to template default color">Reset</button>
+                        </div>
                     </div>
 
                     <!-- Instant Template Color Palette & Custom Color Picker -->
-                    <div id="quickColorToolbar" style="display:flex;align-items:center;gap:5px;flex-wrap:wrap">
-                        <span style="font-size:11.5px;font-weight:700;color:#475569;margin-right:2px">Theme Color:</span>
-                        <div class="color-swatches-strip" style="display:flex;align-items:center;gap:5px">
+                    <div id="quickColorToolbar" class="quick-color-toolbar">
+                        <span class="theme-color-label" style="font-size:11.5px;font-weight:700;margin-right:2px">Theme Color:</span>
+                        <div class="color-swatches-strip">
                             <button type="button" class="color-swatch-dot" data-color="#2563eb" style="background:#2563eb" title="Royal Blue"></button>
                             <button type="button" class="color-swatch-dot" data-color="#7c3aed" style="background:#7c3aed" title="Electric Violet"></button>
                             <button type="button" class="color-swatch-dot" data-color="#059669" style="background:#059669" title="Emerald Green"></button>
@@ -176,13 +203,14 @@
                             <button type="button" class="color-swatch-dot" data-color="#0f172a" style="background:#0f172a" title="Midnight Slate"></button>
                         </div>
                         
-                        <!-- Custom Color Picker Tool -->
-                        <label for="templateColorPicker" style="position:relative;display:inline-flex;align-items:center;cursor:pointer;margin-left:3px" title="Pick Any Custom Hex Color">
-                            <input type="color" id="templateColorPicker" value="#3b82f6" style="opacity:0;position:absolute;width:24px;height:24px;cursor:pointer">
-                            <span id="customColorIndicator" style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:conic-gradient(from 180deg, red, yellow, lime, aqua, blue, magenta, red);border:2px solid #ffffff;box-shadow:0 0 0 1px #cbd5e1;cursor:pointer;font-size:10px" title="Custom Color Wheel">✨</span>
-                        </label>
-                        
-                        <button id="resetColorBtn" type="button" style="border:none;background:#f1f5f9;color:#64748b;font-size:11px;font-weight:600;padding:3px 8px;border-radius:12px;cursor:pointer;margin-left:2px" title="Reset to template default color">Reset</button>
+                        <div class="canvas-title-actions-desktop">
+                            <!-- Custom Color Picker Tool -->
+                            <label for="templateColorPickerDesktop" class="custom-color-picker-label" title="Pick Any Custom Hex Color">
+                                <input type="color" id="templateColorPickerDesktop" value="#3b82f6">
+                                <span id="customColorIndicatorDesktop" title="Custom Color Wheel">✨</span>
+                            </label>
+                            <button id="resetColorBtnDesktop" type="button" class="reset-color-btn" title="Reset to template default color">Reset</button>
+                        </div>
                     </div>
                 </div>
 
@@ -197,13 +225,12 @@
         <footer class="studio-footer-bar">
             <div>
                 <span id="prevBtn" style="cursor:pointer;margin-right:12px;font-weight:600">‹ Previous Step</span>
-                <span id="nextBtn" style="cursor:pointer;font-weight:700;color:var(--canva-purple)">Next Step ›</span>
+                <span id="nextBtn" style="cursor:pointer;font-weight:800;color:#7c3aed">Next Step ›</span>
             </div>
             <div style="display:flex;gap:12px;align-items:center">
                 <span>Page 1 of 1</span>
                 <span>Zoom 100%</span>
                 <button id="showDocFooterBtn" class="studio-btn save" style="padding:4px 12px;font-size:12px;display:inline-flex;align-items:center;gap:6px">Show Your Document</button>
-                <button id="saveResume" class="btn primary" style="padding:4px 12px;font-size:12px">Save Resume</button>
             </div>
         </footer>
 
@@ -284,6 +311,10 @@
         <!-- FULL SCREEN DOCUMENT PREVIEW MODAL -->
         <div id="docFullscreenModal" class="fullscreen-doc-modal" aria-hidden="true" role="dialog" aria-label="Full Screen Document Viewer">
             <div class="fullscreen-doc-header">
+                <div class="fullscreen-mobile-drag-bar" id="fullscreenMobileCloseHandle" role="button" tabindex="0" title="Slide down or tap to close">
+                    <span class="drag-pill"></span>
+                    <span class="drag-text">▼ Slide down / Tap to close</span>
+                </div>
                 <div class="fullscreen-doc-actions">
                     <button id="fullExportPdf" class="studio-btn export" style="display:inline-flex;align-items:center;gap:6px">
                         Export PDF
@@ -377,7 +408,7 @@
                     <div style="font-size:11px;color:#94a3b8">⚡ Updates live as you type</div>
                     <div style="display:flex;gap:10px">
                         <button id="closeAtsModalBtn" class="btn neutral">Close</button>
-                        <button id="atsModalExportBtn" class="btn primary">Export Verified PDF</button>
+                        <button id="atsModalExportBtn" class="btn btn-corporate-blue">Export Verified PDF</button>
                     </div>
                 </div>
             </div>

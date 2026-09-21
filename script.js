@@ -429,6 +429,7 @@ options.forEach(function (card) {
       phone: "",
       address: "",
       linkedin: "",
+      github: "",
       portfolio: "",
       photo: null,
     },
@@ -554,9 +555,13 @@ options.forEach(function (card) {
       };
     });
     const drawerTitle = document.getElementById("stepDrawerTitle");
+    const drawerBadge = document.getElementById("stepDrawerBadge");
     const meta = stepsMeta.find((s) => s.id === state.current);
     if (drawerTitle && meta) {
       drawerTitle.textContent = meta.title;
+    }
+    if (drawerBadge) {
+      drawerBadge.textContent = `Step ${state.current} of ${stepsMeta.length}`;
     }
   }
 
@@ -800,13 +805,12 @@ options.forEach(function (card) {
         <div class="form-label"><label>Phone *</label><input class="form-control" id="phone" type="tel" value="${escape(state.personal.phone || "")}" /></div>
       </div>
       <div class="form-group form-row">
-        <div class="form-label"><label>Address</label><input class="form-control" id="address" type="text" value="${escape(state.personal.address || "")}" /></div>
-        <div class="form-group form-row">
-          <div class="field"><label>LinkedIn</label><input class="form-control" id="linkedin" type="url" value="${escape(state.personal.linkedin || "")}" /></div>
-        </div>
+        <div class="form-label"><label>Address</label><input class="form-control" id="address" type="text" placeholder="e.g. San Francisco, CA" value="${escape(state.personal.address || "")}" /></div>
+        <div class="form-label"><label>LinkedIn</label><input class="form-control" id="linkedin" type="url" placeholder="https://linkedin.com/in/username" value="${escape(state.personal.linkedin || "")}" /></div>
       </div>
-      <div class="form-group form-row single">
-        <div class="form-label"><label>Portfolio / Website</label><input class="form-control" id="portfolio" type="url" value="${escape(state.personal.portfolio || "")}" /></div>
+      <div class="form-group form-row">
+        <div class="form-label"><label>GitHub</label><input class="form-control" id="github" type="url" placeholder="https://github.com/username" value="${escape(state.personal.github || "")}" /></div>
+        <div class="form-label"><label>Portfolio / Website</label><input class="form-control" id="portfolio" type="url" placeholder="https://yourportfolio.com" value="${escape(state.personal.portfolio || "")}" /></div>
       </div>
       <div class="form-group form-row single">
         <div class="field">
@@ -824,8 +828,8 @@ options.forEach(function (card) {
       </div>
       <div class="actions">
         <div style="flex:1"></div>
-        <button id="savePersonal" class="btn bg-success">Save</button>
-        <button id="toNext" class="btn primary">Next</button>
+        <button id="savePersonal" class="btn success">Save</button>
+        <button id="toNext" class="btn btn-next">Next</button>
       </div>
     `;
     // handlers
@@ -854,6 +858,9 @@ options.forEach(function (card) {
               break;
             case "linkedin":
               state.personal.linkedin = inp.value;
+              break;
+            case "github":
+              state.personal.github = inp.value;
               break;
             case "portfolio":
               state.personal.portfolio = inp.value;
@@ -927,8 +934,8 @@ options.forEach(function (card) {
       <div style="margin-top:10px" class="actions">
         <button id="addEdu" class="btn neutral">+ Add Education</button>
         <div style="flex:1"></div>
-        <button id="saveEdu" class="btn bg-success text-white">Save</button>
-        <button id="toNext2" class="btn primary">Next</button>
+        <button id="saveEdu" class="btn success">Save</button>
+        <button id="toNext2" class="btn btn-next">Next</button>
       </div>
     `;
     const eduList = wrapper.querySelector("#eduList");
@@ -1012,7 +1019,7 @@ options.forEach(function (card) {
       <div class="form-row"><div class="field"><label>Field of study</label><input class="form-control" id="e_field" value="${escape(data.field || "")}"/></div><div class="field"><label>GPA</label><input class="form-control" id="e_gpa" value="${escape(data.gpa || "")}"/></div></div>
       <div class="form-row"><div class="field"><label>Start</label><input class="form-control" id="e_start" type="month" value="${escape(data.start || "")}"/></div><div class="field"><label>End</label><input class="form-control" id="e_end" type="month" value="${escape(data.end || "")}"/></div></div>
       <div class="field"><label>Description</label><textarea class="form-control" id="e_desc">${escape(data.description || "")}</textarea></div>
-      <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px"><button id="e_cancel" class="btn neutral">Cancel</button><button id="e_save" class="btn primary">Save</button></div>
+      <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px"><button id="e_cancel" class="btn neutral">Cancel</button><button id="e_save" class="btn success">Save</button></div>
       </div></div>`;
     document.body.appendChild(modalHtml);
 
@@ -1083,7 +1090,7 @@ options.forEach(function (card) {
           <button class="btn neutral" id="addCertBtn" type="button">Add</button>
         </div>
       </div>
-      <div class="actions"><div style="flex:1"></div><button id="saveSkills" class="btn bg-success text-white">Save</button><button id="toNext3" class="btn primary">Next</button></div>
+      <div class="actions"><div style="flex:1"></div><button id="saveSkills" class="btn success">Save</button><button id="toNext3" class="btn btn-next">Next</button></div>
     `;
 
     const techWrap = wrapper.querySelector("#techWrap");
@@ -1219,8 +1226,8 @@ options.forEach(function (card) {
       <div style="margin-top:12px" class="actions">
         <button id="addProj" class="btn neutral">+ Add Project</button>
         <div style="flex:1"></div>
-        <button id="saveProj" class="btn bg-success text-white">Save</button>
-        <button id="toNext4" class="btn primary">Next</button>
+        <button id="saveProj" class="btn success">Save</button>
+        <button id="toNext4" class="btn btn-next">Next</button>
       </div>
     `;
     const list = wrapper.querySelector("#projList");
@@ -1304,7 +1311,7 @@ options.forEach(function (card) {
       <div class="field"><label>GitHub Link</label><input class="form-control" id="p_github" placeholder="https://github.com/..." value="${escape(data.github || "")}"/></div>
       <div class="field"><label>Live Demo</label><input class="form-control" id="p_demo" placeholder="https://..." value="${escape(data.demo || "")}"/></div>
       <div class="field"><label>Description</label><textarea class="form-control" id="p_desc" rows="3" placeholder="Briefly describe what the project does...">${escape(data.description || "")}</textarea></div>
-      <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px"><button id="p_cancel" class="btn neutral">Cancel</button><button id="p_save" class="btn primary">Save Project</button></div>
+      <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px"><button id="p_cancel" class="btn neutral">Cancel</button><button id="p_save" class="btn success">Save Project</button></div>
       </div></div>`;
     document.body.appendChild(modalDiv);
 
@@ -1340,7 +1347,7 @@ options.forEach(function (card) {
     normalizeState();
     const wrapper = document.createElement("div");
     wrapper.className = "form";
-    wrapper.innerHTML = `<div class="list" id="expList"></div><div style="margin-top:12px" class="actions"><button id="addExp" class="btn neutral">+ Add Experience</button><button id="saveExp" class="btn bg-success text-white">Save</button><button id="toNext5" class="btn primary">Next</button></div>`;
+    wrapper.innerHTML = `<div class="list" id="expList"></div><div style="margin-top:12px" class="actions"><button id="addExp" class="btn neutral">+ Add Experience</button><button id="saveExp" class="btn success">Save</button><button id="toNext5" class="btn btn-next">Next</button></div>`;
     const list = wrapper.querySelector("#expList");
     function refresh() {
       normalizeState();
@@ -1407,7 +1414,7 @@ options.forEach(function (card) {
       <div class="field"><label>Job Title *</label><input class="form-control" id="ex_title" value="${escape(data.title || "")}"/></div>
       <div class="form-row"><div class="field"><label>Type</label><input class="form-control" id="ex_type" placeholder="e.g. Internship, Full-Time" value="${escape(data.type || "")}"/></div><div class="field"><label>Start</label><input class="form-control" id="ex_start" type="month" value="${escape(data.start || "")}"/></div></div>
       <div class="form-row"><div class="field"><label>End</label><input class="form-control" id="ex_end" type="month" value="${escape(data.end || "")}"/></div><div class="field"><label>Responsibilities</label><input class="form-control" id="ex_resp" placeholder="Key achievements or duties" value="${escape(data.responsibilities || "")}"/></div></div>
-      <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px"><button id="ex_cancel" class="btn neutral">Cancel</button><button id="ex_save" class="btn primary">Save</button></div>
+      <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px"><button id="ex_cancel" class="btn neutral">Cancel</button><button id="ex_save" class="btn success">Save</button></div>
     </div></div>`;
     document.body.appendChild(modalDiv);
 
@@ -1445,7 +1452,7 @@ options.forEach(function (card) {
     normalizeState();
     const wrapper = document.createElement("div");
     wrapper.className = "form";
-    wrapper.innerHTML = `<div class="list" id="achList"></div><div style="margin-top:12px" class="actions"><button id="addAch" class="btn neutral">+ Add Achievement</button><button id="saveAch" class="btn bg-success text-white">Save</button><button id="toNext6" class="btn primary">Next</button></div>`;
+    wrapper.innerHTML = `<div class="list" id="achList"></div><div style="margin-top:12px" class="actions"><button id="addAch" class="btn neutral">+ Add Achievement</button><button id="saveAch" class="btn success">Save</button><button id="toNext6" class="btn btn-next">Next</button></div>`;
     const list = wrapper.querySelector("#achList");
     function refresh() {
       normalizeState();
@@ -1509,7 +1516,7 @@ options.forEach(function (card) {
       <div class="field"><label>Organization</label><input class="form-control" id="a_org" value="${escape(data.org || "")}"/></div>
       <div class="field"><label>Date</label><input class="form-control" id="a_date" type="month" value="${escape(data.date || "")}"/></div>
       <div class="field"><label>Description</label><textarea class="form-control" id="a_desc">${escape(data.description || "")}</textarea></div>
-      <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px"><button id="a_cancel" class="btn neutral">Cancel</button><button id="a_save" class="btn primary">Save</button></div>
+      <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px"><button id="a_cancel" class="btn neutral">Cancel</button><button id="a_save" class="btn success">Save</button></div>
     </div></div>`;
     document.body.appendChild(modalDiv);
 
@@ -1545,7 +1552,7 @@ options.forEach(function (card) {
     wrapper.className = "form";
     wrapper.innerHTML = `<div class="field"><label>Professional Summary</label><textarea id="summaryText">${escape(state.summary.text || "")}</textarea><div class="small muted"><span id="charCount">0</span> characters</div></div>
       <div class="field"><label>Professional Suggestions</label><div class="entry"><div class="small muted">Try: "Recent Computer Science graduate with internship experience in full-stack development..."</div></div></div>
-      <div class="actions"><div style="flex:1"></div><button id="saveSum" class="btn neutral">Save</button><button id="toNext7" class="btn primary">Next</button></div>`;
+      <div class="actions"><div style="flex:1"></div><button id="saveSum" class="btn success">Save</button><button id="toNext7" class="btn btn-next">Next</button></div>`;
     const ta = wrapper.querySelector("#summaryText");
     const charCount = wrapper.querySelector("#charCount");
     charCount.textContent = (ta.value || "").length;
@@ -1582,7 +1589,7 @@ options.forEach(function (card) {
       </div>
       <div class="mobile-only-doc-box" style="margin-bottom:10px;font-weight:700;color:var(--canva-dark)">Resume Document Preview</div>
       <div class="mobile-only-doc-box" style="border:1px solid rgba(15,23,42,0.08);padding:14px;border-radius:12px;background:linear-gradient(180deg,var(--card),transparent);max-height:360px;overflow-y:auto">${resumeHtml}</div>
-      <div class="actions" style="margin-top:16px"><button id="editResume" class="btn neutral">Edit</button><button id="downloadPdf" class="btn neutral">Download PDF</button><button id="saveFinal" class="btn primary">Save Resume</button></div>`;
+      <div class="actions" style="margin-top:16px"><button id="editResume" class="btn neutral">Edit</button><button id="downloadPdf" class="btn btn-corporate-blue">Download PDF</button><button id="saveFinal" class="btn success">Save Resume</button></div>`;
     
     wrapper.querySelector("#showDocFinalBtn").onclick = () => {
       openFullscreenDocument();
@@ -1776,8 +1783,9 @@ options.forEach(function (card) {
     const emailText = hasPersonalEmail ? escape(p.email) : "alex.morgan@example.com";
     const phoneText = hasPersonalPhone ? escape(p.phone) : "+1 (555) 019-2834";
     const addressText = (p.address && p.address.trim().length > 0) ? escape(p.address) : "San Francisco, CA, USA";
-    const linkedinUrl = (p.linkedin && p.linkedin.trim().length > 0) ? escape(p.linkedin) : "https://linkedin.com/in/alexmorgan";
-    const portfolioUrl = (p.portfolio && p.portfolio.trim().length > 0) ? escape(p.portfolio) : "https://alexmorgan.dev";
+    const linkedinUrl = (p.linkedin && p.linkedin.trim().length > 0) ? escape(p.linkedin) : (hasPersonalName ? "" : "https://linkedin.com/in/alexmorgan");
+    const githubUrl = (p.github && p.github.trim().length > 0) ? escape(p.github) : (hasPersonalName ? "" : "https://github.com/alexmorgan");
+    const portfolioUrl = (p.portfolio && p.portfolio.trim().length > 0) ? escape(p.portfolio) : (hasPersonalName ? "" : "https://alexmorgan.dev");
 
     const hasSummary = Boolean(state.summary?.text && state.summary.text.trim().length > 0);
     const summaryText = hasSummary ? escape(state.summary.text) : defaultSummary;
@@ -1873,8 +1881,9 @@ options.forEach(function (card) {
               <div style="overflow-wrap:break-word">📧 ${emailText}</div>
               <div style="overflow-wrap:break-word">📞 ${phoneText}</div>
               <div style="overflow-wrap:break-word">📍 ${addressText}</div>
-              ${linkedinUrl !== '#' ? `<div>💼 <a href="${linkedinUrl}" target="_blank" style="color:#ffffff;text-decoration:underline;overflow-wrap:break-word;font-weight:600;">LinkedIn</a></div>` : ""}
-              ${portfolioUrl !== '#' ? `<div>🌐 <a href="${portfolioUrl}" target="_blank" style="color:#ffffff;text-decoration:underline;overflow-wrap:break-word;font-weight:600;">Portfolio</a></div>` : ""}
+              ${linkedinUrl ? `<div>💼 <a href="${linkedinUrl}" target="_blank" style="color:#ffffff;text-decoration:underline;overflow-wrap:break-word;font-weight:600;">LinkedIn</a></div>` : ""}
+              ${githubUrl ? `<div>💻 <a href="${githubUrl}" target="_blank" style="color:#ffffff;text-decoration:underline;overflow-wrap:break-word;font-weight:600;">GitHub</a></div>` : ""}
+              ${portfolioUrl ? `<div>🌐 <a href="${portfolioUrl}" target="_blank" style="color:#ffffff;text-decoration:underline;overflow-wrap:break-word;font-weight:600;">Portfolio</a></div>` : ""}
             </div>
           </div>
           <div>
@@ -1954,8 +1963,9 @@ options.forEach(function (card) {
           <div style="font-size:14px; font-style:italic; color:#475569">${headlineText}</div>
           <div style="display:flex; justify-content:center; flex-wrap:wrap; gap:12px; font-size:12px; color:#64748b; margin-top:8px; font-family:'Inter', sans-serif">
             <span>${emailText}</span> • <span>${phoneText}</span> • <span>${addressText}</span>
-            ${p.linkedin ? `• <span><a href="${escape(p.linkedin)}" target="_blank" style="color:${theme.primary}">LinkedIn</a></span>` : ""}
-            ${p.portfolio ? `• <span><a href="${escape(p.portfolio)}" target="_blank" style="color:${theme.primary}">Portfolio</a></span>` : ""}
+            ${linkedinUrl ? `• <span><a href="${linkedinUrl}" target="_blank" style="color:${theme.primary}">LinkedIn</a></span>` : ""}
+            ${githubUrl ? `• <span><a href="${githubUrl}" target="_blank" style="color:${theme.primary}">GitHub</a></span>` : ""}
+            ${portfolioUrl ? `• <span><a href="${portfolioUrl}" target="_blank" style="color:${theme.primary}">Portfolio</a></span>` : ""}
           </div>
         </div>
         <div style="margin-bottom:18px">
@@ -2016,7 +2026,9 @@ options.forEach(function (card) {
         </div>
         <div style="display:flex; flex-wrap:wrap; gap:14px; font-size:12px; color:#475569; padding-bottom:12px; border-bottom:2px solid #e2e8f0; margin-bottom:20px">
           <span>📧 ${emailText}</span> | <span>📞 ${phoneText}</span> | <span>📍 ${addressText}</span>
-          ${p.portfolio ? `| <span>🌐 <a href="${escape(p.portfolio)}" target="_blank" style="color:${theme.primary};font-weight:700">Portfolio</a></span>` : ""}
+          ${linkedinUrl ? `| <span>💼 <a href="${linkedinUrl}" target="_blank" style="color:${theme.primary};font-weight:700">LinkedIn</a></span>` : ""}
+          ${githubUrl ? `| <span>💻 <a href="${githubUrl}" target="_blank" style="color:${theme.primary};font-weight:700">GitHub</a></span>` : ""}
+          ${portfolioUrl ? `| <span>🌐 <a href="${portfolioUrl}" target="_blank" style="color:${theme.primary};font-weight:700">Portfolio</a></span>` : ""}
         </div>
         <div style="margin-bottom:20px">
           <h3 style="font-size:14px; font-weight:800; color:${theme.primary}; text-transform:uppercase; margin:0 0 6px">Creative Summary</h3>
@@ -2068,8 +2080,9 @@ options.forEach(function (card) {
           <span style="background:#f1f5f9;padding:2px 7px;border-radius:4px">📧 ${emailText}</span>
           <span style="background:#f1f5f9;padding:2px 7px;border-radius:4px">📞 ${phoneText}</span>
           <span style="background:#f1f5f9;padding:2px 7px;border-radius:4px">📍 ${addressText}</span>
-          ${p.portfolio ? `<a href="${escape(p.portfolio)}" target="_blank" style="background:#e0f2fe;color:#0284c7;padding:2px 7px;border-radius:4px;text-decoration:none;font-weight:700">🔗 Portfolio</a>` : ""}
-          ${p.linkedin ? `<a href="${escape(p.linkedin)}" target="_blank" style="background:#e0e7ff;color:#4338ca;padding:2px 7px;border-radius:4px;text-decoration:none;font-weight:700">💼 LinkedIn</a>` : ""}
+          ${linkedinUrl ? `<a href="${linkedinUrl}" target="_blank" style="background:#e0e7ff;color:#4338ca;padding:2px 7px;border-radius:4px;text-decoration:none;font-weight:700">💼 LinkedIn</a>` : ""}
+          ${githubUrl ? `<a href="${githubUrl}" target="_blank" style="background:#f1f5f9;color:#0f172a;padding:2px 7px;border-radius:4px;text-decoration:none;font-weight:700;border:1px solid #cbd5e1">💻 GitHub</a>` : ""}
+          ${portfolioUrl ? `<a href="${portfolioUrl}" target="_blank" style="background:#e0f2fe;color:#0284c7;padding:2px 7px;border-radius:4px;text-decoration:none;font-weight:700">🔗 Portfolio</a>` : ""}
         </div>
         <div style="margin-bottom:12px">
           <h3 style="font-family:monospace; font-size:12px; font-weight:800; color:${theme.primary}; text-transform:uppercase; border-bottom:1.5px solid #cbd5e1; padding-bottom:2px; margin:0 0 5px">// 01. TECHNICAL SUMMARY</h3>
@@ -2142,8 +2155,9 @@ options.forEach(function (card) {
           <span>📧 ${emailText}</span>
           <span>📞 ${phoneText}</span>
           <span>📍 ${addressText}</span>
-          ${p.linkedin ? `<span>💼 <a href="${escape(p.linkedin)}" target="_blank" style="color:${theme.primary};font-weight:700">LinkedIn</a></span>` : ""}
-          ${p.portfolio ? `<span>🌐 <a href="${escape(p.portfolio)}" target="_blank" style="color:${theme.primary};font-weight:700">Portfolio</a></span>` : ""}
+          ${linkedinUrl ? `<span>💼 <a href="${linkedinUrl}" target="_blank" style="color:${theme.primary};font-weight:700">LinkedIn</a></span>` : ""}
+          ${githubUrl ? `<span>💻 <a href="${githubUrl}" target="_blank" style="color:${theme.primary};font-weight:700">GitHub</a></span>` : ""}
+          ${portfolioUrl ? `<span>🌐 <a href="${portfolioUrl}" target="_blank" style="color:${theme.primary};font-weight:700">Portfolio</a></span>` : ""}
         </div>
         <div style="margin-bottom:14px">
           <h3 style="font-size:12.5px; font-weight:800; color:${theme.primary}; text-transform:uppercase; letter-spacing:0.04em; border-left:3px solid ${theme.primary}; padding-left:7px; margin:0 0 5px">About Me</h3>
@@ -2225,8 +2239,9 @@ options.forEach(function (card) {
         </div>
         <div style="display:flex; flex-wrap:wrap; gap:8px; font-size:11px; color:#64748b; padding-bottom:9px; border-bottom:1px solid #cbd5e1; margin-bottom:12px">
           <span>📧 ${emailText}</span> | <span>📞 ${phoneText}</span> | <span>📍 ${addressText}</span>
-          ${p.linkedin ? `| <span><a href="${escape(p.linkedin)}" target="_blank" style="color:${theme.primary};font-weight:700">LinkedIn</a></span>` : ""}
-          ${p.portfolio ? `| <span><a href="${escape(p.portfolio)}" target="_blank" style="color:${theme.primary};font-weight:700">Portfolio</a></span>` : ""}
+          ${linkedinUrl ? `| <span>💼 <a href="${linkedinUrl}" target="_blank" style="color:${theme.primary};font-weight:700">LinkedIn</a></span>` : ""}
+          ${githubUrl ? `| <span>💻 <a href="${githubUrl}" target="_blank" style="color:${theme.primary};font-weight:700">GitHub</a></span>` : ""}
+          ${portfolioUrl ? `| <span>🌐 <a href="${portfolioUrl}" target="_blank" style="color:${theme.primary};font-weight:700">Portfolio</a></span>` : ""}
         </div>
         <div style="margin-bottom:12px">
           <h3 style="font-size:12px; font-weight:800; text-transform:uppercase; color:${theme.primary}; letter-spacing:0.06em; margin:0 0 5px">Profile Summary</h3>
@@ -2287,8 +2302,9 @@ options.forEach(function (card) {
           <span>📧 ${emailText}</span>
           <span>📞 ${phoneText}</span>
           <span>📍 ${addressText}</span>
-          ${p.linkedin ? `<span>💼 <a href="${escape(p.linkedin)}" target="_blank" style="color:${theme.primary};font-weight:700">LinkedIn</a></span>` : ""}
-          ${p.portfolio ? `<span>🌐 <a href="${escape(p.portfolio)}" target="_blank" style="color:${theme.primary};font-weight:700">Portfolio</a></span>` : ""}
+          ${linkedinUrl ? `<span>💼 <a href="${linkedinUrl}" target="_blank" style="color:${theme.primary};font-weight:700">LinkedIn</a></span>` : ""}
+          ${githubUrl ? `<span>💻 <a href="${githubUrl}" target="_blank" style="color:${theme.primary};font-weight:700">GitHub</a></span>` : ""}
+          ${portfolioUrl ? `<span>🌐 <a href="${portfolioUrl}" target="_blank" style="color:${theme.primary};font-weight:700">Portfolio</a></span>` : ""}
         </div>
         <div style="margin-bottom:12px">
           <h3 style="font-size:12px; font-weight:800; text-transform:uppercase; color:${theme.primary}; letter-spacing:0.05em; border-bottom:1px solid #e2e8f0; padding-bottom:2px; margin:0 0 5px">Summary</h3>
@@ -2349,6 +2365,9 @@ options.forEach(function (card) {
           <div style="font-size:13.5px; font-weight:600; color:#525252">${headlineText}</div>
           <div style="display:flex; justify-content:center; flex-wrap:wrap; gap:12px; font-size:11.5px; color:#525252; margin-top:8px">
             <span>${emailText}</span> • <span>${phoneText}</span> • <span>${addressText}</span>
+            ${linkedinUrl ? `• <span><a href="${linkedinUrl}" target="_blank" style="color:#171717;font-weight:700;text-decoration:underline">LinkedIn</a></span>` : ""}
+            ${githubUrl ? `• <span><a href="${githubUrl}" target="_blank" style="color:#171717;font-weight:700;text-decoration:underline">GitHub</a></span>` : ""}
+            ${portfolioUrl ? `• <span><a href="${portfolioUrl}" target="_blank" style="color:#171717;font-weight:700;text-decoration:underline">Portfolio</a></span>` : ""}
           </div>
         </div>
         <div style="margin-bottom:18px">
@@ -2395,8 +2414,11 @@ options.forEach(function (card) {
           </div>
           ${p.photo ? `<img src="${p.photo}" style="width:72px;height:72px;border-radius:10px;object-fit:cover;border:2px solid ${theme.primary}">` : ""}
         </div>
-        <div style="display:flex; flex-wrap:wrap; gap:20px; font-size:12.5px; color:#475569; padding-bottom:14px; border-bottom:1px solid #cbd5e1; margin-bottom:22px; font-weight:600">
+        <div style="display:flex; flex-wrap:wrap; gap:16px; font-size:12.5px; color:#475569; padding-bottom:14px; border-bottom:1px solid #cbd5e1; margin-bottom:22px; font-weight:600">
           <span>EMAIL: ${emailText}</span> | <span>PHONE: ${phoneText}</span> | <span>LOCATION: ${addressText}</span>
+          ${linkedinUrl ? `| <span><a href="${linkedinUrl}" target="_blank" style="color:#10b981;font-weight:700">LINKEDIN</a></span>` : ""}
+          ${githubUrl ? `| <span><a href="${githubUrl}" target="_blank" style="color:#10b981;font-weight:700">GITHUB</a></span>` : ""}
+          ${portfolioUrl ? `| <span><a href="${portfolioUrl}" target="_blank" style="color:#10b981;font-weight:700">PORTFOLIO</a></span>` : ""}
         </div>
         <div style="margin-bottom:22px; background:#f0fdf4; border-left:4px solid #10b981; padding:12px 14px; border-radius:4px">
           <h3 style="font-size:14px; font-weight:800; color:#065f46; text-transform:uppercase; letter-spacing:0.06em; margin:0 0 6px">Executive Profile</h3>
@@ -2442,8 +2464,11 @@ options.forEach(function (card) {
           </div>
           ${p.photo ? `<img src="${p.photo}" style="width:72px;height:72px;border-radius:6px;object-fit:cover;border:2px solid #1e3a8a">` : ""}
         </div>
-        <div style="display:flex; flex-wrap:wrap; gap:20px; font-size:12.5px; color:#475569; padding-bottom:12px; border-bottom:1px solid #cbd5e1; margin-bottom:22px; font-weight:600">
+        <div style="display:flex; flex-wrap:wrap; gap:16px; font-size:12.5px; color:#475569; padding-bottom:12px; border-bottom:1px solid #cbd5e1; margin-bottom:22px; font-weight:600">
           <span>EMAIL: ${emailText}</span> | <span>PHONE: ${phoneText}</span> | <span>LOCATION: ${addressText}</span>
+          ${linkedinUrl ? `| <span><a href="${linkedinUrl}" target="_blank" style="color:#1e3a8a;font-weight:700">LINKEDIN</a></span>` : ""}
+          ${githubUrl ? `| <span><a href="${githubUrl}" target="_blank" style="color:#1e3a8a;font-weight:700">GITHUB</a></span>` : ""}
+          ${portfolioUrl ? `| <span><a href="${portfolioUrl}" target="_blank" style="color:#1e3a8a;font-weight:700">PORTFOLIO</a></span>` : ""}
         </div>
         <div style="margin-bottom:22px">
           <h3 style="font-size:14.5px; font-weight:800; color:#1e3a8a; text-transform:uppercase; letter-spacing:0.06em; border-bottom:1.5px solid #1e3a8a; padding-bottom:3px; margin:0 0 8px">Executive Leadership Profile</h3>
@@ -2494,8 +2519,9 @@ options.forEach(function (card) {
             <span style="background:#f8fafc;padding:3px 10px;border-radius:5px;border:1px solid #e2e8f0;">📧 ${emailText}</span>
             <span style="background:#f8fafc;padding:3px 10px;border-radius:5px;border:1px solid #e2e8f0;">📞 ${phoneText}</span>
             <span style="background:#f8fafc;padding:3px 10px;border-radius:5px;border:1px solid #e2e8f0;">📍 ${addressText}</span>
-            ${linkedinUrl !== '#' ? `<span><a href="${linkedinUrl}" target="_blank" style="background:#eff6ff;color:${theme.primary};text-decoration:none;font-weight:700;padding:3px 10px;border-radius:5px;border:1px solid #dbeafe;">💼 LinkedIn</a></span>` : ""}
-            ${portfolioUrl !== '#' ? `<span><a href="${portfolioUrl}" target="_blank" style="background:#f0fdf4;color:#059669;text-decoration:none;font-weight:700;padding:3px 10px;border-radius:5px;border:1px solid #bbf7d0;">🌐 Portfolio</a></span>` : ""}
+            ${linkedinUrl ? `<span><a href="${linkedinUrl}" target="_blank" style="background:#eff6ff;color:${theme.primary};text-decoration:none;font-weight:700;padding:3px 10px;border-radius:5px;border:1px solid #dbeafe;">💼 LinkedIn</a></span>` : ""}
+            ${githubUrl ? `<span><a href="${githubUrl}" target="_blank" style="background:#f8fafc;color:#0f172a;text-decoration:none;font-weight:700;padding:3px 10px;border-radius:5px;border:1px solid #e2e8f0;">💻 GitHub</a></span>` : ""}
+            ${portfolioUrl ? `<span><a href="${portfolioUrl}" target="_blank" style="background:#f0fdf4;color:#059669;text-decoration:none;font-weight:700;padding:3px 10px;border-radius:5px;border:1px solid #bbf7d0;">🌐 Portfolio</a></span>` : ""}
           </div>
           <div style="background:#f0fdfa; border:1.5px solid #99f6e4; padding:16px 18px; border-radius:10px; margin-bottom:22px">
             <h3 style="font-size:14px; font-weight:800; color:#0f766e; text-transform:uppercase; letter-spacing:0.06em; margin:0 0 10px">⚡ Skills & Proficiencies</h3>
@@ -2570,11 +2596,13 @@ options.forEach(function (card) {
           </div>
           ${p.photo ? `<img src="${p.photo}" style="width:68px;height:68px;border-radius:10px;object-fit:cover;border:2px solid #38bdf8">` : ""}
         </div>
-        <div style="display:flex; flex-wrap:wrap; gap:12px; font-size:12px; color:#475569; padding-bottom:12px; border-bottom:1px solid #cbd5e1; margin-bottom:20px; font-family:monospace">
+        <div style="display:flex; flex-wrap:wrap; gap:10px; font-size:12px; color:#475569; padding-bottom:12px; border-bottom:1px solid #cbd5e1; margin-bottom:20px; font-family:monospace">
           <span style="background:#f0f9ff;padding:3px 8px;border-radius:4px;color:#0369a1">📧 ${emailText}</span>
           <span style="background:#f0f9ff;padding:3px 8px;border-radius:4px;color:#0369a1">📞 ${phoneText}</span>
           <span style="background:#f0f9ff;padding:3px 8px;border-radius:4px;color:#0369a1">📍 ${addressText}</span>
-          ${p.linkedin ? `<a href="${escape(p.linkedin)}" target="_blank" style="background:#0284c7;color:#fff;padding:3px 8px;border-radius:4px;text-decoration:none">LinkedIn</a>` : ""}
+          ${linkedinUrl ? `<a href="${linkedinUrl}" target="_blank" style="background:#0284c7;color:#fff;padding:3px 8px;border-radius:4px;text-decoration:none">💼 LinkedIn</a>` : ""}
+          ${githubUrl ? `<a href="${githubUrl}" target="_blank" style="background:#0f172a;color:#38bdf8;border:1px solid #0284c7;padding:3px 8px;border-radius:4px;text-decoration:none;font-weight:700">💻 GitHub</a>` : ""}
+          ${portfolioUrl ? `<a href="${portfolioUrl}" target="_blank" style="background:#0369a1;color:#fff;padding:3px 8px;border-radius:4px;text-decoration:none">🌐 Portfolio</a>` : ""}
         </div>
         <div style="margin-bottom:20px">
           <h3 style="font-size:14px; font-weight:800; color:#0284c7; text-transform:uppercase; letter-spacing:0.05em; border-bottom:1.5px solid #0284c7; padding-bottom:3px; margin:0 0 6px">Architecture & Systems Summary</h3>
@@ -2637,9 +2665,11 @@ options.forEach(function (card) {
           </div>
           ${p.photo ? `<img src="${p.photo}" style="width:68px;height:68px;border-radius:12px;object-fit:cover;border:2px solid #22d3ee">` : ""}
         </div>
-        <div style="display:flex; flex-wrap:wrap; gap:14px; font-size:12px; color:#475569; padding-bottom:12px; border-bottom:1px solid #cbd5e1; margin-bottom:20px">
+        <div style="display:flex; flex-wrap:wrap; gap:12px; font-size:12px; color:#475569; padding-bottom:12px; border-bottom:1px solid #cbd5e1; margin-bottom:20px">
           <span>📧 ${emailText}</span> • <span>📞 ${phoneText}</span> • <span>📍 ${addressText}</span>
-          ${p.portfolio ? `• <a href="${escape(p.portfolio)}" target="_blank" style="color:#0891b2;font-weight:700">Kaggle / Portfolio</a>` : ""}
+          ${linkedinUrl ? `• <a href="${linkedinUrl}" target="_blank" style="color:#0891b2;font-weight:700">LinkedIn</a>` : ""}
+          ${githubUrl ? `• <a href="${githubUrl}" target="_blank" style="color:#0891b2;font-weight:700">GitHub</a>` : ""}
+          ${portfolioUrl ? `• <a href="${portfolioUrl}" target="_blank" style="color:#0891b2;font-weight:700">Portfolio</a>` : ""}
         </div>
         <div style="margin-bottom:20px">
           <h3 style="font-size:14px; font-weight:800; color:#0891b2; text-transform:uppercase; margin:0 0 6px">Research & Quantitative Focus</h3>
@@ -2699,7 +2729,9 @@ options.forEach(function (card) {
           <div style="font-size:14px; font-style:italic; color:#44403c">${headlineText}</div>
           <div style="font-family:'Inter', sans-serif; display:flex; justify-content:center; flex-wrap:wrap; gap:14px; font-size:11.5px; color:#57534e; margin-top:8px">
             <span>${emailText}</span> • <span>${phoneText}</span> • <span>${addressText}</span>
-            ${p.linkedin ? `• <a href="${escape(p.linkedin)}" target="_blank" style="color:#7f1d1d">LinkedIn</a>` : ""}
+            ${linkedinUrl ? `• <a href="${linkedinUrl}" target="_blank" style="color:#7f1d1d">LinkedIn</a>` : ""}
+            ${githubUrl ? `• <a href="${githubUrl}" target="_blank" style="color:#7f1d1d">GitHub</a>` : ""}
+            ${portfolioUrl ? `• <a href="${portfolioUrl}" target="_blank" style="color:#7f1d1d">Portfolio</a>` : ""}
           </div>
         </div>
         <div style="margin-bottom:18px">
@@ -2759,11 +2791,13 @@ options.forEach(function (card) {
           </div>
           ${p.photo ? `<img src="${p.photo}" style="width:72px;height:72px;border-radius:18px;object-fit:cover;border:3px solid #fff">` : ""}
         </div>
-        <div style="display:flex; flex-wrap:wrap; gap:14px; font-size:12.5px; color:#475569; padding-bottom:12px; border-bottom:2px solid #e0e7ff; margin-bottom:20px">
+        <div style="display:flex; flex-wrap:wrap; gap:12px; font-size:12.5px; color:#475569; padding-bottom:12px; border-bottom:2px solid #e0e7ff; margin-bottom:20px">
           <span>📧 ${emailText}</span>
           <span>📞 ${phoneText}</span>
           <span>📍 ${addressText}</span>
-          ${p.portfolio ? `<a href="${escape(p.portfolio)}" target="_blank" style="color:#4338ca;font-weight:700">🎨 Figma / Portfolio</a>` : ""}
+          ${linkedinUrl ? `<a href="${linkedinUrl}" target="_blank" style="color:#4338ca;font-weight:700">💼 LinkedIn</a>` : ""}
+          ${githubUrl ? `<a href="${githubUrl}" target="_blank" style="color:#4338ca;font-weight:700">💻 GitHub</a>` : ""}
+          ${portfolioUrl ? `<a href="${portfolioUrl}" target="_blank" style="color:#4338ca;font-weight:700">🎨 Figma / Portfolio</a>` : ""}
         </div>
         <div style="margin-bottom:20px">
           <h3 style="font-size:14.5px; font-weight:800; color:#4338ca; text-transform:uppercase; letter-spacing:0.04em; margin:0 0 6px">Product Design Philosophy</h3>
@@ -2826,11 +2860,13 @@ options.forEach(function (card) {
           </div>
           ${p.photo ? `<img src="${p.photo}" style="width:68px;height:68px;border-radius:8px;object-fit:cover;border:2px solid #ef4444">` : ""}
         </div>
-        <div style="display:flex; flex-wrap:wrap; gap:12px; font-size:12px; color:#475569; padding-bottom:12px; border-bottom:1px solid #cbd5e1; margin-bottom:20px; font-family:monospace">
+        <div style="display:flex; flex-wrap:wrap; gap:10px; font-size:12px; color:#475569; padding-bottom:12px; border-bottom:1px solid #cbd5e1; margin-bottom:20px; font-family:monospace">
           <span style="background:#fef2f2;padding:3px 8px;border-radius:4px;color:#991b1b">📧 ${emailText}</span>
           <span style="background:#fef2f2;padding:3px 8px;border-radius:4px;color:#991b1b">📞 ${phoneText}</span>
           <span style="background:#fef2f2;padding:3px 8px;border-radius:4px;color:#991b1b">📍 ${addressText}</span>
-          ${p.linkedin ? `<a href="${escape(p.linkedin)}" target="_blank" style="background:#dc2626;color:#fff;padding:3px 8px;border-radius:4px;text-decoration:none">LinkedIn</a>` : ""}
+          ${linkedinUrl ? `<a href="${linkedinUrl}" target="_blank" style="background:#dc2626;color:#fff;padding:3px 8px;border-radius:4px;text-decoration:none">💼 LinkedIn</a>` : ""}
+          ${githubUrl ? `<a href="${githubUrl}" target="_blank" style="background:#1e293b;color:#f87171;border:1px solid #ef4444;padding:3px 8px;border-radius:4px;text-decoration:none;font-weight:700">💻 GitHub</a>` : ""}
+          ${portfolioUrl ? `<a href="${portfolioUrl}" target="_blank" style="background:#991b1b;color:#fff;padding:3px 8px;border-radius:4px;text-decoration:none">🌐 Portfolio</a>` : ""}
         </div>
         <div style="margin-bottom:20px">
           <h3 style="font-family:monospace; font-size:13.5px; font-weight:800; color:#dc2626; text-transform:uppercase; border-bottom:1.5px solid #dc2626; padding-bottom:3px; margin:0 0 6px">// 01. SECURITY POSTURE & SUMMARY</h3>
@@ -2890,9 +2926,11 @@ options.forEach(function (card) {
           </div>
           ${p.photo ? `<img src="${p.photo}" style="width:64px;height:64px;border-radius:0;border:2px solid #18181b;object-fit:cover">` : ""}
         </div>
-        <div style="display:flex; flex-wrap:wrap; gap:14px; font-size:11.5px; font-weight:700; color:#3f3f46; padding-bottom:12px; border-bottom:1px solid #e4e4e7; margin-bottom:20px">
+        <div style="display:flex; flex-wrap:wrap; gap:12px; font-size:11.5px; font-weight:700; color:#3f3f46; padding-bottom:12px; border-bottom:1px solid #e4e4e7; margin-bottom:20px">
           <span>${emailText}</span> / <span>${phoneText}</span> / <span>${addressText}</span>
-          ${p.linkedin ? `/ <span><a href="${escape(p.linkedin)}" target="_blank" style="color:#e11d48">LINKEDIN</a></span>` : ""}
+          ${linkedinUrl ? `/ <span><a href="${linkedinUrl}" target="_blank" style="color:#e11d48;font-weight:700">LINKEDIN</a></span>` : ""}
+          ${githubUrl ? `/ <span><a href="${githubUrl}" target="_blank" style="color:#e11d48;font-weight:700">GITHUB</a></span>` : ""}
+          ${portfolioUrl ? `/ <span><a href="${portfolioUrl}" target="_blank" style="color:#e11d48;font-weight:700">PORTFOLIO</a></span>` : ""}
         </div>
         <div style="margin-bottom:20px">
           <h3 style="font-size:13px; font-weight:900; text-transform:uppercase; letter-spacing:1px; color:#18181b; border-bottom:2px solid #18181b; padding-bottom:2px; margin:0 0 6px">01. EXECUTIVE SUMMARY</h3>
@@ -2951,9 +2989,11 @@ options.forEach(function (card) {
           </div>
           ${p.photo ? `<img src="${p.photo}" style="width:60px;height:60px;border-radius:50%;object-fit:cover">` : ""}
         </div>
-        <div style="display:flex; flex-wrap:wrap; gap:16px; font-size:12px; color:#94a3b8; margin-bottom:20px">
+        <div style="display:flex; flex-wrap:wrap; gap:14px; font-size:12px; color:#94a3b8; margin-bottom:20px">
           <span>${emailText}</span> • <span>${phoneText}</span> • <span>${addressText}</span>
-          ${p.linkedin ? `• <span><a href="${escape(p.linkedin)}" target="_blank" style="color:#475569">LinkedIn</a></span>` : ""}
+          ${linkedinUrl ? `• <span><a href="${linkedinUrl}" target="_blank" style="color:#475569;font-weight:600">LinkedIn</a></span>` : ""}
+          ${githubUrl ? `• <span><a href="${githubUrl}" target="_blank" style="color:#475569;font-weight:600">GitHub</a></span>` : ""}
+          ${portfolioUrl ? `• <span><a href="${portfolioUrl}" target="_blank" style="color:#475569;font-weight:600">Portfolio</a></span>` : ""}
         </div>
         <div style="margin-bottom:20px">
           <h3 style="font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#475569; margin:0 0 6px">About</h3>
@@ -3000,9 +3040,11 @@ options.forEach(function (card) {
           </div>
           ${p.photo ? `<img src="${p.photo}" style="width:72px;height:72px;border-radius:16px;object-fit:cover;border:3px solid #fff">` : ""}
         </div>
-        <div style="display:flex; flex-wrap:wrap; gap:14px; font-size:12.5px; color:#475569; padding-bottom:12px; border-bottom:2px solid #fae8ff; margin-bottom:20px">
+        <div style="display:flex; flex-wrap:wrap; gap:12px; font-size:12.5px; color:#475569; padding-bottom:12px; border-bottom:2px solid #fae8ff; margin-bottom:20px">
           <span>📧 ${emailText}</span> • <span>📞 ${phoneText}</span> • <span>📍 ${addressText}</span>
-          ${p.portfolio ? `• <a href="${escape(p.portfolio)}" target="_blank" style="color:#9333ea;font-weight:700">ArtStation / Reel</a>` : ""}
+          ${linkedinUrl ? `• <a href="${linkedinUrl}" target="_blank" style="color:#9333ea;font-weight:700">💼 LinkedIn</a>` : ""}
+          ${githubUrl ? `• <a href="${githubUrl}" target="_blank" style="color:#9333ea;font-weight:700">💻 GitHub</a>` : ""}
+          ${portfolioUrl ? `• <a href="${portfolioUrl}" target="_blank" style="color:#9333ea;font-weight:700">🎨 Reel / Portfolio</a>` : ""}
         </div>
         <div style="margin-bottom:20px">
           <h3 style="font-size:14.5px; font-weight:800; color:#9333ea; text-transform:uppercase; margin:0 0 6px">Artist Statement & Reel Summary</h3>
@@ -3061,8 +3103,11 @@ options.forEach(function (card) {
           <div style="font-family:'Inter', sans-serif; font-size:10px; font-weight:800; color:#be185d; letter-spacing:2px; text-transform:uppercase">EDITORIAL & ART DIRECTION</div>
           <h1 style="margin:2px 0 4px; font-size:32px; font-weight:700; color:#831843">${nameText}</h1>
           <div style="font-size:14px; font-style:italic; color:#701a75">${headlineText}</div>
-          <div style="font-family:'Inter', sans-serif; display:flex; justify-content:center; flex-wrap:wrap; gap:16px; font-size:11.5px; color:#78716c; margin-top:8px">
+          <div style="font-family:'Inter', sans-serif; display:flex; justify-content:center; flex-wrap:wrap; gap:14px; font-size:11.5px; color:#78716c; margin-top:8px">
             <span>${emailText}</span> • <span>${phoneText}</span> • <span>${addressText}</span>
+            ${linkedinUrl ? `• <span><a href="${linkedinUrl}" target="_blank" style="color:#831843;font-weight:600">LinkedIn</a></span>` : ""}
+            ${githubUrl ? `• <span><a href="${githubUrl}" target="_blank" style="color:#831843;font-weight:600">GitHub</a></span>` : ""}
+            ${portfolioUrl ? `• <span><a href="${portfolioUrl}" target="_blank" style="color:#831843;font-weight:600">Portfolio</a></span>` : ""}
           </div>
         </div>
         <div style="margin-bottom:20px; font-size:13.5px; font-style:italic; border-left:3px solid #be185d; padding-left:14px">
@@ -3111,6 +3156,9 @@ options.forEach(function (card) {
         </div>
         <div style="display:flex; flex-wrap:wrap; gap:16px; font-size:12.5px; color:#475569; padding-bottom:12px; border-bottom:1.5px solid #cbd5e1; margin-bottom:20px; font-weight:600">
           <span>EMAIL: ${emailText}</span> | <span>PHONE: ${phoneText}</span> | <span>LOCATION: ${addressText}</span>
+          ${linkedinUrl ? `| <span><a href="${linkedinUrl}" target="_blank" style="color:#1e3a8a;font-weight:700">LINKEDIN</a></span>` : ""}
+          ${githubUrl ? `| <span><a href="${githubUrl}" target="_blank" style="color:#1e3a8a;font-weight:700">GITHUB</a></span>` : ""}
+          ${portfolioUrl ? `| <span><a href="${portfolioUrl}" target="_blank" style="color:#1e3a8a;font-weight:700">PORTFOLIO</a></span>` : ""}
         </div>
         <div style="margin-bottom:20px">
           <h3 style="font-size:14.5px; font-weight:800; color:#1e3a8a; text-transform:uppercase; letter-spacing:0.05em; border-bottom:1.5px solid #1e3a8a; padding-bottom:3px; margin:0 0 6px">Executive Summary & P&L Scale</h3>
@@ -3159,6 +3207,9 @@ options.forEach(function (card) {
         </div>
         <div style="display:flex; flex-wrap:wrap; gap:16px; font-size:12px; color:#475569; padding-bottom:12px; border-bottom:1px solid #cbd5e1; margin-bottom:20px; font-weight:600">
           <span>EMAIL: ${emailText}</span> | <span>PHONE: ${phoneText}</span> | <span>LOCATION: ${addressText}</span>
+          ${linkedinUrl ? `| <span><a href="${linkedinUrl}" target="_blank" style="color:#047857;font-weight:700">LINKEDIN</a></span>` : ""}
+          ${githubUrl ? `| <span><a href="${githubUrl}" target="_blank" style="color:#047857;font-weight:700">GITHUB</a></span>` : ""}
+          ${portfolioUrl ? `| <span><a href="${portfolioUrl}" target="_blank" style="color:#047857;font-weight:700">PORTFOLIO</a></span>` : ""}
         </div>
         <div style="margin-bottom:20px; background:#ecfdf5; border-left:4px solid #047857; padding:12px; border-radius:4px">
           <h3 style="font-size:13.5px; font-weight:800; color:#064e3b; text-transform:uppercase; margin:0 0 4px">Financial Governance & Capital Leadership</h3>
@@ -3207,7 +3258,9 @@ options.forEach(function (card) {
         </div>
         <div style="display:flex; flex-wrap:wrap; gap:14px; font-size:12px; color:#475569; padding-bottom:12px; border-bottom:2px solid #dbeafe; margin-bottom:20px">
           <span>📧 ${emailText}</span> • <span>📞 ${phoneText}</span> • <span>📍 ${addressText}</span>
-          ${p.linkedin ? `• <a href="${escape(p.linkedin)}" target="_blank" style="color:#1d4ed8;font-weight:600">LinkedIn</a></span>` : ""}
+          ${linkedinUrl ? `• <a href="${linkedinUrl}" target="_blank" style="color:#1d4ed8;font-weight:600">LinkedIn</a>` : ""}
+          ${githubUrl ? `• <a href="${githubUrl}" target="_blank" style="color:#1d4ed8;font-weight:600">GitHub</a>` : ""}
+          ${portfolioUrl ? `• <a href="${portfolioUrl}" target="_blank" style="color:#1d4ed8;font-weight:600">Portfolio</a>` : ""}
         </div>
         <div style="margin-bottom:20px">
           <h3 style="font-size:14px; font-weight:800; color:#1d4ed8; text-transform:uppercase; border-bottom:2px solid #dbeafe; padding-bottom:3px; margin:0 0 6px">Engineering Focus & Objectives</h3>
@@ -3267,6 +3320,9 @@ options.forEach(function (card) {
         </div>
         <div style="display:flex; flex-wrap:wrap; gap:14px; font-size:12px; color:#475569; padding-bottom:12px; border-bottom:2px solid #ccfbf1; margin-bottom:20px">
           <span>📧 ${emailText}</span> • <span>📞 ${phoneText}</span> • <span>📍 ${addressText}</span>
+          ${linkedinUrl ? `• <a href="${linkedinUrl}" target="_blank" style="color:#0d9488;font-weight:600">LinkedIn</a>` : ""}
+          ${githubUrl ? `• <a href="${githubUrl}" target="_blank" style="color:#0d9488;font-weight:600">GitHub</a>` : ""}
+          ${portfolioUrl ? `• <a href="${portfolioUrl}" target="_blank" style="color:#0d9488;font-weight:600">Portfolio</a>` : ""}
         </div>
         <div style="margin-bottom:20px; background:#f0fdfa; border-left:4px solid #0d9488; padding:12px; border-radius:4px">
           <h3 style="font-size:13.5px; font-weight:800; color:#0f766e; text-transform:uppercase; margin:0 0 4px">Career Aspirations</h3>
@@ -3325,6 +3381,9 @@ options.forEach(function (card) {
         </div>
         <div style="display:flex; flex-wrap:wrap; gap:14px; font-size:12px; color:#475569; padding-bottom:12px; border-bottom:2px solid #f3e8ff; margin-bottom:20px">
           <span>📧 ${emailText}</span> • <span>📞 ${phoneText}</span> • <span>📍 ${addressText}</span>
+          ${linkedinUrl ? `• <a href="${linkedinUrl}" target="_blank" style="color:#7e22ce;font-weight:600">LinkedIn</a>` : ""}
+          ${githubUrl ? `• <a href="${githubUrl}" target="_blank" style="color:#7e22ce;font-weight:600">GitHub</a>` : ""}
+          ${portfolioUrl ? `• <a href="${portfolioUrl}" target="_blank" style="color:#7e22ce;font-weight:600">Portfolio</a>` : ""}
         </div>
         <div style="margin-bottom:20px; background:#faf5ff; border-left:4px solid #7e22ce; padding:12px; border-radius:4px">
           <h3 style="font-size:13.5px; font-weight:800; color:#581c87; text-transform:uppercase; margin:0 0 4px">Academic Honors Profile</h3>
@@ -3350,6 +3409,7 @@ options.forEach(function (card) {
                 </div>
               `)}
             </div>
+          </div>
           <div>
             <div style="margin-bottom:20px">
               <h3 style="font-size:14px; font-weight:800; color:#7e22ce; text-transform:uppercase; border-bottom:2px solid #f3e8ff; padding-bottom:3px; margin:0 0 8px">Core Competencies</h3>
@@ -3384,8 +3444,9 @@ options.forEach(function (card) {
           <span style="background:#f8fafc;padding:3px 8px;border-radius:4px;border:1px solid #e2e8f0;">📧 ${emailText}</span>
           <span style="background:#f8fafc;padding:3px 8px;border-radius:4px;border:1px solid #e2e8f0;">📞 ${phoneText}</span>
           <span style="background:#f8fafc;padding:3px 8px;border-radius:4px;border:1px solid #e2e8f0;">📍 ${addressText}</span>
-          ${linkedinUrl !== '#' ? `<a href="${linkedinUrl}" target="_blank" style="background:#eff6ff;color:${theme.primary};text-decoration:none;font-weight:700;padding:3px 8px;border-radius:4px;border:1px solid #dbeafe;">💼 LinkedIn</a>` : ""}
-          ${portfolioUrl !== '#' ? `<a href="${portfolioUrl}" target="_blank" style="background:#f0fdf4;color:#059669;text-decoration:none;font-weight:700;padding:3px 8px;border-radius:4px;border:1px solid #bbf7d0;">🌐 Portfolio</a>` : ""}
+          ${linkedinUrl ? `<a href="${linkedinUrl}" target="_blank" style="background:#eff6ff;color:${theme.primary};text-decoration:none;font-weight:700;padding:3px 8px;border-radius:4px;border:1px solid #dbeafe;">💼 LinkedIn</a>` : ""}
+          ${githubUrl ? `<a href="${githubUrl}" target="_blank" style="background:#f8fafc;color:#0f172a;text-decoration:none;font-weight:700;padding:3px 8px;border-radius:4px;border:1px solid #e2e8f0;">💻 GitHub</a>` : ""}
+          ${portfolioUrl ? `<a href="${portfolioUrl}" target="_blank" style="background:#f0fdf4;color:#059669;text-decoration:none;font-weight:700;padding:3px 8px;border-radius:4px;border:1px solid #bbf7d0;">🌐 Portfolio</a>` : ""}
         </div>
 
         <div style="display:grid;grid-template-columns:1.8fr 1.2fr;gap:16px;margin-bottom:10px;">
@@ -3860,10 +3921,10 @@ options.forEach(function (card) {
       personalScore += 2;
     }
 
-    if (p.linkedin || p.portfolio) {
+    if (p.linkedin || p.portfolio || p.github) {
       personalScore += 2;
     } else {
-      tips.push({ text: "Add a LinkedIn or Portfolio link for recruiter verification", done: false });
+      tips.push({ text: "Add a LinkedIn, GitHub, or Portfolio link for recruiter verification", done: false });
     }
     score += personalScore;
 
@@ -4171,7 +4232,7 @@ function clearLocalStorage() {
 function resetFormState() {
   state = {
     current: 1,
-    personal: { fullName: "", headline: "", email: "", phone: "", address: "", linkedin: "", portfolio: "", photo: null },
+    personal: { fullName: "", headline: "", email: "", phone: "", address: "", linkedin: "", github: "", portfolio: "", photo: null },
     education: [],
     skills: { technical: [], soft: [], languages: [], certifications: [] },
     projects: [],
@@ -4287,7 +4348,78 @@ function showToast(msg, timeout = 3000) {
       }
     }
 
-    // Attach Show Your Document click handlers
+    // Attach Show Your Document & Mobile Fullscreen Swipe Handlers
+    const mobileFullscreenHandle = document.getElementById("mobileFullscreenHandle");
+    const fullscreenMobileCloseHandle = document.getElementById("fullscreenMobileCloseHandle");
+    const docModal = document.getElementById("docFullscreenModal");
+
+    if (mobileFullscreenHandle) {
+      mobileFullscreenHandle.addEventListener("click", openFullscreenDocument);
+      mobileFullscreenHandle.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          openFullscreenDocument();
+        }
+      });
+
+      // Swipe-up gesture on mobile handle / canvas top bar
+      let touchStartY = 0;
+      let touchStartX = 0;
+
+      const handleTouchStart = (e) => {
+        if (e.touches && e.touches.length > 0) {
+          touchStartY = e.touches[0].clientY;
+          touchStartX = e.touches[0].clientX;
+        }
+      };
+
+      const handleTouchEnd = (e) => {
+        if (e.changedTouches && e.changedTouches.length > 0) {
+          const deltaY = e.changedTouches[0].clientY - touchStartY;
+          const deltaX = e.changedTouches[0].clientX - touchStartX;
+          // Upward swipe with minimal horizontal divergence
+          if (deltaY < -35 && Math.abs(deltaY) > Math.abs(deltaX)) {
+            openFullscreenDocument();
+          }
+        }
+      };
+
+      mobileFullscreenHandle.addEventListener("touchstart", handleTouchStart, { passive: true });
+      mobileFullscreenHandle.addEventListener("touchend", handleTouchEnd, { passive: true });
+
+      const canvasTopBar = document.querySelector(".canvas-top-bar");
+      if (canvasTopBar) {
+        canvasTopBar.addEventListener("touchstart", handleTouchStart, { passive: true });
+        canvasTopBar.addEventListener("touchend", handleTouchEnd, { passive: true });
+      }
+    }
+
+    if (fullscreenMobileCloseHandle) {
+      fullscreenMobileCloseHandle.addEventListener("click", closeFullscreenDocument);
+    }
+
+    if (docModal) {
+      // Swipe down to close on fullscreen modal header
+      let modalTouchStartY = 0;
+      const modalHeader = docModal.querySelector(".fullscreen-doc-header");
+      if (modalHeader) {
+        modalHeader.addEventListener("touchstart", (e) => {
+          if (e.touches && e.touches.length > 0) {
+            modalTouchStartY = e.touches[0].clientY;
+          }
+        }, { passive: true });
+
+        modalHeader.addEventListener("touchend", (e) => {
+          if (e.changedTouches && e.changedTouches.length > 0) {
+            const deltaY = e.changedTouches[0].clientY - modalTouchStartY;
+            if (deltaY > 40) {
+              closeFullscreenDocument();
+            }
+          }
+        }, { passive: true });
+      }
+    }
+
     document.getElementById("showDocDrawerBtn")?.addEventListener("click", openFullscreenDocument);
     document.getElementById("showDocBtn")?.addEventListener("click", openFullscreenDocument);
     document.getElementById("showDocFooterBtn")?.addEventListener("click", openFullscreenDocument);
@@ -4333,10 +4465,17 @@ function showToast(msg, timeout = 3000) {
     const zoomLevelDisplay = document.getElementById("zoomLevelDisplay");
     
     function applyZoom(zoom) {
-      currentZoom = Math.min(150, Math.max(50, zoom));
+      currentZoom = Math.min(150, Math.max(30, zoom));
       if (paperCanvasEl) {
         paperCanvasEl.style.transform = `scale(${currentZoom / 100})`;
         paperCanvasEl.style.transformOrigin = "top center";
+        if (window.innerWidth <= 768) {
+          const scaledHeight = 1123 * (currentZoom / 100);
+          const negativeSpace = 1123 - scaledHeight;
+          paperCanvasEl.style.marginBottom = `-${negativeSpace - 24}px`;
+        } else {
+          paperCanvasEl.style.marginBottom = "40px";
+        }
       }
       if (zoomLevelDisplay) {
         zoomLevelDisplay.textContent = `${currentZoom}%`;
@@ -4345,14 +4484,17 @@ function showToast(msg, timeout = 3000) {
 
     document.getElementById("zoomInBtn")?.addEventListener("click", () => applyZoom(currentZoom + 10));
     document.getElementById("zoomOutBtn")?.addEventListener("click", () => applyZoom(currentZoom - 10));
+    
     function autoFitCanvas() {
-      const isTablet = window.innerWidth >= 769 && window.innerWidth <= 1200;
-      if (isTablet) {
-        const studioWorkspace = document.querySelector(".studio-workspace");
-        if (studioWorkspace) {
-          const availableW = studioWorkspace.clientWidth - 36;
-          const fitScale = Math.min(100, Math.max(45, Math.floor((availableW / 794) * 100)));
+      const studioWorkspace = document.querySelector(".studio-workspace");
+      if (studioWorkspace && paperCanvasEl) {
+        if (window.innerWidth <= 1200) {
+          const padding = window.innerWidth <= 768 ? 16 : 36;
+          const availableW = Math.max(260, studioWorkspace.clientWidth - padding);
+          const fitScale = Math.min(100, Math.max(30, Math.floor((availableW / 794) * 100)));
           applyZoom(fitScale);
+        } else {
+          applyZoom(100);
         }
       }
     }
@@ -4360,19 +4502,20 @@ function showToast(msg, timeout = 3000) {
     document.getElementById("zoomFitBtn")?.addEventListener("click", () => {
       const studioWorkspace = document.querySelector(".studio-workspace");
       if (studioWorkspace) {
-        const availableW = studioWorkspace.clientWidth - 36;
-        const fitScale = Math.min(100, Math.max(45, Math.floor((availableW / 794) * 100)));
+        const padding = window.innerWidth <= 768 ? 16 : 36;
+        const availableW = Math.max(260, studioWorkspace.clientWidth - padding);
+        const fitScale = Math.min(100, Math.max(30, Math.floor((availableW / 794) * 100)));
         applyZoom(fitScale);
       } else {
         applyZoom(100);
       }
     });
 
-    // Auto-fit canvas on tablet on load and resize
+    // Auto-fit canvas on load and window resize for all screen sizes
     setTimeout(autoFitCanvas, 300);
     window.addEventListener("resize", debounce(autoFitCanvas, 150));
 
-    // ATS Score Modal Handlers
+    // ATS Modal and Export Listeners
     document.getElementById("checkAtsScoreBtn")?.addEventListener("click", openAtsScoreModal);
     document.getElementById("closeAtsModal")?.addEventListener("click", () => {
       document.getElementById("atsScoreModal")?.setAttribute("aria-hidden", "true");
@@ -4399,18 +4542,18 @@ function showToast(msg, timeout = 3000) {
       }
     });
 
-    const topColorPicker = document.getElementById("templateColorPicker");
-    if (topColorPicker) {
-      topColorPicker.addEventListener("input", (e) => {
-        applyCustomColor(e.target.value);
-      });
-      topColorPicker.addEventListener("change", (e) => {
-        applyCustomColor(e.target.value);
-      });
-    }
+    ["templateColorPicker", "templateColorPickerDesktop"].forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.addEventListener("input", (e) => applyCustomColor(e.target.value));
+        el.addEventListener("change", (e) => applyCustomColor(e.target.value));
+      }
+    });
 
-    document.getElementById("resetColorBtn")?.addEventListener("click", () => {
-      resetCustomColor();
+    ["resetColorBtn", "resetColorBtnDesktop"].forEach((id) => {
+      document.getElementById(id)?.addEventListener("click", () => {
+        resetCustomColor();
+      });
     });
 
     // export and save from preview panel
