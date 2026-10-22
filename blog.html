@@ -11,6 +11,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css?v=20260828_instant_sharp_tabs_v14">
+    <script>
+        try {
+            if (localStorage.getItem("resume_builder_theme") === "dark") {
+                document.documentElement.setAttribute("data-theme", "dark");
+            }
+        } catch(e) {}
+    </script>
     <!-- Lottie Web Player -->
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <script>
@@ -43,10 +50,13 @@
 
     <style>
         .blog-hero {
-            background: linear-gradient(135deg, rgba(230, 0, 35, 0.05) 0%, rgba(17, 17, 17, 0.03) 100%);
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.05) 0%, rgba(17, 24, 39, 0.02) 100%);
             padding: 60px 0 40px;
             text-align: center;
             border-bottom: 1px solid var(--canva-border);
+        }
+        [data-theme="dark"] .blog-hero {
+            background: linear-gradient(135deg, rgba(167, 139, 250, 0.08) 0%, rgba(17, 24, 39, 0.4) 100%);
         }
         .blog-hero .title {
             font-size: 38px;
@@ -70,18 +80,31 @@
             padding: 14px 22px;
             padding-right: 50px;
             border-radius: 50rem;
-            border: 1.5px solid var(--canva-border);
-            background: var(--canva-card);
+            border: 1px solid rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.78);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
             color: var(--canva-dark);
             font-size: 14.5px;
             outline: none;
             box-sizing: border-box;
-            box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+            box-shadow: inset 0 1px 1.5px rgba(255, 255, 255, 0.9), 0 4px 14px rgba(0,0,0,0.06);
             transition: border-color 0.2s ease, box-shadow 0.2s ease;
         }
         .blog-search-input:focus {
-            border-color: #e60023;
-            box-shadow: 0 0 0 4px rgba(230, 0, 35, 0.15);
+            border-color: #7C3AED;
+            box-shadow: inset 0 1px 1.5px rgba(255, 255, 255, 1), 0 0 0 4px rgba(124, 58, 237, 0.15);
+        }
+        [data-theme="dark"] .blog-search-input {
+            background: rgba(31, 41, 55, 0.75);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: inset 0 1px 1.5px rgba(255, 255, 255, 0.16), 0 4px 14px rgba(0,0,0,0.35);
+        }
+        [data-theme="dark"] .blog-search-input:focus {
+            border-color: #A78BFA;
+            box-shadow: inset 0 1px 1.5px rgba(255, 255, 255, 0.25), 0 0 0 4px rgba(167, 139, 250, 0.2);
         }
         .blog-search-suggestions {
             position: absolute;
@@ -89,14 +112,21 @@
             left: 0;
             right: 0;
             z-index: 100;
-            background: var(--canva-card);
-            border: 1.5px solid var(--canva-border);
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.9);
             border-radius: 16px;
-            box-shadow: 0 16px 40px rgba(0,0,0,0.18);
+            box-shadow: inset 0 1px 1.5px rgba(255, 255, 255, 0.95), 0 16px 40px rgba(0,0,0,0.18);
             overflow: hidden;
             display: none;
             flex-direction: column;
             text-align: left;
+        }
+        [data-theme="dark"] .blog-search-suggestions {
+            background: rgba(31, 41, 55, 0.88);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            box-shadow: inset 0 1px 1.5px rgba(255, 255, 255, 0.18), 0 20px 45px rgba(0,0,0,0.5);
         }
         .blog-search-suggestions.active {
             display: flex;
@@ -118,17 +148,25 @@
             border-bottom: none;
         }
         .blog-sugg-item:hover, .blog-sugg-item.focused {
-            background: rgba(230, 0, 35, 0.08);
-            color: #e60023;
+            background: #F5F3FF;
+            color: #7C3AED;
+        }
+        [data-theme="dark"] .blog-sugg-item:hover, [data-theme="dark"] .blog-sugg-item.focused {
+            background: rgba(167, 139, 250, 0.12);
+            color: #A78BFA;
         }
         .blog-sugg-item .sugg-tag {
             font-size: 9.5px;
             font-weight: 800;
-            color: #e60023;
-            background: rgba(230, 0, 35, 0.1);
+            color: #7C3AED;
+            background: rgba(124, 58, 237, 0.1);
             padding: 2px 7px;
             border-radius: 9999px;
             flex-shrink: 0;
+        }
+        [data-theme="dark"] .blog-sugg-item .sugg-tag {
+            color: #A78BFA;
+            background: rgba(167, 139, 250, 0.15);
         }
         .blog-main-wrap {
             padding: 50px 0 80px;
@@ -236,13 +274,18 @@
             margin-bottom: 8px;
         }
         .article-takeaway {
-            background: rgba(230, 0, 35, 0.06);
-            border-left: 4px solid #e60023;
+            background: #F5F3FF;
+            border-left: 4px solid #7C3AED;
             padding: 16px 20px;
             border-radius: 8px;
             margin: 24px 0;
             font-size: 14.5px;
             font-weight: 500;
+        }
+        [data-theme="dark"] .article-takeaway {
+            background: rgba(167, 139, 250, 0.12);
+            border-left: 4px solid #A78BFA;
+            color: #F9FAFB;
         }
         @media (max-width: 768px) {
             .blog-hero {

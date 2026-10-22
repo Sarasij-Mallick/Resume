@@ -8,6 +8,13 @@
   <link rel="stylesheet" href="css/style.css?v=20260828_instant_sharp_tabs_v14">
   <script>
     try {
+      if (localStorage.getItem("resume_builder_theme") === "dark") {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    } catch(e) {}
+  </script>
+  <script>
+    try {
       var observer = new MutationObserver(function(mutations) {
         mutations.forEach(function(mutation) {
           mutation.addedNodes.forEach(function(node) {
@@ -34,14 +41,14 @@
     setInterval(purgeAllTrails, 1000);
   </script>
   <style>
-    /* Pinterest Design System & Aesthetics */
+    /* Charcoal + Violet Design System & Aesthetics */
     :root {
-      --p-red: #e60023;
-      --p-red-hover: #ad081b;
-      --p-dark: #111111;
-      --p-gray: #767676;
-      --p-border: #e1e1e1;
-      --p-bg: #eef1f5;
+      --p-red: #7C3AED;
+      --p-red-hover: #6D28D9;
+      --p-dark: #111827;
+      --p-gray: #4B5563;
+      --p-border: #E5E7EB;
+      --p-bg: #F9FAFB;
     }
 
     html, body {
@@ -50,7 +57,12 @@
       padding: 24px 0;
       box-sizing: border-box;
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: #f1f5f9 !important;
+      background-color: #F9FAFB !important;
+      background-image: 
+        radial-gradient(at 15% 15%, rgba(124, 58, 237, 0.08) 0px, transparent 50%),
+        radial-gradient(at 85% 25%, rgba(167, 139, 250, 0.10) 0px, transparent 55%),
+        radial-gradient(at 50% 75%, rgba(124, 58, 237, 0.05) 0px, transparent 60%) !important;
+      background-attachment: fixed !important;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -91,10 +103,12 @@
     .auth-card {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      background: #ffffff !important;
+      background: rgba(255, 255, 255, 0.82) !important;
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
       border-radius: 32px;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
-      border: 1px solid rgba(226, 232, 240, 0.8);
+      box-shadow: inset 0 1px 2px 0 rgba(255, 255, 255, 0.95), 0 25px 50px -12px rgba(17, 24, 39, 0.12), 0 4px 16px rgba(17, 24, 39, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.85);
       overflow: hidden;
       min-height: 580px;
       transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.75s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.5s ease;
@@ -104,13 +118,13 @@
     }
     .auth-card:hover {
       transform: translateY(-8px) scale(1.008);
-      box-shadow: 0 32px 64px -12px rgba(0, 0, 0, 0.2), 0 0 0 2px rgba(230, 0, 35, 0.22);
-      border-color: rgba(230, 0, 35, 0.38);
+      box-shadow: inset 0 1px 2px rgba(255, 255, 255, 1), 0 32px 64px -12px rgba(17, 24, 39, 0.18), 0 0 0 2px rgba(124, 58, 237, 0.22);
+      border-color: rgba(124, 58, 237, 0.38);
     }
 
-    /* Left Side Pinterest Showcase Banner */
+    /* Left Side Showcase Banner */
     .auth-banner {
-      background: linear-gradient(145deg, #e60023 0%, #c4001a 45%, #111111 100%);
+      background: linear-gradient(145deg, #7C3AED 0%, #5B21B6 45%, #111827 100%);
       padding: 44px;
       display: flex;
       flex-direction: column;
@@ -183,7 +197,7 @@
       width: 42px;
       height: 42px;
       background: #ffffff;
-      color: #e60023;
+      color: #7C3AED;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -204,7 +218,7 @@
       background: linear-gradient(
         90deg,
         rgba(255, 255, 255, 0) 0%,
-        rgba(230, 0, 35, 0.35) 50%,
+        rgba(124, 58, 237, 0.35) 50%,
         rgba(255, 255, 255, 0) 100%
       );
       transform: rotate(30deg);
@@ -268,7 +282,7 @@
       width: 24px;
       height: 24px;
       border-radius: 50%;
-      background: #e60023;
+      background: #7C3AED;
       border: 2px solid #ffffff;
       margin-left: -8px;
       display: inline-flex;
@@ -278,9 +292,9 @@
       font-weight: 800;
       color: #fff;
     }
-    .avatar-stack span:first-child { margin-left: 0; background: #111111; }
-    .avatar-stack span:nth-child(2) { background: #ff5a5f; }
-    .avatar-stack span:nth-child(3) { background: #0084ff; }
+    .avatar-stack span:first-child { margin-left: 0; background: #111827; }
+    .avatar-stack span:nth-child(2) { background: #A78BFA; }
+    .avatar-stack span:nth-child(3) { background: #5B21B6; }
 
     .banner-footer {
       font-size: 13px;
@@ -289,7 +303,7 @@
       z-index: 2;
     }
 
-    /* Pinterest Style Right Auth Form */
+    /* Right Auth Form */
     .auth-box {
       padding: 40px 44px;
       position: relative;
@@ -322,8 +336,8 @@
       box-shadow: none !important;
     }
     .close-btn:hover {
-      background: rgba(230, 0, 35, 0.08) !important;
-      color: #e60023 !important;
+      background: #F5F3FF !important;
+      color: #7C3AED !important;
       transform: scale(1.12) rotate(90deg);
     }
     .close-btn:active {
@@ -354,14 +368,14 @@
     }
 
     .tab-btn:hover {
-      color: #e60023;
-      background: rgba(230, 0, 35, 0.08);
+      color: #7C3AED;
+      background: #F5F3FF;
     }
 
     .tab-btn.active {
-      background: #e60023;
+      background: #7C3AED;
       color: #ffffff !important;
-      box-shadow: 0 4px 14px rgba(230, 0, 35, 0.3);
+      box-shadow: 0 4px 14px rgba(124, 58, 237, 0.3);
     }
 
     .form-section {
@@ -393,7 +407,7 @@
       margin: 0;
     }
 
-    /* Social Auth Buttons - Pinterest Style Pills */
+    /* Social Auth Buttons - Pills */
     .social-btn-group {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -442,7 +456,7 @@
     .divider::before { margin-right: 12px; }
     .divider::after { margin-left: 12px; }
 
-    /* Pinterest Pill Inputs & Autofill Fixes */
+    /* Pill Inputs & Autofill Fixes */
     .input-field {
       position: relative;
       margin-bottom: 14px;
@@ -471,8 +485,8 @@
     }
     .input-field input:focus {
       outline: none;
-      border-color: #e60023 !important;
-      box-shadow: 0 0 0 4px rgba(230, 0, 35, 0.12) !important;
+      border-color: #7C3AED !important;
+      box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.15) !important;
     }
     .input-icon {
       position: absolute;
@@ -520,16 +534,16 @@
       text-decoration: none;
       font-weight: 700;
     }
-    .forgot-link:hover { text-decoration: underline; color: #e60023 !important; }
+    .forgot-link:hover { text-decoration: underline; color: #7C3AED !important; }
 
-    /* Pinterest Red Action Button with Shining Reflection */
+    /* Violet Action Button with Shining Reflection */
     .submit-btn {
       position: relative;
       overflow: hidden;
       width: 100%;
       height: 48px;
       border-radius: 24px;
-      background: #e60023;
+      background: #7C3AED;
       color: #ffffff;
       border: none;
       font-family: inherit;
@@ -537,7 +551,7 @@
       font-weight: 800;
       cursor: pointer;
       transition: all 0.25s ease;
-      box-shadow: 0 4px 16px rgba(230, 0, 35, 0.35);
+      box-shadow: 0 4px 16px rgba(124, 58, 237, 0.35);
       z-index: 1;
     }
 
@@ -552,7 +566,7 @@
         90deg,
         rgba(255, 255, 255, 0) 0%,
         rgba(255, 255, 255, 0.24) 50%,
-        rgba(255, 255, 255, 0) 100%
+        rgba(255, 255, 255, 100%)
       );
       transform: rotate(25deg);
       animation: btnShineSweep 5.0s infinite cubic-bezier(0.4, 0, 0.2, 1);
@@ -578,9 +592,9 @@
     }
 
     .submit-btn:hover {
-      background: #c4001a;
+      background: #6D28D9;
       transform: translateY(-1.5px);
-      box-shadow: 0 8px 24px rgba(230, 0, 35, 0.45);
+      box-shadow: 0 8px 24px rgba(124, 58, 237, 0.45);
     }
 
     .submit-btn:hover::after {
@@ -604,7 +618,117 @@
       text-decoration: none;
       font-weight: 800;
     }
-    .form-toggle-text a:hover { text-decoration: underline; color: #e60023 !important; }
+    .form-toggle-text a:hover { text-decoration: underline; color: #7C3AED !important; }
+
+    /* Dark Theme Overrides for Login - Lucite Glass */
+    [data-theme="dark"] html,
+    [data-theme="dark"] body {
+      background-color: #111827 !important;
+      background-image: 
+        radial-gradient(at 15% 15%, rgba(124, 58, 237, 0.15) 0px, transparent 55%),
+        radial-gradient(at 85% 25%, rgba(167, 139, 250, 0.12) 0px, transparent 60%),
+        radial-gradient(at 50% 80%, rgba(124, 58, 237, 0.09) 0px, transparent 65%) !important;
+      background-attachment: fixed !important;
+    }
+    [data-theme="dark"] .auth-card {
+      background: rgba(31, 41, 55, 0.75) !important;
+      backdrop-filter: blur(24px) saturate(180%) !important;
+      -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+      border: 1px solid rgba(255, 255, 255, 0.12) !important;
+      box-shadow: inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.16), inset 0 0 1px 0 rgba(167, 139, 250, 0.25), 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+    [data-theme="dark"] .auth-card:hover {
+      box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.25), inset 0 0 2px rgba(167, 139, 250, 0.45), 0 32px 64px -12px rgba(0, 0, 0, 0.65), 0 0 0 2px rgba(167, 139, 250, 0.35);
+      border-color: #A78BFA !important;
+    }
+    [data-theme="dark"] .auth-box {
+      background: transparent !important;
+    }
+    [data-theme="dark"] .form-header h2 {
+      color: #F9FAFB !important;
+    }
+    [data-theme="dark"] .form-header p {
+      color: #D1D5DB !important;
+    }
+    [data-theme="dark"] .tab-switcher {
+      background: #111827;
+    }
+    [data-theme="dark"] .tab-btn {
+      color: #D1D5DB;
+    }
+    [data-theme="dark"] .tab-btn:hover {
+      color: #A78BFA;
+      background: rgba(167, 139, 250, 0.12);
+    }
+    [data-theme="dark"] .tab-btn.active {
+      background: #A78BFA;
+      color: #111827 !important;
+      box-shadow: 0 4px 14px rgba(167, 139, 250, 0.3);
+    }
+    [data-theme="dark"] .social-btn {
+      background: #111827;
+      border-color: #374151;
+      color: #F9FAFB;
+    }
+    [data-theme="dark"] .social-btn:hover {
+      background: #1F2937;
+      border-color: #A78BFA;
+    }
+    [data-theme="dark"] .divider {
+      color: #9CA3AF;
+    }
+    [data-theme="dark"] .divider::before,
+    [data-theme="dark"] .divider::after {
+      border-bottom-color: #374151;
+    }
+    [data-theme="dark"] .input-field input {
+      background-color: #111827 !important;
+      border-color: #374151;
+      color: #F9FAFB !important;
+    }
+    [data-theme="dark"] .input-field input:-webkit-autofill,
+    [data-theme="dark"] .input-field input:-webkit-autofill:hover, 
+    [data-theme="dark"] .input-field input:-webkit-autofill:focus, 
+    [data-theme="dark"] .input-field input:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0 30px #111827 inset !important;
+      -webkit-text-fill-color: #F9FAFB !important;
+    }
+    [data-theme="dark"] .input-field input:focus {
+      border-color: #A78BFA !important;
+      box-shadow: 0 0 0 4px rgba(167, 139, 250, 0.25) !important;
+    }
+    [data-theme="dark"] .input-icon,
+    [data-theme="dark"] .toggle-pass {
+      color: #9CA3AF;
+    }
+    [data-theme="dark"] .remember-me {
+      color: #D1D5DB !important;
+    }
+    [data-theme="dark"] .forgot-link {
+      color: #A78BFA !important;
+    }
+    [data-theme="dark"] .submit-btn {
+      background: #A78BFA;
+      color: #111827;
+      box-shadow: 0 4px 16px rgba(167, 139, 250, 0.35);
+    }
+    [data-theme="dark"] .submit-btn:hover {
+      background: #C4B5FD;
+      box-shadow: 0 8px 24px rgba(167, 139, 250, 0.45);
+    }
+    [data-theme="dark"] .form-toggle-text {
+      color: #D1D5DB !important;
+    }
+    [data-theme="dark"] .form-toggle-text a {
+      color: #A78BFA !important;
+    }
+    [data-theme="dark"] .close-btn {
+      color: #9CA3AF !important;
+    }
+    [data-theme="dark"] .close-btn:hover {
+      background: rgba(167, 139, 250, 0.15) !important;
+      color: #A78BFA !important;
+    }
 
     /* Password Strength Indicator */
     .pass-strength {
@@ -810,7 +934,7 @@
         if (regTab) regTab.classList.add('active');
         if (loginSec) loginSec.style.display = 'none';
         if (regSec) regSec.style.display = 'block';
-        if (banner) banner.style.background = 'linear-gradient(145deg, #111111 0%, #333333 45%, #e60023 100%)';
+        if (banner) banner.style.background = 'linear-gradient(145deg, #111827 0%, #1F2937 45%, #7C3AED 100%)';
         if (title) title.textContent = 'Join the FolioCraft Community';
         if (desc) desc.textContent = 'Create a free account to build, edit, and export unlimited ATS-optimized resumes.';
         if (stat) {
@@ -826,7 +950,7 @@
         if (loginTab) loginTab.classList.add('active');
         if (regSec) regSec.style.display = 'none';
         if (loginSec) loginSec.style.display = 'block';
-        if (banner) banner.style.background = 'linear-gradient(145deg, #e60023 0%, #c4001a 45%, #111111 100%)';
+        if (banner) banner.style.background = 'linear-gradient(145deg, #7C3AED 0%, #5B21B6 45%, #111827 100%)';
         if (title) title.textContent = 'Welcome to FolioCraft';
         if (desc) desc.textContent = 'Discover 15+ Pinterest-inspired resume layouts, ATS optimization, and instant exports.';
         if (stat) {
